@@ -1,0 +1,220 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "dinstall.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+SETUP_ICON              ICON    DISCARDABLE     "setup.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+RAGE                    BITMAP  MOVEABLE PURE   "3drage.bmp"
+WIPEOUT                 BITMAP  MOVEABLE PURE   "wipeout.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+DLG_MASTER DIALOG DISCARDABLE  5, 50, 398, 151
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Wipeout for 3D Rage Setup"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "",IDC_STATIC,"Static",SS_BITMAP | SS_CENTERIMAGE,7,2,
+                    160,120
+    CONTROL         "",-1,"Static",SS_BLACKFRAME,15,125,365,1
+    PUSHBUTTON      "Next >",IDOK,265,130,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,330,130,50,14
+    PUSHBUTTON      "&Help",IDC_H,150,130,50,14
+    PUSHBUTTON      "< &Back",IDC_B,215,130,50,14
+    LTEXT           "Setup will install 'Wipeout for 3D Rage'",
+                    IDC_DIRECTIONS1,183,4,195,12,NOT WS_VISIBLE
+    LTEXT           "You may enter the directory that you would like 'Wipeout for 3D Rage' installed in.",
+                    IDC_DIRECTIONS2,183,29,193,18,NOT WS_VISIBLE
+    LTEXT           "Directory:",IDC_EDITTEXT,183,54,32,8,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT,218,53,117,12,ES_AUTOHSCROLL | ES_OEMCONVERT | 
+                    NOT WS_VISIBLE
+    PUSHBUTTON      "Browse...",IDC_BROWSE,340,52,40,14,NOT WS_VISIBLE
+    LTEXT           "",IDC_INFO,183,104,197,16,NOT WS_VISIBLE
+    LTEXT           "In order to complete the installation of the game it will be necessary to restart your system. Press the Reboot button to restart Windows 95 now.",
+                    IDC_REBOOT1,183,4,175,38,NOT WS_VISIBLE
+    LTEXT           "If you do not restart Windows 95 now, the drivers required to make DirectX(tm) work will not be available until the next restart.",
+                    IDC_REBOOT2,183,38,175,30,NOT WS_VISIBLE
+    LTEXT           "Setup has completed successfuly.",IDC_SUCCESS,191,4,175,
+                    38,NOT WS_VISIBLE
+    CONTROL         "Install movie files to hard disk",IDC_INSTALLMOVIES,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,
+                    183,68,134,10
+    CONTROL         "Install data files to hard disk",IDC_INSTALLDATA,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,
+                    183,54,109,10
+    LTEXT           "For improved performance you may install data and movie files to hard disk",
+                    IDC_DIRECTIONS3,183,4,197,21,NOT WS_VISIBLE
+    LTEXT           "Available disk space",IDC_DISKSPACE,183,26,66,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Disk space required",IDC_DISKREQUIRED,183,40,138,8,NOT 
+                    WS_VISIBLE
+    RTEXT           "0",IDC_DATASIZE,323,54,57,10,NOT WS_VISIBLE
+    RTEXT           "0",IDC_MOVIESSIZE,323,68,57,10,NOT WS_VISIBLE
+    LTEXT           "Setup is about to install 'Wipeout for 3D Rage'",
+                    IDC_INSTALL,183,4,177,18,NOT WS_VISIBLE
+    LTEXT           "'Wipeout for 3D Rage' requires Microsoft DirectX(tm) to run. It is recommended that you install this now.",
+                    IDC_DIRECTXDIRECTIONS,183,4,200,23,NOT WS_VISIBLE
+    PUSHBUTTON      "Install Microsoft DirectX(tm) Now",IDC_INSTALLDIRECTX,
+                    244,51,135,14,NOT WS_VISIBLE
+    LTEXT           "",IDC_DIRECTXDIRECTIONS2,183,35,190,8,NOT WS_VISIBLE
+    RTEXT           "0",IDC_DISKREQUIREDNUMBER,323,40,57,10,NOT WS_VISIBLE
+    RTEXT           "0",IDC_DISKSPACENUMBER,323,26,57,10,NOT WS_VISIBLE
+    LTEXT           "Installing 'Wipeout for 3D Rage'",IDC_INSTALLING,183,4,
+                    118,8,NOT WS_VISIBLE
+    LTEXT           "",IDC_INSTALLACTION,183,20,198,28,NOT WS_VISIBLE
+    LTEXT           "Deleting previous installation of 'Wipeout for 3D Rage'",
+                    IDC_DELETING,183,4,198,15,NOT WS_VISIBLE
+    LTEXT           "",IDC_ACTION,183,20,197,24,NOT WS_VISIBLE
+END
+
+DLG_RUNMASTER DIALOG DISCARDABLE  5, 50, 172, 170
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Wipeout for 3D Rage"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "",IDC_STATIC,"Static",SS_BITMAP | SS_CENTERIMAGE,7,2,
+                    160,120
+    CONTROL         "",-1,"Static",SS_BLACKFRAME,15,125,144,1
+    PUSHBUTTON      "E&xit",IDCANCEL,40,150,92,14
+    PUSHBUTTON      "&Run Wipeout",IDC_H,40,130,92,14
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""dinstall.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,4
+ PRODUCTVERSION 1,0,0,2
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080904b0"
+        BEGIN
+            VALUE "CompanyName", "Psygnosis Ltd\0"
+            VALUE "FileDescription", "WipeOut for 3D Rage Setup Program\0"
+            VALUE "FileVersion", "1, 0, 0, 4\0"
+            VALUE "InternalName", "_wipeset\0"
+            VALUE "LegalCopyright", "Copyright © 1996 Psygnosis Ltd\0"
+            VALUE "OriginalFilename", "_wipeset.exe\0"
+            VALUE "ProductName", "WipeOut for 3D Rage\0"
+            VALUE "ProductVersion", "1, 0, 0, 2\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x809, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    "DLG_RUNMASTER", DIALOG
+    BEGIN
+        BOTTOMMARGIN, 151
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

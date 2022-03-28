@@ -1,0 +1,114 @@
+Dominic,
+
+Sorry for the delay.
+
+#include <windows.h>
+#include "mciwnd.h"
+
+#define MCI_MCIAVI_PLAY_FULLSCREEN 0x02000000L
+
+HINSTANCE hInstance;
+HWND hwndMCIWnd;
+
+void ShellMoviePlay(char *);
+
+/*
+ * WinMain
+ *
+ * Purpose:
+ *  Main entry point of application.
+ */
+
+int PASCAL WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, LPSTR 
+pszCmdLine, int nCmdShow)
+{
+	hInstance = hInst;
+    MSG         msg;
+	ShellMoviePlay("D:\\WIPEOUT\\WIPEOUT.MPG");
+    while (GetMessage(&msg, NULL, 0,0 ))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+	
+    return msg.wParam;
+}
+
+LRESULT FAR PASCAL VideoWndProc(HWND hWnd, UINT iMsg, WPARAM wParam, 
+LPARAM lParam)
+{
+	switch(iMsg) {
+		case MM_MCINOTIFY:
+			switch(wParam) {				
+				case MCI_NOTIFY_SUCCESSFUL:
+				case MCI_NOTIFY_ABORTED:
+				case MCI_NOTIFY_SUPERSEDED:
+				case MCI_NOTIFY_FAILURE:
+					MCIWndClose(hwndMCIWnd);
+					MCIWndDestroy(hwndMCIWnd);
+					DestroyWindow(hWnd);
+					break;
+			}
+			return 1;
+		case WM_DESTROY:
+			PostQuitMessage(0);
+			return 1;
+/*		case MCIWNDM_NOTIFYMODE:
+			if(lParam == MCI_MODE_STOP) {
+				MCIWndOpen(hwndMCIWnd, "n:\\mmdata\\mpeg\\test.mpg", 0);
+				MCIWndPlay(hwndMCIWnd);
+			}
+			return 1;*/
+		default:
+			return (DefWindowProc(hWnd, iMsg, wParam, lParam));
+	}
+}
+
+void ShellMoviePlay(char *pName)
+{
+    WNDCLASS    wc;
+
+    wc.style          = CS_HREDRAW | CS_VREDRAW;
+    wc.lpfnWndProc    = VideoWndProc;
+    wc.cbClsExtra     = 0;
+    wc.cbWndExtra     = 0;
+    wc.hInstance      = hInstance;
+    wc.hIcon          = NULL;
+    wc.hCursor        = LoadCursor(NULL, IDC_ARROW);
+    wc.hbrBackground  = (HBRUSH)GetStockObject(BLACK_BRUSH);
+    wc.lpszMenuName   = NULL;
+    wc.lpszClassName  = "MpegVideoWindow";
+
+    if (!RegisterClass(&wc))
+        return;
+
+	SIZE screenSz = 
+{::GetSystemMetrics(SM_CXSCREEN),::GetSystemMetrics(SM_CYSCREEN)};
+	HWND m_hWnd = CreateWindow("MpegVideoWindow", "Fullscreen MPEG Demo", 
+			WS_POPUP, 0, 0, screenSz.cx, screenSz.cy,
+			NULL, NULL, hInstance, NULL);
+	
+    if (NULL==m_hWnd) return;
+	
+	ShowWindow(m_hWnd, SW_SHOW);
+
+	DWORD dwMCIWndStyle = WS_CHILD | WS_VISIBLE | MCIWNDF_NOPLAYBAR | 
+//MCIWNDF_NOTIFYMODE |
+		 CS_BYTEALIGNCLIENT | MCIWNDF_NOMENU | MCIWNDF_NOERRORDLG;
+
+	hwndMCIWnd = MCIWndCreate(m_hWnd, hInstance, dwMCIWndStyle, pName);
+
+	MCI_PLAY_PARMS playInfo;
+	playInfo.dwCallback = MAKELONG(m_hWnd, 0);
+
+	UINT id = MCIWndGetDeviceID(hwndMCIWnd);
+	
+	SetWindowPos(hwndMCIWnd, HWND_TOP, 0, 0, screenSz.cx, screenSz.cy, 
+NULL);
+	DWORD dwErr = mciSendCommand(id, MCI_PLAY, MCI_NOTIFY, 
+(DWORD)&playInfo);	
+}
+
+Gordon
+
+

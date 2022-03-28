@@ -1,0 +1,508 @@
+Comparing files origsrc\WEAPON.C and oldbits\weapon.c
+****** origsrc\WEAPON.C
+}
+void DrawWeapons(ShipData *shipIndex,WeaponShape* weaponShapes, WeaponData *weaponIndex )
+{
+        int i;
+        WeaponData      *weapon;
+        for(i = 0; i < NO_ACTIVE_WEAPONS; i++)
+        {
+//              if (weaponIndex[i].type == MINE)
+//                      continue;                       //BODGE
+                if((weaponIndex[i].count > 0) && (weaponIndex[i].availible))
+                {
+                weapon = &(weaponIndex[i]);
+#if 0
+                SetSkeletonPosition((weaponShapes[weapon->currentWeapon].shapePtr->skeleton),
+                                                weapon->pos.vx,
+                                                weapon->pos.vy,
+                                                weapon->pos.vz);
+           weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+           switch (weapon->type)
+             {
+                 case MISSILE:
+                 case ELEC_BOLT:
+                 case REV_CON:
+                        SetSkeletonDirectionHPR((weaponShapes[weapon->currentWeapon].shapePtr->skeleton),
+                                                        weapon->hdg,
+                                                        weapon->pitch,
+                                                        0);
+                        break;
+                 case MINE:
+                        SetSkeletonDirectionHPR((weaponShapes[weapon->currentWeapon].shapePtr->skeleton),
+                                                        weapon->hdg,
+                                                        0,
+                                                        0);
+                        break;
+                 default:
+                        break;
+****** oldbits\weapon.c
+}
+void LaunchWeapon(ShipData *shipIndex, WeaponData *weaponIndex, int shipNo)
+{
+        int j;
+        if(gameType == SLAVE)
+        {               
+                if(shipIndex[ownShip].DPASectDiff > shipIndex[serialShip].DPASectDiff)
+                {
+                        for(j = 0; j < NO_OF_SHIPS; j++)
+                        {       
+                                if (( j != ownShip) && ( j != serialShip))
+                                {
+                                        switch(shipIndex[j].haveFired)
+                                        {
+                                                case ROCKET :
+                                                        PlayNote(SP_ROCKET, 1, 70);
+                                                        SetPitch(SP_ROCKET, 0x1000);
+                                                        break;
+                                                case MISSILE :
+                                                        PlayNote(SP_MISSILE, 1, 70);
+                                                        SetPitch(SP_MISSILE, 0x1000);    
+                                                        break;
+                                                case MINE :
+                                                        PlayNote(SP_MINES, 1, 70);
+                                                        SetPitch(SP_MINES, 0x1000);
+                                                        break;
+                                                case ELEC_BOLT :
+                                                        PlayNote(SP_SHOCKWAVE, 1, 70);
+                                                        SetPitch(SP_SHOCKWAVE, 0x1000);
+                                                        break;
+******
+
+****** origsrc\WEAPON.C
+             }
+#endif
+                TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+                }
+****** oldbits\weapon.c
+                                        }
+                                }
+******
+
+****** origsrc\WEAPON.C
+}
+void LaunchWeapon(ShipData *shipIndex, WeaponData *weaponIndex, int shipNo)
+{
+        int j;
+        if(gameType == SLAVE)
+        {               
+                if(shipIndex[ownShip].DPASectDiff > shipIndex[serialShip].DPASectDiff)
+                {
+****** oldbits\weapon.c
+                }
+                if(raceType == HEAD_TO_HEAD)
+                {
+                                SetTargetShip(shipIndex, serialShip);
+                                FireWeapon(&(shipIndex[serialShip]), weaponIndex, serialShip, shipIndex[serialShip].haveFired);
+                }
+                else
+                {
+******
+
+****** origsrc\WEAPON.C
+                        {       
+                                if (( j != ownShip) && ( j != serialShip))
+                                {
+                                        switch(shipIndex[j].haveFired)
+                                        {
+                                                case ROCKET :
+                                                        PlayNote(SP_ROCKET, 1, 70);
+                                                        SetPitch(SP_ROCKET, 0x1000);
+                                                        break;
+                                                case MISSILE :
+                                                        PlayNote(SP_MISSILE, 1, 70);
+                                                        SetPitch(SP_MISSILE, 0x1000);    
+                                                        break;
+                                                case MINE :
+                                                        PlayNote(SP_MINES, 1, 70);
+                                                        SetPitch(SP_MINES, 0x1000);
+                                                        break;
+                                                case ELEC_BOLT :
+                                                        PlayNote(SP_SHOCKWAVE, 1, 70);
+                                                        SetPitch(SP_SHOCKWAVE, 0x1000);
+                                                        break;
+                                        }
+****** oldbits\weapon.c
+                        {
+                                if((shipIndex[j].haveFired != NON_ACTIVE) && ( j != ownShip))
+                                {
+                                        SetTargetShip(shipIndex, j);
+                                        FireWeapon(&(shipIndex[j]), weaponIndex, j, shipIndex[j].haveFired);
+                                }
+******
+
+****** origsrc\WEAPON.C
+                }
+                if(raceType == HEAD_TO_HEAD)
+                {
+****** oldbits\weapon.c
+        }
+        else if(gameType == MASTER)
+        {
+                if(shipIndex[serialShip].haveFired != NON_ACTIVE)
+                {
+******
+
+****** origsrc\WEAPON.C
+                }
+                else
+                {
+                        for(j = 0; j < NO_OF_SHIPS; j++)
+                        {
+                                if((shipIndex[j].haveFired != NON_ACTIVE) && ( j != ownShip))
+                                {
+                                        SetTargetShip(shipIndex, j);
+                                        FireWeapon(&(shipIndex[j]), weaponIndex, j, shipIndex[j].haveFired);
+                                }
+****** oldbits\weapon.c
+                }
+        }
+******
+
+****** origsrc\WEAPON.C
+                        }
+                }
+        }
+        else if(gameType == MASTER)
+        {
+                if(shipIndex[serialShip].haveFired != NON_ACTIVE)
+                {
+                        SetTargetShip(shipIndex, serialShip);
+                        FireWeapon(&(shipIndex[serialShip]), weaponIndex, serialShip, shipIndex[serialShip].haveFired);
+                }
+        }
+}
+void FireWeapon(ShipData *playerShip, WeaponData *weaponIndex, int shipNo, char decision)
+****** oldbits\weapon.c
+}
+void FireWeapon(ShipData *playerShip, WeaponData *weaponIndex, int shipNo, char decision)
+******
+
+****** origsrc\WEAPON.C
+                                        playerShip->vpivot.vz += (playerShip->unitVecNose.vz)<<3;
+#else
+****** oldbits\weapon.c
+                                        playerShip->vpivot.vz += (playerShip->unitVecNose.vz)<<3;
+#else
+******
+
+****** origsrc\WEAPON.C
+                weaponIndex[i].count = 0;
+                weaponIndex[i].availible = 0;
+                weaponIndex[i].type = NO_WEAPON;
+****** oldbits\weapon.c
+                weaponIndex[i].count = 0;
+                weaponIndex[i].type = NO_WEAPON;
+******
+
+****** origsrc\WEAPON.C
+                weaponShapes[weapon->currentWeapon].used = 0;
+                weaponIndex[weapon->currentWeapon].availible = 0;
+        }
+****** oldbits\weapon.c
+                weaponShapes[weapon->currentWeapon].used = 0;
+        }
+******
+
+****** origsrc\WEAPON.C
+   weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+#if FRI
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+#endif
+        /***********************************************************/
+****** oldbits\weapon.c
+   weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+        /***********************************************************/
+******
+
+****** origsrc\WEAPON.C
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                weaponIndex[weapon->currentWeapon].availible = 0;
+                                if(i != ownShip)
+****** oldbits\weapon.c
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                if(i != ownShip)
+******
+
+****** origsrc\WEAPON.C
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                weaponIndex[weapon->currentWeapon].availible = 0;
+                                PlayDirectionalNote(EXPLOSION_2, 0, 40, weapon->pos);
+****** oldbits\weapon.c
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                PlayDirectionalNote(EXPLOSION_2, 0, 40, weapon->pos);
+******
+
+****** origsrc\WEAPON.C
+                weaponShapes[weapon->currentWeapon].used = 0;
+                weaponIndex[weapon->currentWeapon].availible = 0;
+        }
+****** oldbits\weapon.c
+                weaponShapes[weapon->currentWeapon].used = 0;
+        }
+******
+
+****** origsrc\WEAPON.C
+  weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+#if FRI
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+#endif
+        /***********************************************************/
+****** oldbits\weapon.c
+  weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+        /***********************************************************/
+******
+
+****** origsrc\WEAPON.C
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                weaponIndex[weapon->currentWeapon].availible = 0;
+                                PlayDirectionalNote(EXPLOSION_1, 0, 40, weapon->pos);
+****** oldbits\weapon.c
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                PlayDirectionalNote(EXPLOSION_1, 0, 40, weapon->pos);
+******
+
+****** origsrc\WEAPON.C
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                        weaponIndex[weapon->currentWeapon].availible = 0;
+                        PlayDirectionalNote(EXPLOSION_2, 0, 40, weapon->pos);
+****** oldbits\weapon.c
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                        PlayDirectionalNote(EXPLOSION_2, 0, 40, weapon->pos);
+******
+
+****** origsrc\WEAPON.C
+                        weapon->updateWeapon = UpdateMissile;
+                        weapon->availible = 1;  //AJY
+                        return; 
+****** oldbits\weapon.c
+                        weapon->updateWeapon = UpdateMissile;
+                        return; 
+******
+
+****** origsrc\WEAPON.C
+                weaponShapes[weapon->currentWeapon].used = 0;
+                weaponIndex[weapon->currentWeapon].availible = 0;
+                return;
+****** oldbits\weapon.c
+                weaponShapes[weapon->currentWeapon].used = 0;
+                return;
+******
+
+****** origsrc\WEAPON.C
+   weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+#if 0
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+#endif
+        /***********************************************************/
+****** oldbits\weapon.c
+   weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+        /***********************************************************/
+******
+
+****** origsrc\WEAPON.C
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                weaponIndex[weapon->currentWeapon].availible = 0;
+                                PlayDirectionalNote(EXPLOSION_1, 0, 40, weapon->pos);
+****** oldbits\weapon.c
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                PlayDirectionalNote(EXPLOSION_1, 0, 40, weapon->pos);
+******
+
+****** origsrc\WEAPON.C
+                        weapon->updateWeapon = UpdateRocket;
+                        weapon->availible = 1;  //AJY
+                        return; 
+****** oldbits\weapon.c
+                        weapon->updateWeapon = UpdateRocket;
+                        return; 
+******
+
+****** origsrc\WEAPON.C
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                        weaponIndex[weapon->currentWeapon].availible = 0;
+                }
+****** oldbits\weapon.c
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                }
+******
+
+****** origsrc\WEAPON.C
+          weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+#if 0
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+#endif
+        /***********************************************************/
+****** oldbits\weapon.c
+          weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+        /***********************************************************/
+******
+
+****** origsrc\WEAPON.C
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                weaponIndex[weapon->currentWeapon].availible = 0;
+                                return;
+****** oldbits\weapon.c
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                return;
+******
+
+****** origsrc\WEAPON.C
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                        weaponIndex[weapon->currentWeapon].availible = 0;
+                        PlayDirectionalNote(EXPLOSION_2, 0, 40, weapon->pos);
+****** oldbits\weapon.c
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                        PlayDirectionalNote(EXPLOSION_2, 0, 40, weapon->pos);
+******
+
+****** origsrc\WEAPON.C
+                        weapon->updateWeapon = UpdateElecBolt;
+                        weapon->availible = 1;  //AJY
+                        return; 
+****** oldbits\weapon.c
+                        weapon->updateWeapon = UpdateElecBolt;
+                        return; 
+******
+
+****** origsrc\WEAPON.C
+        }
+        weapon->availible = 1;  //AJY
+}
+****** oldbits\weapon.c
+        }
+}
+******
+
+****** origsrc\WEAPON.C
+                        weapon->updateWeapon = UpdateRevCon;
+                        weapon->availible = 1;  //AJY
+                        return; 
+****** oldbits\weapon.c
+                        weapon->updateWeapon = UpdateRevCon;
+                        return; 
+******
+
+****** origsrc\WEAPON.C
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                        weaponIndex[weapon->currentWeapon].availible = 0;
+                }
+****** oldbits\weapon.c
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                }
+******
+
+****** origsrc\WEAPON.C
+          weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+#if 0
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+#endif
+        /***********************************************************/
+****** oldbits\weapon.c
+          weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
+        TransformStaticObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos);
+        /***********************************************************/
+******
+
+****** origsrc\WEAPON.C
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                weaponIndex[weapon->currentWeapon].availible = 0;
+                                return;
+****** oldbits\weapon.c
+                                weaponShapes[weapon->currentWeapon].used = 0;
+                                return;
+******
+
+****** origsrc\WEAPON.C
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                        weaponIndex[weapon->currentWeapon].availible = 0;
+                        PlayDirectionalNote(EXPLOSION_2, 0, 40, weapon->pos);
+****** oldbits\weapon.c
+                        weaponShapes[weapon->currentWeapon].used = 0;
+                        PlayDirectionalNote(EXPLOSION_2, 0, 40, weapon->pos);
+******
+
+****** origsrc\WEAPON.C
+                                weapon->count = MINE_DURATION;
+                                weapon->availible = 1;  //AJY
+                                return; 
+****** oldbits\weapon.c
+                                weapon->count = MINE_DURATION;
+                                return; 
+******
+
+****** origsrc\WEAPON.C
+                        weapon->updateWeapon = UpdateShield;
+                        weapon->availible = 1;  //AJY
+                        return; 
+****** oldbits\weapon.c
+                        weapon->updateWeapon = UpdateShield;
+                        return; 
+******
+
+****** origsrc\WEAPON.C
+                weaponShapes[weapon->currentWeapon].used = 0;
+                weaponIndex[weapon->currentWeapon].availible = 0;
+                shipIndex[weapon->fireShip].attr &= ~SHIELDED;
+****** oldbits\weapon.c
+                weaponShapes[weapon->currentWeapon].used = 0;
+                shipIndex[weapon->fireShip].attr &= ~SHIELDED;
+******
+
+****** origsrc\WEAPON.C
+                shieldID = weapon->currentWeapon - SHIELD_OFFSET;
+//              TransformTransparentObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos , shieldID);
+        }
+****** oldbits\weapon.c
+                shieldID = weapon->currentWeapon - SHIELD_OFFSET;
+                TransformTransparentObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos , shieldID);
+        }
+******
+
+****** origsrc\WEAPON.C
+                }
+                poly.prim = weaponShapes[weapon->currentWeapon].shapePtr->primitives;
+****** oldbits\weapon.c
+                }
+#else
+                poly.prim = weaponShapes[weapon->currentWeapon].shapePtr->primitives;
+******
+
+****** origsrc\WEAPON.C
+        primitiveCount = weaponShapes[weapon->currentWeapon].shapePtr->primitiveCount;
+                screen0.vx = 0;
+****** oldbits\weapon.c
+        primitiveCount = weaponShapes[weapon->currentWeapon].shapePtr->primitiveCount;
+                // cause steve only draws 319 x 199, the values have been reduced by 1
+                screen0.vx = 0;
+******
+
+****** origsrc\WEAPON.C
+                screen0.vy = 0;
+                screen1.vx = 319;
+                screen1.vy = 0;
+****** oldbits\weapon.c
+                screen0.vy = 0;
+                screen1.vx = 319; // was 320
+                screen1.vy = 0;
+******
+
+****** origsrc\WEAPON.C
+                screen2.vx = 0;
+                screen2.vy = 239;
+                screen3.vx = 319;
+                screen3.vy = 239;
+        for ( k = 0; k < primitiveCount; k++ )
+****** oldbits\weapon.c
+                screen2.vx = 0;
+                screen2.vy = 239; // was  240
+                screen3.vx = 319; // was 319
+                screen3.vy = 239; // was 240
+        for ( k = 0; k < primitiveCount; k++ )
+******
+
+

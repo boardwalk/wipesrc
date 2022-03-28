@@ -1,0 +1,182 @@
+		.486p
+
+
+	.model flat
+
+	locals
+
+.DATA
+
+; Structure
+
+ClipStruc	struc
+	WinLeft		dw	0
+	WinTop		dw	0
+	WinRight	dw	319
+	WinBottom	dw	239
+	WinWidth	dw	319
+	WinHeight	dw	239
+ClipStruc	ends
+
+;==========================================================
+; Copies of playstation structures
+
+; sprite structure
+SpriteStruc	struc
+	Spr_Tag		dd	0
+	Spr_r0		db	0
+	Spr_g0		db	0
+	Spr_b0		db	0
+	Spr_pad		db	0
+	Spr_X		dw	0
+	Spr_Y		dw	0
+	Spr_U0		db	0
+	Spr_V0		db	0
+	Spr_tPage	dw	0
+	Spr_Width	dw	0
+	Spr_Height	dw	0
+SpriteStruc	ends
+
+; Flat Triangle
+PolyF3		struc
+	ft_tag		dd	0
+	ft_r0		db	0
+	ft_g0		db	0
+	ft_b0		db	0
+	ft_code		db	0
+
+	ft_x0		dw	0
+	ft_y0		dw	0
+	ft_x1		dw	0
+	ft_y1		dw	0
+	ft_x2		dw	0
+	ft_y2		dw	0
+PolyF3		ends	
+
+; Flat Textured Triangle
+PolyFT3		struc
+	ftt_tag		dd	0
+	ftt_r0		db	0
+	ftt_g0		db	0
+	ftt_b0		db	0
+	ftt_code	db	0
+
+	ftt_x0		dw	0
+	ftt_y0		dw	0
+	ftt_u0		db	0
+	ftt_v0		db	0
+	ftt_clut	dw	0
+
+	ftt_x1		dw	0
+	ftt_y1		dw	0
+	ftt_u1		db	0
+	ftt_v1		db	0
+	ftt_tpage	dw	0
+
+	ftt_x2		dw	0
+	ftt_y2		dw	0
+	ftt_u2		db	0
+	ftt_v2		db	0
+	ftt_pad1	dw	0
+PolyFT3		ends
+
+
+; Flat Quad
+PolyF4		struc
+	fq_tag		dd	0
+	fq_r0		db	0
+	fq_g0		db	0
+	fq_b0		db	0
+	fq_code		db	0
+
+	fq_x0		dw	0
+	fq_y0		dw	0
+	fq_x1		dw	0
+	fq_y1		dw	0
+	fq_x2		dw	0
+	fq_y2		dw	0
+	fq_x3		dw	0
+	fq_y3		dw	0
+PolyF4		ends	
+
+
+; Flat Textured Quad
+PolyFT4		struc
+	ftq_tag		dd	0
+	ftq_r0		db	0
+	ftq_g0		db	0
+	ftq_b0		db	0
+	ftq_code	db	0
+
+	ftq_x0		dw	0
+	ftq_y0		dw	0
+	ftq_u0		db	0
+	ftq_v0		db	0
+	ftq_clut	dw	0
+
+	ftq_x1		dw	0
+	ftq_y1		dw	0
+	ftq_u1		db	0
+	ftq_v1		db	0
+	ftq_tpage	dw	0
+
+	ftq_x2		dw	0
+	ftq_y2		dw	0
+	ftq_u2		db	0
+	ftq_v2		db	0
+	ftq_pad1	dw	0
+
+	ftq_x3		dw	0
+	ftq_y3		dw	0
+	ftq_u3		db	0
+	ftq_v3		db	0
+	ftq_pad2	dw	0
+PolyFT4		ends
+
+; Goraud Textured Quad
+PolyGT4		struc
+	fgtq_tag	dd	0
+	fgtq_r0		db	0
+	fgtq_g0		db	0
+	fgtq_b0		db	0
+	fgtq_code	db	0
+
+	fgtq_x0		dw	0
+	fgtq_y0		dw	0
+	fgtq_u0		db	0
+	fgtq_v0		db	0
+	fgtq_clut	dw	0
+	fgtq_r1		db	0
+	fgtq_g1		db	0
+	fgtq_b1		db	0
+	fgtq_p1		db	0
+
+	fgtq_x1		dw	0
+	fgtq_y1		dw	0
+	fgtq_u1		db	0
+	fgtq_v1		db	0
+	fgtq_tpage	dw	0
+	fgtq_r2		db	0
+	fgtq_g2		db	0
+	fgtq_b2		db	0
+	fgtq_p2		db	0
+
+	fgtq_x2		dw	0
+	fgtq_y2		dw	0
+	fgtq_u2		db	0
+	fgtq_v2		db	0
+	fgtq_pad2	dw	0
+	fgtq_r3		db	0
+	fgtq_g3		db	0
+	fgtq_b3		db	0
+	fgtq_p3		db	0
+
+	fgtq_x3		dw	0
+	fgtq_y3		dw	0
+	fgtq_u3		db	0
+	fgtq_v3		db	0
+	fgtq_pad3	dw	0
+PolyGT4		ends
+
+
+

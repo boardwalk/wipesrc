@@ -1,0 +1,596 @@
+
+Module: C:\AndyY\WIPEOUT2\MARKK\pmmouse.c
+Group: 'DGROUP' CONST,CONST2,_DATA,_BSS
+
+Segment: _TEXT  BYTE USE32  000003e2 bytes  
+
+/* This is the protected mode mouse handler routine. */
+#include	"c:\wc10\h\dos.h"
+#include	"c:\wc10\h\string.h"
+#include	"c:\wc10\h\graph.h"
+#include	"..\markk\input.h"
+
+#pragma off (check_stack)
+static void __loadds __far	pmmouse(short mask, short state, short col, short row,
+							signed short mickey_h, signed short mickey_v)
+{
+//	static char			newstack[_MOUSE_STACK];
+//	static void __far	*oldstack;
+
+	short					temp_mask;
+	short					temp_state;
+	short					temp_col;
+	short					temp_row;
+	signed short			temp_mickey_h;
+	signed short			temp_mickey_v;
+	char					temp;
+
+
+	/* Setup Stack. */
+//	oldstack = GetStack();
+//	SetStack(newstack + _MOUSE_STACK);
+
+	/* Copy Imported parameters to safe space. */
+ 0000  1e                pmmouse_        push    ds
+ 0001  e8 00 00 00 00                    call    __GETDS
+ 0006  55                                push    ebp
+ 0007  89 e5                             mov     ebp,esp
+ 0009  81 ec 34 00 00 00                 sub     esp,00000034H
+ 000f  89 45 cc                          mov     -34H[ebp],eax
+ 0012  89 5d d0                          mov     -30H[ebp],ebx
+ 0015  89 4d d4                          mov     -2cH[ebp],ecx
+ 0018  89 55 d8                          mov     -28H[ebp],edx
+ 001b  89 75 dc                          mov     -24H[ebp],esi
+ 001e  89 7d e0                          mov     -20H[ebp],edi
+
+	temp_mask = mask;
+ 0021  8b 45 cc                          mov     eax,-34H[ebp]
+ 0024  89 45 e4                          mov     -1cH[ebp],eax
+
+	temp_state = state;
+ 0027  8b 45 d0                          mov     eax,-30H[ebp]
+ 002a  89 45 e8                          mov     -18H[ebp],eax
+
+	temp_col = col;
+ 002d  8b 45 d4                          mov     eax,-2cH[ebp]
+ 0030  89 45 ec                          mov     -14H[ebp],eax
+
+	temp_row = row;
+ 0033  8b 45 d8                          mov     eax,-28H[ebp]
+ 0036  89 45 f0                          mov     -10H[ebp],eax
+
+	temp_mickey_h = mickey_h;
+ 0039  8b 45 dc                          mov     eax,-24H[ebp]
+ 003c  89 45 f4                          mov     -0cH[ebp],eax
+
+	temp_mickey_v = mickey_v;
+
+	/* Clear Mouse space. */
+ 003f  8b 45 e0                          mov     eax,-20H[ebp]
+ 0042  89 45 f8                          mov     -8H[ebp],eax
+
+	memset(&etc_Mouse1, 0, sizeof(MOUSE));
+ 0045  bb 0c 00 00 00                    mov     ebx,0000000cH
+ 004a  31 d2                             xor     edx,edx
+ 004c  b8 00 00 00 00                    mov     eax,offset _etc_Mouse1
+ 0051  e8 00 00 00 00                    call    memset_
+
+	memset(&etc_Mouse2, 0, sizeof(MOUSE));
+ 0056  bb 0c 00 00 00                    mov     ebx,0000000cH
+ 005b  31 d2                             xor     edx,edx
+ 005d  b8 00 00 00 00                    mov     eax,offset _etc_Mouse2
+ 0062  e8 00 00 00 00                    call    memset_
+
+	etc_Mouse1Register = 0;
+ 0067  c7 05 00 00 00 00 
+       00 00 00 00                       mov     dword ptr _etc_Mouse1Register,00000000H
+
+	etc_Mouse2Register = 0;
+
+	/* Transform mouse information into an incoming data buffer. */
+ 0071  c7 05 00 00 00 00 
+       00 00 00 00                       mov     dword ptr _etc_Mouse2Register,00000000H
+
+	if(etc_Mouse1Switch == _DEVICE_ON)
+	{
+ 007b  80 3d 00 00 00 00 
+       01                                cmp     byte ptr _etc_Mouse1Switch,01H
+ 0082  0f 85 d4 00 00 00                 jne     L1
+
+		etc_Mouse1.mX = temp_col;
+ 0088  8b 45 ec                          mov     eax,-14H[ebp]
+ 008b  66 a3 00 00 00 00                 mov     _etc_Mouse1,ax
+
+		etc_Mouse1.mY = temp_row;
+//		if(temp_mickey_h < 0) etc_Mouse1.mDir |= 1 << etc_Mouse1Config.MouseLeft;
+//		if(temp_mickey_h > 0) etc_Mouse1.mDir |= 1 << etc_Mouse1Config.MouseRight;
+//		if(temp_mickey_v < 0) etc_Mouse1.mDir |= 1 << etc_Mouse1Config.MouseDown;
+//		if(temp_mickey_v > 0) etc_Mouse1.mDir |= 1 << etc_Mouse1Config.MouseUp;
+ 0091  8b 45 f0                          mov     eax,-10H[ebp]
+ 0094  66 a3 02 00 00 00                 mov     _etc_Mouse1+2H,ax
+
+		etc_Mouse1.mDir = 0;
+ 009a  66 c7 05 04 00 00 
+       00 00 00                          mov     word ptr _etc_Mouse1+4H,0000H
+
+		etc_Mouse1.mButton1 = (temp_state & 0x01);
+ 00a3  8b 45 e8                          mov     eax,-18H[ebp]
+ 00a6  25 01 00 00 00                    and     eax,00000001H
+ 00ab  66 a3 06 00 00 00                 mov     _etc_Mouse1+6H,ax
+
+		etc_Mouse1.mButton2 = (temp_state & 0x04) >> 2;
+ 00b1  8b 45 e8                          mov     eax,-18H[ebp]
+ 00b4  25 04 00 00 00                    and     eax,00000004H
+ 00b9  98                                cwde    
+ 00ba  c1 f8 02                          sar     eax,02H
+ 00bd  66 a3 08 00 00 00                 mov     _etc_Mouse1+8H,ax
+
+		etc_Mouse1.mButton3 = (temp_state & 0x02) >> 1;
+
+ 00c3  8b 45 e8                          mov     eax,-18H[ebp]
+ 00c6  25 02 00 00 00                    and     eax,00000002H
+ 00cb  98                                cwde    
+ 00cc  d1 f8                             sar     eax,1
+ 00ce  66 a3 0a 00 00 00                 mov     _etc_Mouse1+0aH,ax
+
+		etc_Mouse1Register |= etc_Mouse1.mDir;
+ 00d4  31 c0                             xor     eax,eax
+ 00d6  66 a1 04 00 00 00                 mov     ax,_etc_Mouse1+4H
+ 00dc  09 05 00 00 00 00                 or      _etc_Mouse1Register,eax
+
+		etc_Mouse1Register |= etc_Mouse1.mButton1 << etc_Mouse1Config.MouseLeftButton;
+ 00e2  31 c0                             xor     eax,eax
+ 00e4  66 a1 06 00 00 00                 mov     ax,_etc_Mouse1+6H
+ 00ea  8a 0d 10 00 00 00                 mov     cl,_etc_Mouse1Config+10H
+ 00f0  d3 e0                             shl     eax,cl
+ 00f2  09 05 00 00 00 00                 or      _etc_Mouse1Register,eax
+
+		etc_Mouse1Register |= etc_Mouse1.mButton2 << etc_Mouse1Config.MouseMiddleButton;
+ 00f8  31 c0                             xor     eax,eax
+ 00fa  66 a1 08 00 00 00                 mov     ax,_etc_Mouse1+8H
+ 0100  8a 0d 14 00 00 00                 mov     cl,_etc_Mouse1Config+14H
+ 0106  d3 e0                             shl     eax,cl
+ 0108  09 05 00 00 00 00                 or      _etc_Mouse1Register,eax
+
+		etc_Mouse1Register |= etc_Mouse1.mButton3 << etc_Mouse1Config.MouseRightButton;
+
+		/* Transmit Data to data buffer. */
+ 010e  31 c0                             xor     eax,eax
+ 0110  66 a1 0a 00 00 00                 mov     ax,_etc_Mouse1+0aH
+ 0116  8a 0d 18 00 00 00                 mov     cl,_etc_Mouse1Config+18H
+ 011c  d3 e0                             shl     eax,cl
+ 011e  09 05 00 00 00 00                 or      _etc_Mouse1Register,eax
+
+		etc_TransferBuffer1[0] = OK;
+ 0124  a1 00 00 00 00                    mov     eax,_etc_TransferBuffer1
+ 0129  c6 00 00                          mov     byte ptr [eax],00H
+
+		etc_TransferBuffer1[1] = SONY_PAD;
+//		etc_TransferBuffer1[2] = (char) ~(etc_Mouse1Register >> 8);
+
+ 012c  a1 00 00 00 00                    mov     eax,_etc_TransferBuffer1
+ 0131  c6 40 01 41                       mov     byte ptr +1H[eax],41H
+
+		temp = ~etc_TransferBuffer1[3];					// This lot preserves the
+ 0135  a1 00 00 00 00                    mov     eax,_etc_TransferBuffer1
+ 013a  8a 40 03                          mov     al,+3H[eax]
+ 013d  88 45 fc                          mov     -4H[ebp],al
+ 0140  f6 55 fc                          not     byte ptr -4H[ebp]
+
+		temp &= 0x9F;										// brake bits, which get
+ 0143  80 65 fc 9f                       and     byte ptr -4H[ebp],9fH
+
+		temp |= (char) (etc_Mouse1Register & 0xFF);	// lost somehow otherwise
+ 0147  a0 00 00 00 00                    mov     al,_etc_Mouse1Register
+ 014c  08 45 fc                          or      -4H[ebp],al
+
+		etc_TransferBuffer1[3] = ~temp;
+	}
+ 014f  8a 55 fc                          mov     dl,-4H[ebp]
+ 0152  f6 d2                             not     dl
+ 0154  a1 00 00 00 00                    mov     eax,_etc_TransferBuffer1
+ 0159  88 50 03                          mov     +3H[eax],dl
+
+	if(etc_Mouse2Switch == _DEVICE_ON)
+	{
+ 015c  80 3d 00 00 00 00 
+       01                L1              cmp     byte ptr _etc_Mouse2Switch,01H
+ 0163  0f 85 35 01 00 00                 jne     L6
+
+		etc_Mouse2.mX = temp_col;
+ 0169  8b 45 ec                          mov     eax,-14H[ebp]
+ 016c  66 a3 00 00 00 00                 mov     _etc_Mouse2,ax
+
+		etc_Mouse2.mY = temp_row;
+ 0172  8b 45 f0                          mov     eax,-10H[ebp]
+ 0175  66 a3 02 00 00 00                 mov     _etc_Mouse2+2H,ax
+
+		if(temp_mickey_h < 0) etc_Mouse2.mDir |= 1 << etc_Mouse2Config.MouseLeft;
+ 017b  66 83 7d f4 00                    cmp     word ptr -0cH[ebp],0000H
+ 0180  7d 14                             jge     L2
+ 0182  8a 0d 08 00 00 00                 mov     cl,_etc_Mouse2Config+8H
+ 0188  b8 01 00 00 00                    mov     eax,00000001H
+ 018d  d3 e0                             shl     eax,cl
+ 018f  66 09 05 04 00 00 
+       00                                or      _etc_Mouse2+4H,ax
+
+		if(temp_mickey_h > 0) etc_Mouse2.mDir |= 1 << etc_Mouse2Config.MouseRight;
+ 0196  66 83 7d f4 00    L2              cmp     word ptr -0cH[ebp],0000H
+ 019b  7e 14                             jle     L3
+ 019d  8a 0d 0c 00 00 00                 mov     cl,_etc_Mouse2Config+0cH
+ 01a3  b8 01 00 00 00                    mov     eax,00000001H
+ 01a8  d3 e0                             shl     eax,cl
+ 01aa  66 09 05 04 00 00 
+       00                                or      _etc_Mouse2+4H,ax
+
+		if(temp_mickey_v < 0) etc_Mouse2.mDir |= 1 << etc_Mouse2Config.MouseDown;
+ 01b1  66 83 7d f8 00    L3              cmp     word ptr -8H[ebp],0000H
+ 01b6  7d 14                             jge     L4
+ 01b8  8a 0d 04 00 00 00                 mov     cl,_etc_Mouse2Config+4H
+ 01be  b8 01 00 00 00                    mov     eax,00000001H
+ 01c3  d3 e0                             shl     eax,cl
+ 01c5  66 09 05 04 00 00 
+       00                                or      _etc_Mouse2+4H,ax
+
+		if(temp_mickey_v > 0) etc_Mouse2.mDir |= 1 << etc_Mouse2Config.MouseUp;
+ 01cc  66 83 7d f8 00    L4              cmp     word ptr -8H[ebp],0000H
+ 01d1  7e 14                             jle     L5
+ 01d3  8a 0d 00 00 00 00                 mov     cl,_etc_Mouse2Config
+ 01d9  b8 01 00 00 00                    mov     eax,00000001H
+ 01de  d3 e0                             shl     eax,cl
+ 01e0  66 09 05 04 00 00 
+       00                                or      _etc_Mouse2+4H,ax
+
+		etc_Mouse2.mButton1 = (temp_state & 0x01);
+ 01e7  8b 45 e8          L5              mov     eax,-18H[ebp]
+ 01ea  25 01 00 00 00                    and     eax,00000001H
+ 01ef  66 a3 06 00 00 00                 mov     _etc_Mouse2+6H,ax
+
+		etc_Mouse2.mButton2 = (temp_state & 0x04) >> 2;
+ 01f5  8b 45 e8                          mov     eax,-18H[ebp]
+ 01f8  25 04 00 00 00                    and     eax,00000004H
+ 01fd  98                                cwde    
+ 01fe  c1 f8 02                          sar     eax,02H
+ 0201  66 a3 08 00 00 00                 mov     _etc_Mouse2+8H,ax
+
+		etc_Mouse2.mButton3 = (temp_state & 0x02) >> 1;
+
+ 0207  8b 45 e8                          mov     eax,-18H[ebp]
+ 020a  25 02 00 00 00                    and     eax,00000002H
+ 020f  98                                cwde    
+ 0210  d1 f8                             sar     eax,1
+ 0212  66 a3 0a 00 00 00                 mov     _etc_Mouse2+0aH,ax
+
+		etc_Mouse2Register |= etc_Mouse2.mDir;
+ 0218  31 c0                             xor     eax,eax
+ 021a  66 a1 04 00 00 00                 mov     ax,_etc_Mouse2+4H
+ 0220  09 05 00 00 00 00                 or      _etc_Mouse2Register,eax
+
+		etc_Mouse2Register |= etc_Mouse2.mButton1 << etc_Mouse2Config.MouseLeftButton;
+ 0226  31 c0                             xor     eax,eax
+ 0228  66 a1 06 00 00 00                 mov     ax,_etc_Mouse2+6H
+ 022e  8a 0d 10 00 00 00                 mov     cl,_etc_Mouse2Config+10H
+ 0234  d3 e0                             shl     eax,cl
+ 0236  09 05 00 00 00 00                 or      _etc_Mouse2Register,eax
+
+		etc_Mouse2Register |= etc_Mouse2.mButton2 << etc_Mouse2Config.MouseMiddleButton;
+ 023c  31 c0                             xor     eax,eax
+ 023e  66 a1 08 00 00 00                 mov     ax,_etc_Mouse2+8H
+ 0244  8a 0d 14 00 00 00                 mov     cl,_etc_Mouse2Config+14H
+ 024a  d3 e0                             shl     eax,cl
+ 024c  09 05 00 00 00 00                 or      _etc_Mouse2Register,eax
+
+		etc_Mouse2Register |= etc_Mouse2.mButton3 << etc_Mouse2Config.MouseRightButton;
+
+		/* Transmit Data to data buffer. */
+ 0252  31 c0                             xor     eax,eax
+ 0254  66 a1 0a 00 00 00                 mov     ax,_etc_Mouse2+0aH
+ 025a  8a 0d 18 00 00 00                 mov     cl,_etc_Mouse2Config+18H
+ 0260  d3 e0                             shl     eax,cl
+ 0262  09 05 00 00 00 00                 or      _etc_Mouse2Register,eax
+
+		etc_TransferBuffer1[0] = OK;
+ 0268  a1 00 00 00 00                    mov     eax,_etc_TransferBuffer1
+ 026d  c6 00 00                          mov     byte ptr [eax],00H
+
+		etc_TransferBuffer1[1] = SONY_PAD;
+ 0270  a1 00 00 00 00                    mov     eax,_etc_TransferBuffer1
+ 0275  c6 40 01 41                       mov     byte ptr +1H[eax],41H
+
+		etc_TransferBuffer1[2] = (char) ~(etc_Mouse1Register >> 8);
+ 0279  a1 00 00 00 00                    mov     eax,_etc_Mouse1Register
+ 027e  c1 e8 08                          shr     eax,08H
+ 0281  f7 d0                             not     eax
+ 0283  88 c2                             mov     dl,al
+ 0285  a1 00 00 00 00                    mov     eax,_etc_TransferBuffer1
+ 028a  88 50 02                          mov     +2H[eax],dl
+
+		etc_TransferBuffer1[3] = (char) ~(etc_Mouse1Register & 0x00FF);
+	}
+
+	/* Restore Stack. */
+//	SetStack(oldstack);
+ 028d  a0 00 00 00 00                    mov     al,_etc_Mouse1Register
+ 0292  88 c2                             mov     dl,al
+ 0294  f6 d2                             not     dl
+ 0296  a1 00 00 00 00                    mov     eax,_etc_TransferBuffer1
+ 029b  88 50 03                          mov     +3H[eax],dl
+
+}
+#pragma on (check_stack)
+
+ 029e  89 ec             L6              mov     esp,ebp
+ 02a0  5d                                pop     ebp
+ 02a1  1f                                pop     ds
+ 02a2  cb                                retf    
+
+void	InstallProtectedModeMouseHandler(void)
+{
+	struct videoconfig	vc;
+
+	/* Set video mode. */
+//	_setvideomode(_MAXRESMODE);
+
+	/* Reset Mouse Driver. */
+ 02a3                    InstallProtectedModeMouseHandler_:
+ 02a3  68 34 00 00 00                    push    00000034H
+ 02a8  e8 00 00 00 00                    call    __CHK
+ 02ad  53                                push    ebx
+ 02ae  51                                push    ecx
+ 02af  52                                push    edx
+ 02b0  56                                push    esi
+ 02b1  57                                push    edi
+ 02b2  55                                push    ebp
+ 02b3  89 e5                             mov     ebp,esp
+ 02b5  81 ec 18 00 00 00                 sub     esp,00000018H
+
+	etc_regs.w.ax = 0;
+ 02bb  66 c7 05 00 00 00 
+       00 00 00                          mov     word ptr _etc_regs,0000H
+
+	int386(_MOUSE_INT, &etc_regs, &etc_regs);
+ 02c4  bb 00 00 00 00                    mov     ebx,offset _etc_regs
+ 02c9  ba 00 00 00 00                    mov     edx,offset _etc_regs
+ 02ce  b8 33 00 00 00                    mov     eax,00000033H
+ 02d3  e8 00 00 00 00                    call    int386_
+
+	if(etc_regs.w.ax == 0xFFFF)
+	{
+ 02d8  66 83 3d 00 00 00 
+       00 ff                             cmp     word ptr _etc_regs,0ffffH
+ 02e0  0f 85 ec 00 00 00                 jne     L7
+
+		_getvideoconfig(&vc);
+
+ 02e6  8d 45 e8                          lea     eax,-18H[ebp]
+ 02e9  e8 00 00 00 00                    call    _getvideoconfig_
+
+	 	etc_regs.w.ax = 0x000C;
+ 02ee  66 c7 05 00 00 00 
+       00 0c 00                          mov     word ptr _etc_regs,000cH
+
+		etc_regs.w.cx = 0x007F; /* Call when anything happens. */
+ 02f7  66 c7 05 08 00 00 
+       00 7f 00                          mov     word ptr _etc_regs+8H,007fH
+
+		etc_regs.x.edx = FP_OFF(&pmmouse);
+ 0300  8c c8                             mov     ax,cs
+ 0302  ba 00 00 00 00                    mov     edx,offset pmmouse_
+ 0307  89 15 0c 00 00 00                 mov     _etc_regs+0cH,edx
+
+		etc_sregs.es = FP_SEG(&pmmouse);
+ 030d  8c cb                             mov     bx,cs
+ 030f  ba 00 00 00 00                    mov     edx,offset pmmouse_
+ 0314  89 d8                             mov     eax,ebx
+ 0316  89 d3                             mov     ebx,edx
+ 0318  89 c2                             mov     edx,eax
+ 031a  89 d8                             mov     eax,ebx
+ 031c  66 89 15 00 00 00 
+       00                                mov     _etc_sregs,dx
+
+		int386x(_MOUSE_INT, &etc_regs, &etc_regs, &etc_sregs);
+ 0323  b9 00 00 00 00                    mov     ecx,offset _etc_sregs
+ 0328  bb 00 00 00 00                    mov     ebx,offset _etc_regs
+ 032d  ba 00 00 00 00                    mov     edx,offset _etc_regs
+ 0332  b8 33 00 00 00                    mov     eax,00000033H
+ 0337  e8 00 00 00 00                    call    int386x_
+
+		etc_MouseHandler = -1;
+
+ 033c  c6 05 00 00 00 00 
+       ff                                mov     byte ptr _etc_MouseHandler,0ffH
+
+		etc_regs.w.ax = 0x0007;			// X range
+ 0343  66 c7 05 00 00 00 
+       00 07 00                          mov     word ptr _etc_regs,0007H
+
+		etc_regs.w.cx = 0;
+ 034c  66 c7 05 08 00 00 
+       00 00 00                          mov     word ptr _etc_regs+8H,0000H
+
+		etc_regs.w.dx = 319;
+ 0355  66 c7 05 0c 00 00 
+       00 3f 01                          mov     word ptr _etc_regs+0cH,013fH
+
+		int386(_MOUSE_INT, &etc_regs, &etc_regs);
+
+ 035e  bb 00 00 00 00                    mov     ebx,offset _etc_regs
+ 0363  ba 00 00 00 00                    mov     edx,offset _etc_regs
+ 0368  b8 33 00 00 00                    mov     eax,00000033H
+ 036d  e8 00 00 00 00                    call    int386_
+
+		etc_regs.w.ax = 0x0008;			// Y range
+ 0372  66 c7 05 00 00 00 
+       00 08 00                          mov     word ptr _etc_regs,0008H
+
+		etc_regs.w.cx = 0;
+ 037b  66 c7 05 08 00 00 
+       00 00 00                          mov     word ptr _etc_regs+8H,0000H
+
+		etc_regs.w.dx = 199;
+ 0384  66 c7 05 0c 00 00 
+       00 c7 00                          mov     word ptr _etc_regs+0cH,00c7H
+
+		int386(_MOUSE_INT, &etc_regs, &etc_regs);
+
+ 038d  bb 00 00 00 00                    mov     ebx,offset _etc_regs
+ 0392  ba 00 00 00 00                    mov     edx,offset _etc_regs
+ 0397  b8 33 00 00 00                    mov     eax,00000033H
+ 039c  e8 00 00 00 00                    call    int386_
+
+		etc_regs.w.ax = 0x000F;			// Sensitivity
+ 03a1  66 c7 05 00 00 00 
+       00 0f 00                          mov     word ptr _etc_regs,000fH
+
+		etc_regs.w.cx = 32;				// Default 8
+ 03aa  66 c7 05 08 00 00 
+       00 20 00                          mov     word ptr _etc_regs+8H,0020H
+
+		etc_regs.w.dx = 16;				// Default 16
+ 03b3  66 c7 05 0c 00 00 
+       00 10 00                          mov     word ptr _etc_regs+0cH,0010H
+
+		int386(_MOUSE_INT, &etc_regs, &etc_regs);
+	}
+ 03bc  bb 00 00 00 00                    mov     ebx,offset _etc_regs
+ 03c1  ba 00 00 00 00                    mov     edx,offset _etc_regs
+ 03c6  b8 33 00 00 00                    mov     eax,00000033H
+ 03cb  e8 00 00 00 00                    call    int386_
+
+	else
+ 03d0  eb 07                             jmp     L8
+
+		etc_MouseHandler = 0;
+ 03d2  c6 05 00 00 00 00 
+       00                L7              mov     byte ptr _etc_MouseHandler,00H
+
+}
+ 03d9  89 ec             L8              mov     esp,ebp
+ 03db  5d                                pop     ebp
+ 03dc  5f                                pop     edi
+ 03dd  5e                                pop     esi
+ 03de  5a                                pop     edx
+ 03df  59                                pop     ecx
+ 03e0  5b                                pop     ebx
+ 03e1  c3                                ret     
+
+No disassembly errors
+
+------------------------------------------------------------
+
+Segment: $$SYMBOLS  BYTE USE16  0000010d bytes  
+ 0000  08 32                                   - .2
+ 0002  00 00 00 00 00 00                       DP      pmmouse_
+ 0008  28 25 00 00 00 00 a3 02                 - (%......
+ 0010  00 00 00 00 0f 05 08 00                 - ........
+ 0018  00 00 0d 00 06 30 1c 30                 - .....0.0
+ 0020  1d 30 1e 30 1f 30 20 30                 - .0.0.0 0
+ 0028  21 70 6d 6d 6f 75 73 65                 - !pmmouse
+ 0030  09 11 10 cc 06 6d 61 73                 - .....mas
+ 0038  6b 0a 11 10 d0 06 73 74                 - k.....st
+ 0040  61 74 65 08 11 10 d4 06                 - ate.....
+ 0048  63 6f 6c 08 11 10 d8 06                 - col.....
+ 0050  72 6f 77 0d 11 10 dc 06                 - row.....
+ 0058  6d 69 63 6b 65 79 5f 68                 - mickey_h
+ 0060  0d 11 10 e0 06 6d 69 63                 - .....mic
+ 0068  6b 65 79 5f 76 0e 11 10                 - key_v...
+ 0070  e4 06 74 65 6d 70 5f 6d                 - ..temp_m
+ 0078  61 73 6b 0f 11 10 e8 06                 - ask.....
+ 0080  74 65 6d 70 5f 73 74 61                 - temp_sta
+ 0088  74 65 0d 11 10 ec 06 74                 - te.....t
+ 0090  65 6d 70 5f 63 6f 6c 0d                 - emp_col.
+ 0098  11 10 f0 06 74 65 6d 70                 - ....temp
+ 00a0  5f 72 6f 77 12 11 10 f4                 - _row....
+ 00a8  06 74 65 6d 70 5f 6d 69                 - .temp_mi
+ 00b0  63 6b 65 79 5f 68 12 11                 - ckey_h..
+ 00b8  10 f8 06 74 65 6d 70 5f                 - ...temp_
+ 00c0  6d 69 63 6b 65 79 5f 76                 - mickey_v
+ 00c8  09 11 10 fc 05 74 65 6d                 - .....tem
+ 00d0  70 35 24 a3 02 00 00 3f                 - p5$....?
+ 00d8  01 00 00 00 00 18 09 18                 - ........
+ 00e0  00 00 00 0e 00 00 49 6e                 - ......In
+ 00e8  73 74 61 6c 6c 50 72 6f                 - stallPro
+ 00f0  74 65 63 74 65 64 4d 6f                 - tectedMo
+ 00f8  64 65 4d 6f 75 73 65 48                 - deMouseH
+ 0100  61 6e 64 6c 65 72 07 11                 - andler..
+ 0108  10 e8 10 76 63                          - ...vc
+
+No disassembly errors
+
+------------------------------------------------------------
+
+Segment: $$TYPES  BYTE USE16  0000013b bytes  
+ 0000  06 13 3b 01 00 00 08 11                 - ..;.....
+ 0008  73 74 72 75 63 74 07 11                 - struct..
+ 0010  75 6e 69 6f 6e 06 11 65                 - union..e
+ 0018  6e 75 6d 0e 10 00 73 69                 - num...si
+ 0020  67 6e 65 64 20 63 68 61                 - gned cha
+ 0028  72 10 10 10 75 6e 73 69                 - r...unsi
+ 0030  67 6e 65 64 20 63 68 61                 - gned cha
+ 0038  72 08 10 01 73 68 6f 72                 - r...shor
+ 0040  74 11 10 11 75 6e 73 69                 - t...unsi
+ 0048  67 6e 65 64 20 73 68 6f                 - gned sho
+ 0050  72 74 06 10 03 69 6e 74                 - rt...int
+ 0058  0f 10 13 75 6e 73 69 67                 - ...unsig
+ 0060  6e 65 64 20 69 6e 74 0b                 - ned int.
+ 0068  12 00 07 77 63 68 61 72                 - ...wchar
+ 0070  5f 74 0a 12 00 09 73 69                 - _t....si
+ 0078  7a 65 5f 74 07 10 30 76                 - ze_t..0v
+ 0080  6f 69 64 0a 73 0c 06 06                 - oid.s...
+ 0088  06 06 06 06 06 05 72 0c                 - ......r.
+ 0090  01 0c 08 60 0b 00 16 00                 - ...`....
+ 0098  00 00 0a 61 14 06 6d 65                 - ...a..me
+ 00a0  6d 6f 72 79 0b 61 12 06                 - mory.a..
+ 00a8  6d 6f 6e 69 74 6f 72 0b                 - monitor.
+ 00b0  61 10 06 61 64 61 70 74                 - a..adapt
+ 00b8  65 72 08 61 0e 06 6d 6f                 - er.a..mo
+ 00c0  64 65 11 61 0c 06 6e 75                 - de.a..nu
+ 00c8  6d 76 69 64 65 6f 70 61                 - mvideopa
+ 00d0  67 65 73 10 61 0a 06 62                 - ges.a..b
+ 00d8  69 74 73 70 65 72 70 69                 - itsperpi
+ 00e0  78 65 6c 0d 61 08 06 6e                 - xel.a..n
+ 00e8  75 6d 63 6f 6c 6f 72 73                 - umcolors
+ 00f0  0f 61 06 06 6e 75 6d 74                 - .a..numt
+ 00f8  65 78 74 72 6f 77 73 0f                 - extrows.
+ 0100  61 04 06 6e 75 6d 74 65                 - a..numte
+ 0108  78 74 63 6f 6c 73 0e 61                 - xtcols.a
+ 0110  02 06 6e 75 6d 79 70 69                 - ..numypi
+ 0118  78 65 6c 73 0e 61 00 06                 - xels.a..
+ 0120  6e 75 6d 78 70 69 78 65                 - numxpixe
+ 0128  6c 73 0f 12 01 0f 76 69                 - ls....vi
+ 0130  64 65 6f 63 6f 6e 66 69                 - deoconfi
+ 0138  67 02 14                                - g..
+
+No disassembly errors
+
+------------------------------------------------------------
+
+Segment: $$TYPES  BYTE USE16  000000be bytes  
+ 0000  00 00 07 00 00 00 22 00                 - ......".
+ 0008  32 00 44 00 57 00 69 00                 - 2.D.W.i.
+ 0010  89 00 43 3a 5c 41 6e 64                 - ..C:\And
+ 0018  79 59 5c 57 49 50 45 4f                 - yY\WIPEO
+ 0020  55 54 32 5c 4d 41 52 4b                 - UT2\MARK
+ 0028  4b 5c 70 6d 6d 6f 75 73                 - K\pmmous
+ 0030  65 2e 63 00 63 3a 5c 77                 - e.c.c:\w
+ 0038  63 31 30 5c 68 5c 64 6f                 - c10\h\do
+ 0040  73 2e 68 00 43 3a 5c 57                 - s.h.C:\W
+ 0048  41 54 43 4f 4d 5c 48 5c                 - ATCOM\H\
+ 0050  69 38 36 2e 68 00 63 3a                 - i86.h.c:
+ 0058  5c 77 63 31 30 5c 68 5c                 - \wc10\h\
+ 0060  73 74 72 69 6e 67 2e 68                 - string.h
+ 0068  00 63 3a 5c 77 63 31 30                 - .c:\wc10
+ 0070  5c 68 5c 67 72 61 70 68                 - \h\graph
+ 0078  2e 68 00 43 3a 5c 41 6e                 - .h.C:\An
+ 0080  64 79 59 5c 57 49 50 45                 - dyY\WIPE
+ 0088  4f 55 54 32 5c 6d 61 72                 - OUT2\mar
+ 0090  6b 6b 5c 69 6e 70 75 74                 - kk\input
+ 0098  2e 68 00 43 3a 5c 41 6e                 - .h.C:\An
+ 00a0  64 79 59 5c 57 49 50 45                 - dyY\WIPE
+ 00a8  4f 55 54 32 5c 6d 61 72                 - OUT2\mar
+ 00b0  6b 6b 5c 73 63 61 6e 63                 - kk\scanc
+ 00b8  6f 64 65 2e 68 00                       - ode.h.
+
+No disassembly errors
+
+------------------------------------------------------------

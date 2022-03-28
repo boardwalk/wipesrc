@@ -1,0 +1,85 @@
+Install and Uninstall
+---------------------
+
+If you didn't unzip this with '-d' please start again.
+
+Directories
+-----------
+
+INST	The Assault Rigs installer (plus a copy of the WipeOut BMP to 
+	substitute for the AR one).
+
+UNINST	The Assault Rigs uninstaller (plus WipeOut BMP).
+
+Notes
+-----
+
+1.	The new installer contains options to copy files to hard disk.
+	Internally it has five file lists:
+
+		Uninstaller files	The uninstaller files
+		Standard Files	   	Compulsory files
+		Save game files		The default save game file
+		Data files		The game program and data files
+		Movie files		The MPEG movies
+
+	The uninstaller files are always copied to the Windows directory
+	so that the punter can always uninstall.
+
+	The standard files (AR has none) are always copied to the game 
+	directory.
+	
+	The save game files are always copied to the game directory.  These
+	are pointed to by the 'Game Directory' value in your key in the
+	registry.
+	When the installer is removing a pre-existing installation it
+	gives the option not to delete the save game files.
+	(AR has one special file 'SAVEGAME.DAT' which is treated specially
+	by the installer which will gives options to use the existing
+	one when installing into a directory in which a file already exists).
+
+	The program and data files are optionally installed to the game
+	directory.  These are pointed to by the 'Data Directory' value in your
+	key in the registry.
+
+	The movie files are optionally installed to the game directory.  These
+	are pointed to by the 'Movie Directory' value in your key in the
+	registry.
+
+2.	Disk space requirements are determined at run-time from ths sizes of
+	files in the above file lists, taking into account the sector and
+	cluster sizes on the target hard disk.  A small overhead is included to
+	allow for the creation/expansion of directories and the creation of
+	links/shortcuts to the executables.
+
+3.	The uninstaller may be accessed either through the Start Menu or the
+	Add/Remove Programs control panel.
+
+4.	The uninstaller has it's own copies of the file lists to tell it which
+	files to delete.
+
+5.	N.B. The version information in the resources for both the install
+	and uninstall *must* be changed for WipeOut!!!
+
+6.	Neither the install nor uninstall have any code to cope with creating
+	and deleting subdirectories.  The install uses the shell to do it's
+	copying so this might do the directory creation for you (accompanied
+	by the usual confirmation dialogs).  Be carefull if you add wild cards
+	as they will enable the uninstall to delete stuff it shouldn't!
+
+7.	I have included the WipeOut BMP which should be substituted for the AR
+	ones in the resources.  I don't have an icon for the WipeOut unistall.
+
+8.	Both apps are built with MSVC 2.20.
+
+9.	Both apps are based on the sample install provided in the GDK (which
+	was pretty horrible).
+
+
+--------------
+
+Call me if you have any questions.
+
+Enjoy,
+
+Dominic

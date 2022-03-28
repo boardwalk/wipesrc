@@ -1,0 +1,653 @@
+Comparing files origsrc\MENUS.C and \sourcebackup\wipeout2\origsrc\menus.c
+****** origsrc\MENUS.C
+        object->primitives = prm.primitive;
+        LoadTexModel (optionShapes, "alopt") ;
+        InitTrackTex (trackTex) ;
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        object->primitives = prm.primitive;
+#if 0
+        start = DAlloc( heap, length + 32 );
+        prm.ptr = start;
+        joypadShapes[2] = prm.object;
+        memcpy(start, joypadShapes[0], length);
+   object = prm.object++;
+        object->skeleton = prm.skeleton++;
+        object->vertices = prm.svector;
+        prm.svector += object->vertexCount;
+        object->normals = prm.svector;
+        prm.svector += object->normalCount;
+        object->primitives = prm.primitive;
+#endif
+        LoadTexModel (optionShapes, "alopt") ;
+//      printf ("Loaded OPTION models \n") ;
+                                                                                                                         /*f360
+0 = f3600 championship */
+                                                                                                                         /* ven
+om = venom */
+                                                                                                                         /* mem
+s = memory card save */
+                                                                                                                         /* rap
+ir = rapier */
+                                                                                                                         /* cdo
+bj = cd */
+//   printf( "Heap free after 3D model load: %d\n", heap->free );
+        InitTrackTex (trackTex) ;
+******
+
+****** origsrc\MENUS.C
+#if LightSourced
+        menuSystem[ MAIN_MENU ].menuModel = shipShapes ;        
+****** \sourcebackup\wipeout2\origsrc\menus.c
+#if LightSourced
+/*
+   Menus with lights!
+   class
+   negcon
+   gameType
+*/
+        menuSystem[ MAIN_MENU ].menuModel = shipShapes ;        
+******
+
+****** origsrc\MENUS.C
+        copyrightSymbol = LoadTexture ("c:\\wipeout\\textures\\copyrigt.tim", 1) ;
+        InitMenuSystem (&(menuSystem[0])) ;
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        copyrightSymbol = LoadTexture ("c:\\wipeout\\textures\\copyrigt.tim", 1) ;
+/*      
+#if 1   
+#if PAL
+        titleScreen = Load16BitTexture ("c:\\wipeout\\textures\\paltitle.tim", VRAM) ;
+#else
+        titleScreen = Load16BitTexture ("c:\\wipeout\\textures\\wiptitle.tim", VRAM) ;
+#endif
+#else
+        titleScreen = Load16BitTexture ("c:\\wipeout\\textures\\solaar.tim", VRAM) ;
+#endif
+*/
+        InitMenuSystem (&(menuSystem[0])) ;
+******
+
+****** origsrc\MENUS.C
+        ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
+        AddPrim( OT[ CurrentScreen ] + ( OT_SIZE - 1 ), ( ulong* ) clear[ CurrentScreen ] ); // PCwipeout
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
+/*      ShowMenuBackground (&(menuPrim[0]), &(menu1Prim[0]), titleScreen) ;*/
+        AddPrim( OT[ CurrentScreen ] + ( OT_SIZE - 1 ), ( ulong* ) clear[ CurrentScreen ] ); // PCwipeout
+******
+
+****** origsrc\MENUS.C
+        Swap () ;
+        currMenu = -2;
+        menuScreen = AJSLoad16BitTexture        ("\\wipeout\\textures\\wipeout1.pcx", VRAM) ;
+#if CD_AUDIO
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        Swap () ;
+/*
+        gameData->actTrackNum = 12 ;
+        gameData->trackNum = 4 ;
+*/
+        currMenu = -2;
+#if PAL
+        menuScreen = Load16BitTexture   ("c:\\wipeout\\textures\\palback.tim", VRAM) ;
+#else
+        menuScreen = AJSLoad16BitTexture        ("\\wipeout\\textures\\wipeout1.pcx", VRAM) ;
+#endif 
+#if CD_AUDIO
+******
+
+****** origsrc\MENUS.C
+                                                         (pad & PadTopRight2) &&
+                                                         ((pad & PadTopLeft1) == 0) &&
+****** \sourcebackup\wipeout2\origsrc\menus.c
+                                                         (pad & PadTopRight2) &&
+                                                         ((pad & PadTopLeft1) == 0) &&
+******
+
+****** origsrc\MENUS.C
+                        ResetVMode();
+                        RemoveTimer();
+                        printf("Bye Bye\n");
+****** \sourcebackup\wipeout2\origsrc\menus.c
+                        ResetVMode();
+                        printf("Bye Bye\n");
+******
+
+****** origsrc\MENUS.C
+           musicPrims->pointer.clut = menuPointer->cba;
+        }
+****** \sourcebackup\wipeout2\origsrc\menus.c
+           musicPrims->pointer.clut = menuPointer->cba;
+/*              AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(musicPrims->pointer) );*/
+        }
+******
+
+****** origsrc\MENUS.C
+        {
+                if (menuSystem[(*currMenu)].displayMenu != 0)
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        {
+/*
+                if ((GetMenuKey(M_RIGHT) && swapDelay == 0)
+                {
+                        PlayNote(MENU_MOVE, 1, 20);
+                        (*currOption) -- ;
+                        if ((*currOption) < 0)
+                        {
+                                (*currOption) = 0 ;
+                        }       
+                }
+                if ((GetMenuKey(M_LEFT) && swapDelay == 0)
+                {
+                        PlayNote(MENU_MOVE, 1, 20);
+                        (*currOption) ++ ;
+                        if (swapDelay ==  0) 
+                                swapDelay = 40 ;
+                        if ((*currOption) > (NO_OF_SHIPS - 1) )
+                                (*currOption) = (NO_OF_SHIPS - 1) ;
+                }
+*/
+                if (menuSystem[(*currMenu)].displayMenu != 0)
+******
+
+****** origsrc\MENUS.C
+                                (menuSystem[(*currMenu)].displayObject) (menuSystem, currMenu, *currOption, &swapDelay) ;
+        }
+****** \sourcebackup\wipeout2\origsrc\menus.c
+                                (menuSystem[(*currMenu)].displayObject) (menuSystem, currMenu, *currOption, &swapDelay) ;
+/*                              (menuSystem[(*currMenu)].displayObject) (menuSystem, currMenu, (gameData->shipNum), &swapDelay)
+ ;*/
+        }
+******
+
+****** origsrc\MENUS.C
+        /* Option details */
+        menuSystem[1].menuOptions[0].textX = 70 ;
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        /* Option details */
+        menuSystem[1].menuOptions[0].textX = 70 ;
+******
+
+****** origsrc\MENUS.C
+        menuPrim[CurrentScreen].r0=230;
+        menuPrim[CurrentScreen].g0=0;
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        menuPrim[CurrentScreen].r0=0;
+        menuPrim[CurrentScreen].g0=0;
+******
+
+****** origsrc\MENUS.C
+        setTPage(&(menu1Prim[CurrentScreen]),2,0,timSize->textureX+128,timSize->textureY);
+        menu1Prim[CurrentScreen].r0=230;
+        menu1Prim[CurrentScreen].g0=0;
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        setTPage(&(menu1Prim[CurrentScreen]),2,0,timSize->textureX+128,timSize->textureY);
+        menu1Prim[CurrentScreen].r0=0;
+        menu1Prim[CurrentScreen].g0=0;
+******
+
+****** origsrc\MENUS.C
+}
+void LoadModel (Object** modelShapes, char *fileName)
+{
+        short   modelTextures=0;
+        Object*         obj;
+        int             count = 0 ;
+        char            modelFile[256];
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".prm");
+        modelShapes[0] = (Object *)LoadPrm( modelFile, modelTextures );
+        obj = modelShapes[0] ;
+        while ( obj )
+        {
+                obj->skeleton = NewSkeleton();
+                modelShapes[count] = obj;
+                count ++ ;
+                obj = obj->next;
+        }
+}
+void LoadTexModel (Object** modelShapes, char *fileName)
+{
+        short   modelTextures= 0;
+        Object*         obj;
+        int             count = 0 ;
+        TIMlist  *timPtr;
+        char            modelFile[256];
+        /******************************************************/
+        /** Load compressed texture files, first to allow    **/
+        /** temporary memory to be allocated                                      **/
+        /******************************************************/
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".cmp");
+   modelTextures = TextureTableCount;
+        timPtr = LoadCompressedTextureSequence( modelFile );
+   LoadCmpFiles( timPtr ); 
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".prm");
+        modelShapes[0] = (Object *)LoadPrm( modelFile, modelTextures );
+        obj = modelShapes[0] ;
+        while ( obj )
+        {
+                obj->skeleton = NewSkeleton();
+                modelShapes[count] = obj;
+                count ++ ;
+                obj = obj->next;
+        }
+****** \sourcebackup\wipeout2\origsrc\menus.c
+}
+#if 0
+void InitializeGame (combatData *packetData, ConfigData *gameData)
+{
+        static int              firstUse = 1 ;
+        switch(gameType)
+        {
+                case MASTER:    
+//                                      printf ("MASTER selected \n") ;
+                                        if (firstUse)
+                                        {                                
+#if 0
+                                                InitCombat () ;
+#else
+                                                _init_cont () ;
+#endif
+                                                firstUse = 0 ;
+                                        }
+******
+
+****** origsrc\MENUS.C
+#if 0
+        printf ("Count = %d \n", count) ;
+#endif
+}
+void LoadNegConTexModel (Object** modelShapes, char *fileName)
+{
+        short   modelTextures= 0;
+        Object*         obj;
+        int             count = 0 ;
+        TIMlist  *timPtr;
+        char            modelFile[256];
+        /******************************************************/
+        /** Load compressed texture files, first to allow    **/
+        /** temporary memory to be allocated                                      **/
+        /******************************************************/
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".cmp");
+   modelTextures = TextureTableCount;
+        timPtr = LoadCompressedTextureSequence( modelFile );
+   LoadCmpFiles( timPtr ); 
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".prm");
+        modelShapes[0] = (Object *)LoadPrm( modelFile, modelTextures );
+        root = NewSkeleton();
+        obj = modelShapes[0] ;
+        while ( obj )
+        {
+                obj->skeleton = NewSkeleton();
+                obj->skeleton->super = root ;
+                modelShapes[count] = obj;
+                count ++ ;
+                obj = obj->next;
+        }
+****** \sourcebackup\wipeout2\origsrc\menus.c
+#if 0
+                                        packetData->combatControl = CombatMaster ;
+#else
+                                        packetData->combatControl = NewMaster ;
+#endif
+                                        gameType = MASTER ;
+                                        ownShip = 0 ;
+                                        serialShip = 1 ;                                                  
+                                   break;
+                case SLAVE:     
+//                                      printf ("SLAVE selected \n") ;
+                                        if (firstUse)
+                                        {
+#if 0
+                                                InitCombat () ;
+#else
+                                                _init_cont () ;
+#endif
+                                                firstUse = 0 ;
+                                        }
+******
+
+****** origsrc\MENUS.C
+#if 0
+        printf ("Count = %d \n", count) ;
+#endif
+}
+#if NORMAL_COMBAT_LINK
+void DrawMainMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+{
+        static int heading = 0, hdg = 0 ;
+        if (shapeNo == 0)
+                DrawTeamShips (0, 0, MODELSIZE, &heading, menuSystem[(*currMenu)].menuModel[shipShapeOrder[0]]) ;
+        if (shapeNo == 1)
+        {
+                DrawTeamShips (-450, 0, 1100, &heading, menuSystem[(*currMenu)].menuModel[shipShapeOrder[3]]) ;
+                DrawTeamShips (450, 0, 1100, &heading, menuSystem[(*currMenu)].menuModel[shipShapeOrder[1]]) ;
+        }               
+        if (shapeNo == 2)
+        {
+                SetSkeletonPosition(menuSystem[(*currMenu)].menu2Model[0]->skeleton,
+                                                        0,
+                                                        0,
+                                                        MODELSIZE) ;     /*1800*/
+                SetSkeletonDirectionHPR(menuSystem[(*currMenu)].menu2Model[0]->skeleton,
+                                                        hdg,
+                                                        0,
+                                                        0);
+        /*      AsmDrawObject(shipModel, NULL);*/
+                TransformStaticObject(menuSystem[(*currMenu)].menu2Model[0], NULL);
+                hdg += 40;
+/*              DrawTeamShips (0, 0, MODELSIZE, &heading, menuSystem[(*currMenu)].menu2Model[0]) ;*/
+        }       
+****** \sourcebackup\wipeout2\origsrc\menus.c
+#if 0
+                                        packetData->combatControl = CombatSlave ;
+#else
+                                        packetData->combatControl = NewSlave ;
+#endif
+                                        gameType = SLAVE ;
+                                        ownShip = 1 ;
+                                        serialShip = 0 ;                                                  
+                                        break;
+                case SINGLE:    
+                                        gameType = SINGLE ;
+                                        ownShip = gameData->shipNum ;
+                                        serialShip = -1 ;
+                                        break;
+                }                               
+******
+
+****** origsrc\MENUS.C
+}
+#else
+void DrawMainMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+****** \sourcebackup\wipeout2\origsrc\menus.c
+}
+#endif
+void LoadModel (Object** modelShapes, char *fileName)
+{
+        short   modelTextures=0;
+        Object*         obj;
+        int             count = 0 ;
+        char            modelFile[256];
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".prm");
+        modelShapes[0] = (Object *)LoadPrm( modelFile, modelTextures );
+        obj = modelShapes[0] ;
+        while ( obj )
+        {
+                obj->skeleton = NewSkeleton();
+                modelShapes[count] = obj;
+                count ++ ;
+                obj = obj->next;
+        }
+#if 0
+        printf ("Count = %d \n", count) ;
+#endif
+}
+void LoadTexModel (Object** modelShapes, char *fileName)
+{
+        short   modelTextures= 0;
+        Object*         obj;
+        int             count = 0 ;
+        TIMlist  *timPtr;
+        char            modelFile[256];
+        /******************************************************/
+        /** Load compressed texture files, first to allow    **/
+        /** temporary memory to be allocated                                      **/
+        /******************************************************/
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".cmp");
+   modelTextures = TextureTableCount;
+        timPtr = LoadCompressedTextureSequence( modelFile );
+   LoadCmpFiles( timPtr ); 
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".prm");
+        modelShapes[0] = (Object *)LoadPrm( modelFile, modelTextures );
+        obj = modelShapes[0] ;
+        while ( obj )
+        {
+                obj->skeleton = NewSkeleton();
+                modelShapes[count] = obj;
+                count ++ ;
+                obj = obj->next;
+        }
+#if 0
+        printf ("Count = %d \n", count) ;
+#endif
+}
+void LoadNegConTexModel (Object** modelShapes, char *fileName)
+{
+        short   modelTextures= 0;
+        Object*         obj;
+        int             count = 0 ;
+        TIMlist  *timPtr;
+        char            modelFile[256];
+        /******************************************************/
+        /** Load compressed texture files, first to allow    **/
+        /** temporary memory to be allocated                                      **/
+        /******************************************************/
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".cmp");
+   modelTextures = TextureTableCount;
+        timPtr = LoadCompressedTextureSequence( modelFile );
+   LoadCmpFiles( timPtr ); 
+        strcpy( modelFile, FileRoot"\\wipeout\\common\\" );
+        strcat( modelFile, fileName) ;
+        strcat( modelFile, ".prm");
+        modelShapes[0] = (Object *)LoadPrm( modelFile, modelTextures );
+        root = NewSkeleton();
+        obj = modelShapes[0] ;
+        while ( obj )
+        {
+                obj->skeleton = NewSkeleton();
+                obj->skeleton->super = root ;
+                modelShapes[count] = obj;
+                count ++ ;
+                obj = obj->next;
+        }
+#if 0
+        printf ("Count = %d \n", count) ;
+#endif
+}
+#if NORMAL_COMBAT_LINK
+void DrawMainMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+******
+
+****** origsrc\MENUS.C
+        {
+                SetSkeletonPosition(menuSystem[(*currMenu)].menu2Model[0]->skeleton,
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        {
+                DrawTeamShips (-450, 0, 1100, &heading, menuSystem[(*currMenu)].menuModel[shipShapeOrder[3]]) ;
+                DrawTeamShips (450, 0, 1100, &heading, menuSystem[(*currMenu)].menuModel[shipShapeOrder[1]]) ;
+        }               
+        if (shapeNo == 2)
+        {
+                SetSkeletonPosition(menuSystem[(*currMenu)].menu2Model[0]->skeleton,
+******
+
+****** origsrc\MENUS.C
+                                                        0);
+                TransformStaticObject(menuSystem[(*currMenu)].menu2Model[0], NULL);
+****** \sourcebackup\wipeout2\origsrc\menus.c
+                                                        0);
+        /*      AsmDrawObject(shipModel, NULL);*/
+                TransformStaticObject(menuSystem[(*currMenu)].menu2Model[0], NULL);
+******
+
+****** origsrc\MENUS.C
+                hdg += 40;
+        }       
+****** \sourcebackup\wipeout2\origsrc\menus.c
+                hdg += 40;
+/*              DrawTeamShips (0, 0, MODELSIZE, &heading, menuSystem[(*currMenu)].menu2Model[0]) ;*/
+        }       
+******
+
+****** origsrc\MENUS.C
+}
+#endif
+****** \sourcebackup\wipeout2\origsrc\menus.c
+}
+#else
+void DrawMainMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+{
+        static int heading = 0, hdg = 0 ;
+        if (shapeNo == 0)
+                DrawTeamShips (0, 0, MODELSIZE, &heading, menuSystem[(*currMenu)].menuModel[shipShapeOrder[0]]) ;
+        if (shapeNo == 1)
+        {
+                SetSkeletonPosition(menuSystem[(*currMenu)].menu2Model[0]->skeleton,
+                                                        0,
+                                                        0,
+                                                        MODELSIZE) ;     /*1800*/
+                SetSkeletonDirectionHPR(menuSystem[(*currMenu)].menu2Model[0]->skeleton,
+                                                        hdg,
+                                                        0,
+                                                        0);
+                TransformStaticObject(menuSystem[(*currMenu)].menu2Model[0], NULL);
+                hdg += 40;
+        }       
+}
+#endif
+******
+
+****** origsrc\MENUS.C
+#else
+        SetSkeletonPosition((menuSystem[(*currMenu)].menuModel[0]->skeleton),
+****** \sourcebackup\wipeout2\origsrc\menus.c
+#else
+        SetSkeletonPosition((menuSystem[(*currMenu)].menuModel[0]->skeleton),
+******
+
+****** origsrc\MENUS.C
+        }
+/*      Slider overlay knob */
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        }
+/*
+        ScreenFooter (70, 210, WhiteText) ;
+*/
+/*      Slider overlay knob */
+******
+
+****** origsrc\MENUS.C
+        musicPrims->sliderPrim.clut = musicTex->sliderTex->cba;
+        AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(musicPrims->sliderPrim) );
+/*      Slider background */
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        musicPrims->sliderPrim.clut = musicTex->sliderTex->cba;
+#if 1
+        AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(musicPrims->sliderPrim) );
+#endif  
+/*      Slider background */
+******
+
+****** origsrc\MENUS.C
+        musicPrims->slidePrim.clut = musicTex->slideTex->cba;
+        AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(musicPrims->slidePrim) );
+        AddText (GetCdTrackName(gameData->oldCdTrack-1), text_data (130, 175, 8), RedText) ; 
+        if (selectData->optionNo == 0)
+        {
+                if ((toggle % 2) == 0)
+                {
+                        AddText ("SFX",text_data (33, 51, 8),RedText) ;
+                        AddText ("MUSIC",text_data (250, 139, 8),RedText) ;
+                }
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        musicPrims->slidePrim.clut = musicTex->slideTex->cba;
+#if 1
+        AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(musicPrims->slidePrim) );
+#endif
+#if 0
+        if (selectData->speechMode)
+        {
+                AddText ("OFF" , text_data (190, 190, 8), RedText) ; 
+                AddText ("ON" , text_data (150, 190, 8), WhiteText) ; 
+        }
+******
+
+****** origsrc\MENUS.C
+                {
+                        AddText ("SFX",text_data (33, 51, 8),WhiteText) ;
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        {
+                AddText ("ON" , text_data (150, 190, 8), RedText) ; 
+                AddText ("OFF" , text_data (190, 190, 8), WhiteText) ; 
+        }
+#endif
+        AddText (GetCdTrackName(gameData->oldCdTrack-1), text_data (130, 175, 8), RedText) ; 
+        if (selectData->optionNo == 0)
+        {
+                if ((toggle % 2) == 0)
+                {
+                        AddText ("SFX",text_data (33, 51, 8),RedText) ;
+                        AddText ("MUSIC",text_data (250, 139, 8),RedText) ;
+                }
+                else
+                {
+                        AddText ("SFX",text_data (33, 51, 8),WhiteText) ;
+******
+
+****** origsrc\MENUS.C
+        }
+        toggle ++ ;
+****** \sourcebackup\wipeout2\origsrc\menus.c
+        }
+#if 0
+        if (selectData->optionNo == 2)
+        {
+                AddText ("SPEECH" , text_data (15, 190, 8), RedText) ; 
+                if (xpad & PadLeft0)
+                {
+                        PlayNote(MENU_MOVE, 1, 2);
+                        selectData->speechMode -- ;
+                        if (selectData->speechMode < 0)
+                                selectData->speechMode = 1 ;
+                }
+                if (xpad & PadRight0)
+                {
+                        PlayNote(MENU_MOVE, 1, 2);
+                        selectData->speechMode ++ ;
+                        if (selectData->speechMode > 1)
+                                selectData->speechMode = 0 ;
+                }
+        }
+        else
+        {
+                        AddText ("SPEECH" , text_data (15, 190, 8), WhiteText) ; 
+        }
+#endif
+        toggle ++ ;
+******
+
+****** origsrc\MENUS.C
+                                                                        if (selectData->cardNum == 0)
+                                                                                selectData->card1 = FORMATTED ;
+****** \sourcebackup\wipeout2\origsrc\menus.c
+                                                                        if (selectData->cardNum == 0)
+                                                                                selectData->card1 = FORMATTED ;
+******
+
+****** origsrc\MENUS.C
+                DisplayButtons ( 75, 210, NFORMAT) ;
+                DisplayButtons ( 170, 210, NCHANGE) ;
+****** \sourcebackup\wipeout2\origsrc\menus.c
+                DisplayButtons ( 75, 210, NFORMAT) ;
+                DisplayButtons ( 170, 210, NCHANGE) ;
+******
+
+

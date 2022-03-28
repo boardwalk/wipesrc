@@ -1,0 +1,7 @@
+name	comp6
+system	nt_win
+debug	all
+file comp6
+
+option  map
+option  stack=100k

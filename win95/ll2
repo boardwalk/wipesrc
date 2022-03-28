@@ -1,0 +1,11 @@
+name	fbcomp
+system	nt_win
+debug	all
+file comp
+
+lib c:\dxsdk\sdk\lib\ddraw.lib
+lib c:\dxsdk\sdk\lib\dsound.lib
+lib c:\ragesdk\lib\ati3dcif.lib
+lib vfw32.lib
+option  map
+option  stack=100k

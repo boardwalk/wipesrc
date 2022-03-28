@@ -1,0 +1,36 @@
+MAKE  Version 3.0  Copyright (c) 1987, 1990 Borland International
+
+Available memory 281142 bytes
+
+        wcc386 -d2 -dWIPEOUTPC=1 -we -oneatx -5 -fp5 -fpi87 -zp4 -i=c:\source\psx26\include origsrc\sound.c
+WATCOM C32 Optimizing Compiler  Version 10.0b
+Copyright by WATCOM International Corp. 1984, 1994. All rights reserved.
+WATCOM is a trademark of WATCOM International Corp.
+origsrc\sound.c: 1438 lines, included 5637, 0 warnings, 0 errors
+Code size: 9211
+        wlink @linklist.
+WATCOM Linker Version 10.0
+Copyright by WATCOM International Corp. 1985, 1994. All rights reserved.
+WATCOM is a trademark of WATCOM International Corp.
+loading object files
+Warning(1027): file serialwo.obj(C:\SOURCE\WIPEOUT2\markk\serialwo.c): redefinition of _CommSerialDevice ignored
+Warning(1027): file serialwo.obj(C:\SOURCE\WIPEOUT2\markk\serialwo.c): redefinition of _CommSerialBaudRate ignored
+Warning(1027): file netwo.obj(C:\SOURCE\WIPEOUT2\markk\netwo.c): redefinition of _CommNetSocket ignored
+Warning(1027): file netwo.obj(C:\SOURCE\WIPEOUT2\markk\netwo.c): redefinition of _CommNetPlayers ignored
+searching libraries
+Warning(1027): file sfx.lib(handle.c): redefinition of UltraDramTcHandler_ ignored
+Warning(1027): file sfx.lib(handle.c): redefinition of UltraMidiXmitHandler_ ignored
+Warning(1027): file sfx.lib(handle.c): redefinition of UltraMidiRecvHandler_ ignored
+Warning(1027): file sfx.lib(handle.c): redefinition of UltraTimer1Handler_ ignored
+Warning(1027): file sfx.lib(handle.c): redefinition of UltraTimer2Handler_ ignored
+Warning(1027): file sfx.lib(handle.c): redefinition of UltraWaveHandler_ ignored
+Warning(1027): file sfx.lib(handle.c): redefinition of UltraVolumeHandler_ ignored
+Warning(1027): file sfx.lib(handle.c): redefinition of UltraRecordHandler_ ignored
+Warning(1027): file sfx.lib(irq.c): redefinition of ReSetIrqHandlers_ ignored
+Warning(1027): file sfx.lib(irq.c): redefinition of SetIrqs_ ignored
+Warning(1027): file sfx.lib(irq.c): redefinition of ResetIrqs_ ignored
+Warning(1027): file sfx.lib(irq.c): redefinition of handle_dma_tc_ ignored
+Warning(1027): file sfx.lib(irq.c): redefinition of default_func_ ignored
+Warning(1027): file sfx.lib(irq.c): redefinition of SetIrqHandlers_ ignored
+creating map file
+creating a DOS/4G executable

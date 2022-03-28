@@ -1,0 +1,1376 @@
+File MARKK\MULTIWO.C:
+                if (gameData->oppMenu != START_TWO_PLAYER_MENU)
+                        fn_var(gameData->shipNum)
+                        fn_var(gameData->ship2Num)
+                        ownShip = gameData->shipNum;
+                        serialShip = gameData->ship2Num;
+                ownShip = gameData->shipNum;
+                gameData->exitMenu = 0xFF;
+                send[2] = gameData->gameType;
+                send[3] = gameData->shipNum;
+                send[4] = gameData->team;
+                send[5] = gameData->class;
+                send[6] = gameData->trackNum;
+                send[7] = gameData->actTrackNum;
+                send[8] = gameData->exitMenu;
+                fn_var(gameData->shipNum)
+                gameData->oppMenu               = receive[0];
+                gameData->gameType              = receive[2];
+                gameData->ship2Num              = receive[3];
+                gameData->team2                 = receive[4];
+                gameData->class                 = receive[5];
+                gameData->trackNum              = receive[6];
+                gameData->actTrackNum   = receive[7];
+                gameData->exit2Menu             = receive[8];
+                serialShip = gameData->ship2Num;
+                fn_var(gameData->ship2Num)
+                fn_var(gameData->team)
+                //fn_var(gameData->class)
+                //fn_var(gameData->trackNum)
+                //fn_var(gameData->actTrackNum)
+                gameData->oppMenu               = receive[0];
+                gameData->gameType              = receive[2];
+                gameData->ship2Num              = receive[3];//AJY
+//              gameData->ship2Num              = 0;
+                gameData->team2                 = receive[4];
+                gameData->class                 = receive[5];
+                gameData->trackNum              = receive[6];
+                gameData->actTrackNum   = receive[7];
+                gameData->exit2Menu             = receive[8];
+                fn_var(gameData->ship2Num)
+                serialShip = gameData->ship2Num;
+                send[2] = gameData->gameType;
+                send[3] = gameData->shipNum;    //AJY
+                send[4] = gameData->team;
+                send[5] = gameData->class;
+                send[6] = gameData->trackNum;
+                send[7] = gameData->actTrackNum;
+                send[8] = gameData->exitMenu;
+//              gameData->shipNum = 1;
+                fn_var(gameData->shipNum)
+                fn_var(gameData->team)
+//              fn_var(gameData->class)
+//              fn_var(gameData->trackNum)
+//              fn_var(gameData->actTrackNum)
+File MARKK\NETWO.C:
+        send_master->Class                              = gameData->class;
+        send_master->TrackNum                   = gameData->trackNum;
+        send_master->ActTrackNum                = gameData->actTrackNum;
+        send_master->ShipNum[MASTER]    = gameData->shipNum;
+        send_master->Team[MASTER]               = gameData->team;
+        send_master->ExitMenu[MASTER]   = gameData->exitMenu;
+        fn_var(gameData->exitMenu)
+        cfg->Class                              = gameData->class;
+        cfg->TrackNum                   = gameData->trackNum;
+        cfg->ActTrackNum                = gameData->actTrackNum;
+        cfg->ShipNum[MASTER]    = gameData->shipNum;
+        cfg->Team[MASTER]               = gameData->team;
+        cfg->ExitMenu[MASTER]   = gameData->exitMenu;
+        gameData->class                         = receive_master->Class;                // gameData->class from MASTER side
+        gameData->trackNum                      = receive_master->TrackNum;             // gameData->trackNum from MASTER side
+        gameData->actTrackNum           = receive_master->ActTrackNum;  // gameData->actTrackNum from MASTER side
+        send_slave->SlaveShipNum                = gameData->shipNum;
+        send_slave->SlaveTeam                   = gameData->team;
+        send_slave->SlaveExitMenu               = gameData->exitMenu;
+        fn_var(gameData->exitMenu)
+        cfg->Class                                      = receive_master->Class;                // gameData->class from MASTER side
+        cfg->TrackNum                           = receive_master->TrackNum;             // gameData->trackNum from MASTER side
+        cfg->ActTrackNum                        = receive_master->ActTrackNum;  // gameData->actTrackNum from MASTER side
+                        cfg->ShipNum[i]         = receive_master->ShipNum[i];   // gameData->shipNum from machine (i)
+                        cfg->Team[i]            = receive_master->Team[i];              // gameData->team from machine (i)
+                        cfg->ExitMenu[i]        = receive_master->ExitMenu[i];  // gameData->exitMenu from machine (i)
+        cfg->ShipNum[CommMyShip]        = gameData->shipNum;
+        cfg->Team[CommMyShip]           = gameData->team;
+        cfg->ExitMenu[CommMyShip]       = gameData->exitMenu;
+File MARKK\PCCOMBAT.C:
+        send[0] = gameData->class;
+        send[1] = gameData->gameType;
+        send[2] = gameData->team;
+        send[3] = gameData->shipNum;
+        fn_var(gameData->shipNum)
+        send[4] = gameData->trackNum;
+        send[5] = gameData->actTrackNum;
+        send[7] = gameData->exitMenu;
+        send[8] = gameData->gameType;
+        gameData->class                 = receive[0];
+        gameData->gameType              = receive[1];
+        gameData->team2                 = receive[2];
+        gameData->ship2Num              = receive[3];
+        fn_var(gameData->ship2Num)
+        gameData->trackNum              = receive[4];
+        gameData->actTrackNum   = receive[5];
+        gameData->oppMenu               = receive[6];
+        gameData->exit2Menu             = receive[7];
+        gameData->gameType              = receive[8];
+        gameData->class                 = receive[0];
+        gameData->gameType              = receive[1];
+        gameData->team2                 = receive[2];
+        gameData->ship2Num              = receive[3];
+        fn_var(gameData->ship2Num)
+        gameData->trackNum              = receive[4];
+        gameData->actTrackNum   = receive[5];
+        gameData->oppMenu               = receive[6];
+        gameData->exit2Menu             = receive[7];
+        gameData->gameType              = receive[8];
+        send[0] = gameData->class;
+        send[1] = gameData->gameType;
+        send[2] = gameData->team;
+        send[3] = gameData->shipNum;
+        fn_var(gameData->shipNum)
+        send[4] = gameData->trackNum;
+        send[5] = gameData->actTrackNum;
+        send[7] = gameData->exitMenu;
+        send[8] = gameData->gameType;
+        if (gameData->oppMenu != START_TWO_PLAYER_MENU)
+                fn_var(gameData->shipNum)
+                fn_var(gameData->ship2Num)
+                ownShip = gameData->shipNum;
+                serialShip = gameData->ship2Num;
+        send[2] = gameData->gameType;
+        send[3] = gameData->shipNum;
+        send[4] = gameData->team;
+        send[5] = gameData->class;
+        send[6] = gameData->trackNum;
+        send[7] = gameData->actTrackNum;
+        send[8] = gameData->exitMenu;
+        fn_var(gameData->shipNum)
+        gameData->oppMenu               = receive[0];
+        gameData->gameType              = receive[2];
+        gameData->ship2Num              = receive[3];
+        gameData->team2                 = receive[4];
+        gameData->class                 = receive[5];
+        gameData->trackNum              = receive[6];
+        gameData->actTrackNum   = receive[7];
+        gameData->exit2Menu             = receive[8];
+        serialShip = gameData->ship2Num;
+        fn_var(gameData->ship2Num)
+        fn_var(gameData->team)
+//      fn_var(gameData->class)
+//      fn_var(gameData->trackNum)
+//      fn_var(gameData->actTrackNum)
+        gameData->oppMenu               = receive[0];
+        gameData->gameType              = receive[2];
+        gameData->ship2Num              = receive[3];//AJY
+//      gameData->ship2Num              = 0;
+        gameData->team2                 = receive[4];
+        gameData->class                 = receive[5];
+        gameData->trackNum              = receive[6];
+        gameData->actTrackNum   = receive[7];
+        gameData->exit2Menu             = receive[8];
+        fn_var(gameData->ship2Num)
+        serialShip = gameData->ship2Num;
+        send[2] = gameData->gameType;
+        send[3] = gameData->shipNum;    //AJY
+        send[4] = gameData->team;
+        send[5] = gameData->class;
+        send[6] = gameData->trackNum;
+        send[7] = gameData->actTrackNum;
+        send[8] = gameData->exitMenu;
+//      gameData->shipNum = 1;
+        fn_var(gameData->shipNum)
+        fn_var(gameData->team)
+//      fn_var(gameData->class)
+//      fn_var(gameData->trackNum)
+//      fn_var(gameData->actTrackNum)
+File ORIGSRC\AYRACE.C:
+                        c_attr.cd.volume.left  = 150 * gameData->currSliderPos; /* Master volume (left) */
+                        c_attr.cd.volume.right  = 150 * gameData->currSliderPos;        /* Master volume (right) */
+                        if(gameData->cdTrack == 1)
+//                         CdControlB(CdlSetloc, (u_char *)&loc[gameData->cdTrack], 0);         // DLS
+                                CurrTrkNo = gameData->cdTrack + 1;
+        if ((ctrlshowGameOver == 1) || (gameData->showGameOver == 1) || (gameData->lostGame == 1))
+                if (gameData->gameType == CHAMPIONSHIP)
+        if(gameData->cdTrack == 1)
+//         CdControlB(CdlSetloc, (u_char *)&loc[gameData->cdTrack], 0);         // DLS
+                CurrTrkNo = gameData->cdTrack + 1;
+File ORIGSRC\CARD.C:
+                *char_ptr ++ = gameData->RapierClass;
+                *char_ptr ++ = gameData->cdTrack;
+                *char_ptr ++ = gameData->negTwist;
+                *char_ptr ++ = gameData->showBonusTrack;
+                gameData->currSliderPos = *short_ptr ++;
+                SfxSetVolume((char)((0x3fff - (75 * gameData->currSliderPos))>>6));
+           SfxSetCdVolume(ConvCDVol(150*gameData->currSliderPos,150*gameData->currSliderPos));
+                gameData->RapierClass = *char_ptr ++;   
+                gameData->cdTrack = *char_ptr ++;
+                gameData->negTwist = *char_ptr++;
+                gameData->showBonusTrack = *char_ptr++;
+                twist = gameData->negTwist;
+                negtwist = gameData->negTwist;
+                c_attr.cd.volume.left  = 150 * gameData->currSliderPos; /* Master volume (left) */
+                c_attr.cd.volume.right  = 150 * gameData->currSliderPos;        /* Master volume (right) */
+                SfxSetVolume((char)((0x3fff - (75 * gameData->currSliderPos))>>6));
+File ORIGSRC\HISCORES.C:
+                if (bestLap < scoreTable[(gameData->trackNum-1)].lapTimes[i])
+                                AddText (&(scoreTable[(gameData->trackNum-1)].names[i][0]), text_data (40, (80+(spacing*i)), 16), WhiteText) ;
+                                if (scoreTable[(gameData->trackNum-1)].lapTimes[i] == 2000000000)
+                                        AddTime(scoreTable[(gameData->trackNum-1)].lapTimes[i],
+                        DisplayHiScore ((gameData->trackNum-1)) ;
+//      printf ("track number in add entry to table = %d \n", gameData->trackNum) ;
+        if (gameData->gameType == TIME_TRIAL)
+                scoreTrack = ((gameData->trackNum -1) + HiScoreTracks) ;
+                if (gameData->gameType == CHAMPIONSHIP)
+                        scoreTrack = ((gameData->trackNum -1) - gameData->trackInc) ;
+                        scoreTrack = (gameData->trackNum - 1) ;
+                                scoreTable[scoreTrack].lapTimesPilot[i] = gameData->shipNum ;
+        if (gameData->gameType == TIME_TRIAL)
+                scoreTrack = ((gameData->trackNum - 1) + HiScoreTracks) ;
+                scoreTrack = (gameData->trackNum - 1) ;
+                check = gameData->newLapRecord;
+                        scoreTable[scoreTrack].lapRecordPilot = gameData->shipNum ;
+                        scoreTable[scoreTrack].lapRecordPilot = gameData->shipNum ;
+        if (gameData->gameType == TIME_TRIAL)
+                DisplayHiScore (((gameData->trackNum-1) + HiScoreTracks)) ;
+                if (gameData->gameType == CHAMPIONSHIP)
+                        DisplayHiScore ((gameData->trackNum-1)- gameData->trackInc) ;
+                        DisplayHiScore ((gameData->trackNum-1)) ;
+        if (gameData->gameType == TIME_TRIAL)
+                scoreTrack = ((gameData->trackNum-1) + HiScoreTracks) ;
+                if (gameData->gameType == CHAMPIONSHIP)
+                        scoreTrack = ((gameData->trackNum-1)-gameData->trackInc)        ;
+                        scoreTrack = (gameData->trackNum-1)     ;
+        if (gameData->gameType == TIME_TRIAL)
+                scoreTrack = (((gameData->trackNum - 1)-1) + HiScoreTracks) ;
+                scoreTrack = ((gameData->trackNum - 1)-gameData->trackInc) ;
+File ORIGSRC\HUD.C:
+                                gameData->newLapRecord = 1 ;
+                                gameData->newLapRecord = CheckLapRecord (gameData, &(shipIndex[0]), ownShip) ;
+                                        gameData->newLapRecord = 1 ;
+                                gameData->newLapRecord = CheckLapRecord (gameData, &(shipIndex[0]), serialShip) ;
+                                        gameData->newLapRecord = 1 ;
+                if (gameData->gameType == TIME_TRIAL)
+                        AddTime(scoreTable[((gameData->trackNum-1)+HiScoreTracks)].lapRecord,
+                        AddTime(scoreTable[(gameData->trackNum-1)].lapRecord,
+                gameData->Position = winTable[ownShip].racePosition; 
+//              printf ("Position = %d \n", gameData->Position) ;
+                gameData->EndOfGame = 1 ;
+                if (gameData->gameType == SINGLE_RACE || gameData->gameType == TIME_TRIAL)
+                        gameData->showPilotCount = 120 ;
+                if (gameData->gameType == CHAMPIONSHIP)
+                        gameData->showPilotCount = 120 ;
+                        if ((gameData->Position >= 1 && gameData->Position <= 3)
+                                        && gameData->Lives > 0)
+                                gameData->showPointCount = 120 ;
+                                gameData->showChampCount = 120 ;
+                        gameData->gameOverCount = 120 ;
+                        if (gameData->Position > 3)
+                                gameData->Lives -- ;
+                                gameData->trackInc = 0 ;
+                                if (gameData->trackNum == NumTracks)  
+                                                gameData->RapierClass = 1 ;
+                                                gameData->class = 1 ;
+                                                if (gameData->showBonusTrack == 0)
+                                                        gameData->trackNum += 2 ;
+                                                        gameData->trackInc = 2 ;
+                                                        gameData->trackNum ++ ;
+                                                        gameData->trackInc = 1 ;
+                                                gameData->actTrackNum = trackList[(gameData->trackNum-1)] ;
+                                                gameData->venomComplete = 1 ;
+                                                gameData->gotoMenu = 1 ;
+                                                gameData->lostGame = 1 ;
+                                                gameData->trackInc = 0 ;
+                                        if (gameData->trackNum == totalTracks)
+                                                        gameData->gameComplete = 1 ;
+                                                        gameData->showBonusTrack = 1 ;
+                                                        gameData->lostGame = 1 ;
+                                                        gameData->trackInc = 0 ;
+                                                gameData->trackInc = 1 ;
+                                                gameData->trackNum ++ ;
+                                                gameData->actTrackNum = trackList[(gameData->trackNum-1)] ;
+                        if (gameData->gameType == CHAMPIONSHIP)
+        for (i=0; i < gameData->Lives; i++)
+        AddNumber (gameData->Position, text_data (155, 50, 8), WhiteText) ; 
+        if (gameData->gameType == SINGLE_RACE)
+                if ((CheckHiScore (gameData, hiScoreData)) && gameData->Position == 1)
+                if (gameData->gameType == CHAMPIONSHIP)
+                        if ((CheckHiScore (gameData, hiScoreData)) && (gameData->Position >= 1 &&
+                                  gameData->Position <= 3))
+                if (gameData->gameType == TIME_TRIAL)
+        if (gameData->gameType == CHAMPIONSHIP)
+                if (gameData->newLapRecord == 1)
+                        printf ("track in showinfo = %d \n",gameData->trackNum ) ;
+                                if (gameData->Position >= 1 && gameData->Position <= 3)
+                                        AddTime(scoreTable[((gameData->trackNum - 1)-gameData->trackInc)].lapRecord, text_data (25, 206, 8), WhiteText);
+                                        AddTime(scoreTable[((gameData->trackNum - 1)-gameData->trackInc)].lapRecord, text_data (25, 206, 8), WhiteText);
+//                                              scoreTable[((gameData->trackNum - 1)-gameData->trackInc)].lapRecord,
+//                                              gameData->trackNum) ;
+                        AddTime(scoreTable[((gameData->trackNum - 1)-gameData->trackInc)].lapRecord, text_data (25, 206, 8), WhiteText);
+        if (gameData->gameType == TIME_TRIAL)
+                if (gameData->newLapRecord == 1)
+                        printf ("track in showinfo = %d \n",gameData->trackNum ) ;
+                                AddTime(scoreTable[((gameData->trackNum - 1)+ HiScoreTracks)].lapRecord, text_data (25, 206, 8), WhiteText);
+                                                scoreTable[(gameData->trackNum - 1)].lapRecord,
+                                                gameData->trackNum) ;
+                        AddTime(scoreTable[((gameData->trackNum - 1)+HiScoreTracks)].lapRecord, text_data (25, 206, 8), WhiteText);
+                if (gameData->newLapRecord == 1)
+                        printf ("track in showinfo = %d \n",gameData->trackNum ) ;
+                                AddTime(scoreTable[(gameData->trackNum - 1)].lapRecord, text_data (25, 206, 8), WhiteText);
+                                                scoreTable[(gameData->trackNum - 1)].lapRecord,
+                                                gameData->trackNum) ;
+                        AddTime(scoreTable[(gameData->trackNum - 1)].lapRecord, text_data (25, 206, 8), WhiteText);
+                if (gameData->gameType == TIME_TRIAL)
+                        AddTime(scoreTable[((gameData->trackNum-1)+HiScoreTracks)].lapRecord,
+                        AddTime(scoreTable[(gameData->trackNum-1)].lapRecord,
+File ORIGSRC\INIT.C:
+        getPath(trackPath, gameData->actTrackNum, "\\scene.cmp");
+        getPath(trackPath, gameData->actTrackNum, "\\sky.cmp");
+        getPath(trackPath, gameData->actTrackNum, "\\scene.prm");
+        getPath(trackPath, gameData->actTrackNum, "\\sky.prm");
+File ORIGSRC\MENUS2.C:
+        if (gameData->defaultMenu != -2)
+        currMenu = gameData->defaultMenu ;
+        gameData->actTrackNum = 12 ;
+        gameData->trackNum = 4 ;
+        c_attr.cd.volume.left  = 150 * gameData->currSliderPos; /* Master volume (left) */
+        c_attr.cd.volume.right  = 150 * gameData->currSliderPos;        /* Master volume (right) */
+        if(gameData->cdTrack == 1)
+           CdControlB(CdlSetloc, (u_char *)&loc[gameData->cdTrack], 0); 
+                        gameData->oldPadPreset = gameData->normpadPreset ;
+                        gameData->oldNegPreset = gameData->negconPreset ;
+/*                                                      gameData->NumTracks = HiScoreTracks ;*/
+                                                        gameData->RapierClass = 1 ;
+                                                        gameData->showBonusTrack = 1 ;                  
+                        if (gameData->class == 0)
+                if (currMenu == CLASS_MENU && currOption == 1 && (!gameData->RapierClass))
+                                        gameData->exitMenu = 1 ;
+                                if (gameData->exit2Menu)
+                selectData.trackNum = gameData->trackNum ;
+                        gameData->exitMenu = 0 ;
+                        gameData->exit2Menu = 0 ;
+                        gameData->shipNum = 0 ;
+                        gameData->ship2Num = 1 ;
+                if (gameData->class)
+                        gameData->trackNum = (*currOption  + 1) + 7 ;   
+                        gameData->trackNum = (*currOption  + 1) ;       
+                gameData->actTrackNum = trackList[(gameData->trackNum-1)] ;
+                gameData->newLapRecord = 0 ;
+                        ownShip = gameData->shipNum ;
+                                if (gameData->oppMenu == START_TWO_PLAYER_MENU)
+                                ownShip = gameData->shipNum ;
+                                serialShip = gameData->ship2Num ;
+                gameData->currSliderPos = gameData->oldSliderPos ;
+                gameData->cdTrack = gameData->oldCdTrack ;
+        c_attr.cd.volume.left  = 150 * gameData->currSliderPos; /* Master volume (left) */
+        c_attr.cd.volume.right  = 150 * gameData->currSliderPos;        /* Master volume (right) */
+                sampleLevel = 0x3fff - (75 * gameData->currSliderPos);
+                                gameData->oldNegPreset = gameData->negconPreset ;
+                                gameData->oldPadPreset = gameData->normpadPreset ;
+                        gameData->oldSliderPos = gameData->currSliderPos ;
+                        gameData->oldCdTrack = gameData->cdTrack ;
+                gameData->class = *currOption ;
+                if (gameData->RapierClass == 0 && *currOption == 1)
+                        gameData->trackNum = 1 ;          /* 1 */
+                        if (gameData->showBonusTrack == 0)
+                                gameData->trackNum = (NumTracks+2) ;/*  (NumTracks+2)*/
+                                gameData->trackNum = (NumTracks+1) ;/*  (NumTracks+1)*/
+                gameData->team = *currOption ;
+                SetUpPilots (gameData->team, menuSystem) ;
+                gameData->shipNum = (gameData->team * 2) + *currOption ;
+                gameData->newLapRecord = 0 ;
+                        if (gameData->gameType == CHAMPIONSHIP)
+                                ownShip = gameData->shipNum ;
+                                        if (gameData->oppMenu == START_TWO_PLAYER_MENU)
+                                                ownShip = gameData->shipNum ;
+                                                serialShip = gameData->ship2Num ;
+                gameData->prevLap = 0 ;
+                        gameData->actTrackNum = trackList[(gameData->trackNum-1)] ;
+                        gameData->gameType = CHAMPIONSHIP ;
+                        gameData->shipNum = 0 ;
+                        gameData->gameType = TIME_TRIAL ;
+                        gameData->gameType = SINGLE_RACE ;
+                                        if ( !SaveCardFile (selectData->nameEntered, selectData->cardNum, gameData, gameData->currSliderPos) ) 
+                                                if ( !RenameFile (selectData->nameEntered, selectData->cardNum, gameData, gameData->currSliderPos) )
+                                                if ( !RenameFile1 (selectData->nameEntered, &(loadGames[(selectData->slotRow*2)+selectData->slotColumn][0]), selectData->cardNum, gameData, gameData->currSliderPos ) )
+                        gameData->gameType = TWO_PLAYER_RACE ;
+                        gameData->gameType = HEAD_TO_HEAD ;
+                        gameData->negconPreset = gameData->oldNegPreset ;
+                        gameData->normpadPreset = gameData->oldPadPreset ;
+                        gameData->oldNegPreset = gameData->negconPreset ;
+                        twist = gameData->negTwist ;
+                        nCon.twistFactor = abs(gameData->negTwist-128) ;
+                gameData->negTwist = twist ;
+                negtwist = gameData->negTwist ;
+                nCon.twistFactor = abs(gameData->negTwist-128) ;
+                        (gameType == MASTER) && *currMenu == gameData->oppMenu)
+                        gameData->shipNum = *currOption ;
+                        if ((gameData->team == gameData->team2) && (gameData->shipNum == gameData->ship2Num))
+                                *currOption     = (1 - gameData->ship2Num) ;
+                        printf ("team num = %d  ship num = %d   \n", gameData->team, gameData->shipNum) ;
+                        printf ("team2 num = %d  ship2 num = %d         \n", gameData->team2, gameData->ship2Num) ;
+                                gameData->shipNum = *currOption ;
+                        if (gameType == SLAVE && (gameData->oppMenu == START_TWO_PLAYER_MENU ||
+                                gameData->oppMenu       == TRACK_MENU)
+                                if (gameData->team2 == gameData->team)
+                                        *currOption = (1 - (gameData->ship2Num % 2)) ;
+                                        gameData->shipNum = *currOption ;
+                        if (gameType == MASTER && gameData->oppMenu == START_TWO_PLAYER_MENU
+                                if (gameData->team2 == gameData->team)
+                                        *currOption = (1 - (gameData->ship2Num % 2)) ;
+                                        gameData->shipNum = *currOption ;
+                        if (((gameData->gameType == CHAMPIONSHIP) &&
+                        if (((gameData->gameType == CHAMPIONSHIP) &&
+                        (menuSystem[(*currMenu)].displayObject) (menuSystem, currMenu, (gameData->team * 2) + *currOption, &swapDelay) ;
+/*                              (menuSystem[(*currMenu)].displayObject) (menuSystem, currMenu, (gameData->shipNum), &swapDelay) ;*/
+                                SetUpPilots (gameData->team, menuSystem) ;
+                                        ownShip = gameData->shipNum ;
+        setXY4(&(musicPrims->sliderPrim), (slidePosx-9) + sliderLeftOffset + gameData->oldSliderPos, slidePosy - 24,
+                                                  (slidePosx-9) + sliderRightOffset + gameData->oldSliderPos, slidePosy - 24,
+                                                  (slidePosx-9) + sliderLeftOffset + gameData->oldSliderPos, slidePosy + 52,
+                                                  (slidePosx-9) + sliderRightOffset + gameData->oldSliderPos, slidePosy + 52) ;
+        AddText (GetCdTrackName(gameData->oldCdTrack-1), text_data (130, 175, 8), RedText) ; 
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.left = 0x3fff - (75 * gameData->oldSliderPos);
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.right = 0x3fff - (75 * gameData->oldSliderPos);
+                        gameData->oldSliderPos -- ;
+                        if (gameData->oldSliderPos < 0)
+                                gameData->oldSliderPos = 0 ;
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.left = 0x3fff - (75 * gameData->oldSliderPos);
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.right = 0x3fff - (75 * gameData->oldSliderPos);
+                        gameData->oldSliderPos ++ ;
+                        if (gameData->oldSliderPos > sliderRange)
+                                gameData->oldSliderPos = sliderRange ;
+        c_attr.cd.volume.left  = 150 * gameData->oldSliderPos;  /* Master volume (left) */
+        c_attr.cd.volume.right  = 150 * gameData->oldSliderPos; /* Master volume (right) */
+                        gameData->oldCdTrack -- ;
+                        if (gameData->oldCdTrack < 1)
+                                gameData->oldCdTrack = ntoc ;
+                        if(gameData->oldCdTrack != 1)
+                                CdControlB(CdlSetloc, (u_char *)&(loc[gameData->oldCdTrack]), 0);       
+                        gameData->oldCdTrack ++ ;
+                        if (gameData->oldCdTrack > ntoc)
+                                gameData->oldCdTrack = 1 ;
+                        if(gameData->oldCdTrack != 1)
+                                CdControlB(CdlSetloc, (u_char *)&(loc[gameData->oldCdTrack]), 0);       
+                                        gameData->cardPresent = 1 ;
+        if (gameData->cardPresent == 1)
+        gameData->cardPresent = 0 ;
+                                        gameData->cardPresent = 1 ;
+        if (gameData->cardPresent == 1)
+        gameData->cardPresent = 0 ;
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->showBonusTrack == 0)
+        if (((gameData->RapierClass == 0) && (selectData->hiscoreTrack == (NumTracks-1)))
+                 || ((gameData->RapierClass == 1) && (selectData->hiscoreTrack == (totalTracks-1))))            
+        if (gameData->trackNum <= NumTracks)
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->showBonusTrack == 0)
+                if (gameData->showBonusTrack == 0)
+        if (((gameData->RapierClass == 0) && ((selectData->hiscoreTrack-HiScoreTracks) == (NumTracks-1)))
+                 || ((gameData->RapierClass == 1) && ((selectData->hiscoreTrack-HiScoreTracks) == (totalTracks-1))))            
+        if (gameData->trackNum <= NumTracks)
+        gameData->shipNum = randy () % 8 ;
+        gameData->trackNum =    gameData->actTrackNum = gameData->ship2Num = 0 ;
+        gameData->oppMenu = gameData->exitMenu = gameData->exit2Menu = gameData->class = 0 ;
+        gameData->team = gameData->team2 = gameData->gameType = 0 ;
+        gameData->Lives = 3 ;
+        gameData->EndOfGame = 0 ;
+        gameData->continueConfirm = 1 ;
+        gameData->NumTracks = 1 ;
+        gameData->Position = 8 ;
+        gameData->defaultMenu = -2 ;
+        gameData->RapierClass = 0 ;
+        gameData->CheatMode = 0 ;
+        gameData->cdTrack = 1 ;
+        gameData->gameComplete = 0 ;
+        gameData->showPilotCount = 0 ;
+        gameData->gameOverCount = 0 ;
+        gameData->venomComplete = 0 ;
+        gameData->newLapRecord = 0 ;
+        gameData->masterWins = 0 ;
+        gameData->slaveWins = 0 ;
+        gameData->prevLap = 0 ;
+        gameData->gotoMenu = 0 ;
+        gameData->negconPreset = 1 ;
+        gameData->normpadPreset = 0 ;
+        gameData->cardPresent = 0 ;
+        gameData->negTwist = 255 ;
+        gameData->currSliderPos = 150 ;
+        gameData->showBonusTrack = 0 ;
+        gameData->trackInc = 1 ;
+        gameData->lostGame = 0 ;
+        gameData->showGameOver = 0 ;
+        send[0] = gameData->class ;
+        send[1] = gameData->gameType ; 
+        send[2] = gameData->team ; 
+        send[3] = gameData->shipNum ; 
+        send[4] = gameData->trackNum ; 
+        send[5] = gameData->actTrackNum ;
+        send[7] = gameData->exitMenu ;
+        send[8] = gameData->gameType ;
+        gameData->class = receive[0] ;
+        gameData->gameType = receive[1] ;
+        gameData->team2 = receive[2] ;
+        gameData->ship2Num = receive[3] ;
+        gameData->trackNum = receive[4] ;
+        gameData->actTrackNum = receive[5] ;
+        gameData->oppMenu = receive[6] ;
+        gameData->exit2Menu = receive[7] ;
+        raceType = gameData->gameType = receive[8] ;
+        gameData->class = receive[0] ;
+        gameData->gameType = receive[1] ;
+        gameData->team2 = receive[2] ;
+        gameData->ship2Num = receive[3] ;
+        gameData->trackNum = receive[4] ;
+        gameData->actTrackNum = receive[5] ;
+        gameData->oppMenu = receive[6] ;
+        gameData->exit2Menu = receive[7] ;
+        raceType = gameData->gameType = receive[8] ;
+        send[0] = gameData->class ;
+        send[1] = gameData->gameType ; 
+        send[2] = gameData->team ; 
+        send[3] = gameData->shipNum ; 
+        send[4] = gameData->trackNum ; 
+        send[5] = gameData->actTrackNum ;
+        send[7] = gameData->exitMenu ;
+        send[8] = gameData->gameType ;
+        if (gameData->oppMenu != START_TWO_PLAYER_MENU)
+                ownShip = gameData->shipNum ;
+                serialShip = gameData->ship2Num ;
+                        gameData->oldNegPreset ++ ;
+                        if (gameData->oldNegPreset == NEGCON_PRESETS)
+                                gameData->oldNegPreset = 1 ;
+                        gameData->oldNegPreset -- ;
+                        if (gameData->oldNegPreset < 1)
+                                gameData->oldNegPreset = (NEGCON_PRESETS-1) ;
+                        switch (gameData->oldNegPreset)
+                        gameData->oldPadPreset ++ ;
+                        if (gameData->oldPadPreset == NORMPAD_PRESETS)
+                                gameData->oldPadPreset = 0 ;
+                        gameData->oldPadPreset -- ;
+                        if (gameData->oldPadPreset < 0)
+                                gameData->oldPadPreset = (NORMPAD_PRESETS-1) ;
+                        switch (gameData->oldPadPreset)
+        switch (gameData->normpadPreset)
+        switch (gameData->negconPreset)
+File ORIGSRC\OPTIONS.C:
+                CentreText (GetCdTrackName(gameData->cdTrack-1), text_data(0, yPos+(gap*4), 8), RedText) ;
+File ORIGSRC\RACE.C:
+        getPath(trackPath, gameData->actTrackNum, "\\track.trv");
+        getPath(trackPath, gameData->actTrackNum, "\\track.trf");
+        getPath(trackPath, gameData->actTrackNum, "\\track.trs");
+        getPath(trackPath, gameData->actTrackNum, "\\track.vew");
+   if ( gameData->actTrackNum == 14 )
+   if ( gameData->actTrackNum == 13 )
+        getPath(trackPath, gameData->actTrackNum, "\\library.cmp");
+        getPath(trackPath, gameData->actTrackNum, "\\library.ttf");
+   switch (gameData->shipNum)
+        gameData->defaultMenu = -2 ;
+        gameData->Lives = 3 ;
+        gameData->Position = 8 ;
+        gameData->EndOfGame = 0 ;
+        gameData->gameOverCount = 0 ;
+        c_attr.cd.volume.left  = 150 * gameData->currSliderPos; /* Master volume (left) */
+        c_attr.cd.volume.right  = 150 * gameData->currSliderPos;        /* Master volume (right) */
+        if(gameData->cdTrack == 1)
+           CdControlB(CdlSetloc, (u_char *)&loc[gameData->cdTrack], 0); 
+   if ( gameData->actTrackNum == 13 )
+   if ( gameData->actTrackNum == 14 )
+      EditorUpdate( &editor, gameData->actTrackNum );
+                                                                        if (gameData->gameType == CHAMPIONSHIP)
+                                                                                gameData->Lives -- ;
+                                                                                if (gameData->Lives == 0)
+                                                                                gameData->defaultMenu = -2 ;
+                                                                                gameData->gameType = NO_GAME_SET ;
+                                                gameData->newLapRecord = 0 ;
+                                                gameData->newLapRecord = 0 ;
+                                                gameData->defaultMenu = MAIN_MENU ;
+                                                gameData->gameType = NO_GAME_SET ;
+                                                gameData->defaultMenu = -2 ;
+                                                gameData->gameType = NO_GAME_SET ;
+                                                if (attractDelay == 0 && gameData->gameType == SINGLE_RACE)
+                                                        if (gameData->showPilotCount != 0)
+                                                                if (gameData->Position == 1)
+                                                                        gameData->showPilotCount = 0 ;
+                                                                gameData->newLapRecord = 0 ;
+                        if (gameData->EndOfGame)
+                                                                        if (gameData->Position == 1)
+                                                                        gameData->EndOfGame = 0 ;
+                                                                        gameData->newLapRecord = 0 ;
+                                                                        gameData->defaultMenu = TRACK_MENU ;
+                                                if (attractDelay == 0 && gameData->gameType == TIME_TRIAL)
+                                                        if (gameData->gameType == TIME_TRIAL)
+                                                                if (gameData->showPilotCount != 0)
+                                                                                gameData->showPilotCount = 0 ;
+                                                                        gameData->newLapRecord = 0 ;
+                                                                        if (gameData->EndOfGame)
+                                                                                gameData->EndOfGame = 0 ;
+                                                                                gameData->newLapRecord = 0 ;
+                                                                                gameData->defaultMenu = TRACK_MENU ;
+                                                if(gameData->venomComplete == 0)
+                                                if(((attractDelay > 0) && (gameData->gameType == CHAMPIONSHIP)) &&
+                                                        (gameData->venomComplete != 0) && (doneExtro == START_EXTRO))
+                                                else if(((attractDelay > 0) && (gameData->gameType == CHAMPIONSHIP)) &&
+                                                        (gameData->venomComplete != 0) && (doneExtro == UPDATE_EXTRO))
+                                                if(attractDelay == 0 && gameData->gameType == CHAMPIONSHIP )
+                                                        if (gameData->gameType == CHAMPIONSHIP)
+                                                        if (gameData->Lives == 0)       /*0*/
+                                                                if (gameData->gameOverCount != 0)
+                                                                                gameData->showGameOver = 1 ;             
+                                                                                gameData->gameOverCount = 0 ;            
+                                                                                gameData->newLapRecord = 0 ;
+                                                                        if (gameData->gotoMenu == 1) 
+                                                                                gameData->gotoMenu = 0 ;
+                                                                                gameData->gameType = NO_GAME_SET ;
+                                                                                gameData->defaultMenu = -2 ;
+                                                                                gameData->newLapRecord = 0 ;
+                                                                        if (gameData->showGameOver == 1)
+                                                                                        gameData->gotoMenu = 1 ;
+                                                                                        gameData->showGameOver = 0 ;             
+                                                                                        gameData->newLapRecord = 0 ;
+                                                                if (gameData->showPilotCount != 0)
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                gameData->showPilotCount = 0 ;
+                                                                                gameData->newLapRecord = 0 ;
+                                                                        if (gameData->showPointCount != 0)
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                gameData->showPointCount = 0 ;
+                                                                else if (gameData->showChampCount != 0)
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                gameData->showChampCount = 0 ;
+                                                                else if (gameData->venomComplete != 0)
+                                                                        if (gameData->showBonusTrack == 1)
+                                                                                gameData->venomComplete = 0 ;
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                if (gameData->EndOfGame)
+                                                                                gameData->EndOfGame = 0 ;
+                                                                                if (gameData->lostGame == 1)
+                                                                                                gameData->lostGame = 0 ;
+                                                                                                gameData->gotoMenu = 1 ;
+                                 if (gameData->gameComplete == 1)
+                                                                                                        gameData->gameType = NO_GAME_SET ;
+                                                                                                        gameData->defaultMenu = OPTION_MENU ;
+                                                                                                        gameData->gotoMenu = 0 ;
+                                                                                                        gameData->gameComplete = 0 ;
+                                      /* gameData->gameComplete = 0;
+                                       gameData->gotoMenu = 1;  */
+                                                                                                if (gameData->gotoMenu != 0) 
+                                                                                                        gameData->gameType = NO_GAME_SET ;
+                                                                                                        gameData->defaultMenu = OPTION_MENU ;
+                                                                                                        gameData->gotoMenu = 0 ;
+                                                                                                        gameData->gameComplete = 0 ;
+                                                                                                gameData->EndOfGame = 0 ;
+                                                                                                gameData->newLapRecord = 0 ;
+                                                                                                if (gameData->Position >= 1 && gameData->Position <= 3)
+//                                                                                                      printf ("Number of track = %d \n", gameData->NumTracks) ;
+                                                                                                                gameData->defaultMenu = -2 ;
+                                                                                                                gameData->gameType = NO_GAME_SET ;
+                                                        gameData->continueConfirm = 1 ;
+                                                if (gameData->gameType == CHAMPIONSHIP)
+                        gameData->defaultMenu = -2 ;
+                                gameData->Lives -- ;
+                                gameData->defaultMenu = -2 ;
+                        gameData->defaultMenu = -2 ;
+        if(gameData->cdTrack == 1)
+           CdControlB(CdlSetloc, (u_char *)&loc[gameData->cdTrack], 0); 
+File ORIGSRC\RACE2.C:
+        getPath(trackPath, gameData->actTrackNum, "\\track.trv");
+        getPath(trackPath, gameData->actTrackNum, "\\track.trf");
+        getPath(trackPath, gameData->actTrackNum, "\\track.trs");
+        getPath(trackPath, gameData->actTrackNum, "\\track.vew");
+   if ( gameData->actTrackNum == 14 )
+   if ( gameData->actTrackNum == 13 )
+        getPath(trackPath, gameData->actTrackNum, "\\library.cmp");
+        getPath(trackPath, gameData->actTrackNum, "\\library.ttf");
+   switch (gameData->shipNum)
+        gameData->defaultMenu = -2 ;
+        gameData->Lives = 3 ;
+        gameData->Position = 8 ;
+        gameData->EndOfGame = 0 ;
+        gameData->gameOverCount = 0 ;
+        c_attr.cd.volume.left  = 150 * gameData->currSliderPos; /* Master volume (left) */
+        c_attr.cd.volume.right  = 150 * gameData->currSliderPos;        /* Master volume (right) */
+        if(gameData->cdTrack == 1)
+           CdControlB(CdlSetloc, (u_char *)&loc[gameData->cdTrack], 0); 
+   if ( gameData->actTrackNum == 13 )
+   if ( gameData->actTrackNum == 14 )
+      EditorUpdate( &editor, gameData->actTrackNum );
+                                                                        if (gameData->gameType == CHAMPIONSHIP)
+                                                                                gameData->Lives -- ;
+                                                                                if (gameData->Lives == 0)
+                                                                                gameData->defaultMenu = -2 ;
+                                                                                gameData->gameType = NO_GAME_SET ;
+                                                gameData->newLapRecord = 0 ;
+                                                gameData->newLapRecord = 0 ;
+                                                gameData->defaultMenu = MAIN_MENU ;
+                                                gameData->gameType = NO_GAME_SET ;
+                                                gameData->defaultMenu = -2 ;
+                                                gameData->gameType = NO_GAME_SET ;
+                                                if (attractDelay == 0 && gameData->gameType == SINGLE_RACE)
+                                                        if (gameData->showPilotCount != 0)
+                                                                if (gameData->Position == 1)
+                                                                        gameData->showPilotCount = 0 ;
+                                                                gameData->newLapRecord = 0 ;
+                        if (gameData->EndOfGame)
+                                                                        if (gameData->Position == 1)
+                                                                        gameData->EndOfGame = 0 ;
+                                                                        gameData->newLapRecord = 0 ;
+                                                                        gameData->defaultMenu = TRACK_MENU ;
+                                                if (attractDelay == 0 && gameData->gameType == TIME_TRIAL)
+                                                        if (gameData->gameType == TIME_TRIAL)
+                                                                if (gameData->showPilotCount != 0)
+                                                                                gameData->showPilotCount = 0 ;
+                                                                        gameData->newLapRecord = 0 ;
+                                                                        if (gameData->EndOfGame)
+                                                                                gameData->EndOfGame = 0 ;
+                                                                                gameData->newLapRecord = 0 ;
+                                                                                gameData->defaultMenu = TRACK_MENU ;
+                                                if(gameData->venomComplete == 0)
+                                                if(((attractDelay > 0) && (gameData->gameType == CHAMPIONSHIP)) &&
+                                                        (gameData->venomComplete != 0) && (doneExtro == START_EXTRO))
+                                                else if(((attractDelay > 0) && (gameData->gameType == CHAMPIONSHIP)) &&
+                                                        (gameData->venomComplete != 0) && (doneExtro == UPDATE_EXTRO))
+                                                if(attractDelay == 0 && gameData->gameType == CHAMPIONSHIP )
+                                                        if (gameData->gameType == CHAMPIONSHIP)
+                                                        if (gameData->Lives == 0)       /*0*/
+                                                                if (gameData->gameOverCount != 0)
+                                                                                gameData->showGameOver = 1 ;             
+                                                                                gameData->gameOverCount = 0 ;            
+                                                                                gameData->newLapRecord = 0 ;
+                                                                        if (gameData->gotoMenu == 1) 
+                                                                                gameData->gotoMenu = 0 ;
+                                                                                gameData->gameType = NO_GAME_SET ;
+                                                                                gameData->defaultMenu = -2 ;
+                                                                                gameData->newLapRecord = 0 ;
+                                                                        if (gameData->showGameOver == 1)
+                                                                                        gameData->gotoMenu = 1 ;
+                                                                                        gameData->showGameOver = 0 ;             
+                                                                                        gameData->newLapRecord = 0 ;
+                                                                if (gameData->showPilotCount != 0)
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                gameData->showPilotCount = 0 ;
+                                                                                gameData->newLapRecord = 0 ;
+                                                                        if (gameData->showPointCount != 0)
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                gameData->showPointCount = 0 ;
+                                                                else if (gameData->showChampCount != 0)
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                gameData->showChampCount = 0 ;
+                                                                else if (gameData->venomComplete != 0)
+                                                                        if (gameData->showBonusTrack == 1)
+                                                                                gameData->venomComplete = 0 ;
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                if (gameData->EndOfGame)
+                                                                                gameData->EndOfGame = 0 ;
+                                                                                if (gameData->lostGame == 1)
+                                                                                                gameData->lostGame = 0 ;
+                                                                                                gameData->gotoMenu = 1 ;
+                                 if (gameData->gameComplete == 1)
+                                                                                                        gameData->gameType = NO_GAME_SET ;
+                                                                                                        gameData->defaultMenu = OPTION_MENU ;
+                                                                                                        gameData->gotoMenu = 0 ;
+                                                                                                        gameData->gameComplete = 0 ;
+                                      /* gameData->gameComplete = 0;
+                                       gameData->gotoMenu = 1;  */
+                                                                                                if (gameData->gotoMenu != 0) 
+                                                                                                        gameData->gameType = NO_GAME_SET ;
+                                                                                                        gameData->defaultMenu = OPTION_MENU ;
+                                                                                                        gameData->gotoMenu = 0 ;
+                                                                                                        gameData->gameComplete = 0 ;
+                                                                                                gameData->EndOfGame = 0 ;
+                                                                                                gameData->newLapRecord = 0 ;
+                                                                                                if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                                        printf ("Number of track = %d \n", gameData->NumTracks) ;
+                                                                                                                gameData->defaultMenu = -2 ;
+                                                                                                                gameData->gameType = NO_GAME_SET ;
+                                                        gameData->continueConfirm = 1 ;
+                                                if (gameData->gameType == CHAMPIONSHIP)
+                        gameData->defaultMenu = -2 ;
+                                gameData->Lives -- ;
+                                gameData->defaultMenu = -2 ;
+                        gameData->defaultMenu = -2 ;
+        if(gameData->cdTrack == 1)
+           CdControlB(CdlSetloc, (u_char *)&loc[gameData->cdTrack], 0); 
+File ORIGSRC\RACECTRL.C:
+                        getPath(trackPath, gameData->actTrackNum, "\\track.trv");
+                        getPath(trackPath, gameData->actTrackNum, "\\track.trf");
+                        getPath(trackPath, gameData->actTrackNum, "\\track.trs");
+                        getPath(trackPath, gameData->actTrackNum, "\\track.vew");
+                   if ( gameData->actTrackNum == 14 )
+                   if ( gameData->actTrackNum == 13 )
+                        getPath(trackPath, gameData->actTrackNum, "\\library.cmp");
+                        getPath(trackPath, gameData->actTrackNum, "\\library.ttf");
+                   switch (gameData->shipNum)
+                        gameData->defaultMenu = -2 ;
+                        gameData->Lives = 3 ;
+                        gameData->Position = 8 ;
+                        gameData->EndOfGame = 0 ;
+                        gameData->gameOverCount = 0 ;
+                   if ( gameData->actTrackNum == 13 )
+                   if ( gameData->actTrackNum == 14 )
+                                                gameData->cdTrack -- ;
+                                                if (gameData->cdTrack < 1)
+                                                        gameData->cdTrack = ntoc ;
+                                                gameData->cdTrack ++ ;
+                                                if (gameData->cdTrack > ntoc)
+                                                        gameData->cdTrack = 1 ;
+                                                        if (gameData->gameType == CHAMPIONSHIP) //Chanpionship mode, then lose a life for the prividge
+                                                                gameData->Lives -- ;
+                                                                if (gameData->Lives == 0)
+                                                                gameData->defaultMenu = -2 ;
+                                                                gameData->gameType = NO_GAME_SET ;
+                                gameData->newLapRecord = 0 ;
+                                gameData->newLapRecord = 0 ;
+                                gameData->defaultMenu = MAIN_MENU ;
+                                gameData->gameType = NO_GAME_SET ;
+                                gameData->defaultMenu = -2 ;
+                                gameData->gameType = NO_GAME_SET ;
+                                if (attractDelay == 0 && gameData->gameType == SINGLE_RACE)
+                                        if (gameData->showPilotCount != 0)
+                                                if (gameData->Position == 1)
+                                                        gameData->showPilotCount = 0 ;
+                                                gameData->newLapRecord = 0 ;
+                 if (gameData->EndOfGame)
+                                                        if (gameData->Position == 1)
+                                                        gameData->EndOfGame = 0 ;
+                                                                gameData->defaultMenu = -2 ;
+                                                                gameData->gameType = NO_GAME_SET ;
+//                                                              gameData->newLapRecord = 0 ;
+//                                                              gameData->defaultMenu = TRACK_MENU ;
+                                if (attractDelay == 0 && gameData->gameType == TIME_TRIAL)
+                                        if (gameData->gameType == TIME_TRIAL)
+                                                if (gameData->showPilotCount != 0)
+                                                                gameData->showPilotCount = 0 ;
+                                                        gameData->newLapRecord = 0 ;
+                                                        if (gameData->EndOfGame)
+                                                                gameData->EndOfGame = 0 ;
+                                                                gameData->defaultMenu = -2 ;
+                                                                gameData->gameType = NO_GAME_SET ;
+//                                                                      gameData->newLapRecord = 0 ;
+//                                                                      gameData->defaultMenu = TRACK_MENU ;
+                                                if(attractDelay == 0 && gameData->gameType == CHAMPIONSHIP )
+                                                        if (gameData->gameType == CHAMPIONSHIP)
+                                                        if (gameData->Lives == 0)       /*0*/
+                                                                if (gameData->gameOverCount != 0)
+                                                                                gameData->showGameOver = 1 ;             
+                                                                                gameData->gameOverCount = 0 ;            
+                                                                                gameData->newLapRecord = 0 ;
+                                                                        if (gameData->gotoMenu == 1) 
+                                                                                gameData->gotoMenu = 0 ;
+                                                                                gameData->gameType = NO_GAME_SET ;
+                                                                                gameData->defaultMenu = -2 ;
+                                                                                gameData->newLapRecord = 0 ;
+                                                                        if (gameData->showGameOver == 1)
+                                                                                        gameData->gotoMenu = 1 ;
+                                                                                        gameData->showGameOver = 0 ;             
+                                                                                        gameData->newLapRecord = 0 ;
+                                                                if (gameData->showPilotCount != 0)
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                gameData->showPilotCount = 0 ;
+                                                                                gameData->newLapRecord = 0 ;
+                                                                if (gameData->showPointCount != 0)
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                gameData->showPointCount = 0 ;
+                                                                else if (gameData->showChampCount != 0)
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 8)
+                                                                                gameData->showChampCount = 0 ;
+                                                                else if (gameData->venomComplete != 0)
+                                                                        if (gameData->showBonusTrack == 1)
+                                                                                gameData->venomComplete = 0 ;
+                                                                        if (gameData->Position >= 1 && gameData->Position <= 3)
+                                                                                if (gameData->EndOfGame)
+                                                                                gameData->EndOfGame = 0 ;
+                                                                                if (gameData->lostGame == 1)
+                                                                                                gameData->lostGame = 0 ;
+                                                                                                gameData->gotoMenu = 1 ;
+                                 if (gameData->gameComplete == 1)
+                                                                                                        gameData->gameType = NO_GAME_SET ;
+                                                                                                        gameData->defaultMenu = OPTION_MENU ;
+                                                                                                        gameData->gotoMenu = 0 ;
+                                                                                                        gameData->gameComplete = 0 ;
+                                      /* gameData->gameComplete = 0;
+                                       gameData->gotoMenu = 1;  */
+                                                                                                if (gameData->gotoMenu != 0) 
+                                                                                                        gameData->gameType = NO_GAME_SET ;
+                                                                                                        gameData->defaultMenu = OPTION_MENU ;
+                                                                                                        gameData->gotoMenu = 0 ;
+                                                                                                        gameData->gameComplete = 0 ;
+                                                                                                gameData->EndOfGame = 0 ;
+                                                                                                gameData->newLapRecord = 0 ;
+                                                                                                if (gameData->Position >= 1 && gameData->Position <= 3)
+//                                                                                                      printf ("Number of track = %d \n", gameData->NumTracks) ;
+                                                                                                                gameData->defaultMenu = -2 ;
+                                                                                                                gameData->gameType = NO_GAME_SET ;
+                                                        gameData->continueConfirm = 1 ;
+                        gameData->defaultMenu = -2 ;
+                                gameData->Lives -- ;
+                                gameData->defaultMenu = -2 ;
+                        gameData->defaultMenu = -2 ;
+File ORIGSRC\SHIPS.C:
+        gameData->class = 0;
+                if(((gameData->gameType == CHAMPIONSHIP) && (gameData->trackNum == 1))   ||
+                        ((gameData->gameType == CHAMPIONSHIP) && (gameData->trackNum == 8)) ||
+                        (gameData->gameType != CHAMPIONSHIP))
+                else if(gameData->gameType == CHAMPIONSHIP)
+        for( i = 0; i < startLinePos[gameData->actTrackNum] - 15; i++)
+                if(gameData->class == 0)
+                if(gameData->class == 0)
+                if(gameData->class == 0)
+                                if(gameData->class == 0)
+                                if(gameData->class == 0)
+                                if(gameData->class == 0)
+        switch(gameData->actTrackNum)
+File ORIGSRC\MENUS.C:
+        if (gameData->defaultMenu != -2)
+        currMenu = gameData->defaultMenu ;
+  c_attr.cd.volume.left  = 150 * gameData->currSliderPos;       /* Master volume (left) */
+  c_attr.cd.volume.right  = 150 * gameData->currSliderPos;      /* Master volume (right) */
+                globalvol = 218 - gameData->currSliderPos;
+        CdSetVol(gameData->currSliderPos);
+        if(gameData->cdTrack == 1)
+           CdControlB(CdlSetloc, (u_char *)&loc[gameData->cdTrack], 0); 
+                        gameData->oldPadPreset = gameData->normpadPreset ;
+                        gameData->oldNegPreset = gameData->negconPreset ;
+                                                        gameData->RapierClass = 1 ;
+                                                        gameData->showBonusTrack = 1 ;                  
+                        if (gameData->class == 0)
+                if (currMenu == CLASS_MENU && currOption == 1 && (!gameData->RapierClass))
+                                gameData->exitMenu = 1 ;
+                        if (gameData->exit2Menu)
+                selectData.trackNum = gameData->trackNum ;
+                        gameData->exitMenu = 0 ;
+                        gameData->exit2Menu = 0 ;
+//                      gameData->shipNum = 0 ;
+//                      gameData->ship2Num = 1 ;
+                if (gameData->class)
+                        gameData->trackNum = (*currOption  + 1) + 7 ;   
+                        gameData->trackNum = (*currOption  + 1) ;       
+                gameData->actTrackNum = trackList[(gameData->trackNum-1)] ;
+                gameData->newLapRecord = 0 ;
+                        ownShip = gameData->shipNum ;
+                                if (gameData->oppMenu == START_TWO_PLAYER_MENU)
+                                ownShip = gameData->shipNum ;
+                                serialShip = gameData->ship2Num ;
+                gameData->currSliderPos = gameData->oldSliderPos ;
+                gameData->cdTrack = gameData->oldCdTrack ;
+        c_attr.cd.volume.left  = 150 * gameData->currSliderPos; /* Master volume (left) */
+        c_attr.cd.volume.right  = 150 * gameData->currSliderPos;        /* Master volume (right) */
+                sampleLevel = 0x3fff - (75 * gameData->currSliderPos);
+                CdSetVol(gameData->currSliderPos);
+                globalvol = 218 - gameData->currSliderPos;
+                        gameData->oldSliderPos = gameData->currSliderPos ;
+                        gameData->oldCdTrack = gameData->cdTrack ;
+                gameData->class = *currOption ;
+                if (gameData->RapierClass == 0 && *currOption == 1)
+                        gameData->trackNum = 1 ;          /* 1 */
+                        if (gameData->showBonusTrack == 0)
+                                gameData->trackNum = (NumTracks+2) ;/*  (NumTracks+2)*/
+                                gameData->trackNum = (NumTracks+1) ;/*  (NumTracks+1)*/
+                gameData->team = *currOption ;
+                SetUpPilots (gameData->team, menuSystem) ;
+                gameData->shipNum = (gameData->team * 2) + *currOption ;
+                gameData->newLapRecord = 0 ;
+                        if (gameData->gameType == CHAMPIONSHIP)
+                                ownShip = gameData->shipNum ;
+                                        if (gameData->oppMenu == START_TWO_PLAYER_MENU)
+                                                ownShip = gameData->shipNum ;
+                                                serialShip = gameData->ship2Num ;
+                gameData->prevLap = 0 ;
+                        gameData->actTrackNum = trackList[(gameData->trackNum-1)] ;
+                        gameData->gameType = CHAMPIONSHIP ;
+                        gameData->gameType = TIME_TRIAL ;
+                        gameData->gameType = SINGLE_RACE ;
+                        if (!SaveCardFile (SaveFilename, selectData->cardNum, gameData, gameData->currSliderPos))
+                        if ( !SaveCardFile (SaveFilename, selectData->cardNum, gameData, gameData->currSliderPos) ) 
+                        gameData->gameType = TWO_PLAYER_RACE ;
+                        gameData->gameType = HEAD_TO_HEAD ;
+                        gameData->negconPreset = gameData->oldNegPreset ;
+                        gameData->normpadPreset = gameData->oldPadPreset ;
+                        gameData->oldNegPreset = gameData->negconPreset ;
+                        twist = gameData->negTwist ;
+                        nCon.twistFactor = abs(gameData->negTwist-128) ;
+                gameData->negTwist = twist ;
+                negtwist = gameData->negTwist ;
+                nCon.twistFactor = abs(gameData->negTwist-128) ;
+                if (*currMenu == PILOT_MENU && (gameType == MASTER) && *currMenu == gameData->oppMenu)
+                        gameData->shipNum = *currOption ;
+                        if ((gameData->team == gameData->team2) && (gameData->shipNum == gameData->ship2Num))
+                                *currOption     = (1 - gameData->ship2Num) ;
+                                gameData->shipNum = *currOption ;
+                        if (gameType == SLAVE && (gameData->oppMenu == START_TWO_PLAYER_MENU || gameData->oppMenu       == TRACK_MENU)
+                                if (gameData->team2 == gameData->team)
+                                        *currOption = (1 - (gameData->ship2Num % 2)) ;
+                                        gameData->shipNum = *currOption ;
+                        if (gameType == MASTER && gameData->oppMenu == START_TWO_PLAYER_MENU    && *currMenu == PILOT_MENU)
+                                if (gameData->team2 == gameData->team)
+                                        *currOption = (1 - (gameData->ship2Num % 2)) ;
+                                        gameData->shipNum = *currOption ;
+                        if (((gameData->gameType == CHAMPIONSHIP) && (*currMenu == PILOT_MENU)) || (*currMenu == TRACK_MENU) ||
+                        if (((gameData->gameType == CHAMPIONSHIP) && (*currMenu == PILOT_MENU)) || (*currMenu == TRACK_MENU) ||
+                        (menuSystem[(*currMenu)].displayObject) (menuSystem, currMenu, (gameData->team * 2) + *currOption, &swapDelay) ;
+                        SetUpPilots (gameData->team, menuSystem) ;
+        setXY4(&(musicPrims->sliderPrim), (slidePosx-9) + sliderLeftOffset + gameData->oldSliderPos, slidePosy - 24,
+                                                                                          (slidePosx-9) + sliderRightOffset + gameData->oldSliderPos, slidePosy - 24,
+                                                                                          (slidePosx-9) + sliderLeftOffset + gameData->oldSliderPos, slidePosy + 52,
+                                                                                          (slidePosx-9) + sliderRightOffset + gameData->oldSliderPos, slidePosy + 52) ;
+        AddText (GetCdTrackName(gameData->oldCdTrack-1), text_data (130, 175, 8), RedText) ; 
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.left = 0x3fff - (75 * gameData->oldSliderPos);
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.right = 0x3fff - (75 * gameData->oldSliderPos);
+                        gameData->oldSliderPos -- ;
+                        if (gameData->oldSliderPos < 0)
+                                gameData->oldSliderPos = 0 ;
+                        SfxSetVolume((char)((0x3fff - (75 * gameData->oldSliderPos))>>6));
+                globalvol = 218 - gameData->oldSliderPos;
+                        CdSetVol(gameData->oldSliderPos);
+                        SfxSetVolume((char)((0x3fff - (75 * gameData->oldSliderPos))>>6));
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.left = 0x3fff - (75 * gameData->oldSliderPos);
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.right = 0x3fff - (75 * gameData->oldSliderPos);
+                        gameData->oldSliderPos ++ ;
+                        if (gameData->oldSliderPos > sliderRange)
+                                gameData->oldSliderPos = sliderRange ;
+                globalvol = 218 - gameData->oldSliderPos;
+                        CdSetVol(gameData->oldSliderPos);
+                        SfxSetVolume((char)((0x3fff - (75 * gameData->oldSliderPos))>>6));
+                        SfxSetVolume((char)((0x3fff - (75 * gameData->oldSliderPos))>>6));
+                globalvol = 218 - gameData->oldSliderPos;
+        CdSetVol(gameData->oldSliderPos);
+        c_attr.cd.volume.left  = 150 * gameData->oldSliderPos;  /* Master volume (left) */
+        c_attr.cd.volume.right  = 150 * gameData->oldSliderPos; /* Master volume (right) */
+                        if (gameData->oldCdTrack == starttrack)
+                                gameData->oldCdTrack = 1;
+                                gameData->oldCdTrack -- ;
+                        if (gameData->oldCdTrack < 1)
+                                gameData->oldCdTrack = endtrack ;
+                        if(gameData->oldCdTrack != 1)
+//                              CdControlB(CdlSetloc, (u_char *)&(loc[gameData->oldCdTrack]), 0);       
+                                CurrTrkNo = gameData->oldCdTrack;
+                        if (gameData->oldCdTrack == 1)
+                                gameData->oldCdTrack = starttrack;
+                                gameData->oldCdTrack ++ ;
+                        if (gameData->oldCdTrack > endtrack)
+                                gameData->oldCdTrack = 1 ;
+                        if(gameData->oldCdTrack != 1)
+//                              CdControlB(CdlSetloc, (u_char *)&(loc[gameData->oldCdTrack]), 0);
+                                CurrTrkNo = gameData->oldCdTrack;
+                                        gameData->cardPresent = 1 ;
+        if (gameData->cardPresent == 1)
+        gameData->cardPresent = 0 ;
+                                        gameData->cardPresent = 1 ;
+        if (gameData->cardPresent == 1)
+        gameData->cardPresent = 0 ;
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->showBonusTrack == 0)
+        if (((gameData->RapierClass == 0) && (selectData->hiscoreTrack == (NumTracks-1)))
+                 || ((gameData->RapierClass == 1) && (selectData->hiscoreTrack == (totalTracks-1))))            
+        if (gameData->trackNum <= NumTracks)
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->showBonusTrack == 0)
+        if (((gameData->RapierClass == 0) && ((selectData->hiscoreTrack-HiScoreTracks) == (NumTracks-1)))
+                 || ((gameData->RapierClass == 1) && ((selectData->hiscoreTrack-HiScoreTracks) == (totalTracks-1))))            
+        if (gameData->trackNum <= NumTracks)
+        gameData->shipNum = randy () % 8 ;
+        gameData->trackNum =    gameData->actTrackNum = gameData->ship2Num = 0 ;
+        gameData->oppMenu = gameData->exitMenu = gameData->exit2Menu = gameData->class = 0 ;
+        gameData->team = gameData->team2 = gameData->gameType = 0 ;
+        gameData->Lives = 3 ;
+        gameData->EndOfGame = 0 ;
+        gameData->continueConfirm = 1 ;
+        gameData->NumTracks = 1 ;
+        gameData->Position = 8 ;
+        gameData->defaultMenu = -2 ;
+        gameData->RapierClass = 0 ;
+        gameData->CheatMode = 0 ;
+        gameData->cdTrack = 1 ;
+        gameData->gameComplete = 0 ;
+        gameData->showPilotCount = 0 ;
+        gameData->gameOverCount = 0 ;
+        gameData->venomComplete = 0 ;
+        gameData->newLapRecord = 0 ;
+        gameData->masterWins = 0 ;
+        gameData->slaveWins = 0 ;
+        gameData->prevLap = 0 ;
+        gameData->gotoMenu = 0 ;
+        gameData->negconPreset = 1 ;
+        gameData->normpadPreset = 0 ;
+        gameData->cardPresent = 0 ;
+        gameData->negTwist = 255 ;
+        gameData->currSliderPos = 150 ;
+        gameData->showBonusTrack = 0 ; 
+        gameData->trackInc = 1 ;
+        gameData->lostGame = 0 ;
+        gameData->showGameOver = 0 ;
+        send[0] = gameData->class ;
+        send[1] = gameData->gameType ; 
+        send[2] = gameData->team ; 
+        send[3] = gameData->shipNum ; 
+        send[4] = gameData->trackNum ; 
+        send[5] = gameData->actTrackNum ;
+        send[7] = gameData->exitMenu ;
+        send[8] = gameData->gameType ;
+        gameData->class = receive[0] ;
+        gameData->gameType = receive[1] ;
+        gameData->team2 = receive[2] ;
+        gameData->ship2Num = receive[3] ;
+        gameData->trackNum = receive[4] ;
+        gameData->actTrackNum = receive[5] ;
+        gameData->oppMenu = receive[6] ;
+        gameData->exit2Menu = receive[7] ;
+        raceType = gameData->gameType = receive[8] ;
+        gameData->class = receive[0] ;
+        gameData->gameType = receive[1] ;
+        gameData->team2 = receive[2] ;
+        gameData->ship2Num = receive[3] ;
+        gameData->trackNum = receive[4] ;
+        gameData->actTrackNum = receive[5] ;
+        gameData->oppMenu = receive[6] ;
+        gameData->exit2Menu = receive[7] ;
+        raceType = gameData->gameType = receive[8] ;
+        send[0] = gameData->class ;
+        send[1] = gameData->gameType ; 
+        send[2] = gameData->team ; 
+        send[3] = gameData->shipNum ; 
+        send[4] = gameData->trackNum ; 
+        send[5] = gameData->actTrackNum ;
+        send[7] = gameData->exitMenu ;
+        send[8] = gameData->gameType ;
+        if (gameData->oppMenu != START_TWO_PLAYER_MENU)
+                ownShip = gameData->shipNum ;
+                serialShip = gameData->ship2Num ;
+                        gameData->oldNegPreset ++ ;
+                        if (gameData->oldNegPreset == NEGCON_PRESETS)
+                                gameData->oldNegPreset = 1 ;
+                        gameData->oldNegPreset -- ;
+                        if (gameData->oldNegPreset < 1)
+                                gameData->oldNegPreset = (NEGCON_PRESETS-1) ;
+                        switch (gameData->oldNegPreset)
+                        gameData->oldPadPreset ++ ;
+                        if (gameData->oldPadPreset == NORMPAD_PRESETS)
+                                gameData->oldPadPreset = 0 ;
+                        gameData->oldPadPreset -- ;
+                        if (gameData->oldPadPreset < 0)
+                                gameData->oldPadPreset = (NORMPAD_PRESETS-1) ;
+                        switch (gameData->oldPadPreset)
+        switch (gameData->normpadPreset)
+        switch (gameData->negconPreset)
+File MENUS.C:
+        if (gameData->defaultMenu != -2)
+        currMenu = gameData->defaultMenu ;
+  c_attr.cd.volume.left  = 150 * gameData->currSliderPos;       /* Master volume (left) */
+  c_attr.cd.volume.right  = 150 * gameData->currSliderPos;      /* Master volume (right) */
+        if(gameData->cdTrack == 1)
+           CdControlB(CdlSetloc, (u_char *)&loc[gameData->cdTrack], 0); 
+                        gameData->oldPadPreset = gameData->normpadPreset ;
+                        gameData->oldNegPreset = gameData->negconPreset ;
+                                                        gameData->RapierClass = 1 ;
+                                                        gameData->showBonusTrack = 1 ;                  
+                        if (gameData->class == 0)
+                if (currMenu == CLASS_MENU && currOption == 1 && (!gameData->RapierClass))
+                                gameData->exitMenu = 1 ;
+                        if (gameData->exit2Menu)
+                selectData.trackNum = gameData->trackNum ;
+                        gameData->exitMenu = 0 ;
+                        gameData->exit2Menu = 0 ;
+//                      gameData->shipNum = 0 ;
+//                      gameData->ship2Num = 1 ;
+                if (gameData->class)
+                        gameData->trackNum = (*currOption  + 1) + 7 ;   
+                        gameData->trackNum = (*currOption  + 1) ;       
+                gameData->actTrackNum = trackList[(gameData->trackNum-1)] ;
+                gameData->newLapRecord = 0 ;
+                        ownShip = gameData->shipNum ;
+                                if (gameData->oppMenu == START_TWO_PLAYER_MENU)
+                                ownShip = gameData->shipNum ;
+                                serialShip = gameData->ship2Num ;
+                gameData->currSliderPos = gameData->oldSliderPos ;
+                gameData->cdTrack = gameData->oldCdTrack ;
+        c_attr.cd.volume.left  = 150 * gameData->currSliderPos; /* Master volume (left) */
+        c_attr.cd.volume.right  = 150 * gameData->currSliderPos;        /* Master volume (right) */
+                sampleLevel = 0x3fff - (75 * gameData->currSliderPos);
+                        gameData->oldSliderPos = gameData->currSliderPos ;
+                        gameData->oldCdTrack = gameData->cdTrack ;
+                gameData->class = *currOption ;
+                if (gameData->RapierClass == 0 && *currOption == 1)
+                        gameData->trackNum = 1 ;          /* 1 */
+                        if (gameData->showBonusTrack == 0)
+                                gameData->trackNum = (NumTracks+2) ;/*  (NumTracks+2)*/
+                                gameData->trackNum = (NumTracks+1) ;/*  (NumTracks+1)*/
+                gameData->team = *currOption ;
+                SetUpPilots (gameData->team, menuSystem) ;
+                gameData->shipNum = (gameData->team * 2) + *currOption ;
+                gameData->newLapRecord = 0 ;
+                        if (gameData->gameType == CHAMPIONSHIP)
+                                ownShip = gameData->shipNum ;
+                                        if (gameData->oppMenu == START_TWO_PLAYER_MENU)
+                                                ownShip = gameData->shipNum ;
+                                                serialShip = gameData->ship2Num ;
+                gameData->prevLap = 0 ;
+                        gameData->actTrackNum = trackList[(gameData->trackNum-1)] ;
+                        gameData->gameType = CHAMPIONSHIP ;
+                        gameData->gameType = TIME_TRIAL ;
+                        gameData->gameType = SINGLE_RACE ;
+                        if (!SaveCardFile (SaveFilename, selectData->cardNum, gameData, gameData->currSliderPos))
+                        if ( !SaveCardFile (SaveFilename, selectData->cardNum, gameData, gameData->currSliderPos) ) 
+                        gameData->gameType = TWO_PLAYER_RACE ;
+                        gameData->gameType = HEAD_TO_HEAD ;
+                        gameData->negconPreset = gameData->oldNegPreset ;
+                        gameData->normpadPreset = gameData->oldPadPreset ;
+                        gameData->oldNegPreset = gameData->negconPreset ;
+                        twist = gameData->negTwist ;
+                        nCon.twistFactor = abs(gameData->negTwist-128) ;
+                gameData->negTwist = twist ;
+                negtwist = gameData->negTwist ;
+                nCon.twistFactor = abs(gameData->negTwist-128) ;
+                if (*currMenu == PILOT_MENU && (gameType == MASTER) && *currMenu == gameData->oppMenu)
+                        gameData->shipNum = *currOption ;
+                        if ((gameData->team == gameData->team2) && (gameData->shipNum == gameData->ship2Num))
+                                *currOption     = (1 - gameData->ship2Num) ;
+                                gameData->shipNum = *currOption ;
+                        if (gameType == SLAVE && (gameData->oppMenu == START_TWO_PLAYER_MENU || gameData->oppMenu       == TRACK_MENU)
+                                if (gameData->team2 == gameData->team)
+                                        *currOption = (1 - (gameData->ship2Num % 2)) ;
+                                        gameData->shipNum = *currOption ;
+                        if (gameType == MASTER && gameData->oppMenu == START_TWO_PLAYER_MENU    && *currMenu == PILOT_MENU)
+                                if (gameData->team2 == gameData->team)
+                                        *currOption = (1 - (gameData->ship2Num % 2)) ;
+                                        gameData->shipNum = *currOption ;
+                        if (((gameData->gameType == CHAMPIONSHIP) && (*currMenu == PILOT_MENU)) || (*currMenu == TRACK_MENU) ||
+                        if (((gameData->gameType == CHAMPIONSHIP) && (*currMenu == PILOT_MENU)) || (*currMenu == TRACK_MENU) ||
+                        (menuSystem[(*currMenu)].displayObject) (menuSystem, currMenu, (gameData->team * 2) + *currOption, &swapDelay) ;
+                        SetUpPilots (gameData->team, menuSystem) ;
+        setXY4(&(musicPrims->sliderPrim), (slidePosx-9) + sliderLeftOffset + gameData->oldSliderPos, slidePosy - 24,
+                                                                                          (slidePosx-9) + sliderRightOffset + gameData->oldSliderPos, slidePosy - 24,
+                                                                                          (slidePosx-9) + sliderLeftOffset + gameData->oldSliderPos, slidePosy + 52,
+                                                                                          (slidePosx-9) + sliderRightOffset + gameData->oldSliderPos, slidePosy + 52) ;
+        AddText (GetCdTrackName(gameData->oldCdTrack-1), text_data (130, 175, 8), RedText) ; 
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.left = 0x3fff - (75 * gameData->oldSliderPos);
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.right = 0x3fff - (75 * gameData->oldSliderPos);
+                        gameData->oldSliderPos -- ;
+                        if (gameData->oldSliderPos < 0)
+                                gameData->oldSliderPos = 0 ;
+                        SfxSetVolume((char)((0x3fff - (75 * gameData->oldSliderPos))>>6));
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.left = 0x3fff - (75 * gameData->oldSliderPos);
+                        chanTable[vagTable[SHIELDS].channelID].s_attr.volume.right = 0x3fff - (75 * gameData->oldSliderPos);
+                        gameData->oldSliderPos ++ ;
+                        if (gameData->oldSliderPos > sliderRange)
+                                gameData->oldSliderPos = sliderRange ;
+                        SfxSetVolume((char)((0x3fff - (75 * gameData->oldSliderPos))>>6));
+        c_attr.cd.volume.left  = 150 * gameData->oldSliderPos;  /* Master volume (left) */
+        c_attr.cd.volume.right  = 150 * gameData->oldSliderPos; /* Master volume (right) */
+                        gameData->oldCdTrack -- ;
+                        if (gameData->oldCdTrack < 1)
+                                gameData->oldCdTrack = ntoc ;
+                        if(gameData->oldCdTrack != 1)
+//                              CdControlB(CdlSetloc, (u_char *)&(loc[gameData->oldCdTrack]), 0);       
+                                CurrTrkNo = gameData->oldCdTrack + 1;
+                        gameData->oldCdTrack ++ ;
+                        if (gameData->oldCdTrack > ntoc)
+                                gameData->oldCdTrack = 1 ;
+                        if(gameData->oldCdTrack != 1)
+//                              CdControlB(CdlSetloc, (u_char *)&(loc[gameData->oldCdTrack]), 0);
+                                CurrTrkNo = gameData->oldCdTrack + 1;
+                                        gameData->cardPresent = 1 ;
+        if (gameData->cardPresent == 1)
+        gameData->cardPresent = 0 ;
+                                        gameData->cardPresent = 1 ;
+        if (gameData->cardPresent == 1)
+        gameData->cardPresent = 0 ;
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->showBonusTrack == 0)
+        if (((gameData->RapierClass == 0) && (selectData->hiscoreTrack == (NumTracks-1)))
+                 || ((gameData->RapierClass == 1) && (selectData->hiscoreTrack == (totalTracks-1))))            
+        if (gameData->trackNum <= NumTracks)
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->RapierClass == 0)
+                        if (gameData->showBonusTrack == 0)
+                if (gameData->showBonusTrack == 0)
+        if (((gameData->RapierClass == 0) && ((selectData->hiscoreTrack-HiScoreTracks) == (NumTracks-1)))
+                 || ((gameData->RapierClass == 1) && ((selectData->hiscoreTrack-HiScoreTracks) == (totalTracks-1))))            
+        if (gameData->trackNum <= NumTracks)
+        gameData->shipNum = rand () % 8 ;
+        gameData->trackNum =    gameData->actTrackNum = gameData->ship2Num = 0 ;
+        gameData->oppMenu = gameData->exitMenu = gameData->exit2Menu = gameData->class = 0 ;
+        gameData->team = gameData->team2 = gameData->gameType = 0 ;
+        gameData->Lives = 3 ;
+        gameData->EndOfGame = 0 ;
+        gameData->continueConfirm = 1 ;
+        gameData->NumTracks = 1 ;
+        gameData->Position = 8 ;
+        gameData->defaultMenu = -2 ;
+        gameData->RapierClass = 0 ;
+        gameData->CheatMode = 0 ;
+        gameData->cdTrack = 1 ;
+        gameData->gameComplete = 0 ;
+        gameData->showPilotCount = 0 ;
+        gameData->gameOverCount = 0 ;
+        gameData->venomComplete = 0 ;
+        gameData->newLapRecord = 0 ;
+        gameData->masterWins = 0 ;
+        gameData->slaveWins = 0 ;
+        gameData->prevLap = 0 ;
+        gameData->gotoMenu = 0 ;
+        gameData->negconPreset = 1 ;
+        gameData->normpadPreset = 0 ;
+        gameData->cardPresent = 0 ;
+        gameData->negTwist = 255 ;
+        gameData->currSliderPos = 150 ;
+        gameData->showBonusTrack = 0 ; 
+        gameData->trackInc = 1 ;
+        gameData->lostGame = 0 ;
+        gameData->showGameOver = 0 ;
+        send[0] = gameData->class ;
+        send[1] = gameData->gameType ; 
+        send[2] = gameData->team ; 
+        send[3] = gameData->shipNum ; 
+        send[4] = gameData->trackNum ; 
+        send[5] = gameData->actTrackNum ;
+        send[7] = gameData->exitMenu ;
+        send[8] = gameData->gameType ;
+        gameData->class = receive[0] ;
+        gameData->gameType = receive[1] ;
+        gameData->team2 = receive[2] ;
+        gameData->ship2Num = receive[3] ;
+        gameData->trackNum = receive[4] ;
+        gameData->actTrackNum = receive[5] ;
+        gameData->oppMenu = receive[6] ;
+        gameData->exit2Menu = receive[7] ;
+        raceType = gameData->gameType = receive[8] ;
+        gameData->class = receive[0] ;
+        gameData->gameType = receive[1] ;
+        gameData->team2 = receive[2] ;
+        gameData->ship2Num = receive[3] ;
+        gameData->trackNum = receive[4] ;
+        gameData->actTrackNum = receive[5] ;
+        gameData->oppMenu = receive[6] ;
+        gameData->exit2Menu = receive[7] ;
+        raceType = gameData->gameType = receive[8] ;
+        send[0] = gameData->class ;
+        send[1] = gameData->gameType ; 
+        send[2] = gameData->team ; 
+        send[3] = gameData->shipNum ; 
+        send[4] = gameData->trackNum ; 
+        send[5] = gameData->actTrackNum ;
+        send[7] = gameData->exitMenu ;
+        send[8] = gameData->gameType ;
+        if (gameData->oppMenu != START_TWO_PLAYER_MENU)
+                ownShip = gameData->shipNum ;
+                serialShip = gameData->ship2Num ;
+                        gameData->oldNegPreset ++ ;
+                        if (gameData->oldNegPreset == NEGCON_PRESETS)
+                                gameData->oldNegPreset = 1 ;
+                        gameData->oldNegPreset -- ;
+                        if (gameData->oldNegPreset < 1)
+                                gameData->oldNegPreset = (NEGCON_PRESETS-1) ;
+                        switch (gameData->oldNegPreset)
+                        gameData->oldPadPreset ++ ;
+                        if (gameData->oldPadPreset == NORMPAD_PRESETS)
+                                gameData->oldPadPreset = 0 ;
+                        gameData->oldPadPreset -- ;
+                        if (gameData->oldPadPreset < 0)
+                                gameData->oldPadPreset = (NORMPAD_PRESETS-1) ;
+                        switch (gameData->oldPadPreset)
+        switch (gameData->normpadPreset)
+        switch (gameData->negconPreset)

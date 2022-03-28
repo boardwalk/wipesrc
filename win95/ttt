@@ -1,0 +1,175 @@
+File ANDYS\AJS.C:
+void RotTransPersN(SVECTOR *v0,DVECTOR *v1,u_short *sz,u_short *flag,long n)
+// printf("\n\n!!!!!!!!! RotTransPersN !!!!!!!!!!!\n\n");
+                *sz = (u_short)RotTransPers(ip++,(long *)op,&crap,&long_flag);
+File ANDYY\ADDNODIV.C:
+                        vec->sz = RotTransPers(&vec->vx,&vec->sxy,&p,&c->dummy);
+File ANDYY\ANDYSCN.C:
+   RotTransPersN( vertex, screenPtr, depthPtr, flagsPtr, vertexCount, ZPtr );
+   RotTransPersN( vertex, screenPtr, depthPtr, flagsPtr, vertexCount , ZPtr);
+File ANDYY\DIVPLOY.C:
+                RotTransPers2 for the occasion, as we will have computed
+                RRRotTransPers2( &vf0,&vf1, &divp->dv0, &divp->dv1); //Special Fn that is only applicable here
+                        RRRotTransPers2(&vf0, &vf1,     &divp->dv2, &divp->dv3 );
+File DAVES\LIBGTE.C:
+long RotTransPersForN(SVECTOR *v0, long *sxy, long *p, long *flag)
+        DLSRotTransPers(sxy, &r0, flag);
+void RotTransPersN(SVECTOR *v0,DVECTOR *v1,u_short *sz,u_short *flag,long n, u_short *origz)
+// printf("\n\n!!!!!!!!! RotTransPersN !!!!!!!!!!!\n\n");
+                *sz = (u_short)RotTransPersForN(ip,(long *)op,&crap,&long_flag);
+long RotTransPers(SVECTOR *v0, long *sxy, long *p, long *flag)
+        DLSRotTransPers(sxy, &r0, flag);
+long RotTransPersx( SVECTOR * v0, long * sxy, long * p, long * flag )
+long RRRotTransPers2(SVECTOR *v0, SVECTOR *v1,
+long RotTransPers3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2,
+long RotTransPers4( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2, SVECTOR * v3,
+File DAVES\TRANS.C:
+                        sVec[x].vz = RotTransPers(      &gVec[x], &sVec[x], &p, &flag );
+File ORIGSRC\CRACK.C:
+                depthA = RotTransPers( &svector[ 0 ],
+                depthB = RotTransPers( &svector[ 1 ],
+                depthC = RotTransPers( &svector[ 2 ],
+                depthA = RotTransPers( &svector[ 0 ],
+                depthB = RotTransPers( &svector[ 1 ],
+                depthC = RotTransPers( &svector[ 2 ],
+                depthD = RotTransPers( &svector[ 3 ],
+                depthE = RotTransPers( &svector[ 4 ],
+File ORIGSRC\EFFECTS.C:
+                        depth = RotTransPers(&(vertex),
+                                depth = RotTransPers3(  &(vertex[0]),
+                                depth[0] = RotTransPers(        &(vertex[0]),
+                                depth[1] = RotTransPers(        &(vertex[1]),
+                                depth[2] = RotTransPers(        &(vertex[2]),
+File ORIGSRC\OBJECT.C:
+        RotTransPersN(vertex, screenPtr, depthPtr, flagsPtr, vertexCount, ZPtr);
+        RotTransPersN(vertex, screenPtr, depthPtr, flagsPtr, vertexCount, ZPtr);
+        RotTransPersN(vertex, screenPtr, depthPtr, flagsPtr, vertexCount, ZPtr);
+        RotTransPersN(vertex, screenPtr, depthPtr, flagsPtr, vertexCount, ZPtr);
+File ORIGSRC\OLD.C:
+   RotTransPers.
+               hiDepth[ y + 2 ][ x + offset + 2 ] = RotTransPers
+               hiDepth[ y + 2 ][ x + offset ] = RotTransPers
+               hiDepth[ y + 4 ][ x + offset ] = RotTransPers
+               hiDepth[ y + 4 ][ x + offset + 2 ] = RotTransPers
+               hiDepth[ y + 4 ][ x + offset + 4 ] = RotTransPers
+               hiDepth[ y + 2 ][ x + offset + 4 ] = RotTransPers
+               hiDepth[ y ][ x + offset + 4 ] = RotTransPers
+               hiDepth[ y ][ x + offset + 2 ] = RotTransPers
+               hiDepth[ y ][ x + offset ] = RotTransPers
+               hiDepth[ y + 1 ][ x + offset ] = RotTransPers
+               hiDepth[ y + 3 ][ x + offset ] = RotTransPers
+               hiDepth[ y + 4 ][ x + offset + 1 ] = RotTransPers
+               hiDepth[ y + 4 ][ x + offset + 3 ] = RotTransPers
+               hiDepth[ y + 3 ][ x + offset + 4 ] = RotTransPers
+               hiDepth[ y + 1 ][ x + offset + 4 ] = RotTransPers
+               hiDepth[ y ][ x + offset + 3 ] = RotTransPers
+               hiDepth[ y ][ x + offset + 1 ] = RotTransPers
+               hiDepth[ y + 2 ][ x + offset + 1 ] = RotTransPers
+               hiDepth[ y + 3 ][ x + offset + 1 ] = RotTransPers
+               hiDepth[ y + 3 ][ x + offset + 2 ] = RotTransPers
+               hiDepth[ y + 3 ][ x + offset + 3 ] = RotTransPers
+               hiDepth[ y + 2 ][ x + offset + 3 ] = RotTransPers
+               hiDepth[ y + 1 ][ x + offset + 3 ] = RotTransPers
+               hiDepth[ y + 1 ][ x + offset + 2 ] = RotTransPers
+               hiDepth[ y + 1 ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset ] = RotTransPers
+               medDepth[ y ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y ][ x + offset ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset + 2 ] = RotTransPers
+               medDepth[ y ][ x + offset + 2 ] = RotTransPers
+               medDepth[ y ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y ][ x + offset ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset ] = RotTransPers
+               medDepth[ y + 2 ][ x + offset ] = RotTransPers
+               medDepth[ y + 2 ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y ][ x + offset ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset ] = RotTransPers
+               medDepth[ y + 2 ][ x + offset ] = RotTransPers
+               medDepth[ y + 2 ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y + 2 ][ x + offset + 2 ] = RotTransPers
+               medDepth[ y + 1 ][ x + offset + 2 ] = RotTransPers
+               medDepth[ y ][ x + offset + 2 ] = RotTransPers
+               medDepth[ y ][ x + offset + 1 ] = RotTransPers
+               medDepth[ y ][ x + offset ] = RotTransPers
+               loDepth[ y ][ x + offset ] = RotTransPers
+               loDepth[ y ][ x + offset ] = RotTransPers
+               loDepth[ y ][ x + offset + 1 ] = RotTransPers
+               loDepth[ y + 1 ][ x + offset ] = RotTransPers
+               loDepth[ y ][ x + offset ] = RotTransPers
+               loDepth[ y + 1 ][ x + offset + 1 ] = RotTransPers
+               loDepth[ y + 1 ][ x + offset ] = RotTransPers
+               loDepth[ y ][ x + offset ] = RotTransPers
+               loDepth[ y ][ x + offset + 1 ] = RotTransPers
+File ORIGSRC\SPARKS2.C:
+                         depth0 = RotTransPers( &vertex,
+                         depth1 = RotTransPers( &vertex,
+File ORIGSRC\SPRITE.C:
+   depth = RotTransPers(&vertex,
+File ORIGSRC\SPRITEWO.C:
+   depth = RotTransPers(&vertex,
+File ORIGSRC\WEAPON.C:
+        RotTransPers(   vertex,
+File ORIGSRC\TRACKASM.C:
+                RotTransPersN(svector, screen, depth2, flag2, 4, &zbuf[0]);
+                RotTransPersN(svector, screen, depth2, flag2, 4, &zbuf[0]);
+         RotTransPersN( svector, screen, depth, flag, 9 , zbuf);
+         RotTransPersN( svector, screen, depth, flag, 4 );
+         RotTransPersN( svector, screen, depth, flag, 25 , zbuf);
+        RotTransPersN( svector, screen, depth, flag, 4 );
+         RotTransPersN( svector, screen, depth, flag, 9 );
+         RotTransPersN( svector, screen, depth, flag, 25 );
+   depth[ cNum ] = RotTransPers
+   depth[ tNum ] = RotTransPers
+   depth[ rNum ] = RotTransPers
+   depth[ bNum ] = RotTransPers
+   depth[ lNum ] = RotTransPers
+/* Check top, right, bottom and left before doing RotTransPers for corners */
+      depth[ tlNum ] = RotTransPers
+      depth[ trNum ] = RotTransPers
+      depth[ blNum ] = RotTransPers
+      depth[ brNum ] = RotTransPers
+   depth[ cNum ] = RotTransPers
+   depth[ tNum ] = RotTransPers
+   depth[ rNum ] = RotTransPers
+   depth[ bNum ] = RotTransPers
+   depth[ lNum ] = RotTransPers
+/* Check top, right, bottom and left before doing RotTransPers for corners */
+      depth[ tlNum ] = RotTransPers
+      depth[ trNum ] = RotTransPers
+      depth[ blNum ] = RotTransPers
+      depth[ brNum ] = RotTransPers
+File ORIGSRC\TRACKA~1.C:
+                RotTransPersN(svector, screen, depth2, flag2, 4, &zbuf[0]);
+                RotTransPersN(svector, screen, depth2, flag2, 4, &zbuf[0]);
+         RotTransPersN( svector, screen, depth, flag, 9 , zbuf);
+         RotTransPersN( svector, screen, depth, flag, 4 );
+         RotTransPersN( svector, screen, depth, flag, 25 , zbuf);
+        RotTransPersN( svector, screen, depth, flag, 4 );
+         RotTransPersN( svector, screen, depth, flag, 9 );
+         RotTransPersN( svector, screen, depth, flag, 25 );
+   depth[ cNum ] = RotTransPers
+   depth[ tNum ] = RotTransPers
+   depth[ rNum ] = RotTransPers
+   depth[ bNum ] = RotTransPers
+   depth[ lNum ] = RotTransPers
+/* Check top, right, bottom and left before doing RotTransPers for corners */
+      depth[ tlNum ] = RotTransPers
+      depth[ trNum ] = RotTransPers
+      depth[ blNum ] = RotTransPers
+      depth[ brNum ] = RotTransPers
+   depth[ cNum ] = RotTransPers
+   depth[ tNum ] = RotTransPers
+   depth[ rNum ] = RotTransPers
+   depth[ bNum ] = RotTransPers
+   depth[ lNum ] = RotTransPers
+/* Check top, right, bottom and left before doing RotTransPers for corners */
+      depth[ tlNum ] = RotTransPers
+      depth[ trNum ] = RotTransPers
+      depth[ blNum ] = RotTransPers
+      depth[ brNum ] = RotTransPers

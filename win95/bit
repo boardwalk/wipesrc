@@ -1,0 +1,38 @@
+	case WM_ACTIVATEAPP:
+		bActive = wParam;
+		if (FirstActivate)
+			FirstActivate = FALSE;
+		else {
+			if (wParam) //activate
+			{
+				SystemParametersInfo(SPI_SETKEYBOARDDELAY,0,0,0);
+				SystemParametersInfo(SPI_SETKEYBOARDSPEED,0,0,0);
+				SystemParametersInfo(SPI_SETSCREENSAVEACTIVE,0,0,0);
+				restoreObjects();
+				CDRestart();
+				SetForegroundWindow(hWnd);
+				UpdateNotes(1);//paused
+				WinPaused = 0;
+				InstallTimer();
+				if ((!(ctrlNeedEndText|ctrlNeedWinLose|
+					ctrlNeedRaceInfo|ctrlNeedNewHighScores|
+					ctrlNeedRacePoints|ctrlNeedChampTable|
+					ctrlNeedAllVenomComplete|ctrlNeedVenomComplete|
+					ctrlNeedContinueGameConfirm|ctrlNeedInSingleGameConfirm|
+					ctrlNeedInGameReset|ctrlNeedInGameConfirm|
+					ctrlNeedDeSelectScreen|startIceText|
+					startFireText))&&ctrlmode!=ATTRACT)
+						ctrlchoice = 0;
+				backFromDead = TRUE;
+ 			} else { //deactivate
+				SystemParametersInfo(SPI_SETKEYBOARDDELAY,Keydelay,0,0);
+				SystemParametersInfo(SPI_SETKEYBOARDSPEED,Keyrepeat,0,0);
+				SystemParametersInfo(SPI_SETSCREENSAVEACTIVE,sSaver,0,0);
+				CDStop();
+				UpdateNotes(0);//paused
+				WinPaused = 1;
+				RemoveTimer();
+			}
+
+		}
+		break;

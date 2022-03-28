@@ -1,0 +1,8 @@
+			retval = RegSetValueEx(
+				hkeyOurs, 					// The key
+				"Help File",			// Name of our value
+				0,							// Reserved
+				REG_SZ,						// Data type
+				(CONST BYTE *)szHelpName,	// Address of data
+				strlen(szHelpName) - 2		// Size of data
+			);

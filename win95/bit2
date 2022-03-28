@@ -1,0 +1,2 @@
+		memcpy(vinfo, tmpverts, sizeof(vertinfo) * curidx);
+		memcpy(textvert1, textvert2, sizeof(vertinfo) * curidx);

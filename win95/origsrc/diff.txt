@@ -1,0 +1,170 @@
+Comparing files TRACK.C and \wofinal\track.c
+****** TRACK.C
+#define TrackVersion 8
+#define GsGetVcount()   0;
+void IntelVertex( void )
+****** \wofinal\track.c
+#define TrackVersion 8
+void IntelVertex( void )
+******
+
+****** TRACK.C
+         IntelShort( &section->westViewCount[ j ] );
+      }
+****** \wofinal\track.c
+         IntelShort( &section->westViewCount[ j ] );
+         IntelShort( &section->allViewCount[ j ] );
+      }
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackLo    // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackLo
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackMed // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackMed
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackHi // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackHi
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackLo    // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackLo
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackMed // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackMed
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackHi // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackHi
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackLo    // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackLo
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackMed // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackMed
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackHi // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackHi
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackLo // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackLo
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackMed // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackMed
+         ( 
+******
+
+****** TRACK.C
+      {
+         AsmTransformTrackHi // PCwipeout
+         ( 
+****** \wofinal\track.c
+      {
+         AsmTrackHi
+         ( 
+******
+
+****** TRACK.C
+   {
+      AsmTransformTrackLo
+      ( 
+****** \wofinal\track.c
+   {
+      AsmTrackLo
+      ( 
+******
+
+****** TRACK.C
+   {
+      AsmTransformTrackMed
+      ( 
+****** \wofinal\track.c
+   {
+      AsmTrackMed
+      ( 
+******
+
+****** TRACK.C
+   {
+      AsmTransformTrackHi
+      ( 
+****** \wofinal\track.c
+   {
+      AsmTrackHi
+      ( 
+******
+
+

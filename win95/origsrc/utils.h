@@ -1,0 +1,10 @@
+int 		abs				(int);
+int 		GetAng			(VECTOR, VECTOR);
+int 		scalar_product	(VECTOR*, VECTOR*);
+int 		ScalarProduct	(VECTOR, VECTOR);
+void 		CrossProduct	(VECTOR*, VECTOR, VECTOR);
+void 		MinusVector		(VECTOR, VECTOR, VECTOR*);
+int 		GetMagnitude	(VECTOR);
+int 		arccos			(int);
+int		sar				(int,int);
+int		ang				(int);
