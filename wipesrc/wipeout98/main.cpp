@@ -1,5 +1,5 @@
 //#include <libspu.h>
-#include "\wipesrc\psx26\include\kernel.h"
+#include "wipesrc/psx26/include/kernel.h"
 #include "standard.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,12 +43,12 @@
 #include "regread.h"
 #include "card.h"
 
-#include "dos.h"
+// #include "dos.h"
 
 
 // #include <windows.h>
 
-#include	"\wipesrc\win95\markk\libetc.h"	// PCwipeout
+#include	"wipesrc/win95/markk/libetc.h"	// PCwipeout
 void	    CheckError();
 
 extern char Resolution;
@@ -114,7 +114,7 @@ void reloadStartScr(void)
 	InitAJSVSync();
 }
 
-void	    oldmain(void)
+int	    main(int argc, char **argv)
 {
 	int	     i;
 	combatData      packetData;
@@ -124,7 +124,7 @@ void	    oldmain(void)
 	int	     mode, timeout;
 	int	     toggle = 0;
 	char	    loadPath[48];
-	char	    loadNo[2];
+	char	    loadNo[3];
 	int	     titleTimeout;
 	int	     TOut;
 	static int      firstTime = 1;
@@ -637,6 +637,8 @@ void	    oldmain(void)
 		TextureTableCount = 0;
 		InitText();
 	}
+
+	return 0;
 }
 
 

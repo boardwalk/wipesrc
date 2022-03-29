@@ -1,5 +1,5 @@
 /* Source File: etcvars.c */
-#include 						"\wipesrc\win95\markk\input.h"
+#include 						"wipesrc/win95/markk/input.h"
 
 /* Interrupt Handling. */
 volatile unsigned short int		etc_OriginalInt09Selector;
@@ -84,14 +84,14 @@ unsigned short etc_DefaultKeyboardSet[_MAX_BUTTONS] = {
 		_PAGEUP_KEY,	   	/* FrontRightTop	*/
 		_HOME_KEY,		   	/* FrontLeftTop		*/
 		_Q_KEY,			  	/* Triangle			*/
-		_S_KEY,			   	/* Circle			*/	
+		_S_KEY,			   	/* Circle			*/
 		_LEFT_ALT_KEY,	   	/* Cross			*/
-		_LEFT_CTRL_KEY,	   	/* Square			*/	
-		_ENTER_KEY,		   	/* Select			*/	
+		_LEFT_CTRL_KEY,	   	/* Square			*/
+		_ENTER_KEY,		   	/* Select			*/
 		_ENTER_KEY,			/* Menu select key	*/
 		_ESC_KEY,			/* Menu cancel key	*/
 		_P_KEY,		   		/* Start			*/
-		_UP_KEY,		   	/* Up				*/	
+		_UP_KEY,		   	/* Up				*/
 		_RIGHT_KEY,		   	/* Right			*/
 		_DOWN_KEY,		   	/* Down				*/
 		_LEFT_KEY };	   	/* Left			 	*/
@@ -119,7 +119,7 @@ unsigned long int		etc_DefaultMouseSet[_MAX_MOUSE_SWITCHES] = {
 		_UNDEFINED,
 		Circle,
 		_UNDEFINED };
-		
+
 /* Useful Strings. */
 char	*buttonname[_MAX_BUTTONS] = {
 		"FrontRightBottom",

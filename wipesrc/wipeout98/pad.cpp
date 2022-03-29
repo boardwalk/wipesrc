@@ -20,7 +20,7 @@
 #include "sparks2.h"
 #include "global.h"
 
-#include "\wipesrc\win95\markk\input.h"
+#include "wipesrc/win95/markk/input.h"
 
 
 extern int 				andyTimeout;
@@ -38,7 +38,7 @@ void InitPadSettings()
 	nCon.thrust 	= NEG_A;
 	nCon.view 		= PadTriangle0;
 	nCon.fire 		= PadCircle0;
-	
+
 	pCon.thrust 	= PadCross0;
 	pCon.view 		= PadTriangle0;
 	pCon.fire 		= PadCircle0;
@@ -82,7 +82,7 @@ void SetView(ShipData *playerShip, short padView)
 	{
 		if((playerShip->attr & VIEW_IN) == 0)
 		{
-			CameraUpdate = UpdateCameraRaceInternal;	 
+			CameraUpdate = UpdateCameraRaceInternal;
 			playerShip->attr |= VIEW_IN;
 		}
 		else
@@ -129,7 +129,7 @@ short GetMenuKey(short key)
 					return(1);
 				}
 			/*	else
-					negBack = neg1.ii; 
+					negBack = neg1.ii;
 			*/
 				return(xpad & NEG_B);
 			case M_SELECT:
@@ -161,7 +161,7 @@ short GetMenuKey(short key)
 
 			default:
 				break;
-		}	
+		}
 	}
 	else
 	{
@@ -194,6 +194,6 @@ short GetMenuKey(short key)
 			default:
 				break;
 		}
-	}	
+	}
 	return(1);	// PCwipeout
 }

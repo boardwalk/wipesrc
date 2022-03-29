@@ -1,6 +1,6 @@
 /* This function starts controller status reading, which is triggered by a
 	vertical blanking interrupt (on PSX). */
-#include	"\wipesrc\win95\markk\libapi.h"
+#include	"wipesrc/win95/markk/libapi.h"
 
 long	StartPAD(void)
 {
@@ -11,7 +11,7 @@ long	StartPAD(void)
 	/* Install New Handlers if not already done. */
 	switch (etc_InputDeviceSelect)
 	{
-	 	case	_KEYBOARD	:	
+	 	case	_KEYBOARD	:
 		{
 			ConfigureKeyboard();
 			etc_KeyboardSwitch = _DEVICE_ON;

@@ -5,7 +5,7 @@
 #ifndef _FILE_H
 #define _FILE_H
 
-#include "\wipesrc\psx26\include\sys\fcntl.h"
+#include "wipesrc/psx26/include/sys/fcntl.h"
 
 /* Flag for open() */
 #define O_RDONLY        FREAD

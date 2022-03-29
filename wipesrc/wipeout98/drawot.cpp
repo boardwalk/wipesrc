@@ -1,13 +1,13 @@
-#include "\wipesrc\psx26\include\sys\types.h"
-#include "\wipesrc\psx26\include\libgte.h"
-#include "\wipesrc\psx26\include\libgpu.h"
+#include "wipesrc/psx26/include/sys/types.h"
+#include "wipesrc/psx26/include/libgte.h"
+#include "wipesrc/psx26/include/libgpu.h"
 //#include "cgl.h"				//jed
 //#include <graph.h>
-#include <conio.h>
+// #include <conio.h>
 #include <stdio.h>
 //#include <stdlib.h>
-#include <malloc.h>
-#include <ctype.h>	  
+// #include <malloc.h>
+#include <ctype.h>
 #include "pcgraph.h"
 //#include	<graph.h>
 #include	<math.h>
@@ -34,8 +34,8 @@ long maxoff=0,maxsmall=0;
 
 #define LET_STEVE_CLIP
 
-static unsigned long	_SCSize;
-static unsigned long	_SCAddress;
+// static unsigned long	_SCSize;
+// static unsigned long	_SCAddress;
 static int dev = 0;
 
 
@@ -90,11 +90,11 @@ short rendering=0;
 void DrawOTag(P_TAG *primitive)
 {
 	unsigned long addr;
-	
+
 #if	DEBUG_LOCKED
 	CurBuffer = DebugScreen;
 #else
-	
+
 	while (LockBackBuffer())
 	{
 		ProcessMessages(); 	//loop until we can get that back buffer
@@ -108,19 +108,19 @@ void DrawOTag(P_TAG *primitive)
 	numoff=0;
 	numsmall=0;
 	addr = (unsigned long) primitive;
-	
+
 	if (addr != 0xffffffff) do
 	{
 		if (((P_TAG *) addr)->code != 0) //Case of OT stuff
 			DrawPrim((unsigned long *) addr);
-		
+
 		primitive = (P_TAG *) addr;
 	}
 	while ((addr = getaddr(primitive)) != 0xffffffff);
-	
+
 #if DEBUG_LOCKED
 	while (LockBackBuffer())
-	{					  
+	{
 		ProcessMessages(); 	//loop until we can get that back buffer
 		;
 	}
@@ -128,12 +128,12 @@ void DrawOTag(P_TAG *primitive)
 	sendList();
 	setRenderEnd();
 //	UnlockBackBuffer();	//Finished drawing
-	
+
 	if(numoff>maxoff)
 		maxoff=numoff;
 	if(numsmall>maxsmall)
 		maxsmall=numsmall;
-}	
+}
 
 void Set_Device(int tmp)
 {
@@ -173,8 +173,8 @@ void IntVga(void)
 void intarray(void)
 {
 	int x;
-	
-	
+
+
 	for (x=0;x<256;x++)
 		DrawFunctions[x]=*NotValidPrimType;
 }
@@ -194,7 +194,7 @@ void DrawPrim(u_long *primitive)
 void NotValidPrimType(u_long *primitive)
 {
 	//	printf("Prim x%x will never be supported In Current Code\n",((P_TAG *)primitive)->code);
-}	
+}
 
 
 
@@ -209,19 +209,19 @@ void AYDrawF3(u_long *primitive)
 {
 	POLY_F3	*poly;
 	POLY_F4 fred;
-	
+
 	poly = (POLY_F3 *)primitive;
-	
+
 	fred.x0 = poly->x0;
 	fred.x1 = poly->x1;
 	fred.x2 = poly->x2;
 	fred.x3 = poly->x2;
-	
+
 	fred.y0 = poly->y0;
 	fred.y1 = poly->y1;
 	fred.y2 = poly->y2;
 	fred.y3 = poly->y2;
-	
+
 	//jed
 	fred.r0 = poly->r0;
 	fred.g0 = poly->g0;
@@ -236,7 +236,7 @@ void AYDrawFT3(u_long *primitive)
 	POLY_FT3	*poly;
 	POLY_FT3	fred;
 	poly = (POLY_FT3 *)primitive;
-	
+
 	fred = *poly;
 	//jed
 	JJSDrawPolyFT3(&fred);
@@ -248,9 +248,9 @@ void AYDrawG3(u_long *primitive)
 {
 	POLY_G3	*poly;
 	POLY_G3 fred;
-	
+
 	poly = (POLY_G3 *)primitive;
-	
+
 	fred = *poly;
 	//jed
 	JJSDrawPolyG3(&fred);
@@ -262,10 +262,10 @@ void AYDrawGT3(u_long *primitive)
 {
 	POLY_GT3	*poly;
 	POLY_GT3	fred;
-	
+
 	poly = (POLY_GT3 *)primitive;
-	
-	fred = *poly; 
+
+	fred = *poly;
 	JJSDrawPolyGT3(&fred);
 }
 
@@ -274,9 +274,9 @@ void sprite(u_long *primitive)
 	SPRT 			*ip;
 	SPRT 			op;
 	extern short	drawenv_tpage;
-	
+
 	ip = (SPRT *)primitive;
-	
+
 	op.x0 = ip->x0;
 	op.y0 = ip->y0;
 	op.u0 = ip->u0;
@@ -286,7 +286,7 @@ void sprite(u_long *primitive)
 	op.r0 = ip->r0;
 	op.g0 = ip->g0;
 	op.b0 = ip->b0;
-	
+
 	op.clut = drawenv_tpage;
 	JJS_Sprite(&op);
 }
@@ -298,15 +298,15 @@ void sprite8(u_long *primitive)
 	SPRT_8 *ip;
 	SPRT_8	op;
 	extern short	drawenv_tpage;
-	
+
 	ip = (SPRT_8 *)primitive;
-	
+
 	op.x0 = ip->x0;
 	op.y0 = ip->y0;
-	
+
 	op.u0 = ip->u0;
 	op.v0 = ip->v0;
-	
+
 	op.clut = drawenv_tpage;
 	JJS_Sprite8(&op);
 }
@@ -317,10 +317,10 @@ void AYDrawF4(u_long *primitive)
 {
 	POLY_F4	*poly;
 	POLY_F4	fred;
-	
-	
+
+
 	poly = (POLY_F4 *)primitive;
-	
+
 	fred = *poly;
 	JJSDrawPolyF4(&fred);
 }
@@ -330,9 +330,9 @@ void AYDrawF4(u_long *primitive)
 void AYDrawFT4(u_long *primitive)
 {
 	POLY_FT4	*poly;
-	
+
 	poly = (POLY_FT4 *)primitive;
-	
+
 	JJSDrawPolyFT4(poly);
 }
 
@@ -341,9 +341,9 @@ void AYDrawFT4(u_long *primitive)
 void AYDrawGT4(u_long *primitive)
 {
 	POLY_GT4	*poly;
-	
+
 	poly = (POLY_GT4 *)primitive;
-	
+
 	JJSDrawPolyGT4(poly);
 }
 
@@ -353,9 +353,9 @@ void AYDrawG4(u_long *primitive)
 {
 	POLY_G4	*poly;
 	POLY_G4 fred;
-	
+
 	poly = (POLY_G4 *)primitive;
-	
+
 	fred = *poly;
 	JJSDrawPolyG4(&fred);
 }
@@ -366,7 +366,7 @@ void tile(u_long *primitive)
 {
 	TILE 	*ip;
 	POLY_F4	op;
-	
+
 	ip->w *=2;
 	ip->h *=2;
 	ip = (TILE *)primitive;
@@ -380,20 +380,20 @@ void tile(u_long *primitive)
 	op.y3 = ip->y0 + ip->h;
 	*(long *)&op.r0 = *(long *)&ip->r0;
 	//	op.r0 = GET_PALLETE(ip->r0, ip->g0,ip->b0); //Now Set Before Here
-	
+
 	JJSDrawPolyF4(&op);
-	
+
 }
 
 void ChangeDrawMode(u_long *primitive)
 {
 	extern short	drawenv_tpage;
 	DR_MODE			*temp;
-	
-	
+
+
 	temp = (DR_MODE *)primitive;
 	drawenv_tpage = temp->code[1] & 0x0000FFFF;
-}	
+}
 
 
 void MaskSprite(u_long *primitive)
@@ -401,14 +401,14 @@ void MaskSprite(u_long *primitive)
 	SPRT 			*ip;
 	SPRT 			op;
 	extern short	drawenv_tpage;
-	
+
 	ip = (SPRT *)primitive;
-	
+
 	op.x0 = ip->x0;
 	op.y0 = ip->y0;
 	op.u0 = ip->u0;
 	op.v0 = ip->v0;
-	
+
 	if(ip->code == 0x78)
 	{
 		op.w = ip->w;
@@ -419,7 +419,7 @@ void MaskSprite(u_long *primitive)
 		op.w = 8;
 		op.h = 8;
 	}
-	
+
 	op.clut = drawenv_tpage;
 	op.r0 = ip->r0;
 	sendList();

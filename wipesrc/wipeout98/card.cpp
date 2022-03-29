@@ -2,8 +2,8 @@
 #include <string.h>
 //#include	<sys\file.h>
 #define		LANGUAGE_C
-#include	"\wipesrc\psx26\include\asm.h"
-#include	"\wipesrc\psx26\include\kernel.h"
+#include	"wipesrc/psx26/include/asm.h"
+#include	"wipesrc/psx26/include/kernel.h"
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
@@ -27,10 +27,10 @@
 #include "global.h"
 #include "sfx.h"
 #include "config.h"
- 
+
 #define _SIZE_T_DEFINED_
 #include	<stdio.h>
-#include	"..\win95\markk\input.h"
+#include	"../win95/markk/input.h"
 
 
 extern 	HiScores	scoreTable[] ;
@@ -77,30 +77,30 @@ long GetCardInfo (int cardNum)
 	return (cardStatus) ;
 #endif // PCwipeout
 	return (0);	// PCwipeout
-} 
+}
 
 
 long CheckHWCardEvents ()
 {
 #ifdef	PCwipeout
-	while(1) 
+	while(1)
 	{
-		if(TestEvent(ev10)==1) 
+		if(TestEvent(ev10)==1)
 		{         /* IOE */
 			return 0;
 		}
 
-		if(TestEvent(ev11)==1) 
+		if(TestEvent(ev11)==1)
 		{         /* ERROR */
 			return 1;
 		}
 
-		if(TestEvent(ev12)==1) 
+		if(TestEvent(ev12)==1)
 		{         /* TIMEOUT */
 			return 2;
 		}
 
-		if(TestEvent(ev13)==1) 
+		if(TestEvent(ev13)==1)
 		{         /* NEW CARD */
 			return 3;
 		}
@@ -126,10 +126,10 @@ long CardContentStatus ()
 #ifdef PCwipeout
 	long cardStatus = 0 ;
 
-	cardStatus = CheckCardEvents () ;	
-	
+	cardStatus = CheckCardEvents () ;
+
 	return (cardStatus) ;
-#endif // PCwipeout	
+#endif // PCwipeout
 return(0); // PCwipeout
 }
 
@@ -161,10 +161,10 @@ char SaveCardFile (char *saveName, int cardNum, ConfigData *gameData, short slid
 	return (1) ;
 }
 
-void GetHeader (char *header) 
+void GetHeader (char *header)
 {
-	
-}	
+
+}
 
 char WriteFile (char *header, char *fileName, ConfigData *gameData, short sliderVol)
 {
@@ -224,11 +224,11 @@ char WriteFile (char *header, char *fileName, ConfigData *gameData, short slider
 		//*char_ptr ++ = Sky;
 		*char_ptr ++ = ScreenSize;
 		*char_ptr ++ = Resolution;
-	
+
 		long_ptr = (long *)char_ptr;
 		*long_ptr++ = DrawDistance;
 		*long_ptr++ = TextureTrack;
-		
+
 		temp = fwrite(saveBuffer, sizeof(saveBuffer), 1, fd) ;
 
 		if (temp != 1)
@@ -258,10 +258,10 @@ void LoadCardFiles (SelectionData *selectData, char loadGames[][9], int cardNum)
 
 	if (cardNum == 0)
 		ret = firstfile ("bu00:*", &fileDir) ;
-	
+
 	if (cardNum == 1)
 		ret = firstfile ("bu10:*", &fileDir) ;
-		
+
 
 	if (ret == 0)		/* no file or an error */
 	{
@@ -296,30 +296,30 @@ void LoadCardFiles (SelectionData *selectData, char loadGames[][9], int cardNum)
 					for (i=0,j=14; i < 6; i++, j++)
 					{
 						loadGames[(selectData->slotsFilled)][i] = fileDir.name[j] ;
-				 	
+
 					}
 
 					loadGames[(selectData->slotsFilled)][6] = '\0' ;
 
 /*					printf ("loadSave filename = %s \n",loadGames[(selectData->slotsFilled)] ) ;*/
-					
+
 					selectData->slotsFilled ++ ;
-				
-					
-				} 
-		
-				
+
+
+				}
+
+
 /*				selectData->numCardFiles ++ ;*/
 				selectData->numCardFiles += (fileDir.size / 8192) ;
 
-		} while (nextfile (&fileDir)) ;		
+		} while (nextfile (&fileDir)) ;
 
 	}
 
 	#endif // PCwipeout
 //	printf ("Number of slots used = %d \n", selectData->numCardFiles) ;
 
-	
+
 }
 
 
@@ -388,9 +388,9 @@ char LoadCardData (char *loadName, int cardNum, ConfigData *gameData, SelectionD
 		OriginalKeyCodes[11] = *ushort_ptr++;		// Pause (start)
 
 		char_ptr = (unsigned char *)ushort_ptr;
-		controller = *char_ptr ++; 	
-		mouse_sensitivity = *char_ptr ++; 	
-		gameData->RapierClass = *char_ptr ++; 	
+		controller = *char_ptr ++;
+		mouse_sensitivity = *char_ptr ++;
+		gameData->RapierClass = *char_ptr ++;
 		gameData->cdTrack = *char_ptr ++;
 		gameData->negTwist = *char_ptr++;
 		gameData->showBonusTrack = *char_ptr++;

@@ -1,5 +1,5 @@
 /* Source File: libetc.h */
-#include	"..\markk\scancode.h"
+#include	"../markk/scancode.h"
 
 /* General Equates. */
 #define		_MAX_KEYS				128

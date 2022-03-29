@@ -1,4 +1,4 @@
-#include				<sys\types.h>
+#include				<sys/types.h>
 
 #include "datacash.h"
 #include "wintime.h"
@@ -15,7 +15,7 @@ short					old_stack_select;
 char					imr_state;
 long					TimerInstalled = 0;
 extern long				frameRate30;
-extern unsigned long	FastRam;	// ajy 
+extern unsigned long	FastRam;	// ajy
 extern char				fpstate;
 
 
@@ -42,7 +42,7 @@ extern unsigned long	this_frame, last_frame;
 
 void InstallTimer(void)
 {
-//	TimerInstalled = 1;	// mark	
+//	TimerInstalled = 1;	// mark
 
 	if (!TimerInstalled)
 	{

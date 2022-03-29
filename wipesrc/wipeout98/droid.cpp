@@ -23,7 +23,7 @@
 #include "libgte.h"
 #include "utils.h"
 
-#include "\wipesrc\win95\markk\libetc.h"		// DLS
+#include "wipesrc/win95/markk/libetc.h"		// DLS
 
 
 
@@ -31,7 +31,7 @@
 /****					Rescue droid control update routine						  ****/
 /**************************************************************************/
 void UpdateRescueDroid(ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData *weaponIndex)
-{			 
+{
 	ShipData 		*playerShip;
 	TrackSection 	*section, *nextSection;
 	static VECTOR 	target;
@@ -119,7 +119,7 @@ void UpdateRescueDroid(ShipData *shipIndex, Object** shipShapes, int shipNo, Wea
 	playerShip->roll -= playerShip->roll>>5;
 
 
-  	/**** Needs PAL ****/ 
+  	/**** Needs PAL ****/
 	if((playerShip->attr & IN_TOW) && (GetMagnitude(distance) < 800))
 	{
 //		if(neg1.head == 8960)
@@ -149,7 +149,7 @@ void UpdateRescueDroid(ShipData *shipIndex, Object** shipShapes, int shipNo, Wea
 /****					Rescue droid control update routine						  ****/
 /**************************************************************************/
 void UpdateDroidStart(RescueData *rescueDroid, ShipData *shipIndex, Object** shipShapes)
-{			 
+{
 #if 1
 	if(rescueDroid->updateCount == 800)
 	{
@@ -167,7 +167,7 @@ void UpdateDroidStart(RescueData *rescueDroid, ShipData *shipIndex, Object** shi
 	 	rescueDroid->acc.vz = (rcos(rescueDroid->hdg) * rcos(rescueDroid->pitch))>>14;
 
 		rescueDroid->vhdg = 0;
-		
+
 	}
 
 	else if(rescueDroid->updateCount < 710)
@@ -177,7 +177,7 @@ void UpdateDroidStart(RescueData *rescueDroid, ShipData *shipIndex, Object** shi
 	 	rescueDroid->acc.vz = (rcos(rescueDroid->hdg) * rcos(rescueDroid->pitch))>>15;
 
 		rescueDroid->vhdg = -8;
-		
+
 	}
 
 	else if(rescueDroid->updateCount == 770)
@@ -209,7 +209,7 @@ void UpdateDroidCircle(RescueData *rescueDroid, ShipData *shipIndex, Object** sh
 	VECTOR				target;
 	short					targetHdg;
 	short					quickestTurn, turn;
-	
+
 	nextSection = rescueDroid->section->nextSection.ptr;
 
 	target.vx = (rescueDroid->section->centre.vx + nextSection->centre.vx) >> 1;
@@ -230,7 +230,7 @@ void UpdateDroidCircle(RescueData *rescueDroid, ShipData *shipIndex, Object** sh
 		turn =  targetHdg - (rescueDroid->hdg - 4096);
 
 	if(abs(turn) < abs(quickestTurn))
-	{  
+	{
 		rescueDroid->vhdg = turn >> 6;
 	}
 	else
@@ -250,9 +250,9 @@ void UpdateDroidCircle(RescueData *rescueDroid, ShipData *shipIndex, Object** sh
 		CameraUpdate = UpdateCameraDroidView;
 		shipIndex->attr |= REMOTE_VIEW;
 		if(shipIndex->nearTrkSect->flags & Jump)
-			cameraPtr->section = shipIndex->nearTrkSect->nextSection.ptr;	 
+			cameraPtr->section = shipIndex->nearTrkSect->nextSection.ptr;
 		else
-			cameraPtr->section = shipIndex->nearTrkSect;	 
+			cameraPtr->section = shipIndex->nearTrkSect;
 	}
 
 	SetDroidVectors(rescueDroid, shipShapes);
@@ -288,9 +288,9 @@ void UpdateDroidRescue(RescueData *rescueDroid, ShipData *shipIndex, Object** sh
 			shipIndex->attr &= ~IN_TOW;
 		}
 
-		rescueDroid->vel.vx = 0;	
-		rescueDroid->vel.vy = 0;	
-		rescueDroid->vel.vz = 0;	
+		rescueDroid->vel.vx = 0;
+		rescueDroid->vel.vy = 0;
+		rescueDroid->vel.vz = 0;
 
 		rescueDroid->acc.vx = 0;
 		rescueDroid->acc.vy = 0;
@@ -298,7 +298,7 @@ void UpdateDroidRescue(RescueData *rescueDroid, ShipData *shipIndex, Object** sh
 
 		rescueDroid->updateCount = 799;
 	}
-		
+
 	target.vx = shipIndex->ppivot.vx;
 	target.vy = shipIndex->ppivot.vy - 350;
 	target.vz = shipIndex->ppivot.vz;
@@ -338,7 +338,7 @@ void UpdateDroidRescue(RescueData *rescueDroid, ShipData *shipIndex, Object** sh
 		rescueDroid->pos.vx = target.vx;
 		rescueDroid->pos.vy = target.vy;
 		rescueDroid->pos.vz = target.vz;
-	}	
+	}
 
 	if((GetMagnitude(distance) < 1) && ((shipIndex->attr & IN_TOW) == 0))
 	{
@@ -357,7 +357,7 @@ void UpdateDroidRescue(RescueData *rescueDroid, ShipData *shipIndex, Object** sh
 		rescueDroid->pos.vz = target.vz;
 
 	}
-	
+
 	if((shipIndex->attr & RESCUE) == 0)
 	{
 	 	KillNote(START_SIREN);
@@ -373,7 +373,7 @@ void UpdateDroidRescue(RescueData *rescueDroid, ShipData *shipIndex, Object** sh
 
 		while((rescueDroid->section->flags & Jump) == 0)
 		{
-		  rescueDroid->section = rescueDroid->section->prevSection.ptr;	
+		  rescueDroid->section = rescueDroid->section->prevSection.ptr;
 		}
 	}
 
@@ -413,19 +413,19 @@ void InitRescueDroid(RescueData *rescueDroid, Object** shipShapes, ShipData *shi
 		rescueDroid->section = rescueDroid->section->nextSection.ptr;
 		if(rescueDroid->section->flags & Jump)
 			break;
-	} 	
+	}
 
-	rescueDroid->pos.vx = shipIndex->ppivot.vx;	
-	rescueDroid->pos.vy = shipIndex->ppivot.vy - 200;	
-	rescueDroid->pos.vz = shipIndex->ppivot.vz;	
+	rescueDroid->pos.vx = shipIndex->ppivot.vx;
+	rescueDroid->pos.vy = shipIndex->ppivot.vy - 200;
+	rescueDroid->pos.vz = shipIndex->ppivot.vz;
 
-	rescueDroid->vel.vx = 0;	
-	rescueDroid->vel.vy = 0;	
-	rescueDroid->vel.vz = 0;	
+	rescueDroid->vel.vx = 0;
+	rescueDroid->vel.vy = 0;
+	rescueDroid->vel.vz = 0;
 
-	rescueDroid->acc.vx = 0;	
-	rescueDroid->acc.vy = 0;	
-	rescueDroid->acc.vz = 0;	
+	rescueDroid->acc.vx = 0;
+	rescueDroid->acc.vy = 0;
+	rescueDroid->acc.vz = 0;
 
 	rescueDroid->hdg 	 = shipIndex->hdg;
 	rescueDroid->pitch = shipIndex->pitch;
@@ -442,7 +442,7 @@ void InitRescueDroid(RescueData *rescueDroid, Object** shipShapes, ShipData *shi
 	rescueDroid->hdg = 0;
 	rescueDroid->pitch = 0;
 	rescueDroid->roll = 0;
-	
+
 	rescueDroid->droidUpdate = UpdateDroidStart;
 
 }

@@ -1,6 +1,6 @@
 /* All routines which configure the input devices. */
 //#include	"c:\wc10\h\dos.h"
-#include	"\wipesrc\win95\markk\input.h"
+#include	"wipesrc/win95/markk/input.h"
 #include <stdio.h>
 
 void	SetKey(unsigned long int button, unsigned short int code);
@@ -19,7 +19,7 @@ void	ConfigureKeyboard(void)
 	}
 
 	/* Assign Default Key Set. */
-	for(i=0; i<_MAX_BUTTONS; i++) 
+	for(i=0; i<_MAX_BUTTONS; i++)
 		SetKey(i, etc_DefaultKeyboardSet[i]);
 
 }

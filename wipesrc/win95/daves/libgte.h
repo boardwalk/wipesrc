@@ -9,7 +9,7 @@
 
 
 //
-// Converted to WATCOM C v10.0 by 
+// Converted to WATCOM C v10.0 by
 // Salim Siwani, Psygnosis Ltd
 //       06/02/1995
 //
@@ -64,16 +64,16 @@
 
 #define	read_szx(r1) 			mfc2	r1,$16;	\
 					nop
-			
+
 #define	read_sz0(r1)			mfc2	r1,$17;	\
 					nop
-			
+
 #define	read_sz1(r1)			mfc2	r1,$18;	\
 					nop
-			
+
 #define	read_sz2(r1)			mfc2	r1,$19;	\
 					nop
-			
+
 #define	read_sxsy_fifo3(r1,r2,r3) 	mfc2	r1,$12; \
 					mfc2	r2,$13; \
 					mfc2	r3,$14;	\
@@ -147,22 +147,22 @@ typedef struct {		/* long word type 3D vector */
 	long	vx, vy;
 	long	vz, pad;
 } VECTOR;
-	
+
 typedef struct {
 	short	vx,vy;
 	short	vz,pad;
 }SVECTOR;
 
-typedef struct {		/* color type vector */	
+typedef struct {		/* color type vector */
 	u_char	r, g, b, cd;
 } CVECTOR;
-	       
+
 typedef struct {		/* 2D short vector */
 	short vx, vy;
 } DVECTOR;
 
 
-typedef struct {		
+typedef struct {
 	SVECTOR v;		/* Object(Local) 3D Vertex 	*/
 	VECTOR sxyz;		/* Screen 3D Vertex		*/
 	DVECTOR sxy;		/* Screen 2D Vertex		*/
@@ -173,44 +173,44 @@ typedef struct {
 
 typedef struct {
 	SVECTOR v;
-	u_char uv[2]; u_short pad;	/*@@*/  
+	u_char uv[2]; u_short pad;	/*ï¿½@ï¿½@*/
 	CVECTOR c;
-	DVECTOR sxy;		
-	u_long  sz;		/*@clip z-data@*/		
-} RVECTOR;			/*@•ªŠ„’¸“_î•ñƒxƒNƒ^@*/
+	DVECTOR sxy;
+	u_long  sz;		/*ï¿½@clip z-dataï¿½@*/
+} RVECTOR;			/*ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½xï¿½Nï¿½^ï¿½@*/
 
 
 typedef struct {
 	RVECTOR r01,r12,r20;
 	RVECTOR	*r0,*r1,*r2;
 	u_long *rtn;
-} CRVECTOR3;			/*@‚RŠpŒ`—pÄ‹AƒxƒNƒ^@*/
+} CRVECTOR3;			/*ï¿½@ï¿½Rï¿½pï¿½`ï¿½pï¿½Ä‹Aï¿½xï¿½Nï¿½^ï¿½@*/
 
 typedef struct {
-	u_long 	ndiv;		/*@•ªŠ„”@*/
-	u_long 	pih,piv;	/*@ƒNƒŠƒbƒvƒGƒŠƒA@*/
+	u_long 	ndiv;		/*ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½@*/
+	u_long 	pih,piv;	/*ï¿½@ï¿½Nï¿½ï¿½ï¿½bï¿½vï¿½Gï¿½ï¿½ï¿½Aï¿½@*/
 	u_short clut,tpage;
 	CVECTOR	rgbc;
 	u_long	*ot;
 	RVECTOR r0,r1,r2;
-	CRVECTOR3 cr[5];	
-} DIVPOLYGON3;			/*@‚RŠpŒ`—p•ªŠ„ƒoƒbƒtƒ@@*/
+	CRVECTOR3 cr[5];
+} DIVPOLYGON3;			/*ï¿½@ï¿½Rï¿½pï¿½`ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½oï¿½bï¿½tï¿½@ï¿½@*/
 
 typedef struct {
 	RVECTOR r01,r02,r31,r32,rc;
 	RVECTOR	*r0,*r1,*r2,*r3;
 	u_long *rtn;
-} CRVECTOR4;			/*@‚SŠpŒ`—pÄ‹AƒxƒNƒ^@*/
+} CRVECTOR4;			/*ï¿½@ï¿½Sï¿½pï¿½`ï¿½pï¿½Ä‹Aï¿½xï¿½Nï¿½^ï¿½@*/
 
 typedef struct {
-	u_long 	ndiv;		/*@•ªŠ„”@*/
-	u_long 	pih,piv;	/*@ƒNƒŠƒbƒvƒGƒŠƒA@*/
+	u_long 	ndiv;		/*ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½@*/
+	u_long 	pih,piv;	/*ï¿½@ï¿½Nï¿½ï¿½ï¿½bï¿½vï¿½Gï¿½ï¿½ï¿½Aï¿½@*/
 	u_short clut,tpage;
 	CVECTOR	rgbc;
 	u_long	*ot;
 	RVECTOR r0,r1,r2,r3;
-	CRVECTOR4 cr[5];	
-} DIVPOLYGON4;			/*@‚SŠpŒ`—p•ªŠ„ƒoƒbƒtƒ@@*/
+	CRVECTOR4 cr[5];
+} DIVPOLYGON4;			/*ï¿½@ï¿½Sï¿½pï¿½`ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½oï¿½bï¿½tï¿½@ï¿½@*/
 
 typedef struct {
         short   xy[3];
@@ -238,13 +238,13 @@ typedef struct {
 
 typedef struct
 {
-	/* internal GTE color type vector */	
+	/* internal GTE color type vector */
 	u_long	r, g, b, cd;
 } GTECVECTOR;
 
 
 #endif
-#include "\wipesrc\psx26\include\libgpu.h"
+#include "wipesrc/psx26/include/libgpu.h"
 
 /*
  *      ProtoTypes
@@ -278,7 +278,7 @@ MATRIX *ScaleMatrix(MATRIX *m,VECTOR *v);
 MATRIX *ScaleMatrixL(MATRIX *m,VECTOR *v);
 MATRIX *TransposeMatrix(MATRIX *m0,MATRIX *m1);
 MATRIX *CompMatrix(MATRIX *m0,MATRIX *m1,MATRIX *m2);
-void SetRotMatrix(MATRIX *m); 
+void SetRotMatrix(MATRIX *m);
 void SetLightMatrix(MATRIX *m);
 void SetColorMatrix(MATRIX *m);
 void SetTransMatrix(MATRIX *m);
@@ -373,7 +373,7 @@ long RotAverageNclipColorDpq3(SVECTOR *v0,SVECTOR *v1,SVECTOR *v2,
 			SVECTOR *v3,SVECTOR *v4,SVECTOR *v5,CVECTOR *v6,
 			long *sxy0,long *sxy1,long *sxy2,
 			CVECTOR *v7,CVECTOR *v8,CVECTOR *v9,
-			long *otz,long *flag);	 		   	      
+			long *otz,long *flag);
 long RotAverageNclipColorCol3(SVECTOR *v0,SVECTOR *v1,SVECTOR *v2,SVECTOR *v3,SVECTOR *v4,SVECTOR *v5,CVECTOR *v6,
 			long *sxy0,long *sxy1,long *sxy2,CVECTOR *v7,CVECTOR *v8,CVECTOR *v9,
 			long *otz,long *flag);
@@ -746,7 +746,7 @@ u_long *GsTMDdivTNG4(TMD_P_TNG4 *primtop,SVECTOR *vertop,
 
 */
 
-void RotSMD_F3(long *pa,u_long *ot,int otlen,int id);		
+void RotSMD_F3(long *pa,u_long *ot,int otlen,int id);
 void RotSMD_G3(long *pa,u_long *ot,int otlen,int id);
 void RotSMD_FT3(long *pa,u_long *ot,int otlen,int id);
 void RotSMD_GT3(long *pa,u_long *ot,int otlen,int id);
@@ -755,7 +755,7 @@ void RotSMD_G4(long *pa,u_long *ot,int otlen,int id);
 void RotSMD_FT4(long *pa,u_long *ot,int otlen,int id);
 void RotSMD_GT4(long *pa,u_long *ot,int otlen,int id);
 
-void RotSMD_SV_F3(long *pa,long *va,u_long *ot,int otlen,int id);	
+void RotSMD_SV_F3(long *pa,long *va,u_long *ot,int otlen,int id);
 void RotSMD_SV_G3(long *pa,long *va,u_long *ot,int otlen,int id);
 void RotSMD_SV_FT3(long *pa,long *va,u_long *ot,int otlen,int id);
 void RotSMD_SV_GT3(long *pa,long *va,u_long *ot,int otlen,int id);
@@ -766,7 +766,7 @@ void RotSMD_SV_GT4(long *pa,long *va,u_long *ot,int otlen,int id);
 
 
 
-void RotRMD_F3(long *pa,u_long *ot,int otlen,int id);		
+void RotRMD_F3(long *pa,u_long *ot,int otlen,int id);
 void RotRMD_G3(long *pa,u_long *ot,int otlen,int id);
 void RotRMD_FT3(long *pa,u_long *ot,int otlen,int id);
 void RotRMD_GT3(long *pa,u_long *ot,int otlen,int id);
@@ -775,7 +775,7 @@ void RotRMD_G4(long *pa,u_long *ot,int otlen,int id);
 void RotRMD_FT4(long *pa,u_long *ot,int otlen,int id);
 void RotRMD_GT4(long *pa,u_long *ot,int otlen,int id);
 
-void RotRMD_SV_F3(long *pa,long *va,u_long *ot,int otlen,int id);	
+void RotRMD_SV_F3(long *pa,long *va,u_long *ot,int otlen,int id);
 void RotRMD_SV_G3(long *pa,long *va,u_long *ot,int otlen,int id);
 void RotRMD_SV_FT3(long *pa,long *va,u_long *ot,int otlen,int id);
 void RotRMD_SV_GT3(long *pa,long *va,u_long *ot,int otlen,int id);

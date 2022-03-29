@@ -1,5 +1,5 @@
 volatile /* Source File: libetc.h */
-#include	"..\markk\scancode.h"
+#include	"../markk/scancode.h"
 
 /* General Equates. */
 #define		_MAX_KEYS				128
@@ -12,7 +12,7 @@ volatile /* Source File: libetc.h */
 
 #define		SONY_PAD				0x41
 #define		NEGCON					0x23
-				
+
 #define		OK						0
 #define		NG						0xFF
 

@@ -1,9 +1,10 @@
-#define _SIZE_T
+// #define _SIZE_T
 
-#include <dos.h>
+// #include <dos.h>
 //#include <mem.h>
 //#include	<i86.h>
 //#include	<graph.h>
+#include <string.h>
 
 #include "common.h"
 //#include "\wipesrc\win95\jeda\cgl.h"
@@ -76,7 +77,7 @@ DISPENV *PutDispEnv(DISPENV *env)
 			DDSwap();
 
 		   while (LockBackBuffer())
-	   		{					  
+	   		{
 	   		ProcessMessages(); 	//loop until we can get that back buffer
 			;
 	   		}
@@ -141,8 +142,8 @@ DRAWENV *PutDrawEnv(DRAWENV *env)
 					curclip.by = 240/(halfyf);	//jed
 					curclip.h = 240/(halfyf);	//jed
 				}
-			}		
-		}	
+			}
+		}
 	}									//jed
 	return(env);
 }

@@ -247,7 +247,7 @@ void IntelLong( long* lvalue )
 	temp = cvalue[0];
 	cvalue[0] = cvalue[3];
 	cvalue[3] = temp;
-	
+
 	temp = cvalue[1];
 	cvalue[1] = cvalue[2];
 	cvalue[2] = temp;
@@ -333,12 +333,12 @@ Object* LoadPrm( char* name, short textureStart )
    {
 
 #if 0
-      pollhost( );   
+      pollhost( );
 #endif
       /* Object */
 
       object = prm.object++;
-   
+
       IntelShort( &object->vertexCount );
       IntelShort( &object->normalCount );
       IntelShort( &object->primitiveCount );
@@ -418,7 +418,7 @@ Object* LoadPrm( char* name, short textureStart )
                prm.f4 += 1;
                break;
 
-	
+
             case TypeFT3 :
                prm.ft3->texture += textureStart;
                texture = TextureTable[ prm.ft3->texture ];
@@ -437,7 +437,7 @@ Object* LoadPrm( char* name, short textureStart )
                prm.ft3->v1 += vOffset;
                prm.ft3->u2 += uOffset;
                prm.ft3->v2 += vOffset;
-                                                                                         
+
                prm.ft3 += 1;
                break;
 
@@ -497,7 +497,7 @@ Object* LoadPrm( char* name, short textureStart )
                prm.gt3->v1 += vOffset;
                prm.gt3->u2 += uOffset;
                prm.gt3->v2 += vOffset;
-                                                                                         
+
                prm.gt3 += 1;
                break;
 
@@ -546,7 +546,7 @@ Object* LoadPrm( char* name, short textureStart )
                prm.lsft3->v1 += vOffset;
                prm.lsft3->u2 += uOffset;
                prm.lsft3->v2 += vOffset;
-                                                                                         
+
                prm.lsft3 += 1;
                break;
 
@@ -594,7 +594,7 @@ Object* LoadPrm( char* name, short textureStart )
                prm.lsgt3->v1 += vOffset;
                prm.lsgt3->u2 += uOffset;
                prm.lsgt3->v2 += vOffset;
-                                                                                         
+
                prm.lsgt3 += 1;
                break;
 
@@ -643,10 +643,10 @@ Object* LoadPrm( char* name, short textureStart )
                break;
 
             default :
-               sprintf( errorString, "Bad primitive type %x in $%x \n", prm.f3->type, name );
+               sprintf( errorString, "Bad primitive type %x in $%s \n", prm.f3->type, name );
                Error( errorString, Fatal );
                break;
-			   
+
          }
       }
 

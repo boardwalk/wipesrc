@@ -1,4 +1,4 @@
-/* 
+/*
  * File:types.h
  */
 
@@ -34,18 +34,18 @@ typedef	struct	label_t	{
 } label_t;
 
 typedef	struct	_quad { long val[2]; } quad;
-typedef	long	daddr_t;
+// typedef	long	daddr_t;
 typedef	char *	caddr_t;
-typedef	long *	qaddr_t;	/* should be typedef quad * qaddr_t; */
+// typedef	long *	qaddr_t;	/* should be typedef quad * qaddr_t; */
 //typedef	u_long	ino_t;
-typedef	long	swblk_t;
+// typedef	long	swblk_t;
 
 typedef	long	time_t;
 //typedef	short	dev_t;
-typedef	long	off_t;
-typedef	u_short	uid_t;
-typedef	u_short	gid_t;
+// typedef	long	off_t;
+// typedef	u_short	uid_t;
+// typedef	u_short	gid_t;
 
-#define	NBBY	8		/* number of bits in a byte */
+// #define	NBBY	8		/* number of bits in a byte */
 
 #endif	/* _SYS_TYPES_H */

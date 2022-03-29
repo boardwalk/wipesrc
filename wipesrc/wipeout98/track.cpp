@@ -28,7 +28,7 @@
 #include "main.h"
 #include "dynam.h"
 #include "combat.h"
-#include "menus.h"  
+#include "menus.h"
 #include "hiscores.h"
 #include "hud.h"
 #include "cone.h"
@@ -124,7 +124,7 @@ void IntelSection( void )
 
       for ( j=0; j<4; j++ )
       {
-         IntelShort( &section->high[ j ] );        
+         IntelShort( &section->high[ j ] );
          IntelShort( &section->med[ j ] );
       }
 
@@ -367,7 +367,7 @@ void InitViewList( char *file )
    TrackSection      *section;
    long              total;
    short             i, j;
-   
+
 
    length = FileLength( file );
    if ( length <= 0 )
@@ -402,19 +402,19 @@ void InitViewList( char *file )
    {
       for ( j=0; j<3; j++ )
       {
-         section->northViewSection[ j ] = track->viewList + total; 
+         section->northViewSection[ j ] = track->viewList + total;
          total += section->northViewCount[ j ];
 
-         section->southViewSection[ j ] = track->viewList + total; 
+         section->southViewSection[ j ] = track->viewList + total;
          total += section->southViewCount[ j ];
 
-         section->eastViewSection[ j ] = track->viewList + total; 
+         section->eastViewSection[ j ] = track->viewList + total;
          total += section->eastViewCount[ j ];
 
-         section->westViewSection[ j ] = track->viewList + total; 
+         section->westViewSection[ j ] = track->viewList + total;
          total += section->westViewCount[ j ];
 
-         section->allViewSection[ j ] = track->viewList + total; 
+         section->allViewSection[ j ] = track->viewList + total;
          total += section->allViewCount[ j ];
       }
 
@@ -424,8 +424,8 @@ void InitViewList( char *file )
    if ( ( total * 2 ) != length )
    {
       printf( "\n" );
-      printf( "total  %d\n", total );
-      printf( "length %d\n", length );
+      printf( "total  %ld\n", total );
+      printf( "length %ld\n", length );
       Error( "track.c::InitViewList():problem with view list", Fatal );
    }
 
@@ -485,7 +485,7 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
    autoMesh->quadCount = 0;
    autoMesh->attemptedAutos = 0;
 
-   beforeVcount = GsGetVcount();   
+   beforeVcount = GsGetVcount();
    AsmNextFrame( );
 
    dir = TrackDirection(camera);
@@ -495,34 +495,34 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
       for ( i=0; i<camera->section->northViewCount[ 2 ]; i+=2 )
       {
          AsmTransformTrackLo	// PCwipeout
-         ( 
+         (
             track->sections + camera->section->northViewSection[ 2 ][ i ],
-            camera->camPos, 
+            camera->camPos,
             camera->section->northViewSection[ 2 ][ i + 1 ],
 			dir
          );
          loCount += camera->section->northViewSection[ 2 ][ i + 1 ];
-      } 
-                    
+      }
+
       for ( i=0; i<camera->section->northViewCount[ 1 ]; i+=2 )
       {
          AsmTransformTrackMed 		// PCwipeout
-         ( 
-            track->sections + camera->section->northViewSection[ 1 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->northViewSection[ 1 ][ i ],
+            camera->camPos,
             camera->section->northViewSection[ 1 ][ i + 1 ],
 			dir
          );
          medCount += camera->section->northViewSection[ 1 ][ i + 1 ];
       }
-    
+
       for ( i=0; i<camera->section->northViewCount[ 0 ]; i+=2 )
       {
 		//if ((TextureTrack) || (inattract))
          AsmTransformTrackHi // PCwipeout
-         ( 
-            track->sections + camera->section->northViewSection[ 0 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->northViewSection[ 0 ][ i ],
+            camera->camPos,
             autoMesh,
             camera->section->northViewSection[ 0 ][ i + 1 ],
 			dir
@@ -538,9 +538,9 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
       for ( i=0; i<camera->section->southViewCount[ 2 ]; i+=2 )
       {
          AsmTransformTrackLo	// PCwipeout
-         ( 
-            track->sections + camera->section->southViewSection[ 2 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->southViewSection[ 2 ][ i ],
+            camera->camPos,
             camera->section->southViewSection[ 2 ][ i + 1 ],
 			dir
          );
@@ -550,9 +550,9 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
       for ( i=0; i<camera->section->southViewCount[ 1 ]; i+=2 )
       {
         AsmTransformTrackMed // PCwipeout
-         ( 
-            track->sections + camera->section->southViewSection[ 1 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->southViewSection[ 1 ][ i ],
+            camera->camPos,
             camera->section->southViewSection[ 1 ][ i + 1 ],
 			dir
          );
@@ -562,9 +562,9 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
       for ( i=0; i<camera->section->southViewCount[ 0 ]; i+=2 )
       {
         AsmTransformTrackHi // PCwipeout
-         ( 
-            track->sections + camera->section->southViewSection[ 0 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->southViewSection[ 0 ][ i ],
+            camera->camPos,
             autoMesh,
             camera->section->southViewSection[ 0 ][ i + 1 ],
 			dir
@@ -577,11 +577,11 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
    {
       for ( i=0; i<camera->section->westViewCount[ 2 ]; i+=2 )
       {
-		  
+
          AsmTransformTrackLo	// PCwipeout
-         ( 
-            track->sections + camera->section->westViewSection[ 2 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->westViewSection[ 2 ][ i ],
+            camera->camPos,
             camera->section->westViewSection[ 2 ][ i + 1 ],
 			dir
          );
@@ -591,9 +591,9 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
       for ( i=0; i<camera->section->westViewCount[ 1 ]; i+=2 )
       {
          AsmTransformTrackMed // PCwipeout
-         ( 
-            track->sections + camera->section->westViewSection[ 1 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->westViewSection[ 1 ][ i ],
+            camera->camPos,
             camera->section->westViewSection[ 1 ][ i + 1 ],
 			dir
          );
@@ -604,9 +604,9 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
       for ( i=0; i<camera->section->westViewCount[ 0 ]; i+=2 )
       {
         AsmTransformTrackHi // PCwipeout
-         ( 
-            track->sections + camera->section->westViewSection[ 0 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->westViewSection[ 0 ][ i ],
+            camera->camPos,
             autoMesh,
             camera->section->westViewSection[ 0 ][ i + 1 ],
 			dir
@@ -620,11 +620,11 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
    {
        for ( i=0; i<camera->section->eastViewCount[ 2 ]; i+=2 )
       {
-		  
+
         AsmTransformTrackLo // PCwipeout
-         ( 
-            track->sections + camera->section->eastViewSection[ 2 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->eastViewSection[ 2 ][ i ],
+            camera->camPos,
             camera->section->eastViewSection[ 2 ][ i + 1 ],
 			dir
          );
@@ -635,9 +635,9 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
       for ( i=0; i<camera->section->eastViewCount[ 1 ]; i+=2 )
       {
         AsmTransformTrackMed // PCwipeout
-         ( 
-            track->sections + camera->section->eastViewSection[ 1 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->eastViewSection[ 1 ][ i ],
+            camera->camPos,
             camera->section->eastViewSection[ 1 ][ i + 1 ],
 			dir
          );
@@ -648,9 +648,9 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
       for ( i=0; i<camera->section->eastViewCount[ 0 ]; i+=2 )
       {
          AsmTransformTrackHi // PCwipeout
-         ( 
-            track->sections + camera->section->eastViewSection[ 0 ][ i ], 
-            camera->camPos, 
+         (
+            track->sections + camera->section->eastViewSection[ 0 ][ i ],
+            camera->camPos,
             autoMesh,
             camera->section->eastViewSection[ 0 ][ i + 1 ],
 			dir
@@ -677,22 +677,22 @@ void DrawAllTrack( TrackCamera *camera, AutoMeshData *autoMesh )
    for ( i=0; i<camera->section->allViewCount[ 2 ]; i+=2 )
    {
       AsmTransformTrackLo
-      ( 
+      (
          track->sections + camera->section->allViewSection[ 2 ][ i ],
-         camera->camPos, 
+         camera->camPos,
          camera->section->allViewSection[ 2 ][ i + 1 ],
 		 0
       );
 
      loCount += camera->section->allViewSection[ 2 ][ i + 1 ];
-   } 
+   }
 
    for ( i=0; i<camera->section->allViewCount[ 1 ]; i+=2 )
    {
       AsmTransformTrackMed
-      ( 
-         track->sections + camera->section->allViewSection[ 1 ][ i ], 
-         camera->camPos, 
+      (
+         track->sections + camera->section->allViewSection[ 1 ][ i ],
+         camera->camPos,
          camera->section->allViewSection[ 1 ][ i + 1 ],
 		 0
       );
@@ -702,9 +702,9 @@ void DrawAllTrack( TrackCamera *camera, AutoMeshData *autoMesh )
    for ( i=0; i<camera->section->allViewCount[ 0 ]; i+=2 )
    {
       AsmTransformTrackHi
-      ( 
-         track->sections + camera->section->allViewSection[ 0 ][ i ], 
-         camera->camPos, 
+      (
+         track->sections + camera->section->allViewSection[ 0 ][ i ],
+         camera->camPos,
          autoMesh,
          camera->section->allViewSection[ 0 ][ i + 1 ],
 		 0

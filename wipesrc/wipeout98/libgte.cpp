@@ -1,6 +1,6 @@
 //
-// LIBGTE.C for WATCOM C v10.0 by 
-//  Salim Siwani and Dave Smith, 
+// LIBGTE.C for WATCOM C v10.0 by
+//  Salim Siwani and Dave Smith,
 //		     Psygnosis Ltd
 //          07/02/1995
 //
@@ -8,8 +8,8 @@
 #include <math.h>
 #include <string.h>
 #define _SIZE_T
-#include "\wipesrc\psx26\include\sys\types.h"
-#include "\wipesrc\win95\daves\libgte.h"
+#include "wipesrc/psx26/include/sys/types.h"
+#include "wipesrc/win95/daves/libgte.h"
 
 VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r);
 
@@ -76,7 +76,7 @@ void CreateSineTable(void)
 
 	for(angle = 0; angle < TableSize; angle++)
 		SineTable[angle] = slow_rsin(angle);
-}	
+}
 
 
 
@@ -99,7 +99,7 @@ long rsin(long a)
 		result = SineTable[index];
 
 	return(result);
-}	
+}
 
 
 
@@ -122,7 +122,7 @@ long rcos(long a)
 		result = SineTable[index];
 
 	return(result);
-}	
+}
 
 
 long AverageZ3( long sz0, long sz1, long sz2 )
@@ -282,8 +282,8 @@ short OnScreen4(long xy0, long xy1, long xy2, long xy3)
 
 long NormalClip( DVECTOR sxy0, DVECTOR sxy1, DVECTOR sxy2 )
 {
-	long		sx0, sy0, 
-				dx1, dy1, 
+	long		sx0, sy0,
+				dx1, dy1,
 				dx2, dy2;
 	DVECTOR 	*xy0, *xy1, *xy2;
 
@@ -331,8 +331,8 @@ void NormalColorCol( SVECTOR * v0, CVECTOR * v1, CVECTOR * v2 )
 
 
 
-void NormalColorCol3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2, 
-							 CVECTOR * v3, 
+void NormalColorCol3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2,
+							 CVECTOR * v3,
 							 CVECTOR * v4, CVECTOR * v5, CVECTOR * v6 )
 {
 	long xt, yt, zt;
@@ -389,11 +389,11 @@ void NormalColorCol3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2,
 	v4->r = grgb[0].r = MULT(v3->r, grgb[0].r);
 	v4->g = grgb[0].g = MULT(v3->g, grgb[0].g);
 	v4->b = grgb[0].b = MULT(v3->b, grgb[0].b);
-	
+
 	v5->r = grgb[1].r = MULT(v3->r, grgb[1].r);
 	v5->g = grgb[1].g = MULT(v3->g, grgb[1].g);
 	v5->b = grgb[1].b = MULT(v3->b, grgb[1].b);
-	
+
 	v6->r = grgb[2].r = MULT(v3->r, grgb[2].r);
 	v6->g = grgb[2].g = MULT(v3->g, grgb[2].g);
 	v6->b = grgb[2].b = MULT(v3->b, grgb[2].b);
@@ -401,8 +401,8 @@ void NormalColorCol3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2,
 
 
 
-void NormalColorDpq3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2, 
-							 CVECTOR * v3, long p, 
+void NormalColorDpq3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2,
+							 CVECTOR * v3, long p,
 							 CVECTOR * v4, CVECTOR * v5, CVECTOR * v6 )
 {
 	long xt, yt, zt;
@@ -492,12 +492,12 @@ MATRIX * RotMatrix( SVECTOR * r, MATRIX * m )
 	m->m[0][1] = -MULT(cy,sz);
 	m->m[0][2] =  sy;
 	m->m[1][0] =  ((sz*cx) + (MULT(sy,sx)*cz)) >> SHIFT;
-	m->m[1][1] =  ((cx*cz) - (MULT(sy,sx)*sz)) >> SHIFT;	
+	m->m[1][1] =  ((cx*cz) - (MULT(sy,sx)*sz)) >> SHIFT;
 	m->m[1][2] = -MULT(cy,sx);
 	m->m[2][0] =  ((sz*sx) - (MULT(cx,cz)*sy)) >> SHIFT;
-	m->m[2][1] =  ((sx*cz) + (MULT(cx,sz)*sy)) >> SHIFT; 	
+	m->m[2][1] =  ((sx*cz) + (MULT(cx,sz)*sy)) >> SHIFT;
 	m->m[2][2] =  MULT(cy,cx);
-	
+
 	return m;
 }
 
@@ -574,7 +574,7 @@ void RotTransPersN(SVECTOR *v0,DVECTOR *v1,u_short *sz,u_short *flag,long n)
 		//stmp++;
 
 	}
-}	  
+}
 
 
 
@@ -629,7 +629,7 @@ void SetDrawDistance(long Dist)
 }
 
 void SetGeomOffset( long ofx, long ofy)
-{					
+{
 	xOffset = ofx;
 	yOffset = ofy;
 }
@@ -679,7 +679,7 @@ MATRIX * TransMatrix( MATRIX * m, VECTOR * v )
 	m->t[1] = v->vy;
 	m->t[2] = v->vz;
 
-	return m;	
+	return m;
 }
 
 long xt,yt,zt;
@@ -695,8 +695,10 @@ long xt,yt,zt;
 //		ecx = r0 (output)
 //------------------------------------------------------
 
-__declspec(naked) VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r)
+/*__declspec(naked)*/ VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r)
 {
+	// TODO(boardwalk) Implement me without __declspace(naked)
+	/*
 	__asm
 	{
 
@@ -721,7 +723,7 @@ __declspec(naked) VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r)
 		mov 	zt, ebx
 
 
-		mov  	cx, [edi]		
+		mov  	cx, [edi]
 		mov	ax, [edi+2]
 		mov	bx, [edi+4]
 		sal	ecx, 16
@@ -742,7 +744,7 @@ __declspec(naked) VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r)
 		mov 	0[edx], ecx		; store value in vector->vx
 
 
-		mov  	cx, [edi+6]		
+		mov  	cx, [edi+6]
 		mov	ax, [edi+8]
 		mov	bx, [edi+10]
 		sal	ecx, 16
@@ -762,7 +764,7 @@ __declspec(naked) VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r)
 		add	ecx, [edi+24]
 		mov 	4[edx], ecx		; store value in vector->vx
 
-		mov  	cx, [edi+12]		
+		mov  	cx, [edi+12]
 		mov	ax, [edi+14]
 		mov	bx, [edi+16]
 		sal	ecx, 16
@@ -786,6 +788,8 @@ __declspec(naked) VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r)
 		pop 	edi
 		ret
 	}
+	*/
+	return NULL;
 }
 
 long x,y,z,flagaddr;
@@ -802,8 +806,10 @@ long x,y,z,flagaddr;
 //		ecx = address of flag variable
 //------------------------------------------------------
 
-__declspec(naked) long *DLSRotTransPers(long *sxy, VECTOR *r0, long *flag)
+/*__declspec(naked)*/ long *DLSRotTransPers(long *sxy, VECTOR *r0, long *flag)
 {
+	// TODO(boardwalk) Implement me without __declspace(naked)
+	/*
 	__asm
 	{
 		push ebx
@@ -851,13 +857,13 @@ nomaxzclip:
 		jge	nozfnear
 		or	[flag], 00001000h
 		jmp	nozffar
-		
+
 nozfnear:
 		mov	ebx, [FFAR]
 		cmp	z, ebx
 		jle	nozffar
 		or	[flag], 00001000h
-		
+
 nozffar:
 		cmp	x, 32767
 		jle	nomaxxclip
@@ -907,7 +913,7 @@ nominxt0clip:
 		or	[flag], 80004000h
 
 nomaxxt0clip:
-		cmp	ecx, -1024 
+		cmp	ecx, -1024
 		jge	nominyt0clip
 		mov	ecx, -1024
 		or	[flag], 80002000h
@@ -919,7 +925,7 @@ nominyt0clip:
 		or	[flag], 80002000h
 
 nomaxyt0clip:
-		and	ebx, 0000FFFFh		
+		and	ebx, 0000FFFFh
 		sal	ecx, 16			; equivalent to
 		or	ebx, ecx		; (yt0 << 16) | (xt0 & 0x0000FFFF);
 		mov	edx, sxy
@@ -927,8 +933,10 @@ nomaxyt0clip:
 		mov	ebx, [flag]
 		mov	edx, flagaddr
 		mov	[edx], ebx		; flag result stored in flag
-		
+
 		pop	ebx
 		ret
 	}
+	*/
+	return NULL;
 }

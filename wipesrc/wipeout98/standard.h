@@ -2,13 +2,13 @@
 */
 
 
-#include "\wipesrc\psx26\include\sys\types.h"
-#include "\wipesrc\psx26\include\libgte.h"
-#include "\wipesrc\psx26\include\libgpu.h"
-#include "\wipesrc\psx26\include\libsn.h"
-#include "\wipesrc\psx26\include\libetc.h"	 
-#include "\wipesrc\psx26\include\libcd.h"	 
-#include "\wipesrc\psx26\include\libspu.h"	
+#include "wipesrc/psx26/include/sys/types.h"
+#include "wipesrc/psx26/include/libgte.h"
+#include "wipesrc/psx26/include/libgpu.h"
+#include "wipesrc/psx26/include/libsn.h"
+#include "wipesrc/psx26/include/libetc.h"
+#include "wipesrc/psx26/include/libcd.h"
+#include "wipesrc/psx26/include/libspu.h"
 
 typedef unsigned char uchar;
 typedef unsigned long ulong;
@@ -34,6 +34,6 @@ extern 	ulong	FastRam;	// ajs (well ajy actually)
    result : 4096 == 1
 
 
-long rsin( long angle );      
-long rcos( long angle );      
+long rsin( long angle );
+long rcos( long angle );
 */

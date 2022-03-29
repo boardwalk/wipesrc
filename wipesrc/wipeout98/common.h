@@ -3,10 +3,10 @@
  */
 
 
-#include	"\wipesrc\psx26\include\sys\types.h"
-#include	"\wipesrc\psx26\include\libetc.h"
-#include	"\wipesrc\psx26\include\libgte.h"
-#include	"\wipesrc\psx26\include\libgpu.h"
+#include	"wipesrc/psx26/include/sys/types.h"
+#include	"wipesrc/psx26/include/libetc.h"
+#include	"wipesrc/psx26/include/libgte.h"
+#include	"wipesrc/psx26/include/libgpu.h"
 
 
 //#define	AddPrim(ot,p)	AJYAddPrim(ot,p)
@@ -34,14 +34,14 @@
 
 #ifdef DEBUG
 #else
-/*----- ƒfƒoƒbƒOƒ}ƒXƒN -----*/
-#define		meter(r,g,b)			
-#define		start_work_meter()		
-#define		add_work_meter(ot,wm)	
-#define		init_buffer_check()		
-#define		buffer_check()			
-#define		add_debug()				
-#define		debug_num(x,y,d)		
+/*----- ï¿½fï¿½oï¿½bï¿½Oï¿½}ï¿½Xï¿½N -----*/
+#define		meter(r,g,b)
+#define		start_work_meter()
+#define		add_work_meter(ot,wm)
+#define		init_buffer_check()
+#define		buffer_check()
+#define		add_debug()
+#define		debug_num(x,y,d)
 /*--------------------------*/
 #endif
 
@@ -54,10 +54,10 @@
 #endif
 
 
-/*** ƒI[ƒ_ƒŠƒ“ƒOƒe[ƒuƒ‹ŠÖŒW ***/
+/*** ï¿½Iï¿½[ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ÖŒW ***/
 #define		MAIN_OTSIZE		(512-64)
-#define		Z_SHIFT			(128)	/* ‚yƒVƒtƒg”ÍˆÍ */
-#define		OTZS			(4+1)	/* ƒI[ƒ_ƒŠƒ“ƒOƒe[ƒuƒ‹‚y•â³ƒVƒtƒg’l */
+#define		Z_SHIFT			(128)	/* ï¿½yï¿½Vï¿½tï¿½gï¿½Íˆï¿½ */
+#define		OTZS			(4+1)	/* ï¿½Iï¿½[ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½yï¿½â³ï¿½Vï¿½tï¿½gï¿½l */
 #define		OTSIZE			(Z_SHIFT*2 + MAIN_OTSIZE)
 
 #define		adjust_otz(z,zs)	\
@@ -143,18 +143,18 @@ typedef struct {
 
 
 /*******************************************************************
-	ƒ_ƒuƒ‹ƒoƒbƒtƒ@\‘¢‘Ì											
+	ï¿½_ï¿½uï¿½ï¿½ï¿½oï¿½bï¿½tï¿½@ï¿½\ï¿½ï¿½ï¿½ï¿½
 *******************************************************************/
-#define		PRIM_MAX	(0x22000)	/* 0x20000‚Å~‚Ü‚Á‚½‚±‚Æ‚Í‚È‚¢ */
+#define		PRIM_MAX	(0x22000)	/* 0x20000ï¿½Å~ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚Í‚È‚ï¿½ */
 typedef struct {
-	DRAWENV		draw;			/* •`‰æŠÂ‹« */
-	DISPENV		disp;			/* •\¦ŠÂ‹« */
-	u_long		ot[OTSIZE];		/* ƒI[ƒ_ƒŠƒ“ƒOƒe[ƒuƒ‹ */
-	
+	DRAWENV		draw;			/* ï¿½`ï¿½ï¿½Â‹ï¿½ */
+	DISPENV		disp;			/* ï¿½\ï¿½ï¿½ï¿½Â‹ï¿½ */
+	u_long		ot[OTSIZE];		/* ï¿½Iï¿½[ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½eï¿½[ï¿½uï¿½ï¿½ */
+
 	char		s[PRIM_MAX];	/* primitive buffer */
-	
+
 	STATIC_PRIM	sp;
-	
+
 	/* for work meter */
 #ifdef DEBUG
 	LINE_F2		wm[METER_MAX+METER_DIV];
@@ -163,27 +163,27 @@ typedef struct {
 
 
 /*******************************************************************
-	ƒOƒ[ƒoƒ‹ƒLƒƒƒbƒVƒ…\‘¢‘Ì										
+	ï¿½Oï¿½ï¿½ï¿½[ï¿½oï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½
 *******************************************************************/
 typedef struct {
 	char		*s;
 	u_long		*ot;
 	long		p,otz,flg,surf,otdz;
 	u_short		clut,tpage;
-	
-/* ’è” */
+
+/* ï¿½è” */
 	CVECTOR		amb;			/* 0xff, 0xff, 0xff */
 	CVECTOR		dqa;			/* 0x80, 0x80, 0x80 */
-	
+
 	DVECTOR		dv[4];
-	
+
 	long		apc_head[10];	/* constant */
-	char		buf[784];		/* ƒNƒŠƒbƒsƒ“ƒOƒoƒbƒtƒ@‚Æ‚µ‚ÄÅ‘å 784 */
-	
+	char		buf[784];		/* ï¿½Nï¿½ï¿½ï¿½bï¿½sï¿½ï¿½ï¿½Oï¿½oï¿½bï¿½tï¿½@ï¿½Æ‚ï¿½ï¿½ÄÅ‘ï¿½ 784 */
+
 	char		rest[144];
 } CACHE_COMMON;
 
-/*** ƒIƒuƒWƒFƒNƒg•\¦ŠÖ”ŒÄ‚Ño‚µƒ}ƒNƒ ***/
+/*** ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½\ï¿½ï¿½ï¿½Öï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½}ï¿½Nï¿½ï¿½ ***/
 #define			add_obj( p, m, n, z )		\
 					set_obj_matrix( &cs->buf[0], p, m ),	\
 					cs->s = (char *)addobj( cs->s, &cs->apc_head[0], \
@@ -196,7 +196,7 @@ typedef struct {
 					set_obj_matrix( &cs->buf[0], p, m ),	\
 					cs->s = (char *)addobj_dq( cs->s, &cs->apc_head[0],	\
 												((n) < obj_max) ? (n) : 1, 0 )
-/*** ƒpƒŒƒbƒg•â³ ***/
+/*** ï¿½pï¿½ï¿½ï¿½bï¿½gï¿½â³ ***/
 #define			add_obj_p( p, m, n, dp )		\
 					set_obj_matrix( &cs->buf[0], p, m ),	\
 					cs->s = (char *)addobj( cs->s, &cs->apc_head[0], \
@@ -212,48 +212,48 @@ typedef struct {
 
 
 /*******************************************************************
-	Ô\‘¢‘Ì														
+	ï¿½Ô\ï¿½ï¿½ï¿½ï¿½
 *******************************************************************/
 typedef struct {
 	long	dt,ds;
 	VECTOR	dpos;
 	VECTOR	drot;
-	
-	short	drive_mode;	/* 0:ƒI[ƒgƒ} 1:ƒ}ƒjƒ…ƒAƒ‹ */
-	short	shift;		/* ƒMƒAƒ|ƒWƒVƒ‡ƒ“ */
-	long	rpm;		/* ƒGƒ“ƒWƒ“‰ñ“]” */
-	long	shift_load;	/* ƒMƒAƒVƒtƒg•‰‰× */
-	long	old_tire_rpm;	/* ˆÈ‘O‚Ìƒ^ƒCƒ„‚Ì‰ñ“]” */
-	
-	short	slip_mode;	/* Œ»İŠŠ‚Á‚Ä‚¢‚é‚© */
+
+	short	drive_mode;	/* 0:ï¿½Iï¿½[ï¿½gï¿½} 1:ï¿½}ï¿½jï¿½ï¿½ï¿½Aï¿½ï¿½ */
+	short	shift;		/* ï¿½Mï¿½Aï¿½|ï¿½Wï¿½Vï¿½ï¿½ï¿½ï¿½ */
+	long	rpm;		/* ï¿½Gï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ */
+	long	shift_load;	/* ï¿½Mï¿½Aï¿½Vï¿½tï¿½gï¿½ï¿½ï¿½ï¿½ */
+	long	old_tire_rpm;	/* ï¿½È‘Oï¿½Ìƒ^ï¿½Cï¿½ï¿½ï¿½Ì‰ï¿½]ï¿½ï¿½ */
+
+	short	slip_mode;	/* ï¿½ï¿½ï¿½İŠï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚© */
 	long	slip_level;
 	long	handle;
-	
-	/*** Ô‘Ì‚Ì•¨—“I”—Ê ***/
-	long	max_speed;	/* Å‚‘¬ */
-	/* ‹ÉÀ•WŒn */
-	long	speed;		/* Ô‚ÌƒXƒs[ƒh */
-	long	a;			/* Ô‚Ì‰Á‘¬“x */
-	long	v_ry;		/* ‘¬“x•ûŒü */
-	
-	/*** Œäƒ^ƒCƒ„—l ***/
-	/* ‘O—Ö */
-	long	tire_dir;	/* ƒ^ƒCƒ„‚ÌÔ‘Ì‚É‘Î‚·‚é‘Š‘ÎŠp“x */
-	/* Œã—Ö */
-	long	tire_rpm;	/* ƒ^ƒCƒ„‚Ì‰ñ“]” */
-	long	tire_mode;	/* ƒ^ƒCƒ„‚Ì“®ìó‘Ô */
-	
-	
+
+	/*** ï¿½Ô‘Ì‚Ì•ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ ***/
+	long	max_speed;	/* ï¿½Åï¿½ï¿½ï¿½ */
+	/* ï¿½Éï¿½ï¿½Wï¿½n */
+	long	speed;		/* ï¿½Ô‚ÌƒXï¿½sï¿½[ï¿½h */
+	long	a;			/* ï¿½Ô‚Ì‰ï¿½ï¿½ï¿½ï¿½x */
+	long	v_ry;		/* ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ */
+
+	/*** ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½l ***/
+	/* ï¿½Oï¿½ï¿½ */
+	long	tire_dir;	/* ï¿½^ï¿½Cï¿½ï¿½ï¿½ÌÔ‘Ì‚É‘Î‚ï¿½ï¿½é‘Šï¿½ÎŠpï¿½x */
+	/* ï¿½ï¿½ï¿½ */
+	long	tire_rpm;	/* ï¿½^ï¿½Cï¿½ï¿½ï¿½Ì‰ï¿½]ï¿½ï¿½ */
+	long	tire_mode;	/* ï¿½^ï¿½Cï¿½ï¿½ï¿½Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ */
+
+
 	short	jump_flag;
 	short	jump_cnt;
 	long	jump_vy;
 	long	jump_pitch;
-	
+
 	short	gas_trig,brk_trig;
 	short	gas,brk;
-	
-	short	ranking;	/* ‘‡‡ˆÊ (1 ~ 12) */
-	
+
+	short	ranking;	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (1 ~ 12) */
+
 	short	make_best_lap;
 	long	last_t;
 	short	lap,unlap;
@@ -264,22 +264,22 @@ typedef struct {
 
 
 typedef struct {
-	short	f_drift;		/* ƒhƒŠƒtƒgƒtƒ‰ƒO(0...OK,1...NG) */
-	short	f_hit_lock;		/* ƒqƒbƒgƒƒbƒN */
-	short	f_direction;	/* ‘–s•û–@ */
-	short	f_front_car;	/* æsÔ”Ô† */
-	short	f_back_car;		/* Œã‘±Ô”Ô† */
-	short	f_pass1;		/* ’Ç‰z‚µƒtƒ‰ƒOi‚P’iŠKj(-2~16) */
-	short	f_lap;			/* ü‰ñƒJƒEƒ“ƒ^[ */
-	short	f_mycar_pos;	/* ƒ}ƒCƒJ[Ú‹ßƒtƒ‰ƒOiƒ‰ƒ“ƒLƒ“ƒO—pj*/
-	short	f_passd_mycar;	/* ƒ}ƒCƒJ[ƒ‰ƒ“ƒLƒ“ƒO */
-	short	f_condition;	/* ’Ç‚¢‚©‚¯ (ÔíŒÀ’è) */
-	short	f_chase_mycar;	/* ƒ}ƒCƒJ[Ú‹ßƒtƒ‰ƒO iƒ{ƒCƒX—pj*/
-	short	f_curve_lock;	/* ƒJ[ƒu‚ÌƒƒbƒNƒtƒ‰ƒO */
-	short	f_jump;			/* ƒWƒƒƒ“ƒvƒtƒ‰ƒO */
-	short	f_straight;		/* ƒXƒs[ƒho‚¹‚¿‚á‚¤ƒtƒ‰ƒO */
-	short	f_side_level;	/* “¹•ŒÀ’èƒtƒ‰ƒO */
-	short	f_satan_run;	/* ˆ«–‚ƒJ[‚¨”â˜I–Úƒtƒ‰ƒO */
+	short	f_drift;		/* ï¿½hï¿½ï¿½ï¿½tï¿½gï¿½tï¿½ï¿½ï¿½O(0...OK,1...NG) */
+	short	f_hit_lock;		/* ï¿½qï¿½bï¿½gï¿½ï¿½ï¿½bï¿½N */
+	short	f_direction;	/* ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½@ */
+	short	f_front_car;	/* ï¿½ï¿½sï¿½Ô”Ôï¿½ */
+	short	f_back_car;		/* ï¿½ã‘±ï¿½Ô”Ôï¿½ */
+	short	f_pass1;		/* ï¿½Ç‰zï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Oï¿½iï¿½Pï¿½iï¿½Kï¿½j(-2~16) */
+	short	f_lap;			/* ï¿½ï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½^ï¿½[ */
+	short	f_mycar_pos;	/* ï¿½}ï¿½Cï¿½Jï¿½[ï¿½Ú‹ßƒtï¿½ï¿½ï¿½Oï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Oï¿½pï¿½j*/
+	short	f_passd_mycar;	/* ï¿½}ï¿½Cï¿½Jï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½O */
+	short	f_condition;	/* ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½Ôï¿½ï¿½ï¿½ï¿½) */
+	short	f_chase_mycar;	/* ï¿½}ï¿½Cï¿½Jï¿½[ï¿½Ú‹ßƒtï¿½ï¿½ï¿½O ï¿½iï¿½{ï¿½Cï¿½Xï¿½pï¿½j*/
+	short	f_curve_lock;	/* ï¿½Jï¿½[ï¿½uï¿½Ìƒï¿½ï¿½bï¿½Nï¿½tï¿½ï¿½ï¿½O */
+	short	f_jump;			/* ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½tï¿½ï¿½ï¿½O */
+	short	f_straight;		/* ï¿½Xï¿½sï¿½[ï¿½hï¿½oï¿½ï¿½ï¿½ï¿½ï¿½á‚¤ï¿½tï¿½ï¿½ï¿½O */
+	short	f_side_level;	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O */
+	short	f_satan_run;	/* ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½[ï¿½ï¿½ï¿½ï¿½Iï¿½Úƒtï¿½ï¿½ï¿½O */
 } C_CAR_FLAG;
 
 
@@ -289,38 +289,38 @@ typedef struct {
 	VECTOR	dpos;
 	VECTOR	drot;
 	long	last_t;
-	long	speed;		/* Œ»İ‚ÌƒXƒs[ƒh */
-	long	handle;		/* ƒnƒ“ƒhƒ‹ */
+	long	speed;		/* ï¿½ï¿½ï¿½İ‚ÌƒXï¿½sï¿½[ï¿½h */
+	long	handle;		/* ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ */
 
 	C_CAR_FLAG	flg;
 
-	long	target_s;		/*–Ú•WƒŒ[ƒ“*/
-	long	target_spd;		/*–Ú•WƒXƒs[ƒh*/
-	long	final_spd;		/*ÅI’¼üƒXƒs[ƒh*/
+	long	target_s;		/*ï¿½Ú•Wï¿½ï¿½ï¿½[ï¿½ï¿½*/
+	long	target_spd;		/*ï¿½Ú•Wï¿½Xï¿½sï¿½[ï¿½h*/
+	long	final_spd;		/*ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½sï¿½[ï¿½h*/
 
-	long	hit_drot;		/*ƒqƒbƒg‚Åó‚¯‚½Œü‚«*/
-	long	hit_ds;			/*ƒqƒbƒg‚Å”ò‚Î‚³‚ê‚é•*/
-	long	std_dir;		/*is•ûŒü*/
-	long	eye_dir[4];		/*–Ú•W•ûŒü ([0].now [1].next [2].next*2 [3].back)*/
-	long	c_car_dist;		/*æsÔ‚Æ‚Ì‹——£*/
-	long	frnt_dist;		/*ƒ`ƒFƒbƒN—p*/
-	long	mycar_dist;		/*ƒ}ƒCƒJ[‚Æ‚Ì‹——£*/
+	long	hit_drot;		/*ï¿½qï¿½bï¿½gï¿½Åó‚¯‚ï¿½ï¿½ï¿½ï¿½ï¿½*/
+	long	hit_ds;			/*ï¿½qï¿½bï¿½gï¿½Å”ï¿½Î‚ï¿½ï¿½ï¿½é•*/
+	long	std_dir;		/*ï¿½iï¿½sï¿½ï¿½ï¿½ï¿½*/
+	long	eye_dir[4];		/*ï¿½Ú•Wï¿½ï¿½ï¿½ï¿½ ([0].now [1].next [2].next*2 [3].back)*/
+	long	c_car_dist;		/*ï¿½ï¿½sï¿½Ô‚Æ‚Ì‹ï¿½ï¿½ï¿½*/
+	long	frnt_dist;		/*ï¿½`ï¿½Fï¿½bï¿½Nï¿½p*/
+	long	mycar_dist;		/*ï¿½}ï¿½Cï¿½Jï¿½[ï¿½Æ‚Ì‹ï¿½ï¿½ï¿½*/
 
-	short	jump_cnt;		/*ƒWƒƒƒ“ƒvƒJƒEƒ“ƒ^[*/
-	short	sw_cnt;			/*—h‚êƒJƒEƒ“ƒg*/
-	long	sw_width;		/*—h‚ê•*/
-	long	jump_vy;		/*‚‚³*/
-	long	jump_pitch;		/*ƒsƒbƒ`*/
+	short	jump_cnt;		/*ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½Jï¿½Eï¿½ï¿½ï¿½^ï¿½[*/
+	short	sw_cnt;			/*ï¿½hï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½g*/
+	long	sw_width;		/*ï¿½hï¿½ê•*/
+	long	jump_vy;		/*ï¿½ï¿½ï¿½ï¿½*/
+	long	jump_pitch;		/*ï¿½sï¿½bï¿½`*/
 
-/******** Ô‚Ì«”\ ********/
-	short	machine_type;	/*Ôí«”\İ’è*/
-	long	max_speed;		/*Å‚‘¬“x*/
-	long	paccel;			/*’Êí‰Á‘¬*/
-	long	maccel;			/*’ÊíŒ¸‘¬ (Œ»İ–¢g—p)*/
-	long	dacl;			/*‰Á‘¬“x’²®(tmp)*/
-	u_long	start_acl;		/*“¯ƒXƒ^[ƒg“Á•Ê‰Á‘¬*/
-	u_long	chase_spd;		/*’Ç‚¢‚©‚¯“Á•Ê‘¬“x*/
-	u_long	away_spd;		/*“¦‚°“Á•Ê‘¬“x*/
+/******** ï¿½Ô‚Ìï¿½ï¿½\ ********/
+	short	machine_type;	/*ï¿½Ôí«ï¿½\ï¿½İ’ï¿½*/
+	long	max_speed;		/*ï¿½Åï¿½ï¿½ï¿½ï¿½x*/
+	long	paccel;			/*ï¿½Êï¿½ï¿½ï¿½ï¿½*/
+	long	maccel;			/*ï¿½ÊíŒ¸ï¿½ï¿½ (ï¿½ï¿½ï¿½İ–ï¿½ï¿½gï¿½p)*/
+	long	dacl;			/*ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½(tmp)*/
+	u_long	start_acl;		/*ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½^ï¿½[ï¿½gï¿½ï¿½ï¿½Ê‰ï¿½ï¿½ï¿½*/
+	u_long	chase_spd;		/*ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê‘ï¿½ï¿½x*/
+	u_long	away_spd;		/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê‘ï¿½ï¿½x*/
 } C_CAR_BUF;
 
 
@@ -330,13 +330,13 @@ typedef struct {
 	short	use;
 	short	model;
 	long	flag;
-	
+
 	long	t,s;
 	VECTOR	pos;
 	VECTOR	rot;
 	VECTOR	tire_rot;
 	long	shadow_y;
-	
+
 	short	hit;
 	VECTOR	hvec;
 /*----------------------*/
@@ -361,12 +361,12 @@ typedef struct {
 } REPLAY_BUF;
 
 typedef struct {
-	short	flag;	/* ƒVƒF[ƒfƒBƒ“ƒOƒtƒ‰ƒO */
-	CVECTOR	c;		/* ƒVƒF[ƒfƒBƒ“ƒOƒJƒ‰[ */
+	short	flag;	/* ï¿½Vï¿½Fï¿½[ï¿½fï¿½Bï¿½ï¿½ï¿½Oï¿½tï¿½ï¿½ï¿½O */
+	CVECTOR	c;		/* ï¿½Vï¿½Fï¿½[ï¿½fï¿½Bï¿½ï¿½ï¿½Oï¿½Jï¿½ï¿½ï¿½[ */
 	CVECTOR	sc,dc;
-	short	si,di;	/* si‚Í‚O‚©‚çdi‚Ö‚P‚¸‚Â‘‰Á */
-	short	sp;		/* ‹ó‚ÌƒpƒŒƒbƒg */
-	short	sf;		/* ‹óƒtƒ‰ƒO */
+	short	si,di;	/* siï¿½Í‚Oï¿½ï¿½ï¿½ï¿½diï¿½Ö‚Pï¿½ï¿½ï¿½Â‘ï¿½ï¿½ï¿½ */
+	short	sp;		/* ï¿½ï¿½Ìƒpï¿½ï¿½ï¿½bï¿½g */
+	short	sf;		/* ï¿½ï¿½tï¿½ï¿½ï¿½O */
 	short	ssi,sdi;
 } DEPTH_QUEUE;
 

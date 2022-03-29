@@ -1,4 +1,4 @@
-#include "\wipesrc\psx26\include\sys\types.h"
+#include "wipesrc/psx26/include/sys/types.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,6 +15,6 @@ u_long *make_data_cache(void)
 		}
 
 	return(cache_addr);
-	
+
 
 }

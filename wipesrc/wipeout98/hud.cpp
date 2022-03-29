@@ -36,7 +36,7 @@
 
 extern short FrameState,screenres;
 extern float upres;
- 
+
 TexChar	CharSet16[40] ;
 TexChar	CharSet12[40] ;
 TexChar	CharSet8[40] ;
@@ -45,9 +45,9 @@ extern char globalPilot[];
 short speedo_x[]={179,259,371,499};
 short speedo_y[]={195,255,337,435};
 
-ushort Text16[] = 	{25, 24, 17, 24, 24, 17, 25, 18, 7, 17, 
-						117, 117, 128, 117, 124, 124, 126, 124, 118, 117, 
-						217, 217, 229,	224, 217, 218, 224, 210, 218, 217, 218, 
+ushort Text16[] = 	{25, 24, 17, 24, 24, 17, 25, 18, 7, 17,
+						117, 117, 128, 117, 124, 124, 126, 124, 118, 117,
+						217, 217, 229,	224, 217, 218, 224, 210, 218, 217, 218,
 						318, 318, 318, 322, 325, 307, 307} ;
 
 ushort Text12[] = 	{19, 19, 14, 19, 19, 13, 19, 14, 6, 13, 14, 14,
@@ -63,20 +63,20 @@ extern 	HiScores	scoreTable[] ;
 extern	ChampionShip	winTable[] ;
 extern	int	inattract;
 extern long	theFrameRate;
- 
+
 void InitText()
 {
 
 	TIMlist  		*timPtr;
 	int				i;
-	
+
 	/**********************************************************/
 	/*** 			Initialise In Game Character Set				  ***/
 	/**********************************************************/
 
    DRTEXT_16 = TextureTableCount;
 	timPtr = LoadCompressedTextureSequence( "wipeout\\textures\\drfonts.cmp" );
-   LoadCmpFiles( timPtr ); 
+   LoadCmpFiles( timPtr );
    DRTEXT_12 = DRTEXT_16 + 1 ;
    DRTEXT_8 = DRTEXT_16 + 2 ;
 	DRTEXT_RED = DRTEXT_16 + 4 ;
@@ -86,27 +86,27 @@ void InitText()
 	for(i = 0; i < 600; i++)
 	{
 //		SetPolyFT4(&(display_text[i]));	// PCwipeout
-		SetSprt(&(display_text[i]));			
+		SetSprt(&(display_text[i]));
 
 //		setTPage(&(display_text[i]),0,0,576, 256); // PCwipeout
 		display_text[i].code=0x64;
 		display_text[i].r0=230; // PCwipeout
 		display_text[i].g0=0;
 		display_text[i].b0=BLACK_NOT_DRAWN;
-	}																		      
-}	
+	}
+}
 
 void InitSpeedo (Speedo *speedo)
 {
 
 	int j;
 	Texture *tex_ptr ;
-	
+
 	tex_ptr = LoadTexture ( "wipeout\\textures\\speedo.tim", 1 ) ;
 
 	for(j = 0; j < 2; j++)
 	{
-		SetSprt(&(speedo->facia[j]));			
+		SetSprt(&(speedo->facia[j]));
 		speedo->facia[j].r0=230; // PCwipeout
 		speedo->facia[j].g0=0; // PCwipeout
 		speedo->facia[j].b0=BLACK_NOT_DRAWN; // PCwipeout
@@ -115,7 +115,7 @@ void InitSpeedo (Speedo *speedo)
 		setWH(&(speedo->facia[j]),SPEEDO_WIDTH,SPEEDO_HEIGHT);
 	   	speedo->facia[j].clut = tex_ptr->cba;
 
-		SetSprt(&(speedo->transbar[j]));			
+		SetSprt(&(speedo->transbar[j]));
 		speedo->transbar[j].r0=230; // PCwipeout
 		speedo->transbar[j].b0=RED_TRANSL; // PCwipeout
 		speedo->transbar[j].g0=0; // PCwipeout
@@ -124,7 +124,7 @@ void InitSpeedo (Speedo *speedo)
 		setWH(&(speedo->transbar[j]),SPEEDO_WIDTH,SPEEDO_HEIGHT);
    		speedo->transbar[j].clut = tex_ptr->cba;
 
-		SetSprt(&(speedo->solidbar[j]));			
+		SetSprt(&(speedo->solidbar[j]));
 		speedo->solidbar[j].r0=230; // PCwipeout
 		speedo->solidbar[j].g0=0; // PCwipeout
 		speedo->solidbar[j].b0=BLACK_NOT_DRAWN; // PCwipeout
@@ -179,11 +179,11 @@ void fill_speedo (Speedo *speedo, int speed, int thrust)
 	int width, barIntervalXTop;
 	int	andy=0;
 
-	target = speed/2000;		
+	target = speed/2000;
 	if(target > NUM_BARS) target = NUM_BARS;
 
-// THE FOLLOWING DOES ALL THE LOVELY SPEEDO STUFF																		 
-		andy = (speed/2000);		
+// THE FOLLOWING DOES ALL THE LOVELY SPEEDO STUFF
+		andy = (speed/2000);
 		if(andy > NUM_BARS) andy = NUM_BARS;
 		if (andy==NUM_BARS)
 		{
@@ -191,14 +191,14 @@ void fill_speedo (Speedo *speedo, int speed, int thrust)
 		}
 		else
 		{
-			target = speed%2000;	
+			target = speed%2000;
 			width = 	(speedo->barInfo[andy].Right.topx) - (speedo->barInfo[andy].Left.topx);
 			barIntervalXTop = (width*target)/2000;
 			setWH(&(speedo->solidbar[CurrentScreen]),speedo->barInfo[andy].Left.topx+barIntervalXTop,SPEEDO_HEIGHT);
 		}
 		AddPrim(OT[CurrentScreen], (u_long *)&(speedo->solidbar[CurrentScreen]));
 
-		andy = (thrust/70);		
+		andy = (thrust/70);
 		if(andy > NUM_BARS) andy = NUM_BARS;
 		if (andy==NUM_BARS)
 		{
@@ -206,7 +206,7 @@ void fill_speedo (Speedo *speedo, int speed, int thrust)
 		}
 		else
 		{
-			target = thrust%70;		
+			target = thrust%70;
 			width = 	(speedo->barInfo[andy].Right.topx) - (speedo->barInfo[andy].Left.topx);
 			barIntervalXTop = (width*target)/70;
 			setWH(&(speedo->transbar[CurrentScreen]),speedo->barInfo[andy].Left.topx+barIntervalXTop	,SPEEDO_HEIGHT);
@@ -214,12 +214,12 @@ void fill_speedo (Speedo *speedo, int speed, int thrust)
 
 		AddPrim(OT[CurrentScreen], (u_long *)&(speedo->transbar[CurrentScreen]));
 // BIT SHORTER THAN STU'S
-}  	
+}
 
 
 
 void AddTime(int time, TEXT_DATA *pos_data, int colour)
-						
+
 {
    int j;
 	int index = 0;
@@ -247,7 +247,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 
 	switch (size)
 	{
-		case 16:	charSet = &(CharSet16[0]) ;	
+		case 16:	charSet = &(CharSet16[0]) ;
 					charTex = (Texture *) TextureTable [DRTEXT_16] ;
 					break ;
 
@@ -310,12 +310,12 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
 		x += currLett;
 		textPrim++;
-	}	
+	}
 
 
 	currLett = charSet[36].width ;
 
-	
+
 		setXY0(&display_text[textPrim],x,y);	// PCwipeout
 		setUV0(&display_text[textPrim],charSet[36].vramX, charSet[36].vramY);	// PCwipeout
 		setWH(&display_text[textPrim],currLett,size);	// PCwipeout
@@ -338,7 +338,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 	}
 
    AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
-	
+
 
 	x += currLett;
 
@@ -362,7 +362,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 		setXY0(&display_text[textPrim],x,y);	// PCwipeout
 		setUV0(&display_text[textPrim],charSet[charNum].vramX, charSet[charNum].vramY);	// PCwipeout
 		setWH(&display_text[textPrim],currLett,size);	// PCwipeout
-	
+
 		if (colour == WhiteText)
 		{
  			display_text[textPrim].clut = charTex->cba;
@@ -380,13 +380,13 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 		}
 
    	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
-	
+
 		x += currLett;
 		textPrim++;
-	}	
-	
+	}
+
 	currLett = charSet[37].width ;
-	
+
 	setXY0(&display_text[textPrim],x,y);	// PCwipeout
 	setUV0(&display_text[textPrim],charSet[37].vramX, charSet[37].vramY);	// PCwipeout
 	setWH(&display_text[textPrim],currLett,size);	// PCwipeout
@@ -409,7 +409,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 
 
    AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
-	
+
 
 	x += currLett;
 
@@ -421,12 +421,12 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 	if (size != 8)
 	{
 		size = 8 ;
-		y += 8 ;	
+		y += 8 ;
 	}
-	
+
 	currLett = charSet[(tenths+26)].width ;
 
-	
+
 	setXY0(&display_text[textPrim],x,y);	// PCwipeout
 	setUV0(&display_text[textPrim],charSet[tenths+26].vramX, charSet[tenths+26].vramY);	// PCwipeout
 	setWH(&display_text[textPrim],currLett,size);	// PCwipeout
@@ -453,7 +453,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 	textPrim++;
 
 }
-  	
+
 void AddText(char* text_ptr, TEXT_DATA *pos_data, int colour)
 {
 	uchar 	letter=0;
@@ -473,7 +473,7 @@ void AddText(char* text_ptr, TEXT_DATA *pos_data, int colour)
 
 	switch (size)
 	{
-		case 16:	charSet = &(CharSet16[0]) ;	
+		case 16:	charSet = &(CharSet16[0]) ;
 					charTex = (Texture *) TextureTable [DRTEXT_16] ;
 					break ;
 
@@ -510,8 +510,8 @@ void AddText(char* text_ptr, TEXT_DATA *pos_data, int colour)
 			setXY0(&display_text[textPrim],newx,newy);	// PCwipeout
 			setUV0(&display_text[textPrim],charSet[j].vramX, charSet[j].vramY);	// PCwipeout
 			setWH(&display_text[textPrim],currLett,size);	// PCwipeout
-									
-	
+
+
 			if (colour == WhiteText)
 			{
    				display_text[textPrim].clut = charTex->cba;
@@ -537,7 +537,7 @@ void AddText(char* text_ptr, TEXT_DATA *pos_data, int colour)
 		{
 		 	x += 8 ;
 		}
-	}	
+	}
 }
 
 
@@ -558,7 +558,7 @@ void AddNumber(int num, TEXT_DATA *pos_data, int colour)
 
 	switch (size)
 	{
-		case 16:	charSet = &(CharSet16[0]) ;	
+		case 16:	charSet = &(CharSet16[0]) ;
 					charTex = (Texture *) TextureTable [DRTEXT_16] ;
 					break ;
 
@@ -577,7 +577,7 @@ void AddNumber(int num, TEXT_DATA *pos_data, int colour)
       num = num/10;
       if (num == 0)
          break;
-   } 
+   }
 
    for (j = i; j >= 0; j--)
 	{
@@ -593,7 +593,7 @@ void AddNumber(int num, TEXT_DATA *pos_data, int colour)
 
 		if (colour == WhiteText)
 		{
-		
+
 			display_text[textPrim].r0 = 230;
 			display_text[textPrim].g0 = 0;
 			display_text[textPrim].b0 = BLACK_NOT_DRAWN;
@@ -608,11 +608,11 @@ void AddNumber(int num, TEXT_DATA *pos_data, int colour)
    		display_text[textPrim].clut = redTex->cba;
 		}
 
- 
+
       AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
-		textPrim++;	
+		textPrim++;
 		x += currLett;
-	}	
+	}
 
 }
 
@@ -628,7 +628,7 @@ void AddDelEnd(char dispChar, TEXT_DATA *pos_data, int colour)
 
 	newx = x * upres;
 	newy = y * upres;
-	
+
 	size = pos_data->size ;
 
 	endTex = (Texture *) TextureTable [DRTEXT_RED+3] ;
@@ -645,7 +645,7 @@ void AddDelEnd(char dispChar, TEXT_DATA *pos_data, int colour)
 		setXY0(&display_text[textPrim],newx,newy);	// PCwipeout
 		setUV0(&display_text[textPrim],delTex->u0, delTex->v0);	// PCwipeout
 		setWH(&display_text[textPrim],24,size);	// PCwipeout
-	}	
+	}
 
 	if (colour == WhiteText)
  			display_text[textPrim].clut = endTex->cba;
@@ -667,7 +667,7 @@ void SetCharTextures (char size)
 	short vramY, vramX ;
 	short searchLett, vramRow ;
 	ushort *charSet ;
-	
+
 
 
 	switch (size)
@@ -685,20 +685,20 @@ void SetCharTextures (char size)
 			  	break ;
 
 	}
- 
+
 
 	for (j=0; j < 40; j++)
 	{
 
 		currLett = charSet[j] ;
-	
+
 		vramY = 0 ;
 
 		vramRow = (currLett / 100) ;
 
 		vramY += (vramRow * size) ;
 		vramX = 0 ;
-  
+
 
 		for (i=0 ; i < j; i++)
 		{
@@ -706,9 +706,9 @@ void SetCharTextures (char size)
 			if ((searchLett / 100)  == vramRow)
 				vramX += (searchLett % 100)  ;
 		}
-	
 
-	 
+
+
 		switch (size)
 		{
 			case 8:
@@ -716,7 +716,7 @@ void SetCharTextures (char size)
 				CharSet8[j].vramX = vramX ;
 				CharSet8[j].vramY = vramY + 100 ;
 				CharSet8[j].width = (currLett % 100)  ;
-				
+
 			  	break ;
 
 			case 12:
@@ -735,8 +735,8 @@ void SetCharTextures (char size)
 			  	break ;
 
 		}
- 
-	}					
+
+	}
 
 }
 
@@ -753,10 +753,10 @@ TEXT_DATA *text_data( int start_pos_x, int start_pos_y, int size)
 }
 
 extern int short startLinePos[ ];
-  	
+
 
 void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *gameData)
-{	
+{
 	int 				i, j;
 	int 				position = NO_OF_SHIPS;
 	int 				ownSecNo, serialSecNo;
@@ -764,7 +764,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 	int				tempPosition = 1 ;
 	char				trackList[15] = {2, 4, 1, 12, 8, 9, 10, 3, 5, 6, 7, 11, 13, 14, 15} ;
 	int				secNo;
-	static			lapRecordCount = 0 ;
+	static int			lapRecordCount = 0 ;
 	SortTable		sortTable [ NO_OF_SHIPS ] ;
 	char				tempShip ;
 	char				tempPoints ;
@@ -773,7 +773,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 	if (raceType == HEAD_TO_HEAD)
 	{
 		for(i = 0; i < NO_OF_SHIPS; i++)
-		{   
+		{
 			if ((i == ownShip) || (i == serialShip))
 			{
 				if( i == ownShip )
@@ -793,7 +793,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 					{
 						if(shipIndex[i].lapNo == crossedLine)
 								shipIndex[i].lapNo++;
-						
+
 						crossedLine++;
 					}
 					else
@@ -806,7 +806,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 		}
 
 		for(i = 0; i < NO_OF_SHIPS; i++)
-		{  	
+		{
 			if ((i == ownShip) || (i == serialShip))
 			{
 
@@ -842,7 +842,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 	else
 	{
 		for(i = 0; i < NO_OF_SHIPS; i++)
-		{  	
+		{
 			if( i == ownShip)
 			{
 				if( (shipIndex[i].prevSecNo == (startLinePos[ trackNo ]+1) ) &&
@@ -860,7 +860,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 				{
 					if(shipIndex[i].lapNo == crossedLine)
 							shipIndex[i].lapNo++;
-					
+
 					crossedLine++;
 					if(raceType == TIME_TRIAL)
 						shipIndex[i].weaponType = TURBO;
@@ -873,7 +873,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 			}
 		}
 		for(i = 0; i < NO_OF_SHIPS; i++)
-		{  	
+		{
 			secNo = shipIndex[i].nearSecNo - (startLinePos[ trackNo ] + 1);
 
 			if(i == ownShip)
@@ -910,9 +910,9 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 	{
 		if(shipIndex[serialShip].nearSecNo <= startLinePos[trackNo]) serialSecNo = shipIndex[serialShip].nearSecNo + track->sectionCount;
 		else serialSecNo = shipIndex[serialShip].nearSecNo;
-	
+
 	}
-	
+
 	position = CalcPosition(shipIndex);
 
 	if ((raceType == TWO_PLAYER_RACE) || (raceType == HEAD_TO_HEAD))
@@ -939,21 +939,21 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 
 	if(gameType == SINGLE)
 	{
-		if((shipIndex[ownShip].lapNo != shipIndex[ownShip].prevLapNo) && 
+		if((shipIndex[ownShip].lapNo != shipIndex[ownShip].prevLapNo) &&
 			(shipIndex[ownShip].lapNo > 1) && (shipIndex[ownShip].lapNo <= END_LAP+1))
 		{
 			if ((CheckLapRecord (gameData, &(shipIndex[0]), ownShip)))
 			{
 				gameData->newLapRecord = 1 ;
 //				printf ("New lap record\n") ;
-			}			
+			}
 		}
 		shipIndex[ownShip].prevLapNo = shipIndex[ownShip].lapNo ;
 	}
 	else
 	{
-		if	(	((shipIndex[ownShip].lapNo != shipIndex[ownShip].prevLapNo) && 
-				(shipIndex[ownShip].lapNo > 1) && (shipIndex[ownShip].lapNo <= END_LAP+1)) 
+		if	(	((shipIndex[ownShip].lapNo != shipIndex[ownShip].prevLapNo) &&
+				(shipIndex[ownShip].lapNo > 1) && (shipIndex[ownShip].lapNo <= END_LAP+1))
 			)
 		{
 			if (gameType != SINGLE)
@@ -964,8 +964,8 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 					gameData->newLapRecord = 1 ;
 				}
 		}
-		else if( ((shipIndex[serialShip].lapNo != shipIndex[serialShip].prevLapNo) && 
-					(shipIndex[serialShip].lapNo > 1) && (shipIndex[serialShip].lapNo <= END_LAP+1)) 
+		else if( ((shipIndex[serialShip].lapNo != shipIndex[serialShip].prevLapNo) &&
+					(shipIndex[serialShip].lapNo > 1) && (shipIndex[serialShip].lapNo <= END_LAP+1))
 				)
 		{
 			if (gameType != SINGLE)
@@ -990,8 +990,8 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 		if (gameType == MASTER || gameType == SLAVE)
 		{
 			AddText ("P", text_data (260, 60, 8), RedText) ;
-			AddNumber (2, text_data (274, 60, 8), RedText) ; 	
-			AddNumber (winTable[serialShip].racePosition, text_data (290, 60, 8), WhiteText) ; 	
+			AddNumber (2, text_data (274, 60, 8), RedText) ;
+			AddNumber (winTable[serialShip].racePosition, text_data (290, 60, 8), WhiteText) ;
 		}
 
 		AddText ("LAP", text_data (15, 4, 8), RedText) ; // PCwipeout Y was 10
@@ -1023,7 +1023,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 		if((shipIndex[ownShip].attr & DIRECTION) == 0)
 		{
 			CentreText ("WRONG WAY", text_data (0, 120, 16), RedText) ;
-		}	
+		}
 #else
 
 #endif
@@ -1031,7 +1031,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 
 	/************ HAVE FINISHED RACE *****************/
 	for(i = 0; i < NO_OF_SHIPS; i++)
-	{ 
+	{
 		if( i != ownShip)
 		{
 			if((shipIndex[i].lapNo > END_LAP) && (shipIndex[i].attr & RACING))
@@ -1052,10 +1052,10 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 
 	if(shipIndex[ownShip].lapNo > END_LAP /*&& ownSecNo == (startLinePos[ trackNo ]+1))*/ && (shipIndex[ownShip].attr & RACING))
 	{
-	
+
 		inattract=1;
 
-		gameData->Position = winTable[ownShip].racePosition; 
+		gameData->Position = winTable[ownShip].racePosition;
 
 //		printf ("Position = %d \n", gameData->Position) ;
 
@@ -1078,43 +1078,43 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 
 			if ((gameData->Position >= 1 && gameData->Position <= 3)
 					&& gameData->Lives > 0)
-			{		
+			{
 
-				/* Find position during race */		
+				/* Find position during race */
 				for (i=0; i < NO_OF_SHIPS; i++)
 				{
 					switch (winTable[i].racePosition)
 					{
 						case 1:  winTable[i].points += 9 ;
-									winTable[i].racePoints = 9 ;									
+									winTable[i].racePoints = 9 ;
 									break ;
 
 						case 2:	winTable[i].points += 7 ;
-									winTable[i].racePoints = 7 ;									
+									winTable[i].racePoints = 7 ;
 									break ;
 
 						case 3:	winTable[i].points += 5;
-									winTable[i].racePoints = 5 ;									
+									winTable[i].racePoints = 5 ;
 									break ;
 
 						case 4:	winTable[i].points += 3;
-									winTable[i].racePoints = 3 ;									
+									winTable[i].racePoints = 3 ;
 									break ;
 
 						case 5:	winTable[i].points += 2;
-									winTable[i].racePoints = 2 ;									
+									winTable[i].racePoints = 2 ;
 									break ;
 
 						case 6:	winTable[i].points += 1;
-									winTable[i].racePoints = 1 ;									
+									winTable[i].racePoints = 1 ;
 									break ;
 
 						case 7:	winTable[i].points += 0;
-									winTable[i].racePoints = 0 ;									
+									winTable[i].racePoints = 0 ;
 									break ;
 
 						case 8:	winTable[i].points += 0;
-									winTable[i].racePoints = 0 ;									
+									winTable[i].racePoints = 0 ;
 									break ;
 
 					}
@@ -1127,7 +1127,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 					sortTable[i].points = winTable[i].points ;
 				}
 
-				
+
 				for (i=0; i < NO_OF_SHIPS; i++)
 				{
 
@@ -1138,12 +1138,12 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 						tempShip = sortTable[j].shipNum ;
 						tempPoints = sortTable[j].points ;
 
-						sortTable[j].shipNum = sortTable[j+1].shipNum ;							
+						sortTable[j].shipNum = sortTable[j+1].shipNum ;
 						sortTable[j].points = sortTable[j+1].points ;
- 
-						sortTable[j+1].shipNum = tempShip ;							
+
+						sortTable[j+1].shipNum = tempShip ;
 						sortTable[j+1].points = tempPoints ;
-  
+
 					}
 				}
 
@@ -1175,7 +1175,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 			}
 			else
 			{
-				if (gameData->trackNum == NumTracks)  
+				if (gameData->trackNum == NumTracks)
 				{
 				 	if (winTable[ownShip].position == 1)
 					{
@@ -1228,10 +1228,10 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 						gameData->actTrackNum = trackList[(gameData->trackNum-1)] ;
 					}
 			}
-		
+
 		}
 
-		
+
 		shipIndex[ownShip].update = UpdateRemoteShip;
 		shipIndex[ownShip].updateCount = 0;
 		shipIndex[ownShip].remoteMaxThrust = 3160;
@@ -1254,7 +1254,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 		else
 			if (gameData->gameType == CHAMPIONSHIP)
   				attractDelay = 1;
-			else	
+			else
   				attractDelay = 300;
 	}
 
@@ -1273,14 +1273,14 @@ int CalcPosition(ShipData *shipIndex)
 	{
 		tempPosition = 1 ;
 
-		if	( 
+		if	(
 				(raceType != HEAD_TO_HEAD) ||
 				( (raceType == HEAD_TO_HEAD) && ((i == ownShip) || (i == serialShip)))
 			)
 		{
 		 	for (j = 0; j < NO_OF_SHIPS; j++)
 			{
-				if	( 
+				if	(
 						(raceType != HEAD_TO_HEAD) ||
 						( (raceType == HEAD_TO_HEAD) && ((j == ownShip) || (j == serialShip)))
 					)
@@ -1288,7 +1288,7 @@ int CalcPosition(ShipData *shipIndex)
 
 					if(i != j)
 					{
-						
+
 						if( ( (shipIndex[j].attr & RACING) == 0))
 							tempPosition ++ ;
 
@@ -1330,14 +1330,14 @@ int CalcPosition(ShipData *shipIndex)
 							tempPosition ++ ;
 						}
 					}
-				}							 	
+				}
 			}
 		}
 		if(i == ownShip)
 			position = tempPosition	;
-	
+
 		if(shipIndex[i].attr & RACING)
-			winTable[i].racePosition = tempPosition ;									
+			winTable[i].racePosition = tempPosition ;
 	}
 	return(position);
 }
@@ -1351,9 +1351,9 @@ void ScreenFooter (int x, int y, int colour)
 
 	for (i=0; i < 2; i++)
 	{
-		symbolTex = (Texture *)TextureTable [DRTEXT_RED + (i+1)] ;	
+		symbolTex = (Texture *)TextureTable [DRTEXT_RED + (i+1)] ;
 
-		SetPolyFT4(&(symbols[i]));			
+		SetPolyFT4(&(symbols[i]));
 		symbols[i].r0=230;
 		symbols[i].g0=0;
 		symbols[i].b0=BLACK_NOT_DRAWN;
@@ -1379,9 +1379,9 @@ void ScreenFooter (int x, int y, int colour)
 		}
 
 	 	setUV4(&(symbols[i]),
-				symbolTex->u0, symbolTex->v0, 
-				symbolTex->u1, symbolTex->v1, 
-				symbolTex->u2, symbolTex->v2+1, 
+				symbolTex->u0, symbolTex->v0,
+				symbolTex->u1, symbolTex->v1,
+				symbolTex->u2, symbolTex->v2+1,
 				symbolTex->u3, symbolTex->v3+1) ;
 
  		setTPage(&(symbols[i]),0,0,symbolTex->textureX,symbolTex->textureY);
@@ -1393,14 +1393,14 @@ void ScreenFooter (int x, int y, int colour)
 			redTex = (Texture *) TextureTable [DRTEXT_RED] ;
   			symbols[i].clut = redTex->cba;
 		}
- 
+
  		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(symbols[i]) );
 
-		
+
 	}
 
 }
- 	
+
 
 
 void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int colour)
@@ -1414,7 +1414,7 @@ void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int colour)
 	short 	j=0;
 	ushort	 currLett=0, searchLett=0 ;
 	TexChar	*charSet ;
-	short		totSize = 0 ;	
+	short		totSize = 0 ;
 
 	y = pos_data->start_pos_y;
 
@@ -1424,7 +1424,7 @@ void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int colour)
 
 	switch (size)
 	{
-		case 16:	charSet = &(CharSet16[0]) ;	
+		case 16:	charSet = &(CharSet16[0]) ;
 					charTex = (Texture *) TextureTable [DRTEXT_16] ;
 					break ;
 
@@ -1451,7 +1451,7 @@ void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int colour)
 			j = letter - 'A';
 
 		if (letter != 32)
-			totSize += charSet[j].width ; 
+			totSize += charSet[j].width ;
 		else
 			totSize += 8 ;
 
@@ -1485,7 +1485,7 @@ void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int colour)
 			setXY0(&display_text[textPrim],newx,newy);	// PCwipeout
 			setUV0(&display_text[textPrim],charSet[j].vramX, charSet[j].vramY);	// PCwipeout
 			setWH(&display_text[textPrim],currLett,size);	// PCwipeout
-									
+
 			if (colour == WhiteText)
 			{
 				display_text[textPrim].r0 = 230;
@@ -1511,7 +1511,7 @@ void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int colour)
 		{
 		 	x += 8 ;
 		}
-	}	
+	}
 }
 
 
@@ -1523,10 +1523,10 @@ void DisplayLives (SPRT lifeIcons[][2], ConfigData *gameData) // PCwipeout
 	short		ySpace = 13 ;
 
 	livesTex = (Texture *) TextureTable [DRTEXT_RED+5] ;
- 
+
 	for (i=0; i < gameData->Lives; i++)
 	{
-		SetSprt(&(lifeIcons[i][CurrentScreen]));			
+		SetSprt(&(lifeIcons[i][CurrentScreen]));
 		lifeIcons[i][CurrentScreen].r0=230;
 		lifeIcons[i][CurrentScreen].g0=0;
 		lifeIcons[i][CurrentScreen].b0=BLACK_NOT_DRAWN;
@@ -1540,7 +1540,7 @@ void DisplayLives (SPRT lifeIcons[][2], ConfigData *gameData) // PCwipeout
 #endif
 
 		setUV0(&(lifeIcons[i][CurrentScreen]),livesTex->u0, livesTex->v0);
-	
+
 		lifeIcons[i][CurrentScreen].clut = livesTex->cba ;
 
   		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(lifeIcons[i][CurrentScreen]) );
@@ -1562,7 +1562,7 @@ void InitChampTable ()
 	strcpy (winTable[7].pilot,"PAUL JACKSON") ;
 }
 
-void DisplayChampTable ()	  					  
+void DisplayChampTable ()
 {
 	short		i ;
 	short		yPos = 80 ;
@@ -1601,7 +1601,7 @@ void DisplayChampTable ()
 }
 
 
-void DisplayRacePoints ()	  					  
+void DisplayRacePoints ()
 {
 	short		i ;
 	short		yPos = 80 ;
@@ -1653,7 +1653,7 @@ void InitScreenTex (Texture **screenTex, char *fileName)
 	tablePos = TextureTableCount;
 
 	timPtr = LoadCompressedTextureSequence( modelFile );
-	LoadCmpFiles( timPtr ); 
+	LoadCmpFiles( timPtr );
 
 	screenTex[0] = TextureTable [tablePos++] ;
 	screenTex[1] = TextureTable [tablePos++] ;
@@ -1669,26 +1669,26 @@ void InitScreenTex (Texture **screenTex, char *fileName)
 
 void DisplayWinLose (Texture *winLose, POLY_FT4 *picPrim, short x, short y, short height, char type)
 {
-		short width = 128 ;		
+		short width = 128 ;
 
-		SetPolyFT4(&(picPrim[CurrentScreen]));			
+		SetPolyFT4(&(picPrim[CurrentScreen]));
 		picPrim[CurrentScreen].r0=230 ; // PCwipeout
 		picPrim[CurrentScreen].g0=0 ;
 		picPrim[CurrentScreen].b0=BLACK_NOT_DRAWN ;
 
 
 		setXY4(&(picPrim[CurrentScreen]),x, y, x + width, y, x, y + height, x + width, y + height);
-	
+
 		setUV4(&(picPrim[CurrentScreen]),
-			winLose->u0, winLose->v0, 
-			winLose->u1, winLose->v1, 
-			winLose->u2, winLose->v2+1, 
+			winLose->u0, winLose->v0,
+			winLose->u1, winLose->v1,
+			winLose->u2, winLose->v2+1,
 			winLose->u3, winLose->v3+1) ;
 
 		setPAD4(&(picPrim[CurrentScreen]),0x4000);
-		
+
  		setTPage(&(picPrim[CurrentScreen]),1,0,winLose->textureX,winLose->textureY);
-	
+
 //		picPrim[CurrentScreen].clut = winLose->cba ; // PCwipeout
 
  		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(picPrim[CurrentScreen]) );
@@ -1698,11 +1698,11 @@ void DisplayWinLose (Texture *winLose, POLY_FT4 *picPrim, short x, short y, shor
 void BackPoly (POLY_F4* selectBox, DR_MODE* selectTrans, short x, short y, short w, short h)
 {
 
-	SetPolyF4(&(selectBox[CurrentScreen]));			
+	SetPolyF4(&(selectBox[CurrentScreen]));
 	selectBox[CurrentScreen].r0=230; // PCwipeout
 	selectBox[CurrentScreen].g0=0;
 	selectBox[CurrentScreen].b0=BLACK3_TRANSL;
-	
+
 	setXY4(&(selectBox[CurrentScreen]),x , y,
 								  x+w , y,
 								  x , y+h,
@@ -1718,7 +1718,7 @@ void BackPoly (POLY_F4* selectBox, DR_MODE* selectTrans, short x, short y, short
 
 }
 
-void DisplayVenomComplete () 							 	
+void DisplayVenomComplete ()
 {
 
 	CentreText ("WELL DONE",text_data (60, 40, 8),WhiteText) ;
@@ -1733,7 +1733,7 @@ void DisplayVenomComplete ()
 
 }
 
-void DisplayAllVenomComplete () 							 	
+void DisplayAllVenomComplete ()
 {
 
 	CentreText ("AMAZING",text_data (60, 40, 8),RedText) ;
@@ -1757,7 +1757,7 @@ void InitTrackTex (Texture **trackTex)
 	tablePos = TextureTableCount;
 
 	timPtr = LoadCompressedTextureSequence( "wipeout\\textures\\track.cmp" );
-	LoadCmpFiles( timPtr ); 
+	LoadCmpFiles( timPtr );
 
 	trackTex[0] = TextureTable [tablePos++] ;
 	trackTex[1] = TextureTable [tablePos++] ;
@@ -1827,14 +1827,14 @@ void DisplayRaceInfo (ConfigData *gameData, HiScoreData *hiScoreData)
 	{
 
 		AddText ("LAP",text_data (25, 95+(i*12), 8),RedText) ;
-		AddNumber ((i+1), text_data (65, 95+(i*12), 8), RedText) ; 
+		AddNumber ((i+1), text_data (65, 95+(i*12), 8), RedText) ;
 		AddTime(tempLapTimes[i], text_data (85, 95+(i*12), 8), WhiteText);
 
 	}
 
-	
+
 	AddText ("RACE POSITION",text_data (15, 50, 8),RedText) ;
-	AddNumber (gameData->Position, text_data (155, 50, 8), WhiteText) ; 
+	AddNumber (gameData->Position, text_data (155, 50, 8), WhiteText) ;
 
 
 	if (gameData->gameType == SINGLE_RACE)
@@ -2010,7 +2010,7 @@ static char fixof[]={0,2,3,4};
 		if(shipIndex[ownShip].lapNo > 1)
 		{
 			for(i = 1; i < shipIndex[ownShip].lapNo; i++)
-			{  	
+			{
 				if (i < END_LAP)
 				{
 					AddTime(shipIndex[ownShip].lapTimes[i-1],
@@ -2027,8 +2027,8 @@ static char fixof[]={0,2,3,4};
 		if (gameType == MASTER || gameType == SLAVE)
 		{
 			AddText ("P", text_data (260, 50, 8), RedText) ;
-			AddNumber (2, text_data (274, 50, 8), RedText) ; 	
-			AddNumber (winTable[serialShip].racePosition, text_data (290, 50, 8), WhiteText) ; 	
+			AddNumber (2, text_data (274, 50, 8), RedText) ;
+			AddNumber (winTable[serialShip].racePosition, text_data (290, 50, 8), WhiteText) ;
 		}
 
 
@@ -2041,13 +2041,13 @@ static char fixof[]={0,2,3,4};
 
 		width += 22 ;
 
-		AddNumber (END_LAP, text_data ((10+width), 19, 16), WhiteText) ; 	
+		AddNumber (END_LAP, text_data ((10+width), 19, 16), WhiteText) ;
 
 
 		if(raceType != TIME_TRIAL)
 		{
 			AddText ("POSITION", text_data (230, 8, 8), RedText) ;
-			AddNumber (winTable[ownShip].racePosition, text_data (260, 19, 16), WhiteText) ; 	
+			AddNumber (winTable[ownShip].racePosition, text_data (260, 19, 16), WhiteText) ;
 		}
 
 #if 1
@@ -2055,9 +2055,9 @@ static char fixof[]={0,2,3,4};
 		{
 			AddText ("FRAME", text_data (230, 41, 8), RedText) ; // PCwipeout
 			AddText ("RATE", text_data (235, 52, 8), RedText) ; // PCwipeout
-			AddNumber ((theFrameRate / 10), text_data (245, 63, 16), WhiteText) ; 	
-			AddNumber ((theFrameRate % 10), text_data (275, 63, 16), WhiteText) ; 	
-		}	
+			AddNumber ((theFrameRate / 10), text_data (245, 63, 16), WhiteText) ;
+			AddNumber ((theFrameRate % 10), text_data (275, 63, 16), WhiteText) ;
+		}
 #endif
 
 
@@ -2074,7 +2074,7 @@ static char fixof[]={0,2,3,4};
 		if((shipIndex[ownShip].attr & DIRECTION) == 0)
 		{
 			CentreText ("WRONG WAY", text_data (0, 110, 16), RedText) ;
-		}	
+		}
 
 	}
 
