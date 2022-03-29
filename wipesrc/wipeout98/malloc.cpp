@@ -30,7 +30,7 @@ short FreeBlockError( FreeBlock* block )
    {
       return( 1 );
    }
-   
+
    if ( ( block->flags != BlockFree ) && ( block->flags != BlockAllocated ) )
    {
       return( 1 );
@@ -45,7 +45,7 @@ short BitLength(long size)
 {
 
    short          bitsize;
-   
+
 /* Calculate the bit length of the size */
 
    bitsize = 0;
@@ -76,11 +76,11 @@ void InitDynamicMem
 
    for ( i=0; i<32; i++ )
    {
-      heap->block[ i ] = NULL;   
+      heap->block[ i ] = NULL;
    }
 
 /* Memory size minus the heap header size and the block header size */
-   
+
    size = size - sizeof( DynamicHeap ) - sizeof( Block );
 
 /* Actual heap memory starts just after the header */
@@ -88,11 +88,11 @@ void InitDynamicMem
    free = (FreeBlock*)(heap+1);
 
 /* Calculate the bit length of the size */
-   
+
    bitsize = BitLength( size );
 
 /* Set up the the first free block */
-   
+
    heap->block[ bitsize ] = free;
 
    free->flags    = BlockFree;
@@ -112,7 +112,7 @@ void InitDynamicMem
 
 
 /* DJoin
-   
+
    This procedure joins two consecutive blocks into
    one, setting the sequential links up correctly and
    calculating the size of the joined blocks.
@@ -124,7 +124,7 @@ void InitDynamicMem
 */
 
 void DJoin
-( 
+(
    FreeBlock*     one,
    FreeBlock*     two
 )
@@ -170,7 +170,7 @@ void DJoin
    This procedure splits a block in two, linking the new
    block into the sequential block list and returning the
    address of the new block.
- 
+
    If the block is not big enought to split, then NULL is
    returned.
 
@@ -211,7 +211,7 @@ FreeBlock* DSplit
 
       block->prev = free;
       block->next = free->next;
-   
+
       free->next = block;
 
       if ( block->next )
@@ -254,7 +254,7 @@ void DLink
 )
 {
    short          bitsize;
-   
+
    if ( FreeBlockError( free ) )
    {
       Error( "Malloc.c:DLink: Free block is not valid", Warning );
@@ -277,7 +277,7 @@ void DLink
          Error( "Malloc.c:DLink: Next free block is not valid", Warning );
          return;
       }
-      
+
       free->nextFree->prevFree = free;
    }
 }
@@ -285,7 +285,7 @@ void DLink
 
 
 /* DUnlink
-   
+
    This procedure unlinks a free block from the
    free block list
 */
@@ -296,9 +296,9 @@ void DUnlink
    FreeBlock*     free
 )
 {
- 
+
    short          bitsize;
-   
+
    if ( FreeBlockError( free ) )
    {
       Error( "Malloc.c:DUnlink: Free block is not valid", Warning );
@@ -314,14 +314,14 @@ void DUnlink
          Error( "Malloc.c:DUnlink: Previous block is not valid", Warning );
          return;
       }
-      
+
       free->prevFree->nextFree = free->nextFree;
    }
    else
    {
    /* Unlink from top level table */
-      
-      bitsize = BitLength( free->size );   
+
+      bitsize = BitLength( free->size );
       heap->block[ bitsize ] = free->nextFree;
    }
 
@@ -334,7 +334,7 @@ void DUnlink
          Error( "Malloc.c:DUnlink: Next block is not valid", Warning );
          return;
       }
-      
+
       free->nextFree->prevFree = free->prevFree;
    }
 }
@@ -350,7 +350,7 @@ void DCoalesce
 
    FreeBlock*     prev;
    FreeBlock*     next;
-   
+
    if ( FreeBlockError( free ) )
    {
       Error( "Malloc.c:DCoalesce: Free block is not valid", Warning );
@@ -378,7 +378,7 @@ void DCoalesce
       DUnlink( heap, prev );
       DUnlink( heap, free );
       DUnlink( heap, next );
-      
+
       DJoin( prev, free );
       DJoin( prev, next );
 
@@ -401,7 +401,7 @@ void DCoalesce
    {
       DUnlink( heap, free );
       DUnlink( heap, next );
-      
+
       DJoin( free, next );
 
       DLink( heap, free );
@@ -411,7 +411,7 @@ void DCoalesce
 }
 
 // the new bound macro
-#define		return_bound4(x)		return ((char *) ((((unsigned long) x) + 3) & 0xFFFFFFFC))
+#define		return_bound4(x)		return ((char *) ((((uintptr_t) x) + 3) & ~uintptr_t(3)))
 
 
 // Mark updated now returns ptr on a 4-byte boundary
@@ -420,7 +420,7 @@ char	*DAlloc(DynamicHeap* heap, long size)
    short       bitsize;
    FreeBlock*  free;
    FreeBlock*  block;
-   
+
 	// mark added vars
 	char			*unbounded_ptr = NULL;
 	unsigned long	unbounded_value = 0;
@@ -440,16 +440,16 @@ char	*DAlloc(DynamicHeap* heap, long size)
    bitsize = BitLength( size );
 
 /* Find the first big enough free block */
-   
+
    free = NULL;
    while ( (!free) && ( bitsize < 31 ) )
    {
       free = heap->block[ bitsize ];
-      
+
       if ( free )
       {
       /* Search free block list for a big enough block */
-   
+
          if ( FreeBlockError( free ) )
          {
             Error( "Malloc.c:DAlloc: Heap header corrupted", Warning );
@@ -475,11 +475,11 @@ char	*DAlloc(DynamicHeap* heap, long size)
    }
 
 /* If block found then unlink it */
-   
+
    if ( free )
    {
    /* Is block big enough to split in two ? */
-      
+
       block = DSplit( free, size );
 
       if ( block )
@@ -498,7 +498,7 @@ char	*DAlloc(DynamicHeap* heap, long size)
          else
          {
          /* Unlink from top level table */
-      
+
             heap->block[ bitsize ] = free->nextFree;
          }
 
@@ -528,21 +528,21 @@ char	*DAlloc(DynamicHeap* heap, long size)
       /* Decrement total free memory */
 
          heap->free -= ( free->size + sizeof(Block) );
-   
+
       /* Return address of data after block header */
 
          //return( ((char*)free) + sizeof(Block) );
          return_bound4 (((char *) free) + sizeof(Block));
-		 
+
       }
       else
       {
-      /* Set block flags */   
+      /* Set block flags */
 
          free->flags = BlockAllocated;
 
       /* Unlink from previous free block if there is one */
-      
+
          if ( free->prevFree )
          {
             free->prevFree->nextFree = free->nextFree;
@@ -550,21 +550,21 @@ char	*DAlloc(DynamicHeap* heap, long size)
          else
          {
          /* Unlink from top level table */
-            
+
             heap->block[ bitsize ] = free->nextFree;
          }
-      
+
       /* Unlink from next free block if there is one */
-      
+
          if ( free->nextFree )
          {
             free->nextFree->prevFree = free->prevFree;
          }
-  
+
       /* Decrement total free memory */
 
          heap->free -= free->size;
-         
+
       /* Return address of data after block header */
 
       //   return( ((char*)free) + sizeof(Block) );
@@ -602,7 +602,7 @@ void DFree
    if ( block->flags != BlockAllocated )
    {
    /* Block Header Not Valid! */
-      
+
       printf( "Malloc.c:DFree(): Block header not valid!\n" );
       return;
    }
@@ -639,6 +639,6 @@ void DFree
 
 #if 1
    DCoalesce( heap, block );
-#endif   
+#endif
 
 }
