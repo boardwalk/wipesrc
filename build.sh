@@ -1,6 +1,6 @@
 #!/bin/sh
 g++ -o wipeout \
-    -I. \
+    -I. -g \
     -Wno-array-bounds \
     -Wno-c++11-compat-deprecated-writable-strings \
     -Wno-constant-conversion \
