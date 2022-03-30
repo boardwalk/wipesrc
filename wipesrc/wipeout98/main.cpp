@@ -96,8 +96,8 @@ int	     inattract = 0;
 void reloadStartScr(void)
 {
 	int i;
-	LoadVRam("wipeout\\newgraph\\menu\\font.pcx", 0);
-	titleScreen = JJSLoad16BitTexture("wipeout\\textures\\wiptitle.tim", VRAM);
+	LoadVRam("wipeout/newgraph/menu/font.pcx", 0);
+	titleScreen = JJSLoad16BitTexture("wipeout/textures/wiptitle.tim", VRAM);
 	inmenu = 1;
 	CopyPal(shield_palette, 0, 255);
 	for (i = 0; i < 2; i++)
@@ -114,7 +114,7 @@ void reloadStartScr(void)
 	InitAJSVSync();
 }
 
-int	    main(int argc, char **argv)
+void	    oldmain()
 {
 	int	     i;
 	combatData      packetData;
@@ -181,10 +181,10 @@ int	    main(int argc, char **argv)
 
 	ShellGetPrefs();
 	StartPAD();
-	LoadVRam("wipeout\\newgraph\\menu\\font.pcx", 0);
+	LoadVRam("wipeout/newgraph/menu/font.pcx", 0);
 
 	InitGameDisplay();
-	titleScreen = JJSLoad16BitTexture("wipeout\\textures\\wiptitle.tim", SCREEN);
+	titleScreen = JJSLoad16BitTexture("wipeout/textures/wiptitle.tim", SCREEN);
 	inmenu = 1;
 	CopyPal(shield_palette, 0, 255);
 	for (i = 0; i < 2; i++)
@@ -263,10 +263,10 @@ int	    main(int argc, char **argv)
 	if ((gameData.gameType != CHAMPIONSHIP) || (mode == ATTRACT))
 	{
 #if PAL
-		titleScreen = Load16BitTexture("wipeout\\textures\\paltitle.tim", VRAM);
+		titleScreen = Load16BitTexture("wipeout/textures/paltitle.tim", VRAM);
 #else
-		LoadVRam("wipeout\\newgraph\\menu\\font.pcx", 0);
-		titleScreen = JJSLoad16BitTexture("wipeout\\textures\\wiptitle.tim", VRAM);
+		LoadVRam("wipeout/newgraph/menu/font.pcx", 0);
+		titleScreen = JJSLoad16BitTexture("wipeout/textures/wiptitle.tim", VRAM);
 		inmenu = 1;
 		CopyPal(shield_palette, 0, 255);
 		for (i = 0; i < 2; i++)
@@ -477,7 +477,7 @@ int	    main(int argc, char **argv)
 
 
 		/* load screen stuff */
-		strcpy(loadPath, "wipeout\\textures\\load");
+		strcpy(loadPath, "wipeout/textures/load");
 
 		if (gameData.actTrackNum <= 9)
 		{
@@ -511,74 +511,74 @@ int	    main(int argc, char **argv)
 		switch (gameData.trackNum)
 		{
 		case 1:
-			LoadVRam("wipeout\\newgraph\\venom\\altima\\altima.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\venom\\altima\\altima.sjr");
-			strcpy(trackdir, "venom\\altima\\");
+			LoadVRam("wipeout/newgraph/venom/altima/altima.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/venom/altima/altima.sjr");
+			strcpy(trackdir, "venom/altima/");
 			break;
 		case 2:
-			LoadVRam("wipeout\\newgraph\\venom\\karbonis\\karbonis.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\venom\\karbonis\\karbonis.sjr");
-			strcpy(trackdir, "venom\\karbonis\\");
+			LoadVRam("wipeout/newgraph/venom/karbonis/karbonis.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/venom/karbonis/karbonis.sjr");
+			strcpy(trackdir, "venom/karbonis/");
 			break;
 		case 3:
-			LoadVRam("wipeout\\newgraph\\venom\\terramax\\terramax.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\venom\\terramax\\terramax.sjr");
-			strcpy(trackdir, "venom\\terramax\\");
+			LoadVRam("wipeout/newgraph/venom/terramax/terramax.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/venom/terramax/terramax.sjr");
+			strcpy(trackdir, "venom/terramax/");
 			break;
 		case 4:
-			LoadVRam("wipeout\\newgraph\\venom\\korodera\\korodera.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\venom\\korodera\\korodera.sjr");
-			strcpy(trackdir, "venom\\korodera\\");
+			LoadVRam("wipeout/newgraph/venom/korodera/korodera.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/venom/korodera/korodera.sjr");
+			strcpy(trackdir, "venom/korodera/");
 			break;
 		case 5:
-			LoadVRam("wipeout\\newgraph\\venom\\arridos\\arridos.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\venom\\arridos\\arridos.sjr");
-			strcpy(trackdir, "venom\\arridos\\");
+			LoadVRam("wipeout/newgraph/venom/arridos/arridos.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/venom/arridos/arridos.sjr");
+			strcpy(trackdir, "venom/arridos/");
 			break;
 		case 6:
-			LoadVRam("wipeout\\newgraph\\venom\\silver\\silver.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\venom\\silver\\silver.sjr");
-			strcpy(trackdir, "venom\\silver\\");
+			LoadVRam("wipeout/newgraph/venom/silver/silver.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/venom/silver/silver.sjr");
+			strcpy(trackdir, "venom/silver/");
 			break;
 		case 7:
-			LoadVRam("wipeout\\newgraph\\venom\\firestar\\firestar.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\venom\\firestar\\firestar.sjr");
-			strcpy(trackdir, "venom\\firestar\\");
+			LoadVRam("wipeout/newgraph/venom/firestar/firestar.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/venom/firestar/firestar.sjr");
+			strcpy(trackdir, "venom/firestar/");
 			break;
 		case 8:
-			LoadVRam("wipeout\\newgraph\\rapier\\altima\\altima.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\rapier\\altima\\altima.sjr");
-			strcpy(trackdir, "rapier\\altima\\");
+			LoadVRam("wipeout/newgraph/rapier/altima/altima.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/rapier/altima/altima.sjr");
+			strcpy(trackdir, "rapier/altima/");
 			break;
 		case 9:
-			LoadVRam("wipeout\\newgraph\\rapier\\karbonis\\karbonis.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\rapier\\karbonis\\karbonis.sjr");
-			strcpy(trackdir, "rapier\\karbonis\\");
+			LoadVRam("wipeout/newgraph/rapier/karbonis/karbonis.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/rapier/karbonis/karbonis.sjr");
+			strcpy(trackdir, "rapier/karbonis/");
 			break;
 		case 10:
-			LoadVRam("wipeout\\newgraph\\rapier\\terramax\\terramax.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\rapier\\terramax\\terramax.sjr");
-			strcpy(trackdir, "rapier\\terramax\\");
+			LoadVRam("wipeout/newgraph/rapier/terramax/terramax.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/rapier/terramax/terramax.sjr");
+			strcpy(trackdir, "rapier/terramax/");
 			break;
 		case 11:
-			LoadVRam("wipeout\\newgraph\\rapier\\korodera\\korodera.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\rapier\\korodera\\korodera.sjr");
-			strcpy(trackdir, "rapier\\korodera\\");
+			LoadVRam("wipeout/newgraph/rapier/korodera/korodera.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/rapier/korodera/korodera.sjr");
+			strcpy(trackdir, "rapier/korodera/");
 			break;
 		case 12:
-			LoadVRam("wipeout\\newgraph\\rapier\\arridos\\arridos.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\rapier\\arridos\\arridos.sjr");
-			strcpy(trackdir, "rapier\\arridos\\");
+			LoadVRam("wipeout/newgraph/rapier/arridos/arridos.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/rapier/arridos/arridos.sjr");
+			strcpy(trackdir, "rapier/arridos/");
 			break;
 		case 13:
-			LoadVRam("wipeout\\newgraph\\rapier\\silver\\silver.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\rapier\\silver\\silver.sjr");
-			strcpy(trackdir, "rapier\\silver\\");
+			LoadVRam("wipeout/newgraph/rapier/silver/silver.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/rapier/silver/silver.sjr");
+			strcpy(trackdir, "rapier/silver/");
 			break;
 		case 14:
-			LoadVRam("wipeout\\newgraph\\rapier\\firestar\\firestar.pcx", 0);
-			SJRNewTexture("wipeout\\newgraph\\rapier\\firestar\\firestar.sjr");
-			strcpy(trackdir, "rapier\\firestar\\");
+			LoadVRam("wipeout/newgraph/rapier/firestar/firestar.pcx", 0);
+			SJRNewTexture("wipeout/newgraph/rapier/firestar/firestar.sjr");
+			strcpy(trackdir, "rapier/firestar/");
 			break;
 		default:
 			printf("what track ?\n");
@@ -637,8 +637,6 @@ int	    main(int argc, char **argv)
 		TextureTableCount = 0;
 		InitText();
 	}
-
-	return 0;
 }
 
 

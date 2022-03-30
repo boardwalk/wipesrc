@@ -11,9 +11,9 @@ P_TAG *ClearOTagR(P_TAG *ot, int n)
 	for( i=(ot+n-1), j=(ot+n-2); 	j>=ot; 	i--, j-- )
 	{
 		((P_TAG *)i)->code = 0;
-		i->addr = ((u_long) j) & 0xffffffff;
+		i->addr = j;
 	}
 
-	ot->addr = 0xFFFFFFFF;
+	ot->addr = NULL;
 	return(i);
 }

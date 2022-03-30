@@ -1411,7 +1411,7 @@ void CallMenuActivator (ConfigData *gameData, int *currMenu, int *currOption, Me
 		CheckSaveType (selectData, &(loadGames[0]), gameData) ;
 
 		strcpy(DaveSave, SaveDirBase);
-		strcat(DaveSave,"\\");
+		strcat(DaveSave,"/");
 		strcat(DaveSave, SaveFilename);
 		strcat(DaveSave, FILE_EXTENSION);
 
@@ -2664,14 +2664,14 @@ void LoadTexModel (Object** modelShapes, char *fileName)
 	/** temporary memory to be allocated					  **/
 	/******************************************************/
 
-	strcpy( modelFile, "wipeout\\common\\" );
+	strcpy( modelFile, "wipeout/common/" );
 	strcat( modelFile, fileName) ;
 	strcat( modelFile, ".cmp");
 	modelTextures = TextureTableCount;
 	timPtr = LoadCompressedTextureSequence( modelFile );
 	LoadCmpFiles( timPtr );
 
-	strcpy( modelFile, "wipeout\\common\\" );
+	strcpy( modelFile, "wipeout/common/" );
 	strcat( modelFile, fileName) ;
 	strcat( modelFile, ".prm");
 
@@ -4832,7 +4832,7 @@ void InitButtons (char *fileName)
 	char 				modelFile[256];
 	int				i ;
 
-	strcpy( modelFile, "wipeout\\textures\\" );
+	strcpy( modelFile, "wipeout/textures/" );
 	strcat( modelFile, fileName) ;
 	strcat( modelFile, ".cmp");
 

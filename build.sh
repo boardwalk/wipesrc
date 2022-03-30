@@ -1,6 +1,6 @@
 #!/bin/sh
-g++ -o wipeout \
-    -I. -g \
+g++ -o wipeout-port \
+    -I. -g -O0 -fsanitize=address -fno-omit-frame-pointer \
     -Wno-array-bounds \
     -Wno-c++11-compat-deprecated-writable-strings \
     -Wno-constant-conversion \

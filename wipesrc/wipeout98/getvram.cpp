@@ -31,33 +31,33 @@ void DumpVram(long no)
 	uchar	         *buff;
 	ushort         a,b,c;
 	ushort	      *buffw;
-	
+
 	short          count = 0;
-	
+
 	buff = (uchar *) DAlloc (heap, (X*Y*2) + HEADER + 256) ;
-	
+
 	if ( !buff )
 	{
 		Error( "getvram.c:: DumpVram(): No memory for vram screen", Warning );
 		return;
-	} 
-	
+	}
+
 	r.x=0;
 	r.y=0;
 	r.w=(X);
 	r.h=(Y>>1);
-	
+
 	StoreImage( &r, (ulong*)(buff+HEADER) );
 	DrawSync (0) ;
-	
+
 	r.x=0;
 	r.y=(Y>>1);
 	r.w=(X);
 	r.h=(Y>>1);
-	
-	StoreImage( &r, (ulong*)( buff + HEADER + (X*Y) - 512 ) );	
+
+	StoreImage( &r, (ulong*)( buff + HEADER + (X*Y) - 512 ) );
 	DrawSync (0) ;
-	
+
 	buffw=(u_short*)( buff + HEADER );
 	for(j=0;j<Y;j++)
 	{
@@ -72,7 +72,7 @@ void DumpVram(long no)
 		}
 		count++;
 	}
-	
+
 	buff[0]=0x00;
 	buff[1]=0x00;
 	buff[2]=0x02;
@@ -83,10 +83,10 @@ void DumpVram(long no)
 	buff[7]=0x00;
 	buff[8]=0x00;
 	buff[9]=0x00;
-	
+
 	buff[10]=0x00;
 	buff[11]=0x00;
-	
+
 	buff[12]=(uchar)(X-1);		// PCwipeout
 	buff[13]=(X-1) >> 8;
 	buff[14]=(uchar)(Y-1);		// PCwipeout
@@ -94,10 +94,10 @@ void DumpVram(long no)
 	buff[16]=0x0f;
 	buff[16]=16;
 	buff[17]=0x02|0x20;
-	
-	sprintf( name, "wipeout\\vram.tga", no );
+
+	sprintf( name, "wipeout/vram.tga", no );
 	DumpFile( name, (char *)buff, HEADER+(X*Y*2) );
-	
+
 	DFree ( heap, ( char* )buff ) ;
 }
 
@@ -105,14 +105,14 @@ void DumpVram(long no)
 int DumpFile(char *name, char *buff, long len)
 {
 	FILE* fd;		// PCwipeout
-	
+
 	fd = fopen(name, "wb");	// PCwipeout
-	
+
 	if (fwrite(buff, 1, len, fd) != len)	// PCwipeout
 	{
 		return (0);
-	} 
-	
+	}
+
 	fclose(fd);	// PCwipeout
 	return (len);
 }

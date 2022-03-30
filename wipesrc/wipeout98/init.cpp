@@ -35,7 +35,7 @@ int skyPos[15] = {-820, -2520, -1930, -5000, -5000, 0, -2260, -40, -2700, 0, -24
 
 #define	GsGetVcount()	0;
 
-short InitScene(Object** prm, short *prmCount, Skeleton* camPos, ConfigData *gameData)   
+short InitScene(Object** prm, short *prmCount, Skeleton* camPos, ConfigData *gameData)
 {
 	short    sceneTextures;
    short    skyTextures;
@@ -45,12 +45,12 @@ short InitScene(Object** prm, short *prmCount, Skeleton* camPos, ConfigData *gam
 	TIMlist  *timPtr, *skyTimPtr;
 
    sceneTextures = TextureTableCount;
-	getPath(trackPath, gameData->actTrackNum, "\\scene.cmp");
+	getPath(trackPath, gameData->actTrackNum, "/scene.cmp");
 	timPtr = LoadCompressedTextureSequence( trackPath );
-   LoadCmpFiles( timPtr ); 
+   LoadCmpFiles( timPtr );
 
    skyTextures = TextureTableCount;
-	getPath(trackPath, gameData->actTrackNum, "\\sky.cmp");
+	getPath(trackPath, gameData->actTrackNum, "/sky.cmp");
 	skyTimPtr = LoadCompressedTextureSequence( trackPath );
    LoadCmpFiles( skyTimPtr );
 
@@ -62,7 +62,7 @@ short InitScene(Object** prm, short *prmCount, Skeleton* camPos, ConfigData *gam
       }
    }
 
-	getPath(trackPath, gameData->actTrackNum, "\\scene.prm");
+	getPath(trackPath, gameData->actTrackNum, "/scene.prm");
 
 /*
    objectTable = LoadPrm( trackPath , sceneTextures );
@@ -83,9 +83,9 @@ short InitScene(Object** prm, short *prmCount, Skeleton* camPos, ConfigData *gam
       }
    }
 
-   
+
    sky = *prmCount;
-	getPath(trackPath, gameData->actTrackNum, "\\sky.prm");
+	getPath(trackPath, gameData->actTrackNum, "/sky.prm");
    prm[ (*prmCount)++ ] = LoadPrm( trackPath , skyTextures );
    obj = prm[ sky ];
 /*   while ( obj )	*/
@@ -95,7 +95,7 @@ short InitScene(Object** prm, short *prmCount, Skeleton* camPos, ConfigData *gam
    }
 	SetSkeletonPosition( prm[sky]->skeleton,
 		0,
-		skyPos[trackNo-1],		 
+		skyPos[trackNo-1],
 		0);
 #if 0
    printf( "Heap free after sky load: %d\n", heap->free );
@@ -114,20 +114,20 @@ void getPath(char* trackPath, char trackNo, char* name)
 {
 	char				No[ 4 ];
 
-	strcpy( trackPath, "wipeout\\track" );
+	strcpy( trackPath, "wipeout/track" );
 	if (trackNo <= 9)
-		sprintf( No, "%02d", trackNo );	
+		sprintf( No, "%02d", trackNo );
 	else
-		sprintf( No, "%2d", trackNo );	
+		sprintf( No, "%2d", trackNo );
 	strcat( trackPath, No);
 	strcat( trackPath, name);
-}		
+}
 
 void LoadCmpFiles( TIMlist *timPtr )
 {
 	short       i;
 	Texture*    texture;
-	
+
 	for (i = 0; i < numTex; i++)
 	{
 		texture = NewLoadTexture( timPtr->memOffset[i], 1 );
@@ -135,7 +135,7 @@ void LoadCmpFiles( TIMlist *timPtr )
 		{
 			TextureTable[ TextureTableCount++ ] = texture;
 		}
-		
+
 		if ( TextureTableCount >= TextureTableMax )
 		{
 			printf( "Wtl.c:LoadWtlFiles(): TextureTable is full\n" );
@@ -148,7 +148,7 @@ void LoadCmpFiles( TIMlist *timPtr )
 }
 
 
-Texture* NewLoadTexture( long timPtr, short translucent )
+Texture* NewLoadTexture( uintptr_t timPtr, short translucent )
 {
 	Tim*        tim;
 	TimClut4*   tc4;
@@ -156,74 +156,75 @@ Texture* NewLoadTexture( long timPtr, short translucent )
 	Texture*		texture;
 	RECT        rect;
 	CLUT			cluts[256];			// PCwipeout
-	
+
 	int         x,y;
-	
+
 #if LoadMessages
 	//   printf( "Loading Tim File : %s\n", name );
 #endif
-	
+
 	tim = (Tim*) timPtr;
-	
+	printf("NewLoadTexture tim at %lx clut type = %ld\n", timPtr, ClutType(tim) );
+
 	if ( ClutType( tim ) == Clut4Bit )
 	{
 		tc4 = ( TimClut4* )( tim );
 		texture = ( Texture* )DAlloc( heap, sizeof( Texture ) );
-		
+
 		texture->type = CLUT4;
-		
+
 		if ( ( !tc4->textureX ) && ( !tc4->textureY ) )
 		{
 			tc4->clutX = clutX;
 			tc4->clutY = clutY;
-			
+
 			tc4->clutW = 16;
 			tc4->clutH = 1;
-			
+
 			tc4->textureX = textureX;
 			tc4->textureY = textureY;
-			
+
 			clutX += 16;
 			if ( clutX >= 384 )
 			{
 				clutX = 320;
 				clutY += 1;
 			}
-			
+
 			textureY += 32;
 			if ( textureY >= 256 )
 			{
 				textureX += 8;
 				textureY = 0;
 			}
-			
+
 		}
-		
-		texture->clutX = tc4->clutX; 
-		texture->clutY = tc4->clutY;   
-		texture->clutW = tc4->clutW; 
-		texture->clutH = tc4->clutH; 
-		
+
+		texture->clutX = tc4->clutX;
+		texture->clutY = tc4->clutY;
+		texture->clutW = tc4->clutW;
+		texture->clutH = tc4->clutH;
+
 		texture->textureX = tc4->textureX;
 		texture->textureY = tc4->textureY;
 		texture->textureW = tc4->textureW;
 		texture->textureH = tc4->textureH;
-		
+
 		x = tc4->textureX - TextureHOffset( tc4->textureX );
 		y = tc4->textureY - TextureVOffset( tc4->textureY );
-		
-		texture->u0 = ( x << 2 );                    
-		texture->v0 = ( y );                    
+
+		texture->u0 = ( x << 2 );
+		texture->v0 = ( y );
 		texture->u1 = ( ( x + tc4->textureW ) << 2 ) - 1;
-		texture->v1 = ( y );                    
-		texture->u2 = ( x << 2 );                    
+		texture->v1 = ( y );
+		texture->u2 = ( x << 2 );
 		texture->v2 = ( y + tc4->textureH ) - 1;
 		texture->u3 = ( ( x + tc4->textureW ) << 2 ) - 1;
 		texture->v3 = ( y + tc4->textureH ) - 1;
-		
+
 		texture->tsb = TSB( Clut4Bit, translucent, TPAGE( texture->textureX, texture->textureY ) );
 		texture->cba = CBA( texture->clutX >> 4, texture->clutY );
-		
+
 		rect.x = tc4->clutX;
 		rect.y = tc4->clutY;
 		rect.w = tc4->clutW;
@@ -231,7 +232,7 @@ Texture* NewLoadTexture( long timPtr, short translucent )
 		LoadClut4( &rect, ( ushort* )( &tc4->clut ) , cluts);  // PCwipeout
 		//      LoadImage( &rect, ( ulong* )( &tc4->clut ) );
 		DrawSync( 0 );
-		
+
 		rect.x = tc4->textureX;
 		rect.y = tc4->textureY;
 		rect.w = tc4->textureW;
@@ -244,39 +245,39 @@ Texture* NewLoadTexture( long timPtr, short translucent )
 	{
 		tc8 = ( TimClut8* )( tim );
 		texture = ( Texture* )DAlloc( heap, sizeof( Texture ) );
-		
+
 		texture->type = CLUT8;
-		
+
 		if ( ( !tc8->textureX ) && ( !tc8->textureY ) )
 		{
 			Error( "tim.c:LoadTexture(): Cannot auto place 8 bit textures", Fatal );
 		}
-		
-		texture->clutX = tc8->clutX; 
-		texture->clutY = tc8->clutY; 
-		texture->clutW = tc8->clutW; 
-		texture->clutH = tc8->clutH; 
-		
+
+		texture->clutX = tc8->clutX;
+		texture->clutY = tc8->clutY;
+		texture->clutW = tc8->clutW;
+		texture->clutH = tc8->clutH;
+
 		texture->textureX = tc8->textureX;
 		texture->textureY = tc8->textureY;
 		texture->textureW = tc8->textureW;
 		texture->textureH = tc8->textureH;
-		
+
 		x = tc8->textureX - TextureHOffset( tc8->textureX );
 		y = tc8->textureY - TextureVOffset( tc8->textureY );
-		
-		texture->u0 = ( x << 1 );                                                   
-		texture->v0 = ( y );                              
-		texture->u1 = ( ( x + tc8->textureW ) << 1 ) - 1;  
-		texture->v1 = ( y );                             
-		texture->u2 = ( x << 1 );                           
-		texture->v2 = ( y + tc8->textureH ) - 1;         
-		texture->u3 = ( ( x + tc8->textureW ) << 1 ) - 1;   
-		texture->v3 = ( y + tc8->textureH ) - 1;         
-		
+
+		texture->u0 = ( x << 1 );
+		texture->v0 = ( y );
+		texture->u1 = ( ( x + tc8->textureW ) << 1 ) - 1;
+		texture->v1 = ( y );
+		texture->u2 = ( x << 1 );
+		texture->v2 = ( y + tc8->textureH ) - 1;
+		texture->u3 = ( ( x + tc8->textureW ) << 1 ) - 1;
+		texture->v3 = ( y + tc8->textureH ) - 1;
+
 		texture->tsb = TSB( Clut8Bit, translucent, TPAGE( texture->textureX, texture->textureY ) );
 		texture->cba = CBA( texture->clutX >> 4, texture->clutY );
-		
+
 		rect.x = tc8->clutX;
 		rect.y = tc8->clutY;
 		rect.w = tc8->clutW;
@@ -284,7 +285,7 @@ Texture* NewLoadTexture( long timPtr, short translucent )
 		LoadClut8( &rect, ( ushort* )( &tc8->clut ),cluts );
 		//      LoadImage( &rect, ( ulong* )( &tc8->clut ) );
 		DrawSync( 0 );
-		
+
 		rect.x = tc8->textureX;
 		rect.y = tc8->textureY;
 		rect.w = tc8->textureW;
@@ -338,7 +339,7 @@ TIMlist *LoadCompressedTextureSequence( char *fileName )
       Error( errorString, Fatal );
    }
 
-   numTex = *(long *)fileBuffer;
+   numTex = *(int32_t *)fileBuffer;
 
    timTotalSize = 0;
 
@@ -347,7 +348,7 @@ TIMlist *LoadCompressedTextureSequence( char *fileName )
    for ( texNum = 0 ; texNum < numTex ; texNum++ )
 	{
 		timList.memOffset[texNum] = timTotalSize;
-		timSize = *((long *)(fileBuffer + 4 + texNum*4));
+		timSize = *((int32_t *)(fileBuffer + 4 + texNum*4));
 		timTotalSize += timSize;
 	}
 
@@ -359,7 +360,7 @@ TIMlist *LoadCompressedTextureSequence( char *fileName )
 
 	for ( texNum = 0 ; texNum < numTex ; texNum++ )
 	{
-		timList.memOffset[texNum] += ( long )timList.memBase;
+		timList.memOffset[texNum] += ( intptr_t )timList.memBase;
 	}
 	CPURasters=GsGetVcount();
 

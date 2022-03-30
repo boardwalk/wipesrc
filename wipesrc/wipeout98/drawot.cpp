@@ -89,7 +89,7 @@ short rendering=0;
 
 void DrawOTag(P_TAG *primitive)
 {
-	unsigned long addr;
+	void* addr;
 
 #if	DEBUG_LOCKED
 	CurBuffer = DebugScreen;
@@ -107,16 +107,16 @@ void DrawOTag(P_TAG *primitive)
 	setRenderBegin();
 	numoff=0;
 	numsmall=0;
-	addr = (unsigned long) primitive;
+	addr = primitive;
 
-	if (addr != 0xffffffff) do
+	if (addr != NULL) do
 	{
 		if (((P_TAG *) addr)->code != 0) //Case of OT stuff
 			DrawPrim((unsigned long *) addr);
 
 		primitive = (P_TAG *) addr;
 	}
-	while ((addr = getaddr(primitive)) != 0xffffffff);
+	while ((addr = getaddr(primitive)) != NULL);
 
 #if DEBUG_LOCKED
 	while (LockBackBuffer())

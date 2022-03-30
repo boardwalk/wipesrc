@@ -1,4 +1,8 @@
-#include <stddef.h>
+#include <time.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 typedef int BOOL;
 #define		TRUE			1
 #define		FALSE			0
@@ -125,6 +129,8 @@ typedef struct {
 short ft=0;
 char MipMap = 0;
 char *SaveDirBase;
+char *DataDirBase;
+char *MovieDirBase;
 char globalPilot[255]={0};
 short FrameState=0;
 int menuTexturesIn = 0;
@@ -208,8 +214,42 @@ void	    BltClearToScreen(void)
 TimData *JJSLoad16BitTexture(char *filename, char location)
 { return NULL; }
 
+short randlist[2000];
+short *randnum;
+short ctr;
+
+void initrandy()
+{
+	short i;
+	time_t t;
+
+	t=time(NULL);
+
+	srand(t);
+
+	for (i = 0; i < 2000; i++)
+		randlist[i] = rand() & 0x7FFF;
+
+	randnum = &randlist[0];;
+	ctr = 0;
+}
+
 int randy(void)
-{ return 0; }
+{
+	short num;
+
+	num = *randnum++;
+
+	ctr++;
+	if (ctr == 2000)
+	{
+		randnum = &randlist[0];;
+		ctr = 0;
+	}
+
+	return num;
+
+}
 
 void	    DDSwap(void)
 {}
@@ -222,3 +262,31 @@ void	    WinQuit(void)
 
 void sendList(void)
 {}
+
+void oldmain(void);
+
+extern short    WinWidth;
+extern short    WinHeight;
+extern short    WinHeightX2;
+
+int main(int argc, char** argv)
+{
+	initrandy();
+	WinWidth = 640;
+	WinHeight = 480;
+	WinHeightX2 = WinHeight * 2;
+
+	SaveDirBase = (char *)malloc(120);
+	strcpy(SaveDirBase, ".");
+
+	DataDirBase = (char *)malloc(120);
+	strcpy(DataDirBase, ".");
+
+	MovieDirBase = (char *)malloc(120);
+	strcpy(MovieDirBase, ".");
+
+	chdir(DataDirBase);
+
+	oldmain();
+	return 0;
+}

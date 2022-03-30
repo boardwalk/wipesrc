@@ -9,6 +9,8 @@
 
 // typedefs to get includes working under watcom
 #include "standard.h"
+#include <string.h>
+#include <stdio.h>
 
 // TODO(boardwalk) Added
 #define _MAX_PATH 260
@@ -21,14 +23,63 @@ void _splitpath(
    char *dir,
    char *fname,
    char *ext
-) {}
+) {
+	const char* lastSlash = strrchr(path, '/');
+
+	const char* fileBegin;
+	if (lastSlash == NULL) {
+		fileBegin = path;
+	} else {
+		fileBegin = lastSlash + 1;
+	}
+
+	const char* extBegin = strrchr(fileBegin, '.');
+	if (extBegin == NULL) {
+		extBegin = fileBegin + strlen(fileBegin);
+	}
+
+	if (drive != NULL) {
+		strcpy(drive, "");
+	}
+
+	if (dir != NULL) {
+		size_t len = fileBegin - path;
+		memcpy(dir, path, len);
+		dir[len] = '\0';
+	}
+
+	if (fname != NULL) {
+		size_t len = extBegin - fileBegin;
+		memcpy(fname, fileBegin, len);
+		fname[len] = '\0';
+	}
+
+	if (ext != NULL) {
+		strcpy(ext, extBegin);
+	}
+}
+
 void _makepath(
    char *path,
    const char *drive,
    const char *dir,
    const char *fname,
    const char *ext
-) {}
+) {
+	strcpy(path, "");
+
+	if (dir != NULL) {
+		strcat(path, dir);
+	}
+
+	if (fname != NULL) {
+		strcat(path, fname);
+	}
+
+	if (ext != NULL) {
+		strcat(path, ext);
+	}
+}
 
 #define _SIZE_T_DEFINED_
 #include <stdio.h>
@@ -1038,7 +1089,7 @@ void LoadVRam(char *filename, char set_pal)
 	BM.width=256;
 	BM.height=5632; // was 8192
 	BM.palette=main_palette;
-	ReadPCX(filename,&BM,3);	// 2 = PIC, 1 = PAL, 4= DEBUG
+	ReadPCX(filename,&BM,7);	// 2 = PIC, 1 = PAL, 4 = DEBUG
 
 	palptr = main_palette;
 
@@ -1073,7 +1124,7 @@ void LoadVRam(char *filename, char set_pal)
 	BM.height=96;
 	BM.bitmap=DepthFadeTble;
 	BM.palette=main_palette;
-	ReadPCX(fadefilename,&BM,2);
+	ReadPCX(fadefilename,&BM,6);
 
 	//	free(pall);
 }

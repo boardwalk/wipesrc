@@ -75,7 +75,7 @@ void InitText()
 	/**********************************************************/
 
    DRTEXT_16 = TextureTableCount;
-	timPtr = LoadCompressedTextureSequence( "wipeout\\textures\\drfonts.cmp" );
+	timPtr = LoadCompressedTextureSequence( "wipeout/textures/drfonts.cmp" );
    LoadCmpFiles( timPtr );
    DRTEXT_12 = DRTEXT_16 + 1 ;
    DRTEXT_8 = DRTEXT_16 + 2 ;
@@ -102,7 +102,7 @@ void InitSpeedo (Speedo *speedo)
 	int j;
 	Texture *tex_ptr ;
 
-	tex_ptr = LoadTexture ( "wipeout\\textures\\speedo.tim", 1 ) ;
+	tex_ptr = LoadTexture ( "wipeout/textures/speedo.tim", 1 ) ;
 
 	for(j = 0; j < 2; j++)
 	{
@@ -686,8 +686,9 @@ void SetCharTextures (char size)
 
 	}
 
-
-	for (j=0; j < 40; j++)
+	// TODO(boardwalk) There are only 38 in each Text* array, not 40
+	// This leaves some CharSet unset, does this matter?
+	for (j=0; j < 38; j++)
 	{
 
 		currLett = charSet[j] ;
@@ -1646,7 +1647,7 @@ void InitScreenTex (Texture **screenTex, char *fileName)
 	short				tablePos ;
 	char 				modelFile[256];
 
-	strcpy( modelFile, "wipeout\\textures\\" );
+	strcpy( modelFile, "wipeout/textures/" );
 	strcat( modelFile, fileName) ;
 	strcat( modelFile, ".cmp");
 
@@ -1660,7 +1661,7 @@ void InitScreenTex (Texture **screenTex, char *fileName)
 
 	// AND NOW LOAD IN THE PROPER PICCIES FOR PC WIPEOUT
 
-	strcpy( modelFile, "wipeout\\newgraph\\" );
+	strcpy( modelFile, "wipeout/newgraph/" );
 //	strcat( modelFile, trackdir) ;
 	strcat( modelFile, fileName) ;
 	LoadPilotIntoVram(modelFile);
@@ -1756,7 +1757,7 @@ void InitTrackTex (Texture **trackTex)
 	Texture *t;
 	tablePos = TextureTableCount;
 
-	timPtr = LoadCompressedTextureSequence( "wipeout\\textures\\track.cmp" );
+	timPtr = LoadCompressedTextureSequence( "wipeout/textures/track.cmp" );
 	LoadCmpFiles( timPtr );
 
 	trackTex[0] = TextureTable [tablePos++] ;

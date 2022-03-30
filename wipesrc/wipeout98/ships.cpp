@@ -20,7 +20,7 @@
 #include "fileops.h"
 #include "sound.h"
 #include "combat.h"
-#include "menus.h"  
+#include "menus.h"
 #include "sparks2.h"
 #include "global.h"
 #include "hiscores.h"
@@ -117,13 +117,13 @@ void DrawShips(ShipData *shipIndex, Object** shipShapes, int camShip, TrackCamer
 		if(mag < 2000)
 			shipIndex[i].attr |= VISIBLE;
 
-		if((mag < 2000) && (v2.vz > 0) || (i == camShip)) 
+		if((mag < 2000) && (v2.vz > 0) || (i == camShip))
 		{
 			if(shipIndex[ownShip].attr & RACING)
 			{
 				if(mag < 1600)
 			   		obj = shipShapes[ shipIndex[i].highResTableIndex ];
-				else 
+				else
 			   		obj = shipShapes[ shipIndex[i].lowResTableIndex ];
 			}
         	else
@@ -140,7 +140,7 @@ void DrawShips(ShipData *shipIndex, Object** shipShapes, int camShip, TrackCamer
 				 shipIndex[i].hdg,
 				 shipIndex[i].pitch,
 				 shipIndex[i].roll );
-		
+
 	 		if( ((shipIndex[i].attr & VIEW_IN) == 0) ||
 	 				(shipIndex[i].attr & REMOTE_VIEW))
 	 		{
@@ -156,7 +156,7 @@ void DrawShips(ShipData *shipIndex, Object** shipShapes, int camShip, TrackCamer
 				}
 				else
 		 			DrawObjectAsm( obj, ctrlcamera.camPos, 0, 1);
-         	} 
+         	}
 		}
 		else
 		{
@@ -180,29 +180,29 @@ void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShape
 	/** temporary memory to be allocated					  **/
 	/******************************************************/
 
-	strcpy( shipFile, "wipeout\\common\\allsh" );
+	strcpy( shipFile, "wipeout/common/allsh" );
 	strcat( shipFile, ".cmp");
    shipTextures = TextureTableCount;
 	timPtr = LoadCompressedTextureSequence( shipFile );
-   LoadCmpFiles( timPtr ); 
+   LoadCmpFiles( timPtr );
 
 	colTextures = TextureTableCount;
-	timPtr = LoadCompressedTextureSequence( "wipeout\\common\\alcol.cmp" );
-	LoadCmpFiles( timPtr ); 
+	timPtr = LoadCompressedTextureSequence( "wipeout/common/alcol.cmp" );
+	LoadCmpFiles( timPtr );
 
 	droidTextures = TextureTableCount;
-	timPtr = LoadCompressedTextureSequence( "wipeout\\common\\rescu.cmp" );
-	LoadCmpFiles( timPtr ); 
+	timPtr = LoadCompressedTextureSequence( "wipeout/common/rescu.cmp" );
+	LoadCmpFiles( timPtr );
 
-	strcpy( shipFile, "wipeout\\common\\allsh" );
+	strcpy( shipFile, "wipeout/common/allsh" );
 	strcat( shipFile, ".prm");
 
-	shipShapes[0] = LoadPrm( shipFile, shipTextures );	 
+	shipShapes[0] = LoadPrm( shipFile, shipTextures );
 
    obj = shipShapes[ 0 ];
 
    while ( obj )
-   {	
+   {
 		shipIndex[count].highResTableIndex = shipShapeOrder[count];
 
 		obj->skeleton->super = camPos;
@@ -216,11 +216,11 @@ void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShape
 	strcpy( shipFile, "wipeout\\common\\alcol" );
 	strcat( shipFile, ".prm");
 
-	shipShapes[ NO_OF_SHIPS ] = LoadPrm( shipFile, colTextures );	 
+	shipShapes[ NO_OF_SHIPS ] = LoadPrm( shipFile, colTextures );
    obj = shipShapes[ NO_OF_SHIPS ];
 
    while ( obj )
-   {	
+   {
 		shipIndex[count - NO_OF_SHIPS].lowResTableIndex = count;
 
 		obj->skeleton->super = camPos;
@@ -233,13 +233,13 @@ void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShape
    }
 #if 0
 	for(i = 0; i < NO_OF_SHIPS; i++)
-	{	  
+	{
 		strcpy( colFile, "wipeout\\common\\shp" );
-		sprintf( No, "%1d", i+1 );	
+		sprintf( No, "%1d", i+1 );
 		strcat( shipFile, No);
 		strcat( colFile, No);
 		strcat( colFile, "c.prm");
-								 
+
 		shipIndex[i].lowResTableIndex = NO_OF_SHIPS+i;
  		shipShapes[NO_OF_SHIPS+i] = LoadPrm( colFile, shipTextures );
 
@@ -252,7 +252,7 @@ void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShape
 
    obj = shipShapes[ RESCUE_DROID ];
    while ( obj )
-   {	
+   {
 		obj->skeleton->super = camPos;
       obj = obj->next;
    }
@@ -307,14 +307,14 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 
 	short massBeg[8] 			=	{	150,	150,	150,	150,	150,	150,	150,	150	};
 
-	short maxThrustBeg[8] 	=	{	790,	790,	850,	850,	850,	850,	790,  790	};	
+	short maxThrustBeg[8] 	=	{	790,	790,	850,	850,	850,	850,	790,  790	};
 	short resistanceBeg[8] 	=	{	140,	140,	134,	134,	140,	140,	134,	134	};
 	short headingIncBeg[8] 	=	{	160,	160,	140,	140,	120,	120,	180,	180	};
 	short maxHeadingBeg[8] 	=	{	2560,	2560,	1920,	1920,	1920,	1920,	2560,	2560	};
 	short skidBeg[8] 		  	=	{	12,	12,	20,	20,	24,	24,	12,	12		};
 
 	short massPro[8] 			=	{	150,	150,	150,	150,	150,	150,	150,	150	};
-	short maxThrustPro[8] 	=	{	1200,	1200,	1400,	1400,	1400,	1400,	1200, 1200	};	
+	short maxThrustPro[8] 	=	{	1200,	1200,	1400,	1400,	1400,	1400,	1200, 1200	};
 	short resistancePro[8] 	=	{	140,	140,	140,	140,	130,	130,	130,	130	};
 	short headingIncPro[8] 	=	{	160,	160,	120,	120,	140,	140,	180,	180	};
 	short maxHeadingPro[8] 	=	{	2560,	2560,	1920,	1920,	1920,	1920,	2560,	2560	};
@@ -337,7 +337,7 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 	gameData->Class = 0;
 #endif
 
-	crossedLine = 0;	
+	crossedLine = 0;
    crossedLineSerial = 0;
 	if (gameType == SINGLE)
 	{
@@ -356,7 +356,7 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 						if(index != 0)
 						{
 							if( used[index] == 0)
-							{ 	
+							{
 								championOrder[index] = i;
 								raceOrder[index] = i;
 								shipOrder[i] = index;
@@ -368,8 +368,8 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 				}
 			}
 
-			championOrder[0] = ownShip;		
-			raceOrder[0] = ownShip;		
+			championOrder[0] = ownShip;
+			raceOrder[0] = ownShip;
 			shipOrder[ownShip] = 0;
 		}
 
@@ -403,17 +403,17 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 							used[index] = 1;
 							raceOrder[i] = championOrder[index];
 							break;
-						}	
+						}
 					}
-				}	
+				}
 			}
 			shipOrder[raceOrder[4]] = 4;
 			shipOrder[raceOrder[3]] = 3;
 			shipOrder[raceOrder[2]] = 2;
 			shipOrder[raceOrder[1]] = 1;
-		
-			shipOrder[ownShip] = 0;		
-			raceOrder[0] = ownShip;		
+
+			shipOrder[ownShip] = 0;
+			raceOrder[0] = ownShip;
 		}
 	}
 	else
@@ -431,12 +431,12 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 		{
 		 	shipOrder[ownShip] = 0;
 		 	shipOrder[serialShip] = 1;
-		}	
+		}
 		if(gameType == SLAVE)
 		{
 		 	shipOrder[ownShip] = 1;
 		 	shipOrder[serialShip] = 0;
-		}	
+		}
 
 	}
 //	for(i = 0; i < NO_OF_SHIPS; i++)
@@ -453,23 +453,23 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 
 	for( i = 0; i < startLinePos[gameData->actTrackNum] - 15; i++)
 	{
-	  	section = section->nextSection.ptr;		
+	  	section = section->nextSection.ptr;
    }
    for(i = 0; i < NO_OF_SHIPS; i++)
-	{									 
+	{
 		startSection[i] = section;
-		section = section->nextSection.ptr; 		
+		section = section->nextSection.ptr;
 		if((i % 2) == 0)
-			section = section->nextSection.ptr; 		
+			section = section->nextSection.ptr;
 	}
 	if(gameType == SLAVE)
 	{
-		startSection[1] = startSection[1]->prevSection.ptr; 
-		startSection[1] = startSection[1]->prevSection.ptr; 
+		startSection[1] = startSection[1]->prevSection.ptr;
+		startSection[1] = startSection[1]->prevSection.ptr;
 	}
 
    for(i = 0; i < NO_OF_SHIPS; i++)
-	{									 
+	{
 		shipIndex[i].vpivot.vx = 0;
 		shipIndex[i].vpivot.vy = 0;
 		shipIndex[i].vpivot.vz = 0;
@@ -492,13 +492,13 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 		shipIndex[i].attr |= DIRECTION;
 		shipIndex[i].combatAttr = 0;
 		shipIndex[i].collideCount = 0;
-	 	shipIndex[i].weaponType = NO_WEAPON; 
+	 	shipIndex[i].weaponType = NO_WEAPON;
 		shipIndex[i].lapNo = 0;
 		shipIndex[i].prevLapNo = 0;
-		shipIndex[i].speed = 0;	 
-		shipIndex[i].electroCount = 0;	 
-		shipIndex[i].revConCount = 0;	 
- 				  
+		shipIndex[i].speed = 0;
+		shipIndex[i].electroCount = 0;
+		shipIndex[i].revConCount = 0;
+
 		if(gameData->Class == 0)
 		{
 			shipIndex[i].mass = massBeg[i];
@@ -545,11 +545,11 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 		if(i == ownShip)
 		{
 			if(neg1.head == 8960)
-				shipIndex[i].update = UpdatePlayerShipNegStart;	 
-	  		else 
-	  			shipIndex[i].update = UpdatePlayerShipNormStart;	 
+				shipIndex[i].update = UpdatePlayerShipNegStart;
+	  		else
+	  			shipIndex[i].update = UpdatePlayerShipNormStart;
 		}
- 		else 
+ 		else
 			shipIndex[i].update = UpdateRemoteShipStart;
 
 		if(gameType == SINGLE)
@@ -571,22 +571,22 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 				if(gameData->Class == 0)
 				{
 					if(slowCraft == 1)
-						shipIndex[i].remoteMaxThrust = RMaxThrustBeg[position-1] >> 1;	  
+						shipIndex[i].remoteMaxThrust = RMaxThrustBeg[position-1] >> 1;
 					else
-						shipIndex[i].remoteMaxThrust = RMaxThrustBeg[position-1];	  
+						shipIndex[i].remoteMaxThrust = RMaxThrustBeg[position-1];
 
-					shipIndex[i].remoteThrustMag = RThrustMagBeg[position-1];	  
-					shipIndex[i].fightBack = 		 fightBackBeg[position-1];		  
+					shipIndex[i].remoteThrustMag = RThrustMagBeg[position-1];
+					shipIndex[i].fightBack = 		 fightBackBeg[position-1];
 				}
 				else
 				{
 					if(slowCraft == 1)
-						shipIndex[i].remoteMaxThrust = RMaxThrustPro[position-1] >> 1;	  
+						shipIndex[i].remoteMaxThrust = RMaxThrustPro[position-1] >> 1;
 					else
-						shipIndex[i].remoteMaxThrust = RMaxThrustPro[position-1];	  
-						
-					shipIndex[i].remoteThrustMag = RThrustMagPro[position-1];	  
-					shipIndex[i].fightBack = 		 fightBackPro[position-1];		  
+						shipIndex[i].remoteMaxThrust = RMaxThrustPro[position-1];
+
+					shipIndex[i].remoteThrustMag = RThrustMagPro[position-1];
+					shipIndex[i].fightBack = 		 fightBackPro[position-1];
 				}
 
 			}
@@ -698,7 +698,7 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 
 
 	   face = track->faces + startSection[position]->faceStart;
-		face++; 
+		face++;
 		if((position % 2) != 0) face++;
 
 		facePoint.vx = (track->vertices[(face->vertex[0])].vx + track->vertices[(face->vertex[2])].vx)>>1;
@@ -712,13 +712,13 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 		shipIndex[i].prevSecNo = startSection[position]->secNo;
 		shipIndex[i].DPASectDiff = startSection[position]->secNo;
 
-	  	nextSection = startSection[position]->nextSection.ptr;		
+	  	nextSection = startSection[position]->nextSection.ptr;
 		targetVector.vx = nextSection->centre.vx - startSection[position]->centre.vx;
 		targetVector.vy = nextSection->centre.vy - startSection[position]->centre.vy;
 		targetVector.vz = nextSection->centre.vz - startSection[position]->centre.vz;
 		shipIndex[i].hdg = -ratan2(targetVector.vx, targetVector.vz);
 	}
-}	
+}
 
 
 
@@ -727,47 +727,47 @@ void SetSpread(ShipData *shipIndex, ConfigData *gameData, int position, int i)
 	switch(gameData->actTrackNum)
 	{
 		case 1:
-			shipIndex[i].numtospeed = (position-1) * (60 + ((position-1)*11));   
+			shipIndex[i].numtospeed = (position-1) * (60 + ((position-1)*11));
 			break;
 		case 2:
-			shipIndex[i].numtospeed = (position-1) * (80 + ((position-1)*20));   
+			shipIndex[i].numtospeed = (position-1) * (80 + ((position-1)*20));
 			break;
 		case 4:
-			shipIndex[i].numtospeed = (position-1) * (10 + ((position-1)*8));   
+			shipIndex[i].numtospeed = (position-1) * (10 + ((position-1)*8));
 			break;
 		case 8:
-			shipIndex[i].numtospeed = (position-1) * (80 + ((position-1)*15));   
+			shipIndex[i].numtospeed = (position-1) * (80 + ((position-1)*15));
 			break;
 		case 9:
-			shipIndex[i].numtospeed = (position-1) * (10 + ((position-1)*8));   
+			shipIndex[i].numtospeed = (position-1) * (10 + ((position-1)*8));
 			break;
 		case 12:
-			shipIndex[i].numtospeed = (position-1) * (40 + ((position-1)*11));   
+			shipIndex[i].numtospeed = (position-1) * (40 + ((position-1)*11));
 			break;
 		case 10:
-			shipIndex[i].numtospeed = (position-1) * (40 + ((position-1)*11));   
+			shipIndex[i].numtospeed = (position-1) * (40 + ((position-1)*11));
 			break;
 
 		case 3:
-			shipIndex[i].numtospeed = (position-1) * (80 + ((position-1)*11));   
+			shipIndex[i].numtospeed = (position-1) * (80 + ((position-1)*11));
 			break;
 		case 5:
-			shipIndex[i].numtospeed = (position-1) * (10 + ((position-1)*8));   
+			shipIndex[i].numtospeed = (position-1) * (10 + ((position-1)*8));
 			break;
 		case 6:
-			shipIndex[i].numtospeed = (position-1) * (60 + ((position-1)*8));   
+			shipIndex[i].numtospeed = (position-1) * (60 + ((position-1)*8));
 			break;
 		case 7:
-			shipIndex[i].numtospeed = (position-1) * (30 + ((position-1)*11));   
+			shipIndex[i].numtospeed = (position-1) * (30 + ((position-1)*11));
 			break;
 		case 11:
-			shipIndex[i].numtospeed = (position-1) * (30 + ((position-1)*11));   
+			shipIndex[i].numtospeed = (position-1) * (30 + ((position-1)*11));
 			break;
 		case 13:
-			shipIndex[i].numtospeed = (position-1) * (10 + ((position-1)*8));   
+			shipIndex[i].numtospeed = (position-1) * (10 + ((position-1)*8));
 			break;
 		case 14:
-			shipIndex[i].numtospeed = (position-1) * (40 + ((position-1)*11));   
+			shipIndex[i].numtospeed = (position-1) * (40 + ((position-1)*11));
 			break;
 	}
 

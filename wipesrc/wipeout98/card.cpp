@@ -151,7 +151,7 @@ char SaveCardFile (char *saveName, int cardNum, ConfigData *gameData, short slid
 	char	header[1];
 
 	strcpy(fileName, SaveDirBase);
-	strcat(fileName, "\\");
+	strcat(fileName, "/");
 	strcat(fileName, saveName);
 	strcat(fileName, FILE_EXTENSION);
 
@@ -337,7 +337,7 @@ char LoadCardData (char *loadName, int cardNum, ConfigData *gameData, SelectionD
 
 
 	strcpy(fileName, SaveDirBase);
-	strcat(fileName, "\\");
+	strcat(fileName, "/");
 	strcat(fileName, loadName);
 	strcat(fileName, FILE_EXTENSION);
 
