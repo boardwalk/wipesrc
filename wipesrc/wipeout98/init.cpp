@@ -148,7 +148,7 @@ void LoadCmpFiles( TIMlist *timPtr )
 }
 
 
-Texture* NewLoadTexture( uintptr_t timPtr, short translucent )
+Texture* NewLoadTexture( intptr_t timPtr, short translucent )
 {
 	Tim*        tim;
 	TimClut4*   tc4;
