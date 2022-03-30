@@ -22,11 +22,11 @@
 
 /* Game Command Codes */
 
-#define	PAUSE		0x30	//190 
-#define	CONT		0x31	//200 
-#define	RETIRE		0x32	//210 
-#define	QUIT		0x33	//220 
-#define	NULLDATA	0x34	//230 
+#define	PAUSE		0x30	//190
+#define	CONT		0x31	//200
+#define	RETIRE		0x32	//210
+#define	QUIT		0x33	//220
+#define	NULLDATA	0x34	//230
 
 #define SIOCM_STP0  0x00000000		/* Stop bits */
 #define SIOCM_STP1  0x00000040
@@ -63,22 +63,22 @@
 
 typedef struct	combatdata
 {
-	unsigned char 	combatMode ;
+	uint8_t 	combatMode ;
 	NegconBuff		*controlData ;
-	unsigned char	status ;
-	unsigned char	exit ;
-	unsigned char 	exitCount ;
+	uint8_t	status ;
+	uint8_t	exit ;
+	uint8_t 	exitCount ;
 	void (*combatControl)(struct combatdata *, struct ShipData *);
 }combatData ;
 
 
-	
+
 void InitCombat () ;
 void CloseCombat () ;
 void InitFiles () ;
 void CombatMaster (combatData *, ShipData *) ;
 void CombatSlave (combatData *, ShipData *) ;
-void PlayStationLinkUp(POLY_F4 * , int) ;
+void PlayStationLinkUp(POLY_F4 * , int32_t) ;
 void NewMaster (combatData *, ShipData *) ;
 void NewSlave (combatData *, ShipData *) ;
 // void WaitForMaster () ;

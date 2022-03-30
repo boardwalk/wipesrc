@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-u_long *make_data_cache(void)
+uint32_t *make_data_cache(void)
 {
-	u_long *cache_addr;
+	uint32_t *cache_addr;
 
-	cache_addr = (u_long*)malloc(1024);
+	cache_addr = (uint32_t*)malloc(1024);
 
 	if (cache_addr == NULL)
 		{

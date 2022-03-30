@@ -33,62 +33,62 @@ struct TrackCamera;
 typedef struct ShipData
 {
 	/***** Graphics Attributes *****/
-	short			highResTableIndex;						 	/* Index into shipShapes for high-res model */
-	short			lowResTableIndex;							 	/* Index into shipShapes for low-res model */
+	int16_t			highResTableIndex;						 	/* Index into shipShapes for high-res model */
+	int16_t			lowResTableIndex;							 	/* Index into shipShapes for low-res model */
 
 	/***** Dynamic Attributes *****/
 	TrackSection *nearTrkSect, *prevShipSect;
-	int 			attr;												/* Ship attributes */
-	int 			combatAttr;											/* Ship attributes */
+	int32_t 			attr;												/* Ship attributes */
+	int32_t 			combatAttr;											/* Ship attributes */
 	VECTOR 		unitVecNose;		 /* SVECTOR  ? */  	/* Unit vector along ships nose */
 	VECTOR 		unitVecWing;		 /* SVECTOR  ? */  	/* Unit vector along ships nose */
 	VECTOR 		ppivot;										 	/* 32bit ship position */
 	VECTOR 		vpivot, apivot;							 	/* Velocity, accn vectors for ship */
-	short 		hdg, pitch, roll;							 	/* Orientation attributes */
-	short 		vhdg, vpitch, vroll;	
-	short 		ahdg;						
-	short 		mass;											 	/* Mass of ship */
+	int16_t 		hdg, pitch, roll;							 	/* Orientation attributes */
+	int16_t 		vhdg, vpitch, vroll;
+	int16_t 		ahdg;
+	int16_t 		mass;											 	/* Mass of ship */
  	VECTOR 		thrust;										  	/* Thrust vector */
-	short 		r_brake_rot, l_brake_rot;					/* Air brakes */
-	u_short 		speed;										  	/* speed */
-	short 		thrust_mag;				 					/* Thrust magnitude */
-	short 		max_thrust;								  	/* Miximum thrust */
-	short 		collideCount;
-	short 		headingInc, maxHeading;
-	short 		resistance;
-	short 		skid;
+	int16_t 		r_brake_rot, l_brake_rot;					/* Air brakes */
+	uint16_t 		speed;										  	/* speed */
+	int16_t 		thrust_mag;				 					/* Thrust magnitude */
+	int16_t 		max_thrust;								  	/* Miximum thrust */
+	int16_t 		collideCount;
+	int16_t 		headingInc, maxHeading;
+	int16_t 		resistance;
+	int16_t 		skid;
 
 	/***** Remote Ship Attributes *****/
-	short			fightBack, numtospeed	;
-	u_short 		remoteThrustMag; 		 					/* Thrust magnitude */
-	u_short 		remoteMaxThrust; 						  	/* Miximum thrust */
-	short			DPASectDiff;	
+	int16_t			fightBack, numtospeed	;
+	uint16_t 		remoteThrustMag; 		 					/* Thrust magnitude */
+	uint16_t 		remoteMaxThrust; 						  	/* Miximum thrust */
+	int16_t			DPASectDiff;
 
 	/***** Weapon Attributes *****/
-	u_char 		weaponType;
-	u_char 		targetShip;
-	short  		haveFired;
-	short			electroCount;
-	short			revConCount;
-	short			specialCount;
+	uint8_t 		weaponType;
+	uint8_t 		targetShip;
+	int16_t  		haveFired;
+	int16_t			electroCount;
+	int16_t			revConCount;
+	int16_t			specialCount;
 
 	/***** Race Control Attributes *****/
-	int 			lapTime;
+	int32_t 			lapTime;
 	char 			lapNo;
     char			prevLapNo;
 	char 			position;
-	short 		nearSecNo, prevSecNo ;
-	int 			lapTimes[5];
-	int 			updateCount;
+	int16_t 		nearSecNo, prevSecNo ;
+	int32_t 			lapTimes[5];
+	int32_t 			updateCount;
 
 	/***** Control Routines *****/
-	void 			(*updateControl)(VECTOR* , struct ShipData*, Face*, int);
-	void 			(*update)(struct ShipData *, Object**, int, struct WeaponData*);
+	void 			(*updateControl)(VECTOR* , struct ShipData*, Face*, int32_t);
+	void 			(*update)(struct ShipData *, Object**, int32_t, struct WeaponData*);
 
 } ShipData;
 
 struct ConfigData ;
 
 void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShapes, Skeleton* camPos);
-void DrawShips(ShipData *shipIndex, Object** shipShapes, int camShip, TrackCamera camera);
+void DrawShips(ShipData *shipIndex, Object** shipShapes, int32_t camShip, TrackCamera camera);
 void initShipData(TrackSection* section, ShipData *shipIndex, ConfigData *gameData);

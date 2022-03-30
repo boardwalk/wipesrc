@@ -15,7 +15,7 @@
  *****************************************************************/
 
 /* ----------------------------------------------------------------
- *	íËêî
+ *	ÔøΩËêî
  * ---------------------------------------------------------------- */
 
 #define SpuDiag		(-2)
@@ -44,7 +44,7 @@
 #define SPU_TRANSFER_PEEK 0
 #define SPU_TRANSFER_GLANCE SPU_TRANSFER_PEEK
 
-/* Voice éwíË */
+/* Voice ÔøΩwÔøΩÔøΩ */
 
 #ifndef __SPU_VOICE
 #define __SPU_VOICE
@@ -86,25 +86,25 @@
 
 #endif /* __SPU_VOICE */
 
-/* É{ÉCÉXä÷òA */
+/* ÔøΩ{ÔøΩCÔøΩXÔøΩ÷òA */
 
-#define	SPU_VOICE_VOLL		(0x01 <<  0) /* âπó (ç∂)                 */
-#define	SPU_VOICE_VOLR		(0x01 <<  1) /* âπó (âE)                 */
-#define	SPU_VOICE_VOLMODEL	(0x01 <<  2) /* âπó ÉÇÅ[Éh(ç∂)           */
-#define	SPU_VOICE_VOLMODER	(0x01 <<  3) /* âπó ÉÇÅ[Éh(âE)           */
-#define	SPU_VOICE_PITCH		(0x01 <<  4) /* âπíˆ (ÉsÉbÉ`éwíË)        */
-#define	SPU_VOICE_NOTE		(0x01 <<  5) /* âπíˆ (ÉmÅ[ÉgéwíË)        */
-#define	SPU_VOICE_SAMPLE_NOTE	(0x01 <<  6) /* îgå`ÉfÅ[É^ÉTÉìÉvÉãÉmÅ[Ég */
-#define	SPU_VOICE_WDSA		(0x01 <<  7) /* îgå`ÉfÅ[É^êÊì™ÉAÉhÉåÉX   */
-#define	SPU_VOICE_ADSR_AMODE	(0x01 <<  8) /* ADSR Attack rate ÉÇÅ[Éh  */
-#define	SPU_VOICE_ADSR_SMODE	(0x01 <<  9) /* ADSR Sustain rate ÉÇÅ[Éh */
-#define	SPU_VOICE_ADSR_RMODE	(0x01 << 10) /* ADSR Release rate ÉÇÅ[Éh */
+#define	SPU_VOICE_VOLL		(0x01 <<  0) /* ÔøΩÔøΩÔøΩÔøΩ(ÔøΩÔøΩ)                 */
+#define	SPU_VOICE_VOLR		(0x01 <<  1) /* ÔøΩÔøΩÔøΩÔøΩ(ÔøΩE)                 */
+#define	SPU_VOICE_VOLMODEL	(0x01 <<  2) /* ÔøΩÔøΩÔøΩ ÉÔøΩÔøΩ[ÔøΩh(ÔøΩÔøΩ)           */
+#define	SPU_VOICE_VOLMODER	(0x01 <<  3) /* ÔøΩÔøΩÔøΩ ÉÔøΩÔøΩ[ÔøΩh(ÔøΩE)           */
+#define	SPU_VOICE_PITCH		(0x01 <<  4) /* ÔøΩÔøΩÔøΩÔøΩ (ÔøΩsÔøΩbÔøΩ`ÔøΩwÔøΩÔøΩ)        */
+#define	SPU_VOICE_NOTE		(0x01 <<  5) /* ÔøΩÔøΩÔøΩÔøΩ (ÔøΩmÔøΩ[ÔøΩgÔøΩwÔøΩÔøΩ)        */
+#define	SPU_VOICE_SAMPLE_NOTE	(0x01 <<  6) /* ÔøΩgÔøΩ`ÔøΩfÔøΩ[ÔøΩ^ÔøΩTÔøΩÔøΩÔøΩvÔøΩÔøΩÔøΩmÔøΩ[ÔøΩg */
+#define	SPU_VOICE_WDSA		(0x01 <<  7) /* ÔøΩgÔøΩ`ÔøΩfÔøΩ[ÔøΩ^ÔøΩÊì™ÔøΩAÔøΩhÔøΩÔøΩÔøΩX   */
+#define	SPU_VOICE_ADSR_AMODE	(0x01 <<  8) /* ADSR Attack rate ÔøΩÔøΩÔøΩ[ÔøΩh  */
+#define	SPU_VOICE_ADSR_SMODE	(0x01 <<  9) /* ADSR Sustain rate ÔøΩÔøΩÔøΩ[ÔøΩh */
+#define	SPU_VOICE_ADSR_RMODE	(0x01 << 10) /* ADSR Release rate ÔøΩÔøΩÔøΩ[ÔøΩh */
 #define	SPU_VOICE_ADSR_AR	(0x01 << 11) /* ADSR Attack rate         */
 #define	SPU_VOICE_ADSR_DR	(0x01 << 12) /* ADSR Decay rate          */
 #define	SPU_VOICE_ADSR_SR	(0x01 << 13) /* ADSR Sustain rate        */
 #define	SPU_VOICE_ADSR_RR	(0x01 << 14) /* ADSR Release rate        */
 #define	SPU_VOICE_ADSR_SL	(0x01 << 15) /* ADSR Sustain level       */
-#define	SPU_VOICE_LSAX		(0x01 << 16) /* ÉãÅ[ÉväJénÉAÉhÉåÉX       */
+#define	SPU_VOICE_LSAX		(0x01 << 16) /* ÔøΩÔøΩÔøΩ[ÔøΩvÔøΩJÔøΩnÔøΩAÔøΩhÔøΩÔøΩÔøΩX       */
 
 #define	SPU_VOICE_DIRECT	0
 #define	SPU_VOICE_LINEARIncN	1
@@ -120,28 +120,28 @@
 #define	SPU_DECODE_FIRSTHALF	0
 #define	SPU_DECODE_SECONDHALF	1
 
-#define	SPU_COMMON_MVOLL		(0x01 <<  0) /* É}ÉXÉ^âπó (ç∂)                     */
-#define	SPU_COMMON_MVOLR		(0x01 <<  1) /* É}ÉXÉ^âπó (âE)                     */
-#define	SPU_COMMON_MVOLMODEL		(0x01 <<  2) /* É}ÉXÉ^âπó ÉÇÅ[Éh(ç∂)               */
-#define	SPU_COMMON_MVOLMODER		(0x01 <<  3) /* É}ÉXÉ^âπó ÉÇÅ[Éh(âE)               */
-#define	SPU_COMMON_RVOLL		(0x01 <<  4) /* ÉäÉoÅ[Éuâπó (ç∂)                   */
-#define	SPU_COMMON_RVOLR		(0x01 <<  5) /* ÉäÉoÅ[Éuâπó (âE)                   */
-#define	SPU_COMMON_CDVOLL		(0x01 <<  6) /* CD ì¸óÕ âπó  (ç∂)                  */
-#define	SPU_COMMON_CDVOLR		(0x01 <<  7) /* CD ì¸óÕ âπó  (âE)                  */
-#define	SPU_COMMON_CDREV		(0x01 <<  8) /* CD ì¸óÕ ÉäÉoÅ[ÉuÉIÉì/ÉIÉt          */
-#define	SPU_COMMON_CDMIX		(0x01 <<  9) /* CD ì¸óÕ ÉIÉì/ÉIÉt                  */
-#define	SPU_COMMON_EXTVOLL		(0x01 << 10) /* äOïîÉfÉWÉ^Éãì¸óÕ âπó  (ç∂)         */
-#define	SPU_COMMON_EXTVOLR		(0x01 << 11) /* äOïîÉfÉWÉ^Éãì¸óÕ âπó  (âE)         */
-#define	SPU_COMMON_EXTREV		(0x01 << 12) /* äOïîÉfÉWÉ^Éãì¸óÕ ÉäÉoÅ[ÉuÉIÉì/ÉIÉt */
-#define	SPU_COMMON_EXTMIX		(0x01 << 13) /* äOïîÉfÉWÉ^Éãì¸óÕ ÉIÉì/ÉIÉt         */
+#define	SPU_COMMON_MVOLL		(0x01 <<  0) /* ÔøΩ}ÔøΩXÔøΩ^ÔøΩÔøΩÔøΩÔøΩ(ÔøΩÔøΩ)                     */
+#define	SPU_COMMON_MVOLR		(0x01 <<  1) /* ÔøΩ}ÔøΩXÔøΩ^ÔøΩÔøΩÔøΩÔøΩ(ÔøΩE)                     */
+#define	SPU_COMMON_MVOLMODEL		(0x01 <<  2) /* ÔøΩ}ÔøΩXÔøΩ^ÔøΩÔøΩÔøΩ ÉÔøΩÔøΩ[ÔøΩh(ÔøΩÔøΩ)               */
+#define	SPU_COMMON_MVOLMODER		(0x01 <<  3) /* ÔøΩ}ÔøΩXÔøΩ^ÔøΩÔøΩÔøΩ ÉÔøΩÔøΩ[ÔøΩh(ÔøΩE)               */
+#define	SPU_COMMON_RVOLL		(0x01 <<  4) /* ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩÔøΩÔøΩÔøΩ(ÔøΩÔøΩ)                   */
+#define	SPU_COMMON_RVOLR		(0x01 <<  5) /* ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩÔøΩÔøΩÔøΩ(ÔøΩE)                   */
+#define	SPU_COMMON_CDVOLL		(0x01 <<  6) /* CD ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ (ÔøΩÔøΩ)                  */
+#define	SPU_COMMON_CDVOLR		(0x01 <<  7) /* CD ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ (ÔøΩE)                  */
+#define	SPU_COMMON_CDREV		(0x01 <<  8) /* CD ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩIÔøΩÔøΩ/ÔøΩIÔøΩt          */
+#define	SPU_COMMON_CDMIX		(0x01 <<  9) /* CD ÔøΩÔøΩÔøΩÔøΩ ÔøΩIÔøΩÔøΩ/ÔøΩIÔøΩt                  */
+#define	SPU_COMMON_EXTVOLL		(0x01 << 10) /* ÔøΩOÔøΩÔøΩÔøΩfÔøΩWÔøΩ^ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ (ÔøΩÔøΩ)         */
+#define	SPU_COMMON_EXTVOLR		(0x01 << 11) /* ÔøΩOÔøΩÔøΩÔøΩfÔøΩWÔøΩ^ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ (ÔøΩE)         */
+#define	SPU_COMMON_EXTREV		(0x01 << 12) /* ÔøΩOÔøΩÔøΩÔøΩfÔøΩWÔøΩ^ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩIÔøΩÔøΩ/ÔøΩIÔøΩt */
+#define	SPU_COMMON_EXTMIX		(0x01 << 13) /* ÔøΩOÔøΩÔøΩÔøΩfÔøΩWÔøΩ^ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩIÔøΩÔøΩ/ÔøΩIÔøΩt         */
 
-/* ÉäÉoÅ[Éuä÷òA */
+/* ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩ÷òA */
 
-#define	SPU_REV_MODE		(0x01 <<  0) /* ÉÇÅ[Éhê›íË                     */
-#define	SPU_REV_DEPTHL		(0x01 <<  1) /* ÉäÉoÅ[ÉuÇÃê[Ç≥(ç∂)             */
-#define	SPU_REV_DEPTHR		(0x01 <<  2) /* ÉäÉoÅ[ÉuÇÃê[Ç≥(âE)             */
-#define	SPU_REV_DELAYTIME	(0x01 <<  3) /* Delay Time (ECHO, DELAY ÇÃÇ›)  */
-#define	SPU_REV_FEEDBACK	(0x01 <<  4) /* Feedback   (ECHO ÇÃÇ›)         */
+#define	SPU_REV_MODE		(0x01 <<  0) /* ÔøΩÔøΩÔøΩ[ÔøΩhÔøΩ›íÔøΩ                     */
+#define	SPU_REV_DEPTHL		(0x01 <<  1) /* ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩÃê[ÔøΩÔøΩ(ÔøΩÔøΩ)             */
+#define	SPU_REV_DEPTHR		(0x01 <<  2) /* ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩÃê[ÔøΩÔøΩ(ÔøΩE)             */
+#define	SPU_REV_DELAYTIME	(0x01 <<  3) /* Delay Time (ECHO, DELAY ÔøΩÃÇÔøΩ)  */
+#define	SPU_REV_FEEDBACK	(0x01 <<  4) /* Feedback   (ECHO ÔøΩÃÇÔøΩ)         */
 
 #define SPU_REV_MODE_CHECK	(-1)
 #define SPU_REV_MODE_OFF	0
@@ -159,157 +159,157 @@
 #define SPU_REV_MODE_CLEAR_WA	0x100
 
 /* ----------------------------------------------------------------
- *	ç\ë¢ëÃ
+ *	ÔøΩ\ÔøΩÔøΩÔøΩÔøΩ
  * ---------------------------------------------------------------- */
 
 typedef struct {
-    short left;	       /* Lch */
-    short right;       /* Rch */
+    int16_t left;	       /* Lch */
+    int16_t right;       /* Rch */
 } SpuVolume;
 
 typedef struct {
-    unsigned short left;	/* Lch */
-    unsigned short right;       /* Rch */
+    uint16_t left;	/* Lch */
+    uint16_t right;       /* Rch */
 } SpuVolume16;
 
 typedef struct {
-    unsigned long	voice;		/* ê›íËÉ{ÉCÉX:
-					   SpuSetVoiceAttr: äeÉ{ÉCÉXÇÕ bit óÒ
-					   SpuGetVoiceAttr: 0 Å` 23 ÇÃíl
+    uint32_t	voice;		/* ÔøΩ›íÔøΩ{ÔøΩCÔøΩX:
+					   SpuSetVoiceAttr: ÔøΩeÔøΩ{ÔøΩCÔøΩXÔøΩÔøΩ bit ÔøΩÔøΩ
+					   SpuGetVoiceAttr: 0 ÔøΩ` 23 ÔøΩÃíl
 					   */
-    unsigned long	mask;		/* ê›íËëÆê´ÉrÉbÉg (Get Ç≈ÇÕñ≥å¯)	*/
-    SpuVolume		volume;		/* âπó 					*/
-    SpuVolume		volmode;	/* âπó ÉÇÅ[Éh				*/
-    SpuVolume		volumex;	/* åªç›ÇÃâπó  (Set Ç≈ÇÕñ≥å¯)		*/
-    unsigned short	pitch;		/* âπíˆ (ÉsÉbÉ`éwíË)			*/
-    unsigned short	note;		/* âπíˆ (ÉmÅ[ÉgéwíË)			*/
-    unsigned short	sample_note;	/* âπíˆ (ÉmÅ[ÉgéwíË)			*/
+    uint32_t	mask;		/* ÔøΩ›íËëÆÔøΩÔøΩÔøΩrÔøΩbÔøΩg (Get ÔøΩ≈ÇÕñÔøΩÔøΩÔøΩ)	*/
+    SpuVolume		volume;		/* ÔøΩÔøΩÔøΩÔøΩ					*/
+    SpuVolume		volmode;	/* ÔøΩÔøΩÔøΩ ÉÔøΩÔøΩ[ÔøΩh				*/
+    SpuVolume		volumex;	/* ÔøΩÔøΩÔøΩ›ÇÃâÔøΩÔøΩÔøΩ (Set ÔøΩ≈ÇÕñÔøΩÔøΩÔøΩ)		*/
+    uint16_t	pitch;		/* ÔøΩÔøΩÔøΩÔøΩ (ÔøΩsÔøΩbÔøΩ`ÔøΩwÔøΩÔøΩ)			*/
+    uint16_t	note;		/* ÔøΩÔøΩÔøΩÔøΩ (ÔøΩmÔøΩ[ÔøΩgÔøΩwÔøΩÔøΩ)			*/
+    uint16_t	sample_note;	/* ÔøΩÔøΩÔøΩÔøΩ (ÔøΩmÔøΩ[ÔøΩgÔøΩwÔøΩÔøΩ)			*/
 #ifdef OCT_19TH
-    unsigned short	envx;		/* åªç›ÇÃÉGÉìÉxÉçÅ[Évíl (Set Ç≈ÇÕñ≥å¯)  */
+    uint16_t	envx;		/* ÔøΩÔøΩÔøΩ›ÇÃÉGÔøΩÔøΩÔøΩxÔøΩÔøΩÔøΩ[ÔøΩvÔøΩl (Set ÔøΩ≈ÇÕñÔøΩÔøΩÔøΩ)  */
 #else
-    short		envx;		/* åªç›ÇÃÉGÉìÉxÉçÅ[Évíl (Set Ç≈ÇÕñ≥å¯)  */
+    int16_t		envx;		/* ÔøΩÔøΩÔøΩ›ÇÃÉGÔøΩÔøΩÔøΩxÔøΩÔøΩÔøΩ[ÔøΩvÔøΩl (Set ÔøΩ≈ÇÕñÔøΩÔøΩÔøΩ)  */
 #endif /* OCT_19TH */
-    unsigned long	addr;		/* îgå`ÉfÅ[É^êÊì™ÉAÉhÉåÉX		*/
-    unsigned long	loop_addr;	/* ÉãÅ[ÉväJénÉAÉhÉåÉX			*/
-    long		a_mode;		/* Attack rate ÉÇÅ[Éh			*/
-    long		s_mode;		/* Sustain rate ÉÇÅ[Éh			*/
-    long		r_mode;		/* Release rate ÉÇÅ[Éh			*/
-    unsigned short	ar;		/* Attack rate				*/
-    unsigned short	dr;		/* Decay rate				*/
-    unsigned short	sr;		/* Sustain rate				*/
-    unsigned short	rr;		/* Release rate				*/
-    unsigned short	sl;		/* Sustain level			*/
+    uint32_t	addr;		/* ÔøΩgÔøΩ`ÔøΩfÔøΩ[ÔøΩ^ÔøΩÊì™ÔøΩAÔøΩhÔøΩÔøΩÔøΩX		*/
+    uint32_t	loop_addr;	/* ÔøΩÔøΩÔøΩ[ÔøΩvÔøΩJÔøΩnÔøΩAÔøΩhÔøΩÔøΩÔøΩX			*/
+    int32_t		a_mode;		/* Attack rate ÔøΩÔøΩÔøΩ[ÔøΩh			*/
+    int32_t		s_mode;		/* Sustain rate ÔøΩÔøΩÔøΩ[ÔøΩh			*/
+    int32_t		r_mode;		/* Release rate ÔøΩÔøΩÔøΩ[ÔøΩh			*/
+    uint16_t	ar;		/* Attack rate				*/
+    uint16_t	dr;		/* Decay rate				*/
+    uint16_t	sr;		/* Sustain rate				*/
+    uint16_t	rr;		/* Release rate				*/
+    uint16_t	sl;		/* Sustain level			*/
 
 } SpuVoiceAttr;
 
 typedef struct {
-    unsigned long	mask;	  /* ê›íËÉ}ÉXÉN		  */
-    
-    long		mode;	  /* ÉäÉoÅ[ÉuÉÇÅ[Éh       */
-    SpuVolume		depth;	  /* ÉäÉoÅ[ÉuÇÃê[Ç≥	  */
-    long                delay;	  /* Delay Time (ECHO, DELAY ÇÃÇ›)  */
-    long                feedback; /* Feedback   (ECHO ÇÃÇ›)         */
+    uint32_t	mask;	  /* ÔøΩ›íÔøΩ}ÔøΩXÔøΩN		  */
+
+    int32_t		mode;	  /* ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩÔøΩÔøΩ[ÔøΩh       */
+    SpuVolume		depth;	  /* ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩÃê[ÔøΩÔøΩ	  */
+    int32_t                delay;	  /* Delay Time (ECHO, DELAY ÔøΩÃÇÔøΩ)  */
+    int32_t                feedback; /* Feedback   (ECHO ÔøΩÃÇÔøΩ)         */
 } SpuReverbAttr;
 
 #define SPU_DECODEDATA_SIZE 0x200
 typedef struct {
-    short cd_left  [SPU_DECODEDATA_SIZE];
-    short cd_right [SPU_DECODEDATA_SIZE];
-    short voice1   [SPU_DECODEDATA_SIZE];
-    short voice3   [SPU_DECODEDATA_SIZE];
+    int16_t cd_left  [SPU_DECODEDATA_SIZE];
+    int16_t cd_right [SPU_DECODEDATA_SIZE];
+    int16_t voice1   [SPU_DECODEDATA_SIZE];
+    int16_t voice3   [SPU_DECODEDATA_SIZE];
 } SpuDecodeData;
 
 typedef struct {
-    SpuVolume	volume;		  /* âπó 		  */
-    long	reverb;		  /* ÉäÉoÅ[ÉuÉIÉì/ÉIÉt	  */
-    long	mix;		  /* É~ÉLÉVÉìÉOÉIÉì/ÉIÉt  */
+    SpuVolume	volume;		  /* ÔøΩÔøΩÔøΩÔøΩ		  */
+    int32_t	reverb;		  /* ÔøΩÔøΩÔøΩoÔøΩ[ÔøΩuÔøΩIÔøΩÔøΩ/ÔøΩIÔøΩt	  */
+    int32_t	mix;		  /* ÔøΩ~ÔøΩLÔøΩVÔøΩÔøΩÔøΩOÔøΩIÔøΩÔøΩ/ÔøΩIÔøΩt  */
 } SpuExtAttr;
 
 typedef struct {
-    unsigned long	mask;	  /* ê›íËÉ}ÉXÉN		  */
-    
-    SpuVolume		mvol;	  /* É}ÉXÉ^âπó 		  */
-    SpuVolume		mvolmode; /* É}ÉXÉ^âπó ÉÇÅ[Éh	  */
-    SpuVolume		mvolx;	  /* åªç›ÇÃÉ}ÉXÉ^âπó 	  */
-    SpuExtAttr		cd;	  /* CD ì¸óÕëÆê´	  */
-    SpuExtAttr		ext;	  /* äOïîÉfÉWÉ^Éãì¸óÕëÆê´ */
+    uint32_t	mask;	  /* ÔøΩ›íÔøΩ}ÔøΩXÔøΩN		  */
+
+    SpuVolume		mvol;	  /* ÔøΩ}ÔøΩXÔøΩ^ÔøΩÔøΩÔøΩÔøΩ		  */
+    SpuVolume		mvolmode; /* ÔøΩ}ÔøΩXÔøΩ^ÔøΩÔøΩÔøΩ ÉÔøΩÔøΩ[ÔøΩh	  */
+    SpuVolume		mvolx;	  /* ÔøΩÔøΩÔøΩ›ÇÃÉ}ÔøΩXÔøΩ^ÔøΩÔøΩÔøΩÔøΩ	  */
+    SpuExtAttr		cd;	  /* CD ÔøΩÔøΩÔøΩÕëÔøΩÔøΩÔøΩ	  */
+    SpuExtAttr		ext;	  /* ÔøΩOÔøΩÔøΩÔøΩfÔøΩWÔøΩ^ÔøΩÔøΩÔøΩÔøΩÔøΩÕëÔøΩÔøΩÔøΩ */
 } SpuCommonAttr;
 
 typedef void (*SpuIRQCallbackProc)(void);
 
 /* ----------------------------------------------------------------
- *	SPU Malloc óp
+ *	SPU Malloc ÔøΩp
  * ---------------------------------------------------------------- */
 
 #define SPU_MALLOC_RECSIZ 8
 
 /* ----------------------------------------------------------------
- *	ÉvÉçÉgÉ^ÉCÉvêÈåæ
+ *	ÔøΩvÔøΩÔøΩÔøΩgÔøΩ^ÔøΩCÔøΩvÔøΩÈåæ
  * ---------------------------------------------------------------- */
 
 extern void SpuInit (void);
 extern void SpuStart (void);
 extern void SpuQuit (void);
-extern long SpuSetMute (long on_off);
-extern long SpuGetMute (void);
+extern int32_t SpuSetMute (int32_t on_off);
+extern int32_t SpuGetMute (void);
 
-extern long SpuSetNoiseClock (long n_clock);
-extern long SpuGetNoiseClock (void);
-extern unsigned long SpuSetNoiseVoice (long on_off, unsigned long voice_bit);
-extern unsigned long SpuGetNoiseVoice (void);
+extern int32_t SpuSetNoiseClock (int32_t n_clock);
+extern int32_t SpuGetNoiseClock (void);
+extern uint32_t SpuSetNoiseVoice (int32_t on_off, uint32_t voice_bit);
+extern uint32_t SpuGetNoiseVoice (void);
 
-extern long SpuSetReverb (long on_off);
-extern long SpuGetReverb (void);
-extern long SpuSetReverbModeParam (SpuReverbAttr *attr);
+extern int32_t SpuSetReverb (int32_t on_off);
+extern int32_t SpuGetReverb (void);
+extern int32_t SpuSetReverbModeParam (SpuReverbAttr *attr);
 extern void SpuGetReverbModeParam (SpuReverbAttr *attr);
-extern long SpuReserveReverbWorkArea (long on_off);
-extern long SpuIsReverbWorkAreaReserved (long on_off);
-extern unsigned long SpuSetReverbOffsetAddr (unsigned long addr);
-extern unsigned long SpuGetReverbOffsetAddr (void);
-extern unsigned long SpuSetReverbVoice (long on_off, unsigned long voice_bit);
-extern unsigned long SpuGetReverbVoice (void);
-extern long SpuClearReverbWorkArea (long mode);
+extern int32_t SpuReserveReverbWorkArea (int32_t on_off);
+extern int32_t SpuIsReverbWorkAreaReserved (int32_t on_off);
+extern uint32_t SpuSetReverbOffsetAddr (uint32_t addr);
+extern uint32_t SpuGetReverbOffsetAddr (void);
+extern uint32_t SpuSetReverbVoice (int32_t on_off, uint32_t voice_bit);
+extern uint32_t SpuGetReverbVoice (void);
+extern int32_t SpuClearReverbWorkArea (int32_t mode);
 
-extern unsigned long SpuWrite (unsigned char *addr, unsigned long size);
-extern unsigned long SpuWrite0 (unsigned long size);
-extern unsigned long SpuRead (unsigned char *addr, unsigned long size);
-extern long SpuSetTransferMode (long mode);
+extern uint32_t SpuWrite (uint8_t *addr, uint32_t size);
+extern uint32_t SpuWrite0 (uint32_t size);
+extern uint32_t SpuRead (uint8_t *addr, uint32_t size);
+extern int32_t SpuSetTransferMode (int32_t mode);
 #define SpuSetTransMode(mode) SpuSetTransferMode((mode))
-extern long SpuGetTransferMode (void);
+extern int32_t SpuGetTransferMode (void);
 #define SpuGetTransMode() SpuGetTransferMode()
-extern unsigned long SpuSetTransferStartAddr (unsigned long addr);
+extern uint32_t SpuSetTransferStartAddr (uint32_t addr);
 #define SpuSetTransStartAddr(addr) SpuSetTransferStartAddr((addr))
-extern unsigned long SpuGetTransferStartAddr (void);
+extern uint32_t SpuGetTransferStartAddr (void);
 #define SpuGetTransStartAddr() SpuGetTransferStartAddr()
-extern unsigned long SpuWritePartly (unsigned char *addr, unsigned long size);
+extern uint32_t SpuWritePartly (uint8_t *addr, uint32_t size);
 
-extern long SpuIsTransferCompleted (long flag);
+extern int32_t SpuIsTransferCompleted (int32_t flag);
 
-extern long SpuReadDecodeData (SpuDecodeData *d_data, long flag);
+extern int32_t SpuReadDecodeData (SpuDecodeData *d_data, int32_t flag);
 
-extern long SpuSetIRQ (long on_off);
-extern long SpuGetIRQ (void);
-extern unsigned long SpuSetIRQAddr (unsigned long);
-extern unsigned long SpuGetIRQAddr (void);
+extern int32_t SpuSetIRQ (int32_t on_off);
+extern int32_t SpuGetIRQ (void);
+extern uint32_t SpuSetIRQAddr (uint32_t);
+extern uint32_t SpuGetIRQAddr (void);
 extern void SpuSetIRQCallback (SpuIRQCallbackProc);
 
 extern void SpuSetVoiceAttr (SpuVoiceAttr *arg);
 extern void SpuGetVoiceAttr (SpuVoiceAttr *arg);
-extern void SpuSetKey (long on_off, unsigned long voice_bit);
+extern void SpuSetKey (int32_t on_off, uint32_t voice_bit);
 extern void SpuSetKeyOnWithAttr (SpuVoiceAttr *attr);
-extern long SpuGetKeyStatus (unsigned long voice_bit);
+extern int32_t SpuGetKeyStatus (uint32_t voice_bit);
 extern void SpuGetAllKeysStatus (char *status);
 
-extern unsigned long SpuSetPitchLFOVoice (long on_off, unsigned long voice_bit);
-extern unsigned long SpuGetPitchLFOVoice (void);
+extern uint32_t SpuSetPitchLFOVoice (int32_t on_off, uint32_t voice_bit);
+extern uint32_t SpuGetPitchLFOVoice (void);
 
-extern long SpuSetCommonAttr (SpuCommonAttr *attr);
+extern int32_t SpuSetCommonAttr (SpuCommonAttr *attr);
 extern void SpuGetCommonAttr (SpuCommonAttr *attr);
 
-extern long SpuInitMalloc (long num, char *top);
-extern long SpuMalloc (long size);
-extern long SpuMallocWithStartAddr (unsigned long addr, long size);
-extern void SpuFree (unsigned long addr);
+extern int32_t SpuInitMalloc (int32_t num, char *top);
+extern int32_t SpuMalloc (int32_t size);
+extern int32_t SpuMallocWithStartAddr (uint32_t addr, int32_t size);
+extern void SpuFree (uint32_t addr);
 
 /* ----------------------------------------------------------------
  *	End on File

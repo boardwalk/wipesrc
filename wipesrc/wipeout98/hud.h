@@ -1,5 +1,5 @@
 #define NUM_BARS			12
-#define SPEEDO_X			179	
+#define SPEEDO_X			179
 #if PAL
 #define SPEEDO_Y			220	/*200*/
 #else
@@ -7,7 +7,7 @@
 #endif
 #define SPEEDO_WIDTH	   127
 #define SPEEDO_HEIGHT	31		/*31*/
-#define BAR_X				178	
+#define BAR_X				178
 #if PAL
 #define BAR_Y				254
 #else
@@ -22,12 +22,12 @@
 #define MENU				1
 
 
-typedef struct 
+typedef struct
 {
-	short	topx;
-	short topy;
-	short bottomx;
-	short bottomy;
+	int16_t	topx;
+	int16_t topy;
+	int16_t bottomx;
+	int16_t bottomy;
 }Points;
 
 typedef struct
@@ -52,54 +52,54 @@ typedef struct
 
 typedef struct
 {
-	int start_pos_x ;
-	int start_pos_y ;
-	int size ;
+	int32_t start_pos_x ;
+	int32_t start_pos_y ;
+	int32_t size ;
 } TEXT_DATA ;
 
 typedef struct
 {
-	short	vramX ;
-	short	vramY ;
-	short width ;
-	short pad;
+	int16_t	vramX ;
+	int16_t	vramY ;
+	int16_t width ;
+	int16_t pad;
 }TexChar ;
 
-typedef struct 
+typedef struct
 {
 	char	pilot[25] ;
-	short	x,y ;
+	int16_t	x,y ;
 }PilotData ;
 
 
 void 			InitText();
 void			InitSpeedo 			(Speedo*) ;
-void 			fill_speedo 		(Speedo*, int, int) ;
-void 			AddNumber			(int, 	TEXT_DATA*, int)	;
-void 			AddTime				(int, 	TEXT_DATA*, int) ;
-void 			AddText				(char* , TEXT_DATA* , int) ;
-void 			SpecialText			(char* , TEXT_DATA* , int) ;
-void 			demo_screen 		(POLY_FT4 *, int) ;
-TEXT_DATA* 	text_data 			(int, int, int) ;
-void 			UpdateRaceHud		(ShipData*, Speedo*, int, ConfigData *);
-void 			AddText2				(char* , TEXT_DATA* , int) ;
-void 			AddNumber2			(int , TEXT_DATA* , int) ;
+void 			fill_speedo 		(Speedo*, int32_t, int32_t) ;
+void 			AddNumber			(int32_t, 	TEXT_DATA*, int32_t)	;
+void 			AddTime				(int32_t, 	TEXT_DATA*, int32_t) ;
+void 			AddText				(char* , TEXT_DATA* , int32_t) ;
+void 			SpecialText			(char* , TEXT_DATA* , int32_t) ;
+void 			demo_screen 		(POLY_FT4 *, int32_t) ;
+TEXT_DATA* 	text_data 			(int32_t, int32_t, int32_t) ;
+void 			UpdateRaceHud		(ShipData*, Speedo*, int32_t, ConfigData *);
+void 			AddText2				(char* , TEXT_DATA* , int32_t) ;
+void 			AddNumber2			(int32_t , TEXT_DATA* , int32_t) ;
 void 			SetCharTextures 	(char) ;
-void 			AddDelEnd			(char, TEXT_DATA *, int) ;
-void 			CentreText			(char* , TEXT_DATA *, int ) ;
+void 			AddDelEnd			(char, TEXT_DATA *, int32_t) ;
+void 			CentreText			(char* , TEXT_DATA *, int32_t ) ;
 void 			DisplayLives 		(SPRT [][2], ConfigData *)	; // PCwipeout
 //void 			DisplayLives 		(POLY_FT4 [][2], ConfigData *)	;
-int 			CalcPosition		(ShipData *shipIndex);
-void 			ScreenFooter 		(int x, int y, int colour);
-void 			ShowCopyRight 		(Texture *copyrightSymbol, POLY_FT4 *copyPrim, short x, short y);
+int32_t 			CalcPosition		(ShipData *shipIndex);
+void 			ScreenFooter 		(int32_t x, int32_t y, int32_t colour);
+void 			ShowCopyRight 		(Texture *copyrightSymbol, POLY_FT4 *copyPrim, int16_t x, int16_t y);
 void 			InitChampTable 	();
-void 			DisplayChampTable ();	  					  
-void 			DisplayRacePoints ();	  					  
+void 			DisplayChampTable ();
+void 			DisplayRacePoints ();
 void 			InitScreenTex 		(Texture **screenTex, char *fileName);
-void 			DisplayWinLose 	(Texture *winLose, POLY_FT4 *picPrim, short x, short y, short height, char type);
-void 			DisplayVenomComplete (); 							 	
-void 			DisplayAllVenomComplete (); 							 	
+void 			DisplayWinLose 	(Texture *winLose, POLY_FT4 *picPrim, int16_t x, int16_t y, int16_t height, char type);
+void 			DisplayVenomComplete ();
+void 			DisplayAllVenomComplete ();
 void 			InitTrackTex 		(Texture **trackTex);
-void 			BackPoly 			(POLY_F4 *, DR_MODE *, short, short, short, short)	;
+void 			BackPoly 			(POLY_F4 *, DR_MODE *, int16_t, int16_t, int16_t, int16_t)	;
 void DisplayRaceInfo (ConfigData *gameData, HiScoreData *hiScoreData);
-void DrawHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *gameData);
+void DrawHud(ShipData* shipIndex, Speedo *speedo, int32_t choice, ConfigData *gameData);

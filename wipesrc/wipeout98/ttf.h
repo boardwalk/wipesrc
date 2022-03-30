@@ -1,10 +1,10 @@
 typedef struct
 {
-   short             tex16 [ 16 ];
-	short					tex4  [ 4 ];
-	short					tex1  [ 1 ];
+   int16_t             tex16 [ 16 ];
+	int16_t					tex4  [ 4 ];
+	int16_t					tex1  [ 1 ];
 } TexTemplate;
 
 
 
-TexTemplate* LoadTtfFile( char *file, short *count, short libraryTextures );
+TexTemplate* LoadTtfFile( char *file, int16_t *count, int16_t libraryTextures );

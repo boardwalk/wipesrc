@@ -13,10 +13,10 @@
 
 
 void shipTrkReaction		(ShipData *playerShip, Object** shipShapes);
-void getWorldPoint		(VECTOR *output, Object* object, Object* objectCollide,int pointNo );
+void getWorldPoint		(VECTOR *output, Object* object, Object* objectCollide,int32_t pointNo );
 void GetTargetPos			(VECTOR *result, VECTOR pos, Vector cent1, Vector cent2);
 void SetUnitVectors		(ShipData *shipIndex);
-int SetTrackAttributes	(TrackSection *section,
-							  	short i,
+int32_t SetTrackAttributes	(TrackSection *section,
+							  	int16_t i,
 							  	WeaponGrid *weaponGrid,
-							  	int noWeaponGrids);
+							  	int32_t noWeaponGrids);

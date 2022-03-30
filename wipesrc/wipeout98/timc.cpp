@@ -6,38 +6,38 @@
 #ifdef WIPEOUTPC
 char					*backup_cache;
 #endif
-int						processing_interupt = 0;
+int32_t						processing_interupt = 0;
 char					*INT_STACK;
-long					stack_addr;
-short					stack_select;
-long 					old_stack;
-short					old_stack_select;
+int32_t					stack_addr;
+int16_t					stack_select;
+int32_t 					old_stack;
+int16_t					old_stack_select;
 char					imr_state;
-long					TimerInstalled = 0;
-extern long				frameRate30;
-extern unsigned long	FastRam;	// ajy
+int32_t					TimerInstalled = 0;
+extern int32_t				frameRate30;
+extern uintptr_t	FastRam;	// ajy
 extern char				fpstate;
 
 
 
-extern long				FR30;
-extern long				FR60;
-extern long				FR50;
-extern long				FR6;
-extern long				FR10;
-extern long				FR40;
-extern long				FR50U;
-extern long				FR15U;
-extern long				FR30U;
-extern long				FR7U;
-extern long				FR32U;
+extern int32_t				FR30;
+extern int32_t				FR60;
+extern int32_t				FR50;
+extern int32_t				FR6;
+extern int32_t				FR10;
+extern int32_t				FR40;
+extern int32_t				FR50U;
+extern int32_t				FR15U;
+extern int32_t				FR30U;
+extern int32_t				FR7U;
+extern int32_t				FR32U;
 
 
 
 
-extern long 			TimerInstalled;
+extern int32_t 			TimerInstalled;
 extern void				UserAYInt(void);
-extern unsigned long	this_frame, last_frame;
+extern uint32_t	this_frame, last_frame;
 
 
 void InstallTimer(void)

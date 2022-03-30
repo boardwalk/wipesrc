@@ -22,11 +22,11 @@ extern CVECTOR Palette[];
 
 char FindNearestColourIndex(CVECTOR *TestCol)
 {
-	short	Red, Green, Blue;
-	short	ColourNum;
+	int16_t	Red, Green, Blue;
+	int16_t	ColourNum;
 	char	BestColour = 0;
-	short	Difference;
-	short	SmallestDifference = 0x7fff;
+	int16_t	Difference;
+	int16_t	SmallestDifference = 0x7fff;
 
 	Red = TestCol->r;
 	Green = TestCol->g;

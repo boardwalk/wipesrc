@@ -62,16 +62,16 @@
 
 #define SHIP_DEBUG 0
 
-// extern u_long __bss, __bsslen, _ramsize, _stacksize;
-extern long fr ;
+// extern uint32_t __bss, __bsslen, _ramsize, _stacksize;
+extern int32_t fr ;
 extern ChampionShip	winTable[] ;
-extern short starttrack,endtrack,CurrTrkNo;
+extern int16_t starttrack,endtrack,CurrTrkNo;
 
 typedef struct {
-	int	width;
-	int	height;
-	int	vram_xpos;
-	int	vram_ypos;
+	int32_t	width;
+	int32_t	height;
+	int32_t	vram_xpos;
+	int32_t	vram_ypos;
 	char	*bitmap;
 	char	*palette;
 } bm;
@@ -79,19 +79,19 @@ void	WritePCX(char *fname, bm *BMptr);			// Thanks Jed (even if it is a bit flak
 void	DumpVRamAsPCX(char *filename);
 
 extern	char* VRam;					// PCwipeout
-extern	int	  inattract;
-extern	short   startIceText;
-extern	short   startFireText;
+extern	int32_t	  inattract;
+extern	int16_t   startIceText;
+extern	int16_t   startFireText;
 #define _SIZE_T_DEFINED_			// PCwipeout
 #include <stdio.h>		// PCwipeout
-short CLUT_R[256];					// PCwipeout
-short CLUT_G[256];					// PCwipeout
-short CLUT_B[256];					// PCwipeout
+int16_t CLUT_R[256];					// PCwipeout
+int16_t CLUT_G[256];					// PCwipeout
+int16_t CLUT_B[256];					// PCwipeout
 char	BluePal;					// PCwipeout
 char	WhitePal;					// PCwipeout
 char	GreyPal;					// PCwipeout
 char		fred;							// PCwipeout
-int	ajscount=0;						// oh shit another global flag
+int32_t	ajscount=0;						// oh shit another global flag
 
 #define	GsGetVcount()	0		 	// PCwipeout
 
@@ -110,24 +110,24 @@ BlkFill*       ctrlclear[ 2 ];
 TexTemplate*   ctrltexTemplate;
 Object*        ctrlprm[ PrmMax ];
 Object*        ctrlobj;
-short          ctrllibraryTextures;
-short          ctrlprmCount;
-long           ctrl_i, ctrl_j, ctrl_k;
-short          ctrlnumLib;
+int16_t          ctrllibraryTextures;
+int16_t          ctrlprmCount;
+int32_t           ctrl_i, ctrl_j, ctrl_k;
+int16_t          ctrlnumLib;
 
 AutoMeshData   *ctrlautoMesh;
 Cone           ctrlcone;
-long           ctrlbefore;
-short          ctrlcount;
-short          ctrlweapCount;
+int32_t           ctrlbefore;
+int16_t          ctrlcount;
+int16_t          ctrlweapCount;
 TrackSection   *ctrlnextSection;
 
 #if EditorOn
 Editor         ctrleditor;
 TexPlace       ctrltexPlace;
 Object         *ctrltexHighlight;
-short          ctrlface;
-long           ctrlbeforeVcount;
+int16_t          ctrlface;
+int32_t           ctrlbeforeVcount;
 #endif
 
 
@@ -148,11 +148,11 @@ WeaponData		*ctrlweaponIndex;
 
 WeaponGrid		*ctrlweaponGrid ;
 
-int 				ctrlnoWeaponGrids;
+int32_t 				ctrlnoWeaponGrids;
 Texture 			*ctrlweaponIconTextures[NO_OF_WEAPON_TYPES] ;
 
-short  			ctrlsky;
-int 			ctrlchoice;
+int16_t  			ctrlsky;
+int32_t 			ctrlchoice;
 POLY_F4			ctrlselectBox[2];
 DR_MODE			ctrlselectTrans[2];
 TrackSection    *ctrlsection;
@@ -160,8 +160,8 @@ Face			*ctrlfacePtr;
 VECTOR          ctrlfacePoint;
 Effect			*ctrleffects ;
 Texture 		*ctrleffectTextures[NO_OF_EFFECT_TEXTURES] ;
-int	 			ctrlcdTrack;
-int				ctrlnoCdTracks;
+int32_t	 			ctrlcdTrack;
+int32_t				ctrlnoCdTracks;
 POLY_FT4		ctrlTarget[2];
 TIMlist  		*ctrltimPtr;
 Shadow			*ctrlShadow;
@@ -169,22 +169,22 @@ Shadow			*ctrlShadow;
 SPRT			ctrlweaponIcon[2];
 DR_MODE			ctrliconTPage;			// DLS
 DR_MODE			ctrlrealTPage;			// DLS
-u_char			ctrlparam;
+uint8_t			ctrlparam;
 Object		   *ctrllostad[20]; /* It wouldn`t suprise me ! */
-int				ctrlstadCount;
-short			ctrlsectCount;
-short			ctrlcheck;
-short			ctrljcheck;
-short 			ctrlji;
+int32_t				ctrlstadCount;
+int16_t			ctrlsectCount;
+int16_t			ctrlcheck;
+int16_t			ctrljcheck;
+int16_t 			ctrlji;
 TrackSection   *ctrljsection;
-short 			ctrlbuttonPressed;
+int16_t 			ctrlbuttonPressed;
 Object*        	ctrlredLight;
 Object*        	ctrldonkey[2];
-int				ctrldoneExtro;
-int				ctrlplayCredits;
-int				ctrlgameOverTime;
-int				ctrlcdPause;
-int 			ctrlnearShip;
+int32_t				ctrldoneExtro;
+int32_t				ctrlplayCredits;
+int32_t				ctrlgameOverTime;
+int32_t				ctrlcdPause;
+int32_t 			ctrlnearShip;
 
 
 #if SHIP_DEBUG
@@ -196,8 +196,8 @@ LINE_F2			ctrltrackMap[60];
 /****** 				Stu additions					 *****/
 /**************************************************/
 Speedo			ctrlspeedo;
-int            	ctrlframe_cnt;
-ulong  			ctrltoggleDisplay;
+int32_t            	ctrlframe_cnt;
+uint32_t  			ctrltoggleDisplay;
 char			ctrlshowMenu;
 char			ctrlconfirm;
 char			ctrllConfirm;
@@ -210,11 +210,11 @@ SPRT			ctrllifeIcons[3][2] ;
 char			ctrlrec[8] ;
 char			ctrlmachinePaused;
 char			ctrlactivated;
-int				ctrlchoiceData;
+int32_t				ctrlchoiceData;
 char			ctrlquitFlag;
 Texture			*ctrlwinLose [2] ;
 POLY_FT4		ctrlwinLosePrims[2] ;
-int				ctrlquitTwoPlayer;
+int32_t				ctrlquitTwoPlayer;
 POLY_F4			ctrlbackFrame[2];
 DR_MODE			ctrlbackFrameTrans[2];
 char			ctrlshowGameOver;
@@ -222,30 +222,30 @@ char			ctrlshowGameOver;
 
 combatData		ctrlpacketData;
 ConfigData		*ctrlgameData;
-long			ctrlmode;
-long			ctrltimeout;
+int32_t			ctrlmode;
+int32_t			ctrltimeout;
 
 /*          Andy Y's additions*/
-long			ctrlNeedEndText;
-long			ctrlNeedWinLose;
-long			ctrlNeedBackPoly;
-long			ctrlNeedRaceInfo;
-long			ctrlNeedDeSelectScreen;
-long			ctrlNeedNewHighScores;
-long			ctrlNeedRacePoints;
-long			ctrlNeedChampTable;
-long			ctrlNeedAllVenomComplete;
-long			ctrlNeedVenomComplete;
-long			ctrlNeedContinueGameConfirm;
-long			ctrlNeedEndTextVar;
-long			ctrlNeedWinLoseVar;
-long			ctrlNeedInGameReset;
-long			ctrlNeedInSingleGameConfirm;
-long			ctrlNeedInGameConfirm;
-long			ctrlNeedTargetIcon;
-long			ctrlCDPaused;
-long			ctrlfirsttime;
-extern	long	CDRestartNeeded;
+int32_t			ctrlNeedEndText;
+int32_t			ctrlNeedWinLose;
+int32_t			ctrlNeedBackPoly;
+int32_t			ctrlNeedRaceInfo;
+int32_t			ctrlNeedDeSelectScreen;
+int32_t			ctrlNeedNewHighScores;
+int32_t			ctrlNeedRacePoints;
+int32_t			ctrlNeedChampTable;
+int32_t			ctrlNeedAllVenomComplete;
+int32_t			ctrlNeedVenomComplete;
+int32_t			ctrlNeedContinueGameConfirm;
+int32_t			ctrlNeedEndTextVar;
+int32_t			ctrlNeedWinLoseVar;
+int32_t			ctrlNeedInGameReset;
+int32_t			ctrlNeedInSingleGameConfirm;
+int32_t			ctrlNeedInGameConfirm;
+int32_t			ctrlNeedTargetIcon;
+int32_t			ctrlCDPaused;
+int32_t			ctrlfirsttime;
+extern	int32_t	CDRestartNeeded;
 
 void raceinit(void)
 {
@@ -640,7 +640,7 @@ void raceinit(void)
 			}
 			else
 			{
-				attractDelay = 60 * FR30; // was 30*30 but this was too short I think
+				attractDelay = 60 * FR30; // was 30*30 but this was too int16_t I think
 			}
 			//				if(ctrlplayCredits == 1)
 		}
@@ -738,7 +738,7 @@ void racectrl(void)
 {
 	combatData *packetData;
 	ConfigData *gameData;
-	int mode, timeout;
+	int32_t mode, timeout;
 
 	packetData = &ctrlpacketData;
 	gameData = ctrlgameData;

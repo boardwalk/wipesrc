@@ -50,31 +50,31 @@
 
 typedef struct PadInfo
 {
-	u_short		thrust;
-	u_short		view;
-	u_short		fire;
-	u_short		lBrake;
-	u_short		rBrake;
-	u_short		up;
-	u_short		down;
-	u_short		left;
-	u_short		right;
+	uint16_t		thrust;
+	uint16_t		view;
+	uint16_t		fire;
+	uint16_t		lBrake;
+	uint16_t		rBrake;
+	uint16_t		up;
+	uint16_t		down;
+	uint16_t		left;
+	uint16_t		right;
 } PadInfo;
 
 typedef struct NegInfo
 {
-	u_short			type;
-	u_short			thrust;
-	u_short			view;
-	u_short			fire;
-	u_short			lBrake;
-	u_short			rBrake;
-	int				twistFactor;
+	uint16_t			type;
+	uint16_t			thrust;
+	uint16_t			view;
+	uint16_t			fire;
+	uint16_t			lBrake;
+	uint16_t			rBrake;
+	int32_t				twistFactor;
 } NegInfo;
 
 
 void 	InitPadSettings	();
-void 	SetBrake				(ShipData *playerShip, short padLeft, short padRight);
-void 	SetView				(ShipData *playerShip, short padView);
-void 	SetFire				(ShipData *playerShip, short padFire, WeaponData *weaponIndex, int shipNo);
-short GetMenuKey			(short key);
+void 	SetBrake				(ShipData *playerShip, int16_t padLeft, int16_t padRight);
+void 	SetView				(ShipData *playerShip, int16_t padView);
+void 	SetFire				(ShipData *playerShip, int16_t padFire, WeaponData *weaponIndex, int32_t shipNo);
+int16_t GetMenuKey			(int16_t key);

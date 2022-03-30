@@ -20,26 +20,26 @@
 #define WATCOM 2
 
 extern	char	Reallyinmenu;	//	jed & dave
-extern	int	inattract;//jed
+extern	int32_t	inattract;//jed
 extern	char	inmenu;	 //jed
-extern	int	mode;		 //jed
+extern	int32_t	mode;		 //jed
 
-extern int				WinPitch;
-extern short			WinWidth;
-extern short			WinHeight;
-extern short			WinHeightX2;
-extern long numoff,numsmall;
-long maxoff=0,maxsmall=0;
+extern int32_t				WinPitch;
+extern int16_t			WinWidth;
+extern int16_t			WinHeight;
+extern int16_t			WinHeightX2;
+extern int32_t numoff,numsmall;
+int32_t maxoff=0,maxsmall=0;
 
 
 #define LET_STEVE_CLIP
 
-// static unsigned long	_SCSize;
-// static unsigned long	_SCAddress;
-static int dev = 0;
+// static uint32_t	_SCSize;
+// static uint32_t	_SCAddress;
+static int32_t dev = 0;
 
 
-int gfx_device;
+int32_t gfx_device;
 
 char	halfx=0;	 						//jed
 char	halfy=0;							//jed
@@ -47,36 +47,36 @@ float	halfxf=0.0;						//jed
 float	halfyf=0.0;						//jed
 char	pixdouble=0;					//jed
 
-int	screenw=0;						//jed
-int	screenh=0;						//jed
+int32_t	screenw=0;						//jed
+int32_t	screenh=0;						//jed
 
 #define	Alloc(x,s)	malloc ((x)*(s))
 #define	DeAlloc(p)	free ((p))
 
 void JJS_Sprite(SPRT *sp);
 void JJS_Sprite8(SPRT_8 *sp);
-void AYDrawFT4(u_long *primitive);
-void AYDrawF3(u_long *primitive);
-void AYDrawG3(u_long *primitive);
-void AYDrawGT3(u_long *primitive);
-void AYDrawFT3(u_long *primitive);
-void AYDrawF4(u_long *primitive);
-void AYDrawG4(u_long *primitive);
-void AYDrawGT4(u_long *primitive);
-void sprite8(u_long *primtive);
-void sprite(u_long *primtive);
-void tile(u_long *primtive);
-void ChangeDrawMode(u_long *primitive);
-void MaskSprite(u_long *primitive);
-void (*DrawFunctions[256])(u_long *);
+void AYDrawFT4(uint32_t *primitive);
+void AYDrawF3(uint32_t *primitive);
+void AYDrawG3(uint32_t *primitive);
+void AYDrawGT3(uint32_t *primitive);
+void AYDrawFT3(uint32_t *primitive);
+void AYDrawF4(uint32_t *primitive);
+void AYDrawG4(uint32_t *primitive);
+void AYDrawGT4(uint32_t *primitive);
+void sprite8(uint32_t *primtive);
+void sprite(uint32_t *primtive);
+void tile(uint32_t *primtive);
+void ChangeDrawMode(uint32_t *primitive);
+void MaskSprite(uint32_t *primitive);
+void (*DrawFunctions[256])(uint32_t *);
 void intarray(void);
 void IntVga(void);
-void NotValidPrimType(u_long *primitive);
-extern void DrawPolyF3(u_long *);
-extern void DrawPolyFT3(u_long *);
-extern void DrawPolyF4(u_long *);
-extern void DrawPolyFT4(u_long *);
-extern void DrawPolyGT4(u_long *);
+void NotValidPrimType(uint32_t *primitive);
+extern void DrawPolyF3(uint32_t *);
+extern void DrawPolyFT3(uint32_t *);
+extern void DrawPolyF4(uint32_t *);
+extern void DrawPolyFT4(uint32_t *);
+extern void DrawPolyGT4(uint32_t *);
 
 char *CurBuffer;
 char *CurBufferJ;//jed
@@ -84,8 +84,8 @@ char	*tempbuffer;
 
 extern	char *JRam;			//jed
 
-unsigned long JJSaddr;
-short rendering=0;
+uint32_t JJSaddr;
+int16_t rendering=0;
 
 void DrawOTag(P_TAG *primitive)
 {
@@ -112,7 +112,7 @@ void DrawOTag(P_TAG *primitive)
 	if (addr != NULL) do
 	{
 		if (((P_TAG *) addr)->code != 0) //Case of OT stuff
-			DrawPrim((unsigned long *) addr);
+			DrawPrim((uint32_t *) addr);
 
 		primitive = (P_TAG *) addr;
 	}
@@ -135,7 +135,7 @@ void DrawOTag(P_TAG *primitive)
 		maxsmall=numsmall;
 }
 
-void Set_Device(int tmp)
+void Set_Device(int32_t tmp)
 {
 	if (dev==0)
 	{
@@ -172,16 +172,16 @@ void IntVga(void)
 
 void intarray(void)
 {
-	int x;
+	int32_t x;
 
 
 	for (x=0;x<256;x++)
 		DrawFunctions[x]=*NotValidPrimType;
 }
 
-void DrawPrim(u_long *primitive)
+void DrawPrim(uint32_t *primitive)
 {
-	static int i;
+	static int32_t i;
 	if ((((P_TAG *)primitive)->code & 0xfc)== 0x24)
 	{
 		i++;
@@ -191,7 +191,7 @@ void DrawPrim(u_long *primitive)
 
 
 
-void NotValidPrimType(u_long *primitive)
+void NotValidPrimType(uint32_t *primitive)
 {
 	//	printf("Prim x%x will never be supported In Current Code\n",((P_TAG *)primitive)->code);
 }
@@ -205,7 +205,7 @@ void NotValidPrimType(u_long *primitive)
 
 
 
-void AYDrawF3(u_long *primitive)
+void AYDrawF3(uint32_t *primitive)
 {
 	POLY_F3	*poly;
 	POLY_F4 fred;
@@ -231,7 +231,7 @@ void AYDrawF3(u_long *primitive)
 
 
 
-void AYDrawFT3(u_long *primitive)
+void AYDrawFT3(uint32_t *primitive)
 {
 	POLY_FT3	*poly;
 	POLY_FT3	fred;
@@ -244,7 +244,7 @@ void AYDrawFT3(u_long *primitive)
 
 
 
-void AYDrawG3(u_long *primitive)
+void AYDrawG3(uint32_t *primitive)
 {
 	POLY_G3	*poly;
 	POLY_G3 fred;
@@ -258,7 +258,7 @@ void AYDrawG3(u_long *primitive)
 
 
 
-void AYDrawGT3(u_long *primitive)
+void AYDrawGT3(uint32_t *primitive)
 {
 	POLY_GT3	*poly;
 	POLY_GT3	fred;
@@ -269,11 +269,11 @@ void AYDrawGT3(u_long *primitive)
 	JJSDrawPolyGT3(&fred);
 }
 
-void sprite(u_long *primitive)
+void sprite(uint32_t *primitive)
 {
 	SPRT 			*ip;
 	SPRT 			op;
-	extern short	drawenv_tpage;
+	extern int16_t	drawenv_tpage;
 
 	ip = (SPRT *)primitive;
 
@@ -293,11 +293,11 @@ void sprite(u_long *primitive)
 
 
 
-void sprite8(u_long *primitive)
+void sprite8(uint32_t *primitive)
 {
 	SPRT_8 *ip;
 	SPRT_8	op;
-	extern short	drawenv_tpage;
+	extern int16_t	drawenv_tpage;
 
 	ip = (SPRT_8 *)primitive;
 
@@ -313,7 +313,7 @@ void sprite8(u_long *primitive)
 
 
 
-void AYDrawF4(u_long *primitive)
+void AYDrawF4(uint32_t *primitive)
 {
 	POLY_F4	*poly;
 	POLY_F4	fred;
@@ -327,7 +327,7 @@ void AYDrawF4(u_long *primitive)
 
 
 
-void AYDrawFT4(u_long *primitive)
+void AYDrawFT4(uint32_t *primitive)
 {
 	POLY_FT4	*poly;
 
@@ -338,7 +338,7 @@ void AYDrawFT4(u_long *primitive)
 
 
 
-void AYDrawGT4(u_long *primitive)
+void AYDrawGT4(uint32_t *primitive)
 {
 	POLY_GT4	*poly;
 
@@ -349,7 +349,7 @@ void AYDrawGT4(u_long *primitive)
 
 
 
-void AYDrawG4(u_long *primitive)
+void AYDrawG4(uint32_t *primitive)
 {
 	POLY_G4	*poly;
 	POLY_G4 fred;
@@ -362,7 +362,7 @@ void AYDrawG4(u_long *primitive)
 
 
 
-void tile(u_long *primitive)
+void tile(uint32_t *primitive)
 {
 	TILE 	*ip;
 	POLY_F4	op;
@@ -378,16 +378,16 @@ void tile(u_long *primitive)
 	op.y1 = ip->y0 *2;
 	op.y2 = ip->y0 + ip->h;
 	op.y3 = ip->y0 + ip->h;
-	*(long *)&op.r0 = *(long *)&ip->r0;
+	*(int32_t *)&op.r0 = *(int32_t *)&ip->r0;
 	//	op.r0 = GET_PALLETE(ip->r0, ip->g0,ip->b0); //Now Set Before Here
 
 	JJSDrawPolyF4(&op);
 
 }
 
-void ChangeDrawMode(u_long *primitive)
+void ChangeDrawMode(uint32_t *primitive)
 {
-	extern short	drawenv_tpage;
+	extern int16_t	drawenv_tpage;
 	DR_MODE			*temp;
 
 
@@ -396,11 +396,11 @@ void ChangeDrawMode(u_long *primitive)
 }
 
 
-void MaskSprite(u_long *primitive)
+void MaskSprite(uint32_t *primitive)
 {
 	SPRT 			*ip;
 	SPRT 			op;
-	extern short	drawenv_tpage;
+	extern int16_t	drawenv_tpage;
 
 	ip = (SPRT *)primitive;
 

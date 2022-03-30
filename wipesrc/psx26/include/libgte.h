@@ -35,16 +35,16 @@
 
 #define	read_szx(r1) 			mfc2	r1,$16;	\
 					nop
-			
+
 #define	read_sz0(r1)			mfc2	r1,$17;	\
 					nop
-			
+
 #define	read_sz1(r1)			mfc2	r1,$18;	\
 					nop
-			
+
 #define	read_sz2(r1)			mfc2	r1,$19;	\
 					nop
-			
+
 #define	read_sxsy_fifo3(r1,r2,r3) 	mfc2	r1,$12; \
 					mfc2	r2,$13; \
 					mfc2	r3,$14;	\
@@ -100,78 +100,78 @@
 
 #ifndef ASSEMBLER
 typedef struct  {
-	short	m[3][3];	/* 3x3 rotation matrix */
-        long    t[3];		/* transfer vector */
+	int16_t	m[3][3];	/* 3x3 rotation matrix */
+        int32_t    t[3];		/* transfer vector */
 } MATRIX;
 
-typedef struct {		/* long word type 3D vector */
-	long	vx, vy;
-	long	vz, pad;
+typedef struct {		/* int32_t word type 3D vector */
+	int32_t	vx, vy;
+	int32_t	vz, pad;
 } VECTOR;
-	
-typedef struct {		/* short word type 3D vector */	
-	short	vx, vy;
-	short	vz, pad;
+
+typedef struct {		/* int16_t word type 3D vector */
+	int16_t	vx, vy;
+	int16_t	vz, pad;
 } SVECTOR;
-	       
-typedef struct {		/* color type vector */	
-	u_char	r, g, b, cd;
+
+typedef struct {		/* color type vector */
+	uint8_t	r, g, b, cd;
 } CVECTOR;
-	       
-typedef struct {		/* 2D short vector */
-	short vx, vy;
+
+typedef struct {		/* 2D int16_t vector */
+	int16_t vx, vy;
 } DVECTOR;
 
 
-typedef struct {		
+typedef struct {
 	SVECTOR v;		/* Object(Local) 3D Vertex 	*/
 	VECTOR sxyz;		/* Screen 3D Vertex		*/
 	DVECTOR sxy;		/* Screen 2D Vertex		*/
 	CVECTOR rgb;		/* Vertex Color Data	 	*/
-	short txuv,pad;		/* Texture Mapping Data 	*/
-	long chx,chy;		/* Clip Window Data 		*/
+	int16_t txuv,pad;		/* Texture Mapping Data 	*/
+	int32_t chx,chy;		/* Clip Window Data 		*/
 } EVECTOR;
 
 typedef struct {
 	SVECTOR v;
-	u_char uv[2]; u_short pad;	/*@@*/  
+	uint8_t uv[2]; uint16_t pad;	/*ï¿½@ï¿½@*/
 	CVECTOR c;
-	DVECTOR sxy;		
-	u_long  sz;		/*@clip z-data@*/		
-} RVECTOR;			/*@•ªŠ„’¸“_î•ñƒxƒNƒ^@*/
+	DVECTOR sxy;
+	uint32_t  sz;		/*ï¿½@clip z-dataï¿½@*/
+} RVECTOR;			/*ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½xï¿½Nï¿½^ï¿½@*/
 
 
 typedef struct {
 	RVECTOR r01,r12,r20;
 	RVECTOR	*r0,*r1,*r2;
-	u_long *rtn;
-} CRVECTOR3;			/*@‚RŠpŒ`—pÄ‹AƒxƒNƒ^@*/
+	uint32_t *rtn;
+} CRVECTOR3;			/*ï¿½@ï¿½Rï¿½pï¿½`ï¿½pï¿½Ä‹Aï¿½xï¿½Nï¿½^ï¿½@*/
 
 typedef struct {
-	u_long 	ndiv;		/*@•ªŠ„”@*/
-	u_long 	pih,piv;	/*@ƒNƒŠƒbƒvƒGƒŠƒA@*/
-	u_short clut,tpage;
+	uint32_t 	ndiv;		/*ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½@*/
+	uint32_t 	pih,piv;	/*ï¿½@ï¿½Nï¿½ï¿½ï¿½bï¿½vï¿½Gï¿½ï¿½ï¿½Aï¿½@*/
+	uint16_t clut,tpage;
 	CVECTOR	rgbc;
-	u_long	*ot;
+	uint32_t	*ot;
 	RVECTOR r0,r1,r2;
-	CRVECTOR3 cr[5];	
-} DIVPOLYGON3;			/*@‚RŠpŒ`—p•ªŠ„ƒoƒbƒtƒ@@*/
+	CRVECTOR3 cr[5];
+} DIVPOLYGON3;			/*ï¿½@ï¿½Rï¿½pï¿½`ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½oï¿½bï¿½tï¿½@ï¿½@*/
 
 typedef struct {
 	RVECTOR r01,r02,r31,r32,rc;
 	RVECTOR	*r0,*r1,*r2,*r3;
-	u_long *rtn;
-} CRVECTOR4;			/*@‚SŠpŒ`—pÄ‹AƒxƒNƒ^@*/
+	uint32_t *rtn;
+} CRVECTOR4;			/*ï¿½@ï¿½Sï¿½pï¿½`ï¿½pï¿½Ä‹Aï¿½xï¿½Nï¿½^ï¿½@*/
 
 typedef struct {
-	u_long 	ndiv;		/*@•ªŠ„”@*/
-	u_long 	pih,piv;	/*@ƒNƒŠƒbƒvƒGƒŠƒA@*/
-	u_short clut,tpage;
+	uint32_t 	ndiv;		/*ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½@*/
+	uint32_t 	pih,piv;	/*ï¿½@ï¿½Nï¿½ï¿½ï¿½bï¿½vï¿½Gï¿½ï¿½ï¿½Aï¿½@*/
+	uint16_t clut,tpage;
 	CVECTOR	rgbc;
-	u_long	*ot;
+	uint32_t	*ot;
 	RVECTOR r0,r1,r2,r3;
-	CRVECTOR4 cr[5];	
-} DIVPOLYGON4;			/*@‚SŠpŒ`—p•ªŠ„ƒoƒbƒtƒ@@*/
+	CRVECTOR4 cr[5];
+} DIVPOLYGON4;			/*ï¿½@ï¿½Sï¿½pï¿½`ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½oï¿½bï¿½tï¿½@ï¿½@*/
 
 #endif
 #endif

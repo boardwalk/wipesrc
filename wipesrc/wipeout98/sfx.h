@@ -55,7 +55,7 @@
 //#define NORMAL			0
 //#define REVERSE			1
 
-/* 
+/*
  * Reverb Effects Types
  */
 #define ECHO				0
@@ -86,66 +86,66 @@
 
 
 /*
- * Function prototypes 
+ * Function prototypes
  */
-uint16 SfxInit(uint16 wCard,uint16 wMixType,uint16 wSampRate);
+uint16_t SfxInit(uint16_t wCard,uint16_t wMixType,uint16_t wSampRate);
 
-uint16 SfxInitReverb(uint16 wReverbType,uint16 wDelay);
+uint16_t SfxInitReverb(uint16_t wReverbType,uint16_t wDelay);
 void SfxReverbOn(void);
 void SfxReverbOff(void);
-void SfxSetReverbDepth(uint8 bDepth);
+void SfxSetReverbDepth(uint8_t bDepth);
 void SfxUnInitReverb(void);
 
 /* Chat stuff not working yet! */
-uint16 SfxInitChat(void (*CallBack)(uint8 *pbBufPtr,uint32 dwCode));
+uint16_t SfxInitChat(void (*CallBack)(uint8_t *pbBufPtr,uint32_t dwCode));
 void SfxChatOn(void);
 void SfxChatOff(void);
-void SfxChatPlay(uint8 *pbMsgPtr,uint32 dwMsgSize);
+void SfxChatPlay(uint8_t *pbMsgPtr,uint32_t dwMsgSize);
 void SfxUnInitChat(void);
 
-void SfxSetStereoReverse(uint8 bFlag);
-uint16 SfxSetMaxEffects(uint16 wNum);
+void SfxSetStereoReverse(uint8_t bFlag);
+uint16_t SfxSetMaxEffects(uint16_t wNum);
 
-int16 SfxLoadEffect(char *pcFilename); 
-uint16 SfxUnLoadEffect(int16 wSampleId);
-uint16 SfxGetFxBank(char *filename);
-int16 SfxOpenFxBank(int16 *pwFirstId);
-void SfxCloseFxBank(int16 wBank);
+int16_t SfxLoadEffect(char *pcFilename);
+uint16_t SfxUnLoadEffect(int16_t wSampleId);
+uint16_t SfxGetFxBank(char *filename);
+int16_t SfxOpenFxBank(int16_t *pwFirstId);
+void SfxCloseFxBank(int16_t wBank);
 
 
-void SfxSetVolume(uint8 bVolume);
-void SfxSetCdVolume(uint8 bVolume);
-uint32 SfxGetFeatures(void);
-uint16 SfxGetData(int16 wPlayId,uint8 *pbVolume,int8 *pbPan, 
-									uint8 *pbLoop, uint16 *pwPitch,uint8 *pbPerCent);
-void SfxSetCallBack(void (*CallBack)(uint16 wPlayId));
+void SfxSetVolume(uint8_t bVolume);
+void SfxSetCdVolume(uint8_t bVolume);
+uint32_t SfxGetFeatures(void);
+uint16_t SfxGetData(int16_t wPlayId,uint8_t *pbVolume,int8_t *pbPan,
+									uint8_t *pbLoop, uint16_t *pwPitch,uint8_t *pbPerCent);
+void SfxSetCallBack(void (*CallBack)(uint16_t wPlayId));
 
-void SfxPlay(int16 wSampleId,uint8 bVolume,uint8 bLRPan,uint8 bFBPan,
-						 uint16 wPitch,uint8 bFlags);
-int16 SfxPlayID(int16 wSampleId,uint8 bVolume,uint8 bLRPan,uint8 bFBPan,
-						 uint16 wPitch,uint8 bFlags);
-int16 SfxChainId(int16 wPrevId,int16 wSampleId,uint8 bVolume,
-								 uint8 bLRPan,uint8 bFBPan,uint16 wPitch,uint8 bFlags);
+void SfxPlay(int16_t wSampleId,uint8_t bVolume,uint8_t bLRPan,uint8_t bFBPan,
+						 uint16_t wPitch,uint8_t bFlags);
+int16_t SfxPlayID(int16_t wSampleId,uint8_t bVolume,uint8_t bLRPan,uint8_t bFBPan,
+						 uint16_t wPitch,uint8_t bFlags);
+int16_t SfxChainId(int16_t wPrevId,int16_t wSampleId,uint8_t bVolume,
+								 uint8_t bLRPan,uint8_t bFBPan,uint16_t wPitch,uint8_t bFlags);
 
-void SfxStop(int16 wPlayId);
-void SfxEffectVol(int16 wPlayId,uint8 bVolume);
-void SfxEffectPitch(int16 wPlayId,uint16 wPitch);
-void SfxEffectPan(int16 wPlayId,uint16 bPan);
-void SfxEffectFBPan(int16 wPlayId,uint16 bFBPan);
-void SfxEffectFlags(int16 wPlayId,uint16 wFlag,uint8 bState);
+void SfxStop(int16_t wPlayId);
+void SfxEffectVol(int16_t wPlayId,uint8_t bVolume);
+void SfxEffectPitch(int16_t wPlayId,uint16_t wPitch);
+void SfxEffectPan(int16_t wPlayId,uint16_t bPan);
+void SfxEffectFBPan(int16_t wPlayId,uint16_t bFBPan);
+void SfxEffectFlags(int16_t wPlayId,uint16_t wFlag,uint8_t bState);
 
 void SfxOn(void);
 void SfxOff(void);
-void SfxPause(uint8 bFlag);										 
+void SfxPause(uint8_t bFlag);
 void SfxContinue(void);
 void SfxDoSfx(void);
-void SfxUnInit(uint8 bFlag);
+void SfxUnInit(uint8_t bFlag);
 
-uint16 SfxSndTrkInit(uint16 wBuffers,uint16 wSampleRate);
+uint16_t SfxSndTrkInit(uint16_t wBuffers,uint16_t wSampleRate);
 void SfxSndTrkUnInit(void);
 void SfxSndTrkSetCallBack(void (*CallBack)(void));
-void SfxSndTrkBuffer(uint8 *pbBufPtr,uint32 dwBufLen);
-uint16 SfxSndTrkNumFull(void);
+void SfxSndTrkBuffer(uint8_t *pbBufPtr,uint32_t dwBufLen);
+uint16_t SfxSndTrkNumFull(void);
 void SfxSndTrkStart(void);
 void SfxSndTrkStop(void);
 
@@ -154,12 +154,12 @@ void SfxSndTrkStop(void);
  * Sound effect code assertion
  */
 #ifdef SFXDEBUG
-	
+
 	#ifndef _SFXASSERT_
 	#define _SFXASSERT_
-		
-		void _SfxAssert(char *,uint32,char *);	/* prototype */
-	
+
+		void _SfxAssert(char *,uint32_t,char *);	/* prototype */
+
 		#define SFXASSERT(w,s) 		\
 			if((w))	 								\
 						;									\

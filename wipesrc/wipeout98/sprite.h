@@ -9,4 +9,4 @@ typedef struct Sprites
 
 void InitSprites( Sprites *sprites, Skeleton *camPos );
 void AddSprites( Sprites *sprites, TrackSection *section );
-void UpdateSprites( Sprites *sprites, TrackSection *section, short hdg );
+void UpdateSprites( Sprites *sprites, TrackSection *section, int16_t hdg );

@@ -3,14 +3,14 @@
 #include "utils.h"
 #include "libgte.h"
 
-/*int abs(int a)
+/*int32_t abs(int32_t a)
 {
 if (a < 0)
 a = -a;
 return  a;
 } */
 
-short arccos_tab[4096] = {
+int16_t arccos_tab[4096] = {
 	8191 ,
 		8190 ,
 		8189 ,
@@ -4108,34 +4108,34 @@ short arccos_tab[4096] = {
 		162 ,
 		115
 };
-		
-		
 
 
 
-int GetAng(VECTOR vec1, VECTOR vec2)
+
+
+int32_t GetAng(VECTOR vec1, VECTOR vec2)
 {
-	int angle;	
-	int product;
-	int mag;
-	
+	int32_t angle;
+	int32_t product;
+	int32_t mag;
+
 	product = ScalarProduct(vec1, vec2);
 	mag = (GetMagnitude(vec1) * GetMagnitude(vec2))>>12;
 	if(mag == 0) product = 4095;
 	else 	product = (product / mag);
 	if (product	> 4095) product = 4095;
 	else if (product	< -4095) product = -4095;
-	
+
 	angle	= arccos(product);
-	
+
 	return(angle);
-} 
+}
 
 
-int ScalarProduct(VECTOR vec1, VECTOR vec2)
+int32_t ScalarProduct(VECTOR vec1, VECTOR vec2)
 {
-	int result;
-	
+	int32_t result;
+
 	result = vec1.vx * vec2.vx + vec1.vy * vec2.vy + vec1.vz * vec2.vz;
 	return(result);
 }
@@ -4152,31 +4152,31 @@ void MinusVector(VECTOR v1, VECTOR v2, VECTOR *result)
 	result->vx = v2.vx - v1.vx;
 	result->vy = v2.vy - v1.vy;
 	result->vz = v2.vz - v1.vz;
-}	
+}
 
-int GetMagnitude(VECTOR vec1)
+int32_t GetMagnitude(VECTOR vec1)
 {
-	int mag;
-	
+	int32_t mag;
+
 	mag = vec1.vx * vec1.vx + vec1.vy * vec1.vy + vec1.vz * vec1.vz;
 	mag = SquareRoot0(mag);
 	return(mag);
-}	
+}
 
 
-int arccos(int value)
+int32_t arccos(int32_t value)
 {
-	int angle;
-	int new_val;
-	
+	int32_t angle;
+	int32_t new_val;
+
 	if (value < 0) new_val = -value;
 	else new_val = value;
-	angle = (int)arccos_tab[new_val];
-	if (value < 0) angle = 8192 + (8192-angle);		
+	angle = (int32_t)arccos_tab[new_val];
+	if (value < 0) angle = 8192 + (8192-angle);
 	return(angle);
 }
 
-int sar(int a,int n)
+int32_t sar(int32_t a,int32_t n)
 {
 	if (a>0)
 	{
@@ -4189,14 +4189,14 @@ int sar(int a,int n)
 	}
 }
 
-int ang(int a)
+int32_t ang(int32_t a)
 {
 	a = a&4095;
-	
-	if (a>2048) 
+
+	if (a>2048)
 	{
 		return(a-4096);
 	}
-	
+
 	return(a);
 }

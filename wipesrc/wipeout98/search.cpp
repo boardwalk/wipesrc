@@ -17,14 +17,14 @@
 #include "global.h"
 #include "libgte.h"
 
-int SectionSearch(ShipData *playerShip)
+int32_t SectionSearch(ShipData *playerShip)
 {
 	TrackSection *trk, *nearest_section;
-	int smallest_mag;
+	int32_t smallest_mag;
 	VECTOR cent2ship;
-	int mag;
-	int i, index;
-	short juncChecked = 0;
+	int32_t mag;
+	int32_t i, index;
+	int16_t juncChecked = 0;
 	TrackSection *junc;
 
 	trk = playerShip->nearTrkSect;
@@ -35,10 +35,10 @@ int SectionSearch(ShipData *playerShip)
 	{
 		trk = trk->prevSection.ptr;
  	}
- 
+
 	/****** Find vector from ship centre to track section under	 ******/
    /****** 	      				 consideration                    ******/
-	
+
 	cent2ship.vx = playerShip->ppivot.vx - trk->centre.vx;
 	cent2ship.vy = (playerShip->ppivot.vy - trk->centre.vy)>>2;
 	cent2ship.vz = playerShip->ppivot.vz - trk->centre.vz;
@@ -88,7 +88,7 @@ int SectionSearch(ShipData *playerShip)
 			cent2ship.vz = playerShip->ppivot.vz - trk->centre.vz;
 			mag = ((cent2ship.vx	* cent2ship.vx) +
 				 (cent2ship.vy * cent2ship.vy) + (cent2ship.vz * cent2ship.vz));
-  	
+
 			if(mag < smallest_mag)
 			{
 				smallest_mag = mag;
@@ -117,11 +117,11 @@ int SectionSearch(ShipData *playerShip)
 TrackSection* FindNearestSection(TrackSection *trk, VECTOR pos)
 {
 	TrackSection* nearest_section;
-	int smallest_mag;
+	int32_t smallest_mag;
 	VECTOR cent2ship;
-	int mag;
-	int i, index;
-	short juncChecked = 0;
+	int32_t mag;
+	int32_t i, index;
+	int16_t juncChecked = 0;
 	TrackSection *junc;
 
 
@@ -131,10 +131,10 @@ TrackSection* FindNearestSection(TrackSection *trk, VECTOR pos)
 	{
 		trk = trk->prevSection.ptr;
  	}
- 
+
 	/****** Find vector from ship centre to track section under	 ******/
    /****** 	      				 consideration                    ******/
-	
+
 	cent2ship.vx = pos.vx - trk->centre.vx;
 	cent2ship.vy = pos.vy - trk->centre.vy;
 	cent2ship.vz = pos.vz - trk->centre.vz;
@@ -184,7 +184,7 @@ TrackSection* FindNearestSection(TrackSection *trk, VECTOR pos)
 		cent2ship.vz = pos.vz - trk->centre.vz;
 			mag = /*SquareRoot0*/((cent2ship.vx	* cent2ship.vx) +
 				 (cent2ship.vy * cent2ship.vy) + (cent2ship.vz * cent2ship.vz));
-  	
+
 			if(mag < smallest_mag)
 			{
 				smallest_mag = mag;

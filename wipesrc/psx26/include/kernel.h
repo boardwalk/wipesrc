@@ -79,8 +79,8 @@
 #define	TcbStACTIVE	0x4000
 
 struct ToT {
-	unsigned long *head;
-	long size;
+	uint32_t *head;
+	int32_t size;
 };
 
 struct TCBH {
@@ -88,41 +88,41 @@ struct TCBH {
 };
 
 struct TCB {
-	long status;
-	long mode;
-	unsigned long reg[NREGS];	/* never change the offset of this */
-	long system[6];			/* reserved by system */
+	int32_t status;
+	int32_t mode;
+	uint32_t reg[NREGS];	/* never change the offset of this */
+	int32_t system[6];			/* reserved by system */
 };
 
 struct EvCB {
-	unsigned long desc;
-	long status;
-	long spec;
-	long mode;
-	long (*FHandler)();
-	long system[2];			/* reserved by system */
+	uint32_t desc;
+	int32_t status;
+	int32_t spec;
+	int32_t mode;
+	int32_t (*FHandler)();
+	int32_t system[2];			/* reserved by system */
 };
 
 
 struct EXEC {
-        unsigned long pc0;
-        unsigned long gp0;
-        unsigned long t_addr;
-        unsigned long t_size;
-        unsigned long d_addr;
-        unsigned long d_size;
-        unsigned long b_addr;
-        unsigned long b_size;
-	unsigned long s_addr;
-	unsigned long s_size;
-	unsigned long aysp,ayfp,aygp,ayret,base;
+        uint32_t pc0;
+        uint32_t gp0;
+        uint32_t t_addr;
+        uint32_t t_size;
+        uint32_t d_addr;
+        uint32_t d_size;
+        uint32_t b_addr;
+        uint32_t b_size;
+	uint32_t s_addr;
+	uint32_t s_size;
+	uint32_t aysp,ayfp,aygp,ayret,base;
 };
 
 
 struct XF_HDR {
 	char key[8];
-	unsigned long text;
-	unsigned long data;
+	uint32_t text;
+	uint32_t data;
 	struct EXEC exec;
 	char title[60];		/* "PlayStation(tm) Executable A1" */
 };
@@ -130,17 +130,17 @@ struct XF_HDR {
 
 struct DIRENTRY {
 	char name[20];
-	long attr;
-	long size;
+	int32_t attr;
+	int32_t size;
 	struct DIRENTRY *next;
-	long head;
+	int32_t head;
 	char system[4];
 };
 
 
 extern struct ToT SysToT[32];
 
-extern long SysClearRCnt[];
+extern int32_t SysClearRCnt[];
 
 #ifndef NULL
 #define NULL (0)

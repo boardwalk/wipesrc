@@ -24,7 +24,7 @@
 #include "global.h"
 #include "error.h"
 
-short FreeBlockError( FreeBlock* block )
+int16_t FreeBlockError( FreeBlock* block )
 {
 /*   if ( ( block < ( FreeBlock* )0x80000000 ) || ( block > ( FreeBlock* )0x80800000 ) )
    {
@@ -41,10 +41,10 @@ short FreeBlockError( FreeBlock* block )
 
 
 
-short BitLength(long size)
+int16_t BitLength(int32_t size)
 {
 
-   short          bitsize;
+   int16_t          bitsize;
 
 /* Calculate the bit length of the size */
 
@@ -65,11 +65,11 @@ short BitLength(long size)
 void InitDynamicMem
 (
    DynamicHeap*   heap,
-   long           size
+   int32_t           size
 )
 {
-   long        i;
-   short       bitsize;
+   int32_t        i;
+   int16_t       bitsize;
    FreeBlock*  free;
 
 /* Clear the free block pointers */
@@ -180,11 +180,11 @@ void DJoin
 FreeBlock* DSplit
 (
    FreeBlock*     free,
-   long           size
+   int32_t           size
 )
 {
    FreeBlock*     block;
-   long           spare;
+   int32_t           spare;
 
 
    if ( FreeBlockError( free ) )
@@ -253,7 +253,7 @@ void DLink
    FreeBlock*     free
 )
 {
-   short          bitsize;
+   int16_t          bitsize;
 
    if ( FreeBlockError( free ) )
    {
@@ -297,7 +297,7 @@ void DUnlink
 )
 {
 
-   short          bitsize;
+   int16_t          bitsize;
 
    if ( FreeBlockError( free ) )
    {
@@ -415,16 +415,16 @@ void DCoalesce
 
 
 // Mark updated now returns ptr on a 4-byte boundary
-char	*DAlloc(DynamicHeap* heap, long size)
+char	*DAlloc(DynamicHeap* heap, int32_t size)
 {
-   short       bitsize;
+   int16_t       bitsize;
    FreeBlock*  free;
    FreeBlock*  block;
 
 	// mark added vars
 	char			*unbounded_ptr = NULL;
-	unsigned long	unbounded_value = 0;
-	unsigned long	bounded_value = 0;
+	uint32_t	unbounded_value = 0;
+	uint32_t	bounded_value = 0;
 
 /* Increment size to a 4 byte boundary */
 
@@ -586,7 +586,7 @@ void DFree
 )
 {
    FreeBlock*  block;
-   short       bitsize;
+   int16_t       bitsize;
 
    if ( !mem )
    {

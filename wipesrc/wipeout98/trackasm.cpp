@@ -32,7 +32,7 @@
 
 #define     UseFastRam     1
 
-void Test16Bit(long *Test16bitX, long *Test16bitY, long *Test16bitZ);
+void Test16Bit(int32_t *Test16bitX, int32_t *Test16bitY, int32_t *Test16bitZ);
 
 #define     DepthShift    	2
 #define		DepthMod		0
@@ -40,8 +40,8 @@ void Test16Bit(long *Test16bitX, long *Test16bitY, long *Test16bitZ);
 extern 		char TrackDirection( TrackCamera* camera );
 extern		char WhitePal;
 extern char		DepthFadeTble;
-extern short	Shielded;
-static int fp;
+extern int16_t	Shielded;
+static int32_t fp;
 char str[40];
 
 Surface     TrackSurface[ 24 ][ 2 ];         /* 20k */
@@ -51,9 +51,9 @@ PolyFT4*    TrackLo[ 2 ];
 PolyFT4*    TrackMed[ 2 ];
 PolyFT4*    TrackHi[ 2 ];
 
-short       TrackLoCount = 0;
-short       TrackMedCount = 0;
-short       TrackHiCount = 0;                /* 82k total */
+int16_t       TrackLoCount = 0;
+int16_t       TrackMedCount = 0;
+int16_t       TrackHiCount = 0;                /* 82k total */
 
 PolyFT4     TrackLo0[ TrackLoTiles ];        /* 17k */
 PolyFT4     TrackLo1[ TrackLoTiles ];
@@ -63,7 +63,7 @@ PolyFT4     TrackMed1[ TrackMedTiles ];
 /* 36k */
 PolyFT4     TrackHi0[ TrackHiTiles ];
 PolyFT4     TrackHi1[ TrackHiTiles ];
-extern short startLinePos[ ];
+extern int16_t startLinePos[ ];
 
 
 
@@ -90,8 +90,8 @@ which is 256 polys in total
 void AsmLowResTile
 (
  TexTemplate*	Template,
- short          index,
- short          reversed
+ int16_t          index,
+ int16_t          reversed
  )
 {
 	Poly           primitives;
@@ -140,8 +140,8 @@ void AsmLowResTile
 void AsmMediumResTile
 (
  TexTemplate*	Template,
- short          index,
- short          reversed
+ int16_t          index,
+ int16_t          reversed
  )
 {
 	Poly           primitives;
@@ -151,9 +151,9 @@ void AsmMediumResTile
 
 	Texture*       texture;
 
-	short          i;
+	int16_t          i;
 
-	short          tex;
+	int16_t          tex;
 
 	/* Create Tile */
 
@@ -210,8 +210,8 @@ void AsmMediumResTile
 void AsmHighResTile
 (
  TexTemplate*	Template,
- short          index,
- short          reversed
+ int16_t          index,
+ int16_t          reversed
  )
 {
 	Poly           primitives;
@@ -221,9 +221,9 @@ void AsmHighResTile
 
 	Texture*       texture;
 
-	short          i;
+	int16_t          i;
 
-	short          tex;
+	int16_t          tex;
 
 	/* Create Tile */
 
@@ -280,10 +280,10 @@ void AsmHighResTile
 void AsmGenerateTiles
 (
 	TexTemplate*	texTemplate,
-	short          numLib
+	int16_t          numLib
 	)
 {
-	short       i;
+	int16_t       i;
 	PolyFT4*    ft4;
 
 
@@ -341,8 +341,8 @@ void AsmGenerateTiles
 
 void AsmNextFrame( )
 {
-	short    i;
-	short    error;
+	int16_t    i;
+	int16_t    error;
 
 	/* Initialise lo track polygon counter */
 
@@ -370,7 +370,7 @@ void AsmNextFrame( )
 
 
 TrackSection *AsmTransformTrackLo(TrackSection* firstSection,
-								  Skeleton* camera, short loCount, short dir)
+								  Skeleton* camera, int16_t loCount, int16_t dir)
 {
 /*
 Variables with greatest need for optimisation
@@ -383,30 +383,30 @@ Listed in decreasing order of priority
 	VECTOR*              campos = ( VECTOR* )( FastRam );          /* 1 vector = 16 bytes */
 	SVECTOR*             svector = ( SVECTOR* )( campos + 1 );     /* 4 svectors = 32 bytes */
 	DVECTOR*             screen = ( DVECTOR* )( svector + 4 );     /* 4 dvectors = 16 bytes */
-	long*                depth = ( long* )( screen + 4 );         /* 4 longs = 16 bytes */
-	long*                flag = ( long* )( depth + 4 );           /* 4 longs = 16 bytes */
-	long*                interpolate = ( long* )( flag + 4 );     /* 4 longs = 16 bytes */
+	int32_t*                depth = ( int32_t* )( screen + 4 );         /* 4 longs = 16 bytes */
+	int32_t*                flag = ( int32_t* )( depth + 4 );           /* 4 longs = 16 bytes */
+	int32_t*                interpolate = ( int32_t* )( flag + 4 );     /* 4 longs = 16 bytes */
 #else
 	VECTOR               camposData;
 	VECTOR*              campos = &camposData;
 	SVECTOR              svector[ 4 ];
 	DVECTOR              screen[ 4 ];
-	long                 depth[ 4 ];
-	long                 flag[ 4 ];
-	long                 interpolate[ 4 ];
+	int32_t                 depth[ 4 ];
+	int32_t                 flag[ 4 ];
+	int32_t                 interpolate[ 4 ];
 #endif
 
 
-	ushort*              depth2 = ( ushort* )( interpolate + 4 );              /* 9 shorts = 18 bytes */
-	ushort*              flag2 = ( ushort* )( depth2 + 4 );                /* 9 shorts = 18 bytes */
+	uint16_t*              depth2 = ( uint16_t* )( interpolate + 4 );              /* 9 shorts = 18 bytes */
+	uint16_t*              flag2 = ( uint16_t* )( depth2 + 4 );                /* 9 shorts = 18 bytes */
 
-	short                i, j, k;
+	int16_t                i, j, k;
 
 	TrackSection*        section;
 	Face*                face;
 
 	VECTOR               *vertices;
-	short                faceCount;
+	int16_t                faceCount;
 
 	PolyFT4*             ft4;
 
@@ -414,12 +414,12 @@ Listed in decreasing order of priority
 
 	Tile*                tile;
 
-	short                a, b, c;
+	int16_t                a, b, c;
 
-	long					Test16bitX;
-	long					Test16bitY;
-	long					Test16bitZ;
-	short				var;
+	int32_t					Test16bitX;
+	int32_t					Test16bitY;
+	int32_t					Test16bitZ;
+	int16_t				var;
 
 
 	/* Set transformation matrix */
@@ -450,9 +450,9 @@ Listed in decreasing order of priority
 			Test16bitZ = vertex->vz + campos->vz;
 			Test16Bit(&Test16bitX, &Test16bitY, &Test16bitZ);
 
-			svector[ 0 ].vx = (short)Test16bitX;
-			svector[ 0 ].vy = (short)Test16bitY;
-			svector[ 0 ].vz = (short)Test16bitZ;
+			svector[ 0 ].vx = (int16_t)Test16bitX;
+			svector[ 0 ].vy = (int16_t)Test16bitY;
+			svector[ 0 ].vz = (int16_t)Test16bitZ;
 
 
 			vertex = vertices + face->vertex[ 1 ];
@@ -461,9 +461,9 @@ Listed in decreasing order of priority
 			Test16bitZ = vertex->vz + campos->vz;
 			Test16Bit(&Test16bitX, &Test16bitY, &Test16bitZ);
 
-			svector[ 1 ].vx = (short)Test16bitX;
-			svector[ 1 ].vy = (short)Test16bitY;
-			svector[ 1 ].vz = (short)Test16bitZ;
+			svector[ 1 ].vx = (int16_t)Test16bitX;
+			svector[ 1 ].vy = (int16_t)Test16bitY;
+			svector[ 1 ].vz = (int16_t)Test16bitZ;
 
 
 			vertex = vertices + face->vertex[ 2 ];
@@ -472,9 +472,9 @@ Listed in decreasing order of priority
 			Test16bitZ = vertex->vz + campos->vz;
 			Test16Bit(&Test16bitX, &Test16bitY, &Test16bitZ);
 
-			svector[ 2 ].vx = (short)Test16bitX;
-			svector[ 2 ].vy = (short)Test16bitY;
-			svector[ 2 ].vz = (short)Test16bitZ;
+			svector[ 2 ].vx = (int16_t)Test16bitX;
+			svector[ 2 ].vy = (int16_t)Test16bitY;
+			svector[ 2 ].vz = (int16_t)Test16bitZ;
 
 
 			vertex = vertices + face->vertex[ 3 ];
@@ -483,9 +483,9 @@ Listed in decreasing order of priority
 			Test16bitZ = vertex->vz + campos->vz;
 			Test16Bit(&Test16bitX, &Test16bitY, &Test16bitZ);
 
-			svector[ 3 ].vx = (short)Test16bitX;
-			svector[ 3 ].vy = (short)Test16bitY;
-			svector[ 3 ].vz = (short)Test16bitZ;
+			svector[ 3 ].vx = (int16_t)Test16bitX;
+			svector[ 3 ].vy = (int16_t)Test16bitY;
+			svector[ 3 ].vz = (int16_t)Test16bitZ;
 
 			RotTransPersN(svector, screen, depth2, flag2, 4);
 
@@ -623,8 +623,8 @@ Listed in decreasing order of priority
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
 
-				//            AddPrim( OT[ CurrentScreen ] + ( *depth ), ( ulong* ) ft4 );
-				AddPrim( OT[ CurrentScreen ] + ( (depth2[0] >> DepthShift) - DepthMod), ( ulong* ) ft4 );
+				//            AddPrim( OT[ CurrentScreen ] + ( *depth ), ( uint32_t* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + ( (depth2[0] >> DepthShift) - DepthMod), ( uint32_t* ) ft4 );
          }
 
          face++;
@@ -640,8 +640,8 @@ TrackSection *AsmTransformTrackMed
 (
  TrackSection*     firstSection,
  Skeleton*         camera,
- short             medCount,
- short			 dir
+ int16_t             medCount,
+ int16_t			 dir
  )
 {
 /*
@@ -656,35 +656,35 @@ Listed in decreasing order of priority
 	VECTOR*              vector = ( VECTOR* )( campos + 1 );             /* 9 vectors = 144 bytes */
 	SVECTOR*             svector = ( SVECTOR* )( vector + 9 );           /* 9 svectors = 72 bytes */
 	DVECTOR*             screen = ( DVECTOR* )( svector + 9 );           /* 9 dvectors = 36 bytes */
-	ushort*              depth = ( ushort* )( screen + 9 );              /* 9 shorts = 18 bytes */
-	ushort*              flag = ( ushort* )( depth + 9 );                /* 9 shorts = 18 bytes */
+	uint16_t*              depth = ( uint16_t* )( screen + 9 );              /* 9 shorts = 18 bytes */
+	uint16_t*              flag = ( uint16_t* )( depth + 9 );                /* 9 shorts = 18 bytes */
 #else
 	VECTOR               camposData;
 	VECTOR*              campos = &camposData;
 	SVECTOR              svector[ 9 ];
 	DVECTOR              screen[ 9 ];
-	ushort               depth[ 9 ];
-	ushort               flag[ 9 ];
+	uint16_t               depth[ 9 ];
+	uint16_t               flag[ 9 ];
 	VECTOR               meshVector[ 9 ];
 #endif
 
 
 	/* original 32 bit vertices */
 
-	short                i, j, k;
+	int16_t                i, j, k;
 
 	TrackSection*        section;
 	Face*                face;
 
 	VECTOR               *vertices;
-	short                faceCount;
+	int16_t                faceCount;
 
 	PolyFT4*             ft4;
 
 	Surface*             surface;
 
 	Tile*                tile;
-	short				var;
+	int16_t				var;
 
 
 	/* Set transformation matrix */
@@ -868,7 +868,7 @@ Listed in decreasing order of priority
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
 
-				AddPrim( OT[ CurrentScreen ] + ((depth[ 0 ] >> DepthShift) - DepthMod ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + ((depth[ 0 ] >> DepthShift) - DepthMod ), ( uint32_t* ) ft4 );
 			}
 
 			/* Top right polygon */
@@ -946,7 +946,7 @@ Listed in decreasing order of priority
 				ft4->colour0.r = face->red;
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 1 ] >> DepthShift) - DepthMod ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 1 ] >> DepthShift) - DepthMod ), ( uint32_t* ) ft4 );
 			}
 
 			/* Bottom left polygon */
@@ -1025,7 +1025,7 @@ Listed in decreasing order of priority
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 3 ] >> DepthShift) - DepthMod ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 3 ] >> DepthShift) - DepthMod ), ( uint32_t* ) ft4 );
 			}
 
 			/* Bottom right polygon */
@@ -1103,7 +1103,7 @@ Listed in decreasing order of priority
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 4 ] >> DepthShift) - DepthMod ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 4 ] >> DepthShift) - DepthMod ), ( uint32_t* ) ft4 );
 
 			}
 			face++;
@@ -1121,8 +1121,8 @@ TrackSection *AsmTransformTrackHi
  TrackSection*     firstSection,
  Skeleton*         camera,
  AutoMeshData*     autoMesh,
- short             highCount,
- short			 var
+ int16_t             highCount,
+ int16_t			 var
  )
 {
 /*
@@ -1137,27 +1137,27 @@ Listed in decreasing order of priority
 	VECTOR*              vector = ( VECTOR* )( campos + 1 );             /* 25 vectors = 400 bytes */
 	SVECTOR*             svector = ( SVECTOR* )( vector + 25 );          /* 25 svectors = 200 bytes */
 	DVECTOR*             screen = ( DVECTOR* )( svector + 25 );          /* 25 dvectors = 100 bytes */
-	ushort*              depth = ( ushort* )( screen + 25 );             /* 25 shorts = 50 bytes */
-	ushort*              flag = ( ushort* )( depth + 25 );               /* 25 shorts = 50 bytes */
+	uint16_t*              depth = ( uint16_t* )( screen + 25 );             /* 25 shorts = 50 bytes */
+	uint16_t*              flag = ( uint16_t* )( depth + 25 );               /* 25 shorts = 50 bytes */
 #else
 	VECTOR               camposData;
 	VECTOR*              campos = &camposData;
 	VECTOR		vector[ 25 ];
 	SVECTOR              svector[ 25 ];
 	DVECTOR              screen[ 25 ];
-	ushort               depth[ 25 ];
-	ushort               flag[ 25 ];
+	uint16_t               depth[ 25 ];
+	uint16_t               flag[ 25 ];
 #endif
 
 	/* original 32 bit vertices */
 
-	short                i, j, k;
+	int16_t                i, j, k;
 
 	TrackSection*        section;
 	Face*                face;
 
 	VECTOR               *vertices;
-	short                faceCount;
+	int16_t                faceCount;
 
 	PolyFT4*             ft4;
 
@@ -1165,12 +1165,12 @@ Listed in decreasing order of priority
 
 	Tile*                tile;
 
-	long                 flags;
+	int32_t                 flags;
 
-	short                x, y;
+	int16_t                x, y;
 
-	short                index;
-	short				varadd;
+	int16_t                index;
+	int16_t				varadd;
 
 
 
@@ -1463,7 +1463,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 0 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 0 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 0 ] & flag[ 1 ] & flag[ 5 ] & flag[ 6 ] & ShortClipFlags ) )
 			{
@@ -1541,7 +1541,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 1 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 1 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 1 ] & flag[ 2 ] & flag[ 6 ] & flag[ 7 ] & ShortClipFlags ) )
 			{
@@ -1618,7 +1618,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 2 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 2 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 2 ] & flag[ 3 ] & flag[ 7 ] & flag[ 8 ] & ShortClipFlags ) )
 			{
@@ -1695,7 +1695,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 3 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 3 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 3 ] & flag[ 4 ] & flag[ 8 ] & flag[ 9 ] & ShortClipFlags ) )
 			{
@@ -1772,7 +1772,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 5 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 5 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 5 ] & flag[ 6 ] & flag[ 10 ] & flag[ 11 ] & ShortClipFlags ) )
 			{
@@ -1849,7 +1849,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 6 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 6 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 6 ] & flag[ 7 ] & flag[ 11 ] & flag[ 12 ] & ShortClipFlags ) )
 			{
@@ -1926,7 +1926,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 7 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 7 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 7 ] & flag[ 8 ] & flag[ 12 ] & flag[ 13 ] & ShortClipFlags ) )
 			{
@@ -2003,7 +2003,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 8 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 8 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 8 ] & flag[ 9 ] & flag[ 13 ] & flag[ 14 ] & ShortClipFlags ) )
 			{
@@ -2080,7 +2080,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 10 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 10 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 10 ] & flag[ 11 ] & flag[ 15 ] & flag[ 16 ] & ShortClipFlags ) )
 			{
@@ -2157,7 +2157,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 11 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 11 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 11 ] & flag[ 12 ] & flag[ 16 ] & flag[ 17 ] & ShortClipFlags ) )
 			{
@@ -2234,7 +2234,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 12 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 12 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 12 ] & flag[ 13 ] & flag[ 17 ] & flag[ 18 ] & ShortClipFlags ) )
 			{
@@ -2311,7 +2311,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 13 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 13 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 13 ] & flag[ 14 ] & flag[ 18 ] & flag[ 19 ] & ShortClipFlags ) )
 			{
@@ -2388,7 +2388,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 15 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 15 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 15 ] & flag[ 16 ] & flag[ 20 ] & flag[ 21 ] & ShortClipFlags ) )
 			{
@@ -2466,7 +2466,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 16 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 16 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 16 ] & flag[ 17 ] & flag[ 21 ] & flag[ 22 ] & ShortClipFlags ) )
 			{
@@ -2543,7 +2543,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 17 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 17 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 17 ] & flag[ 18 ] & flag[ 22 ] & flag[ 23 ] & ShortClipFlags ) )
 			{
@@ -2620,7 +2620,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim( OT[ CurrentScreen ] + (( depth[ 18 ] >> DepthShift) - DepthMod  ), ( ulong* ) ft4 );
+				AddPrim( OT[ CurrentScreen ] + (( depth[ 18 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
 			}
 			else if ( !( flag[ 18 ] & flag[ 19 ] & flag[ 23 ] & flag[ 24 ] & ShortClipFlags ) )
 			{
@@ -2665,7 +2665,7 @@ void AsmAutoMesh
 	PolyFT3*       ft3;
 
 
-	short          clip;
+	int16_t          clip;
 
 	return;
 
@@ -2696,10 +2696,10 @@ void AsmAutoMesh
 
 	SVECTOR*       svector =     ( SVECTOR* )( FastRam + 816 );    /* 5 * 8 = 40 bytes */
 	DVECTOR*       screen =      ( DVECTOR* )( FastRam + 856 );    /* 9 * 4 = 36 bytes */
-	long*          depth =       ( long* )   ( FastRam + 892 );    /* 9 * 4 = 36 bytes */
+	int32_t*          depth =       ( int32_t* )   ( FastRam + 892 );    /* 9 * 4 = 36 bytes */
 
-	long*          interpolate = ( long* )   ( FastRam + 928 );    /* 1 * 4 = 4 bytes  */
-	long*          flag =        ( long* )   ( FastRam + 932 );    /* 1 * 4 = 4 bytes  */
+	int32_t*          interpolate = ( int32_t* )   ( FastRam + 928 );    /* 1 * 4 = 4 bytes  */
+	int32_t*          flag =        ( int32_t* )   ( FastRam + 932 );    /* 1 * 4 = 4 bytes  */
 
 	uchar*         uv =          ( uchar* )  ( FastRam + 936 );    /* 5 * 2 = 10 bytes */
 
@@ -2951,7 +2951,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT4( ( POLY_FT4* )( ft4 ) );
 
-				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( ulong* )( ft4 ) );
+				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( uint32_t* )( ft4 ) );
 
 				autoMesh->quadCount += 1;
 			}
@@ -2996,7 +2996,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT3( ( POLY_FT3* )( ft3 ) );
 
-				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( ulong* )( ft3 ) );
+				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( uint32_t* )( ft3 ) );
 				autoMesh->triCount += 1;
 			}
 		}
@@ -3051,7 +3051,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT4( ( POLY_FT4* )( ft4 ) );
 
-				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( ulong* )( ft4 ) );
+				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( uint32_t* )( ft4 ) );
 				autoMesh->quadCount += 1;
 			}
 			else if ( clip & top )
@@ -3095,7 +3095,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT3( ( POLY_FT3* )( ft3 ) );
 
-				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( ulong* )( ft3 ) );
+				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( uint32_t* )( ft3 ) );
 				autoMesh->triCount += 1;
 			}
 		}
@@ -3151,7 +3151,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT4( ( POLY_FT4* )( ft4 ) );
 
-				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( ulong* )( ft4 ) );
+				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( uint32_t* )( ft4 ) );
 
 				autoMesh->quadCount += 1;
 			}
@@ -3207,7 +3207,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT4( ( POLY_FT4* )( ft4 ) );
 
-				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( ulong* )( ft4 ) );
+				AddPrim( OT[ CurrentScreen ] + depth[ cNum ], ( uint32_t* )( ft4 ) );
 				autoMesh->quadCount += 1;
 			}
 		}
@@ -3217,7 +3217,7 @@ void AsmAutoMesh
 }
 
 
-void Test16Bit(long *Test16bitX, long *Test16bitY, long *Test16bitZ)
+void Test16Bit(int32_t *Test16bitX, int32_t *Test16bitY, int32_t *Test16bitZ)
 {
 	if(*Test16bitX > 32767)
 		*Test16bitX = 32767;

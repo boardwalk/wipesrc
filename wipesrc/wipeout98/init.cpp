@@ -31,17 +31,17 @@
 #include "ajs.h"
 #include "lzss.h"
 
-int skyPos[15] = {-820, -2520, -1930, -5000, -5000, 0, -2260, -40, -2700, 0, -240, -2120, -2700, 0, 0};
+int32_t skyPos[15] = {-820, -2520, -1930, -5000, -5000, 0, -2260, -40, -2700, 0, -240, -2120, -2700, 0, 0};
 
 #define	GsGetVcount()	0;
 
-short InitScene(Object** prm, short *prmCount, Skeleton* camPos, ConfigData *gameData)
+int16_t InitScene(Object** prm, int16_t *prmCount, Skeleton* camPos, ConfigData *gameData)
 {
-	short    sceneTextures;
-   short    skyTextures;
-	short    i, j;
+	int16_t    sceneTextures;
+   int16_t    skyTextures;
+	int16_t    i, j;
    Object*  obj;
-   short    sky;
+   int16_t    sky;
 	TIMlist  *timPtr, *skyTimPtr;
 
    sceneTextures = TextureTableCount;
@@ -125,7 +125,7 @@ void getPath(char* trackPath, char trackNo, char* name)
 
 void LoadCmpFiles( TIMlist *timPtr )
 {
-	short       i;
+	int16_t       i;
 	Texture*    texture;
 
 	for (i = 0; i < numTex; i++)
@@ -148,7 +148,7 @@ void LoadCmpFiles( TIMlist *timPtr )
 }
 
 
-Texture* NewLoadTexture( intptr_t timPtr, short translucent )
+Texture* NewLoadTexture( intptr_t timPtr, int16_t translucent )
 {
 	Tim*        tim;
 	TimClut4*   tc4;
@@ -157,14 +157,14 @@ Texture* NewLoadTexture( intptr_t timPtr, short translucent )
 	RECT        rect;
 	CLUT			cluts[256];			// PCwipeout
 
-	int         x,y;
+	int32_t         x,y;
 
 #if LoadMessages
 	//   printf( "Loading Tim File : %s\n", name );
 #endif
 
 	tim = (Tim*) timPtr;
-	printf("NewLoadTexture tim at %lx clut type = %ld\n", timPtr, ClutType(tim) );
+	printf("NewLoadTexture tim at %lx clut type = %d\n", timPtr, ClutType(tim) );
 
 	if ( ClutType( tim ) == Clut4Bit )
 	{
@@ -229,16 +229,16 @@ Texture* NewLoadTexture( intptr_t timPtr, short translucent )
 		rect.y = tc4->clutY;
 		rect.w = tc4->clutW;
 		rect.h = tc4->clutH;
-		LoadClut4( &rect, ( ushort* )( &tc4->clut ) , cluts);  // PCwipeout
-		//      LoadImage( &rect, ( ulong* )( &tc4->clut ) );
+		LoadClut4( &rect, ( uint16_t* )( &tc4->clut ) , cluts);  // PCwipeout
+		//      LoadImage( &rect, ( uint32_t* )( &tc4->clut ) );
 		DrawSync( 0 );
 
 		rect.x = tc4->textureX;
 		rect.y = tc4->textureY;
 		rect.w = tc4->textureW;
 		rect.h = tc4->textureH;
-		LoadImage4( &rect, ( ulong* )( tc4+1 ), cluts );  // PCwipeout
-		//      LoadImage( &rect, ( ulong* )( tc4+1 ) );
+		LoadImage4( &rect, ( uint32_t* )( tc4+1 ), cluts );  // PCwipeout
+		//      LoadImage( &rect, ( uint32_t* )( tc4+1 ) );
 		DrawSync( 0 );
 	}
 	else if ( ClutType( tim ) == Clut8Bit )
@@ -282,16 +282,16 @@ Texture* NewLoadTexture( intptr_t timPtr, short translucent )
 		rect.y = tc8->clutY;
 		rect.w = tc8->clutW;
 		rect.h = tc8->clutH;
-		LoadClut8( &rect, ( ushort* )( &tc8->clut ),cluts );
-		//      LoadImage( &rect, ( ulong* )( &tc8->clut ) );
+		LoadClut8( &rect, ( uint16_t* )( &tc8->clut ),cluts );
+		//      LoadImage( &rect, ( uint32_t* )( &tc8->clut ) );
 		DrawSync( 0 );
 
 		rect.x = tc8->textureX;
 		rect.y = tc8->textureY;
 		rect.w = tc8->textureW;
 		rect.h = tc8->textureH;
-		LoadImage8( &rect, ( ulong* )( tc8+1 ),cluts );
-		//      LoadImage( &rect, ( ulong* )( tc8+1 ) );
+		LoadImage8( &rect, ( uint32_t* )( tc8+1 ),cluts );
+		//      LoadImage( &rect, ( uint32_t* )( tc8+1 ) );
 		DrawSync( 0 );
 	}
 	else
@@ -303,12 +303,12 @@ Texture* NewLoadTexture( intptr_t timPtr, short translucent )
 
 TIMlist *LoadCompressedTextureSequence( char *fileName )
 {
-	short texNum;
+	int16_t texNum;
 	char	*fileBuffer;
-	long	fileSize;
+	int32_t	fileSize;
 	static TIMlist timList;
-	long	timSize, timTotalSize;
-	int	CPURasters;
+	int32_t	timSize, timTotalSize;
+	int32_t	CPURasters;
 
 //	GsClearVcount();
 

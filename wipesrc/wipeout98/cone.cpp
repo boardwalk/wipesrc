@@ -36,19 +36,19 @@
 
 void InitCone ( Cone *cone )
 {
-   short       h, i, j, k;
+   int16_t       h, i, j, k;
    Prm         prm;
 
-   short       seCount;
-   short       similar;
+   int16_t       seCount;
+   int16_t       similar;
 
-   short       booster;
+   int16_t       booster;
 
-   short       allVert[ 64 ];
-   short       allCount;
+   int16_t       allVert[ 64 ];
+   int16_t       allCount;
 
-   short       shared[ 3 ];
-   short       gotIt;
+   int16_t       shared[ 3 ];
+   int16_t       gotIt;
 
 
    for ( h=0; h<8; h++ )
@@ -84,7 +84,7 @@ void InitCone ( Cone *cone )
                   allVert[ allCount++ ] = prm.ft3->coords[ 1 ];
                   allVert[ allCount++ ] = prm.ft3->coords[ 2 ];
 
-                  prm.ft3->flag |= Translucent;                   
+                  prm.ft3->flag |= Translucent;
 
                   prm.ft3->tsb =
                      GetTPage
@@ -234,9 +234,9 @@ void InitCone ( Cone *cone )
 
 void UpdateCone ( Cone *cone )
 {
-   short    disp;
-   short    i, j;
-   
+   int16_t    disp;
+   int16_t    i, j;
+
 
    for ( i=0; i<8; i++ )
    {

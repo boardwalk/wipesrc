@@ -93,7 +93,7 @@ void _makepath(
 #define	SHIELD_PAL	1
 
 
-extern short rendering;
+extern int16_t rendering;
 
 #define addPrim(ot, p)	setaddr(p, getaddr(ot)), setaddr(ot, p)
 
@@ -108,7 +108,7 @@ char losePic[35840];
 extern char inmenu,Reallyinmenu;
 extern	char VRam[];
 extern	char DepthFadeTble[];
-extern unsigned int	this_frame, last_frame;
+extern uint32_t	this_frame, last_frame;
 
 //#define	LOADTEXTURES	1					// standard load stuff (LoadImage4, LoadImage8 etc.);
 //#define	LOADAS24BIT	1						// if you want to load vram as 1 byte red, 1 byte green & 1 byte blue (requires 6 mb vram)
@@ -121,7 +121,7 @@ extern unsigned int	this_frame, last_frame;
 //	LoadImage, StoreImage and MoveImage functions to enable x,y
 //	style access to the ram.
 
-u_long	*video_start_addr;		//	video_start_addr is a pointer to the PC equivalent of the 0,0
+uint32_t	*video_start_addr;		//	video_start_addr is a pointer to the PC equivalent of the 0,0
 //	co-ordinate in PSX video ram. This is used in LoadImage,
 //	StoreImage and MoveImage
 
@@ -133,7 +133,7 @@ DRAWENV	g_DrawEnv;				//	g_DrawEnv is used to represent the PSX drawing environm
 //	is used in GetDrawEnv to get the system values - this function
 //	is NOT used in RidgeRacer
 
-int		g_mask;					// global display mask variable set in SetDispMask
+int32_t		g_mask;					// global display mask variable set in SetDispMask
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -151,27 +151,27 @@ int		g_mask;					// global display mask variable set in SetDispMask
 
 	DRAWENV	  	*GetDrawEnv(DRAWENV *env);		// NOT USED IN RIDGERACER
 
-	  DISPENV	  	*SetDefDispEnv(DISPENV *disp, int x, int y, int w, int h);
+	  DISPENV	  	*SetDefDispEnv(DISPENV *disp, int32_t x, int32_t y, int32_t w, int32_t h);
 
-		DRAWENV	  	*SetDefDrawEnv(DRAWENV *draw, long x, long y, long w, long h);
+		DRAWENV	  	*SetDefDrawEnv(DRAWENV *draw, int32_t x, int32_t y, int32_t w, int32_t h);
 
 		  void	  	SetDrawEnv(DR_ENV *dr_env, DRAWENV *env);
 
-			void	  	SetDrawMode(DR_MODE *dr_mode, int dfe, int dtd, unsigned short tpage, RECT *tw);
+			void	  	SetDrawMode(DR_MODE *dr_mode, int32_t dfe, int32_t dtd, uint16_t tpage, RECT *tw);
 
-			  void	  	LoadImage(RECT	*recp, unsigned long *p);
+			  void	  	LoadImage(RECT	*recp, uint32_t *p);
 
-				void	  	MoveImage(RECT	*rect, int x, int y);	// NOT USED IN RIDGERACER
+				void	  	MoveImage(RECT	*rect, int32_t x, int32_t y);	// NOT USED IN RIDGERACER
 
-				  void	  	StoreImage(RECT	*recp, unsigned long *p);
+				  void	  	StoreImage(RECT	*recp, uint32_t *p);
 
-					long	  	DrawSync(long	mode);
+					int32_t	  	DrawSync(int32_t	mode);
 
-					  void	  	ResetGraph(int	mode);
+					  void	  	ResetGraph(int32_t	mode);
 
-						void	  	SetGraphDebug(int level);
+						void	  	SetGraphDebug(int32_t level);
 
-						  void	  	InterpolByte(u_char*, u_char*, long, u_char*);
+						  void	  	InterpolByte(uint8_t*, uint8_t*, int32_t, uint8_t*);
 
 */
 
@@ -179,7 +179,7 @@ int		g_mask;					// global display mask variable set in SetDispMask
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-int		DrawSync(int	mode)
+int32_t		DrawSync(int32_t	mode)
 {
 	// function used for parallel actions on PSX
 	// defined so games compile on PC
@@ -190,12 +190,12 @@ int		DrawSync(int	mode)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // FUNCTIONS WHICH JUST CALL THEIR EQUIVALENT MACROS
 
-void	AddPrim(P_TAG *ordt, u_long *p)
+void	AddPrim(P_TAG *ordt, uint32_t *p)
 {
 	addPrim(ordt, p);
 }
 
-u_short GetTPage(int tp, int abr, int x, int y)
+uint16_t GetTPage(int32_t tp, int32_t abr, int32_t x, int32_t y)
 {
 	return(getTPage(tp,abr,x,y));
 }
@@ -241,12 +241,12 @@ void SetPolyGT4(POLY_GT4 *p)
 	setPolyGT4(p);
 }
 
-void SetSemiTrans(P_TAG *p, long abe)
+void SetSemiTrans(P_TAG *p, int32_t abe)
 {
 	setSemiTrans(p,abe);
 }
 
-void SetShadeTex(P_TAG *p, long tge)
+void SetShadeTex(P_TAG *p, int32_t tge)
 {
 	setShadeTex(p,tge);
 }
@@ -262,7 +262,7 @@ void SetSprt(SPRT    *p)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-void				SetDispMask(int mask)
+void				SetDispMask(int32_t mask)
 {
 	// Puts display mask into the status specified by mask. The following values can be used for mask
 	//	0 - Not displayed on screen
@@ -274,7 +274,7 @@ void				SetDispMask(int mask)
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-DISPENV	*SetDefDispEnv(DISPENV *disp, int x, int y, int w, int h)
+DISPENV	*SetDefDispEnv(DISPENV *disp, int32_t x, int32_t y, int32_t w, int32_t h)
 {
 	// Sets display environment structure members using the point on the top left of the display
 	// area and width and height of the display area (values set as in table below)
@@ -304,7 +304,7 @@ DISPENV	*SetDefDispEnv(DISPENV *disp, int x, int y, int w, int h)
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-DRAWENV	*SetDefDrawEnv(DRAWENV *draw, int x, int y, int w, int h)
+DRAWENV	*SetDefDrawEnv(DRAWENV *draw, int32_t x, int32_t y, int32_t w, int32_t h)
 {
 	// Sets standard drawing environment structure members judging from the point on the left top
 	// of the drawing area, and width and height of the drawing area (values set as in table below)
@@ -350,7 +350,7 @@ DRAWENV	*SetDefDrawEnv(DRAWENV *draw, int x, int y, int w, int h)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-void		SetDrawMode(DR_MODE *dr_mode, int dfe, int dtd, int tpage, RECT *tw)
+void		SetDrawMode(DR_MODE *dr_mode, int32_t dfe, int32_t dtd, int32_t tpage, RECT *tw)
 {
 	// Initialises the draw mode primitive.
 	// The format below was designed by me (ajs) if you don't like it - design your own !
@@ -359,10 +359,10 @@ void		SetDrawMode(DR_MODE *dr_mode, int dfe, int dtd, int tpage, RECT *tw)
 	// 1 byte  : dfe
 	// 1 byte  : dtd
 	// 2 bytes : tpage
-	// 1 u_long: *tw
+	// 1 uint32_t: *tw
 
-	dr_mode->code[1] = (u_char)dfe<<24;
-	dr_mode->code[1] += (u_char)dtd<<16;
+	dr_mode->code[1] = (uint8_t)dfe<<24;
+	dr_mode->code[1] += (uint8_t)dtd<<16;
 	dr_mode->code[1] += tpage;
 	dr_mode->code[0] = 0x90;			// set first byte (code byte) to 0x90
 	dr_mode->code[0]=dr_mode->code[0]<<24;
@@ -373,16 +373,16 @@ void		SetDrawMode(DR_MODE *dr_mode, int dfe, int dtd, int tpage, RECT *tw)
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void		StoreImage(RECT	*recp, unsigned long *p)
+void		StoreImage(RECT	*recp, uint32_t *p)
 {
 	// Transfers the rectangular area in the frame bufffer specified by recp to the contiguous area
 	// in main memory at address p
 
 #ifdef ajs
-	u_short	count;
-	u_long	*source;
-	u_short	width;
-	u_long	val;
+	uint16_t	count;
+	uint32_t	*source;
+	uint16_t	width;
+	uint32_t	val;
 
 	source=video_start_addr+(recp->x*2)+(recp->y*VRAM_WIDTH);
 	width=recp->w*2;
@@ -407,24 +407,24 @@ void	SetPolyGT3(POLY_GT3 *p)
 
 //*****************************************************************
 
-void LoadClut4(RECT	*rect, u_short *clutptr, CLUT *cluts)
+void LoadClut4(RECT	*rect, uint16_t *clutptr, CLUT *cluts)
 {
-	int loop;
-	u_short *ptr;
+	int32_t loop;
+	uint16_t *ptr;
 
-	ptr = (u_short *)cluts;
+	ptr = (uint16_t *)cluts;
 	for (loop =0;loop < 16 ;loop++)
 	{
 		*ptr++ = *clutptr++;
 	}
 }
 
-void LoadClut8(RECT	*rect, u_short *clutptr, CLUT *cluts)
+void LoadClut8(RECT	*rect, uint16_t *clutptr, CLUT *cluts)
 {
-	int loop;
-	u_short *ptr;
+	int32_t loop;
+	uint16_t *ptr;
 
-	ptr = (u_short *)cluts;
+	ptr = (uint16_t *)cluts;
 	for (loop =0;loop < 256 ;loop++)
 	{
 		*ptr++ = *clutptr++;
@@ -435,7 +435,7 @@ void LoadClut8(RECT	*rect, u_short *clutptr, CLUT *cluts)
 
 #ifdef LOADTEXTURES
 
-int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
+int32_t		LoadImage8(RECT	*recp, uint32_t *p, CLUT *cluts)
 {
 	/***** NOTE: THIS SHOULD WORK APART FROM DIFFERENT SIZE TEXTURE PAGE COORDINATE *****/
 	char	*dest;
@@ -444,19 +444,19 @@ int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
 	char	tpage_start, tpage_end, tpage;
 	char 	vert_split;
 
-	short src_start_off;
-	short	x,y;
-	short	width,height;
-	short	xs, xe, ys, ye;
+	int16_t src_start_off;
+	int16_t	x,y;
+	int16_t	width,height;
+	int16_t	xs, xe, ys, ye;
 	char red, green, blue;
 	char val;
 
 	char *source_byte;
-	short	line;
+	int16_t	line;
 	char	*ptr;
 
 	char	used[16];
-	int 	loop_used;
+	int32_t 	loop_used;
 
 	printf("!!!!!! LOAD IMAGE 8 !!!!!!\n");
 #define	TPAGE_WIDTH 64	// this is in WORDS, 'cause that's how the recp coord come in (I THINK!)
@@ -591,7 +591,7 @@ int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
 //*****************************************************************
 
 
-int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
+int32_t		LoadImage4(RECT	*recp, uint32_t *p, CLUT *cluts)
 {
 	char	*dest;
 	char	*source;
@@ -599,19 +599,19 @@ int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
 	char	tpage_start, tpage_end, tpage;
 	char 	vert_split;
 
-	short src_start_off;
-	short	x,y;
-	short	width,height;
-	short	xs, xe, ys, ye;
+	int16_t src_start_off;
+	int16_t	x,y;
+	int16_t	width,height;
+	int16_t	xs, xe, ys, ye;
 	char red, green, blue;
 	char val;
 
 	char *source_byte;
-	short	line;
+	int16_t	line;
 	char	*ptr;
 
 	char	used[16];
-	int 	loop_used;
+	int32_t 	loop_used;
 
 #define	TPAGE_WIDTH 64	// this is in WORDS, 'cause that's how the recp coord come in (I THINK!)
 
@@ -748,7 +748,7 @@ int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
 
 #endif		// 16 bit dump stuff
 #ifdef	LOADAS24BIT
-int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
+int32_t		LoadImage8(RECT	*recp, uint32_t *p, CLUT *cluts)
 {
 	char	*dest;
 	char	*source;
@@ -756,19 +756,19 @@ int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
 	char	tpage_start, tpage_end, tpage;
 	char 	vert_split;
 
-	short src_start_off;
-	short	x,y;
-	short	width,height;
-	short	xs, xe, ys, ye;
+	int16_t src_start_off;
+	int16_t	x,y;
+	int16_t	width,height;
+	int16_t	xs, xe, ys, ye;
 	char red, green, blue;
 	char val;
 
 	char *source_byte;
-	short	line;
+	int16_t	line;
 	char	*ptr;
 
 	char	used[16];
-	int 	loop_used;
+	int32_t 	loop_used;
 
 	printf("!!!!!! LOAD IMAGE 8 !!!!!!\n");
 #define	TPAGE_WIDTH 64	// this is in WORDS, 'cause that's how the recp coord come in (I THINK!)
@@ -812,7 +812,7 @@ int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
 
 				for (line=y;line<y+height;line++)
 				{
-					dest=(char*)(ptr+((long)tpage*196608)+((long)xs*6)+((long)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+					dest=(char*)(ptr+((int32_t)tpage*196608)+((int32_t)xs*6)+((int32_t)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
 					//				dest=ptr+(tpage*65536)+(xs*2)+(line*256);						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
 					source=(char*)p+src_start_off+((line-y)*(width*2));		// source in 16 bit co-ords  Width must be in bytes
 					for (source_byte = source; source_byte <(source + ((xe-xs) *2));source_byte++)
@@ -844,7 +844,7 @@ int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
 
 				for (line=y;line<256;line++)
 				{
-					dest=(char*)(ptr+((long)tpage*196608)+((long)xs*6)+((long)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+					dest=(char*)(ptr+((int32_t)tpage*196608)+((int32_t)xs*6)+((int32_t)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
 					//				dest=ptr+(tpage*65536)+(xs * 2)+(line*256);
 					source=(char*)p+src_start_off+((line-y)*(width*2));
 					for (source_byte = source; source_byte <(source + ((xe-xs) * 2));source_byte++) //*2 for 16bit pixel values
@@ -874,7 +874,7 @@ int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
 
 				for (line=0;line<height-(256-y);line++)      			//(256-y) is the amount drawn in the top half
 				{
-					dest=(char*)(ptr+((long)tpage*196608)+((long)xs*6)+((long)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+					dest=(char*)(ptr+((int32_t)tpage*196608)+((int32_t)xs*6)+((int32_t)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
 					//				dest=ptr+(tpage*65536)+(xs * 2)+(line*256);
 					source=(char*)p+src_start_off+((line+256-y)*(width*2));
 					for (source_byte = source; source_byte <(source + ((xe-xs) *2));source_byte++)
@@ -893,7 +893,7 @@ int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
 
 //*****************************************************************
 
-int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
+int32_t		LoadImage4(RECT	*recp, uint32_t *p, CLUT *cluts)
 {
 	char	*dest;
 	char	*source;
@@ -901,19 +901,19 @@ int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
 	char	tpage_start, tpage_end, tpage;
 	char 	vert_split;
 
-	short src_start_off;
-	short	x,y;
-	short	width,height;
-	short	xs, xe, ys, ye;
+	int16_t src_start_off;
+	int16_t	x,y;
+	int16_t	width,height;
+	int16_t	xs, xe, ys, ye;
 	char red, green, blue;
 	char val;
 
 	char *source_byte;
-	short	line;
+	int16_t	line;
 	char	*ptr;
 
 	char	used[16];
-	int 	loop_used;
+	int32_t 	loop_used;
 
 #define	TPAGE_WIDTH 64	// this is in WORDS, 'cause that's how the recp coord come in (I THINK!)
 
@@ -956,7 +956,7 @@ int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
 
 				for (line=y;line<y+height;line++)
 				{
-					dest=(char*)(ptr+((long)tpage*196608)+((long)xs*12)+((long)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+					dest=(char*)(ptr+((int32_t)tpage*196608)+((int32_t)xs*12)+((int32_t)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
 					//				dest=ptr+(tpage*65536)+(xs*4)+(line*256);				// destination in 4 bit co-ords
 					source=(char*)p+src_start_off+((line-y)*(width*2));		// source in 16 bit co-ords  Width must be in bytes
 
@@ -995,7 +995,7 @@ int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
 
 				for (line=y;line<256;line++)
 				{
-					dest=(char*)(ptr+((long)tpage*196608)+((long)xs*12)+((long)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+					dest=(char*)(ptr+((int32_t)tpage*196608)+((int32_t)xs*12)+((int32_t)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
 					//				dest=ptr+(tpage*65536)+(xs * 4)+(line*256);
 					source=(char*)p+src_start_off+((line-y)*(width*2));
 					for (source_byte = source; source_byte <(source + ((xe-xs) * 2));source_byte++) //*2 for 16bit pixel values
@@ -1031,7 +1031,7 @@ int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
 
 				for (line=0;line<height-(256-y);line++)      			//(256-y) is the amount drawn in the top half
 				{
-					dest=(char*)(ptr+((long)tpage*196608)+((long)xs*12)+((long)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+					dest=(char*)(ptr+((int32_t)tpage*196608)+((int32_t)xs*12)+((int32_t)line*768));						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
 					//				dest=ptr+(tpage*65536)+(xs * 4)+(line*256);
 					source=(char*)p+src_start_off+((line+256-y)*(width*2));
 					for (source_byte = source; source_byte <(source + ((xe-xs) *2));source_byte++)
@@ -1057,12 +1057,12 @@ int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
 #endif
 #ifdef BLANKFUNCTIONS
 
-int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts)
+int32_t		LoadImage4(RECT	*recp, uint32_t *p, CLUT *cluts)
 {
 	return(1);
 }
 
-int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts)
+int32_t		LoadImage8(RECT	*recp, uint32_t *p, CLUT *cluts)
 {
 	return(1);
 }
@@ -1080,7 +1080,7 @@ void LoadVRam(char *filename, char set_pal)
 	char	fname[_MAX_FNAME];
 
 	char	*palptr;
-	int		loop;
+	int32_t		loop;
 
 	//	pall=(char*)malloc(768);
 
@@ -1112,7 +1112,7 @@ void LoadVRam(char *filename, char set_pal)
 	shield_palette[2]=main_palette[2];
 	for (loop = 3; loop < 768; loop++)
 	{
-		if (((short)main_palette[loop]+75)>255)
+		if (((int16_t)main_palette[loop]+75)>255)
 			shield_palette[loop]=255;
 		else
 			shield_palette[loop] = main_palette[loop]+75;
@@ -1132,7 +1132,7 @@ void LoadVRam(char *filename, char set_pal)
 void setWinLose(void)
 {
 	char	*ptr;
-	short	i,j;
+	int16_t	i,j;
 
 	if(!winLoseIn)
 	{

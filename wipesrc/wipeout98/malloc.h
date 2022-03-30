@@ -10,16 +10,16 @@
 
 typedef struct Block
 {
-   long                 flags;      /* Attribute flags */
-   long                 size;       /* Size of this block */
+   int32_t                 flags;      /* Attribute flags */
+   int32_t                 size;       /* Size of this block */
    struct Block*        prev;       /* Previous adjacent block */
    struct Block*        next;       /* Next adjacent block */
 } Block;
 
 typedef struct FreeBlock
 {
-   long                 flags;      /* Attribute flags */
-   long                 size;       /* Size of this block */
+   int32_t                 flags;      /* Attribute flags */
+   int32_t                 size;       /* Size of this block */
    struct FreeBlock*    prev;       /* Previous adjacent block */
    struct FreeBlock*    next;       /* Next adjacent block */
    struct FreeBlock*    prevFree;   /* Previous free block */
@@ -28,8 +28,8 @@ typedef struct FreeBlock
 
 typedef struct DynamicHeap
 {
-   long           size;          /* Total size of heap */
-   long           free;          /* Total free space left */
+   int32_t           size;          /* Total size of heap */
+   int32_t           free;          /* Total free space left */
 
    FreeBlock*     block[ 32 ];   /* Array of free block lists */
 } DynamicHeap;
@@ -41,7 +41,7 @@ typedef struct DynamicHeap
 #if 0
 #define  BlockFree         0x0000
 #define  BlockAllocated    0x1248
-#endif 
+#endif
 
 #define  BlockFree         0x46524545
 #define  BlockAllocated    0x414c4f43
@@ -50,11 +50,11 @@ typedef struct DynamicHeap
 void InitDynamicMem
 (
    DynamicHeap*   heap,
-   long           size
+   int32_t           size
 );
 
 void DJoin
-( 
+(
    FreeBlock*     one,
    FreeBlock*     two
 );
@@ -62,12 +62,12 @@ void DJoin
 FreeBlock* DSplit
 (
    FreeBlock*     free,
-   long           size
+   int32_t           size
 );
 
-short BitLength
+int16_t BitLength
 (
-   long           size
+   int32_t           size
 );
 
 void DLink
@@ -91,7 +91,7 @@ void DCoalesce
 char* DAlloc
 (
    DynamicHeap*   heap,
-   long           size
+   int32_t           size
 );
 
 void DFree
@@ -118,8 +118,8 @@ typedef struct StaticHeap
    EmptyBlock*          empty;
    char*                block;
    char*                mem;
-   long                 free;
-   long                 size;
+   int32_t                 free;
+   int32_t                 size;
 } StaticHeap;
 
 
@@ -127,10 +127,10 @@ typedef struct StaticHeap
 StaticHeap* InitStaticMem
 (
    DynamicHeap*         dh,
-   long                 size
+   int32_t                 size
 );
 
-char* SAlloc( StaticHeap* sh, long size );
+char* SAlloc( StaticHeap* sh, int32_t size );
 
 void SFreeAll( StaticHeap* sh );
 

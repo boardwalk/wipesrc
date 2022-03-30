@@ -73,56 +73,56 @@
 
 typedef struct  SampRec
  {
-  uint8		SampVol;
-  uint8		SampPan;
-  uint16	SampPitch;
-  uint8		Loop;
-  uint8		Playing;
-  int16		PlayID;
+  uint8_t		SampVol;
+  uint8_t		SampPan;
+  uint16_t	SampPitch;
+  uint8_t		Loop;
+  uint8_t		Playing;
+  int16_t		PlayID;
  } SampRec;
 
 typedef struct ChanTable
 {
-	int 		duration;
-	short 		priority;
-	short 		vagID;
+	int32_t 		duration;
+	int16_t 		priority;
+	int16_t 		vagID;
 	SpuVoiceAttr s_attr;
 } ChanTable;
 
 typedef struct VagTable
 {
-   u_long addr;
-	short channelID;
-} VagTable;					  /*	 int ?? */
+   uint32_t addr;
+	int16_t channelID;
+} VagTable;					  /*	 int32_t ?? */
 
 typedef struct _sfx_info
 {
 char	Volume;
 char	Pan;
-short	Pitch;
+int16_t	Pitch;
 
-short	vagNo;
-short	Playing;
+int16_t	vagNo;
+int16_t	Playing;
 
-short	Priority;
-short	Duration;
+int16_t	Priority;
+int16_t	Duration;
 
-int16	PlayID;
-int16	pad;
+int16_t	PlayID;
+int16_t	pad;
 }SFX_INFO;
 
 void 		InitSpuSound();
-u_long 		FindVagInVab (u_long, short);
-void 		UpdateNotes	(int paused);
-void 		KillNote(int note);
+uint32_t 		FindVagInVab (uint32_t, int16_t);
+void 		UpdateNotes	(int32_t paused);
+void 		KillNote(int32_t note);
 void 		KillNotes();
 void 		KillFadeNotes();
-short 		PlayNote(short, short, short);
-short 		PlayDirectionalNote(short vagID, short priority, short duration, VECTOR pos );
-void 		SetPitch(short VagID, short pitch);
-void 		SetVolume(short vagID, short voll, short volr);
-short 		AdjustDirectionalNote(short vagID, short priority, short duration, VECTOR pos );
-int 		InitCD( CdlLOC*, int );
-short 		AdjustRemoteEngineSound(ShipData *shipIndex, Object** shipShapes, TrackCamera *camera );
+int16_t 		PlayNote(int16_t, int16_t, int16_t);
+int16_t 		PlayDirectionalNote(int16_t vagID, int16_t priority, int16_t duration, VECTOR pos );
+void 		SetPitch(int16_t VagID, int16_t pitch);
+void 		SetVolume(int16_t vagID, int16_t voll, int16_t volr);
+int16_t 		AdjustDirectionalNote(int16_t vagID, int16_t priority, int16_t duration, VECTOR pos );
+int32_t 		InitCD( CdlLOC*, int32_t );
+int16_t 		AdjustRemoteEngineSound(ShipData *shipIndex, Object** shipShapes, TrackCamera *camera );
 void 		AdjustEngineSound(ShipData*, TrackCamera*);
 void StopNotes(void);

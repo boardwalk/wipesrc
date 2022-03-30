@@ -44,12 +44,12 @@
 //#define AsmTransformTrackMed AsmTransformTrackLo
 
 
-extern	int	inattract;
+extern	int32_t	inattract;
 
 void IntelVertex( void )
 {
    VECTOR      *vert;
-   short       i;
+   int16_t       i;
 
    /* intel the vertex data */
 
@@ -70,7 +70,7 @@ void IntelVertex( void )
 void IntelFace( void )
 {
    Face        *face;
-   short       i;
+   int16_t       i;
 
    /* intel the face data */
 
@@ -94,7 +94,7 @@ void IntelFace( void )
 void IntelSection( void )
 {
    TrackSection      *section;
-   short             i, j;
+   int16_t             i, j;
 
 
    /* intel the section data */
@@ -145,7 +145,7 @@ void IntelSection( void )
 void CheckVersion( void )
 {
    TrackSection      *section;
-   short             i;
+   int16_t             i;
 
    section = track->sections;
    for ( i=0; i<track->sectionCount; i++ )
@@ -164,7 +164,7 @@ void CheckVersion( void )
 void IndexToPointers( void )
 {
    TrackSection      *section;
-   short             i;
+   int16_t             i;
 
 
    /* change the section indices to pointers */
@@ -192,7 +192,7 @@ void IndexToPointers( void )
 void PointersToIndex( void )
 {
    TrackSection      *section;
-   short             i;
+   int16_t             i;
 
 
    /* change the section pointers back to indices */
@@ -217,7 +217,7 @@ void PointersToIndex( void )
 
 void InitVertices( char *file )
 {
-   long        length;
+   int32_t        length;
 
 
    length = FileLength( file );
@@ -251,8 +251,8 @@ void InitVertices( char *file )
 
 void InitFaces( char *file )
 {
-   long        length;
-   short       i;
+   int32_t        length;
+   int16_t       i;
    CVECTOR		cols;
 
 
@@ -314,10 +314,10 @@ void InitFaces( char *file )
 
 void InitSections( char *file )
 {
-   long              length;
+   int32_t              length;
    TrackSection      *junctionSection;
    TrackSection      *section;
-   short             i;
+   int16_t             i;
 
 
    length = FileLength( file );
@@ -363,10 +363,10 @@ void InitSections( char *file )
 void InitViewList( char *file )
 {
 
-   long              length;
+   int32_t              length;
    TrackSection      *section;
-   long              total;
-   short             i, j;
+   int32_t              total;
+   int16_t             i, j;
 
 
    length = FileLength( file );
@@ -376,7 +376,7 @@ void InitViewList( char *file )
       Error( errorString, Fatal );
    }
 
-	track->viewList = ( short* )DAlloc( heap, length + 32 );
+	track->viewList = ( int16_t* )DAlloc( heap, length + 32 );
 	if( !track->viewList )
 	{
 		Error( "Track.c:InitViewList: Failed to allocate memory for view list", Fatal );
@@ -424,8 +424,8 @@ void InitViewList( char *file )
    if ( ( total * 2 ) != length )
    {
       printf( "\n" );
-      printf( "total  %ld\n", total );
-      printf( "length %ld\n", length );
+      printf( "total  %d\n", total );
+      printf( "length %d\n", length );
       Error( "track.c::InitViewList():problem with view list", Fatal );
    }
 
@@ -463,22 +463,22 @@ TrackSection* PrevIndexSection( TrackSection* section )
 
 void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
 {
-   long           beforeVcount;
-   short          i, j;
-   short          loCount = 0;
-   short          medCount = 0;
-   short          hiCount = 0;
-   short          dir;
-   short          drawTrack;
+   int32_t           beforeVcount;
+   int16_t          i, j;
+   int16_t          loCount = 0;
+   int16_t          medCount = 0;
+   int16_t          hiCount = 0;
+   int16_t          dir;
+   int16_t          drawTrack;
 
-   short          index;
+   int16_t          index;
    TrackSection   *trackPiece;
 
-   long           before;
+   int32_t           before;
 
-   static ushort  pad;
-   ushort         opad, xpad;
-   static short   cracks = 1;
+   static uint16_t  pad;
+   uint16_t         opad, xpad;
+   static int16_t   cracks = 1;
 
 
    autoMesh->triCount = 0;
@@ -664,10 +664,10 @@ void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
 
 void DrawAllTrack( TrackCamera *camera, AutoMeshData *autoMesh )
 {
-   short          i, j;
-   short          loCount = 0;
-   short          medCount = 0;
-   short          hiCount = 0;
+   int16_t          i, j;
+   int16_t          loCount = 0;
+   int16_t          medCount = 0;
+   int16_t          hiCount = 0;
 
    autoMesh->triCount = 0;
    autoMesh->quadCount = 0;

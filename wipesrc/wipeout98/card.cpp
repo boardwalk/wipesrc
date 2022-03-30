@@ -35,8 +35,8 @@
 
 extern 	HiScores	scoreTable[] ;
 
-unsigned long ev0,ev1,ev2,ev3;
-unsigned long ev10,ev11,ev12,ev13;
+uint32_t ev0,ev1,ev2,ev3;
+uint32_t ev10,ev11,ev12,ev13;
 extern char twist ;
 extern char negtwist ;
 Texture *gameIcon ;
@@ -46,14 +46,14 @@ extern char controller;
 //extern char	Sky;
 extern char	ScreenSize;
 extern char	Resolution;
-extern long	DrawDistance;
+extern int32_t	DrawDistance;
 
-extern unsigned short OriginalKeyCodes[16];
+extern uint16_t OriginalKeyCodes[16];
 
-extern short JoyMinX, JoyMaxX;
-extern short JoyMinY, JoyMaxY;
-extern short JoyCentreX, JoyCentreY;
-extern short left_scale, right_scale;
+extern int16_t JoyMinX, JoyMaxX;
+extern int16_t JoyMinY, JoyMaxY;
+extern int16_t JoyCentreX, JoyCentreY;
+extern int16_t left_scale, right_scale;
 extern float left_scale_factor, right_scale_factor;
 
 
@@ -63,10 +63,10 @@ extern float left_scale_factor, right_scale_factor;
 extern char *SaveDirBase;
 
 
-long GetCardInfo (int cardNum)
+int32_t GetCardInfo (int32_t cardNum)
 {
 #ifdef	PCwipeout
-	long 	cardStatus = 0 ;
+	int32_t 	cardStatus = 0 ;
 
 	if (cardNum == 0)
 		_card_info (0) ;
@@ -80,7 +80,7 @@ long GetCardInfo (int cardNum)
 }
 
 
-long CheckHWCardEvents ()
+int32_t CheckHWCardEvents ()
 {
 #ifdef	PCwipeout
 	while(1)
@@ -121,10 +121,10 @@ void ClearEventHW ()
 #endif // PCwipeout
 }
 
-long CardContentStatus ()
+int32_t CardContentStatus ()
 {
 #ifdef PCwipeout
-	long cardStatus = 0 ;
+	int32_t cardStatus = 0 ;
 
 	cardStatus = CheckCardEvents () ;
 
@@ -133,7 +133,7 @@ long CardContentStatus ()
 return(0); // PCwipeout
 }
 
-void LoadCard (int cardNum)
+void LoadCard (int32_t cardNum)
 {
 #ifdef	PCwipeout
 	ClearEventSW () ;
@@ -145,7 +145,7 @@ void LoadCard (int cardNum)
 }
 
 
-char SaveCardFile (char *saveName, int cardNum, ConfigData *gameData, short sliderVol)
+char SaveCardFile (char *saveName, int32_t cardNum, ConfigData *gameData, int16_t sliderVol)
 {
 	char	fileName[250];
 	char	header[1];
@@ -166,15 +166,15 @@ void GetHeader (char *header)
 
 }
 
-char WriteFile (char *header, char *fileName, ConfigData *gameData, short sliderVol)
+char WriteFile (char *header, char *fileName, ConfigData *gameData, int16_t sliderVol)
 {
 	FILE	*fd;
-	int		temp;
-	unsigned char	saveBuffer[256] ;
-	short			*short_ptr ;
-	unsigned short	*ushort_ptr;
-	unsigned char	*char_ptr ;
-	long			*long_ptr;
+	int32_t		temp;
+	uint8_t	saveBuffer[256] ;
+	int16_t			*short_ptr ;
+	uint16_t	*ushort_ptr;
+	uint8_t	*char_ptr ;
+	int32_t			*long_ptr;
 
 
  	if((fd = fopen(fileName, "wb")) == NULL)
@@ -186,7 +186,7 @@ char WriteFile (char *header, char *fileName, ConfigData *gameData, short slider
 		if (temp != 1)
 			return (0) ;
 
-		short_ptr = (short *) &(saveBuffer[0]);
+		short_ptr = (int16_t *) &(saveBuffer[0]);
 		*short_ptr ++ = sliderVol;
 
 		*short_ptr++ = JoyMinX;
@@ -199,7 +199,7 @@ char WriteFile (char *header, char *fileName, ConfigData *gameData, short slider
 		*short_ptr++ = right_scale;
 
 	// Keys
-		ushort_ptr = (unsigned short *)short_ptr;
+		ushort_ptr = (uint16_t *)short_ptr;
 		*ushort_ptr ++ = OriginalKeyCodes[15];		// Left
 		*ushort_ptr ++ = OriginalKeyCodes[13];		// Right
 		*ushort_ptr ++ = OriginalKeyCodes[12];		// Up
@@ -211,7 +211,7 @@ char WriteFile (char *header, char *fileName, ConfigData *gameData, short slider
 		*ushort_ptr ++ = OriginalKeyCodes[4];		// Change View
 		*ushort_ptr ++ = OriginalKeyCodes[11];		// Pause (start)
 
-		char_ptr = (unsigned char *)ushort_ptr;
+		char_ptr = (uint8_t *)ushort_ptr;
 		*char_ptr ++ = controller;
 		*char_ptr ++ = mouse_sensitivity;
 		*char_ptr ++ = gameData->RapierClass;
@@ -225,7 +225,7 @@ char WriteFile (char *header, char *fileName, ConfigData *gameData, short slider
 		*char_ptr ++ = ScreenSize;
 		*char_ptr ++ = Resolution;
 
-		long_ptr = (long *)char_ptr;
+		long_ptr = (int32_t *)char_ptr;
 		*long_ptr++ = DrawDistance;
 		*long_ptr++ = TextureTrack;
 
@@ -241,10 +241,10 @@ char WriteFile (char *header, char *fileName, ConfigData *gameData, short slider
 
 
 
-void LoadCardFiles (SelectionData *selectData, char loadGames[][9], int cardNum)
+void LoadCardFiles (SelectionData *selectData, char loadGames[][9], int32_t cardNum)
 {
 #ifdef PCwipeout
- 	int		ret ;
+ 	int32_t		ret ;
 	struct	DIRENTRY 	fileDir ;
 	char		i, j ;
 
@@ -324,16 +324,16 @@ void LoadCardFiles (SelectionData *selectData, char loadGames[][9], int cardNum)
 
 
 
-char LoadCardData (char *loadName, int cardNum, ConfigData *gameData, SelectionData *selectData)
+char LoadCardData (char *loadName, int32_t cardNum, ConfigData *gameData, SelectionData *selectData)
 {
 	FILE	*fd;
-	int		temp;
+	int32_t		temp;
 	char	fileName[250];
-	unsigned char	loadBuffer[256] ;
-	short			*short_ptr ;
-	unsigned short	*ushort_ptr ;
-	unsigned char	*char_ptr ;
-	long			*long_ptr;
+	uint8_t	loadBuffer[256] ;
+	int16_t			*short_ptr ;
+	uint16_t	*ushort_ptr ;
+	uint8_t	*char_ptr ;
+	int32_t			*long_ptr;
 
 
 	strcpy(fileName, SaveDirBase);
@@ -358,7 +358,7 @@ char LoadCardData (char *loadName, int cardNum, ConfigData *gameData, SelectionD
 
 		temp = fread(loadBuffer, sizeof(loadBuffer), 1, fd);
 
-		short_ptr = (short *) &(loadBuffer[0]);
+		short_ptr = (int16_t *) &(loadBuffer[0]);
 		gameData->currSliderPos = *short_ptr ++;
 		SfxSetVolume((char)((0x3fff - (75 * gameData->currSliderPos))>>6));
 #ifdef PORT_SOUND
@@ -375,7 +375,7 @@ char LoadCardData (char *loadName, int cardNum, ConfigData *gameData, SelectionD
 		right_scale = *short_ptr++;
 
 // Read the keys back
-		ushort_ptr = (unsigned short *)short_ptr;
+		ushort_ptr = (uint16_t *)short_ptr;
 		OriginalKeyCodes[15] = *ushort_ptr++;		// Left
 		OriginalKeyCodes[13] = *ushort_ptr++;		// Right
 		OriginalKeyCodes[12] = *ushort_ptr++;		// Up
@@ -387,7 +387,7 @@ char LoadCardData (char *loadName, int cardNum, ConfigData *gameData, SelectionD
 		OriginalKeyCodes[4] = *ushort_ptr++;		// Change View
 		OriginalKeyCodes[11] = *ushort_ptr++;		// Pause (start)
 
-		char_ptr = (unsigned char *)ushort_ptr;
+		char_ptr = (uint8_t *)ushort_ptr;
 		controller = *char_ptr ++;
 		mouse_sensitivity = *char_ptr ++;
 		gameData->RapierClass = *char_ptr ++;
@@ -401,7 +401,7 @@ char LoadCardData (char *loadName, int cardNum, ConfigData *gameData, SelectionD
 		ScreenSize = *char_ptr++;
 		Resolution = *char_ptr++;
 
-		long_ptr = (long *)char_ptr;
+		long_ptr = (int32_t *)char_ptr;
 		DrawDistance = *long_ptr++;
 		TextureTrack = *long_ptr++;
 

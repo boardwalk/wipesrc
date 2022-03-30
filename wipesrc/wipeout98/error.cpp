@@ -24,14 +24,14 @@
 
 
 
-void Error( char *string, short errorLevel )
+void Error( char *string, int16_t errorLevel )
 {
 	printf("Error: %s (error level %d)\n",string,errorLevel);
 	exit(errorLevel);
 
 #if PCwipeout
    BlkFill*    clear[ 2 ];
-   short       i;
+   int16_t       i;
 
    clear[ 0 ] = BlockFill( 0, 0, 320, 240, 0x00, 0x00, 0x00 );
    clear[ 1 ] = BlockFill( 0, 240, 320, 240, 0x00, 0x00, 0x00 );
@@ -40,18 +40,18 @@ void Error( char *string, short errorLevel )
    switch ( errorLevel )
    {
       case Warning:
-         printf( "Warning!!!  " );   
-         printf( "%s\n", string );   
+         printf( "Warning!!!  " );
+         printf( "%s\n", string );
          break;
 
       case NonFatal:
-         printf( "NonFatal Error!!!  " );   
-         printf( "%s\n", string );   
+         printf( "NonFatal Error!!!  " );
+         printf( "%s\n", string );
          for ( i=0; i < (60*2); i++ )
          {
             ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
 
-            AddPrim( OT[ CurrentScreen ] + OT_SIZE - 1, ( ulong* ) clear[ CurrentScreen ] );
+            AddPrim( OT[ CurrentScreen ] + OT_SIZE - 1, ( uint32_t* ) clear[ CurrentScreen ] );
 
             ObjectTable[ CurrentScreen ] = OT[ CurrentScreen ] + OT_SIZE - 1;
 
@@ -61,13 +61,13 @@ void Error( char *string, short errorLevel )
 
 
       case Fatal:
-         printf( "Fatal Error!!!  " );   
-         printf( "%s\n", string );   
+         printf( "Fatal Error!!!  " );
+         printf( "%s\n", string );
          for( i=0; i<2; i++ )
          {
             ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
 
-            AddPrim( OT[ CurrentScreen ] + (OT_SIZE -1), ( ulong* ) clear[ CurrentScreen ] );
+            AddPrim( OT[ CurrentScreen ] + (OT_SIZE -1), ( uint32_t* ) clear[ CurrentScreen ] );
 
             ObjectTable[ CurrentScreen ] = OT[ CurrentScreen ] + ( OT_SIZE - 1 );
 

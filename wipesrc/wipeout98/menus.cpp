@@ -52,11 +52,11 @@
 //#include "..\markk\debug.h"
 
 // #include <dos.h>
-typedef int BOOL;
+typedef int32_t BOOL;
 
 extern BOOL Screen565;
 
-extern short trackNum,screenres; //SJR
+extern int16_t trackNum,screenres; //SJR
 extern float upres;
 
 #define	PALETTE				1
@@ -66,10 +66,10 @@ extern float upres;
 #define	ALLOCATE_MEM		16
 
 typedef struct {
-	int	width;
-	int	height;
-	int	vram_xpos;
-	int	vram_ypos;
+	int32_t	width;
+	int32_t	height;
+	int32_t	vram_xpos;
+	int32_t	vram_ypos;
 	char	*bitmap;
 	char	*palette;
 } bm;
@@ -80,9 +80,9 @@ typedef struct {
 
 char	andybodge=1;
 char	andybodge2=1;
-extern short endtrack, starttrack;
-extern int menuTexturesIn;
-short globalvol;
+extern int16_t endtrack, starttrack;
+extern int32_t menuTexturesIn;
+int16_t globalvol;
 
 TimData	*menuScreen ;
 
@@ -102,11 +102,11 @@ TimData	*menuScreen ;
 
 // MARK'S EXTERNS
 
-extern long CommNetSocket=0;
-extern long CommNetPlayers=2;
-extern long	CommSerialDevice=1;
-extern long	CommSerialBaudRate=1;
-//extern long global_mark_error;
+extern int32_t CommNetSocket=0;
+extern int32_t CommNetPlayers=2;
+extern int32_t	CommSerialDevice=1;
+extern int32_t	CommSerialBaudRate=1;
+//extern int32_t global_mark_error;
 
 
 //WIN 95
@@ -119,7 +119,7 @@ extern char  pixdouble;
 
 char	ScreenSize=FULL;
 char	Resolution=MEDIUM;
-extern 	short ft;
+extern 	int16_t ft;
 extern 	char MipMap;
 extern  char PersCorr;
 extern  char PersCorrLvl;
@@ -128,9 +128,9 @@ char my_ScreenSize;
 char my_Resolution;
 char	my_Sky;
 char 	my_PC;//SJR
-long	my_DrawDistance;
-long	my_TextureTrack;
-long	my_SkyTrackFlags;
+int32_t	my_DrawDistance;
+int32_t	my_TextureTrack;
+int32_t	my_SkyTrackFlags;
 
 char	mouse_sensitivity=MEDIUM_SENS;
 char cur_mouse_setting=MEDIUM_SENS;
@@ -145,23 +145,23 @@ extern	char *CurBuffer;
 
 extern TexChar CharSet16[] ;
 extern HiScores scoreTable[] ;
-extern long fr,fw;		/* file descriptor */
-extern unsigned long ev0 ;
-int inmenutest=0;
+extern int32_t fr,fw;		/* file descriptor */
+extern uint32_t ev0 ;
+int32_t inmenutest=0;
 
-extern int short shipShapeOrder[];
-int short pilotShapeOrder [8] = {0, 4, 6, 7, 2, 5, 1, 3} ;
-int short teamShapeOrder [4] = {2, 3, 1, 0} ;			// jed
+extern int16_t shipShapeOrder[];
+int16_t pilotShapeOrder [8] = {0, 4, 6, 7, 2, 5, 1, 3} ;
+int16_t teamShapeOrder [4] = {2, 3, 1, 0} ;			// jed
 ChampionShip	winTable [NO_OF_SHIPS] ;
-int	modelHdg = 0 ;
-int	zoomInOut = 0 ;
-int	downUp = 0 ;
+int32_t	modelHdg = 0 ;
+int32_t	zoomInOut = 0 ;
+int32_t	downUp = 0 ;
 char	twist = 0 ;
 char	negtwist = 0 ;
 Skeleton		*root	;
-unsigned short	Keycons[10];
-unsigned short	NewOriginalKeyCodes[16]={0};
-unsigned short	OriginalKeyCodes[16] =
+uint16_t	Keycons[10];
+uint16_t	NewOriginalKeyCodes[16]={0};
+uint16_t	OriginalKeyCodes[16] =
 {
 	_Z_KEY,	   			/* FrontLeftBottom	*/	// left airbreak
 		_X_KEY,	  			/* FrontRightBottom	*/	// right airbreak
@@ -191,9 +191,9 @@ DR_MODE		drmode2[18][2];				// DLS
 TimData *AJSLoad16BitTexture(char *filename, char location);
 TimData *JJSLoad16BitTexture(char *filename, char location);
 BOOL JJSNewTexture(char *filename);
-extern char *GetCdTrackName(int no);
+extern char *GetCdTrackName(int32_t no);
 void MostRecentSaveFile();	// returns the name of the last file to be modified in "c:\wipeout"
-char CheckKey(unsigned short code);
+char CheckKey(uint16_t code);
 
 
 char	*ScanCodes[89] =
@@ -428,12 +428,12 @@ char	ScanToAscii[110] =
 extern char *SaveDirBase;
 
 
-short	JoyMinX = 0, JoyMaxX = 255;
-short	JoyMinY = 0, JoyMaxY = 255;
-short	JoyCentreX = 128, JoyCentreY = 128;
-short	left_scale = 127, right_scale = 127;
+int16_t	JoyMinX = 0, JoyMaxX = 255;
+int16_t	JoyMinY = 0, JoyMaxY = 255;
+int16_t	JoyCentreX = 128, JoyCentreY = 128;
+int16_t	left_scale = 127, right_scale = 127;
 float	left_scale_factor = 1.0, right_scale_factor = 1.0;
-short	JoyCentreFudge = 16;
+int16_t	JoyCentreFudge = 16;
 
 
 char	JoystickCalibrationMode = TOPLEFT;
@@ -442,22 +442,22 @@ char	DelayCounter = 0;
 char	KeyToChange = NONE;
 char	davebodge = 1;
 char	davebodge2 = 0;
-int	andyTimeout=0;
+int32_t	andyTimeout=0;
 
-short	TextEntry = 0;
-short	TextPos = 0;
+int16_t	TextEntry = 0;
+int16_t	TextPos = 0;
 char	LoadFilename[MAXSTRING];
 char	SaveFilename[MAXSTRING];
 char	DaveSave[250];
 
-void DrawControllerMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay);
-void DrawControllerEdit (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay);
+void DrawControllerMenu (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
+void DrawControllerEdit (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
 void EnterLoadGame (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData);
 void KeyConfig0(void);
 void KeyConfig(void);
-void DrawGraphicDetail (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay);
-void DisplayPadMenu1 (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay);
-void DisplayPadMenu2 (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay);
+void DrawGraphicDetail (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
+void DisplayPadMenu1 (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
+void DisplayPadMenu2 (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
 void	MouseConfig(void);
 void ResetKeys(void);
 
@@ -477,17 +477,17 @@ void reloadScr(void)
 	menuScreen = JJSLoad16BitTexture	("wipeout\\textures\\wipeout1.tim", VRAM) ;
 }
 
-void MenuControl (ConfigData *gameData, TimData *titleScreen, int *mode, int timeout)
+void MenuControl (ConfigData *gameData, TimData *titleScreen, int32_t *mode, int32_t timeout)
 {
 
 	BlkFill*       clear[ 2 ];
 	Menus				menuSystem[MAX_MENUS] ;
-	int				currMenu= -2 ;
-	int				currOption = 0 ;
-	int				oldMenu= 0 ;
-	int				oldOption = 0 ;
+	int32_t				currMenu= -2 ;
+	int32_t				currOption = 0 ;
+	int32_t				oldMenu= 0 ;
+	int32_t				oldOption = 0 ;
 	static char		firstTime = 1 ;
-	int				i ;
+	int32_t				i ;
 	Object			*shipShapes[ NO_OF_SHIPS ];
 	Object			*audioShapes[ 3 ];
 	Object			*pilotShapes[ 8 ];
@@ -516,12 +516,12 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int *mode, int tim
 	Texture			*copyrightSymbol ;
 	Texture			*trackTex [7] ;
 	POLY_FT4			trackPrims[2] ;
-	int				buttonPressed = 0 ;
+	int32_t				buttonPressed = 0 ;
 	char				trackList[15] = {2, 4, 1, 12, 8, 9, 10, 3, 5, 6, 7, 11, 13, 14, 15} ;
-	long				length;
-	int				frame_cnt = 0 ;
-	int				x = 0, y = 0 ;
-	int				TOut = 180;
+	int32_t				length;
+	int32_t				frame_cnt = 0 ;
+	int32_t				x = 0, y = 0 ;
+	int32_t				TOut = 180;
 
 
 	menuTexturesIn = 1;
@@ -626,7 +626,7 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int *mode, int tim
 
 	ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
 
-	AddPrim( OT[ CurrentScreen ] + ( OT_SIZE - 1 ), ( ulong* ) clear[ CurrentScreen ] ); // PCwipeout
+	AddPrim( OT[ CurrentScreen ] + ( OT_SIZE - 1 ), ( uint32_t* ) clear[ CurrentScreen ] ); // PCwipeout
 	UpdateNotes(NOT_PAUSED);
 	Swap () ;
 
@@ -870,11 +870,11 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int *mode, int tim
 /*********************************************************************************/
 /*********************************************************************************/
 
-void CallMenuActivator (ConfigData *gameData, int *currMenu, int *currOption, Menus *menuSystem, SelectionData *selectData, char loadGames[][9])
+void CallMenuActivator (ConfigData *gameData, int32_t *currMenu, int32_t *currOption, Menus *menuSystem, SelectionData *selectData, char loadGames[][9])
 {
-	short		i;
-	long		cardStatus, slotStatus ;
-	long		cnt = 0 ;
+	int16_t		i;
+	int32_t		cardStatus, slotStatus ;
+	int32_t		cnt = 0 ;
 	char		trackList[15] = {2, 4, 1, 12, 8, 9, 10, 3, 5, 6, 7, 11, 13, 14, 15} ;
 	FILE		*fd;
 
@@ -1790,13 +1790,13 @@ void CallMenuActivator (ConfigData *gameData, int *currMenu, int *currOption, Me
 /******************************************************************************************/
 /******************************************************************************************/
 
-void CallMenuSelector (Menus *menuSystem, int *currMenu, int *currOption, Object **shipShapes, ConfigData *gameData, MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9])
+void CallMenuSelector (Menus *menuSystem, int32_t *currMenu, int32_t *currOption, Object **shipShapes, ConfigData *gameData, MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9])
 {
-	int		offSet = 12, i ;
-	int		textX, textY ;
-	int		startOption = 0, menuOffset = 0, dispOption = 0 ;
+	int32_t		offSet = 12, i ;
+	int32_t		textX, textY ;
+	int32_t		startOption = 0, menuOffset = 0, dispOption = 0 ;
 	Texture	*menuPointer ;
-	static int	swapDelay =  0, toggleDisplay = 0 ;
+	static int32_t	swapDelay =  0, toggleDisplay = 0 ;
 
 	if (GetMenuKey(M_UP))
 	{
@@ -2633,7 +2633,7 @@ void ShowMenuBackground (POLY_FT4 *menuPrim, POLY_FT4 *menu1Prim, TimData *timSi
 	menuPrim[CurrentScreen].r0=230;
 	menuPrim[CurrentScreen].g0=0;
 	menuPrim[CurrentScreen].b0=BLACK_NOT_DRAWN;
-	AddPrim(OT[CurrentScreen] + 4095, (ulong *)&(menuPrim[CurrentScreen]));
+	AddPrim(OT[CurrentScreen] + 4095, (uint32_t *)&(menuPrim[CurrentScreen]));
 
 	SetPolyFT4(&(menu1Prim[CurrentScreen]));
 	menu1Prim[CurrentScreen].code = 0x2d ;
@@ -2647,15 +2647,15 @@ void ShowMenuBackground (POLY_FT4 *menuPrim, POLY_FT4 *menu1Prim, TimData *timSi
 	menu1Prim[CurrentScreen].r0=230;
 	menu1Prim[CurrentScreen].g0=0;
 	menu1Prim[CurrentScreen].b0=BLACK_NOT_DRAWN;
-	AddPrim(OT[CurrentScreen] + 4095, (ulong *) &(menu1Prim[CurrentScreen]));
+	AddPrim(OT[CurrentScreen] + 4095, (uint32_t *) &(menu1Prim[CurrentScreen]));
 }
 
 
 void LoadTexModel (Object** modelShapes, char *fileName)
 {
-	short 	modelTextures= 0;
+	int16_t 	modelTextures= 0;
 	Object* 	obj;
-	int 		count = 0 ;
+	int32_t 		count = 0 ;
 	TIMlist  *timPtr;
 	char 		modelFile[256];
 
@@ -2689,9 +2689,9 @@ void LoadTexModel (Object** modelShapes, char *fileName)
 }
 
 
-void DrawMainMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DrawMainMenu (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int heading = 0, hdg = 0 ;
+	static int32_t heading = 0, hdg = 0 ;
 	andybodge=1;
 
 	if (shapeNo == 0)
@@ -2721,9 +2721,9 @@ void DrawMainMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay
 
 }
 
-void DrawAudio (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DrawAudio (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0;
+	static int32_t hdg = 0;
 
 	//if ((*swapDelay) == 0)
 	//{
@@ -2734,10 +2734,10 @@ void DrawAudio (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
 	hdg += 40;
 }
 
-void DrawTeams (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DrawTeams (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0 ;
-	static int heading = 0 ;
+	static int32_t hdg = 0 ;
+	static int32_t heading = 0 ;
 
 	SetSkeletonPosition((menuSystem[(*currMenu)].menuModel[teamShapeOrder[shapeNo]]->skeleton),0,0,9000) ;
 	SetSkeletonDirectionHPR((menuSystem[(*currMenu)].menuModel[teamShapeOrder[shapeNo]]->skeleton),	hdg,0,0);
@@ -2749,7 +2749,7 @@ void DrawTeams (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
 	DrawTeamShips (900, 800, 1500, &heading, menuSystem[(*currMenu)].menu2Model[shipShapeOrder[shapeNo*2+1]]) ;
 }
 
-void DrawTeamShips (int x, int y, int size, int *heading, Object *shipModel)
+void DrawTeamShips (int32_t x, int32_t y, int32_t size, int32_t *heading, Object *shipModel)
 {
 	SetSkeletonPosition(shipModel->skeleton,x,y,	size) ;
 	SetSkeletonDirectionHPR(shipModel->skeleton,	*heading,0,0);
@@ -2759,9 +2759,9 @@ void DrawTeamShips (int x, int y, int size, int *heading, Object *shipModel)
 	*heading -= 10;
 }
 
-void DrawPilot (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DrawPilot (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0, shdg = 0 ;
+	static int32_t hdg = 0, shdg = 0 ;
 
 	SetSkeletonPosition((menuSystem[(*currMenu)].menuModel[pilotShapeOrder[shapeNo]]->skeleton),	0,	-400,	11000) ;
 	SetSkeletonDirectionHPR((menuSystem[(*currMenu)].menuModel[pilotShapeOrder[shapeNo]]->skeleton),hdg,0,0);
@@ -2772,10 +2772,10 @@ void DrawPilot (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
 	hdg += 40;
 }
 
-void DrawPlayPad (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DrawPlayPad (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0, shdg = 0 ;
-	static int pitch = 0, roll = 0, zoom = 0, x = 0, y = 0 ;
+	static int32_t hdg = 0, shdg = 0 ;
+	static int32_t pitch = 0, roll = 0, zoom = 0, x = 0, y = 0 ;
 
 	InitMenuDisplay (120) ;
 
@@ -2800,11 +2800,11 @@ void DrawPlayPad (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
 	if (pad & PadSelect)	  	y -= 10 ;
 }
 
-void DrawNegCon (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DrawNegCon (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0, shdg = 0 ;
-	int	rotation = 0 ;
-	int	dispRot = 0 ;
+	static int32_t hdg = 0, shdg = 0 ;
+	int32_t	rotation = 0 ;
+	int32_t	dispRot = 0 ;
 
 	Object*	a;
 	Object*	b;
@@ -2870,9 +2870,9 @@ void DrawNegCon (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
 	hdg += 40;
 }
 
-void NegConButtonDisplay (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void NegConButtonDisplay (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0, shdg = 0 ;
+	static int32_t hdg = 0, shdg = 0 ;
 
 	Object*	a;
 	Object*	b;
@@ -2896,9 +2896,9 @@ void NegConButtonDisplay (Menus *menuSystem, int *currMenu, int shapeNo, int *sw
 	TransformStaticObject(b, NULL);
 }
 
-void DrawShip(Menus *menuSystem, int *currMenu, int shipNo, int *swapDelay)
+void DrawShip(Menus *menuSystem, int32_t *currMenu, int32_t shipNo, int32_t *swapDelay)
 {
-	static int hdg = 0;
+	static int32_t hdg = 0;
 
 	SetSkeletonPosition((menuSystem[(*currMenu)].menuModel[shipShapeOrder[shipNo]]->skeleton),0,	0,	MODELSIZE) ;
 	SetSkeletonDirectionHPR((menuSystem[(*currMenu)].menuModel[shipShapeOrder[shipNo]]->skeleton),hdg,0,0);
@@ -2906,9 +2906,9 @@ void DrawShip(Menus *menuSystem, int *currMenu, int shipNo, int *swapDelay)
 	hdg += 10;
 }
 
-void DrawClass (Menus *menuSystem, int *currMenu, int shipNo, int *swapDelay)
+void DrawClass (Menus *menuSystem, int32_t *currMenu, int32_t shipNo, int32_t *swapDelay)
 {
-	static int hdg = 0;
+	static int32_t hdg = 0;
 
 	if (shipNo==0)
 	{
@@ -2956,19 +2956,19 @@ void InitMusicVSfx (SlideTextures *musicTex)
 
 void MusicVSfx (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	int 	slidePosx = 48 ;
-	int 	slidePosy = 85 ;
-	int	slideWidth = 224 ;
-	int	slideHeight = 28 ;		 /*28*/
-	int	sliderLeftOffset = 0 ;
-	int	sliderRightOffset = 24 ;
-	int	sliderRange = 218 ;
+	int32_t 	slidePosx = 48 ;
+	int32_t 	slidePosy = 85 ;
+	int32_t	slideWidth = 224 ;
+	int32_t	slideHeight = 28 ;		 /*28*/
+	int32_t	sliderLeftOffset = 0 ;
+	int32_t	sliderRightOffset = 24 ;
+	int32_t	sliderRange = 218 ;
 
-	static int	ShieldOn = 0;
+	static int32_t	ShieldOn = 0;
 
-	static int	toggle = 0 ;
+	static int32_t	toggle = 0 ;
 
-	extern	short	CurrTrkNo;
+	extern	int16_t	CurrTrkNo;
 
 	if (xpad & PadUp0)
 	{
@@ -3019,7 +3019,7 @@ void MusicVSfx (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *
 
 	musicPrims->sliderPrim.clut = musicTex->sliderTex->cba;
 
-	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(musicPrims->sliderPrim) );
+	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(musicPrims->sliderPrim) );
 
 	/*	Slider background */
 	SetPolyFT4(&(musicPrims->slidePrim));
@@ -3041,7 +3041,7 @@ void MusicVSfx (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *
 
 	musicPrims->slidePrim.clut = musicTex->slideTex->cba;
 
-	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(musicPrims->slidePrim) );
+	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(musicPrims->slidePrim) );
 
 	AddText (GetCdTrackName(gameData->oldCdTrack-1), text_data (130, 175, 8), RedText) ;
 
@@ -3137,7 +3137,7 @@ void MusicVSfx (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *
 
 			if(gameData->oldCdTrack != 1)
 			{
-				//		  		CdControlB(CdlSetloc, (u_char *)&(loc[gameData->oldCdTrack]), 0);
+				//		  		CdControlB(CdlSetloc, (uint8_t *)&(loc[gameData->oldCdTrack]), 0);
 				CurrTrkNo = gameData->oldCdTrack;
 				CdControlB(CdlPlay, 0, 0);
 			}
@@ -3166,7 +3166,7 @@ void MusicVSfx (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *
 
 			if(gameData->oldCdTrack != 1)
 			{
-				//		  		CdControlB(CdlSetloc, (u_char *)&(loc[gameData->oldCdTrack]), 0);
+				//		  		CdControlB(CdlSetloc, (uint8_t *)&(loc[gameData->oldCdTrack]), 0);
 				CurrTrkNo = gameData->oldCdTrack;
 				CdControlB(CdlPlay, 0, 0);
 			}
@@ -3188,7 +3188,7 @@ void MusicVSfx (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *
 
 void InitLoadSave (char loadGames[][9])
 {
-	short i ;
+	int16_t i ;
 
 	for (i=0; i < MAX_GAMES; i++)
 		loadGames[i][0] = 0 ;
@@ -3197,10 +3197,10 @@ void InitLoadSave (char loadGames[][9])
 
 void EnterLoadGame (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	unsigned short			KeyCode = 0;
-	//	extern signed char		etc_KeyPressed;
-	//	extern unsigned char	etc_Key;
-	//	extern unsigned long	etc_KeyboardMap[256];
+	uint16_t			KeyCode = 0;
+	//	extern int8_t		etc_KeyPressed;
+	//	extern uint8_t	etc_Key;
+	//	extern uint32_t	etc_KeyboardMap[256];
 
 
 	CentreText ("LOAD GAME FROM DISK", text_data (70, 20, 8), RedText) ;
@@ -3252,10 +3252,10 @@ void EnterLoadGame (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionDa
 
 void EnterSaveGame (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	unsigned short			KeyCode = 0;
-	//	extern signed char		etc_KeyPressed;
-	//	extern unsigned char	etc_Key;
-	//	extern unsigned long	etc_KeyboardMap[256];
+	uint16_t			KeyCode = 0;
+	//	extern int8_t		etc_KeyPressed;
+	//	extern uint8_t	etc_Key;
+	//	extern uint32_t	etc_KeyboardMap[256];
 
 
 	CentreText ("SAVE GAME TO DISK", text_data (70, 20, 8), RedText) ;
@@ -3303,9 +3303,9 @@ void EnterSaveGame (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionDa
 
 
 
-void MenuErrors (int *currMenu, Menus *menuSystem)
+void MenuErrors (int32_t *currMenu, Menus *menuSystem)
 {
-	int i ;
+	int32_t i ;
 
 	if (menuSystem[*currMenu].updateCount > 0 && menuSystem[*currMenu].errorFlag != NO_ERROR)
 	{
@@ -3491,8 +3491,8 @@ void MenuErrors (int *currMenu, Menus *menuSystem)
 
 void ShowHiScores (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int				toggleDisplay = 0 ;
-	short						actualTrack = 0 ;
+	static int32_t				toggleDisplay = 0 ;
+	int16_t						actualTrack = 0 ;
 
 
 	if (GetMenuKey(M_RIGHT))
@@ -3611,8 +3611,8 @@ void ShowHiScores (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionDat
 
 void ShowTimeTrialScores (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int				toggleDisplay = 0 ;
-	short						actualTrack = 0 ;
+	static int32_t				toggleDisplay = 0 ;
+	int16_t						actualTrack = 0 ;
 
 
 	if (GetMenuKey(M_RIGHT))
@@ -3766,7 +3766,7 @@ void InitGameData (ConfigData *gameData)
 
 void ConfirmSaveGame (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int	toggle = 0 ;
+	static int32_t	toggle = 0 ;
 
 	if (neg1.head == 8960)
 	{
@@ -3818,7 +3818,7 @@ void ConfirmSaveGame (MusicPrims *musicPrims, SlideTextures *musicTex, Selection
 
 
 
-void	ContinueGameConfirm (char *confirm, short xpad, char *lConfirm, ulong *toggle)
+void	ContinueGameConfirm (char *confirm, int16_t xpad, char *lConfirm, uint32_t *toggle)
 {
 	CentreText ("CONTINUE QUALIFYING OR QUIT", text_data (77, 95, 8), WhiteText) ;
 
@@ -3844,7 +3844,7 @@ void	ContinueGameConfirm (char *confirm, short xpad, char *lConfirm, ulong *togg
 }
 
 
-void	RestartGameConfirm (char *confirm, short xpad, char *lConfirm, ulong *toggle)
+void	RestartGameConfirm (char *confirm, int16_t xpad, char *lConfirm, uint32_t *toggle)
 {
 	CentreText ("RESTART RACE", text_data (77, 95, 16), WhiteText) ;
 
@@ -3869,7 +3869,7 @@ void	RestartGameConfirm (char *confirm, short xpad, char *lConfirm, ulong *toggl
 	(*toggle) ++ ;
 }
 
-void SetUpPilots (int teamNum, Menus *menuSystem)
+void SetUpPilots (int32_t teamNum, Menus *menuSystem)
 {
 
 	if (teamNum == AG_SYSTEMS)
@@ -3898,10 +3898,10 @@ void SetUpPilots (int teamNum, Menus *menuSystem)
 }
 
 #if 0 // Mark - now in PCcombat.c
-void MenuMaster (ConfigData *gameData, int *currMenu)
+void MenuMaster (ConfigData *gameData, int32_t *currMenu)
 {
-	short		i ;
-	u_long	cts ;
+	int16_t		i ;
+	uint32_t	cts ;
 	char		send [96], receive [96] ;
 
 
@@ -3975,10 +3975,10 @@ void MenuMaster (ConfigData *gameData, int *currMenu)
 }
 
 
-void CaptainBirdsEye (ConfigData *gameData, int *currMenu)
+void CaptainBirdsEye (ConfigData *gameData, int32_t *currMenu)
 {
-	short		i ;
-	u_long	cts ;
+	int16_t		i ;
+	uint32_t	cts ;
 	char		send [96], receive [96] ;
 
 	/* Read Data */
@@ -4079,9 +4079,9 @@ void StartTwoPlayer (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionD
 
 void MenuNegCon (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int	delay = 0 ;
+	static int32_t	delay = 0 ;
 	static char	key = 0 ;
-	static int	toggleDisplay = 0 ;
+	static int32_t	toggleDisplay = 0 ;
 	char		temp = 0 ;
 
 	if (neg1.head == 8960)
@@ -4214,9 +4214,9 @@ void MenuNegCon (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData 
 
 void MenuPlayPad (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int	delay = 0 ;
+	static int32_t	delay = 0 ;
 	static char	key = 0 ;
-	static int	toggleDisplay = 0 ;
+	static int32_t	toggleDisplay = 0 ;
 	char	 temp = 0 ;
 
 	if (neg1.head == 8960)
@@ -4529,9 +4529,9 @@ void SetNegconPresets (ConfigData *gameData)
 }
 
 
-void DrawGames (Menus *menuSystem, int *currMenu, int shipNo, int *swapDelay)
+void DrawGames (Menus *menuSystem, int32_t *currMenu, int32_t shipNo, int32_t *swapDelay)
 {
-	static int hdg = 0;
+	static int32_t hdg = 0;
 
 	InitMenuDisplay (90) ;
 
@@ -4570,9 +4570,9 @@ void DrawGames (Menus *menuSystem, int *currMenu, int shipNo, int *swapDelay)
 
 
 
-void DrawOptionMenus(Menus *menuSystem, int *currMenu, int shipNo, int *swapDelay)
+void DrawOptionMenus(Menus *menuSystem, int32_t *currMenu, int32_t shipNo, int32_t *swapDelay)
 {
-	static int hdg = 0, heading = 0;
+	static int32_t hdg = 0, heading = 0;
 
 	andybodge=1;	// pc wipeout - horrid but i don't care !!! (used in detail & controller configs)
 
@@ -4659,9 +4659,9 @@ void DrawOptionMenus(Menus *menuSystem, int *currMenu, int shipNo, int *swapDela
 }
 
 
-void DrawHiScoreMenu (Menus *menuSystem, int *currMenu, int shipNo, int *swapDelay)
+void DrawHiScoreMenu (Menus *menuSystem, int32_t *currMenu, int32_t shipNo, int32_t *swapDelay)
 {
-	static int hdg = 0;
+	static int32_t hdg = 0;
 
 	InitMenuDisplay (90) ;
 
@@ -4674,9 +4674,9 @@ void DrawHiScoreMenu (Menus *menuSystem, int *currMenu, int shipNo, int *swapDel
 	hdg += 40;
 }
 
-void DisplayPadMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DisplayPadMenu (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0, shdg = 0 ;
+	static int32_t hdg = 0, shdg = 0 ;
 	// jed
 	SetSkeletonPosition((menuSystem[(*currMenu)].menu2Model[0]->skeleton),0,0,	6500) ;
 	SetSkeletonDirectionHPR((menuSystem[(*currMenu)].menu2Model[0]->skeleton),	hdg,0,0);
@@ -4684,9 +4684,9 @@ void DisplayPadMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDel
 	hdg += 40;
 }
 
-void DisplayPadMenu1 (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DisplayPadMenu1 (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0, shdg = 0 ;
+	static int32_t hdg = 0, shdg = 0 ;
 	// jed
 
 	SetSkeletonPosition((menuSystem[(*currMenu)].menu2Model[1]->skeleton),0,-5,	4500) ;
@@ -4695,9 +4695,9 @@ void DisplayPadMenu1 (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDe
 	hdg += 20;
 }
 
-void DisplayPadMenu2 (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DisplayPadMenu2 (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0, shdg = 0 ;
+	static int32_t hdg = 0, shdg = 0 ;
 	// jed
 
 	SetSkeletonPosition((menuSystem[(*currMenu)].menu2Model[2]->skeleton),0,0,	4500) ;
@@ -4706,9 +4706,9 @@ void DisplayPadMenu2 (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDe
 	hdg += 40;
 }
 
-void DisplayNegConMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DisplayNegConMenu (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0, shdg = 0 ;
+	static int32_t hdg = 0, shdg = 0 ;
 
 	Object*	a;
 	Object*	b;
@@ -4740,7 +4740,7 @@ void DisplayNegConMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swap
 
 void ConfirmFormat (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int	toggle = 0 ;
+	static int32_t	toggle = 0 ;
 
 	if (neg1.head == 8960)
 	{
@@ -4782,7 +4782,7 @@ void ConfirmFormat (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionDa
 
 void InitChampionship ()
 {
-	short	i ;
+	int16_t	i ;
 
 	for (i=0; i < NO_OF_SHIPS; i++)
 	{
@@ -4828,9 +4828,9 @@ void CheckSaveType (SelectionData *selectData, char loadGames[][9], ConfigData *
 void InitButtons (char *fileName)
 {
 	TIMlist  		*timPtr;
-	short				tablePos ;
+	int16_t				tablePos ;
 	char 				modelFile[256];
-	int				i ;
+	int32_t				i ;
 
 	strcpy( modelFile, "wipeout/textures/" );
 	strcat( modelFile, fileName) ;
@@ -4850,7 +4850,7 @@ void InitButtons (char *fileName)
 
 
 
-void DisplayButtons (int x, int y, int buttType)
+void DisplayButtons (int32_t x, int32_t y, int32_t buttType)
 {
 	RECT	tw;
 
@@ -4859,7 +4859,7 @@ void DisplayButtons (int x, int y, int buttType)
 	y *= upres;
 
 	SetDrawMode(&(drmode[buttType][CurrentScreen]), 0, 0, FONT_TPAGE, &tw);
-	AddPrim(OT[CurrentScreen], (ulong *)&(drmode[buttType][CurrentScreen]));
+	AddPrim(OT[CurrentScreen], (uint32_t *)&(drmode[buttType][CurrentScreen]));
 
 	SetSprt(&(buttons[buttType][CurrentScreen]));
 
@@ -4876,15 +4876,15 @@ void DisplayButtons (int x, int y, int buttType)
 	buttons[buttType][CurrentScreen].u0 = buttonTex[buttType]->u0;
 	buttons[buttType][CurrentScreen].v0 = buttonTex[buttType]->v0;
 
-  		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(buttons[buttType][CurrentScreen]) );
+  		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(buttons[buttType][CurrentScreen]) );
 
 		SetDrawMode(&drmode2[buttType][CurrentScreen], 0, 0, 27, &tw);
-		AddPrim(OT[CurrentScreen], (ulong *)&drmode2[buttType][CurrentScreen]);
+		AddPrim(OT[CurrentScreen], (uint32_t *)&drmode2[buttType][CurrentScreen]);
 }
 
 
 
-void DrawLine (int x, int y, int x1, int y1, POLY_F4 *line, int lineNum)
+void DrawLine (int32_t x, int32_t y, int32_t x1, int32_t y1, POLY_F4 *line, int32_t lineNum)
 {
 	SetPolyF4(&(line[lineNum]));
 	line[lineNum].r0=230 ;
@@ -4894,7 +4894,7 @@ void DrawLine (int x, int y, int x1, int y1, POLY_F4 *line, int lineNum)
 	setXY4(&(line[lineNum]),x, y, x+2, y,
 		x1, y1, x1+2,y1+2 ) ;
 
-	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(line[lineNum]) );
+	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(line[lineNum]) );
 }
 
 
@@ -4902,8 +4902,8 @@ void DrawLine (int x, int y, int x1, int y1, POLY_F4 *line, int lineNum)
 void JJSReadTIM(char *filename , char *location, TimData *tim)
 {
 	FILE *fp;
-	unsigned short pix0,pix1,*data;
-	int i;
+	uint16_t pix0,pix1,*data;
+	int32_t i;
 
 	fp=fopen(filename,"rb");
 	fread(tim,12,1,fp);		// id and flags & bnum
@@ -4911,7 +4911,7 @@ void JJSReadTIM(char *filename , char *location, TimData *tim)
 	fread(&tim->textureY,2,1,fp);
 	fread(&tim->textureH,2,1,fp);
 	fread(&tim->textureW,2,1,fp);
-	data=(unsigned short *)location;
+	data=(uint16_t *)location;
 	for(i=0;i<320*240;++i)
 	{
 		fread(&pix0,2,1,fp);
@@ -4926,7 +4926,7 @@ void JJSReadTIM(char *filename , char *location, TimData *tim)
 
 void QuitYesNo(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int toggle = 0;
+	static int32_t toggle = 0;
 	static char flag = 0;
 
 	if (andybodge)
@@ -4969,7 +4969,7 @@ void QuitYesNo(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *s
 
 void GraphicOptions(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int toggle = 0;
+	static int32_t toggle = 0;
 	static char listpos = 0;
 	char	x=50, y=140, l=12;
 	char	DrawStr[8];
@@ -5199,7 +5199,7 @@ void GraphicOptions(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionDa
 
 void ControllerOptions(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int toggle = 0;
+	static int32_t toggle = 0;
 	char	controllerstring[20];
 	char	configstring[20];
 	char colour1;
@@ -5298,7 +5298,7 @@ void ControllerOptions(MusicPrims *musicPrims, SlideTextures *musicTex, Selectio
 
 void ControllerEdit(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int toggle = 0;
+	static int32_t toggle = 0;
 	static char flag = 0;
 
 	DisplayButtons ( 30, 210, PSELECT) ;
@@ -5335,9 +5335,9 @@ void ControllerEdit(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionDa
 
 
 
-void DrawControllerMenu (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DrawControllerMenu (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0 ;
+	static int32_t hdg = 0 ;
 
 
 	InitMenuDisplay (110);
@@ -5476,7 +5476,7 @@ void KeyConfig0(void)
 void KeyConfig(void)
 {
 	char			exists;
-	unsigned short	KeyCode = 0;
+	uint16_t	KeyCode = 0;
 
 
 	CentreText ("PRESS KEY FOR", text_data (1, 6*12, 8), RedText) ;
@@ -5741,7 +5741,7 @@ void KeyConfig(void)
 
 void	MouseConfig(void)
 {
-	static int toggle = 0;
+	static int32_t toggle = 0;
 	char	x=50, y=140, l=12;
 
 	if (andybodge2)
@@ -5825,9 +5825,9 @@ void	JoystickConfig(void)
 
 
 
-void DrawControllerEdit (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DrawControllerEdit (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int hdg = 0 ;
+	static int32_t hdg = 0 ;
 
 	InitMenuDisplay (80);
 
@@ -5849,9 +5849,9 @@ void DrawControllerEdit (Menus *menuSystem, int *currMenu, int shapeNo, int *swa
 
 }
 
-void DrawGraphicDetail (Menus *menuSystem, int *currMenu, int shapeNo, int *swapDelay)
+void DrawGraphicDetail (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay)
 {
-	static int heading = 0, hdg = 0 ;
+	static int32_t heading = 0, hdg = 0 ;
 
 
 	DrawTeamShips (0, 0, MODELSIZE, &heading, menuSystem[(*currMenu)].menuModel[shipShapeOrder[0]]) ;
@@ -5862,8 +5862,8 @@ void MostRecentSaveFile(char *filename)
 #if defined(JJS)
 	DIR *dirp;
 	struct dirent *direntp;
-	unsigned short int d_time=0;
-	unsigned short int d_date=0;
+	uint16_t d_time=0;
+	uint16_t d_date=0;
 	char tempname[_MAX_PATH2];
 	char *ext, *search;
 	char fred[_MAX_PATH2];
@@ -5915,7 +5915,7 @@ void MostRecentSaveFile(char *filename)
 
 
 
-char CheckKey(unsigned short code)
+char CheckKey(uint16_t code)
 {
 	if(NewOriginalKeyCodes[15] == code)
 		return(0);
@@ -5973,7 +5973,7 @@ void ResetKeys(void)
 #if 0
 void NetworkOptions(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int toggle = 0;
+	static int32_t toggle = 0;
 	static option = 1;
 	char colour1;
 	char colour2;
@@ -6081,7 +6081,7 @@ void NetworkOptions(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionDa
 
 void SerialOptions(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData)
 {
-	static int toggle = 0;
+	static int32_t toggle = 0;
 	static option = 1;
 	char colour1;
 	char colour2;

@@ -1,9 +1,9 @@
-int		Curpad = 0;
+int32_t		Curpad = 0;
 
 void InitialiseWinTimer(void)
 {}
 
 void EndWinTimer (void) {}
 
-long HowLong(void)
+int32_t HowLong(void)
 { return 0; }

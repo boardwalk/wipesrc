@@ -9,12 +9,12 @@
 
 
 
-Object* LoadPrm( char* name, short textureStart );
+Object* LoadPrm( char* name, int16_t textureStart );
 
-Object* LoadScn( char* name, short textureStart );
+Object* LoadScn( char* name, int16_t textureStart );
 
-void IntelObject( char *start, char *finish, short convert );
+void IntelObject( char *start, char *finish, int16_t convert );
 
-void IntelShort( short* svalue );
+void IntelShort( int16_t* svalue );
 
-void IntelLong( long* lvalue );
+void IntelLong( int32_t* lvalue );

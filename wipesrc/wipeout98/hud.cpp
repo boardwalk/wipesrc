@@ -34,7 +34,7 @@
 #define END_LAP 3
 #endif
 
-extern short FrameState,screenres;
+extern int16_t FrameState,screenres;
 extern float upres;
 
 TexChar	CharSet16[40] ;
@@ -42,33 +42,33 @@ TexChar	CharSet12[40] ;
 TexChar	CharSet8[40] ;
 extern char globalPilot[];
 
-short speedo_x[]={179,259,371,499};
-short speedo_y[]={195,255,337,435};
+int16_t speedo_x[]={179,259,371,499};
+int16_t speedo_y[]={195,255,337,435};
 
-ushort Text16[] = 	{25, 24, 17, 24, 24, 17, 25, 18, 7, 17,
+uint16_t Text16[] = 	{25, 24, 17, 24, 24, 17, 25, 18, 7, 17,
 						117, 117, 128, 117, 124, 124, 126, 124, 118, 117,
 						217, 217, 229,	224, 217, 218, 224, 210, 218, 217, 218,
 						318, 318, 318, 322, 325, 307, 307} ;
 
-ushort Text12[] = 	{19, 19, 14, 19, 19, 13, 19, 14, 6, 13, 14, 14,
+uint16_t Text12[] = 	{19, 19, 14, 19, 19, 13, 19, 14, 6, 13, 14, 14,
 				122, 114, 119, 118, 120, 119, 115, 114, 113, 113, 122,
 				219, 213, 214, 219, 208, 215, 213, 214, 215, 214, 215, 218, 219, 205, 205} ;
 
-ushort Text8[] =	{13, 13, 10, 13, 13, 9, 13, 10, 4, 9, 10, 10, 16, 10, 13, 13, 14,
+uint16_t Text8[] =	{13, 13, 10, 13, 13, 9, 13, 10, 4, 9, 10, 10, 16, 10, 13, 13, 14,
  		113, 110, 109, 109, 109, 116, 114, 109, 110, 113, 106, 111, 110, 110, 111, 110, 110, 112, 114, 104, 104} ;
 
 POLY_FT4		symbols[2] ;
 
 extern 	HiScores	scoreTable[] ;
 extern	ChampionShip	winTable[] ;
-extern	int	inattract;
-extern long	theFrameRate;
+extern	int32_t	inattract;
+extern int32_t	theFrameRate;
 
 void InitText()
 {
 
 	TIMlist  		*timPtr;
-	int				i;
+	int32_t				i;
 
 	/**********************************************************/
 	/*** 			Initialise In Game Character Set				  ***/
@@ -82,7 +82,7 @@ void InitText()
 	DRTEXT_RED = DRTEXT_16 + 4 ;
 
 	SetDrawMode((DR_MODE*)&dmode,0,0,FONT_TPAGE,0);
-	DrawPrim((u_long *)&dmode);
+	DrawPrim((uint32_t *)&dmode);
 	for(i = 0; i < 600; i++)
 	{
 //		SetPolyFT4(&(display_text[i]));	// PCwipeout
@@ -99,7 +99,7 @@ void InitText()
 void InitSpeedo (Speedo *speedo)
 {
 
-	int j;
+	int32_t j;
 	Texture *tex_ptr ;
 
 	tex_ptr = LoadTexture ( "wipeout/textures/speedo.tim", 1 ) ;
@@ -173,11 +173,11 @@ void InitSpeedo (Speedo *speedo)
 	speedo->barInfo[11].Right.topx =	124 ;
 }
 
-void fill_speedo (Speedo *speedo, int speed, int thrust)
+void fill_speedo (Speedo *speedo, int32_t speed, int32_t thrust)
 {
-	int target;
-	int width, barIntervalXTop;
-	int	andy=0;
+	int32_t target;
+	int32_t width, barIntervalXTop;
+	int32_t	andy=0;
 
 	target = speed/2000;
 	if(target > NUM_BARS) target = NUM_BARS;
@@ -196,7 +196,7 @@ void fill_speedo (Speedo *speedo, int speed, int thrust)
 			barIntervalXTop = (width*target)/2000;
 			setWH(&(speedo->solidbar[CurrentScreen]),speedo->barInfo[andy].Left.topx+barIntervalXTop,SPEEDO_HEIGHT);
 		}
-		AddPrim(OT[CurrentScreen], (u_long *)&(speedo->solidbar[CurrentScreen]));
+		AddPrim(OT[CurrentScreen], (uint32_t *)&(speedo->solidbar[CurrentScreen]));
 
 		andy = (thrust/70);
 		if(andy > NUM_BARS) andy = NUM_BARS;
@@ -212,25 +212,25 @@ void fill_speedo (Speedo *speedo, int speed, int thrust)
 			setWH(&(speedo->transbar[CurrentScreen]),speedo->barInfo[andy].Left.topx+barIntervalXTop	,SPEEDO_HEIGHT);
 		}
 
-		AddPrim(OT[CurrentScreen], (u_long *)&(speedo->transbar[CurrentScreen]));
+		AddPrim(OT[CurrentScreen], (uint32_t *)&(speedo->transbar[CurrentScreen]));
 // BIT SHORTER THAN STU'S
 }
 
 
 
-void AddTime(int time, TEXT_DATA *pos_data, int colour)
+void AddTime(int32_t time, TEXT_DATA *pos_data, int32_t colour)
 
 {
-   int j;
-	int index = 0;
-	int digit[20];
-	int x, y;
-	int mins=0, secs=0, tenths=0;
+   int32_t j;
+	int32_t index = 0;
+	int32_t digit[20];
+	int32_t x, y;
+	int32_t mins=0, secs=0, tenths=0;
 	Texture *charTex, *redTex ;
-	int small_num_size;
-	int size, charNum ;
- 	short			vramRow=0, vramY=0, vramX=0 ;
-	ushort		currLett=0, searchLett=0 ;
+	int32_t small_num_size;
+	int32_t size, charNum ;
+ 	int16_t			vramRow=0, vramY=0, vramX=0 ;
+	uint16_t		currLett=0, searchLett=0 ;
  	TexChar		*charSet ;
 
 	x = pos_data->start_pos_x;
@@ -243,7 +243,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 	small_num_size = size>>1;
 
 //	SetDrawMode((DR_MODE*)&dmode,0,0,FONT_TPAGE,0);
-//	DrawPrim((u_long *)&dmode);
+//	DrawPrim((uint32_t *)&dmode);
 
 	switch (size)
 	{
@@ -307,7 +307,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
   			display_text[textPrim].clut = redTex->cba;
 		}
 
-		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
+		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(display_text[textPrim]) );
 		x += currLett;
 		textPrim++;
 	}
@@ -337,7 +337,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
    	display_text[textPrim].clut = redTex->cba;
 	}
 
-   AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
+   AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(display_text[textPrim]) );
 
 
 	x += currLett;
@@ -379,7 +379,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
    		display_text[textPrim].clut = redTex->cba;
 		}
 
-   	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
+   	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(display_text[textPrim]) );
 
 		x += currLett;
 		textPrim++;
@@ -408,7 +408,7 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 	}
 
 
-   AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
+   AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(display_text[textPrim]) );
 
 
 	x += currLett;
@@ -447,23 +447,23 @@ void AddTime(int time, TEXT_DATA *pos_data, int colour)
 		display_text[textPrim].clut = redTex->cba;
 	}
 
-   AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
+   AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(display_text[textPrim]) );
 
  	x += currLett ;
 	textPrim++;
 
 }
 
-void AddText(char* text_ptr, TEXT_DATA *pos_data, int colour)
+void AddText(char* text_ptr, TEXT_DATA *pos_data, int32_t colour)
 {
 	uchar 	letter=0;
 	char 		AValue=0;
 	Texture 	*charTex, *redTex ;
-	int 		size=0 ;
-	int 		x=0, y=0, i=0 ,newx,newy;
-	short		vramRow=0, vramY=0, vramX=0 ;
-	short 	j=0;
-	ushort	 currLett=0, searchLett=0 ;
+	int32_t 		size=0 ;
+	int32_t 		x=0, y=0, i=0 ,newx,newy;
+	int16_t		vramRow=0, vramY=0, vramX=0 ;
+	int16_t 	j=0;
+	uint16_t	 currLett=0, searchLett=0 ;
 	TexChar	*charSet ;
 
 	x = pos_data->start_pos_x;
@@ -528,7 +528,7 @@ void AddText(char* text_ptr, TEXT_DATA *pos_data, int colour)
    				display_text[textPrim].clut = redTex->cba;
 			}
 
-	   		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
+	   		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(display_text[textPrim]) );
 
 			textPrim++;
 			x += currLett ;
@@ -541,15 +541,15 @@ void AddText(char* text_ptr, TEXT_DATA *pos_data, int colour)
 }
 
 
-void AddNumber(int num, TEXT_DATA *pos_data, int colour)
+void AddNumber(int32_t num, TEXT_DATA *pos_data, int32_t colour)
 {
-   int i,j;
-	int digit[12];
-	int x, y , newx ,newy;
+   int32_t i,j;
+	int32_t digit[12];
+	int32_t x, y , newx ,newy;
 	Texture *charTex, *redTex ;
-	int size, charNum ;
-	short		vramRow=0, vramY=0, vramX=0 ;
-	ushort	currLett=0, searchLett=0 ;
+	int32_t size, charNum ;
+	int16_t		vramRow=0, vramY=0, vramX=0 ;
+	uint16_t	currLett=0, searchLett=0 ;
 	TexChar	*charSet ;
 
 	x = pos_data->start_pos_x;
@@ -609,7 +609,7 @@ void AddNumber(int num, TEXT_DATA *pos_data, int colour)
 		}
 
 
-      AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
+      AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(display_text[textPrim]) );
 		textPrim++;
 		x += currLett;
 	}
@@ -617,11 +617,11 @@ void AddNumber(int num, TEXT_DATA *pos_data, int colour)
 }
 
 
-void AddDelEnd(char dispChar, TEXT_DATA *pos_data, int colour)
+void AddDelEnd(char dispChar, TEXT_DATA *pos_data, int32_t colour)
 {
 	Texture 	*endTex, *delTex, *redTex ;
-	int 		size=0 ;
-	int 		x=0, y=0 ,newx ,newy;
+	int32_t 		size=0 ;
+	int32_t 		x=0, y=0 ,newx ,newy;
 
 	x = pos_data->start_pos_x;
 	y = pos_data->start_pos_y;
@@ -655,18 +655,18 @@ void AddDelEnd(char dispChar, TEXT_DATA *pos_data, int colour)
  			display_text[textPrim].clut = redTex->cba;
 	}
 
-	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
+	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(display_text[textPrim]) );
 
 	textPrim++;
 }
 
 void SetCharTextures (char size)
 {
-	short currLett ;
-	short i, j ;
-	short vramY, vramX ;
-	short searchLett, vramRow ;
-	ushort *charSet ;
+	int16_t currLett ;
+	int16_t i, j ;
+	int16_t vramY, vramX ;
+	int16_t searchLett, vramRow ;
+	uint16_t *charSet ;
 
 
 
@@ -742,7 +742,7 @@ void SetCharTextures (char size)
 }
 
 
-TEXT_DATA *text_data( int start_pos_x, int start_pos_y, int size)
+TEXT_DATA *text_data( int32_t start_pos_x, int32_t start_pos_y, int32_t size)
 {
 	static TEXT_DATA text;
 
@@ -753,19 +753,19 @@ TEXT_DATA *text_data( int start_pos_x, int start_pos_y, int size)
 	return(&text);
 }
 
-extern int short startLinePos[ ];
+extern int16_t startLinePos[ ];
 
 
-void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *gameData)
+void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int32_t choice, ConfigData *gameData)
 {
-	int 				i, j;
-	int 				position = NO_OF_SHIPS;
-	int 				ownSecNo, serialSecNo;
-	int				width = 0 ;
-	int				tempPosition = 1 ;
+	int32_t 				i, j;
+	int32_t 				position = NO_OF_SHIPS;
+	int32_t 				ownSecNo, serialSecNo;
+	int32_t				width = 0 ;
+	int32_t				tempPosition = 1 ;
 	char				trackList[15] = {2, 4, 1, 12, 8, 9, 10, 3, 5, 6, 7, 11, 13, 14, 15} ;
-	int				secNo;
-	static int			lapRecordCount = 0 ;
+	int32_t				secNo;
+	static int32_t			lapRecordCount = 0 ;
 	SortTable		sortTable [ NO_OF_SHIPS ] ;
 	char				tempShip ;
 	char				tempPoints ;
@@ -1262,13 +1262,13 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *
 }
 
 
-int CalcPosition(ShipData *shipIndex)
+int32_t CalcPosition(ShipData *shipIndex)
 {
-	int 				i, j;
-	int 				tempPosition;
+	int32_t 				i, j;
+	int32_t 				tempPosition;
 	VECTOR			B, C, AB, AC, trackVect;
-	int				angleB, angleC, distanceB, distanceC;
-	int				position;
+	int32_t				angleB, angleC, distanceB, distanceC;
+	int32_t				position;
 
 	for(i = 0; i < NO_OF_SHIPS; i++)
 	{
@@ -1344,11 +1344,11 @@ int CalcPosition(ShipData *shipIndex)
 }
 
 
-void ScreenFooter (int x, int y, int colour)
+void ScreenFooter (int32_t x, int32_t y, int32_t colour)
 {
 	Texture		*symbolTex, *redTex ;
-	int			i ;
-	int			offSet = 110 ;
+	int32_t			i ;
+	int32_t			offSet = 110 ;
 
 	for (i=0; i < 2; i++)
 	{
@@ -1395,7 +1395,7 @@ void ScreenFooter (int x, int y, int colour)
   			symbols[i].clut = redTex->cba;
 		}
 
- 		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(symbols[i]) );
+ 		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(symbols[i]) );
 
 
 	}
@@ -1404,18 +1404,18 @@ void ScreenFooter (int x, int y, int colour)
 
 
 
-void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int colour)
+void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int32_t colour)
 {
 	uchar 	letter=0;
 	char 		AValue=0, *tmpPtr ;
 	Texture 	*charTex, *redTex ;
-	int 		size=0 ;
-	int 		x=0, y=0, i=0 , newx , newy;
-	short		vramRow=0, vramY=0, vramX=0 ;
-	short 	j=0;
-	ushort	 currLett=0, searchLett=0 ;
+	int32_t 		size=0 ;
+	int32_t 		x=0, y=0, i=0 , newx , newy;
+	int16_t		vramRow=0, vramY=0, vramX=0 ;
+	int16_t 	j=0;
+	uint16_t	 currLett=0, searchLett=0 ;
 	TexChar	*charSet ;
-	short		totSize = 0 ;
+	int16_t		totSize = 0 ;
 
 	y = pos_data->start_pos_y;
 
@@ -1503,7 +1503,7 @@ void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int colour)
    				display_text[textPrim].clut = redTex->cba;
 			}
 
-   			AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(display_text[textPrim]) );
+   			AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(display_text[textPrim]) );
 
 			textPrim++;
 			x += currLett ;
@@ -1519,9 +1519,9 @@ void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int colour)
 void DisplayLives (SPRT lifeIcons[][2], ConfigData *gameData) // PCwipeout
 {
 
-	int i ;
+	int32_t i ;
  	Texture	*livesTex ;
-	short		ySpace = 13 ;
+	int16_t		ySpace = 13 ;
 
 	livesTex = (Texture *) TextureTable [DRTEXT_RED+5] ;
 
@@ -1544,7 +1544,7 @@ void DisplayLives (SPRT lifeIcons[][2], ConfigData *gameData) // PCwipeout
 
 		lifeIcons[i][CurrentScreen].clut = livesTex->cba ;
 
-  		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(lifeIcons[i][CurrentScreen]) );
+  		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(lifeIcons[i][CurrentScreen]) );
 
 	}
 
@@ -1565,10 +1565,10 @@ void InitChampTable ()
 
 void DisplayChampTable ()
 {
-	short		i ;
-	short		yPos = 80 ;
-	short		screenPos = 3 ;
-	static int toggle = 0 ;
+	int16_t		i ;
+	int16_t		yPos = 80 ;
+	int16_t		screenPos = 3 ;
+	static int32_t toggle = 0 ;
 
 	CentreText ("CHAMPIONSHIP TABLE",text_data (60, 40, 8),RedText) ;
 	AddText ("PILOT NAME",text_data (85, 65, 8),RedText) ;
@@ -1604,9 +1604,9 @@ void DisplayChampTable ()
 
 void DisplayRacePoints ()
 {
-	short		i ;
-	short		yPos = 80 ;
-	static 	int		toggle = 0 ;
+	int16_t		i ;
+	int16_t		yPos = 80 ;
+	static 	int32_t		toggle = 0 ;
 
 	CentreText ("RACE POINTS",text_data (60, 40, 8),RedText) ;
 	AddText ("PILOT NAME",text_data (85, 65, 8),RedText) ;
@@ -1644,7 +1644,7 @@ void DisplayRacePoints ()
 void InitScreenTex (Texture **screenTex, char *fileName)
 {
 	TIMlist  		*timPtr;
-	short				tablePos ;
+	int16_t				tablePos ;
 	char 				modelFile[256];
 
 	strcpy( modelFile, "wipeout/textures/" );
@@ -1668,9 +1668,9 @@ void InitScreenTex (Texture **screenTex, char *fileName)
 	strcpy(globalPilot,modelFile);
 }
 
-void DisplayWinLose (Texture *winLose, POLY_FT4 *picPrim, short x, short y, short height, char type)
+void DisplayWinLose (Texture *winLose, POLY_FT4 *picPrim, int16_t x, int16_t y, int16_t height, char type)
 {
-		short width = 128 ;
+		int16_t width = 128 ;
 
 		SetPolyFT4(&(picPrim[CurrentScreen]));
 		picPrim[CurrentScreen].r0=230 ; // PCwipeout
@@ -1692,11 +1692,11 @@ void DisplayWinLose (Texture *winLose, POLY_FT4 *picPrim, short x, short y, shor
 
 //		picPrim[CurrentScreen].clut = winLose->cba ; // PCwipeout
 
- 		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(picPrim[CurrentScreen]) );
+ 		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(picPrim[CurrentScreen]) );
 }
 
 
-void BackPoly (POLY_F4* selectBox, DR_MODE* selectTrans, short x, short y, short w, short h)
+void BackPoly (POLY_F4* selectBox, DR_MODE* selectTrans, int16_t x, int16_t y, int16_t w, int16_t h)
 {
 
 	SetPolyF4(&(selectBox[CurrentScreen]));
@@ -1714,8 +1714,8 @@ void BackPoly (POLY_F4* selectBox, DR_MODE* selectTrans, short x, short y, short
 	SetDrawMode(&(selectTrans[CurrentScreen]), 1, 1, FONT_TPAGE, 0);
 
 
-  	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(selectBox[CurrentScreen]) );
-  	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(selectTrans[CurrentScreen]) );
+  	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(selectBox[CurrentScreen]) );
+  	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(selectTrans[CurrentScreen]) );
 
 }
 
@@ -1753,7 +1753,7 @@ void InitTrackTex (Texture **trackTex)
 {
 
 	TIMlist  		*timPtr;
-	short				tablePos ;
+	int16_t				tablePos ;
 	Texture *t;
 	tablePos = TextureTableCount;
 
@@ -1819,8 +1819,8 @@ void InitTrackTex (Texture **trackTex)
 
 void DisplayRaceInfo (ConfigData *gameData, HiScoreData *hiScoreData)
 {
-	short i ;
-	static int	toggle = 0 ;
+	int16_t i ;
+	static int32_t	toggle = 0 ;
 
 	AddText ("RACE STATISTICS",text_data (15, 80, 8),RedText) ;
 
@@ -1990,10 +1990,10 @@ void DisplayRaceInfo (ConfigData *gameData, HiScoreData *hiScoreData)
 }
 
 
-void DrawHud(ShipData* shipIndex, Speedo *speedo, int choice, ConfigData *gameData)
+void DrawHud(ShipData* shipIndex, Speedo *speedo, int32_t choice, ConfigData *gameData)
 {
-int i;
-int width;
+int32_t i;
+int32_t width;
 static char fixof[]={0,2,3,4};
 
 	if(shipIndex[ownShip].lapNo > 0)	//gone past start line
@@ -2081,7 +2081,7 @@ static char fixof[]={0,2,3,4};
 
 	if(shipIndex[ownShip].attr & RACING)
 	{
-		int j;
+		int32_t j;
 
 		for(j=0;j<2;++j)
 		{
@@ -2089,7 +2089,7 @@ static char fixof[]={0,2,3,4};
 			setXY0(&(speedo->transbar[j]),speedo_x[screenres],speedo_y[screenres]);
 			setXY0(&(speedo->solidbar[j]),speedo_x[screenres],speedo_y[screenres]);
 		}
- 		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(speedo->facia[CurrentScreen]) );
+ 		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(speedo->facia[CurrentScreen]) );
 
 	 	if(CameraUpdate == UpdateCameraAttractInternal)
 			fill_speedo(speedo, shipIndex[ownShip].speed*7, shipIndex[ownShip].thrust_mag);

@@ -3,7 +3,7 @@
 
 #include "config.h"
 
-int JJSJoyConfig(void);
+int32_t JJSJoyConfig(void);
 //#include <windowsx.h>
 //#include <winbase.h>
 //#include <stdio.h>
@@ -11,7 +11,7 @@ int JJSJoyConfig(void);
 /****************************************************************************
  *
  *
- *    
+ *
  ****************************************************************************/
 
 #define	_KEYBOARD	1
@@ -23,12 +23,12 @@ int JJSJoyConfig(void);
 #define		_DEVICE_OFF				0
 #define		_DEVICE_ON				1
 
-extern unsigned short  etc_DefaultKeyboardSet[];
-extern volatile unsigned char			etc_Joystick1Switch;		/* id = 1 */
-extern volatile unsigned char			etc_Mouse1Switch;		/* id = 1 */
-extern volatile unsigned char			etc_InputDeviceSelect;
+extern uint16_t  etc_DefaultKeyboardSet[];
+extern volatile uint8_t			etc_Joystick1Switch;		/* id = 1 */
+extern volatile uint8_t			etc_Mouse1Switch;		/* id = 1 */
+extern volatile uint8_t			etc_InputDeviceSelect;
 extern char	orig_controller;
-extern unsigned short	Keycons[];
+extern uint16_t	Keycons[];
 
 /* Registry stuff */
 #define WO_REGISTRY_KEY         "SOFTWARE\\3D Rage Games\\WipeOut"
@@ -44,15 +44,15 @@ extern unsigned short	Keycons[];
 /****************************************************************************
  *
  *
- *    
+ *
  ****************************************************************************/
 extern char	 Resolution,controller;
-extern long DrawDistance;
-extern short ft;
+extern int32_t DrawDistance;
+extern int16_t ft;
 extern char Sky;
-extern unsigned short NewOriginalKeyCodes[],OriginalKeyCodes[];
+extern uint16_t NewOriginalKeyCodes[],OriginalKeyCodes[];
 
-int ShellGetGameDirectory(char *pGameDirectory)
+int32_t ShellGetGameDirectory(char *pGameDirectory)
 {
 	HKEY hkeyOurKey;
 
@@ -69,11 +69,11 @@ int ShellGetGameDirectory(char *pGameDirectory)
 	/* Open out registry key */
 	retval = RegOpenKeyEx(
     HKEY_LOCAL_MACHINE,				// handle of root key
-    WO_REGISTRY_KEY,				// address of name of subkey to open 
-    0,												// reserved 
-    KEY_QUERY_VALUE,					// security access mask 
-    &hkeyOurKey								// address of handle of open key 
-   );	
+    WO_REGISTRY_KEY,				// address of name of subkey to open
+    0,												// reserved
+    KEY_QUERY_VALUE,					// security access mask
+    &hkeyOurKey								// address of handle of open key
+   );
 	if (retval == ERROR_SUCCESS)
 	{
 		/* So far so good - enumerate it's values to find the game directory */
@@ -83,14 +83,14 @@ int ShellGetGameDirectory(char *pGameDirectory)
 			dwValueNameLength = sizeof(szValueName);
 			dwValueBufferLength = sizeof(abValueBuffer);
 			retval = RegEnumValue(
-		    hkeyOurKey,						// handle of key to query 
-	  	  index,								// index of value to query 
-	    	szValueName,					// address of buffer for value string 
-		    &dwValueNameLength,		// address for size of value buffer 
-	  	  NULL,									// reserved 
-		    &dwValueType,					// address of buffer for type code 
-		    abValueBuffer,				// address of buffer for value data 
-		    &dwValueBufferLength	// address for size of data buffer 
+		    hkeyOurKey,						// handle of key to query
+	  	  index,								// index of value to query
+	    	szValueName,					// address of buffer for value string
+		    &dwValueNameLength,		// address for size of value buffer
+	  	  NULL,									// reserved
+		    &dwValueType,					// address of buffer for type code
+		    abValueBuffer,				// address of buffer for value data
+		    &dwValueBufferLength	// address for size of data buffer
 	   	);
 			if (retval == ERROR_SUCCESS)
 			{
@@ -109,9 +109,9 @@ int ShellGetGameDirectory(char *pGameDirectory)
 	}
 
 	return(retval);
-}	
+}
 
-int ShellGetMovieDirectory(char *pGameDirectory)
+int32_t ShellGetMovieDirectory(char *pGameDirectory)
 {
 	HKEY hkeyOurKey;
 
@@ -128,11 +128,11 @@ int ShellGetMovieDirectory(char *pGameDirectory)
 	/* Open out registry key */
 	retval = RegOpenKeyEx(
     HKEY_LOCAL_MACHINE,				// handle of root key
-    WO_REGISTRY_KEY,				// address of name of subkey to open 
-    0,												// reserved 
-    KEY_QUERY_VALUE,					// security access mask 
-    &hkeyOurKey								// address of handle of open key 
-   );	
+    WO_REGISTRY_KEY,				// address of name of subkey to open
+    0,												// reserved
+    KEY_QUERY_VALUE,					// security access mask
+    &hkeyOurKey								// address of handle of open key
+   );
 	if (retval == ERROR_SUCCESS)
 	{
 		/* So far so good - enumerate it's values to find the game directory */
@@ -142,14 +142,14 @@ int ShellGetMovieDirectory(char *pGameDirectory)
 			dwValueNameLength = sizeof(szValueName);
 			dwValueBufferLength = sizeof(abValueBuffer);
 			retval = RegEnumValue(
-		    hkeyOurKey,						// handle of key to query 
-	  	  index,								// index of value to query 
-	    	szValueName,					// address of buffer for value string 
-		    &dwValueNameLength,		// address for size of value buffer 
-	  	  NULL,									// reserved 
-		    &dwValueType,					// address of buffer for type code 
-		    abValueBuffer,				// address of buffer for value data 
-		    &dwValueBufferLength	// address for size of data buffer 
+		    hkeyOurKey,						// handle of key to query
+	  	  index,								// index of value to query
+	    	szValueName,					// address of buffer for value string
+		    &dwValueNameLength,		// address for size of value buffer
+	  	  NULL,									// reserved
+		    &dwValueType,					// address of buffer for type code
+		    abValueBuffer,				// address of buffer for value data
+		    &dwValueBufferLength	// address for size of data buffer
 	   	);
 			if (retval == ERROR_SUCCESS)
 			{
@@ -168,15 +168,15 @@ int ShellGetMovieDirectory(char *pGameDirectory)
 	}
 
 	return(retval);
-}	
+}
 
 /****************************************************************************
  *
  *
- *    
+ *
  ****************************************************************************/
 
-int ShellGetDataDirectory(char *pDataDirectory)
+int32_t ShellGetDataDirectory(char *pDataDirectory)
 {
 	HKEY hkeyOurKey;
 
@@ -193,11 +193,11 @@ int ShellGetDataDirectory(char *pDataDirectory)
 	/* Open out registry key */
 	retval = RegOpenKeyEx(
     HKEY_LOCAL_MACHINE,				// handle of root key
-    WO_REGISTRY_KEY,				// address of name of subkey to open 
-    0,												// reserved 
-    KEY_QUERY_VALUE,					// security access mask 
-    &hkeyOurKey								// address of handle of open key 
-   );	
+    WO_REGISTRY_KEY,				// address of name of subkey to open
+    0,												// reserved
+    KEY_QUERY_VALUE,					// security access mask
+    &hkeyOurKey								// address of handle of open key
+   );
 	if (retval == ERROR_SUCCESS)
 	{
 		/* So far so good - enumerate it's values to find the game directory */
@@ -207,14 +207,14 @@ int ShellGetDataDirectory(char *pDataDirectory)
 			dwValueNameLength = sizeof(szValueName);
 			dwValueBufferLength = sizeof(abValueBuffer);
 			retval = RegEnumValue(
-		    hkeyOurKey,						// handle of key to query 
-	  	  index,								// index of value to query 
-	    	szValueName,					// address of buffer for value string 
-		    &dwValueNameLength,		// address for size of value buffer 
-	  	  NULL,									// reserved 
-		    &dwValueType,					// address of buffer for type code 
-		    abValueBuffer,				// address of buffer for value data 
-		    &dwValueBufferLength	// address for size of data buffer 
+		    hkeyOurKey,						// handle of key to query
+	  	  index,								// index of value to query
+	    	szValueName,					// address of buffer for value string
+		    &dwValueNameLength,		// address for size of value buffer
+	  	  NULL,									// reserved
+		    &dwValueType,					// address of buffer for type code
+		    abValueBuffer,				// address of buffer for value data
+		    &dwValueBufferLength	// address for size of data buffer
 	   	);
 			if (retval == ERROR_SUCCESS)
 			{
@@ -233,7 +233,7 @@ int ShellGetDataDirectory(char *pDataDirectory)
 	}
 
 	return(retval);
-}	
+}
 
 static char *reses[]={
 	"SMALL",
@@ -259,13 +259,13 @@ static char Text[20]="OFF";
 static char Skys[20]="ON";
 static char KeyBuff[250]="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0";
 
-static long RealDist[]={
+static int32_t RealDist[]={
 	18000,
 	38000,
 	65535
 };
 
-int ShellGetPrefs(void)
+int32_t ShellGetPrefs(void)
 {
 	HKEY hkeyOurKey;
 	static char tbuff[20]="1";
@@ -277,16 +277,16 @@ int ShellGetPrefs(void)
 	DWORD index;
 
 	LONG retval;
-	int i;
+	int32_t i;
 
 	/* Open out registry key */
 	retval = RegOpenKeyEx(
 		HKEY_LOCAL_MACHINE,				// handle of root key
-		WO_REGISTRY_KEY,				// address of name of subkey to open 
-		0,												// reserved 
-		KEY_QUERY_VALUE,					// security access mask 
-		&hkeyOurKey								// address of handle of open key 
-		);	
+		WO_REGISTRY_KEY,				// address of name of subkey to open
+		0,												// reserved
+		KEY_QUERY_VALUE,					// security access mask
+		&hkeyOurKey								// address of handle of open key
+		);
 	if (retval == ERROR_SUCCESS)
 	{
 		/* So far so good - enumerate it's values to find the game directory */
@@ -296,14 +296,14 @@ int ShellGetPrefs(void)
 			dwValueNameLength = sizeof(szValueName);
 			dwValueBufferLength = sizeof(abValueBuffer);
 			retval = RegEnumValue(
-				hkeyOurKey,						// handle of key to query 
-	  			index,								// index of value to query 
-	    			szValueName,					// address of buffer for value string 
-				&dwValueNameLength,		// address for size of value buffer 
-	  			NULL,									// reserved 
-				&dwValueType,					// address of buffer for type code 
-				abValueBuffer,				// address of buffer for value data 
-				&dwValueBufferLength	// address for size of data buffer 
+				hkeyOurKey,						// handle of key to query
+	  			index,								// index of value to query
+	    			szValueName,					// address of buffer for value string
+				&dwValueNameLength,		// address for size of value buffer
+	  			NULL,									// reserved
+				&dwValueType,					// address of buffer for type code
+				abValueBuffer,				// address of buffer for value data
+				&dwValueBufferLength	// address for size of data buffer
 	   			);
 			if (retval == ERROR_SUCCESS)
 			{
@@ -418,10 +418,10 @@ int ShellGetPrefs(void)
 			break;
 	}
 	return(retval);
-}	
+}
 
 
-int ShellSetPrefs(void)
+int32_t ShellSetPrefs(void)
 {
 	HKEY hkeyOurKey;
 
@@ -450,11 +450,11 @@ int ShellSetPrefs(void)
 	/* Open out registry key */
 	retval = RegOpenKeyEx(
 		HKEY_LOCAL_MACHINE,				// handle of root key
-		WO_REGISTRY_KEY,				// address of name of subkey to open 
-		0,												// reserved 
-		KEY_QUERY_VALUE,					// security access mask 
-		&hkeyOurKey								// address of handle of open key 
-		);	
+		WO_REGISTRY_KEY,				// address of name of subkey to open
+		0,												// reserved
+		KEY_QUERY_VALUE,					// security access mask
+		&hkeyOurKey								// address of handle of open key
+		);
 	strcpy(Res,reses[Resolution]);
 	switch(DrawDistance)
 	{

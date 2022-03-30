@@ -1,17 +1,17 @@
 typedef struct RescueData
 {
 	TrackSection 	*section;
-	short 			modelID;
+	int16_t 			modelID;
 	VECTOR 			pos;
 	VECTOR 			vel;
 	VECTOR 			acc;
-	short 			hdg, pitch, roll;
-	short 			vhdg, vpitch, vroll;
-	short				updateCount;
+	int16_t 			hdg, pitch, roll;
+	int16_t 			vhdg, vpitch, vroll;
+	int16_t				updateCount;
 	void 				(*droidUpdate)(struct RescueData*, ShipData*, Object**);
 } RescueData;
 
-void UpdateRescueDroid		(ShipData *shipIndex, Object** shipShapes, int shipNo, struct WeaponData *weaponIndex);
+void UpdateRescueDroid		(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, struct WeaponData *weaponIndex);
 void InitRescueDroid			(RescueData *rescueDroid, Object** shipShapes, ShipData *shipIndex);
 void UpdateDroidStart		(RescueData *rescueDroid, ShipData *shipIndex, Object** shipShapes);
 void UpdateDroidCircle		(RescueData *rescueDroid, ShipData *shipIndex, Object** shipShapes);

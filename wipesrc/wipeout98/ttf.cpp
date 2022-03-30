@@ -22,12 +22,12 @@
 #include "error.h"
 
 
-TexTemplate* LoadTtfFile( char *file, short *count, short libraryTextures )
+TexTemplate* LoadTtfFile( char *file, int16_t *count, int16_t libraryTextures )
 {
-   long        	length;
+   int32_t        	length;
    char*       	ttfFile;
-	short*			tex;
-	short				i;
+	int16_t*			tex;
+	int16_t				i;
 
    length = FileLength( file );
    if ( length <= 0 )
@@ -55,15 +55,15 @@ TexTemplate* LoadTtfFile( char *file, short *count, short libraryTextures )
       Error( errorString, Fatal );
    }
 
-	tex = ( short* ) ttfFile;
-	while ( tex < ( ( short* )( ttfFile + length ) ) )
+	tex = ( int16_t* ) ttfFile;
+	while ( tex < ( ( int16_t* )( ttfFile + length ) ) )
 	{
 #if LoadMessages
 //		printf( "TTF %2d: ", *count );
 #endif
 	 	for ( i=0; i<21; i++ )
 		{
-			*tex = ( ( *tex & 0x00ff ) << 8 ) + 
+			*tex = ( ( *tex & 0x00ff ) << 8 ) +
 				 	( ( *tex & 0xff00 ) >> 8 );
 #if 0
          *tex += libraryTextures;

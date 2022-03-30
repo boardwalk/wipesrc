@@ -1,60 +1,60 @@
 #include <cstdint>
-typedef uint8_t uint8;
-typedef int16_t int16;
-typedef uint16_t uint16;
+typedef uint8_t uint8_t;
+typedef int16_t int16_t;
+typedef uint16_t uint16_t;
 
-void SfxEffectPan(int16 wPlayId,uint16 bPan)
+void SfxEffectPan(int16_t wPlayId,uint16_t bPan)
 {}
 
-void SfxEffectVol(int16 wPlayId,uint8 bVolume)
+void SfxEffectVol(int16_t wPlayId,uint8_t bVolume)
 {}
 
-uint16 SfxGetFxBank(char *filename)
+uint16_t SfxGetFxBank(char *filename)
 { return 0; }
 
 void SfxReverbOff(void)
 {}
 
-void SfxSetVolume(uint8 bVolume)
+void SfxSetVolume(uint8_t bVolume)
 {}
 
-uint16 SfxInitReverb(uint16 wReverbType,uint16 wDelay)
+uint16_t SfxInitReverb(uint16_t wReverbType,uint16_t wDelay)
 { return 0; }
 
-int16 SfxOpenFxBank(int16 *pwFirstId)
+int16_t SfxOpenFxBank(int16_t *pwFirstId)
 { return 0; }
 
-void SfxEffectPitch(int16 wPlayId,uint16 wPitch)
+void SfxEffectPitch(int16_t wPlayId,uint16_t wPitch)
 {}
 
-void SfxSetCdVolume(uint8 bVolume)
+void SfxSetCdVolume(uint8_t bVolume)
 {}
 
-uint16 SfxSetMaxEffects(uint16 wNum)
+uint16_t SfxSetMaxEffects(uint16_t wNum)
 { return 0; }
 
-void SfxSetReverbDepth(uint8 bDepth)
+void SfxSetReverbDepth(uint8_t bDepth)
 {}
 
 void SfxOn(void)
 {}
 
-uint16 SfxInit(uint16 wCard,uint16 wMixType,uint16 wSampRate)
+uint16_t SfxInit(uint16_t wCard,uint16_t wMixType,uint16_t wSampRate)
 { return 0; }
 
-void SfxPlay(int16 wSampleId,uint8 bVolume,uint8 bLRPan,uint8 bFBPan,
-						 uint16 wPitch,uint8 bFlags)
+void SfxPlay(int16_t wSampleId,uint8_t bVolume,uint8_t bLRPan,uint8_t bFBPan,
+						 uint16_t wPitch,uint8_t bFlags)
 {}
 
-int16 SfxPlayID(int16 wSampleId,uint8 bVolume,uint8 bLRPan,uint8 bFBPan,
-						 uint16 wPitch,uint8 bFlags)
+int16_t SfxPlayID(int16_t wSampleId,uint8_t bVolume,uint8_t bLRPan,uint8_t bFBPan,
+						 uint16_t wPitch,uint8_t bFlags)
 { return 0; }
 
-void SfxStop(int16 wPlayId)
+void SfxStop(int16_t wPlayId)
 {}
 
 void KillAllFx(void)
 {}
 
-void SfxUnInit(uint8 bFlag)
+void SfxUnInit(uint8_t bFlag)
 {}

@@ -19,31 +19,31 @@
 #include "sparks2.h"
 #include "global.h"
 
-int				copyright_Psygnosis_1995 = 1;
+int32_t				copyright_Psygnosis_1995 = 1;
 
 NegconBuff 		neg1, neg2;
-int				ownShip;
-int				serialShip;
+int32_t				ownShip;
+int32_t				serialShip;
 char				gameType;
-int 				textStart;
-int				textPrim;
-short				DRTEXT_16;	 
-short				DRTEXT_12;	 
-short				DRTEXT_8;	 
-short				DRTEXT_RED;	 
+int32_t 				textStart;
+int32_t				textPrim;
+int16_t				DRTEXT_16;
+int16_t				DRTEXT_12;
+int16_t				DRTEXT_8;
+int16_t				DRTEXT_RED;
 // POLY_FT4 		display_text[600] ;
 SPRT		 		display_text[600] ;
 void 				(*CameraUpdate)(TrackCamera *, ShipData*, RescueData*);
 TrackCamera    *cameraPtr;
-int				NoOfMainSections;
+int32_t				NoOfMainSections;
 DR_MODE			shieldParams[64 * 3][2];
 DR_MODE			dmode;	// PCwipeout
 CdlLOC			loc[20];
-int				ntoc;
-int				actualCdTrack;
+int32_t				ntoc;
+int32_t				actualCdTrack;
 
-ushort			pad;
-ushort         opad, xpad;
+uint16_t			pad;
+uint16_t         opad, xpad;
 PadInfo			pCon;
 NegInfo			nCon;
 char          negSelect = 0;
@@ -52,60 +52,60 @@ char          negQuit = 0 ;
 
 
 /*** Sound Variables required for libSpu ***/
-long  	   	soundHead[ SoundHeapSize ];
+int32_t  	   	soundHead[ SoundHeapSize ];
 SpuCommonAttr 	c_attr;
 SpuReverbAttr 	r_attr;
 
 ChanTable		chanTable[24];
 VagTable			vagTable[42];
-short				sampleLevel;
+int16_t				sampleLevel;
 
 char				trackPath[64];
 Object*			startBoom[4];
-short 			startBoomCount = 0;
-int            crossedLine;
-int            crossedLineSerial;
+int16_t 			startBoomCount = 0;
+int32_t            crossedLine;
+int32_t            crossedLineSerial;
 
 TrackData*     track;
-int				trackNo;
-int 				raceType;
+int32_t				trackNo;
+int32_t 				raceType;
 char				NumTracks = 6 ;
 char				totalTracks = 13;
-int				tempLapTimes[5];
-int				serialLapTimes[5];
-int				attractDelay;
-int				slowCraft = 0;
+int32_t				tempLapTimes[5];
+int32_t				serialLapTimes[5];
+int32_t				attractDelay;
+int32_t				slowCraft = 0;
 
-long 				primCount;
-short				numTex;
+int32_t 				primCount;
+int16_t				numTex;
 DynamicHeap*   heap;
 
 Texture*       TextureTable[ TextureTableMax ];
-short          TextureTableCount = 0;
+int16_t          TextureTableCount = 0;
 
 P_TAG*         OT[ 2 ];
 
 P_TAG          ot0[ OT_SIZE ];	//PCWipeout
 P_TAG          ot1[ OT_SIZE ];	//PCWipeout
 
-short          edDebug;
+int16_t          edDebug;
 
 char           errorString[ 256 ];
 
 
-short		      textureX;
-short		      textureY;
+int16_t		      textureX;
+int16_t		      textureY;
 
-short		      clutX;
-short		      clutY;
+int16_t		      clutX;
+int16_t		      clutY;
 
 
 char*          sharedPrims[ MaxUnique ][ MaxObjects ];
-short          sharedPrimCount[ MaxUnique ];
+int16_t          sharedPrimCount[ MaxUnique ];
 
-long           spareMax = 0;
+int32_t           spareMax = 0;
 
-short          showFaceFlags = 0;
+int16_t          showFaceFlags = 0;
 
 
 
@@ -113,15 +113,15 @@ Object         **objectTable;
 
 
 
-long           MeshRam0[ MeshRamSize ];
-long           MeshRam1[ MeshRamSize ];
-long*          MeshPtr;
+int32_t           MeshRam0[ MeshRamSize ];
+int32_t           MeshRam1[ MeshRamSize ];
+int32_t*          MeshPtr;
 
 
-long           buffer1[ 32 ];
+int32_t           buffer1[ 32 ];
 Line3D         line3d[ Max3DLines ];
 LineSkel       lineSkel[ Max3DLineSkels ];
-long           buffer2[ 32 ];
+int32_t           buffer2[ 32 ];
 
 
 PolyFT4        *prConfirm;
@@ -135,36 +135,36 @@ uchar*         PrimitiveBuffer[ 2 ];
 StdPoly        prims;
 
 
-long           SlowMem[ SlowMemSize ];
+int32_t           SlowMem[ SlowMemSize ];
 /* spline stuff */
 Object             *camSpline[ 20 ];
 Object             *shipSpline[ 20 ];
-short          finishedExtro;
-short          extroLevel;
+int16_t          finishedExtro;
+int16_t          extroLevel;
 
-unsigned int	this_frame = 0, last_frame = 0;
-long			frameRate30 = 30;
-long			DrawnShieldBefore;
+uint32_t	this_frame = 0, last_frame = 0;
+int32_t			frameRate30 = 30;
+int32_t			DrawnShieldBefore;
 
-long			FR30;
-long			FR60;
-long			FR50;
-long			FR6;
-long			FR10;
-long			FR40;
-long			FR50U;
-long			FR15U;
-long			FR30U;
-long			FR7U;
-long			FR32U;
-long			TextureTrack = 1;
-long			SkyTrackFlags = 3;
+int32_t			FR30;
+int32_t			FR60;
+int32_t			FR50;
+int32_t			FR6;
+int32_t			FR10;
+int32_t			FR40;
+int32_t			FR50U;
+int32_t			FR15U;
+int32_t			FR30U;
+int32_t			FR7U;
+int32_t			FR32U;
+int32_t			TextureTrack = 1;
+int32_t			SkyTrackFlags = 3;
 
-unsigned short	JoyXVal;
-unsigned short	JoyYVal;
+uint16_t	JoyXVal;
+uint16_t	JoyYVal;
 
 char			JoyButtons;
-int				WinPitch;
-short			WinWidth;
-short			WinHeight;
-short			WinHeightX2;
+int32_t				WinPitch;
+int16_t			WinWidth;
+int16_t			WinHeight;
+int16_t			WinHeightX2;

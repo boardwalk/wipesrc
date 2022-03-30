@@ -1,1 +1,1 @@
-unsigned long *make_data_cache(void);
+uint32_t *make_data_cache(void);

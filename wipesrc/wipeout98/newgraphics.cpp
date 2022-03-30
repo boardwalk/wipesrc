@@ -34,7 +34,7 @@ LPDIRECT3DTEXTURE2	CurrentTexture[2];
 D3DTLVERTEX vert[3];
 D3DCOLOR CurrentColor;
 BOOL TwoTextures = FALSE;
-int TextureStages = 0;
+int32_t TextureStages = 0;
 #define TEXTURES_AVAILABLE 200
 //-----------------------------------------------------------------------------
 // Name: EnumZBufferCallback()
@@ -69,7 +69,7 @@ HRESULT Initialize3DEnvironment( HWND hWnd, GUID* pDriverGUID,
 	g_hWnd = hWnd;
 	// Create the IDirectDraw interface. The first parameter is the GUID,
 	// which is allowed to be NULL. If there are more than one DirectDraw
-	// drivers on the system, a NULL guid requests the primary driver. For 
+	// drivers on the system, a NULL guid requests the primary driver. For
 	// non-GDI hardware cards like the 3DFX and PowerVR, the guid would need
 	// to be explicity specified . (Note: these guids are normally obtained
 	// from enumeration, which is convered in a subsequent tutorial.)
@@ -101,12 +101,12 @@ HRESULT Initialize3DEnvironment( HWND hWnd, GUID* pDriverGUID,
 		// Store the rectangle which contains the renderer
 		SetRect( &g_rcViewportRect, 0, 0, 640, 480 );
 		memcpy( &g_rcScreenRect, &g_rcViewportRect, sizeof(RECT) );
-	
+
 		// Set the display mode to the requested dimensions. Check for
 		// 320x200x8 modes, and set flag to avoid using ModeX
 		DWORD dwModeFlags = 0;
 #if 0
-		if( (320==m_dwRenderWidth) && (200==m_dwRenderHeight) && 
+		if( (320==m_dwRenderWidth) && (200==m_dwRenderHeight) &&
 			(8==pddsd->ddpfPixelFormat.dwRGBBitCount) )
 			dwModeFlags |= DDSDM_STANDARDVGAMODE;
 #endif
@@ -169,7 +169,7 @@ HRESULT Initialize3DEnvironment( HWND hWnd, GUID* pDriverGUID,
 		ClientToScreen( hWnd, (POINT*)&g_rcScreenRect.right );
 		ddsd.dwWidth  = g_rcScreenRect.right - g_rcScreenRect.left;
 		ddsd.dwHeight = g_rcScreenRect.bottom - g_rcScreenRect.top;
-	
+
 		// Create the backbuffer. The most likely reason for failure is running
 		// out of video memory. (A more sophisticated app should handle this.)
 		hr = g_pDD4->CreateSurface( &ddsd, &g_pddsBackBuffer, NULL );
@@ -183,7 +183,7 @@ HRESULT Initialize3DEnvironment( HWND hWnd, GUID* pDriverGUID,
 		hr = g_pDD4->CreateClipper( 0, &pcClipper, NULL );
 		if( FAILED( hr ) )
 			return hr;
-	
+
 		// Associate the clipper with our window. Note that, afterwards, the
 		// clipper is internally referenced by the primary surface, so it is safe
 		// to release our local reference to it.
@@ -207,7 +207,7 @@ HRESULT Initialize3DEnvironment( HWND hWnd, GUID* pDriverGUID,
 	//-------------------------------------------------------------------------
 
 	DDPIXELFORMAT ddpfZBuffer;
-	g_pD3D->EnumZBufferFormats( *pDeviceGUID, 
+	g_pD3D->EnumZBufferFormats( *pDeviceGUID,
 								EnumZBufferCallback, (VOID*)&ddpfZBuffer );
 
 	// If we found a good zbuffer format, then the dwSize field will be
@@ -231,7 +231,7 @@ HRESULT Initialize3DEnvironment( HWND hWnd, GUID* pDriverGUID,
 		ddsd.ddsCaps.dwCaps |= DDSCAPS_SYSTEMMEMORY;
 
 	// Create and attach a z-buffer. Real apps should be able to handle an
-	// error here (DDERR_OUTOFVIDEOMEMORY may be encountered). For this 
+	// error here (DDERR_OUTOFVIDEOMEMORY may be encountered). For this
 	// tutorial, though, we are simply going to exit ungracefully.
 	if( FAILED( hr = g_pDD4->CreateSurface( &ddsd, &g_pddsZBuffer, NULL ) ) )
 		return hr;
@@ -243,12 +243,12 @@ HRESULT Initialize3DEnvironment( HWND hWnd, GUID* pDriverGUID,
 	//-------------------------------------------------------------------------
 	// End of z-buffer creation code.
 	//
-	// Before rendering, don't forget to enable the z-buffer with the 
+	// Before rendering, don't forget to enable the z-buffer with the
 	// appropiate D3DRENDERSTATE's.
 	//-------------------------------------------------------------------------
 
 	// Before creating the device, check that we are NOT in a palettized
-	// display. That case will cause CreateDevice() to fail, since this simple 
+	// display. That case will cause CreateDevice() to fail, since this simple
 	// tutorial does not bother with palettes.
 	ddsd.dwSize = sizeof(DDSURFACEDESC2);
 	g_pDD4->GetDisplayMode( &ddsd );
@@ -314,7 +314,7 @@ HRESULT Initialize3DEnvironment( HWND hWnd, GUID* pDriverGUID,
 
 	g_pd3dDevice->SetRenderState( D3DRENDERSTATE_ZENABLE, FALSE );
 	g_pd3dDevice->SetRenderState( D3DRENDERSTATE_ALPHAFUNC, D3DCMP_GREATER );
-	g_pd3dDevice->SetRenderState(D3DRENDERSTATE_SRCBLEND, D3DBLEND_SRCALPHA); 
+	g_pd3dDevice->SetRenderState(D3DRENDERSTATE_SRCBLEND, D3DBLEND_SRCALPHA);
 	g_pd3dDevice->SetRenderState(D3DRENDERSTATE_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	g_pd3dDevice->SetRenderState( D3DRENDERSTATE_CULLMODE, D3DCULL_NONE );
 	g_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTFN_LINEAR);
@@ -343,7 +343,7 @@ HRESULT Initialize3DEnvironment( HWND hWnd, GUID* pDriverGUID,
 HRESULT Cleanup3DEnvironment()
 {
 	// Release the DDraw and D3D objects used by the app
-	if( g_pvViewport )	   
+	if( g_pvViewport )
 		g_pvViewport->Release();
 
 	// Do a safe check for releasing the D3DDEVICE. RefCount should be zero.
@@ -351,12 +351,12 @@ HRESULT Cleanup3DEnvironment()
 		if( 0 < g_pd3dDevice->Release() )
 			return E_FAIL;
 
-	if( g_pddsZBuffer )    
+	if( g_pddsZBuffer )
 		g_pddsZBuffer->Release();
 	if(!g_bAppUseFullScreen)
-		if( g_pddsBackBuffer ) 
+		if( g_pddsBackBuffer )
 			g_pddsBackBuffer->Release();
-	if( g_pddsPrimary )    
+	if( g_pddsPrimary )
 		g_pddsPrimary->Release();
 	if( g_pD3D )
 		g_pD3D->Release();
@@ -366,7 +366,7 @@ HRESULT Cleanup3DEnvironment()
 		g_pDD4->Release();
 	}
 
- 
+
 	// Do a safe check for releasing DDRAW. RefCount should be zero.
 	if( g_pDD1 )
 		if( 0 < g_pDD1->Release() )
@@ -398,7 +398,7 @@ BOOL renderInitialise(HWND hWnd, BOOL b_fullScreen, BOOL Voodoo, BOOL softwareOn
 {
 	GUID myGuid;
 	GUID *pGuid=NULL;
-	
+
 	g_bSoftwareOnly = softwareOnly;
 	g_bAppUseFullScreen = b_fullScreen;
 
@@ -413,7 +413,7 @@ BOOL renderInitialise(HWND hWnd, BOOL b_fullScreen, BOOL Voodoo, BOOL softwareOn
 	// Cleanup any objects that might've been created before
 	if( FAILED( Cleanup3DEnvironment() ) )
 		return E_FAIL;
-				
+
 	if(!softwareOnly)
 	{
 		// Create the D3D environment, at first, trying the HAL
@@ -426,7 +426,7 @@ BOOL renderInitialise(HWND hWnd, BOOL b_fullScreen, BOOL Voodoo, BOOL softwareOn
 	}
 	if( SUCCEEDED( Initialize3DEnvironment( hWnd, NULL, &IID_IDirect3DRGBDevice ) ) )
 		return S_OK;
-	
+
 	// Else, return failure
 	return E_FAIL;
 }
@@ -436,6 +436,6 @@ void renderFlipSurface(void)
 	if(g_bAppUseFullScreen)
 		g_pddsPrimary->Flip( NULL,	DDFLIP_WAIT  | DDFLIP_NOVSYNC );
 	else
-		g_pddsPrimary->Blt( &g_rcScreenRect, g_pddsBackBuffer, 
+		g_pddsPrimary->Blt( &g_rcScreenRect, g_pddsBackBuffer,
 							   &g_rcViewportRect, DDBLT_WAIT, NULL );
 }

@@ -27,15 +27,15 @@
 #include "global.h"
 #include "ajs.h"
 
-extern short starttrack, endtrack;
+extern int16_t starttrack, endtrack;
 
-char *GetCdTrackName(int no)
+char *GetCdTrackName(int32_t no)
 {
 	static char *fulltrack[] = {
 		"RANDOM",
-		"CAIRODROME", 
+		"CAIRODROME",
 		"CARDINAL DANCER",
-		"COLD COMFORT", 
+		"COLD COMFORT",
 		"DOH T",
 		"MESSIJ",
 		"OPERATIQUE",
@@ -45,7 +45,7 @@ char *GetCdTrackName(int no)
 
 	static char *sometrack[] = {
 		"RANDOM",
-		"COLD COMFORT", 
+		"COLD COMFORT",
 		"DOH T",
 		"MESSIJ",
 		"TENTATIVE",
@@ -61,11 +61,11 @@ char *GetCdTrackName(int no)
 }
 
 
-void InGameReset (int choice, ulong *toggle, char machinePaused, ConfigData *gameData, int *cdPause)
+void InGameReset (int32_t choice, uint32_t *toggle, char machinePaused, ConfigData *gameData, int32_t *cdPause)
 {
-	int 		   	i;
+	int32_t 		   	i;
 	char			ingameMenu[4][9] ;
-	short			yPos = 122, xPos[4] ;
+	int16_t			yPos = 122, xPos[4] ;
 	char			gap = 16 ;
 
 	//if ((*toggle % 30)	<= 20)
@@ -81,7 +81,7 @@ void InGameReset (int choice, ulong *toggle, char machinePaused, ConfigData *gam
 		strcpy (ingameMenu[2], "QUIT") ;
 		strcpy (ingameMenu[3], "CD TRACK") ;
 		xPos[0] = 120 ;
-		xPos[1] = 128 ;	  
+		xPos[1] = 128 ;
 		xPos[2] = 140 ;
 		xPos[3] = 140 ;
 
@@ -101,7 +101,7 @@ void InGameReset (int choice, ulong *toggle, char machinePaused, ConfigData *gam
 			}
 
 		}
-		
+
 		CentreText (GetCdTrackName(gameData->cdTrack-1), text_data(0, yPos+(gap*4), 8), RedText) ;
 
 	}
@@ -111,21 +111,21 @@ void InGameReset (int choice, ulong *toggle, char machinePaused, ConfigData *gam
 }
 
 
-void	InGameConfirm (char *confirm, int choice, short xpad, char *lConfirm, ulong *toggle)  
+void	InGameConfirm (char *confirm, int32_t choice, int16_t xpad, char *lConfirm, uint32_t *toggle)
 {
 
 	if (choice == 1)
 	{
-		CentreText ("ARE YOU SURE YOU", text_data (77, 95, 8), WhiteText) ; 
-		CentreText ("WANT TO RESTART", text_data (90, 105, 8), WhiteText) ; 
+		CentreText ("ARE YOU SURE YOU", text_data (77, 95, 8), WhiteText) ;
+		CentreText ("WANT TO RESTART", text_data (90, 105, 8), WhiteText) ;
 	}
 	else
 	{
-		CentreText ("ARE YOU SURE YOU", text_data (77, 95, 8), WhiteText) ; 
-		CentreText ("WANT TO QUIT", text_data (105, 105, 8), WhiteText) ; 
+		CentreText ("ARE YOU SURE YOU", text_data (77, 95, 8), WhiteText) ;
+		CentreText ("WANT TO QUIT", text_data (105, 105, 8), WhiteText) ;
 	}
 
-#if 0	
+#if 0
 	if ((GetMenuKey(M_LEFT)) || (GetMenuKey(M_RIGHT)))
 	{
 		*lConfirm ^= 1 ;
@@ -136,21 +136,21 @@ void	InGameConfirm (char *confirm, int choice, short xpad, char *lConfirm, ulong
 	if (*lConfirm)
 	{
 		//if ((*toggle % 2) == 0)
-			AddText ("YES", text_data (75, 120, 16), RedText) ; 
+			AddText ("YES", text_data (75, 120, 16), RedText) ;
 		//else
 			//AddText ("YES", text_data (75, 120, 16), WhiteText) ;
-		AddText ("NO", text_data (205, 120, 16), WhiteText) ; 
+		AddText ("NO", text_data (205, 120, 16), WhiteText) ;
 	}
 	else
 	{
-		AddText ("YES", text_data (75, 120, 16), WhiteText) ; 
+		AddText ("YES", text_data (75, 120, 16), WhiteText) ;
 		//if ((*toggle % 2) == 0)
-			AddText ("NO", text_data (205, 120, 16), RedText) ; 
+			AddText ("NO", text_data (205, 120, 16), RedText) ;
 		//else
 			//AddText ("NO", text_data (205, 120, 16), WhiteText) ;
-	}	
+	}
 
- 
+
 #if 0
 	if ((GetMenuKey(M_SELECT)) || (GetMenuKey(M_START)))
 		*confirm = *lConfirm ;
@@ -165,7 +165,7 @@ void	InGameConfirm (char *confirm, int choice, short xpad, char *lConfirm, ulong
 void DeSelectScreen (POLY_F4* selectBox, DR_MODE* selectTrans)
 {
 
-	SetPolyF4(&(selectBox[CurrentScreen]));			
+	SetPolyF4(&(selectBox[CurrentScreen]));
 	selectBox[CurrentScreen].r0=230;
 	selectBox[CurrentScreen].g0=0;
 	selectBox[CurrentScreen].b0=BLACK2_TRANSL;
@@ -175,7 +175,7 @@ void DeSelectScreen (POLY_F4* selectBox, DR_MODE* selectTrans)
 								  320 , 0,
 								  0 , 256,
 								  320 , 256);
-#else	
+#else
 	setXY4(&(selectBox[CurrentScreen]),0 , 0,
 								  320 , 0,
 								  0 , 240,
@@ -188,7 +188,7 @@ void DeSelectScreen (POLY_F4* selectBox, DR_MODE* selectTrans)
 	SetDrawMode(&(selectTrans[CurrentScreen]), 1, 1, FONT_TPAGE, 0);
 
 
-  	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(selectBox[CurrentScreen]) );
-  	AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(selectTrans[CurrentScreen]) );
+  	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(selectBox[CurrentScreen]) );
+  	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(selectTrans[CurrentScreen]) );
 
 }

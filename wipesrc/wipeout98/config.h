@@ -1,2 +1,2 @@
-void	SetKey(unsigned long int button, unsigned short int code);
-unsigned short int	GetKeyNoBlock(void);
+void	SetKey(uint32_t button, uint16_t code);
+uint16_t	GetKeyNoBlock(void);

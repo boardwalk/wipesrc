@@ -32,7 +32,7 @@
 **
 ** return: error code (0 if no error)
 */
-int	PCinit (void);
+int32_t	PCinit (void);
 
 /*
 ** open a file on PC host
@@ -41,7 +41,7 @@ int	PCinit (void);
 **
 ** return:	file-handle or -1 if error
 */
-int	PCopen (char *name, int flags, int perms);
+int32_t	PCopen (char *name, int32_t flags, int32_t perms);
 
 /*
 ** seek file pointer to new position in file
@@ -52,7 +52,7 @@ int	PCopen (char *name, int flags, int perms);
 **
 ** (mode 0 = rel to start, mode 1 = rel to current fp, mode 2 = rel to end)
 */
-int	PClseek (int fd, int offset, int mode);
+int32_t	PClseek (int32_t fd, int32_t offset, int32_t mode);
 
 /*
 ** read bytes from file on PC
@@ -63,7 +63,7 @@ int	PClseek (int fd, int offset, int mode);
 **
 ** note: unlike assembler function this provides for full 32 bit count
 */
-int	PCread (int fd, char *buff, int len);
+int32_t	PCread (int32_t fd, char *buff, int32_t len);
 
 /*
 ** write bytes to file on PC
@@ -74,7 +74,7 @@ int	PCread (int fd, char *buff, int len);
 **
 ** note: unlike assembler function this provides for full 32 bit count
 */
-int	PCwrite (int fd, char *buff, int len);
+int32_t	PCwrite (int32_t fd, char *buff, int32_t len);
 
 /*
 ** close an open file on PC
@@ -84,4 +84,4 @@ int	PCwrite (int fd, char *buff, int len);
 ** return: negative if error
 **
 */
-int	PCclose (int fd);
+int32_t	PCclose (int32_t fd);

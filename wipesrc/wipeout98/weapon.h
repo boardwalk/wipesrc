@@ -69,19 +69,19 @@
 typedef struct WeaponShape
 {
 	Object* 			shapePtr;
-	short				used;
+	int16_t				used;
 } WeaponShape;
 
 typedef struct WeaponData
 {
-	short 			count;
-	short				currentWeapon;
+	int16_t 			count;
+	int16_t				currentWeapon;
 	TrackSection 	*nearTrkSect;
 	VECTOR 			acc;
 	VECTOR 			vel;
 	VECTOR 			pos;
-	short				hdg, pitch;
-	signed char		targetShip;
+	int16_t				hdg, pitch;
+	int8_t		targetShip;
 	char 				fireShip;
 	char				type;
 	char				availible;
@@ -91,15 +91,15 @@ typedef struct WeaponData
 typedef struct WeaponGrid
 {
 	TrackSection 	*section;
-	short 			attr;
-	short 			cycleCount;
-	int				count;
+	int16_t 			attr;
+	int16_t 			cycleCount;
+	int32_t				count;
 	CVECTOR			colour;
 } WeaponGrid;
 
 void UpdateWeapons	(ShipData *shipIndex,WeaponShape* weaponShapes, WeaponData *weaponIndex );
-void LaunchWeapon		(ShipData *shipIndex, WeaponData *weaponIndex, int shipNo);
-void FireWeapon		(ShipData*, WeaponData*, int, char);
+void LaunchWeapon		(ShipData *shipIndex, WeaponData *weaponIndex, int32_t shipNo);
+void FireWeapon		(ShipData*, WeaponData*, int32_t, char);
 void MissileLock		(ShipData *playerShip, ShipData *shipIndex, Object** shipShapes, POLY_FT4*);
 void initWeapons		(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData *weaponIndex, POLY_FT4* );
 
@@ -117,12 +117,12 @@ void InitRevCon		(ShipData *playerShip, WeaponShape*, WeaponData*, WeaponData*);
 void UpdateRevCon		(ShipData *playerShip, WeaponShape*, WeaponData*, WeaponData*);
 void InitSpecial		(ShipData *playerShip, WeaponShape*, WeaponData*, WeaponData*);
 
-void TransformTransparentObject( Object* object, Skeleton* camera, int shieldID);
+void TransformTransparentObject( Object* object, Skeleton* camera, int32_t shieldID);
 void Weapon2Mine(WeaponData *weapon, WeaponData *weaponIndex, WeaponShape *weaponShapes);
 void GetFireVector(VECTOR *result, VECTOR target, Face *facePtr, VECTOR shipPos);
-void CycleWeaponGrids(ShipData *shipIndex, WeaponGrid *weaponGrid, int noWeaponGrids);
+void CycleWeaponGrids(ShipData *shipIndex, WeaponGrid *weaponGrid, int32_t noWeaponGrids);
 void DrawWeapons(ShipData *shipIndex,WeaponShape* weaponShapes, WeaponData *weaponIndex );
 void DrawTargetIcon(ShipData *playerShip, ShipData *shipIndex, Object** shipShapes, POLY_FT4 *target);
-void SetTargetShip(ShipData *shipIndex, int shipNo);
-int GetNewWeapon(void);
-int GetNewWeaponBodge(void);
+void SetTargetShip(ShipData *shipIndex, int32_t shipNo);
+int32_t GetNewWeapon(void);
+int32_t GetNewWeaponBodge(void);

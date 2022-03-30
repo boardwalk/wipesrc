@@ -25,8 +25,8 @@
 
 void IntelPrim( Prm prm )
 {
-   IntelShort( ( short* )&prm.f3->type );
-   IntelShort( ( short* )&prm.f3->flag );
+   IntelShort( ( int16_t* )&prm.f3->type );
+   IntelShort( ( int16_t* )&prm.f3->flag );
 
    switch ( prm.f3->type )
    {
@@ -237,7 +237,7 @@ void IntelPrim( Prm prm )
 
 
 
-void IntelLong( long* lvalue )
+void IntelLong( int32_t* lvalue )
 {
 	char*	cvalue;
 	char	temp;
@@ -256,7 +256,7 @@ void IntelLong( long* lvalue )
 
 
 
-void IntelShort( short* svalue )
+void IntelShort( int16_t* svalue )
 {
 	char*	cvalue;
 	char	temp;
@@ -273,7 +273,7 @@ void IntelShort( short* svalue )
 
 
 
-Object* LoadPrm( char* name, short textureStart )
+Object* LoadPrm( char* name, int16_t textureStart )
 {
    Object*     object;
    Object*     lastObject;
@@ -281,15 +281,15 @@ Object* LoadPrm( char* name, short textureStart )
 
    Prm         prm;
 
-   long        length;
+   int32_t        length;
 
-   short       i, j;
+   int16_t       i, j;
 
    char*       start;
    char*       finish;
 
-   short       uOffset;
-   short       vOffset;
+   int16_t       uOffset;
+   int16_t       vOffset;
 
    Texture*    texture;
 

@@ -23,25 +23,25 @@
 
 typedef struct
 {
-	short			type;
-	short			tsb;
-	short			cba;
-	short			clutX;
-	short			clutY;
-	short			clutW;
-	short			clutH;
-	short			textureX;
-	short			textureY;
-	short			textureW;
-	short			textureH;
-	short			u0;
-	short			v0;
-	short			u1;
-	short			v1;
-	short			u2;
-	short			v2;
-	short			u3;
-	short			v3;
+	int16_t			type;
+	int16_t			tsb;
+	int16_t			cba;
+	int16_t			clutX;
+	int16_t			clutY;
+	int16_t			clutW;
+	int16_t			clutH;
+	int16_t			textureX;
+	int16_t			textureY;
+	int16_t			textureW;
+	int16_t			textureH;
+	int16_t			u0;
+	int16_t			v0;
+	int16_t			u1;
+	int16_t			v1;
+	int16_t			u2;
+	int16_t			v2;
+	int16_t			u3;
+	int16_t			v3;
 } Texture;
 
 
@@ -49,11 +49,11 @@ typedef struct Tim
 {
 /* Header */
 
-   long     id;
-   
+   int32_t     id;
+
 /* Flags */
 
-   long     flags;
+   int32_t     flags;
 
 } Tim;
 
@@ -61,31 +61,31 @@ typedef struct TimClut8
 {
 /* Header */
 
-   long     id;
-   
+   int32_t     id;
+
 /* Flags */
 
-   long     flags;
+   int32_t     flags;
 
 /* Clut */
 
-   long     clutBytes;
+   int32_t     clutBytes;
 
-   short    clutX;
-   short    clutY;
-   short    clutW;
-   short    clutH;
+   int16_t    clutX;
+   int16_t    clutY;
+   int16_t    clutW;
+   int16_t    clutH;
 
-   short    clut[ 256 ];
+   int16_t    clut[ 256 ];
 
 /* Tetxure */
-   
-   long     textureBytes;
 
-   short    textureX;
-   short    textureY;
-   short    textureW;
-   short    textureH;
+   int32_t     textureBytes;
+
+   int16_t    textureX;
+   int16_t    textureY;
+   int16_t    textureW;
+   int16_t    textureH;
 
 } TimClut8;
 
@@ -93,31 +93,31 @@ typedef struct TimClut4
 {
 /* Header */
 
-   long     id;
-   
+   int32_t     id;
+
 /* Flags */
 
-   long     flags;
+   int32_t     flags;
 
 /* Clut */
 
-   long     clutBytes;
+   int32_t     clutBytes;
 
-   short    clutX;
-   short    clutY;
-   short    clutW;
-   short    clutH;
+   int16_t    clutX;
+   int16_t    clutY;
+   int16_t    clutW;
+   int16_t    clutH;
 
-   short    clut[ 16 ];
+   int16_t    clut[ 16 ];
 
 /* Tetxure */
-   
-   long     textureBytes;
 
-   short    textureX;
-   short    textureY;
-   short    textureW;
-   short    textureH;
+   int32_t     textureBytes;
+
+   int16_t    textureX;
+   int16_t    textureY;
+   int16_t    textureW;
+   int16_t    textureH;
 
 } TimClut4;
 
@@ -143,4 +143,4 @@ typedef struct TimClut4
 
 /* Forward Procedure Declarations */
 
-Texture* LoadTexture( char* name, short translucent );
+Texture* LoadTexture( char* name, int16_t translucent );

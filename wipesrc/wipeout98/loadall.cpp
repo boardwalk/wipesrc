@@ -36,12 +36,12 @@ extern	void  GSwap(void);
 // char	*Path = "alltext\\";		//AJY for relative paths
 
 typedef struct {
-	int	width;
-	int	height;
-	int	vram_xpos;
-	int	vram_ypos;
-	unsigned char	*bitmap;
-	unsigned char	*palette;
+	int32_t	width;
+	int32_t	height;
+	int32_t	vram_xpos;
+	int32_t	vram_ypos;
+	uint8_t	*bitmap;
+	uint8_t	*palette;
 } bm;
 
 
@@ -54,12 +54,12 @@ void ReadPCX(char *fname, bm *BMptr,char Flg)
 {
 
 	FILE		*fp;
-	int 		xsize=0,	ysize=0,	vram_xpos=0, vram_ypos=0, Isize=0;
-	unsigned char		*ptr, *ptr2;
-	unsigned char		PCX_byte, RLE_byte;	// pcx code
-	unsigned long 	z=0;
-	unsigned char		aflag;
-	int fLength;
+	int32_t 		xsize=0,	ysize=0,	vram_xpos=0, vram_ypos=0, Isize=0;
+	uint8_t		*ptr, *ptr2;
+	uint8_t		PCX_byte, RLE_byte;	// pcx code
+	uint32_t 	z=0;
+	uint8_t		aflag;
+	int32_t fLength;
 	if ((Flg&DEBUG)!=0) fprintf(stderr,"Attempting To Open File - %s\n",fname);
 
 	fLength = FileLength(fname)-(769+128);
@@ -141,14 +141,14 @@ void ReadPCX(char *fname, bm *BMptr,char Flg)
 
 		if ((Flg&ALLOCATE_MEM)!=0)
 		{
-			BMptr->bitmap=(unsigned char *)malloc(BMptr->width*BMptr->height);
+			BMptr->bitmap=(uint8_t *)malloc(BMptr->width*BMptr->height);
 			if (BMptr->bitmap==NULL)
 			{
 				fprintf(stderr,"ERR: can't allocate memory for bitmap");
 				return;
 			}
 
-			BMptr->palette=(unsigned char *)malloc(768);
+			BMptr->palette=(uint8_t *)malloc(768);
 			if (BMptr->palette==NULL)
 			{
 				fprintf(stderr,"ERR: can't allocate memory for palette");
@@ -175,7 +175,7 @@ void ReadPCX(char *fname, bm *BMptr,char Flg)
 		ptr2=ptr+Isize-fLength;
 		fread(ptr2,fLength,1,fp);		// buffer read
 
-		unsigned char* bufEnd = ptr + Isize;
+		uint8_t* bufEnd = ptr + Isize;
 
 		if ((Flg&PIC)!=0)
 		{
@@ -207,7 +207,7 @@ void ReadPCX(char *fname, bm *BMptr,char Flg)
 						break;
 					}
 					RLE_byte = *ptr2++;
-					for(int i=0;i<PCX_byte;++i) {
+					for(int32_t i=0;i<PCX_byte;++i) {
 						if(ptr >= bufEnd) {
 							printf("ptr exceeded bufEnd (2)!\n");
 							z = Isize;

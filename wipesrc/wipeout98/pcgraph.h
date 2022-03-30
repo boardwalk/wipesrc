@@ -4,23 +4,23 @@
 
 typedef struct _clip
 {
-	short	tx, ty;
-	short	bx, by;
-	short	w, h;
+	int16_t	tx, ty;
+	int16_t	bx, by;
+	int16_t	w, h;
 } CLIP;
 
 
 extern unsigned actStart, visStart;
-extern int	curvidmode;
+extern int32_t	curvidmode;
 extern CLIP vidclip;
 extern CLIP curclip;
 
 
-extern unsigned long	_SCAddress;
-extern unsigned long	_SCSize;
+extern uint32_t	_SCAddress;
+extern uint32_t	_SCSize;
 
-extern int	count;
+extern int32_t	count;
 extern char			*j_buff;
-extern int	Gcount;
+extern int32_t	Gcount;
 
 //extern CGL_RECT_ST  stScreenRect;                // screen box, used by cglClearBuffer

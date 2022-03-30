@@ -12,47 +12,47 @@
 #include "winh.h"
 #include "win.h"
 
-extern short game_stat;
+extern int16_t game_stat;
 extern char Sky;
 
 #define	INTERACTIVE			0
 #define	ATTRACT				1
 
-int curvidmode = 0xff;				/*don't care what mode we're coming from*/
+int32_t curvidmode = 0xff;				/*don't care what mode we're coming from*/
 CLIP vidclip;
 CLIP curclip;
 CLIP curclipS;	// jed
-short	width, height, widthBytes;
+int16_t	width, height, widthBytes;
 unsigned actStart, visStart;
-short 	olddispy;
+int16_t 	olddispy;
 
 char	*j_buff;
 
-unsigned long	_SCAddress;
-unsigned long	_SCSize;
+uint32_t	_SCAddress;
+uint32_t	_SCSize;
 
 extern	char	halfx;	// Jed
 extern	char	halfy;	// etc.
 extern	float	halfxf;
 extern	float	halfyf;
 
-extern	int		inattract;	 		//jed
-extern	int		mode;				//jed
+extern	int32_t		inattract;	 		//jed
+extern	int32_t		mode;				//jed
 extern	char	inmenu;				//jed
 extern	char	Reallyinmenu; 		// DLS
 extern	char	*background_buffer;
 extern	char 	*CurBuffer;
 
-extern int	WinPitch;
-extern short	WinWidth;
-extern short	WinHeight;
-extern int	WinHeightX2;
+extern int32_t	WinPitch;
+extern int16_t	WinWidth;
+extern int16_t	WinHeight;
+extern int32_t	WinHeightX2;
 
 
 
 DISPENV *PutDispEnv(DISPENV *env)
 {
-	extern short BG_Colour;
+	extern int16_t BG_Colour;
 
 
 	curvidmode = env->disp.w;

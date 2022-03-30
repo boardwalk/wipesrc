@@ -74,7 +74,7 @@ Skeleton* NewSkeleton( )
 }
 
 
-void SetSkeletonPosition( Skeleton* skeleton, long x, long y, long z  )
+void SetSkeletonPosition( Skeleton* skeleton, int32_t x, int32_t y, int32_t z  )
 {
    skeleton->relative.t[ 0 ] = x;
    skeleton->relative.t[ 1 ] = y;
@@ -86,10 +86,10 @@ void SetSkeletonPosition( Skeleton* skeleton, long x, long y, long z  )
 }
 
 
-void SetSkeletonDirection( Skeleton* skeleton, short xa, short ya, short za  )
+void SetSkeletonDirection( Skeleton* skeleton, int16_t xa, int16_t ya, int16_t za  )
 {
-   short    sx, sy, sz;
-   short    cx, cy, cz;
+   int16_t    sx, sy, sz;
+   int16_t    cx, cy, cz;
 
    sx = rsin( xa );
    sy = rsin( ya );
@@ -98,24 +98,24 @@ void SetSkeletonDirection( Skeleton* skeleton, short xa, short ya, short za  )
    cx = rcos( xa );
    cy = rcos( ya );
    cz = rcos( za );
-   
+
 /* Top Row */
 
-   skeleton->relative.m[0][0] = (cy * cz) >> 12;      
-   skeleton->relative.m[0][1] = (-cy * sz) >> 12;      
+   skeleton->relative.m[0][0] = (cy * cz) >> 12;
+   skeleton->relative.m[0][1] = (-cy * sz) >> 12;
    skeleton->relative.m[0][2] = -sy;
-   
+
 /* Middle Row */
 
-   skeleton->relative.m[1][0] = ((cx * sz) >> 12) - ((((sx * sy) >> 12) * cz) >> 12);      
-   skeleton->relative.m[1][1] = ((cx * cz) >> 12) + ((((sx * sy) >> 12) * sz) >> 12);      
-   skeleton->relative.m[1][2] = (-sx * cy) >> 12;      
-   
+   skeleton->relative.m[1][0] = ((cx * sz) >> 12) - ((((sx * sy) >> 12) * cz) >> 12);
+   skeleton->relative.m[1][1] = ((cx * cz) >> 12) + ((((sx * sy) >> 12) * sz) >> 12);
+   skeleton->relative.m[1][2] = (-sx * cy) >> 12;
+
 /* Bottom Row */
 
-   skeleton->relative.m[2][0] = ((sx * sz) >> 12) + ((((cx * sy) >> 12) * cz) >> 12);      
-   skeleton->relative.m[2][1] = ((sx * cz) >> 12) - ((((cx * sy) >> 12) * sz) >> 12);      
-   skeleton->relative.m[2][2] = (cx * cy) >> 12;      
+   skeleton->relative.m[2][0] = ((sx * sz) >> 12) + ((((cx * sy) >> 12) * cz) >> 12);
+   skeleton->relative.m[2][1] = ((sx * cz) >> 12) - ((((cx * sy) >> 12) * sz) >> 12);
+   skeleton->relative.m[2][2] = (cx * cy) >> 12;
 
 /* Mark skeleton for update */
 

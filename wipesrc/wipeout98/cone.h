@@ -1,6 +1,6 @@
-typedef struct 
+typedef struct
 {
-   short          coneIndex[ 3 ][ 8 ];
+   int16_t          coneIndex[ 3 ][ 8 ];
 
    SVECTOR        oldVertex[ 3 ][ 8 ];
 

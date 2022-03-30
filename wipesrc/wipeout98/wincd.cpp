@@ -10,13 +10,13 @@
 #include "wincd.h"
 
 extern HWND hwnd;
-extern int ntoc;
+extern int32_t ntoc;
 
 BOOLEAN dosound = FALSE;
-short int   		CurrTrkNo;
+int16_t int32_t   		CurrTrkNo;
 char	thieving_git=0;
-short starttrack;
-short endtrack;
+int16_t starttrack;
+int16_t endtrack;
 UINT cdDevNum;
 
 typedef struct trackinfo
@@ -40,7 +40,7 @@ void doStuff()
 {
 	UINT numDevs, i;
 	AUXCAPS caps;
-	
+
 	numDevs = auxGetNumDevs();
 	for (i = 0; i < numDevs; i++)
 	{
@@ -56,13 +56,13 @@ void *D32DosMemAlloc (DWORD size, WORD *selector)
 }
 
 
-unsigned char BinToBCD(unsigned char Bin)
+uint8_t BinToBCD(uint8_t Bin)
 {
 	return(0);
 }
 
 /************************************************************************
-*																		*	
+*																		*
 * 							CDInit										*
 *																		*
 ************************************************************************/
@@ -70,119 +70,119 @@ unsigned char BinToBCD(unsigned char Bin)
 
 void CdInit()
 {
-	
-	int fp;
+
+	int32_t fp;
 	char info[10];
 	char theChar;
-	short i;
-	int tn;
+	int16_t i;
+	int32_t tn;
 	UINT numDevs;
 	AUXCAPS caps;
 	MCI_OPEN_PARMS mci_open_parms;
-	
+
 	if (dosound)
 		return;
-	
-	
+
+
 	mci_open_parms.lpstrDeviceType = "cdaudio";
-	if (retval = mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE, 
+	if (retval = mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE,
 		(DWORD)(LPVOID) &mci_open_parms))
 	{
 		return;//broke :(
 	}
 	wDeviceID = mci_open_parms.wDeviceID;
-	
+
 	mci_set_parms.dwTimeFormat = MCI_FORMAT_TMSF;
-	if (retval = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_TIME_FORMAT, 
+	if (retval = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_TIME_FORMAT,
 		(DWORD)(LPVOID) &mci_set_parms))
 	{
-		mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);	
+		mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
 		return;//broke :(
 	}
-	
+
 	mci_status_parms.dwItem = MCI_STATUS_READY;
-	if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM, 
+	if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM,
 		(DWORD)(LPVOID) &mci_status_parms))
 	{
-		mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);	
+		mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
 		return;
 	}
 	if (mci_status_parms.dwReturn)
 		dosound = TRUE;
-	
+
 	fp = open("startup.ini", O_RDONLY);
 	if (fp >= 0)
 	{
 		read(fp, &theChar, 1);
 		i = 0;
-		
+
 		while (theChar != '\n' && theChar != '\0')
 		{
 			info[i++] = theChar;
 			read(fp, &theChar, 1);
 		}
 		info[i] = '\n';
-		
+
 		if (!strncmp(info, "NONE", 4))
 		{
 			dosound = FALSE;
 			return;
 		}
 		starttrack = atoi(info);
-		
+
 		read(fp, &theChar, 1);
 		i = 0;
-		
+
 		while (theChar != '\n' && theChar != '\0')
 		{
 			info[i++] = theChar;
 			read(fp, &theChar, 1);
 		}
 		info[i] = '\n';
-		
+
 		endtrack = atoi(info);
 		close(fp);
 	} else {
 		dosound = FALSE;
 		return;
 	}
-	
+
 	CurrTrkNo = starttrack;
-	
+
 	mci_set_parms.dwTimeFormat = MCI_FORMAT_MSF;
-	if (retval = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_TIME_FORMAT, 
+	if (retval = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_TIME_FORMAT,
 		(DWORD)(LPVOID) &mci_set_parms))
 	{
-		mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);	
+		mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
 		return;//broke :(
 	}
-	
+
 	for (tn = starttrack; tn <= endtrack; tn++)
 	{
-		
+
 		//read start points of tracks
 		mci_status_parms.dwItem = MCI_STATUS_POSITION;
 		mci_status_parms.dwTrack = tn;
 		if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM | MCI_TRACK,
 			(DWORD)(LPVOID) &mci_status_parms))
 		{
-			mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);	
+			mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
 			return;
 		}
-		
+
 		TrackDetails[tn].startmins = MCI_MSF_MINUTE(mci_status_parms.dwReturn);
 		TrackDetails[tn].startsecs = MCI_MSF_SECOND(mci_status_parms.dwReturn);
-		
+
 		//find length of track
 		mci_status_parms.dwItem = MCI_STATUS_LENGTH;
 		mci_status_parms.dwTrack = tn;
 		if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM | MCI_TRACK,
 			(DWORD)(LPVOID) &mci_status_parms))
 		{
-			mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);	
+			mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
 			return;
 		}
-		
+
 		TrackDetails[tn].endmins = MCI_MSF_MINUTE(mci_status_parms.dwReturn)
 			+ TrackDetails[tn].startmins;
 		TrackDetails[tn].endsecs = MCI_MSF_SECOND(mci_status_parms.dwReturn)
@@ -193,8 +193,8 @@ void CdInit()
 			TrackDetails[tn].endsecs -= 60;
 		}
 	}
-	
-	
+
+
 	numDevs = auxGetNumDevs();
 	for (i = 0; i < numDevs; i++)
 	{
@@ -207,38 +207,38 @@ void CdInit()
 
 void	GetCdProtectionInfo()
 {
-}	
+}
 
-void SendCDCommand(long Address, long Size, unsigned char CommandCmnd)
+void SendCDCommand(int32_t Address, int32_t Size, uint8_t CommandCmnd)
 {
-	
+
 }
 
 /************************************************************************
-*																		*	
+*																		*
 * 								GetDiskInfo								*
 *																		*
 ************************************************************************/
 
 void GetDiskInfo()
 {
-	
+
 	DiskInfo.CommandCode = '0';
 	DiskInfo.LoTrack = 1;
-	DiskInfo.HiTrack = (unsigned char)numTracks();
+	DiskInfo.HiTrack = (uint8_t)numTracks();
 	DiskInfo.LeadOut = 0;
 }
 
 
 /************************************************************************
-*																		*		
+*																		*
 * 								GetTrackInfo							*
 *																		*
 ************************************************************************/
 
 void GetTrackInfo(char Track)
 {
-	
+
 }
 
 
@@ -247,7 +247,7 @@ void GetAudioAddr(char Track)
 }
 
 /************************************************************************
-*																		*	
+*																		*
 *										 Reset							*
 *																		*
 ************************************************************************/
@@ -257,32 +257,32 @@ void Reset()
 	//mciSendString("stop cdaudio", NULL, NULL, NULL);
 }
 
-int GetCurrTrackNo()
+int32_t GetCurrTrackNo()
 {
 /*static char returnstring[80];
 LPSTR response = returnstring;
 if (dosound)
 {
 mciSendString("status cdaudio current track", response, lstrlen(response), NULL);
-CurrTrkNo = atoi(returnstring);	
-return(CurrTrkNo);  
-return CurrTrkNo; 
+CurrTrkNo = atoi(returnstring);
+return(CurrTrkNo);
+return CurrTrkNo;
 }*/
 	return 1;
 }
 
 /************************************************************************
-*																		*	
+*																		*
 * 										Red2HSG							*
 *																		*
 ************************************************************************/
 
-unsigned long Red2HSG(unsigned long RedValue)
+uint32_t Red2HSG(uint32_t RedValue)
 {
 	return 0;
 }
 
-unsigned long Red2Secs(unsigned long RedValue)
+uint32_t Red2Secs(uint32_t RedValue)
 {
 	return 0;
 }
@@ -294,11 +294,11 @@ unsigned long Red2Secs(unsigned long RedValue)
 *																		*
 ************************************************************************/
 
-unsigned char BCDToBin16(unsigned char BCD) {
+uint8_t BCDToBin16(uint8_t BCD) {
 	return (0);}
-unsigned long RedBookToSectors(unsigned char RBFrame, unsigned char RBSec, unsigned char RBMin)
+uint32_t RedBookToSectors(uint8_t RBFrame, uint8_t RBSec, uint8_t RBMin)
 {
-	return(0);	
+	return(0);
 }
 
 /************************************************************************
@@ -308,12 +308,12 @@ unsigned long RedBookToSectors(unsigned char RBFrame, unsigned char RBSec, unsig
 ************************************************************************/
 
 char CDPaused()
-// Returns 1 if DA paused, 0 otherwise 
+// Returns 1 if DA paused, 0 otherwise
 {
 	if (dosound)
 	{
 		mci_status_parms.dwItem = MCI_STATUS_MODE;
-		if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM, 
+		if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM,
 			(DWORD)(LPVOID) &mci_status_parms))
 		{
 			//mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
@@ -328,7 +328,7 @@ char CDPaused()
 }
 
 /************************************************************************
-*																		*	
+*																		*
 * 									CDResume							*
 *																		*
 ************************************************************************/
@@ -342,11 +342,11 @@ void CDResume()
 			//mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
 			return;
 		}
-	} 
+	}
 }
 
 /************************************************************************
-*																		*	
+*																		*
 * 									CDPause								*
 *																		*
 ************************************************************************/
@@ -364,7 +364,7 @@ void CDPause()
 }
 
 /************************************************************************
-*																		*	
+*																		*
 * 									CDStop								*
 *																		*
 ************************************************************************/
@@ -377,7 +377,7 @@ void CDStop()
 		{
 			//mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
 		}
-	} 
+	}
 }
 
 void CDRestart(void)
@@ -390,7 +390,7 @@ void CDRestart(void)
 }
 
 /************************************************************************
-*																		*	
+*																		*
 * 									CDPlay								*
 *																		*
 ************************************************************************/
@@ -398,15 +398,15 @@ void CDRestart(void)
 /* If this takes too much time go back to using my caching system */
 /*  My stuff must be changed to allow for last track bug */
 
-void CDPlay(short int CurrTrackNo)
+void CDPlay(int16_t int32_t CurrTrackNo)
 {
 	MCI_PLAY_PARMS mci_play_parms;
-	
+
 	if (dosound)
 	{
 		if(CurrTrackNo == 1)
 			CurrTrackNo = (rand() % (ntoc - 1)) + 2;
-		
+
 		mci_play_parms.dwFrom =
 			MCI_MAKE_MSF(
 			TrackDetails[CurrTrackNo].startmins,
@@ -417,10 +417,10 @@ void CDPlay(short int CurrTrackNo)
 			TrackDetails[CurrTrackNo].endmins,
 			TrackDetails[CurrTrackNo].startsecs,
 			0);
-		
+
 		mci_play_parms.dwCallback = (DWORD)hwnd;
-		
-		if (retval = mciSendCommand(wDeviceID, MCI_PLAY, 
+
+		if (retval = mciSendCommand(wDeviceID, MCI_PLAY,
 			MCI_FROM | MCI_TO | MCI_NOTIFY,
 			(DWORD)(LPVOID) &mci_play_parms))
 		{
@@ -429,7 +429,7 @@ void CDPlay(short int CurrTrackNo)
 		}
 		CurrTrkNo = CurrTrackNo;
 		dosound = TRUE;
-	} 
+	}
 }
 
 /************************************************************************
@@ -449,13 +449,13 @@ void CDLoopCheck()
 	if (dosound)
 	{
 		mci_status_parms.dwItem = MCI_STATUS_MODE;
-		if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM, 
+		if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM,
 			(DWORD)(LPVOID) &mci_status_parms))
 		{
-			mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);	
+			mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
 			return;
 		}
-		
+
 		if (mci_status_parms.dwReturn == MCI_MODE_STOP)
 			CDPlay(CurrTrkNo);
 	}
@@ -464,8 +464,8 @@ void CDLoopCheck()
 *																		*
 * 								CdControl								*
 *																		*
-*  PARAMETERS: unsigned char Cmd, unsigned char *parm1,					*
-*              unsigned char *parm2										*
+*  PARAMETERS: uint8_t Cmd, uint8_t *parm1,					*
+*              uint8_t *parm2										*
 *																		*
 *  DESCRIPTION: Master control for CD functions							*
 *																		*
@@ -473,7 +473,7 @@ void CDLoopCheck()
 *																		*
 ************************************************************************/
 
-int CdControl(unsigned char Cmd, unsigned char *parm1, unsigned char  *parm2)
+int32_t CdControl(uint8_t Cmd, uint8_t *parm1, uint8_t  *parm2)
 {
 	if (dosound)
 	{
@@ -493,7 +493,7 @@ int CdControl(unsigned char Cmd, unsigned char *parm1, unsigned char  *parm2)
 			}
 		case (CdlPause):
 			{
-				CDPause();	
+				CDPause();
 			}
 			break;
 		case (CdlStop):
@@ -501,24 +501,24 @@ int CdControl(unsigned char Cmd, unsigned char *parm1, unsigned char  *parm2)
 				CDStop();
 			}
 			break;
-		case (CdlSetloc): 
+		case (CdlSetloc):
 			{
-				
-				
+
+
 			}
 			break;
-		case (CdlSeekL): 
+		case (CdlSeekL):
 			{
-				
+
 			}
 			break;
 		case (CdlSeekP):
 			{
-				
+
 			}
 			break;
-			
-			
+
+
 		}
 	}
 	return(1);
@@ -534,47 +534,47 @@ int CdControl(unsigned char Cmd, unsigned char *parm1, unsigned char  *parm2)
 *  RETURNS:	No of Audio Tracks											*
 *																		*
 ************************************************************************/
-int numTracks(void)
+int32_t numTracks(void)
 {
-	int num;
-	
+	int32_t num;
+
 	num = CdGetToc2(0, (struct CdlPos *)NULL);
 	return num;
 }
 
 
-int CdGetToc2(int sess, struct CdlPos *table)
+int32_t CdGetToc2(int32_t sess, struct CdlPos *table)
 {
 	if (dosound)
 	{
 		mci_status_parms.dwItem = MCI_STATUS_NUMBER_OF_TRACKS;
-		if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM, 
+		if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM,
 			(DWORD)(LPVOID) &mci_status_parms))
 		{
-			mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);	
+			mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
 			return(0);
 		}
-		
+
 		if (mci_status_parms.dwReturn  < 2)
 		{
 			dosound = FALSE;//cd in but no tracks
 			return 2;
 		}
-		
+
 		return(mci_status_parms.dwReturn);
 	}
 	return 0;
 }
 
-void CdSetVol(long newVol)
+void CdSetVol(int32_t newVol)
 {
 	UINT ret;
-	long theVol;
-	
+	int32_t theVol;
+
 	return;
 	newVol = newVol * (32000 / 218);
 	theVol = (newVol << 16) + newVol;
-	
+
 	//ret = auxSetVolume(wDeviceID, theVol);
 	ret = auxSetVolume(auxDeviceID, theVol);
 }

@@ -1,3 +1,3 @@
-void DrawPrim(u_long *primitive);
-void Set_Device(int tmp);
+void DrawPrim(uint32_t *primitive);
+void Set_Device(int32_t tmp);
 void DrawOTag(P_TAG *primitive);

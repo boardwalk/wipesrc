@@ -4,9 +4,9 @@
  * 			libetc.h: Pad Interface
  *
  *$Id: libetc.h,v 1.25 1994/11/10 01:28:41 suzu Exp $
- *		       	
+ *
  */
-extern int PadIdentifier;
+extern int32_t PadIdentifier;
 /*
  * PAD I/O (SIO Pad)
  */
@@ -26,6 +26,6 @@ extern int PadIdentifier;
 #define PADn       (1<< 2)
 #define PADo       (1<< 0)
 #define PADh       (1<<11)
-		    
+
 #define MOUSEleft  (1<<3)
 #define MOUSEright (1<<2)

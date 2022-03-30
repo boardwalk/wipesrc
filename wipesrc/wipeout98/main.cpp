@@ -52,18 +52,18 @@
 void	    CheckError();
 
 extern char Resolution;
-extern short screenres;
-extern short trackNum; //SJR
-extern int menuTexturesIn;
-extern u_long   _stacksize;     // PCwipeout
-ulong	   FastRam;	// PCwipeout
+extern int16_t screenres;
+extern int16_t trackNum; //SJR
+extern int32_t menuTexturesIn;
+extern uint32_t   _stacksize;     // PCwipeout
+uintptr_t	   FastRam;	// PCwipeout
 
-short	   drawenv_tpage = 5;      // PCwipeout
-short	   BG_Colour = 0;  // PCwipeout
+int16_t	   drawenv_tpage = 5;      // PCwipeout
+int16_t	   BG_Colour = 0;  // PCwipeout
 
 extern TimData *AJSLoad16BitTexture(char *filename, char location);
 extern TimData *JJSLoad16BitTexture(char *filename, char location);
-// extern u_long __bss, __bsslen, _ramsize, _stacksize;
+// extern uint32_t __bss, __bsslen, _ramsize, _stacksize;
 
 #define	GsGetVcount()	0
 extern char     thieving_git;
@@ -75,7 +75,7 @@ extern char     thieving_git;
 
 extern char    *VRam;	   // PCwipeout
 char	    copyRight[/*24*/] = "copyright_Psygnosis_1995";
-int	     security = 0x2823217b;
+int32_t	     security = 0x2823217b;
 
 SPRT	    sprtPrim[2][5];
 DR_MODE	 drawmode[5];
@@ -84,18 +84,18 @@ char	    inmenu = 0, Reallyinmenu = 0;
 char	   *background_buffer;
 char	    trackdir[21];
 
-extern long     this_frame_count, last_frame_count, ok_to_interrupt;
+extern int32_t     this_frame_count, last_frame_count, ok_to_interrupt;
 
 extern char     andybodge;
 
 extern char    *CurBuffer;
-long	    DrawDistance;
-int	     inattract = 0;
+int32_t	    DrawDistance;
+int32_t	     inattract = 0;
 	TimData	*titleScreen;
 
 void reloadStartScr(void)
 {
-	int i;
+	int32_t i;
 	LoadVRam("wipeout/newgraph/menu/font.pcx", 0);
 	titleScreen = JJSLoad16BitTexture("wipeout/textures/wiptitle.tim", VRAM);
 	inmenu = 1;
@@ -116,18 +116,18 @@ void reloadStartScr(void)
 
 void	    oldmain()
 {
-	int	     i;
+	int32_t	     i;
 	combatData      packetData;
 	ConfigData      gameData;
 	char	    filename[20] = {"\\NTSCANIM.EXE;1"};
 	// TimData				*titleScreen ;
-	int	     mode, timeout;
-	int	     toggle = 0;
+	int32_t	     mode, timeout;
+	int32_t	     toggle = 0;
 	char	    loadPath[48];
 	char	    loadNo[3];
-	int	     titleTimeout;
-	int	     TOut;
-	static int      firstTime = 1;
+	int32_t	     titleTimeout;
+	int32_t	     TOut;
+	static int32_t      firstTime = 1;
 	char	   *nl = (char *) 0x0417;
 	char	    lfilename[80];
 
@@ -151,7 +151,7 @@ void	    oldmain()
 
 	CreateSineTable();
 
-	FastRam = (ulong) make_data_cache();    // PCwipeout
+	FastRam = (uintptr_t) make_data_cache();    // PCwipeout
 	etc_InputDeviceSelect = _KEYBOARD;      // PCwipeout
 	Set_Device(0);	  // PCwipeout
 	CdInit();	       // PCWipeout
@@ -668,22 +668,22 @@ void	    ClearVram(void)
 #else
 
 	clearVram = BlockFill(0, 0, 512, 256, 0, 0, 0);
-	DrawPrim((u_long *)clearVram);
+	DrawPrim((uint32_t *)clearVram);
 	DrawSync(0);
 	DFree(heap, (char *) clearVram);
 
 	clearVram = BlockFill(0, 256, 512, 256, 0, 0, 0);
-	DrawPrim((u_long *)clearVram);
+	DrawPrim((uint32_t *)clearVram);
 	DrawSync(0);
 	DFree(heap, (char *) clearVram);
 
 	clearVram = BlockFill(512, 0, 512, 256, 0, 0, 0);
-	DrawPrim((u_long *)clearVram);
+	DrawPrim((uint32_t *)clearVram);
 	DrawSync(0);
 	DFree(heap, (char *) clearVram);
 
 	clearVram = BlockFill(512, 256, 512, 256, 0, 0, 0);
-	DrawPrim((u_long *)clearVram);
+	DrawPrim((uint32_t *)clearVram);
 	DrawSync(0);
 	DFree(heap, (char *) clearVram);
 #endif

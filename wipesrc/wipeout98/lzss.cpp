@@ -5,7 +5,7 @@
 * ( Optimized for speed )
 *
 *
-*	
+*
 ******************************************/
 /*
 #include "selibs\standard.i"
@@ -26,19 +26,19 @@
 /***************************************************************************/
 /***************************************************************************/
 /***************************************************************************/
-void ExpandData( unsigned char	*inData, unsigned char	*outData )
+void ExpandData( uint8_t	*inData, uint8_t	*outData )
 {
-	short i;
-	short current_position;
-	unsigned char cc;
-	short match_length;
-	short match_position;
-	unsigned long mask;
-	unsigned long return_value;
-	unsigned char inBfile_mask;
-	short inBfile_rack;
-	short	value;
-	unsigned char window[ WINDOW_SIZE ];
+	int16_t i;
+	int16_t current_position;
+	uint8_t cc;
+	int16_t match_length;
+	int16_t match_position;
+	uint32_t mask;
+	uint32_t return_value;
+	uint8_t inBfile_mask;
+	int16_t inBfile_rack;
+	int16_t	value;
+	uint8_t window[ WINDOW_SIZE ];
 
 	inBfile_rack = 0;
 	inBfile_mask = 0x80;
@@ -48,7 +48,7 @@ void ExpandData( unsigned char	*inData, unsigned char	*outData )
 	{
 
 		if ( inBfile_mask == 0x80 )
-	 		inBfile_rack =  (short)*inData++;
+	 		inBfile_rack =  (int16_t)*inData++;
 
 		value = inBfile_rack & inBfile_mask;
 		inBfile_mask >>= 1;
@@ -62,8 +62,8 @@ void ExpandData( unsigned char	*inData, unsigned char	*outData )
 			while ( mask != 0)
 			{
 				if ( inBfile_mask == 0x80 )
-		 			inBfile_rack =  (short)*inData++;
-		
+		 			inBfile_rack =  (int16_t)*inData++;
+
 				if ( inBfile_rack & inBfile_mask )
 					return_value |= mask;
 				mask >>= 1;
@@ -72,7 +72,7 @@ void ExpandData( unsigned char	*inData, unsigned char	*outData )
 				if ( inBfile_mask == 0 )
 					inBfile_mask = 0x80;
 			}
-			cc = (unsigned char) return_value;
+			cc = (uint8_t) return_value;
 			*outData++ = cc;
 			window[ current_position ] = cc;
 			current_position = MOD_WINDOW( current_position + 1 );
@@ -84,8 +84,8 @@ void ExpandData( unsigned char	*inData, unsigned char	*outData )
 			while ( mask != 0)
 			{
 				if ( inBfile_mask == 0x80 )
-		 			inBfile_rack =  (short)*inData++;
-		
+		 			inBfile_rack =  (int16_t)*inData++;
+
 				if ( inBfile_rack & inBfile_mask )
 					return_value |= mask;
 				mask >>= 1;
@@ -94,7 +94,7 @@ void ExpandData( unsigned char	*inData, unsigned char	*outData )
 				if ( inBfile_mask == 0 )
 					inBfile_mask = 0x80;
 			}
-			match_position = (short) return_value;
+			match_position = (int16_t) return_value;
 
 			if ( match_position == END_OF_STREAM )
 					break;
@@ -104,8 +104,8 @@ void ExpandData( unsigned char	*inData, unsigned char	*outData )
 			while ( mask != 0)
 			{
 				if ( inBfile_mask == 0x80 )
-		 			inBfile_rack =  (short)*inData++;
-		
+		 			inBfile_rack =  (int16_t)*inData++;
+
 				if ( inBfile_rack & inBfile_mask )
 					return_value |= mask;
 				mask >>= 1;
@@ -114,7 +114,7 @@ void ExpandData( unsigned char	*inData, unsigned char	*outData )
 				if ( inBfile_mask == 0 )
 					inBfile_mask = 0x80;
 			}
-			match_length = (short) return_value;
+			match_length = (int16_t) return_value;
 
 			match_length += BREAK_EVEN;
 

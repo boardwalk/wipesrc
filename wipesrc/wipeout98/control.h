@@ -32,8 +32,8 @@
 
 typedef struct NegconBuff
 {
-	u_short	head;
-	u_short	bits;
+	uint16_t	head;
+	uint16_t	bits;
 	char		twist;
 	char		i;
 	char		ii;
@@ -44,31 +44,31 @@ typedef struct NegconBuff
 
 void  UpdateShips(ShipData *shipIndex, WeaponShape *weaponShapes, Object** shipShapes, WeaponData*);
 void  UpdateShipsSerial(ShipData *shipIndex, WeaponShape *weaponShapes, Object** shipShapes, WeaponData *weaponIndex);
-int  	InitController();
+int32_t  	InitController();
 void  GeneralStartProcs(ShipData *playerShip);
 
-void  UpdatePlayerShipNeg			(ShipData*, Object**, int, WeaponData*);
-void  UpdatePlayerShipNorm			(ShipData*, Object**, int, WeaponData*);
-void  UpdatePlayerShipMouse			(ShipData*, Object**, int, WeaponData*);
-void  UpdatePlayerShipJoystick		(ShipData*, Object**, int, WeaponData*);
-void  UpdateRemoteShip				(ShipData*, Object**, int, WeaponData*);
-void  UpdatePlayerShipNormStart		(ShipData*, Object**, int, WeaponData*);
-void  UpdatePlayerShipNegStart		(ShipData*, Object**, int, WeaponData*);
-void  UpdateRemoteShipStart			(ShipData*, Object**, int, WeaponData*);
-void  UpdateShipHoldLeft			(ShipData*, Object**, int, WeaponData*);
-void  UpdateRescuDroid				(ShipData*, Object**, int, WeaponData*);
+void  UpdatePlayerShipNeg			(ShipData*, Object**, int32_t, WeaponData*);
+void  UpdatePlayerShipNorm			(ShipData*, Object**, int32_t, WeaponData*);
+void  UpdatePlayerShipMouse			(ShipData*, Object**, int32_t, WeaponData*);
+void  UpdatePlayerShipJoystick		(ShipData*, Object**, int32_t, WeaponData*);
+void  UpdateRemoteShip				(ShipData*, Object**, int32_t, WeaponData*);
+void  UpdatePlayerShipNormStart		(ShipData*, Object**, int32_t, WeaponData*);
+void  UpdatePlayerShipNegStart		(ShipData*, Object**, int32_t, WeaponData*);
+void  UpdateRemoteShipStart			(ShipData*, Object**, int32_t, WeaponData*);
+void  UpdateShipHoldLeft			(ShipData*, Object**, int32_t, WeaponData*);
+void  UpdateRescuDroid				(ShipData*, Object**, int32_t, WeaponData*);
 
-void 	HoldCentre						(VECTOR *result, ShipData *shipIndex, Face *facePtr, int);
-void	HoldRight						(VECTOR *result, ShipData *shipIndex, Face *facePtr, int);
-void 	HoldLeft							(VECTOR *result, ShipData *shipIndex, Face *facePtr, int);
-void 	BlockShip						(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int);
-void 	AvoidShip						(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int);
-void 	AvoidOtherShips				(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int);
-void 	ZigZagShip						(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int);
+void 	HoldCentre						(VECTOR *result, ShipData *shipIndex, Face *facePtr, int32_t);
+void	HoldRight						(VECTOR *result, ShipData *shipIndex, Face *facePtr, int32_t);
+void 	HoldLeft							(VECTOR *result, ShipData *shipIndex, Face *facePtr, int32_t);
+void 	BlockShip						(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int32_t);
+void 	AvoidShip						(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int32_t);
+void 	AvoidOtherShips				(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int32_t);
+void 	ZigZagShip						(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int32_t);
 
-void SetSkeletonDirectionHRP( Skeleton* skeleton, short hdg, short roll, short pitch  );
-void SetSkeletonDirectionHPR( Skeleton* skeleton, short hdg, short pitch, short roll  );
-void SetSkeletonDirectionRPH( Skeleton* skeleton, short roll, short pitch, short hdg  );
+void SetSkeletonDirectionHRP( Skeleton* skeleton, int16_t hdg, int16_t roll, int16_t pitch  );
+void SetSkeletonDirectionHPR( Skeleton* skeleton, int16_t hdg, int16_t pitch, int16_t roll  );
+void SetSkeletonDirectionRPH( Skeleton* skeleton, int16_t roll, int16_t pitch, int16_t hdg  );
 
 void Mouse2Neg(void);
 void Joy2Neg(void);

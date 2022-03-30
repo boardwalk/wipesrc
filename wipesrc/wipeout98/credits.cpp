@@ -1,4 +1,4 @@
-//#include <libspu.h> 
+//#include <libspu.h>
 #include "standard.h"
 
 #include "malloc.h"
@@ -19,7 +19,7 @@
 #include "main.h"
 #include "dynam.h"
 #include "combat.h"
-#include "menus.h"  
+#include "menus.h"
 #include "hiscores.h"
 #include "hud.h"
 #include "sound.h"
@@ -176,8 +176,8 @@ typedef struct	Title
 {
 	char	*title;
 	char 	*name[16];
-	int 	noOfNames;			 
-} Title;	
+	int32_t 	noOfNames;
+} Title;
 
 
 #define	NO_OF_CREDITS 27
@@ -187,7 +187,7 @@ Title	credits[NO_OF_CREDITS];
 
 void InitCredits()
 {
-	int	i=0;
+	int32_t	i=0;
 	credits[i].noOfNames = 2;
 	credits[i].title = Mds;
 	credits[i].name[0] = IanH;
@@ -364,10 +364,10 @@ void InitCredits()
 	credits[i++].name[5] = All;
 }
 
-void ShowCredits(int attractDelay)	   
+void ShowCredits(int32_t attractDelay)
 {
-	int i, j;
-	int place;
+	int32_t i, j;
+	int32_t place;
 
 	place = attractDelay - (60 * FR30); // whats set in race.c -400
 	for(i = 0; i < NO_OF_CREDITS; i++)
@@ -376,7 +376,7 @@ void ShowCredits(int attractDelay)
 			CentreText (credits[i].title, text_data (230, place, 8), RedText) ;
 		place += 16;
 		for(j = 0; j < credits[i].noOfNames; j++)
-		{ 
+		{
  			if((place > -10) && (place < 264))
  			  	CentreText (credits[i].name[j], text_data (230, place, 8), WhiteText) ;
 			place += 12;

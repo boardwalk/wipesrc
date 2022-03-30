@@ -1,1 +1,1 @@
-void ExpandData( unsigned char	*inData, unsigned char	*outData );
+void ExpandData( uint8_t	*inData, uint8_t	*outData );

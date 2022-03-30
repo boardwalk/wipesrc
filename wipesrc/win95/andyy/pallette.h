@@ -20,5 +20,5 @@ extern char fade_buf[256][FADE_LEVEL];
 extern char max_pal;
 
 
-extern int GetPal(char);
+extern int32_t GetPal(char);
 extern void SetPal(char,char,char,char);

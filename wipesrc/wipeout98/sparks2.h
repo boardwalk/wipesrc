@@ -4,19 +4,19 @@
 
 typedef struct Line3D
 {
-   short       used;
-   short       skel;
+   int16_t       used;
+   int16_t       skel;
 
    VECTOR      start;
    VECTOR      pos;
    VECTOR      vel;
 
-   long        accl;
-   long        friction;
-   long        gravity;
-   long        wallRes;
+   int32_t        accl;
+   int32_t        friction;
+   int32_t        gravity;
+   int32_t        wallRes;
 
-   long        life;
+   int32_t        life;
 
 	LINE_G2     line[2];
 } Line3D;
@@ -25,8 +25,8 @@ typedef struct Line3D
 
 typedef struct LineSkel
 {
-   short       count;
-   short       used;
+   int16_t       count;
+   int16_t       used;
 
    Skeleton    *skeleton;
 } LineSkel;
@@ -34,5 +34,5 @@ typedef struct LineSkel
 
 
 void CreateSparks3D( Skeleton *camPos );
-void StartSparks3D( VECTOR *start, short numSparks, VECTOR *velocity );
+void StartSparks3D( VECTOR *start, int16_t numSparks, VECTOR *velocity );
 void UpdateSparks3D( void );

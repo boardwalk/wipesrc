@@ -44,12 +44,12 @@
 
 #include	"pallette.h"
 
-extern long				ctrlNeedTargetIcon;
-extern int 				ctrlnearShip;
+extern int32_t				ctrlNeedTargetIcon;
+extern int32_t 				ctrlnearShip;
 extern	char			WhitePal;
 extern	char			GreyPal;
 extern	char			DepthFadeTble[];
-short					Shielded = 0;
+int16_t					Shielded = 0;
 extern TrackCamera		ctrlcamera;
 
 void DrawInternalShield(void);
@@ -57,7 +57,7 @@ void DrawInternalShield(void);
 
 void UpdateWeapons(ShipData *shipIndex,WeaponShape* weaponShapes, WeaponData *weaponIndex )
 {
-	int i;
+	int32_t i;
 
 	for(i = 0; i < NO_ACTIVE_WEAPONS; i++)
 	{
@@ -72,7 +72,7 @@ void UpdateWeapons(ShipData *shipIndex,WeaponShape* weaponShapes, WeaponData *we
 
 void DrawWeapons(ShipData *shipIndex,WeaponShape* weaponShapes, WeaponData *weaponIndex )
 {
-	int i;
+	int32_t i;
 	WeaponData	*weapon;
 
 	for(i = 0; i < NO_ACTIVE_WEAPONS; i++)
@@ -98,9 +98,9 @@ void DrawWeapons(ShipData *shipIndex,WeaponShape* weaponShapes, WeaponData *weap
 }
 
 
-void LaunchWeapon(ShipData *shipIndex, WeaponData *weaponIndex, int shipNo)
+void LaunchWeapon(ShipData *shipIndex, WeaponData *weaponIndex, int32_t shipNo)
 {
-	int j;
+	int32_t j;
 
 	if(gameType == SLAVE)
 	{
@@ -165,10 +165,10 @@ void LaunchWeapon(ShipData *shipIndex, WeaponData *weaponIndex, int shipNo)
 
 
 
-void FireWeapon(ShipData *playerShip, WeaponData *weaponIndex, int shipNo, char decision)
+void FireWeapon(ShipData *playerShip, WeaponData *weaponIndex, int32_t shipNo, char decision)
 {
-	int i;
-	int count = 0;
+	int32_t i;
+	int32_t count = 0;
 
 	for(i = 0; i < NO_ACTIVE_WEAPONS; i++)
 	{
@@ -295,15 +295,15 @@ void FireWeapon(ShipData *playerShip, WeaponData *weaponIndex, int shipNo, char 
 
 void MissileLock(ShipData *playerShip, ShipData *shipIndex, Object** shipShapes, POLY_FT4 *target)
 {
-	int 						i;
-	int 						distance, shortestDistance;
+	int32_t 						i;
+	int32_t 						distance, shortestDistance;
 	SVECTOR 					*vertex;
 	DVECTOR 					sxy;
-	long 						p, flag;
-	short 					x, y;
-	int 						nearShip;
+	int32_t 						p, flag;
+	int16_t 					x, y;
+	int32_t 						nearShip;
 	Poly        			poly;
-	short*      			coords;
+	int16_t*      			coords;
 	TrackSection			*section;
 
 
@@ -406,10 +406,10 @@ void DrawTargetIcon(ShipData *playerShip, ShipData *shipIndex, Object** shipShap
 {
 	SVECTOR 					*vertex;
 	DVECTOR 					sxy;
-	long 						p, flag;
-	short 					x, y;
+	int32_t 						p, flag;
+	int16_t 					x, y;
 	Poly        			poly;
-	short*      			coords;
+	int16_t*      			coords;
 
 	shipShapes[shipIndex[ctrlnearShip].highResTableIndex]->skeleton->update = 1;
     SetSkeletonTransform( shipShapes[shipIndex[ctrlnearShip].highResTableIndex]->skeleton );
@@ -440,20 +440,20 @@ void DrawTargetIcon(ShipData *playerShip, ShipData *shipIndex, Object** shipShap
 		target->pad5 = 0;
 		target->pad6 = 0;
 		target->pad7 = 0;
-		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(target[CurrentScreen]) );
+		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(target[CurrentScreen]) );
 	}
 }
 
 void initWeapons(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData *weaponIndex, POLY_FT4 *target )
 {
-	int 			i, j, k;
+	int32_t 			i, j, k;
 	Object* 		obj;
-	short 		weaponTextures;
+	int16_t 		weaponTextures;
 	Texture 		*targetTexture ;
 	Poly        poly;
-	short       primitiveCount;
+	int16_t       primitiveCount;
 	StdPoly     prim;
-	long			length;
+	int32_t			length;
 	Prm         prm;
 	char*       start;
 	Object*     object;
@@ -675,9 +675,9 @@ void UpdateRocket(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* we
 {
 	VECTOR 		distance;
 	Face 			*facePtr;
-	int 			i, mag;
+	int32_t 			i, mag;
 	VECTOR 		facePoint;
-	int 			alpha;
+	int32_t 			alpha;
 
 	weapon->nearTrkSect = FindNearestSection(weapon->nearTrkSect, weapon->pos);
 
@@ -709,9 +709,9 @@ void UpdateRocket(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* we
 
 	if(alpha < 2000)
 	{
-		weapon->pos.vx += (((200 - alpha) * (int)facePtr->normal.vx) >> 13);
-		weapon->pos.vy += (((200 - alpha) * (int)facePtr->normal.vy) >> 13);
-		weapon->pos.vz += (((200 - alpha) * (int)facePtr->normal.vz) >> 13);
+		weapon->pos.vx += (((200 - alpha) * (int32_t)facePtr->normal.vx) >> 13);
+		weapon->pos.vy += (((200 - alpha) * (int32_t)facePtr->normal.vy) >> 13);
+		weapon->pos.vz += (((200 - alpha) * (int32_t)facePtr->normal.vz) >> 13);
 	}
 
 	weapon->count--;
@@ -826,10 +826,10 @@ void UpdateMissile(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* w
 	VECTOR 				targetVector;
 	VECTOR 				bestPath;
 	Face 					*facePtr;
-	int 					i, mag, temp, vhdg, vpitch;
+	int32_t 					i, mag, temp, vhdg, vpitch;
 	TrackSection 		*nextSection;
 	VECTOR 				facePoint;
-	int 					alpha;
+	int32_t 					alpha;
 
 	if(weapon->targetShip > -1)
 	{
@@ -895,9 +895,9 @@ void UpdateMissile(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* w
 
 	if(alpha < 2000)
 	{
-		weapon->pos.vx += (((200 - alpha) * (int)facePtr->normal.vx) >> 13);
-		weapon->pos.vy += (((200 - alpha) * (int)facePtr->normal.vy) >> 13);
-		weapon->pos.vz += (((200 - alpha) * (int)facePtr->normal.vz) >> 13);
+		weapon->pos.vx += (((200 - alpha) * (int32_t)facePtr->normal.vx) >> 13);
+		weapon->pos.vy += (((200 - alpha) * (int32_t)facePtr->normal.vy) >> 13);
+		weapon->pos.vz += (((200 - alpha) * (int32_t)facePtr->normal.vz) >> 13);
 	}
 
 	weapon->count--;
@@ -1000,7 +1000,7 @@ void UpdateMissile(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* w
 
 void InitMissile(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* weapon, WeaponData* weaponIndex)
 {
-	int 				i;
+	int32_t 				i;
 	Face				*facePtr;
 
 	if((weapon->fireShip != ownShip) && (weapon->fireShip != serialShip))
@@ -1070,11 +1070,11 @@ void InitMissile(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* wea
 void UpdateMine(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *weapon, WeaponData* weaponIndex)
 {
 	VECTOR 				distance;
-	int 					ossilation;
-	int 					i, mag;
+	int32_t 					ossilation;
+	int32_t 					i, mag;
 	Poly        		poly;
 	StdPoly     		prim;
-	short					r;
+	int16_t					r;
 
 
 	weapon->count--;
@@ -1178,7 +1178,7 @@ void UpdateMine(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *weap
 
 void InitRocket(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *weapon, WeaponData* weaponIndex)
 {
-	int 			i;
+	int32_t 			i;
 	Face 			*facePtr;
 
 	if((weapon->fireShip != ownShip) && (weapon->fireShip != serialShip))
@@ -1252,10 +1252,10 @@ void UpdateElecBolt(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* 
 	VECTOR 				targetVector;
 	VECTOR 				bestPath;
 	Face 					*facePtr;
-	int 					i, mag, temp, vhdg, vpitch;
+	int32_t 					i, mag, temp, vhdg, vpitch;
 	TrackSection 		*nextSection;
 	VECTOR 				facePoint;
-	int 					alpha;
+	int32_t 					alpha;
 
 	if(weapon->targetShip > -1)
 	{
@@ -1320,9 +1320,9 @@ void UpdateElecBolt(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* 
 
 		if(alpha < 2000)
 		{
-			weapon->pos.vx += (((200 - alpha) * (int)facePtr->normal.vx) >> 13);
-			weapon->pos.vy += (((200 - alpha) * (int)facePtr->normal.vy) >> 13);
-			weapon->pos.vz += (((200 - alpha) * (int)facePtr->normal.vz) >> 13);
+			weapon->pos.vx += (((200 - alpha) * (int32_t)facePtr->normal.vx) >> 13);
+			weapon->pos.vy += (((200 - alpha) * (int32_t)facePtr->normal.vy) >> 13);
+			weapon->pos.vz += (((200 - alpha) * (int32_t)facePtr->normal.vz) >> 13);
 		}
 
 
@@ -1418,7 +1418,7 @@ void UpdateElecBolt(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* 
 
 void InitElecBolt(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *weapon, WeaponData* weaponIndex)
 {
-	int i;
+	int32_t i;
 
 	if((weapon->fireShip != ownShip) && (weapon->fireShip != serialShip))
 	{
@@ -1479,7 +1479,7 @@ void InitElecBolt(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *we
 
 void InitSpecial(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *weapon, WeaponData* weaponIndex)
 {
-	int i;
+	int32_t i;
 	weapon->count--;
 	for(i = 0; i < NO_OF_SHIPS; i++)
 	{
@@ -1495,7 +1495,7 @@ void InitSpecial(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *wea
 
 void InitRevCon(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *weapon, WeaponData* weaponIndex)
 {
-	int i;
+	int32_t i;
 
 	if((weapon->fireShip != ownShip) && (weapon->fireShip != serialShip))
 	{
@@ -1561,10 +1561,10 @@ void UpdateRevCon(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* we
 	VECTOR 				targetVector;
 	VECTOR 				bestPath;
 	Face 					*facePtr;
-	int 					i, mag, temp, vhdg, vpitch;
+	int32_t 					i, mag, temp, vhdg, vpitch;
 	TrackSection 		*nextSection;
 	VECTOR 				facePoint;
-	int 					alpha;
+	int32_t 					alpha;
 
 	if(weapon->targetShip > -1)
 	{
@@ -1629,9 +1629,9 @@ void UpdateRevCon(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* we
 
 		if(alpha < 2000)
 		{
-			weapon->pos.vx += (((200 - alpha) * (int)facePtr->normal.vx) >> 13);
-			weapon->pos.vy += (((200 - alpha) * (int)facePtr->normal.vy) >> 13);
-			weapon->pos.vz += (((200 - alpha) * (int)facePtr->normal.vz) >> 13);
+			weapon->pos.vx += (((200 - alpha) * (int32_t)facePtr->normal.vx) >> 13);
+			weapon->pos.vy += (((200 - alpha) * (int32_t)facePtr->normal.vy) >> 13);
+			weapon->pos.vz += (((200 - alpha) * (int32_t)facePtr->normal.vz) >> 13);
 		}
 
 
@@ -1728,7 +1728,7 @@ void UpdateRevCon(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* we
 
 void InitMine(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *weapon, WeaponData* weaponIndex)
 {
-	int i;
+	int32_t i;
 
 	if(weapon->count == 1)
 	{
@@ -1765,7 +1765,7 @@ void InitMine(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *weapon
 
 void InitShield(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData *weapon, WeaponData* weaponIndex)
 {
-	int i;
+	int32_t i;
 
 	weapon->nearTrkSect = shipIndex[weapon->fireShip].nearTrkSect;
 	for(i = 0; i < NO_OF_SHIELDS; i++)
@@ -1801,14 +1801,14 @@ void UpdateShield(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* we
 {
 	VECTOR 		distance;
 	Face 			*facePtr;
-	int 			i, k, j, mag;
+	int32_t 			i, k, j, mag;
 	VECTOR 		facePoint;
 	Poly        poly;
-	short       primitiveCount;
+	int16_t       primitiveCount;
 	StdPoly     prim;
-	short*      coords;
-	short			col0, col1, col2, col3;
-	int 			shieldID;
+	int16_t*      coords;
+	int16_t			col0, col1, col2, col3;
+	int32_t 			shieldID;
 	DVECTOR		screen0, screen1, screen2, screen3;
 
 
@@ -2004,11 +2004,11 @@ void UpdateShield(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* we
 				prims.g4->xy2 = screen2;
 				prims.g4->xy3 = screen3;
 
-				//   				AddPrim( OT[ CurrentScreen ] , ( ulong* ) prims.prim );
+				//   				AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) prims.prim );
 				prims.g4 += 1;
 
 				shieldID = weapon->currentWeapon - SHIELD_OFFSET;
-				//      			AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(shieldParams[(64 * shieldID)][CurrentScreen]));
+				//      			AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(shieldParams[(64 * shieldID)][CurrentScreen]));
 				prims.drmode += 1;
 
 				/*	poly.g4 += 1;*/
@@ -2031,14 +2031,14 @@ void DrawInternalShield(void)
 		setXY4(&shieldPoly,0,0,320,0,0,240,320,240);
 			setRGB0(&shieldPoly,0,0,WHITE2_TRANSL);
 		setPolyF4(&shieldPoly);
-		AddPrim(OT[CurrentScreen] + 1,(u_long *)&shieldPoly); //Plus 1 to prevent hud from being affected
+		AddPrim(OT[CurrentScreen] + 1,(uint32_t *)&shieldPoly); //Plus 1 to prevent hud from being affected
 	}
 	DrawnShieldBefore = 1;
 }
 
-void CycleWeaponGrids(ShipData *shipIndex, WeaponGrid *weaponGrid, int noWeaponGrids)
+void CycleWeaponGrids(ShipData *shipIndex, WeaponGrid *weaponGrid, int32_t noWeaponGrids)
 {
-	int 			i, j;
+	int32_t 			i, j;
 	Face 			*facePtr;
 	SVECTOR     tempColour;
 	static		char	colourCount=CYCLE_START;
@@ -2157,12 +2157,12 @@ void CycleWeaponGrids(ShipData *shipIndex, WeaponGrid *weaponGrid, int noWeaponG
 #define     ClipFlag    ( ( CrtClipped | ZLarge | ZNegative | ZSmall ) >> 12 )
 extern SVECTOR     StaticVertex[  ];
 extern DVECTOR     StaticScreen[  ];
-extern ushort      StaticDepth[  ];
-extern ushort      StaticFlags[  ];
+extern uint16_t      StaticDepth[  ];
+extern uint16_t      StaticFlags[  ];
 
 void GetFireVector(VECTOR *result, VECTOR target, Face *facePtr, VECTOR shipPos)
 {
-	int 			alpha, origAlpha;
+	int32_t 			alpha, origAlpha;
 	VECTOR 		facePoint;
 
 	facePoint.vx = track->vertices[(facePtr->vertex[0])].vx;
@@ -2191,9 +2191,9 @@ void GetFireVector(VECTOR *result, VECTOR target, Face *facePtr, VECTOR shipPos)
 
 void Weapon2Mine(WeaponData *weapon, WeaponData *weaponIndex, WeaponShape *weaponShapes)
 {
-	int 			i;
+	int32_t 			i;
 	VECTOR		distance;
-	int 			mag;
+	int32_t 			mag;
 
 	for(i = 0; i < NO_ACTIVE_WEAPONS; i++)
 	{
@@ -2219,10 +2219,10 @@ void Weapon2Mine(WeaponData *weapon, WeaponData *weaponIndex, WeaponShape *weapo
 }
 
 
-int GetNewWeapon(void)
+int32_t GetNewWeapon(void)
 {
-	int index;
-	int weaponType;
+	int32_t index;
+	int32_t weaponType;
 
 	if(gameType == SINGLE)
 	{
@@ -2266,10 +2266,10 @@ int GetNewWeapon(void)
 	return(weaponType);
 }
 
-int GetNewWeaponBodge(void)
+int32_t GetNewWeaponBodge(void)
 {
-	int index;
-	int weaponType;
+	int32_t index;
+	int32_t weaponType;
 
 	if(gameType == SINGLE)
 	{
@@ -2306,14 +2306,14 @@ int GetNewWeaponBodge(void)
 
 
 
-void SetTargetShip(ShipData *shipIndex, int shipNo)
+void SetTargetShip(ShipData *shipIndex, int32_t shipNo)
 {
-	int 						i;
-	int 						distance, shortestDistance;
-	int 						nearShip;
+	int32_t 						i;
+	int32_t 						distance, shortestDistance;
+	int32_t 						nearShip;
 	TrackSection			*section;
-	int 						target;
-	int 						start;
+	int32_t 						target;
+	int32_t 						start;
 
 	shortestDistance = 999;
 

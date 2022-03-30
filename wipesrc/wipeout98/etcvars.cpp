@@ -2,33 +2,33 @@
 #include 						"wipesrc/win95/markk/input.h"
 
 /* Interrupt Handling. */
-volatile unsigned short int		etc_OriginalInt09Selector;
-volatile unsigned long int		etc_OriginalInt09Offset;
+volatile uint16_t		etc_OriginalInt09Selector;
+volatile uint32_t		etc_OriginalInt09Offset;
 
 /* Low-Level KeyCode Handling. */
-volatile signed char			etc_KeyboardHandler = 0;
-volatile signed char			etc_JoystickHandler = 0;
-volatile signed char			etc_MouseHandler = 0;
-volatile signed char			etc_TimerHandler = 0;
-volatile unsigned char			etc_ExtendedMode = 0;
-volatile unsigned char			etc_ExtendedFlag = 0;
-volatile unsigned char			etc_ScanCode = 0;
-volatile unsigned char			etc_Status = 0;
-volatile signed char			etc_KeyPressed = 0;
-volatile unsigned short int		etc_ExtKey = 0;
-volatile unsigned char			etc_Key = 0;
-volatile unsigned char			etc_ExitKey = 0;
-//volatile unsigned long int		etc_KeyboardCounter = 0;
+volatile int8_t			etc_KeyboardHandler = 0;
+volatile int8_t			etc_JoystickHandler = 0;
+volatile int8_t			etc_MouseHandler = 0;
+volatile int8_t			etc_TimerHandler = 0;
+volatile uint8_t			etc_ExtendedMode = 0;
+volatile uint8_t			etc_ExtendedFlag = 0;
+volatile uint8_t			etc_ScanCode = 0;
+volatile uint8_t			etc_Status = 0;
+volatile int8_t			etc_KeyPressed = 0;
+volatile uint16_t		etc_ExtKey = 0;
+volatile uint8_t			etc_Key = 0;
+volatile uint8_t			etc_ExitKey = 0;
+//volatile uint32_t		etc_KeyboardCounter = 0;
 
 /* Low-Level Mouse Handling. */
 volatile MOUSE					etc_Mouse1;
 volatile MOUSE					etc_Mouse2;
 
 /* Low-Level Joystick Handling. */
-volatile unsigned short			etc_Joystick1CentreX;
-volatile unsigned short			etc_Joystick1CentreY;
-volatile unsigned short			etc_Joystick2CentreX;
-volatile unsigned short			etc_Joystick2CentreY;
+volatile uint16_t			etc_Joystick1CentreX;
+volatile uint16_t			etc_Joystick1CentreY;
+volatile uint16_t			etc_Joystick2CentreX;
+volatile uint16_t			etc_Joystick2CentreY;
 volatile JOYSTICK				etc_Joy1;
 volatile JOYSTICK				etc_Joy2;
 
@@ -37,22 +37,22 @@ volatile char					*etc_TransferBuffer1;
 volatile char					*etc_TransferBuffer2;
 
 /* Input Device Status Blocks. (5 bytes each) */
-volatile unsigned char			etc_KeyboardSwitch = _DEVICE_OFF;		/* id = 0 */
-volatile unsigned long int		etc_KeyboardRegister = 0;
-volatile unsigned char			etc_Joystick1Switch = _DEVICE_OFF;		/* id = 1 */
-volatile unsigned long int		etc_Joystick1Register = 0;
-volatile unsigned char			etc_Joystick2Switch = _DEVICE_OFF;		/* id = 2 */
-volatile unsigned long int		etc_Joystick2Register = 0;
-volatile unsigned char			etc_Mouse1Switch = _DEVICE_OFF;			/* id = 3 */
-volatile unsigned long int		etc_Mouse1Register = 0;
-volatile unsigned char			etc_Mouse2Switch = _DEVICE_OFF;			/* id = 4 */
-volatile unsigned long int		etc_Mouse2Register = 0;
+volatile uint8_t			etc_KeyboardSwitch = _DEVICE_OFF;		/* id = 0 */
+volatile uint32_t		etc_KeyboardRegister = 0;
+volatile uint8_t			etc_Joystick1Switch = _DEVICE_OFF;		/* id = 1 */
+volatile uint32_t		etc_Joystick1Register = 0;
+volatile uint8_t			etc_Joystick2Switch = _DEVICE_OFF;		/* id = 2 */
+volatile uint32_t		etc_Joystick2Register = 0;
+volatile uint8_t			etc_Mouse1Switch = _DEVICE_OFF;			/* id = 3 */
+volatile uint32_t		etc_Mouse1Register = 0;
+volatile uint8_t			etc_Mouse2Switch = _DEVICE_OFF;			/* id = 4 */
+volatile uint32_t		etc_Mouse2Register = 0;
 
 /* Input Device Configuration. */
-volatile unsigned char			etc_InputDeviceSelect = 0;
-volatile unsigned char			etc_KeyboardConfig[_MAX_BUTTONS];
-volatile unsigned long int		etc_KeyboardMap[_MAX_KEYS * 2];
-volatile unsigned long int		etc_ExtendedKeyboardMap[_MAX_EXT_KEYS * 2];
+volatile uint8_t			etc_InputDeviceSelect = 0;
+volatile uint8_t			etc_KeyboardConfig[_MAX_BUTTONS];
+volatile uint32_t		etc_KeyboardMap[_MAX_KEYS * 2];
+volatile uint32_t		etc_ExtendedKeyboardMap[_MAX_EXT_KEYS * 2];
 volatile JOYSTICK_CONFIG		etc_Joy1Config;
 volatile JOYSTICK_CONFIG		etc_Joy2Config;
 volatile MOUSE_CONFIG			etc_Mouse1Config;
@@ -60,7 +60,7 @@ volatile MOUSE_CONFIG			etc_Mouse2Config;
 
 /* Default Keyboard Configuration. */
 #ifdef WIPEOUTPC
-unsigned short etc_DefaultKeyboardSet[_MAX_BUTTONS] = {
+uint16_t etc_DefaultKeyboardSet[_MAX_BUTTONS] = {
 		_Z_KEY,	   			/* FrontLeftBottom	*/	// left airbreak
 		_X_KEY,	  			/* FrontRightBottom	*/	// right airbreak
 		_F1_KEY,		   	/* FrontRightTop	*/	// Draw distance
@@ -78,7 +78,7 @@ unsigned short etc_DefaultKeyboardSet[_MAX_BUTTONS] = {
 		_DOWN_KEY,		   	/* Down				*/ 	// down
 		_LEFT_KEY };	   	/* Left			 	*/ 	// left
 #else
-unsigned short etc_DefaultKeyboardSet[_MAX_BUTTONS] = {
+uint16_t etc_DefaultKeyboardSet[_MAX_BUTTONS] = {
 		_RIGHT_KEY,	   		/* FrontRightBottom	*/
 		_LEFT_KEY,		   	/* FrontLeftBottom	*/
 		_PAGEUP_KEY,	   	/* FrontRightTop	*/
@@ -97,7 +97,7 @@ unsigned short etc_DefaultKeyboardSet[_MAX_BUTTONS] = {
 		_LEFT_KEY };	   	/* Left			 	*/
 #endif
 /* Default Joystick Configuration. */
-unsigned long int		etc_DefaultJoystickSet[_MAX_JOY_SWITCHES] = {
+uint32_t		etc_DefaultJoystickSet[_MAX_JOY_SWITCHES] = {
 //		LUp,
 //		LDown,
 		_UNDEFINED,
@@ -110,7 +110,7 @@ unsigned long int		etc_DefaultJoystickSet[_MAX_JOY_SWITCHES] = {
 		_UNDEFINED };
 
 /* Default Mouse Configuration. */
-unsigned long int		etc_DefaultMouseSet[_MAX_MOUSE_SWITCHES] = {
+uint32_t		etc_DefaultMouseSet[_MAX_MOUSE_SWITCHES] = {
 		_UNDEFINED,
 		_UNDEFINED,
 		_UNDEFINED,

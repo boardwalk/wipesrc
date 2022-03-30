@@ -15,7 +15,7 @@
 #include "radscn.h"
 #include "droid.h"
 #include "camera.h"
-#include "draw.h"								  
+#include "draw.h"
 #include "sound.h"
 #include "sparks2.h"
 #include "global.h"
@@ -23,7 +23,7 @@
 #include "libgte.h"
 
 
-   
+
 /* reduce this later !!! */
 #define ObjectListMax 128
 
@@ -37,16 +37,16 @@ void CalcNewRadius( TrackSection *section, Object* objects )
    MATRIX*        matrix;
 	Vector*       	sectionCentre;
 	VECTOR       	vector;
-//   long long      distance; // PCwipeout
-   long      distance;			 // PCwipeout
-   short          i, j;
-   short          objectCount;
-   short          withinLocal;
-   short          withinGlobal;
-   short          allCount;
-   short          pad;
+//   int32_t int32_t      distance; // PCwipeout
+   int32_t      distance;			 // PCwipeout
+   int16_t          i, j;
+   int16_t          objectCount;
+   int16_t          withinLocal;
+   int16_t          withinGlobal;
+   int16_t          allCount;
+   int16_t          pad;
 
-   short          objectList[ ObjectListMax ];      
+   int16_t          objectList[ ObjectListMax ];
 
 
    DFree( heap, ( Ptr )section->objects );
@@ -180,7 +180,7 @@ void CalcNewRadius( TrackSection *section, Object* objects )
       {
          if ( objectCount < ObjectListMax )
          {
-            objectList[ objectCount++ ] = allCount;            
+            objectList[ objectCount++ ] = allCount;
          }
          else
          {
@@ -192,16 +192,16 @@ void CalcNewRadius( TrackSection *section, Object* objects )
       allCount++;
    }
 
-   section->objects = ( short* )DAlloc(heap, objectCount * sizeof(short) );
+   section->objects = ( int16_t* )DAlloc(heap, objectCount * sizeof(int16_t) );
    if (!section->objects)
    {
       Error( "Error:: radius.c: Not enough memory for section object list", Fatal );
-   }          
+   }
    section->objectCount = objectCount;
 
    for ( j=0; j<objectCount; j++ )
    {
-      section->objects[ j ] = objectList[ j ];   
+      section->objects[ j ] = objectList[ j ];
    }
 
 }
@@ -212,19 +212,19 @@ void SceneRadiusCheck( Object* objects )
 {
    TrackSection*  section;
    TrackSection*  visSection;
-   short          i, j;
+   int16_t          i, j;
    Object*        object;
    Object*        nextObject;
    MATRIX*        matrix;
 	Vector*       	sectionCentre;
-   short          objectCount;
+   int16_t          objectCount;
 	VECTOR       	vector;
-//   long long      distance;
-   long      distance; // PCwipeout
-   short          objectList[ ObjectListMax ];      
-   short          withinLocal;
-   short          withinGlobal;
-   short          allCount;
+//   int32_t int32_t      distance;
+   int32_t      distance; // PCwipeout
+   int16_t          objectList[ ObjectListMax ];
+   int16_t          withinLocal;
+   int16_t          withinGlobal;
+   int16_t          allCount;
 
 
 
@@ -250,7 +250,7 @@ void SceneRadiusCheck( Object* objects )
    object = objects;
    for ( i=0; i<objectCount; i++ )
    {
-      objectTable[ i ] = object; 
+      objectTable[ i ] = object;
       object = object->next;
    }
 
@@ -390,7 +390,7 @@ void SceneRadiusCheck( Object* objects )
          {
             if ( objectCount < ObjectListMax )
             {
-               objectList[ objectCount++ ] = allCount;            
+               objectList[ objectCount++ ] = allCount;
             }
             else
             {
@@ -402,16 +402,16 @@ void SceneRadiusCheck( Object* objects )
          allCount++;
       }
 
-      section->objects = ( short* )DAlloc(heap, objectCount * sizeof(short) );
+      section->objects = ( int16_t* )DAlloc(heap, objectCount * sizeof(int16_t) );
       if (!section->objects)
       {
          Error( "Error:: radius.c: Not enough memory for section object list", Fatal );
-      }          
+      }
       section->objectCount = objectCount;
 
       for ( j=0; j<objectCount; j++ )
       {
-         section->objects[ j ] = objectList[ j ];   
+         section->objects[ j ] = objectList[ j ];
       }
 
 #if 0

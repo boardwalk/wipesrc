@@ -42,7 +42,7 @@
  *      DR_MODE  | 3	|   -	|   -   | -     | Drawing Mode
  *      DR_ENV   |16	|   -	|   -	| -	| Drawing Environment
  *
- *	*1: in long-word
+ *	*1: in int32_t-word
  *
  * Texture Attributes:
  *	abr: ambient rate
@@ -61,7 +61,7 @@
 /*
  *	Externals
  */
-extern	int	(*GPU_printf)();	/* printf() object */
+extern	int32_t	(*GPU_printf)();	/* printf() object */
 #define GPU_printf	printf
 /*
  *	Time-out Cycle
@@ -296,36 +296,36 @@ extern	int	(*GPU_printf)();	/* printf() object */
  * Rectangle:
  */
 typedef struct {
-	short x, y;		/* offset point on VRAM */
-	short w, h;		/* width and height */
+	int16_t x, y;		/* offset point on VRAM */
+	int16_t w, h;		/* width and height */
 } RECT;
 
 /*
  * Environment
  */
 typedef struct {
-	u_long	tag;
-	u_long	code[15];
+	uint32_t	tag;
+	uint32_t	code[15];
 } DR_ENV;				/* Packed Drawing Environment */
 
 typedef struct {
 	RECT	clip;		/* clip area */
-	short	ofs[2];		/* drawing offset */
+	int16_t	ofs[2];		/* drawing offset */
 	RECT	tw;		/* texture window */
-	u_short tpage;		/* texture page */
-	u_char	dtd;		/* dither flag (0:off, 1:on) */
-	u_char	dfe;		/* flag to draw on display area (0:off 1:on) */
-	u_char	isbg;		/* enable to auto-clear */
-	u_char	r0, g0, b0;	/* initital background color */
+	uint16_t tpage;		/* texture page */
+	uint8_t	dtd;		/* dither flag (0:off, 1:on) */
+	uint8_t	dfe;		/* flag to draw on display area (0:off 1:on) */
+	uint8_t	isbg;		/* enable to auto-clear */
+	uint8_t	r0, g0, b0;	/* initital background color */
 	DR_ENV	dr_env;		/* reserved */
 } DRAWENV;
 
 typedef struct {
 	RECT	disp;		/* display area */
 	RECT	screen;		/* display start point */
-	u_char	isinter;	/* interlace 0: off 1: on */
-	u_char	isrgb24;	/* RGB24 bit mode */
-	u_short	pad0;
+	uint8_t	isinter;	/* interlace 0: off 1: on */
+	uint8_t	isrgb24;	/* RGB24 bit mode */
+	uint16_t	pad0;
 } DISPENV;
 
 /*
@@ -333,181 +333,181 @@ typedef struct {
  */
 typedef struct {
 	void*	addr;
-	u_char		r0, g0, b0, code;
+	uint8_t		r0, g0, b0, code;
 } P_TAG;
 
 typedef struct {
-	u_char	r0, g0, b0, code;
+	uint8_t	r0, g0, b0, code;
 } P_CODE;
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, y0;
-	short	x1,	y1;
-	short	x2,	y2;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, y0;
+	int16_t	x1,	y1;
+	int16_t	x2,	y2;
 } POLY_F3;				/* Flat Triangle */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, y0;
-	short	x1,	y1;
-	short	x2,	y2;
-	short	x3,	y3;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, y0;
+	int16_t	x1,	y1;
+	int16_t	x2,	y2;
+	int16_t	x3,	y3;
 } POLY_F4;				/* Flat Quadrangle */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, y0, z0, pad4;
-	u_char	u0, v0;
-	u_short	clut;
-	short	x1,	y1, z1, pad5;
-	u_char	u1, v1;
-	u_short	tpage;
-	short	x2,	y2, z2, pad6;
-	u_char	u2, v2;
-	u_short	pad1;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, y0, z0, pad4;
+	uint8_t	u0, v0;
+	uint16_t	clut;
+	int16_t	x1,	y1, z1, pad5;
+	uint8_t	u1, v1;
+	uint16_t	tpage;
+	int16_t	x2,	y2, z2, pad6;
+	uint8_t	u2, v2;
+	uint16_t	pad1;
 } POLY_FT3;				/* Flat Textured Triangle */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, y0, z0, pad4;
-	u_char	u0, v0;
-	u_short	clut;
-	short	x1,	y1, z1, pad5;
-	u_char	u1, v1;
-	u_short	tpage;
-	short	x2,	y2, z2, pad6;
-	u_char	u2, v2;
-	u_short	pad1;
-	short	x3,	y3, z3, pad7;
-	u_char	u3, v3;
-	u_short	pad2;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, y0, z0, pad4;
+	uint8_t	u0, v0;
+	uint16_t	clut;
+	int16_t	x1,	y1, z1, pad5;
+	uint8_t	u1, v1;
+	uint16_t	tpage;
+	int16_t	x2,	y2, z2, pad6;
+	uint8_t	u2, v2;
+	uint16_t	pad1;
+	int16_t	x3,	y3, z3, pad7;
+	uint8_t	u3, v3;
+	uint16_t	pad2;
 } POLY_FT4;				/* Flat Textured Quadrangle */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	u_char	r1, g1, b1, pad1;
-	short	x1,	y1;
-	u_char	r2, g2, b2, pad2;
-	short	x2,	y2;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	r1, g1, b1, pad1;
+	int16_t	x1,	y1;
+	uint8_t	r2, g2, b2, pad2;
+	int16_t	x2,	y2;
 } POLY_G3;				/* Gouraud Triangle */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	u_char	r1, g1, b1, pad1;
-	short	x1,	y1;
-	u_char	r2, g2, b2, pad2;
-	short	x2,	y2;
-	u_char	r3, g3, b3, pad3;
-	short	x3,	y3;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	r1, g1, b1, pad1;
+	int16_t	x1,	y1;
+	uint8_t	r2, g2, b2, pad2;
+	int16_t	x2,	y2;
+	uint8_t	r3, g3, b3, pad3;
+	int16_t	x3,	y3;
 } POLY_G4;				/* Gouraud Quadrangle */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0, z0, pad4;
-	u_char	u0, v0;	u_short	clut;
-	u_char	r1, g1, b1, p1;
-	short	x1,	y1, z1, pad5;
-	u_char	u1, v1;	u_short	tpage;
-	u_char	r2, g2, b2, p2;
-	short	x2,	y2, z2, pad6;
-	u_char	u2, v2;	u_short	pad2;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0, z0, pad4;
+	uint8_t	u0, v0;	uint16_t	clut;
+	uint8_t	r1, g1, b1, p1;
+	int16_t	x1,	y1, z1, pad5;
+	uint8_t	u1, v1;	uint16_t	tpage;
+	uint8_t	r2, g2, b2, p2;
+	int16_t	x2,	y2, z2, pad6;
+	uint8_t	u2, v2;	uint16_t	pad2;
 } POLY_GT3;				/* Gouraud Textured Triangle */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0, z0, pad4;
-	u_char	u0, v0;	u_short	clut;
-	u_char	r1, g1, b1, p1;
-	short	x1,	y1, z1, pad5;
-	u_char	u1, v1;	u_short	tpage;
-	u_char	r2, g2, b2, p2;
-	short	x2,	y2, z2, pad6;
-	u_char	u2, v2;	u_short	pad2;
-	u_char	r3, g3, b3, p3;
-	short	x3,	y3, z3, pad7;
-	u_char	u3, v3;	u_short	pad3;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0, z0, pad4;
+	uint8_t	u0, v0;	uint16_t	clut;
+	uint8_t	r1, g1, b1, p1;
+	int16_t	x1,	y1, z1, pad5;
+	uint8_t	u1, v1;	uint16_t	tpage;
+	uint8_t	r2, g2, b2, p2;
+	int16_t	x2,	y2, z2, pad6;
+	uint8_t	u2, v2;	uint16_t	pad2;
+	uint8_t	r3, g3, b3, p3;
+	int16_t	x3,	y3, z3, pad7;
+	uint8_t	u3, v3;	uint16_t	pad3;
 } POLY_GT4;				/* Gouraud Textured Quadrangle */
 
 /*
  * Line Primitive Definitions
  */
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	short	x1,	y1;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	int16_t	x1,	y1;
 } LINE_F2;				/* Unconnected Flat Line */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	u_char	r1, g1, b1, p1;
-	short	x1,	y1;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	r1, g1, b1, p1;
+	int16_t	x1,	y1;
 } LINE_G2;				/* Unconnected Gouraud Line */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	short	x1,	y1;
-	short	x2,	y2;
-	u_long	pad;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	int16_t	x1,	y1;
+	int16_t	x2,	y2;
+	uint32_t	pad;
 } LINE_F3;				/* 2 connected Flat Line */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	u_char	r1, g1, b1, p1;
-	short	x1,	y1;
-	u_char	r2, g2, b2, p2;
-	short	x2,	y2;
-	u_long	pad;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	r1, g1, b1, p1;
+	int16_t	x1,	y1;
+	uint8_t	r2, g2, b2, p2;
+	int16_t	x2,	y2;
+	uint32_t	pad;
 } LINE_G3;				/* 2 connected Gouraud Line */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	short	x1,	y1;
-	short	x2,	y2;
-	short	x3,	y3;
-	u_long	pad;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	int16_t	x1,	y1;
+	int16_t	x2,	y2;
+	int16_t	x3,	y3;
+	uint32_t	pad;
 } LINE_F4;				/* 3 connected Flat Line Quadrangle */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	u_char	r1, g1, b1, p1;
-	short	x1,	y1;
-	u_char	r2, g2, b2, p2;
-	short	x2,	y2;
-	u_char	r3, g3, b3, p3;
-	short	x3,	y3;
-	u_long	pad;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	r1, g1, b1, p1;
+	int16_t	x1,	y1;
+	uint8_t	r2, g2, b2, p2;
+	int16_t	x2,	y2;
+	uint8_t	r3, g3, b3, p3;
+	int16_t	x3,	y3;
+	uint32_t	pad;
 } LINE_G4;				/* 3 connected Gouraud Line */
 
 /*
  * Block Fill Primitive Definitions
  */
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	u_short	x0, 	y0;
-	u_short	w, 	h;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	uint16_t	x0, 	y0;
+	uint16_t	w, 	h;
 } BLK_FILL;				/* Clear Frame Buffer */
 typedef BLK_FILL CLEAR;			/* for old version */
 
@@ -515,18 +515,18 @@ typedef BLK_FILL CLEAR;			/* for old version */
  * Sprite Primitive Definitions
  */
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	u_char	u0, v0;	u_short	clut;
-	short	w,	h;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	u0, v0;	uint16_t	clut;
+	int16_t	w,	h;
 } SPRT;					/* free size Sprite */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	u_char	u0, v0;	u_short	clut;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	u0, v0;	uint16_t	clut;
 } SPRT_16;				/* 16x16 Sprite */
 
 typedef SPRT_16 SPRT_8;			/* 8x8 Sprite */
@@ -534,16 +534,16 @@ typedef SPRT_16 SPRT_8;			/* 8x8 Sprite */
  * Tile Primitive Definitions
  */
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
-	short	w,	h;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	int16_t	w,	h;
 } TILE;					/* free size Tile */
 
 typedef struct {
-	u_long	tag;
-	u_char	r0, g0, b0, code;
-	short	x0, 	y0;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
 } TILE_16;				/* 16x16 Tile */
 
 typedef TILE_16 TILE_8;			/* 8x8 Tile */
@@ -553,8 +553,8 @@ typedef TILE_16 TILE_1;			/* 1x1 Tile */
  *  Special Primitive Definitions
  */
 typedef struct {
-	u_long	tag;
-	u_long	code[2];
+	uint32_t	tag;
+	uint32_t	code[2];
 } DR_MODE;				/* Drawing Mode */
 
 typedef DR_MODE DR_PRIO;		/* Priority */
@@ -565,14 +565,14 @@ typedef DR_MODE DR_OFFSET;		/* Drawing Offset */
  *	Multi-purpose Sony-TMD primitive
  */
 typedef struct {
-	u_long	id;
-	u_char	r0, g0, b0, p0;		/* Color of vertex 0 */
-	u_char	r1, g1, b1, p1;		/* Color of vertex 1 */
-	u_char	r2, g2, b2, p2;		/* Color of vertex 2 */
-	u_char	r3, g3, b3, p3;		/* Color of vertex 3 */
-	u_short	tpage, clut;		/* texture page ID, clut ID */
-	u_char	u0, v0, u1, v1;		/* texture corner point */
-	u_char	u2, v2, u3, v3;
+	uint32_t	id;
+	uint8_t	r0, g0, b0, p0;		/* Color of vertex 0 */
+	uint8_t	r1, g1, b1, p1;		/* Color of vertex 1 */
+	uint8_t	r2, g2, b2, p2;		/* Color of vertex 2 */
+	uint8_t	r3, g3, b3, p3;		/* Color of vertex 3 */
+	uint16_t	tpage, clut;		/* texture page ID, clut ID */
+	uint8_t	u0, v0, u1, v1;		/* texture corner point */
+	uint8_t	u2, v2, u3, v3;
 
 	/* independent vertex model */
 	SVECTOR	x0, x1, x2, x3;		/* 3D corner point */
@@ -582,10 +582,10 @@ typedef struct {
 	SVECTOR	*v_ofs;			/* offset to vertex database */
 	SVECTOR	*n_ofs;			/* offset to normal database */
 
-	u_short	vert0, vert1; 		/* index of vertex */
-	u_short	vert2, vert3;
-	u_short	norm0, norm1; 		/* index of normal */
-	u_short	norm2, norm3;
+	uint16_t	vert0, vert1; 		/* index of vertex */
+	uint16_t	vert2, vert3;
+	uint16_t	norm0, norm1; 		/* index of normal */
+	uint16_t	norm2, norm3;
 
 
 } TMD_PRIM;
@@ -594,19 +594,19 @@ typedef struct {
  *	Multi-purpose TIM image
  */
 typedef struct {
-	u_long  mode;		/* pixel mode */
+	uint32_t  mode;		/* pixel mode */
 	RECT	*crect;		/* CLUT rectangle on frame buffer */
-	u_long	*caddr;		/* CLUT address on main memory */
+	uint32_t	*caddr;		/* CLUT address on main memory */
 	RECT	*prect;		/* texture image rectangle on frame buffer */
-	u_long	*paddr;		/* texture image address on main memory */
+	uint32_t	*paddr;		/* texture image address on main memory */
 } TIM_IMAGE;
 
 typedef struct _clut
 {
-        unsigned short  red:5;
-        unsigned short  green:5;
-        unsigned short  blue:5;
-        unsigned short  trans:1;
+        uint16_t  red:5;
+        uint16_t  green:5;
+        uint16_t  blue:5;
+        uint16_t  trans:1;
 } CLUT;
 
 
@@ -618,54 +618,54 @@ DISPENV *PutDispEnv(DISPENV *env);
 DRAWENV *PutDrawEnv(DRAWENV *env);
 DISPENV *GetDispEnv(DISPENV *env);
 DRAWENV *GetDrawEnv(DRAWENV *env);
-DISPENV *SetDefDispEnv(DISPENV *disp, int x, int y, int w, int h);
-DRAWENV *SetDefDrawEnv(DRAWENV *draw, int x, int y, int w, int h);
+DISPENV *SetDefDispEnv(DISPENV *disp, int32_t x, int32_t y, int32_t w, int32_t h);
+DRAWENV *SetDefDrawEnv(DRAWENV *draw, int32_t x, int32_t y, int32_t w, int32_t h);
 
 void SetDrawEnv(DR_ENV *dr_env, DRAWENV *env);
-void SetDrawMode(DR_MODE *p, int dfe, int dtd, int tpage, RECT *tw);
+void SetDrawMode(DR_MODE *p, int32_t dfe, int32_t dtd, int32_t tpage, RECT *tw);
 void DumpDispEnv(DISPENV *env);
 void DumpDrawEnv(DRAWENV *env);
 
-void ReverseTPage(u_short tpage, int *tp, int *abr, int *x, int *y);
+void ReverseTPage(uint16_t tpage, int32_t *tp, int32_t *abr, int32_t *x, int32_t *y);
 TIM_IMAGE *ReadTIM(TIM_IMAGE *timimg);
 TMD_PRIM *ReadTMD(TMD_PRIM *tmdprim);
-int CheckPrim(char *s, u_long *p);
-int ClearImage(RECT *rect, u_char r, u_char g, u_char b);
-int DrawSync(int mode);
-int FntLoad(int tx, int ty);
-int FntOpen(int x, int y, int w, int h, int isbg, int n);
-int GetDispMode(int width, int height, int isinter);
-int GetGraphType(void);
-int LoadImage(RECT *rect, u_long *p);
-int MargePrim();
-int MoveImage(RECT *rect, int x, int y);
-int OpenTIM(u_long *addr);
-int OpenTMD(u_long *tmd, int obj_no);
-int ResetGraph(int mode);
-void SetDispMask(int mask);
-void StoreImage(RECT *rect, u_long *p);
-int VSync(int mode);
-P_TAG *ClearOTag(P_TAG *ot, int n);
-P_TAG *ClearOTagR(P_TAG *ot, int n);
-u_long *FntFlush(int id);
-u_long *NextPrim(u_long *p);
-u_short GetClut(int x, int y);
-u_short GetTPage(int tp, int abr, int x, int y);
-u_short LoadClut(u_long *clut, int x, int y);
-u_short LoadTPage(u_long *pix, int tp, int abr, int x, int y, int w, int h);
-u_short LoadTPageA(u_long *pix, int tp, int abr, int x, int y, int w, int h);
+int32_t CheckPrim(char *s, uint32_t *p);
+int32_t ClearImage(RECT *rect, uint8_t r, uint8_t g, uint8_t b);
+int32_t DrawSync(int32_t mode);
+int32_t FntLoad(int32_t tx, int32_t ty);
+int32_t FntOpen(int32_t x, int32_t y, int32_t w, int32_t h, int32_t isbg, int32_t n);
+int32_t GetDispMode(int32_t width, int32_t height, int32_t isinter);
+int32_t GetGraphType(void);
+int32_t LoadImage(RECT *rect, uint32_t *p);
+int32_t MargePrim();
+int32_t MoveImage(RECT *rect, int32_t x, int32_t y);
+int32_t OpenTIM(uint32_t *addr);
+int32_t OpenTMD(uint32_t *tmd, int32_t obj_no);
+int32_t ResetGraph(int32_t mode);
+void SetDispMask(int32_t mask);
+void StoreImage(RECT *rect, uint32_t *p);
+int32_t VSync(int32_t mode);
+P_TAG *ClearOTag(P_TAG *ot, int32_t n);
+P_TAG *ClearOTagR(P_TAG *ot, int32_t n);
+uint32_t *FntFlush(int32_t id);
+uint32_t *NextPrim(uint32_t *p);
+uint16_t GetClut(int32_t x, int32_t y);
+uint16_t GetTPage(int32_t tp, int32_t abr, int32_t x, int32_t y);
+uint16_t LoadClut(uint32_t *clut, int32_t x, int32_t y);
+uint16_t LoadTPage(uint32_t *pix, int32_t tp, int32_t abr, int32_t x, int32_t y, int32_t w, int32_t h);
+uint16_t LoadTPageA(uint32_t *pix, int32_t tp, int32_t abr, int32_t x, int32_t y, int32_t w, int32_t h);
 void AddPrim();
 void AddPrims();
 void CatPrim();
 void DrawOTag();
 void DrawOTagIO();
 void DrawPrim();
-void DumpClut(u_short clut);
+void DumpClut(uint16_t clut);
 void DumpOTag();
-void DumpTPage(u_short tpage);
-void SetDumpFnt(int id);
+void DumpTPage(uint16_t tpage);
+void SetDumpFnt(int32_t id);
 void SetDrawOffset();
-int SetGraphDebug(int level);
+int32_t SetGraphDebug(int32_t level);
 void SetSemiTrans();
 void SetShadeTex();
 void TermPrim();
@@ -688,7 +688,7 @@ void SetTile16(TILE_16 *p);
 void SetTile(TILE    *p);
 void SetBlockFill(BLK_FILL *p);
 void SetTexWindow(DR_TWIN *p, RECT *tw);
-void SetDrawOffset(DR_OFFSET *p, u_short *ofs);
-void SetPriority(DR_PRIO *p, int pbc, int pbw);
+void SetDrawOffset(DR_OFFSET *p, uint16_t *ofs);
+void SetPriority(DR_PRIO *p, int32_t pbc, int32_t pbw);
 
 #define GET_PALLETE(a,b,c)	((a & 0xe0) | ((b & 0xe0) >>3) | ((c & 0xc0) >> 5))

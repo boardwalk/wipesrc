@@ -2,26 +2,26 @@
 */
 
 TrackSection *AsmTransformTrackLo	// PCwipeout
-( 
+(
    TrackSection*     firstSection,
    Skeleton*         camera,
-   short             loCount,
-   short			 dir
+   int16_t             loCount,
+   int16_t			 dir
 );
 
 TrackSection *AsmTransformTrackMed	// PCwipeout
-( 
+(
    TrackSection*     firstSection,
    Skeleton*         camera,
-   short             medCount,
-   short			 dir
+   int16_t             medCount,
+   int16_t			 dir
 );
 
 TrackSection *AsmTransformTrackHi	// PCwipeout
-( 
+(
    TrackSection*     firstSection,
    Skeleton*         camera,
    AutoMeshData*     autoMesh,
-   short             medCount,
-   short			 dir
+   int16_t             medCount,
+   int16_t			 dir
 );

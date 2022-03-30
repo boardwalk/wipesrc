@@ -9,17 +9,17 @@
 
 typedef struct
 {
-   ulong    tag;
+   uint32_t    tag;
    uchar    r0, g0, b0, code;
-   ushort   x, y;
-   ushort   w, h;
+   uint16_t   x, y;
+   uint16_t   w, h;
 } BlkFill;
 
 /* Flat Triangle */
 
 typedef struct
 {
-   ulong    tag;
+   uint32_t    tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    DVECTOR  xy1;
@@ -30,69 +30,69 @@ typedef struct
 
 typedef struct
 {
-   ulong    tag;
+   uint32_t    tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    DVECTOR  xy1;
    DVECTOR  xy2;
    DVECTOR  xy3;
-} PolyF4;            
+} PolyF4;
 
 /* Flat Textured Triangle */
 
 typedef struct
 {
-   ulong    tag;
+   uint32_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
    uchar    u0, v0;
-   ushort   cba;
+   uint16_t   cba;
    SVECTOR  xy1;
    uchar    u1, v1;
-   ushort   tsb;
+   uint16_t   tsb;
    SVECTOR  xy2;
    uchar    u2, v2;
-   ushort   pad1;
-} PolyFT3;            
+   uint16_t   pad1;
+} PolyFT3;
 
 /* Flat Textured Rectangle */
 
-typedef struct 
+typedef struct
 {
-   ulong    tag;
+   uint32_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
-   uchar    u0, v0;   
-   ushort   cba;
+   uchar    u0, v0;
+   uint16_t   cba;
    SVECTOR  xy1;
-   uchar    u1, v1;   
-   ushort   tsb;
+   uchar    u1, v1;
+   uint16_t   tsb;
    SVECTOR  xy2;
-   uchar    u2, v2;   
-   ushort   pad1;
+   uchar    u2, v2;
+   uint16_t   pad1;
    SVECTOR  xy3;
-   uchar    u3, v3;   
-   ushort   pad2;
-} PolyFT4;            
+   uchar    u3, v3;
+   uint16_t   pad2;
+} PolyFT4;
 
 /* Gouraud Triangle */
 
-typedef struct 
+typedef struct
 {
-   ulong    tag;
+   uint32_t    tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    CVECTOR  colour1;
    DVECTOR  xy1;
    CVECTOR  colour2;
    DVECTOR  xy2;
-} PolyG3;            
+} PolyG3;
 
 /* Gouraud Rectangle */
 
-typedef struct 
+typedef struct
 {
-   ulong    tag;
+   uint32_t    tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    CVECTOR  colour1;
@@ -101,69 +101,69 @@ typedef struct
    DVECTOR  xy2;
    CVECTOR  colour3;
    DVECTOR  xy3;
-} PolyG4;            
+} PolyG4;
 
 /* Gouraud Textured Triangle */
 
-typedef struct 
+typedef struct
 {
-   ulong    tag;
+   uint32_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
-   uchar    u0, v0;   
-   ushort   cba;
+   uchar    u0, v0;
+   uint16_t   cba;
    CVECTOR  colour1;
    SVECTOR  xy1;
-   uchar    u1, v1;   
-   ushort   tsb;
+   uchar    u1, v1;
+   uint16_t   tsb;
    CVECTOR  colour2;
    SVECTOR  xy2;
-   uchar    u2, v2;   
-   ushort   pad2;
-} PolyGT3;            
+   uchar    u2, v2;
+   uint16_t   pad2;
+} PolyGT3;
 
 /* Gouraud Textured Rectangle */
 
-typedef struct 
+typedef struct
 {
-   ulong    tag;
+   uint32_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
-   uchar    u0, v0;   
-   ushort   cba;
+   uchar    u0, v0;
+   uint16_t   cba;
    CVECTOR  colour1;
    SVECTOR  xy1;
-   uchar    u1, v1;   
-   ushort   tsb;
+   uchar    u1, v1;
+   uint16_t   tsb;
    CVECTOR  colour2;
    SVECTOR  xy2;
-   uchar    u2, v2;   
-   ushort   pad2;
+   uchar    u2, v2;
+   uint16_t   pad2;
    CVECTOR  colour3;
    SVECTOR  xy3;
-   uchar    u3, v3;   
-   ushort   pad3;
-} PolyGT4;            
+   uchar    u3, v3;
+   uint16_t   pad3;
+} PolyGT4;
 
 
 /* Flat shaded line with 2 coords */
 
 typedef struct
 {
-   ulong*   tag;
+   uint32_t*   tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    DVECTOR  xy1;
 } LineF2;
 
 
-/* 2D Primitive Stubs 
+/* 2D Primitive Stubs
 */
 
 typedef struct Prim
 {
-   uint        next : 24;
-   uint        size : 8;
+   unsigned        next : 24;
+   unsigned        size : 8;
    CVECTOR     colour0;
 } Prim;
 
@@ -178,8 +178,8 @@ typedef struct PRIM
 
 typedef struct Tag
 {
-   uint           next : 24;
-   uint           size : 8;
+   unsigned           next : 24;
+   unsigned           size : 8;
 } Tag;
 
 
@@ -205,9 +205,9 @@ typedef struct Skeleton
    MATRIX            relative;   /* Relative rotation/translation matrix */
    MATRIX            absolute;   /* Absolute rotation/translation matrix */
 
-   short             update;     /* Set if absolute matrix needs updating ( i.e. parent matrix has been changed ) */
+   int16_t             update;     /* Set if absolute matrix needs updating ( i.e. parent matrix has been changed ) */
 
-   struct Skeleton*  super;      /* Parent Skeleton */ 
+   struct Skeleton*  super;      /* Parent Skeleton */
    struct Skeleton*  sub;        /* First Child Skeleton of this Skeleton */
    struct Skeleton*  next;       /* Next Child Skeleton of Parent Skeleton */
 } Skeleton;
@@ -220,7 +220,7 @@ typedef struct Skeleton
 
 typedef struct Primitive
 {
-   short             type;    /* Type of Primitive */
+   int16_t             type;    /* Type of Primitive */
 } Primitive;
 
 
@@ -235,47 +235,47 @@ typedef struct Primitive
 
 typedef struct F3
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 3 ];   /* Indices of the coords */
-   short             pad1;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 3 ];   /* Indices of the coords */
+   int16_t             pad1;
    CVECTOR           colour;
 } F3;
 
 typedef struct FT3
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 3 ];   /* Indices of the coords */
-   short             texture;
-   short             cba;
-   short             tsb;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 3 ];   /* Indices of the coords */
+   int16_t             texture;
+   int16_t             cba;
+   int16_t             tsb;
    char              u0;
    char              v0;
    char              u1;
    char              v1;
    char              u2;
    char              v2;
-   short             pad1;
+   int16_t             pad1;
    CVECTOR           colour;
 } FT3;
 
 typedef struct F4
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 4 ];   /* Indices of the coords */
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 4 ];   /* Indices of the coords */
    CVECTOR           colour;
 } F4;
 
 typedef struct FT4
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 4 ];   /* Indices of the coords */
-   short             texture;
-   short             cba;
-   short             tsb;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 4 ];   /* Indices of the coords */
+   int16_t             texture;
+   int16_t             cba;
+   int16_t             tsb;
    char              u0;
    char              v0;
    char              u1;
@@ -284,53 +284,53 @@ typedef struct FT4
    char              v2;
    char              u3;
    char              v3;
-   short             pad1;
+   int16_t             pad1;
    CVECTOR           colour;
 } FT4;
 
 typedef struct G3
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 3 ];   /* Indices of the coords */
-   short             pad1;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 3 ];   /* Indices of the coords */
+   int16_t             pad1;
    CVECTOR           colour[ 3 ];
 } G3;
 
 typedef struct GT3
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 3 ];   /* Indices of the coords */
-   short             texture;
-   short             cba;
-   short             tsb;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 3 ];   /* Indices of the coords */
+   int16_t             texture;
+   int16_t             cba;
+   int16_t             tsb;
    char              u0;
    char              v0;
    char              u1;
    char              v1;
    char              u2;
    char              v2;
-   short             pad1;
+   int16_t             pad1;
    CVECTOR           colour[ 3 ];
 } GT3;
 
 typedef struct G4
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 4 ];   /* Indices of the coords */
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 4 ];   /* Indices of the coords */
    CVECTOR           colour[ 4 ];
 } G4;
 
 typedef struct GT4
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 4 ];   /* Indices of the coords */
-   short             texture;
-   short             cba;
-   short             tsb;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 4 ];   /* Indices of the coords */
+   int16_t             texture;
+   int16_t             cba;
+   int16_t             tsb;
    char              u0;
    char              v0;
    char              u1;
@@ -339,7 +339,7 @@ typedef struct GT4
    char              v2;
    char              u3;
    char              v3;
-   short             pad1;
+   int16_t             pad1;
    CVECTOR           colour[ 4 ];
 } GT4;
 
@@ -351,22 +351,22 @@ typedef struct GT4
 
 typedef struct LSF3
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 3 ];   /* Indices of the coords */
-   short             normal;        /* Indices of the normals */
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 3 ];   /* Indices of the coords */
+   int16_t             normal;        /* Indices of the normals */
    CVECTOR           colour;
 } LSF3;
 
 typedef struct LSFT3
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 3 ];   /* Indices of the coords */
-   short             normal;        /* Indices of the normals */
-   short             texture;
-   short             cba;
-   short             tsb;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 3 ];   /* Indices of the coords */
+   int16_t             normal;        /* Indices of the normals */
+   int16_t             texture;
+   int16_t             cba;
+   int16_t             tsb;
    char              u0;
    char              v0;
    char              u1;
@@ -378,23 +378,23 @@ typedef struct LSFT3
 
 typedef struct LSF4
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 4 ];   /* Indices of the coords */
-   short             normal;        /* Indices of the normals */
-   short             pad1;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 4 ];   /* Indices of the coords */
+   int16_t             normal;        /* Indices of the normals */
+   int16_t             pad1;
    CVECTOR           colour;
 } LSF4;
 
 typedef struct LSFT4
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 4 ];   /* Indices of the coords */
-   short             normal;        /* Indices of the normals */
-   short             texture;
-   short             cba;
-   short             tsb;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 4 ];   /* Indices of the coords */
+   int16_t             normal;        /* Indices of the normals */
+   int16_t             texture;
+   int16_t             cba;
+   int16_t             tsb;
    char              u0;
    char              v0;
    char              u1;
@@ -408,22 +408,22 @@ typedef struct LSFT4
 
 typedef struct LSG3
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 3 ];   /* Indices of the coords */
-   short             normals[ 3 ];  /* Indices of the normals */
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 3 ];   /* Indices of the coords */
+   int16_t             normals[ 3 ];  /* Indices of the normals */
    CVECTOR           colour[ 3 ];
 } LSG3;
 
 typedef struct LSGT3
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 3 ];   /* Indices of the coords */
-   short             normals[ 3 ];  /* Indices of the normals */
-   short             texture;
-   short             cba;
-   short             tsb;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 3 ];   /* Indices of the coords */
+   int16_t             normals[ 3 ];  /* Indices of the normals */
+   int16_t             texture;
+   int16_t             cba;
+   int16_t             tsb;
    char              u0;
    char              v0;
    char              u1;
@@ -435,22 +435,22 @@ typedef struct LSGT3
 
 typedef struct LSG4
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 4 ];   /* Indices of the coords */
-   short             normals[ 4 ];  /* Indices of the normals */
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 4 ];   /* Indices of the coords */
+   int16_t             normals[ 4 ];  /* Indices of the normals */
    CVECTOR           colour[ 4 ];
 } LSG4;
 
 typedef struct LSGT4
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             coords[ 4 ];   /* Indices of the coords */
-   short             normals[ 4 ];  /* Indices of the normals */
-   short             texture;
-   short             cba;
-   short             tsb;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             coords[ 4 ];   /* Indices of the coords */
+   int16_t             normals[ 4 ];  /* Indices of the normals */
+   int16_t             texture;
+   int16_t             cba;
+   int16_t             tsb;
    char              u0;
    char              v0;
    char              u1;
@@ -459,7 +459,7 @@ typedef struct LSGT4
    char              v2;
    char              u3;
    char              v3;
-   short             pad1;
+   int16_t             pad1;
    CVECTOR           colour[ 4 ];
 } LSGT4;
 
@@ -473,28 +473,28 @@ typedef struct LSGT4
 
 typedef struct LF2
 {
-   short             type;          /* Type of primitive */
-   short             flag;
-   short             lines;         /* Number of lines */
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
+   int16_t             lines;         /* Number of lines */
    LineF2*           line[ 2 ];     /* 2 GPU Primitive arrays for double buffer */
 } LF2;
 
 typedef struct SPR
 {
-   short             type;
-   short             flag;
-   short             coord;
-   short             width;
-   short             height;
-   short             texture;
+   int16_t             type;
+   int16_t             flag;
+   int16_t             coord;
+   int16_t             width;
+   int16_t             height;
+   int16_t             texture;
    CVECTOR           colour;
 } SPR;
 
 
 typedef struct Spline
 {
-   short             type;          /* Type of primitive */
-   short             flag;
+   int16_t             type;          /* Type of primitive */
+   int16_t             flag;
    VECTOR            control1;
    VECTOR            position;
    VECTOR            control2;
@@ -504,33 +504,33 @@ typedef struct Spline
 
 typedef struct PointLight
 {
-   short             type;
-   short             flag;
+   int16_t             type;
+   int16_t             flag;
    VECTOR            position;
    CVECTOR           colour;
-   short             startFalloff;
-   short             endFalloff;
+   int16_t             startFalloff;
+   int16_t             endFalloff;
 } PointLight;
 
 
 typedef struct SpotLight
 {
-   short             type;
-   short             flag;
+   int16_t             type;
+   int16_t             flag;
    VECTOR            position;
    SVECTOR           direction;
    CVECTOR           colour;
-   short             startFalloff;
-   short             endFalloff;
-   short             coneAngle;
-   short             spreadAngle;
+   int16_t             startFalloff;
+   int16_t             endFalloff;
+   int16_t             coneAngle;
+   int16_t             spreadAngle;
 } SpotLight;
 
 
 typedef struct InfiniteLight
 {
-   short             type;
-   short             flag;
+   int16_t             type;
+   int16_t             flag;
    SVECTOR           direction;
    CVECTOR           colour;
 } InfiniteLight;
@@ -608,7 +608,7 @@ typedef union Poly
 {
    char*             ptr;
    Primitive*        prim;
-   
+
    F3*               f3;
    FT3*              ft3;
    F4*               f4;
@@ -617,7 +617,7 @@ typedef union Poly
    GT3*              gt3;
    G4*               g4;
    GT4*              gt4;
-   
+
    LSF3*             lsf3;
    LSFT3*            lsft3;
    LSF4*             lsf4;
@@ -666,7 +666,7 @@ typedef union StdPoly
 #define     TypeG4               7
 #define     TypeGT4              8
 
-#define     TypeLF2              9  
+#define     TypeLF2              9
 #define     TypeTSPR             10
 #define     TypeBSPR             11
 
@@ -705,7 +705,7 @@ typedef union StdPoly
 
 typedef struct BspTree
 {
-   short             primitiveCount;   /* Number of coplanar primitives */
+   int16_t             primitiveCount;   /* Number of coplanar primitives */
    Primitive*        primitives;       /* Pointer to the primitives */
 
    struct BspTree*   front;            /* Bsp Tree for polygons in front */
@@ -731,8 +731,8 @@ typedef union LibraryPrimitive
 
 typedef struct LibraryObject
 {
-   short                index;
-   short                primitiveCount;
+   int16_t                index;
+   int16_t                primitiveCount;
    LibraryPrimitive     primitives;
 } LibraryObject;
 
@@ -741,7 +741,7 @@ typedef struct LibraryObject
 
 
 /* Main Object Structure
-   
+
    NOTE : Two copies of each primitive are required for double buffering.
 */
 
@@ -749,29 +749,29 @@ typedef struct Object
 {
    char              name[16];
 
-   short             vertexCount;      /* Number of Vertices */
+   int16_t             vertexCount;      /* Number of Vertices */
    SVECTOR*          vertices;         /* Pointer to 3D Points */
 
-   short             normalCount;      /* Number of Normals */
+   int16_t             normalCount;      /* Number of Normals */
    SVECTOR*          normals;          /* Pointer to 3D Normals */
 
-   short             primitiveCount;   /* Number of Primitives */
+   int16_t             primitiveCount;   /* Number of Primitives */
    Primitive*        primitives;       /* Pointer to Z Sort Primitives */
 
 
 #if Lib
    LibraryObject*    libraryObject;
 #else
-   long              pad;
+   int32_t              pad;
 #endif
 
    BspTree*          bspTree;          /* Pointer to BSP Tree Primitives */
 
    Skeleton*         skeleton;         /* Pointer to Local Coordinates */
 
-   long              extent;           /* Flags for object characteristics */
+   int32_t              extent;           /* Flags for object characteristics */
 
-   short             flags;            /* Next object in list */
+   int16_t             flags;            /* Next object in list */
 
    struct Object*    next;             /* Next object in list */
 } Object;
@@ -781,8 +781,8 @@ typedef struct Object
 typedef union Prm
 {
    char*             ptr;
-   short*            sptr;
-   long*             lptr;
+   int16_t*            sptr;
+   int32_t*             lptr;
    Object*           object;
    Skeleton*         skeleton;
    SVECTOR*          svector;
@@ -834,9 +834,9 @@ typedef union Prm
 
 
 
-extern ulong*        ObjectTable[ ];
+extern uint32_t*        ObjectTable[ ];
 extern DoubleBuffer  Screen[ ];
-extern short         CurrentScreen;
+extern int16_t         CurrentScreen;
 
 
 extern DRAWENV       DrawEnv0;
@@ -867,20 +867,20 @@ PolyF4* GenerateQuad( );
 
 PolyF4* ClearScreen
 (
-   short          red,
-   short          green,
-   short          blue
+   int16_t          red,
+   int16_t          green,
+   int16_t          blue
 );
 
 void InitSystem( void );
 void Swap( );
 
-void SetCameraPosition( long x, long y, long z );
-void SetCameraDirection( short x, short y, short z );
+void SetCameraPosition( int32_t x, int32_t y, int32_t z );
+void SetCameraDirection( int16_t x, int16_t y, int16_t z );
 
 
 void TransformStaticObject( Object* object, Skeleton* camera );
-void TransformObjects( Object* object, short minDepth, short follow );
+void TransformObjects( Object* object, int16_t minDepth, int16_t follow );
 void MatrixMultiply( MATRIX* m1, MATRIX* m2, MATRIX* m3 );
 
 void InitialiseAmbientColour( void );
@@ -891,26 +891,26 @@ void SetupLights( Object* lights );
 
 void InitFonts( );
 void InitGameDisplay( void );
-void InitMenuDisplay( int geomOffset );
+void InitMenuDisplay( int32_t geomOffset );
 
 
 PolyF4* Quad
 (
-   short          red,
-   short          green,
-   short          blue,
-   short          border
+   int16_t          red,
+   int16_t          green,
+   int16_t          blue,
+   int16_t          border
 );
 
 BlkFill* BlockFill
 (
-   short          x,
-   short          y,
-   short          w,
-   short          h,
-   short          red,
-   short          green,
-   short          blue
+   int16_t          x,
+   int16_t          y,
+   int16_t          w,
+   int16_t          h,
+   int16_t          red,
+   int16_t          green,
+   int16_t          blue
 );
 
 

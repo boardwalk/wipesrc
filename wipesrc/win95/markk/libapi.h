@@ -95,9 +95,9 @@ extern void							ConfigureMouse1(void);
 extern void							ConfigureMouse2(void);
 extern void							ConfigureJoystick1(void);
 extern void							ConfigureJoystick2(void);
-extern void							AssignKey(unsigned long int button);
-extern unsigned short int			GetKey(void);
-extern void							SetCursorPosition(unsigned char row, unsigned char col);
+extern void							AssignKey(uint32_t button);
+extern uint16_t			GetKey(void);
+extern void							SetCursorPosition(uint8_t row, uint8_t col);
 extern void							init_timer(void);
 extern void							restore_timer(void);
 
@@ -105,59 +105,59 @@ extern void        			*GetStack(void);
 extern void             			SetStack(char *);
 extern void 			pmkey(void);
 extern void							ManageScanCode(char KeyDown);
-//extern static void __loadds __far 	pmmouse(short mask, short state, short col, short row,
-//										signed short mickey_h, signed short mickey_v);
+//extern static void __loadds __far 	pmmouse(int16_t mask, int16_t state, int16_t col, int16_t row,
+//										signed int16_t mickey_h, signed int16_t mickey_v);
 extern void	 			pmjoy(void);
 
 
 /* LIBETC Functions. */
-extern long							PadInit(unsigned long mode);
-extern long							PadRead(unsigned short id);
-extern long							PadStatus(unsigned short mode);
+extern int32_t							PadInit(uint32_t mode);
+extern int32_t							PadRead(uint16_t id);
+extern int32_t							PadStatus(uint16_t mode);
 
 /* LIBAPI Functions. */
-extern long							InitPAD(void *bufA, long lenA, void *bufB, long lenB);
-extern long							StartPAD(void);
+extern int32_t							InitPAD(void *bufA, int32_t lenA, void *bufB, int32_t lenB);
+extern int32_t							StartPAD(void);
 extern void							StopPAD(void);
 
 /* Type/Structure Definitions. */
 typedef struct {
-	unsigned short int	jX;
-	unsigned short int	jY;
-	unsigned short int	jDir;
-	unsigned short int	jButton1;
-	unsigned short int	jButton2;
+	uint16_t	jX;
+	uint16_t	jY;
+	uint16_t	jDir;
+	uint16_t	jButton1;
+	uint16_t	jButton2;
 } JOYSTICK;
 
 typedef struct {
-	unsigned short int	mX;
-	unsigned short int	mY;
-	unsigned short int	mDir;
-	unsigned short int	mButton1;
-	unsigned short int	mButton2;
-	unsigned short int	mButton3;
+	uint16_t	mX;
+	uint16_t	mY;
+	uint16_t	mDir;
+	uint16_t	mButton1;
+	uint16_t	mButton2;
+	uint16_t	mButton3;
 } MOUSE;
 
 typedef struct {
-	long int	JoyUp;
-	long int	JoyDown;
-	long int	JoyLeft;
-	long int	JoyRight;
-	long int	JoyButton1;
-	long int	JoyButton2;
-	long int	JoyButton3;
-	long int	JoyButton4;
+	int32_t	JoyUp;
+	int32_t	JoyDown;
+	int32_t	JoyLeft;
+	int32_t	JoyRight;
+	int32_t	JoyButton1;
+	int32_t	JoyButton2;
+	int32_t	JoyButton3;
+	int32_t	JoyButton4;
 } JOYSTICK_CONFIG;
 
 typedef struct {
-	long int	MouseUp;
-	long int	MouseDown;
-	long int	MouseLeft;
-	long int	MouseRight;
-	long int	MouseLeftButton;
-	long int	MouseMiddleButton;
-	long int	MouseRightButton;
-	long int	MouseDummy;
+	int32_t	MouseUp;
+	int32_t	MouseDown;
+	int32_t	MouseLeft;
+	int32_t	MouseRight;
+	int32_t	MouseLeftButton;
+	int32_t	MouseMiddleButton;
+	int32_t	MouseRightButton;
+	int32_t	MouseDummy;
 } MOUSE_CONFIG;
 
 /* Variable Declarations. */
@@ -166,35 +166,35 @@ extern volatile union REGS				etc_regs;
 extern volatile struct SREGS			etc_sregs;
 
 /* Interrupt Handling. */
-extern volatile unsigned short int		etc_OriginalInt09Selector;
-extern volatile unsigned long int		etc_OriginalInt09Offset;
+extern volatile uint16_t		etc_OriginalInt09Selector;
+extern volatile uint32_t		etc_OriginalInt09Offset;
 extern volatile void 				(	*etc_JoystickService) ();
 
 
 /* Low-Level KeyCode Handling. */
-extern volatile signed char				etc_KeyboardHandler;
-extern volatile signed char				etc_JoystickHandler;
-extern volatile signed char				etc_MouseHandler;
-extern volatile signed char				etc_TimerHandler;
-extern volatile unsigned char			etc_ExtendedMode;
-extern volatile unsigned char			etc_ExtendedFlag;
-extern volatile unsigned char			etc_ScanCode;
-extern volatile unsigned char			etc_Status;
-extern volatile signed char				etc_KeyPressed;
-extern volatile unsigned short int		etc_ExtKey;
-extern volatile unsigned char			etc_Key;
-extern volatile unsigned char			etc_ExitKey;
-extern volatile unsigned long int		etc_KeyboardCounter;
+extern volatile int8_t				etc_KeyboardHandler;
+extern volatile int8_t				etc_JoystickHandler;
+extern volatile int8_t				etc_MouseHandler;
+extern volatile int8_t				etc_TimerHandler;
+extern volatile uint8_t			etc_ExtendedMode;
+extern volatile uint8_t			etc_ExtendedFlag;
+extern volatile uint8_t			etc_ScanCode;
+extern volatile uint8_t			etc_Status;
+extern volatile int8_t				etc_KeyPressed;
+extern volatile uint16_t		etc_ExtKey;
+extern volatile uint8_t			etc_Key;
+extern volatile uint8_t			etc_ExitKey;
+extern volatile uint32_t		etc_KeyboardCounter;
 
 /* Low-Level Mouse Handling. */
 extern volatile MOUSE					etc_Mouse1;
 extern volatile MOUSE					etc_Mouse2;
 
 /* Low-Level Joystick Handling. */
-extern volatile unsigned short			etc_Joystick1CentreX;
-extern volatile unsigned short			etc_Joystick1CentreY;
-extern volatile unsigned short			etc_Joystick2CentreX;
-extern volatile unsigned short			etc_Joystick2CentreY;
+extern volatile uint16_t			etc_Joystick1CentreX;
+extern volatile uint16_t			etc_Joystick1CentreY;
+extern volatile uint16_t			etc_Joystick2CentreX;
+extern volatile uint16_t			etc_Joystick2CentreY;
 extern volatile JOYSTICK				etc_Joy1;
 extern volatile JOYSTICK				etc_Joy2;
 
@@ -203,31 +203,31 @@ extern volatile char					*etc_TransferBuffer1;
 extern volatile char					*etc_TransferBuffer2;
 
 /* Input Device Status Blocks. (5 bytes each) */
-extern volatile unsigned char			etc_KeyboardSwitch;		/* id = 0 */
-extern volatile unsigned long int		etc_KeyboardRegister;
-extern volatile unsigned char			etc_Joystick1Switch;		/* id = 1 */
-extern volatile unsigned long int		etc_Joystick1Register;
-extern volatile unsigned char			etc_Joystick2Switch;		/* id = 2 */
-extern volatile unsigned long int 		etc_Joystick2Register;
-extern volatile unsigned char			etc_Mouse1Switch;			/* id = 3 */
-extern volatile unsigned long int		etc_Mouse1Register;
-extern volatile unsigned char			etc_Mouse2Switch;			/* id = 4 */
-extern volatile unsigned long int		etc_Mouse2Register;
+extern volatile uint8_t			etc_KeyboardSwitch;		/* id = 0 */
+extern volatile uint32_t		etc_KeyboardRegister;
+extern volatile uint8_t			etc_Joystick1Switch;		/* id = 1 */
+extern volatile uint32_t		etc_Joystick1Register;
+extern volatile uint8_t			etc_Joystick2Switch;		/* id = 2 */
+extern volatile uint32_t 		etc_Joystick2Register;
+extern volatile uint8_t			etc_Mouse1Switch;			/* id = 3 */
+extern volatile uint32_t		etc_Mouse1Register;
+extern volatile uint8_t			etc_Mouse2Switch;			/* id = 4 */
+extern volatile uint32_t		etc_Mouse2Register;
 
 /* Input Device Configurations. */
-extern volatile unsigned char			etc_InputDeviceSelect;
-extern volatile unsigned char			etc_KeyboardConfig[_MAX_BUTTONS];
-extern volatile unsigned long int		etc_KeyboardMap[_MAX_KEYS * 2];
-extern volatile unsigned long int		etc_ExtendedKeyboardMap[_MAX_EXT_KEYS * 2];
+extern volatile uint8_t			etc_InputDeviceSelect;
+extern volatile uint8_t			etc_KeyboardConfig[_MAX_BUTTONS];
+extern volatile uint32_t		etc_KeyboardMap[_MAX_KEYS * 2];
+extern volatile uint32_t		etc_ExtendedKeyboardMap[_MAX_EXT_KEYS * 2];
 extern volatile JOYSTICK_CONFIG			etc_Joy1Config;
 extern volatile JOYSTICK_CONFIG			etc_Joy2Config;
 extern volatile MOUSE_CONFIG			etc_Mouse1Config;
 extern volatile MOUSE_CONFIG			etc_Mouse2Config;
 
 /* Default Input Device Configurations. */
-extern unsigned short int				etc_DefaultKeyboardSet[_MAX_BUTTONS];
-extern unsigned long int				etc_DefaultJoystickSet[_MAX_JOY_SWITCHES];
-extern unsigned long int				etc_DefaultMouseSet[_MAX_MOUSE_SWITCHES];
+extern uint16_t				etc_DefaultKeyboardSet[_MAX_BUTTONS];
+extern uint32_t				etc_DefaultJoystickSet[_MAX_JOY_SWITCHES];
+extern uint32_t				etc_DefaultMouseSet[_MAX_MOUSE_SWITCHES];
 
 /* Strings. */
 extern char								*buttonname[_MAX_BUTTONS];

@@ -33,11 +33,11 @@
 //#include "graph.h"
 #include "wipesrc/win95/markk/input.h"
 
-extern short ft,screenres;
+extern int16_t ft,screenres;
 
 
-extern short behindSpeed[];
-extern short shipOrder[];
+extern int16_t behindSpeed[];
+extern int16_t shipOrder[];
 
 #define FULL		0
 #define HIGH		3
@@ -50,12 +50,12 @@ extern char	 Resolution;
 extern char  PersCorr;
 extern char  PersCorrLvl;
 
-extern short JoyMinX, JoyMaxX;
-extern short JoyMinY, JoyMaxY;
-extern short JoyCentreX, JoyCentreY;
-extern short left_scale, right_scale;
+extern int16_t JoyMinX, JoyMaxX;
+extern int16_t JoyMinY, JoyMaxY;
+extern int16_t JoyCentreX, JoyCentreY;
+extern int16_t left_scale, right_scale;
 extern float left_scale_factor, right_scale_factor;
-extern short JoyCentreFudge;
+extern int16_t JoyCentreFudge;
 
 
 /**********************************************************************/
@@ -63,7 +63,7 @@ extern short JoyCentreFudge;
 /**********************************************************************/
 void UpdateShips(ShipData *shipIndex, WeaponShape *weaponShapes, Object** shipShapes, WeaponData *weaponIndex)
 {
-	int 		i;
+	int32_t 		i;
 
 
 	SetUnitVectors(shipIndex);
@@ -88,8 +88,8 @@ void UpdateShips(ShipData *shipIndex, WeaponShape *weaponShapes, Object** shipSh
 
 void UpdateShipsSerial(ShipData *shipIndex, WeaponShape *weaponShapes, Object** shipShapes, WeaponData *weaponIndex)
 {
-	short    sx, sy, sz;
-	short    cx, cy, cz;
+	int16_t    sx, sy, sz;
+	int16_t    cx, cy, cz;
 
 
 	sy = rsin( shipIndex[ownShip].hdg );
@@ -121,7 +121,7 @@ void UpdateShipsSerial(ShipData *shipIndex, WeaponShape *weaponShapes, Object** 
 /**********************************************************************/
 /***			  Initialise Controller and determine type  				  ***/
 /**********************************************************************/
-int InitController()
+int32_t InitController()
 {
 	InitPAD(&neg1, 8, &neg2, 0);
 	StartPAD();
@@ -143,7 +143,7 @@ int InitController()
 
 void GeneralStartProcs(ShipData *playerShip)
 {
-	static 	int vc;
+	static 	int32_t vc;
 
 	if(playerShip->updateCount == START_TIME)
 	{
@@ -216,10 +216,10 @@ void GeneralStartProcs(ShipData *playerShip)
 /**************************************************************************/
 
 
-void UpdatePlayerShipNormStart(ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData* weaponIndex)
+void UpdatePlayerShipNormStart(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData* weaponIndex)
 {
 	ShipData 		*playerShip;
-	static int			startPos;
+	static int32_t			startPos;
 
 
 	playerShip = &(shipIndex[shipNo]);
@@ -287,12 +287,12 @@ void UpdatePlayerShipNormStart(ShipData *shipIndex, Object** shipShapes, int shi
 /**************************************************************************/
 /****					Race control update routine for normal pad			  ****/
 /**************************************************************************/
-void UpdatePlayerShipNorm(ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData *weaponIndex)
+void UpdatePlayerShipNorm(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
 {
 	ShipData 		*playerShip;
-	static int 		maxThrust;
-	static short	revLeft = 0;
-	static short	revRight = 0;
+	static int32_t 		maxThrust;
+	static int16_t	revLeft = 0;
+	static int16_t	revRight = 0;
 
 
 	playerShip = &(shipIndex[shipNo]);
@@ -414,14 +414,14 @@ void UpdatePlayerShipNorm(ShipData *shipIndex, Object** shipShapes, int shipNo, 
 /**************************************************************************/
 /****					Start control routine for negcon pad					  ****/
 /**************************************************************************/
-void UpdatePlayerShipNegStart(ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData* weaponIndex)
+void UpdatePlayerShipNegStart(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData* weaponIndex)
 {
 	ShipData 			*playerShip;
-	static int 			viewPad;
-	int					thrust;
-	static int			startPos;
-	int					targetThrust;
-	short 				thrustVal;
+	static int32_t 			viewPad;
+	int32_t					thrust;
+	static int32_t			startPos;
+	int32_t					targetThrust;
+	int16_t 				thrustVal;
 	static 				char negView = 0;
 
 
@@ -551,19 +551,19 @@ void UpdatePlayerShipNegStart(ShipData *shipIndex, Object** shipShapes, int ship
 /**************************************************************************/
 /****					Race control update routine for negcon		   ****/
 /**************************************************************************/
-void UpdatePlayerShipNeg(ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData *weaponIndex)
+void UpdatePlayerShipNeg(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
 {
 	ShipData 		*playerShip;
-	static int 		weaponPad;
-	static int 		viewPad;
-	int				thrust;
-	int 				targetThrust;
-	short				targetVhdg;
+	static int32_t 		weaponPad;
+	static int32_t 		viewPad;
+	int32_t				thrust;
+	int32_t 				targetThrust;
+	int16_t				targetVhdg;
 	static 			char negView = 0;
 	static 			char negFireI = 0;
 	static 			char negFireII = 0;
-	static int 		maxThrust;
-	short				thrustVal;
+	static int32_t 		maxThrust;
+	int16_t				thrustVal;
 
 
 	playerShip = &(shipIndex[shipNo]);
@@ -807,16 +807,16 @@ void UpdatePlayerShipNeg(ShipData *shipIndex, Object** shipShapes, int shipNo, W
 /**************************************************************************/
 /****					Race control update routine for mouse		   ****/
 /**************************************************************************/
-void UpdatePlayerShipMouse(ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData *weaponIndex)
+void UpdatePlayerShipMouse(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
 {
 	ShipData 		*playerShip;
-	static int 		weaponPad;
-	static int 		viewPad;
-	short			targetVhdg;
+	static int32_t 		weaponPad;
+	static int32_t 		viewPad;
+	int16_t			targetVhdg;
 	static char 	negView = 0;
 	static char 	negFireI = 0;
 	static char 	negFireII = 0;
-	static int 		maxThrust;
+	static int32_t 		maxThrust;
 
 
 	playerShip = &(shipIndex[shipNo]);
@@ -935,16 +935,16 @@ void UpdatePlayerShipMouse(ShipData *shipIndex, Object** shipShapes, int shipNo,
 
 
 
-void UpdatePlayerShipJoystick(ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData *weaponIndex)
+void UpdatePlayerShipJoystick(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
 {
 	ShipData 		*playerShip;
-	static int 		weaponPad;
-	static int 		viewPad;
-	short			targetVhdg;
+	static int32_t 		weaponPad;
+	static int32_t 		viewPad;
+	int16_t			targetVhdg;
 	static char 	negView = 0;
 	static char 	negFireI = 0;
 	static char 	negFireII = 0;
-	static int 		maxThrust;
+	static int32_t 		maxThrust;
 
 
 	playerShip = &(shipIndex[shipNo]);
@@ -1070,9 +1070,9 @@ void UpdatePlayerShipJoystick(ShipData *shipIndex, Object** shipShapes, int ship
 /***************************************************************/
 /***************************************************************/
 
-void UpdateRemoteShipStart(ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData *weaponIndex)
+void UpdateRemoteShipStart(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
 {
-	static int startPos;
+	static int32_t startPos;
 
 	shipIndex = &(shipIndex[shipNo]);
 
@@ -1096,7 +1096,7 @@ void UpdateRemoteShipStart(ShipData *shipIndex, Object** shipShapes, int shipNo,
 
 
 
-void HoldLeft(VECTOR *result, ShipData *shipIndex, Face *facePtr, int shipNo)
+void HoldLeft(VECTOR *result, ShipData *shipIndex, Face *facePtr, int32_t shipNo)
 {
 	VECTOR 		faceVert1, faceVert2;
 
@@ -1115,7 +1115,7 @@ void HoldLeft(VECTOR *result, ShipData *shipIndex, Face *facePtr, int shipNo)
 
 
 
-void HoldRight(VECTOR *result, ShipData *shipIndex, Face *facePtr, int shipNo)
+void HoldRight(VECTOR *result, ShipData *shipIndex, Face *facePtr, int32_t shipNo)
 {
 	VECTOR 		faceVert1, faceVert2;
 
@@ -1134,7 +1134,7 @@ void HoldRight(VECTOR *result, ShipData *shipIndex, Face *facePtr, int shipNo)
 
 
 
-void HoldCentre(VECTOR *result, ShipData *shipIndex, Face *facePtr, int shipNo)
+void HoldCentre(VECTOR *result, ShipData *shipIndex, Face *facePtr, int32_t shipNo)
 {
 	result->vx = 0;
 	result->vy = 0;
@@ -1143,7 +1143,7 @@ void HoldCentre(VECTOR *result, ShipData *shipIndex, Face *facePtr, int shipNo)
 
 
 
-void BlockShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int shipNo)
+void BlockShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int32_t shipNo)
 {
 	if (shipIndex[ownShip].attr & LSIDE)
 		HoldLeft (blockVector, shipIndex, facePtr, shipNo) ;
@@ -1154,7 +1154,7 @@ void BlockShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int ship
 
 
 
-void AvoidShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int shipNo)
+void AvoidShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int32_t shipNo)
 {
 	if (shipIndex[ownShip].attr & LSIDE)
 		HoldRight (blockVector, shipIndex, facePtr, shipNo) ;
@@ -1165,12 +1165,12 @@ void AvoidShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int ship
 
 
 
-void AvoidOtherShips(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int shipNo)
+void AvoidOtherShips(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int32_t shipNo)
 {
-	int 					i;
-	short					DPASectDiff;			/** Change to run from sect not DPA sect **/
-	short					minDPASec = 100;
-	int					shipID;
+	int32_t 					i;
+	int16_t					DPASectDiff;			/** Change to run from sect not DPA sect **/
+	int16_t					minDPASec = 100;
+	int32_t					shipID;
 
 	for(i = 0; i < NO_OF_SHIPS; i++)
 	{
@@ -1197,7 +1197,7 @@ void AvoidOtherShips(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, in
 
 
 
-void ZigZagShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int shipNo)
+void ZigZagShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int32_t shipNo)
 {
 	if ((shipIndex->updateCount%50) == 0)
 	{
@@ -1213,19 +1213,19 @@ void ZigZagShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int shi
 #define SLOW_DOWN 			1
 #define SHIP_MESS 		   0
 
-void UpdateRemoteShip(register ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData *weaponIndex)
+void UpdateRemoteShip(register ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
 {
 	ShipData				*myShip , *remoteShip;
 	Face 					*facePtr ;
 	TrackSection 		*nextSection, *section ;
-	int 					i;
+	int32_t 					i;
 	VECTOR 				targetVector, bestPath;
 	VECTOR 				facePoint;
-	int 					temp, alpha;
+	int32_t 					temp, alpha;
 	VECTOR 				offSetVector ;
 	Vector				path1, path2;
-	int 					gap_mag, decide ;
-	short					DPASectDiff;
+	int32_t 					gap_mag, decide ;
+	int16_t					DPASectDiff;
 
 	offSetVector.vx = 0 ;
 	offSetVector.vy = 0 ;
@@ -1863,10 +1863,10 @@ void UpdateRemoteShip(register ShipData *shipIndex, Object** shipShapes, int shi
 
 
 
-void SetSkeletonDirectionHPR( Skeleton* skeleton, short hdg, short pitch, short roll  )
+void SetSkeletonDirectionHPR( Skeleton* skeleton, int16_t hdg, int16_t pitch, int16_t roll  )
 {
-	short    sx, sy, sz;
-	short    cx, cy, cz;
+	int16_t    sx, sy, sz;
+	int16_t    cx, cy, cz;
 
 
 	sy = rsin( hdg );
@@ -1897,10 +1897,10 @@ void SetSkeletonDirectionHPR( Skeleton* skeleton, short hdg, short pitch, short 
 
 
 
-void SetSkeletonDirectionRPH( Skeleton* skeleton, short roll, short pitch, short hdg  )
+void SetSkeletonDirectionRPH( Skeleton* skeleton, int16_t roll, int16_t pitch, int16_t hdg  )
 {
-	short    sx, sy, sz;
-	short    cx, cy, cz;
+	int16_t    sx, sy, sz;
+	int16_t    cx, cy, cz;
 
 
 	sy = rsin( hdg );

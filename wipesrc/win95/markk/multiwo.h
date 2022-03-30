@@ -73,15 +73,15 @@
 
 //-----------------------------------------------------------------------//
 
-extern long					CommMultiPlaySelect;
-extern long					CommLinkCompleted;
-extern long					CommLinkError;
-extern long					CommFirstRead;
-extern long					AllPlayersReady;
-extern long					NumMachinesWaiting;
-extern long					CommNetMachines;
-extern long					CommMyShip;
-extern long					global_mark_error;
+extern int32_t					CommMultiPlaySelect;
+extern int32_t					CommLinkCompleted;
+extern int32_t					CommLinkError;
+extern int32_t					CommFirstRead;
+extern int32_t					AllPlayersReady;
+extern int32_t					NumMachinesWaiting;
+extern int32_t					CommNetMachines;
+extern int32_t					CommMyShip;
+extern int32_t					global_mark_error;
 
 //-----------------------------------------------------------------------//
 
@@ -90,12 +90,12 @@ extern void					InitializeCombatLink(void);
 extern void					MasterSlaveSIO(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData);
 extern void					StartTwoPlayer(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData);
 extern void					SetSerialData(ShipData *shipIndex, Object **shipShapes);
-extern void					MenuMaster(ConfigData *gameData, int *currMenu);
-extern void					CaptainBirdsEye(ConfigData *gameData, int *currMenu);
+extern void					MenuMaster(ConfigData *gameData, int32_t *currMenu);
+extern void					CaptainBirdsEye(ConfigData *gameData, int32_t *currMenu);
 
-extern long					MAK_OpenLink(void);
-extern long					MAK_CloseLink(void);
-extern long					MAK_OpenDevice(void);
-extern long					MAK_CloseDevice(void);
+extern int32_t					MAK_OpenLink(void);
+extern int32_t					MAK_CloseLink(void);
+extern int32_t					MAK_OpenDevice(void);
+extern int32_t					MAK_CloseDevice(void);
 
 //-----------------------------------------------------------------------//

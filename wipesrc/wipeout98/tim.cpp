@@ -21,17 +21,17 @@
 #include "error.h"
 #include "ajs.h"
 
-Texture* LoadTexture( char* name, short translucent )
+Texture* LoadTexture( char* name, int16_t translucent )
 {
    Tim*        tim;
    TimClut4*   tc4;
    TimClut8*   tc8;
 	Texture*		texture;
-   long        length;
+   int32_t        length;
    RECT        rect;
 	 CLUT			 cluts[256];
 
-   int         x,y;
+   int32_t         x,y;
 
 #if LoadMessages
 //   printf( "Loading Tim File : %s\n", name );
@@ -95,10 +95,10 @@ Texture* LoadTexture( char* name, short translucent )
 
       }
 
-		texture->clutX = tc4->clutX; 
-	   texture->clutY = tc4->clutY;   
-	   texture->clutW = tc4->clutW; 
-	   texture->clutH = tc4->clutH; 
+		texture->clutX = tc4->clutX;
+	   texture->clutY = tc4->clutY;
+	   texture->clutW = tc4->clutW;
+	   texture->clutH = tc4->clutH;
 
 	   texture->textureX = tc4->textureX;
 	   texture->textureY = tc4->textureY;
@@ -108,11 +108,11 @@ Texture* LoadTexture( char* name, short translucent )
       x = tc4->textureX - TextureHOffset( tc4->textureX );
       y = tc4->textureY - TextureVOffset( tc4->textureY );
 
-      texture->u0 = ( x << 2 );                    
-	   texture->v0 = ( y );                    
+      texture->u0 = ( x << 2 );
+	   texture->v0 = ( y );
 	   texture->u1 = ( ( x + tc4->textureW ) << 2 ) - 1;
-	   texture->v1 = ( y );                    
-	   texture->u2 = ( x << 2 );                    
+	   texture->v1 = ( y );
+	   texture->u2 = ( x << 2 );
 	   texture->v2 = ( y + tc4->textureH ) - 1;
 	   texture->u3 = ( ( x + tc4->textureW ) << 2 ) - 1;
 	   texture->v3 = ( y + tc4->textureH ) - 1;
@@ -124,14 +124,14 @@ Texture* LoadTexture( char* name, short translucent )
       rect.y = tc4->clutY;
       rect.w = tc4->clutW;
       rect.h = tc4->clutH;
-      LoadClut4( &rect, ( ushort* )( &tc4->clut ), cluts );
+      LoadClut4( &rect, ( uint16_t* )( &tc4->clut ), cluts );
 	   DrawSync( 0 );
 
       rect.x = tc4->textureX;
       rect.y = tc4->textureY;
       rect.w = tc4->textureW;
       rect.h = tc4->textureH;
-      LoadImage4( &rect, ( ulong* )( tc4+1 ), cluts );
+      LoadImage4( &rect, ( uint32_t* )( tc4+1 ), cluts );
 	   DrawSync( 0 );
    }
    else if ( ClutType( tim ) == Clut8Bit )
@@ -171,11 +171,11 @@ Texture* LoadTexture( char* name, short translucent )
 #endif
       }
 
-      texture->clutX = tc8->clutX; 
-	   texture->clutY = tc8->clutY; 
-	   texture->clutW = tc8->clutW; 
-	   texture->clutH = tc8->clutH; 
-  
+      texture->clutX = tc8->clutX;
+	   texture->clutY = tc8->clutY;
+	   texture->clutW = tc8->clutW;
+	   texture->clutH = tc8->clutH;
+
 	   texture->textureX = tc8->textureX;
 	   texture->textureY = tc8->textureY;
 	   texture->textureW = tc8->textureW;
@@ -184,14 +184,14 @@ Texture* LoadTexture( char* name, short translucent )
       x = tc8->textureX - TextureHOffset( tc8->textureX );
       y = tc8->textureY - TextureVOffset( tc8->textureY );
 
-      texture->u0 = ( x << 1 );                                                   
-	   texture->v0 = ( y );                              
-	   texture->u1 = ( ( x + tc8->textureW ) << 1 ) - 1;  
-	   texture->v1 = ( y );                             
-	   texture->u2 = ( x << 1 );                           
-	   texture->v2 = ( y + tc8->textureH ) - 1;         
-	   texture->u3 = ( ( x + tc8->textureW ) << 1 ) - 1;   
-	   texture->v3 = ( y + tc8->textureH ) - 1;         
+      texture->u0 = ( x << 1 );
+	   texture->v0 = ( y );
+	   texture->u1 = ( ( x + tc8->textureW ) << 1 ) - 1;
+	   texture->v1 = ( y );
+	   texture->u2 = ( x << 1 );
+	   texture->v2 = ( y + tc8->textureH ) - 1;
+	   texture->u3 = ( ( x + tc8->textureW ) << 1 ) - 1;
+	   texture->v3 = ( y + tc8->textureH ) - 1;
 
       texture->tsb = TSB( Clut8Bit, translucent, TPAGE( texture->textureX, texture->textureY ) );
       texture->cba = CBA( texture->clutX >> 4, texture->clutY );
@@ -200,14 +200,14 @@ Texture* LoadTexture( char* name, short translucent )
       rect.y = tc8->clutY;
       rect.w = tc8->clutW;
       rect.h = tc8->clutH;
-      LoadClut8( &rect, ( ushort* )( &tc8->clut ), cluts );
+      LoadClut8( &rect, ( uint16_t* )( &tc8->clut ), cluts );
 	   DrawSync( 0 );
 
       rect.x = tc8->textureX;
       rect.y = tc8->textureY;
       rect.w = tc8->textureW;
       rect.h = tc8->textureH;
-      LoadImage8( &rect, ( ulong* )( tc8+1 ), cluts );
+      LoadImage8( &rect, ( uint32_t* )( tc8+1 ), cluts );
 	   DrawSync( 0 );
    }
    else

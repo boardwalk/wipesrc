@@ -1,7 +1,7 @@
 /* This function registers the incoming data buffer for each controller. */
 #include	"wipesrc/win95/markk/libapi.h"
 
-long	InitPAD(void *bufA, long lenA, void *bufB, long lenB)
+int32_t	InitPAD(void *bufA, int32_t lenA, void *bufB, int32_t lenB)
 {
 	/* Check for available controller. */
 	if((etc_InputDeviceSelect & 0x07) == 0) return 0;

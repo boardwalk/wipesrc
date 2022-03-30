@@ -4,14 +4,14 @@
 #define		FADE_OUT		 	3
 
 
-typedef struct 
+typedef struct
 {
-	short	fadeCount ;
+	int16_t	fadeCount ;
 	char	fadeFlag ;
 }FadeData ;
 
 
-void InGameReset(int choice, ulong *, char, ConfigData*, int*);
-void InGameConfirm (char *confirm, int choice, short xpad, char *lConfirm, ulong *) ; 
+void InGameReset(int32_t choice, uint32_t *, char, ConfigData*, int32_t*);
+void InGameConfirm (char *confirm, int32_t choice, int16_t xpad, char *lConfirm, uint32_t *) ;
 void DeSelectScreen (POLY_F4 *, DR_MODE *) ;
 void ScreenFade (POLY_F4 *, DR_MODE *, FadeData *) ;

@@ -105,23 +105,23 @@
 
 /*** course data ***/
 /*typedef struct {
-	int		x,z;
-	short	height;
-	short	width;
-	short	dir;
-	short	pitch;
-	short	bank;
-	short	dummy;
+	int32_t		x,z;
+	int16_t	height;
+	int16_t	width;
+	int16_t	dir;
+	int16_t	pitch;
+	int16_t	bank;
+	int16_t	dummy;
 } COURSE;*/
 
 typedef struct {
-	int		x,z;
-	short	height;
-	short	dir;
-	short	pitch;
-	short	l_side;
-	short	r_side;
-	short	d_center;
+	int32_t		x,z;
+	int16_t	height;
+	int16_t	dir;
+	int16_t	pitch;
+	int16_t	l_side;
+	int16_t	r_side;
+	int16_t	d_center;
 } COURSE;
 
 
@@ -149,7 +149,7 @@ typedef struct {
 typedef struct {
 	DRAWENV		draw;			/* �`��� */
 	DISPENV		disp;			/* �\���� */
-	u_long		ot[OTSIZE];		/* �I�[�_�����O�e�[�u�� */
+	uint32_t		ot[OTSIZE];		/* �I�[�_�����O�e�[�u�� */
 
 	char		s[PRIM_MAX];	/* primitive buffer */
 
@@ -167,9 +167,9 @@ typedef struct {
 *******************************************************************/
 typedef struct {
 	char		*s;
-	u_long		*ot;
-	long		p,otz,flg,surf,otdz;
-	u_short		clut,tpage;
+	uint32_t		*ot;
+	int32_t		p,otz,flg,surf,otdz;
+	uint16_t		clut,tpage;
 
 /* �萔 */
 	CVECTOR		amb;			/* 0xff, 0xff, 0xff */
@@ -177,7 +177,7 @@ typedef struct {
 
 	DVECTOR		dv[4];
 
-	long		apc_head[10];	/* constant */
+	int32_t		apc_head[10];	/* constant */
 	char		buf[784];		/* �N���b�s���O�o�b�t�@�Ƃ��čő� 784 */
 
 	char		rest[144];
@@ -215,129 +215,129 @@ typedef struct {
 	�ԍ\����
 *******************************************************************/
 typedef struct {
-	long	dt,ds;
+	int32_t	dt,ds;
 	VECTOR	dpos;
 	VECTOR	drot;
 
-	short	drive_mode;	/* 0:�I�[�g�} 1:�}�j���A�� */
-	short	shift;		/* �M�A�|�W�V���� */
-	long	rpm;		/* �G���W����]�� */
-	long	shift_load;	/* �M�A�V�t�g���� */
-	long	old_tire_rpm;	/* �ȑO�̃^�C���̉�]�� */
+	int16_t	drive_mode;	/* 0:�I�[�g�} 1:�}�j���A�� */
+	int16_t	shift;		/* �M�A�|�W�V���� */
+	int32_t	rpm;		/* �G���W����]�� */
+	int32_t	shift_load;	/* �M�A�V�t�g���� */
+	int32_t	old_tire_rpm;	/* �ȑO�̃^�C���̉�]�� */
 
-	short	slip_mode;	/* ���݊����Ă��邩 */
-	long	slip_level;
-	long	handle;
+	int16_t	slip_mode;	/* ���݊����Ă��邩 */
+	int32_t	slip_level;
+	int32_t	handle;
 
 	/*** �ԑ̂̕����I���� ***/
-	long	max_speed;	/* �ō��� */
+	int32_t	max_speed;	/* �ō��� */
 	/* �ɍ��W�n */
-	long	speed;		/* �Ԃ̃X�s�[�h */
-	long	a;			/* �Ԃ̉����x */
-	long	v_ry;		/* ���x���� */
+	int32_t	speed;		/* �Ԃ̃X�s�[�h */
+	int32_t	a;			/* �Ԃ̉����x */
+	int32_t	v_ry;		/* ���x���� */
 
 	/*** ��^�C���l ***/
 	/* �O�� */
-	long	tire_dir;	/* �^�C���̎ԑ̂ɑ΂��鑊�Ίp�x */
+	int32_t	tire_dir;	/* �^�C���̎ԑ̂ɑ΂��鑊�Ίp�x */
 	/* ��� */
-	long	tire_rpm;	/* �^�C���̉�]�� */
-	long	tire_mode;	/* �^�C���̓����� */
+	int32_t	tire_rpm;	/* �^�C���̉�]�� */
+	int32_t	tire_mode;	/* �^�C���̓����� */
 
 
-	short	jump_flag;
-	short	jump_cnt;
-	long	jump_vy;
-	long	jump_pitch;
+	int16_t	jump_flag;
+	int16_t	jump_cnt;
+	int32_t	jump_vy;
+	int32_t	jump_pitch;
 
-	short	gas_trig,brk_trig;
-	short	gas,brk;
+	int16_t	gas_trig,brk_trig;
+	int16_t	gas,brk;
 
-	short	ranking;	/* �������� (1 ~ 12) */
+	int16_t	ranking;	/* �������� (1 ~ 12) */
 
-	short	make_best_lap;
-	long	last_t;
-	short	lap,unlap;
-	short	uncp1,uncp2;
-	long	lap_time[5];
-	long	disp_lap_time[5];
+	int16_t	make_best_lap;
+	int32_t	last_t;
+	int16_t	lap,unlap;
+	int16_t	uncp1,uncp2;
+	int32_t	lap_time[5];
+	int32_t	disp_lap_time[5];
 } MYCAR_BUF;
 
 
 typedef struct {
-	short	f_drift;		/* �h���t�g�t���O(0...OK,1...NG) */
-	short	f_hit_lock;		/* �q�b�g���b�N */
-	short	f_direction;	/* ���s���@ */
-	short	f_front_car;	/* ��s�Ԕԍ� */
-	short	f_back_car;		/* �㑱�Ԕԍ� */
-	short	f_pass1;		/* �ǉz���t���O�i�P�i�K�j(-2~16) */
-	short	f_lap;			/* ����J�E���^�[ */
-	short	f_mycar_pos;	/* �}�C�J�[�ڋ߃t���O�i�����L���O�p�j*/
-	short	f_passd_mycar;	/* �}�C�J�[�����L���O */
-	short	f_condition;	/* �ǂ����� (�Ԏ����) */
-	short	f_chase_mycar;	/* �}�C�J�[�ڋ߃t���O �i�{�C�X�p�j*/
-	short	f_curve_lock;	/* �J�[�u�̃��b�N�t���O */
-	short	f_jump;			/* �W�����v�t���O */
-	short	f_straight;		/* �X�s�[�h�o�����Ⴄ�t���O */
-	short	f_side_level;	/* ��������t���O */
-	short	f_satan_run;	/* �����J�[����I�ڃt���O */
+	int16_t	f_drift;		/* �h���t�g�t���O(0...OK,1...NG) */
+	int16_t	f_hit_lock;		/* �q�b�g���b�N */
+	int16_t	f_direction;	/* ���s���@ */
+	int16_t	f_front_car;	/* ��s�Ԕԍ� */
+	int16_t	f_back_car;		/* �㑱�Ԕԍ� */
+	int16_t	f_pass1;		/* �ǉz���t���O�i�P�i�K�j(-2~16) */
+	int16_t	f_lap;			/* ����J�E���^�[ */
+	int16_t	f_mycar_pos;	/* �}�C�J�[�ڋ߃t���O�i�����L���O�p�j*/
+	int16_t	f_passd_mycar;	/* �}�C�J�[�����L���O */
+	int16_t	f_condition;	/* �ǂ����� (�Ԏ����) */
+	int16_t	f_chase_mycar;	/* �}�C�J�[�ڋ߃t���O �i�{�C�X�p�j*/
+	int16_t	f_curve_lock;	/* �J�[�u�̃��b�N�t���O */
+	int16_t	f_jump;			/* �W�����v�t���O */
+	int16_t	f_straight;		/* �X�s�[�h�o�����Ⴄ�t���O */
+	int16_t	f_side_level;	/* ��������t���O */
+	int16_t	f_satan_run;	/* �����J�[����I�ڃt���O */
 } C_CAR_FLAG;
 
 
 typedef struct {
-	long	status;
-	long	dt,ds;
+	int32_t	status;
+	int32_t	dt,ds;
 	VECTOR	dpos;
 	VECTOR	drot;
-	long	last_t;
-	long	speed;		/* ���݂̃X�s�[�h */
-	long	handle;		/* �n���h�� */
+	int32_t	last_t;
+	int32_t	speed;		/* ���݂̃X�s�[�h */
+	int32_t	handle;		/* �n���h�� */
 
 	C_CAR_FLAG	flg;
 
-	long	target_s;		/*�ڕW���[��*/
-	long	target_spd;		/*�ڕW�X�s�[�h*/
-	long	final_spd;		/*�ŏI�����X�s�[�h*/
+	int32_t	target_s;		/*�ڕW���[��*/
+	int32_t	target_spd;		/*�ڕW�X�s�[�h*/
+	int32_t	final_spd;		/*�ŏI�����X�s�[�h*/
 
-	long	hit_drot;		/*�q�b�g�Ŏ󂯂�����*/
-	long	hit_ds;			/*�q�b�g�Ŕ�΂���镝*/
-	long	std_dir;		/*�i�s����*/
-	long	eye_dir[4];		/*�ڕW���� ([0].now [1].next [2].next*2 [3].back)*/
-	long	c_car_dist;		/*��s�ԂƂ̋���*/
-	long	frnt_dist;		/*�`�F�b�N�p*/
-	long	mycar_dist;		/*�}�C�J�[�Ƃ̋���*/
+	int32_t	hit_drot;		/*�q�b�g�Ŏ󂯂�����*/
+	int32_t	hit_ds;			/*�q�b�g�Ŕ�΂���镝*/
+	int32_t	std_dir;		/*�i�s����*/
+	int32_t	eye_dir[4];		/*�ڕW���� ([0].now [1].next [2].next*2 [3].back)*/
+	int32_t	c_car_dist;		/*��s�ԂƂ̋���*/
+	int32_t	frnt_dist;		/*�`�F�b�N�p*/
+	int32_t	mycar_dist;		/*�}�C�J�[�Ƃ̋���*/
 
-	short	jump_cnt;		/*�W�����v�J�E���^�[*/
-	short	sw_cnt;			/*�h��J�E���g*/
-	long	sw_width;		/*�h�ꕝ*/
-	long	jump_vy;		/*����*/
-	long	jump_pitch;		/*�s�b�`*/
+	int16_t	jump_cnt;		/*�W�����v�J�E���^�[*/
+	int16_t	sw_cnt;			/*�h��J�E���g*/
+	int32_t	sw_width;		/*�h�ꕝ*/
+	int32_t	jump_vy;		/*����*/
+	int32_t	jump_pitch;		/*�s�b�`*/
 
 /******** �Ԃ̐��\ ********/
-	short	machine_type;	/*�Ԏ퐫�\�ݒ�*/
-	long	max_speed;		/*�ō����x*/
-	long	paccel;			/*�ʏ����*/
-	long	maccel;			/*�ʏ팸�� (���ݖ��g�p)*/
-	long	dacl;			/*�����x����(tmp)*/
-	u_long	start_acl;		/*�����X�^�[�g���ʉ���*/
-	u_long	chase_spd;		/*�ǂ��������ʑ��x*/
-	u_long	away_spd;		/*�������ʑ��x*/
+	int16_t	machine_type;	/*�Ԏ퐫�\�ݒ�*/
+	int32_t	max_speed;		/*�ō����x*/
+	int32_t	paccel;			/*�ʏ����*/
+	int32_t	maccel;			/*�ʏ팸�� (���ݖ��g�p)*/
+	int32_t	dacl;			/*�����x����(tmp)*/
+	uint32_t	start_acl;		/*�����X�^�[�g���ʉ���*/
+	uint32_t	chase_spd;		/*�ǂ��������ʑ��x*/
+	uint32_t	away_spd;		/*�������ʑ��x*/
 } C_CAR_BUF;
 
 
 typedef struct {
 /*----------------------*/
 /*	system reserved 	*/
-	short	use;
-	short	model;
-	long	flag;
+	int16_t	use;
+	int16_t	model;
+	int32_t	flag;
 
-	long	t,s;
+	int32_t	t,s;
 	VECTOR	pos;
 	VECTOR	rot;
 	VECTOR	tire_rot;
-	long	shadow_y;
+	int32_t	shadow_y;
 
-	short	hit;
+	int16_t	hit;
 	VECTOR	hvec;
 /*----------------------*/
 	union {
@@ -357,37 +357,37 @@ typedef struct {
 	SVECTOR		mr;		/* pad:mycar tire_rot.vz */
 	SVECTOR		cp;		/* pad:c_car shadow_y */
 	SVECTOR		cr;		/* pad:c_car tire_rot.vz */
-	long		mt,ct;	/* current t */
+	int32_t		mt,ct;	/* current t */
 } REPLAY_BUF;
 
 typedef struct {
-	short	flag;	/* �V�F�[�f�B���O�t���O */
+	int16_t	flag;	/* �V�F�[�f�B���O�t���O */
 	CVECTOR	c;		/* �V�F�[�f�B���O�J���[ */
 	CVECTOR	sc,dc;
-	short	si,di;	/* si�͂O����di�ւP������ */
-	short	sp;		/* ��̃p���b�g */
-	short	sf;		/* ��t���O */
-	short	ssi,sdi;
+	int16_t	si,di;	/* si�͂O����di�ւP������ */
+	int16_t	sp;		/* ��̃p���b�g */
+	int16_t	sf;		/* ��t���O */
+	int16_t	ssi,sdi;
 } DEPTH_QUEUE;
 
 typedef struct {
-	short	*top_com,*com;	/* command table pointer */
-	short	now_com;
-	long	cnt;
-	long	target_cnt;
+	int16_t	*top_com,*com;	/* command table pointer */
+	int16_t	now_com;
+	int32_t	cnt;
+	int32_t	target_cnt;
 	VECTOR	pos,old_pos,target_pos;
 	VECTOR	rot,drot,target_rot;
-	long	zn;
-	long	hit;
+	int32_t	zn;
+	int32_t	hit;
 } MOVE;
 
 
-typedef	long	TIME;
+typedef	int32_t	TIME;
 
 typedef struct {
 	char	name[4];
 	TIME	time;
-	long	car_type;
+	int32_t	car_type;
 } NAME;
 
 

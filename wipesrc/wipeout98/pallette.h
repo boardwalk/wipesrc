@@ -20,7 +20,7 @@ extern char fade_buf[256][FADE_LEVEL];
 extern char max_pal;
 
 
-int GetPal(char);
+int32_t GetPal(char);
 void SetPal(char,char,char,char);
 
 char FindNearestColourIndex(CVECTOR *TestCol);

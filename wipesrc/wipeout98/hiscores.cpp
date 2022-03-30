@@ -1,6 +1,6 @@
 #include "standard.h"
 #include <string.h>
- 
+
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
@@ -27,11 +27,11 @@ extern TexChar CharSet16[] ;
 
 HiScores scoreTable[(HiScoreTracks*2)] ;
 extern	ChampionShip winTable [] ;
-extern 	int ajscount;
+extern 	int32_t ajscount;
 #define	AJSDELAY 60*30
 
 
-void FillHighScores(HiScores *scoreTable, int lap1, int lap2, int lap3, int lap4, int lap5)
+void FillHighScores(HiScores *scoreTable, int32_t lap1, int32_t lap2, int32_t lap3, int32_t lap4, int32_t lap5)
 {
 			lap1 = (lap1/60)*FR60 + 200;
 			lap2 = (lap2/60)*FR60 + 200;
@@ -57,28 +57,28 @@ void FillHighScoreNames(HiScores *scoreTable, char *n1, char *n2, char* n3, char
 
 void HighScore (ConfigData *gameData)
 {
- 
+
    BlkFill		*clear[ 2 ];
 	TimData		*timInfo ;
 	POLY_FT4		scorePrim[2] ;
 	POLY_FT4		scorePrim1[2] ;
-	short			charX=40, charY=185 ;
+	int16_t			charX=40, charY=185 ;
 	char 			nameEntered[9] ;
 	char			currChar = 'A' ;
-	short			charVal = 0, numChars = 0 ;
+	int16_t			charVal = 0, numChars = 0 ;
 	char			dispChar[2] ;
 	char			tablePos = 0 ;
 	char			spacing = 20 ;
-	int			toggleDisplay = 0, i, j ;
+	int32_t			toggleDisplay = 0, i, j ;
 	static char	firstUsed = 1 ;
 	char			userEntry = 1;
-	int			lapTime = 0 ;
-	int			bestLap = 0 ;
+	int32_t			lapTime = 0 ;
+	int32_t			bestLap = 0 ;
 	char			highScore = 0 ;
 	char			checkVal = 0 ;
 	char			enterHs = 1 ;
-	int			count = 0;
-	int 			padDelay = 0;
+	int32_t			count = 0;
+	int32_t 			padDelay = 0;
 
 /*	timInfo = Load16BitTexture ("c:\\wipeout\\textures\\hiscore.tim", VRAM) ;
 */
@@ -130,20 +130,20 @@ void HighScore (ConfigData *gameData)
 
 
 
-		FillHighScores		(&(scoreTable[14]), 15270,16270,17370,17670,18870) ; 
-		FillHighScores		(&(scoreTable[15]), 9560,10360,11460,12460,13160) ; 
-		FillHighScores		(&(scoreTable[16]), 10260,11360,12160,13160,13960) ; 
-		FillHighScores		(&(scoreTable[17]), 15080,15780,16980,17680,18889) ; 
-		FillHighScores		(&(scoreTable[18]), 14170,15190,15740,16960,17890) ; 
-		FillHighScores		(&(scoreTable[19]), 10940,11780,12890,13730,14660) ; 
-		FillHighScores		(&(scoreTable[20]), 11724,12554,13674,14394,14444) ; 
-		FillHighScores		(&(scoreTable[21]), 12040,12810,13720,14860,15780) ; 
-		FillHighScores		(&(scoreTable[22]), 8075,8820,9735,10985,11895) ; 
-		FillHighScores		(&(scoreTable[23]), 8525,9565,10685,11415,12395) ; 
-		FillHighScores		(&(scoreTable[24]), 13450,14220,15450,16370,17110) ; 
-		FillHighScores		(&(scoreTable[25]), 11460,12220,13310,14340,15270) ; 
-		FillHighScores		(&(scoreTable[26]), 9400,10220,11330,12060,13290) ; 
-		FillHighScores		(&(scoreTable[27]), 9745,10775,11685,12535,13475) ; 
+		FillHighScores		(&(scoreTable[14]), 15270,16270,17370,17670,18870) ;
+		FillHighScores		(&(scoreTable[15]), 9560,10360,11460,12460,13160) ;
+		FillHighScores		(&(scoreTable[16]), 10260,11360,12160,13160,13960) ;
+		FillHighScores		(&(scoreTable[17]), 15080,15780,16980,17680,18889) ;
+		FillHighScores		(&(scoreTable[18]), 14170,15190,15740,16960,17890) ;
+		FillHighScores		(&(scoreTable[19]), 10940,11780,12890,13730,14660) ;
+		FillHighScores		(&(scoreTable[20]), 11724,12554,13674,14394,14444) ;
+		FillHighScores		(&(scoreTable[21]), 12040,12810,13720,14860,15780) ;
+		FillHighScores		(&(scoreTable[22]), 8075,8820,9735,10985,11895) ;
+		FillHighScores		(&(scoreTable[23]), 8525,9565,10685,11415,12395) ;
+		FillHighScores		(&(scoreTable[24]), 13450,14220,15450,16370,17110) ;
+		FillHighScores		(&(scoreTable[25]), 11460,12220,13310,14340,15270) ;
+		FillHighScores		(&(scoreTable[26]), 9400,10220,11330,12060,13290) ;
+		FillHighScores		(&(scoreTable[27]), 9745,10775,11685,12535,13475) ;
 
 
 
@@ -177,7 +177,7 @@ void HighScore (ConfigData *gameData)
 		FillHighScoreNames(&(scoreTable[27]), "THA", "NKS", "FOR", "PLA", "YIN");
 
 #if PAL
-		scoreTable[0].lapRecord =  (4950/60)*FR60+200 ; 
+		scoreTable[0].lapRecord =  (4950/60)*FR60+200 ;
 		scoreTable[1].lapRecord =  (3120/60)*FR60+200 ;
 		scoreTable[2].lapRecord =  (3250/60)*FR60+200 ;
 		scoreTable[3].lapRecord =  (4910/60)*FR60+200 ;
@@ -192,7 +192,7 @@ void HighScore (ConfigData *gameData)
 		scoreTable[12].lapRecord = (3354/60)*FR60+200 ;
 		scoreTable[13].lapRecord = (3100/60)*FR60+200 ;
 
-		scoreTable[14].lapRecord = (4950/60)*FR60+200 ; 
+		scoreTable[14].lapRecord = (4950/60)*FR60+200 ;
 		scoreTable[15].lapRecord = (3120/60)*FR60+200 ;
 		scoreTable[16].lapRecord = (3250/60)*FR60+200 ;
 		scoreTable[17].lapRecord = (4910/60)*FR60+200 ;
@@ -207,7 +207,7 @@ void HighScore (ConfigData *gameData)
 		scoreTable[26].lapRecord = (3354/60)*FR60+200 ;
 		scoreTable[27].lapRecord = (3100/60)*FR60+200 ;
 #else
-		scoreTable[0].lapRecord =  (4950/60)*FR60+200 ; 
+		scoreTable[0].lapRecord =  (4950/60)*FR60+200 ;
 		scoreTable[1].lapRecord =  (3120/60)*FR60+200 ;
 		scoreTable[2].lapRecord =  (3250/60)*FR60+200 ;
 		scoreTable[3].lapRecord =  (4910/60)*FR60+200 ;
@@ -222,7 +222,7 @@ void HighScore (ConfigData *gameData)
 		scoreTable[12].lapRecord = (3354/60)*FR60+200 ;
 		scoreTable[13].lapRecord = (3100/60)*FR60+200 ;
 
-		scoreTable[14].lapRecord = (4950/60)*FR60+200 ; 
+		scoreTable[14].lapRecord = (4950/60)*FR60+200 ;
 		scoreTable[15].lapRecord = (3120/60)*FR60+200 ;
 		scoreTable[16].lapRecord = (3250/60)*FR60+200 ;
 		scoreTable[17].lapRecord = (4910/60)*FR60+200 ;
@@ -240,7 +240,7 @@ void HighScore (ConfigData *gameData)
 
 		firstUsed = 0 ;
 		return ;
-	}	
+	}
 
 
 	highScore = 0 ;
@@ -255,7 +255,7 @@ void HighScore (ConfigData *gameData)
 		if (bestLap < scoreTable[(gameData->trackNum-1)].lapTimes[i])
 		{
 	 		highScore = 1 ;
-		}				
+		}
 	}
 
 	if (!highScore)
@@ -266,10 +266,10 @@ void HighScore (ConfigData *gameData)
 	while (1)
 	{
 
-		textPrim = CurrentScreen * 300; 
+		textPrim = CurrentScreen * 300;
 
  		ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
-  	 	UpdateNotes(NOT_PAUSED);	
+  	 	UpdateNotes(NOT_PAUSED);
 
 		ScreenFooter (70, 210, WhiteText) ;
 
@@ -297,14 +297,14 @@ void HighScore (ConfigData *gameData)
 						AddText (&(dispChar[0]), text_data (charX, charY, 16), RedText) ;
 				}
 			}
-									
 
-			charVal = currChar - 'A' ;		
+
+			charVal = currChar - 'A' ;
 
 			if ((pad & PadRight0) && (padDelay == 0) )
 			{
 				PlayNote(MENU_MOVE, 1, 20);
-				padDelay = 5; 
+				padDelay = 5;
 				charVal ++ ;
 				if (charVal > 27)		/* 25 */
 				{
@@ -312,14 +312,14 @@ void HighScore (ConfigData *gameData)
 			 			charVal = 0 ;
 					else
 						charVal = 26 ;
-				}		
+				}
 
 			}
-		
+
 			if ((pad & PadLeft0) && (padDelay == 0) )
 			{
 				PlayNote(MENU_MOVE, 1, 20);
-				padDelay = 5; 
+				padDelay = 5;
 				charVal -- ;
 				if (numChars != 3)
 					checkVal = 0 ;
@@ -329,7 +329,7 @@ void HighScore (ConfigData *gameData)
 				if (charVal < checkVal)
 				{
 			 		charVal = 27 ;		/* 25 */
-				}		
+				}
 			}
 
 			if(padDelay > 0) padDelay--;
@@ -356,9 +356,9 @@ void HighScore (ConfigData *gameData)
 						charX += CharSet16[charVal].width ;
 					}
 				}
-	
+
 			}
-			else 
+			else
 			{
 				if ((xpad & PadCross0) && (charVal == 26))
 				{
@@ -369,9 +369,9 @@ void HighScore (ConfigData *gameData)
 						charX -= CharSet16[(nameEntered[numChars] - 'A')].width ;
 						nameEntered[numChars] = 0 ;
 						charVal = 0 ;
-					}		
+					}
 				}
-				else	
+				else
 				{
 					currChar = charVal + 'A' ;
 					if ((xpad & PadCross0) && (numChars != (nameLetters+1))	&& (charVal != 26) &&  (charVal != 27))
@@ -432,24 +432,24 @@ void HighScore (ConfigData *gameData)
 
 */
 			DisplayHiScore ((gameData->trackNum-1)) ;
-			  
+
 			if (userEntry)
 			{
 				AddText (&(nameEntered[0]), text_data (40, charY, 16), WhiteText) ;
 				AddTime(bestLap,
 							 	text_data (165, charY, 16), RedText);
-				
+
 			}
-	
+
 			ShowMenuBackground (&(scorePrim[0]), &(scorePrim1[0]), timInfo) ;
 
-    		AddPrim( OT[ CurrentScreen ] + ( OT_SIZE - 1 ), ( ulong* ) clear[ CurrentScreen ] );
+    		AddPrim( OT[ CurrentScreen ] + ( OT_SIZE - 1 ), ( uint32_t* ) clear[ CurrentScreen ] );
 			Swap () ;
 
 
 			toggleDisplay ++ ;
 			firstUsed = 0 ;
-		
+
 		if(!userEntry)
 		{
 			if(count == 200)
@@ -472,12 +472,12 @@ void HighScore (ConfigData *gameData)
 }
 
 
-void AddEntry2Table (ConfigData *gameData, int bestLap, char nameEntered[]) 
+void AddEntry2Table (ConfigData *gameData, int32_t bestLap, char nameEntered[])
 {
 
-	int i, j ;
+	int32_t i, j ;
 	char tablePos ;
-	int	scoreTrack = 0 ;
+	int32_t	scoreTrack = 0 ;
 
 
 //	printf ("track number in add entry to table = %d \n", gameData->trackNum) ;
@@ -529,11 +529,11 @@ void AddEntry2Table (ConfigData *gameData, int bestLap, char nameEntered[])
 				strcpy (scoreTable[scoreTrack].names[i], nameEntered) ;
 
 				tablePos = i ;
-					
+
 			}
 			break ;
-			
-									
+
+
 		}
 
 	}
@@ -541,10 +541,10 @@ void AddEntry2Table (ConfigData *gameData, int bestLap, char nameEntered[])
 }
 
 
-char CheckLapRecord (ConfigData *gameData, ShipData *shipInfo, int shipNo)
+char CheckLapRecord (ConfigData *gameData, ShipData *shipInfo, int32_t shipNo)
 {
-	int	scoreTrack = 0 ;
-	int	check = 0 ;
+	int32_t	scoreTrack = 0 ;
+	int32_t	check = 0 ;
 
 	if (gameData->gameType == TIME_TRIAL)
 		scoreTrack = ((gameData->trackNum - 1) + HiScoreTracks) ;
@@ -565,7 +565,7 @@ char CheckLapRecord (ConfigData *gameData, ShipData *shipInfo, int shipNo)
 
 		if (shipInfo[shipNo].lapTimes[((shipInfo[shipNo].lapNo)-2)] < scoreTable[scoreTrack].lapRecord)
 		{
-			scoreTable[scoreTrack].lapRecord = shipInfo[shipNo].lapTimes[((shipInfo[shipNo].lapNo)-2)] ;		
+			scoreTable[scoreTrack].lapRecord = shipInfo[shipNo].lapTimes[((shipInfo[shipNo].lapNo)-2)] ;
 			scoreTable[scoreTrack].lapRecordPilot = gameData->shipNum ;
 			if(shipNo == ownShip)
 				check = 1;
@@ -579,7 +579,7 @@ char CheckLapRecord (ConfigData *gameData, ShipData *shipInfo, int shipNo)
 	{
 		if (shipInfo[ownShip].lapTimes[((shipInfo[ownShip].lapNo)-2)] < scoreTable[scoreTrack].lapRecord)
 		{
-			scoreTable[scoreTrack].lapRecord = shipInfo[ownShip].lapTimes[((shipInfo[ownShip].lapNo)-2)] ;		
+			scoreTable[scoreTrack].lapRecord = shipInfo[ownShip].lapTimes[((shipInfo[ownShip].lapNo)-2)] ;
 			scoreTable[scoreTrack].lapRecordPilot = gameData->shipNum ;
 
 			return (1) ;
@@ -587,14 +587,14 @@ char CheckLapRecord (ConfigData *gameData, ShipData *shipInfo, int shipNo)
 
 		return (0) ;
 	}
-} 
+}
 
 
 void DisplayHiScore (char trackNum)
 {
 	char			spacing = 20 ;
-	short			i ;
-	static int	toggleDisplay = 0 ;
+	int16_t			i ;
+	static int32_t	toggleDisplay = 0 ;
 
 /* Display hi-score entries */
 
@@ -638,10 +638,10 @@ void DisplayHiScore (char trackNum)
 
 void NewHighScore (ConfigData *gameData, HiScoreData *hiScoreData)
 {
-	short			charX=40, charY=185 ;
+	int16_t			charX=40, charY=185 ;
 	char			spacing = 20 ;
 	static char	firstUsed = 1 ;
-	short			select ;
+	int16_t			select ;
 
 
 	if (hiScoreData->numChars != (nameLetters+1) && (hiScoreData->userEntry))
@@ -649,13 +649,13 @@ void NewHighScore (ConfigData *gameData, HiScoreData *hiScoreData)
 		hiScoreData->dispChar[0] = hiScoreData->currChar ;
 		hiScoreData->dispChar[1] = 0 ;
 
-		hiScoreData->charVal = hiScoreData->currChar - 'A' ;		
+		hiScoreData->charVal = hiScoreData->currChar - 'A' ;
 
 		if ((pad & PadRight0) && (hiScoreData->padDelay == 0) )
 		{
 			ajscount=0;
 			PlayNote(MENU_MOVE, 1, 20);
-			hiScoreData->padDelay = 5; 
+			hiScoreData->padDelay = 5;
 			hiScoreData->charVal ++ ;
 			if (hiScoreData->charVal > 27)		/* 25 */
 			{
@@ -663,14 +663,14 @@ void NewHighScore (ConfigData *gameData, HiScoreData *hiScoreData)
 		 			hiScoreData->charVal = 0 ;
 				else
 					hiScoreData->charVal = 26 ;
-			}							   
+			}
 		}
-		
+
 		if ((pad & PadLeft0) && (hiScoreData->padDelay == 0) )
 		{
 			ajscount=0;
 			PlayNote(MENU_MOVE, 1, 20);
-			hiScoreData->padDelay = 5; 
+			hiScoreData->padDelay = 5;
 			hiScoreData->charVal -- ;
 			if (hiScoreData->numChars != 3)
 				hiScoreData->checkVal = 0 ;
@@ -679,7 +679,7 @@ void NewHighScore (ConfigData *gameData, HiScoreData *hiScoreData)
 			if (hiScoreData->charVal < hiScoreData->checkVal)
 			{
 		 		hiScoreData->charVal = 27 ;		/* 25 */
-			}		
+			}
 		}
 
 		if(hiScoreData->padDelay > 0) hiScoreData->padDelay--;
@@ -696,9 +696,9 @@ void NewHighScore (ConfigData *gameData, HiScoreData *hiScoreData)
 				hiScoreData->charX -= CharSet16[(hiScoreData->nameEntered[hiScoreData->numChars] - 'A')].width ;
 				hiScoreData->nameEntered[hiScoreData->numChars] = 0 ;
 				hiScoreData->charVal = 0 ;
-			}		
+			}
 		}
-		else	
+		else
 		{
 			hiScoreData->currChar = hiScoreData->charVal + 'A' ;
 			if ((select) && (hiScoreData->numChars != (nameLetters+1))	&& (hiScoreData->charVal != 26) &&  (hiScoreData->charVal != 27))
@@ -768,10 +768,10 @@ void NewHighScore (ConfigData *gameData, HiScoreData *hiScoreData)
 
 	ajscount++;
 }
-			
+
 void NewHighScoreDraw (ConfigData *gameData, HiScoreData *hiScoreData)
 {
-	short			charX=40, charY=185 ;
+	int16_t			charX=40, charY=185 ;
 	char			spacing = 20 ;
 	static char	firstUsed = 1 ;
 
@@ -796,7 +796,7 @@ void NewHighScoreDraw (ConfigData *gameData, HiScoreData *hiScoreData)
 					AddText (&(hiScoreData->dispChar[0]), text_data (hiScoreData->charX, charY, 16), RedText) ;
 			}
 		}
-									
+
 
 
 	if (hiScoreData->userEntry)
@@ -804,9 +804,9 @@ void NewHighScoreDraw (ConfigData *gameData, HiScoreData *hiScoreData)
 		AddText (&(hiScoreData->nameEntered[0]), text_data (40, charY, 16), WhiteText) ;
 		AddTime(hiScoreData->bestLap,
 					 	text_data (165, charY, 16), RedText);
-			
+
 	}
-	
+
 	hiScoreData->toggleDisplay ++ ;
 
 	}
@@ -819,16 +819,16 @@ void NewHighScoreDraw (ConfigData *gameData, HiScoreData *hiScoreData)
 			DisplayHiScore ((gameData->trackNum-1)- gameData->trackInc) ;
 		else
 			DisplayHiScore ((gameData->trackNum-1)) ;
-			  
+
 
 }
 
-int CheckHiScore (ConfigData *gameData, HiScoreData *hiScoreData)
+int32_t CheckHiScore (ConfigData *gameData, HiScoreData *hiScoreData)
 {
-	int	i, j ;
-	int	highScore = 0 ;
-	int	scoreTrack = 0 ;
-	int	serialRaceTime = 0, ownRaceTime = 0 ;
+	int32_t	i, j ;
+	int32_t	highScore = 0 ;
+	int32_t	scoreTrack = 0 ;
+	int32_t	serialRaceTime = 0, ownRaceTime = 0 ;
 	char	whichRecord	= 0 ;
 
 	if (gameData->gameType == TIME_TRIAL)
@@ -854,7 +854,7 @@ int CheckHiScore (ConfigData *gameData, HiScoreData *hiScoreData)
 			if (hiScoreData->bestLap < scoreTable[scoreTrack].lapTimes[i])
 			{
 	 			highScore = 1 ;
-			}				
+			}
 		}
 	}
 	else
@@ -890,7 +890,7 @@ int CheckHiScore (ConfigData *gameData, HiScoreData *hiScoreData)
 			{
 				if (whichRecord == 0)
 	 				highScore = 1 ;
-			}				
+			}
 		}
 
 
@@ -909,7 +909,7 @@ void InitHiScoreData (HiScoreData *hiScoreData)
 	hiScoreData->charVal = 0 ;
 	hiScoreData->numChars = 0 ;
 	hiScoreData->dispChar[0] = 0 ;
-	hiScoreData->toggleDisplay = 0 ;		
+	hiScoreData->toggleDisplay = 0 ;
 	hiScoreData->userEntry = 1;
 	hiScoreData->checkVal = 0 ;
 	hiScoreData->enterHs = 1 ;

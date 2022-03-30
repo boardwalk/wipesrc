@@ -1,2 +1,2 @@
-void DrawObjectFixedAsm( Object* object, Skeleton* camera, int depth );
-void DrawObjectAsm( Object* object, Skeleton* camera, int roll, short ShipObj);
+void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth );
+void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t ShipObj);

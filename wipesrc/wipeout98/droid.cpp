@@ -30,14 +30,14 @@
 /**************************************************************************/
 /****					Rescue droid control update routine						  ****/
 /**************************************************************************/
-void UpdateRescueDroid(ShipData *shipIndex, Object** shipShapes, int shipNo, WeaponData *weaponIndex)
+void UpdateRescueDroid(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
 {
 	ShipData 		*playerShip;
 	TrackSection 	*section, *nextSection;
 	static VECTOR 	target;
 	VECTOR			targetVector;
 	VECTOR			distance;
-	int 				i;
+	int32_t 				i;
 
 	playerShip = &(shipIndex[shipNo]);
     playerShip->attr |= FLYING;
@@ -207,8 +207,8 @@ void UpdateDroidCircle(RescueData *rescueDroid, ShipData *shipIndex, Object** sh
 	TrackSection* 		nextSection;
 	VECTOR 				targetVector;
 	VECTOR				target;
-	short					targetHdg;
-	short					quickestTurn, turn;
+	int16_t					targetHdg;
+	int16_t					quickestTurn, turn;
 
 	nextSection = rescueDroid->section->nextSection.ptr;
 

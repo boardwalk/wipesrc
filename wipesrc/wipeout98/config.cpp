@@ -3,11 +3,11 @@
 #include	"wipesrc/win95/markk/input.h"
 #include <stdio.h>
 
-void	SetKey(unsigned long int button, unsigned short int code);
+void	SetKey(uint32_t button, uint16_t code);
 
 void	ConfigureKeyboard(void)
 {
-	unsigned long int	i;
+	uint32_t	i;
 
 	/* Initialize KeyboardMap(s). */
 	for(i=0; i<_MAX_KEYS; i++)
@@ -72,7 +72,7 @@ void	ConfigureJoystick2(void)
 	etc_Joy2Config.JoyButton4 = etc_DefaultJoystickSet[7];
 }
 
-void	AssignKey(unsigned long int button)
+void	AssignKey(uint32_t button)
 {
 	/* Ask user for joypad key config. */
 	printf("\nPress %s Key:\n", buttonname[button]);
@@ -97,7 +97,7 @@ void	AssignKey(unsigned long int button)
 
 
 
-void	SetKey(unsigned long int button, unsigned short int code)
+void	SetKey(uint32_t button, uint16_t code)
 {
 	if((code & 0xFF00) == 0xFF00)
 	{
@@ -119,9 +119,9 @@ void	SetKey(unsigned long int button, unsigned short int code)
 
 
 
-unsigned short int	GetKey(void)
+uint16_t	GetKey(void)
 {
-	long i;
+	int32_t i;
 	etc_ExtendedFlag = 0;
 	etc_KeyPressed = 0;
 	for(i=0; etc_KeyPressed == 0; i++);
@@ -130,9 +130,9 @@ unsigned short int	GetKey(void)
 
 
 
-unsigned short int	GetKeyNoBlock(void)
+uint16_t	GetKeyNoBlock(void)
 {
-	unsigned short	result;
+	uint16_t	result;
 
 
 	etc_KeyPressed = 0;

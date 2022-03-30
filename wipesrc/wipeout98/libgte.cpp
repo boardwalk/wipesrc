@@ -15,10 +15,10 @@ VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r);
 
 static float tmp;
 
-extern int					WinPitch;
-extern short				WinWidth;
-extern short				WinHeight;
-extern short				WinHeightX2;
+extern int32_t					WinPitch;
+extern int16_t				WinWidth;
+extern int16_t				WinHeight;
+extern int16_t				WinHeightX2;
 
 // Global Variables for GTE...
 
@@ -29,24 +29,24 @@ MATRIX		LLM;			// local lighting matrix
 GTECVECTOR	BK;				// background colour
 GTECVECTOR	FC;				// far colour
 
-long			FFAR;		// fog far
-long			FNEAR;		// fog near
+int32_t			FFAR;		// fog far
+int32_t			FNEAR;		// fog near
 
-long			xOffset;	// geometry offset
-long			yOffset;
-long			screenZ;	// geometry screen Z
-long			SCR2;		// geometry screen Z / 2
+int32_t			xOffset;	// geometry offset
+int32_t			yOffset;
+int32_t			screenZ;	// geometry screen Z
+int32_t			SCR2;		// geometry screen Z / 2
 
 MATRIX 		RTM;			// 1 current rotation matrix
 GTECVECTOR 	grgb[3];		// 3 current colour values
-long			gsxy[3];	// 3 current screen coordinates
-long			gsz[4];		// 4 current screen z corrdinates
+int32_t			gsxy[3];	// 3 current screen coordinates
+int32_t			gsz[4];		// 4 current screen z corrdinates
 
 MATRIX		stack[20];		// 20 rotation matricies for stack
-long			stackPtr;
+int32_t			stackPtr;
 
-long		MaxZValue;
-long		HalfZValue;
+int32_t		MaxZValue;
+int32_t		HalfZValue;
 
 #define	TableSize	4096
 double	SineTable[TableSize];
@@ -55,23 +55,23 @@ double	SineTable[TableSize];
 
 
 
-long slow_rsin( long a )
+int32_t slow_rsin( int32_t a )
 {
-	return (long)( sin( ((double)a / 4096.0) * 6.28318530718 ) * 4096.0);
+	return (int32_t)( sin( ((double)a / 4096.0) * 6.28318530718 ) * 4096.0);
 }
 
 
 
 
-long ratan2(long y, long x)
+int32_t ratan2(int32_t y, int32_t x)
 {
-	return((long)((atan2((double) y, (double) x)) * 652));
+	return((int32_t)((atan2((double) y, (double) x)) * 652));
 }
 
 
 void CreateSineTable(void)
 {
-	long	angle;
+	int32_t	angle;
 
 
 	for(angle = 0; angle < TableSize; angle++)
@@ -80,9 +80,9 @@ void CreateSineTable(void)
 
 
 
-long rsin(long a)
+int32_t rsin(int32_t a)
 {
-	long	index, result;
+	int32_t	index, result;
 
 
 	index = a;
@@ -103,9 +103,9 @@ long rsin(long a)
 
 
 
-long rcos(long a)
+int32_t rcos(int32_t a)
 {
-	long	index, result;
+	int32_t	index, result;
 
 
 	index = a + 1024;
@@ -125,9 +125,9 @@ long rcos(long a)
 }
 
 
-long AverageZ3( long sz0, long sz1, long sz2 )
+int32_t AverageZ3( int32_t sz0, int32_t sz1, int32_t sz2 )
 {
-	long a, b;
+	int32_t a, b;
 
 	a = (sz0+sz1+sz2) >> 2;
 	b = a;					  //  1/4
@@ -142,7 +142,7 @@ long AverageZ3( long sz0, long sz1, long sz2 )
 	return (a>>2);
 }
 
-long AverageZ4( long sz0, long sz1, long sz2, long sz3 )
+int32_t AverageZ4( int32_t sz0, int32_t sz1, int32_t sz2, int32_t sz3 )
 {
 	return (sz0 + sz1 + sz2 + sz3)/16;
 }
@@ -207,17 +207,17 @@ void InitGeom( void )
 
 MATRIX * MulMatrix0( MATRIX * m0, MATRIX * m1, MATRIX * m2 )
 {
-	RTM.m[0][0] = (((long)m0->m[0][0] * (long)m1->m[0][0]) + ((long)m0->m[0][1] * (long)m1->m[1][0]) + ((long)m0->m[0][2] * (long)m1->m[2][0])) >> SHIFT;
-	RTM.m[0][1] = (((long)m0->m[0][0] * (long)m1->m[0][1]) + ((long)m0->m[0][1] * (long)m1->m[1][1]) + ((long)m0->m[0][2] * (long)m1->m[2][1])) >> SHIFT;
-	RTM.m[0][2] = (((long)m0->m[0][0] * (long)m1->m[0][2]) + ((long)m0->m[0][1] * (long)m1->m[1][2]) + ((long)m0->m[0][2] * (long)m1->m[2][2])) >> SHIFT;
+	RTM.m[0][0] = (((int32_t)m0->m[0][0] * (int32_t)m1->m[0][0]) + ((int32_t)m0->m[0][1] * (int32_t)m1->m[1][0]) + ((int32_t)m0->m[0][2] * (int32_t)m1->m[2][0])) >> SHIFT;
+	RTM.m[0][1] = (((int32_t)m0->m[0][0] * (int32_t)m1->m[0][1]) + ((int32_t)m0->m[0][1] * (int32_t)m1->m[1][1]) + ((int32_t)m0->m[0][2] * (int32_t)m1->m[2][1])) >> SHIFT;
+	RTM.m[0][2] = (((int32_t)m0->m[0][0] * (int32_t)m1->m[0][2]) + ((int32_t)m0->m[0][1] * (int32_t)m1->m[1][2]) + ((int32_t)m0->m[0][2] * (int32_t)m1->m[2][2])) >> SHIFT;
 
-	RTM.m[1][0] = (((long)m0->m[1][0] * (long)m1->m[0][0]) + ((long)m0->m[1][1] * (long)m1->m[1][0]) + ((long)m0->m[1][2] * (long)m1->m[2][0])) >> SHIFT;
-	RTM.m[1][1] = (((long)m0->m[1][0] * (long)m1->m[0][1]) + ((long)m0->m[1][1] * (long)m1->m[1][1]) + ((long)m0->m[1][2] * (long)m1->m[2][1])) >> SHIFT;
-	RTM.m[1][2] = (((long)m0->m[1][0] * (long)m1->m[0][2]) + ((long)m0->m[1][1] * (long)m1->m[1][2]) + ((long)m0->m[1][2] * (long)m1->m[2][2])) >> SHIFT;
+	RTM.m[1][0] = (((int32_t)m0->m[1][0] * (int32_t)m1->m[0][0]) + ((int32_t)m0->m[1][1] * (int32_t)m1->m[1][0]) + ((int32_t)m0->m[1][2] * (int32_t)m1->m[2][0])) >> SHIFT;
+	RTM.m[1][1] = (((int32_t)m0->m[1][0] * (int32_t)m1->m[0][1]) + ((int32_t)m0->m[1][1] * (int32_t)m1->m[1][1]) + ((int32_t)m0->m[1][2] * (int32_t)m1->m[2][1])) >> SHIFT;
+	RTM.m[1][2] = (((int32_t)m0->m[1][0] * (int32_t)m1->m[0][2]) + ((int32_t)m0->m[1][1] * (int32_t)m1->m[1][2]) + ((int32_t)m0->m[1][2] * (int32_t)m1->m[2][2])) >> SHIFT;
 
-	RTM.m[2][0] = (((long)m0->m[2][0] * (long)m1->m[0][0]) + ((long)m0->m[2][1] * (long)m1->m[1][0]) + ((long)m0->m[2][2] * (long)m1->m[2][0])) >> SHIFT;
-	RTM.m[2][1] = (((long)m0->m[2][0] * (long)m1->m[0][1]) + ((long)m0->m[2][1] * (long)m1->m[1][1]) + ((long)m0->m[2][2] * (long)m1->m[2][1])) >> SHIFT;
-	RTM.m[2][2] = (((long)m0->m[2][0] * (long)m1->m[0][2]) + ((long)m0->m[2][1] * (long)m1->m[1][2]) + ((long)m0->m[2][2] * (long)m1->m[2][2])) >> SHIFT;
+	RTM.m[2][0] = (((int32_t)m0->m[2][0] * (int32_t)m1->m[0][0]) + ((int32_t)m0->m[2][1] * (int32_t)m1->m[1][0]) + ((int32_t)m0->m[2][2] * (int32_t)m1->m[2][0])) >> SHIFT;
+	RTM.m[2][1] = (((int32_t)m0->m[2][0] * (int32_t)m1->m[0][1]) + ((int32_t)m0->m[2][1] * (int32_t)m1->m[1][1]) + ((int32_t)m0->m[2][2] * (int32_t)m1->m[2][1])) >> SHIFT;
+	RTM.m[2][2] = (((int32_t)m0->m[2][0] * (int32_t)m1->m[0][2]) + ((int32_t)m0->m[2][1] * (int32_t)m1->m[1][2]) + ((int32_t)m0->m[2][2] * (int32_t)m1->m[2][2])) >> SHIFT;
 
 #ifdef WIPEOUTPC
 	RTM.t[0] = m2->t[0];
@@ -235,7 +235,7 @@ MATRIX * MulMatrix0( MATRIX * m0, MATRIX * m1, MATRIX * m2 )
 }
 
 
-short OnScreen3(long xy0, long xy1, long xy2)
+int16_t OnScreen3(int32_t xy0, int32_t xy1, int32_t xy2)
 {
 	DVECTOR *vxy0, *vxy1, *vxy2;
 
@@ -256,7 +256,7 @@ short OnScreen3(long xy0, long xy1, long xy2)
 	return 1;
 }
 
-short OnScreen4(long xy0, long xy1, long xy2, long xy3)
+int16_t OnScreen4(int32_t xy0, int32_t xy1, int32_t xy2, int32_t xy3)
 {
 	DVECTOR *vxy0, *vxy1, *vxy2, *vxy3;
 
@@ -280,9 +280,9 @@ short OnScreen4(long xy0, long xy1, long xy2, long xy3)
 	return 1;
 }
 
-long NormalClip( DVECTOR sxy0, DVECTOR sxy1, DVECTOR sxy2 )
+int32_t NormalClip( DVECTOR sxy0, DVECTOR sxy1, DVECTOR sxy2 )
 {
-	long		sx0, sy0,
+	int32_t		sx0, sy0,
 				dx1, dy1,
 				dx2, dy2;
 	DVECTOR 	*xy0, *xy1, *xy2;
@@ -305,24 +305,24 @@ long NormalClip( DVECTOR sxy0, DVECTOR sxy1, DVECTOR sxy2 )
 
 void NormalColorCol( SVECTOR * v0, CVECTOR * v1, CVECTOR * v2 )
 {
-	long xt, yt, zt;
+	int32_t xt, yt, zt;
 
 
-	xt = (long)(v0->vx);
-	yt = (long)(v0->vy);
-	zt = (long)(v0->vz);
+	xt = (int32_t)(v0->vx);
+	yt = (int32_t)(v0->vy);
+	zt = (int32_t)(v0->vz);
 
-	LLV[2].vx = ( ( xt * (long)(LLM.m[0][0]) ) + ( yt * (long)(LLM.m[0][1]) ) + ( zt * (long)(LLM.m[0][2]) ) ) >> SHIFT;
-	LLV[2].vy = ( ( xt * (long)(LLM.m[1][0]) ) + ( yt * (long)(LLM.m[1][1]) ) + ( zt * (long)(LLM.m[1][2]) ) ) >> SHIFT;
-	LLV[2].vz = ( ( xt * (long)(LLM.m[2][0]) ) + ( yt * (long)(LLM.m[2][1]) ) + ( zt * (long)(LLM.m[2][2]) ) ) >> SHIFT;
+	LLV[2].vx = ( ( xt * (int32_t)(LLM.m[0][0]) ) + ( yt * (int32_t)(LLM.m[0][1]) ) + ( zt * (int32_t)(LLM.m[0][2]) ) ) >> SHIFT;
+	LLV[2].vy = ( ( xt * (int32_t)(LLM.m[1][0]) ) + ( yt * (int32_t)(LLM.m[1][1]) ) + ( zt * (int32_t)(LLM.m[1][2]) ) ) >> SHIFT;
+	LLV[2].vz = ( ( xt * (int32_t)(LLM.m[2][0]) ) + ( yt * (int32_t)(LLM.m[2][1]) ) + ( zt * (int32_t)(LLM.m[2][2]) ) ) >> SHIFT;
 
-	xt = (long)(LLV[2].vx);
-	yt = (long)(LLV[2].vy);
-	zt = (long)(LLV[2].vz);
+	xt = (int32_t)(LLV[2].vx);
+	yt = (int32_t)(LLV[2].vy);
+	zt = (int32_t)(LLV[2].vz);
 
-	grgb[2].r = ( ( ( xt * (long)(LCM.m[0][0]) ) + ( yt * (long)(LCM.m[0][1]) ) + ( zt * (long)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
-	grgb[2].g = ( ( ( xt * (long)(LCM.m[1][0]) ) + ( yt * (long)(LCM.m[1][1]) ) + ( zt * (long)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
-	grgb[2].b = ( ( ( xt * (long)(LCM.m[2][0]) ) + ( yt * (long)(LCM.m[2][1]) ) + ( zt * (long)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
+	grgb[2].r = ( ( ( xt * (int32_t)(LCM.m[0][0]) ) + ( yt * (int32_t)(LCM.m[0][1]) ) + ( zt * (int32_t)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
+	grgb[2].g = ( ( ( xt * (int32_t)(LCM.m[1][0]) ) + ( yt * (int32_t)(LCM.m[1][1]) ) + ( zt * (int32_t)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
+	grgb[2].b = ( ( ( xt * (int32_t)(LCM.m[2][0]) ) + ( yt * (int32_t)(LCM.m[2][1]) ) + ( zt * (int32_t)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
 
 	v2->r = grgb[2].r = MULT(v1->r, grgb[2].r);
 	v2->g = grgb[2].g = MULT(v1->g, grgb[2].g);
@@ -335,56 +335,56 @@ void NormalColorCol3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2,
 							 CVECTOR * v3,
 							 CVECTOR * v4, CVECTOR * v5, CVECTOR * v6 )
 {
-	long xt, yt, zt;
+	int32_t xt, yt, zt;
 
 
-	xt = (long)(v0->vx);
-	yt = (long)(v0->vy);
-	zt = (long)(v0->vz);
+	xt = (int32_t)(v0->vx);
+	yt = (int32_t)(v0->vy);
+	zt = (int32_t)(v0->vz);
 
-	LLV[0].vx = ( ( xt * (long)(LLM.m[0][0]) ) + ( yt * (long)(LLM.m[0][1]) ) + ( zt * (long)(LLM.m[0][2]) ) ) >> SHIFT;
-	LLV[0].vy = ( ( xt * (long)(LLM.m[1][0]) ) + ( yt * (long)(LLM.m[1][1]) ) + ( zt * (long)(LLM.m[1][2]) ) ) >> SHIFT;
-	LLV[0].vz = ( ( xt * (long)(LLM.m[2][0]) ) + ( yt * (long)(LLM.m[2][1]) ) + ( zt * (long)(LLM.m[2][2]) ) ) >> SHIFT;
+	LLV[0].vx = ( ( xt * (int32_t)(LLM.m[0][0]) ) + ( yt * (int32_t)(LLM.m[0][1]) ) + ( zt * (int32_t)(LLM.m[0][2]) ) ) >> SHIFT;
+	LLV[0].vy = ( ( xt * (int32_t)(LLM.m[1][0]) ) + ( yt * (int32_t)(LLM.m[1][1]) ) + ( zt * (int32_t)(LLM.m[1][2]) ) ) >> SHIFT;
+	LLV[0].vz = ( ( xt * (int32_t)(LLM.m[2][0]) ) + ( yt * (int32_t)(LLM.m[2][1]) ) + ( zt * (int32_t)(LLM.m[2][2]) ) ) >> SHIFT;
 
-	xt = (long)(v1->vx);
-	yt = (long)(v1->vy);
-	zt = (long)(v1->vz);
+	xt = (int32_t)(v1->vx);
+	yt = (int32_t)(v1->vy);
+	zt = (int32_t)(v1->vz);
 
-	LLV[1].vx = ( ( xt * (long)(LLM.m[0][0]) ) + ( yt * (long)(LLM.m[0][1]) ) + ( zt * (long)(LLM.m[0][2]) ) ) >> SHIFT;
-	LLV[1].vy = ( ( xt * (long)(LLM.m[1][0]) ) + ( yt * (long)(LLM.m[1][1]) ) + ( zt * (long)(LLM.m[1][2]) ) ) >> SHIFT;
-	LLV[1].vz = ( ( xt * (long)(LLM.m[2][0]) ) + ( yt * (long)(LLM.m[2][1]) ) + ( zt * (long)(LLM.m[2][2]) ) ) >> SHIFT;
+	LLV[1].vx = ( ( xt * (int32_t)(LLM.m[0][0]) ) + ( yt * (int32_t)(LLM.m[0][1]) ) + ( zt * (int32_t)(LLM.m[0][2]) ) ) >> SHIFT;
+	LLV[1].vy = ( ( xt * (int32_t)(LLM.m[1][0]) ) + ( yt * (int32_t)(LLM.m[1][1]) ) + ( zt * (int32_t)(LLM.m[1][2]) ) ) >> SHIFT;
+	LLV[1].vz = ( ( xt * (int32_t)(LLM.m[2][0]) ) + ( yt * (int32_t)(LLM.m[2][1]) ) + ( zt * (int32_t)(LLM.m[2][2]) ) ) >> SHIFT;
 
-	xt = (long)(v2->vx);
-	yt = (long)(v2->vy);
-	zt = (long)(v2->vz);
+	xt = (int32_t)(v2->vx);
+	yt = (int32_t)(v2->vy);
+	zt = (int32_t)(v2->vz);
 
-	LLV[2].vx = ( ( xt * (long)(LLM.m[0][0]) ) + ( yt * (long)(LLM.m[0][1]) ) + ( zt * (long)(LLM.m[0][2]) ) ) >> SHIFT;
-	LLV[2].vy = ( ( xt * (long)(LLM.m[1][0]) ) + ( yt * (long)(LLM.m[1][1]) ) + ( zt * (long)(LLM.m[1][2]) ) ) >> SHIFT;
-	LLV[2].vz = ( ( xt * (long)(LLM.m[2][0]) ) + ( yt * (long)(LLM.m[2][1]) ) + ( zt * (long)(LLM.m[2][2]) ) ) >> SHIFT;
+	LLV[2].vx = ( ( xt * (int32_t)(LLM.m[0][0]) ) + ( yt * (int32_t)(LLM.m[0][1]) ) + ( zt * (int32_t)(LLM.m[0][2]) ) ) >> SHIFT;
+	LLV[2].vy = ( ( xt * (int32_t)(LLM.m[1][0]) ) + ( yt * (int32_t)(LLM.m[1][1]) ) + ( zt * (int32_t)(LLM.m[1][2]) ) ) >> SHIFT;
+	LLV[2].vz = ( ( xt * (int32_t)(LLM.m[2][0]) ) + ( yt * (int32_t)(LLM.m[2][1]) ) + ( zt * (int32_t)(LLM.m[2][2]) ) ) >> SHIFT;
 
-	xt = (long)(LLV[0].vx);
-	yt = (long)(LLV[0].vy);
-	zt = (long)(LLV[0].vz);
+	xt = (int32_t)(LLV[0].vx);
+	yt = (int32_t)(LLV[0].vy);
+	zt = (int32_t)(LLV[0].vz);
 
-	grgb[0].r = ( ( ( xt * (long)(LCM.m[0][0]) ) + ( yt * (long)(LCM.m[0][1]) ) + ( zt * (long)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
-	grgb[0].g = ( ( ( xt * (long)(LCM.m[1][0]) ) + ( yt * (long)(LCM.m[1][1]) ) + ( zt * (long)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
-	grgb[0].b = ( ( ( xt * (long)(LCM.m[2][0]) ) + ( yt * (long)(LCM.m[2][1]) ) + ( zt * (long)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
+	grgb[0].r = ( ( ( xt * (int32_t)(LCM.m[0][0]) ) + ( yt * (int32_t)(LCM.m[0][1]) ) + ( zt * (int32_t)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
+	grgb[0].g = ( ( ( xt * (int32_t)(LCM.m[1][0]) ) + ( yt * (int32_t)(LCM.m[1][1]) ) + ( zt * (int32_t)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
+	grgb[0].b = ( ( ( xt * (int32_t)(LCM.m[2][0]) ) + ( yt * (int32_t)(LCM.m[2][1]) ) + ( zt * (int32_t)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
 
-	xt = (long)(LLV[1].vx);
-	yt = (long)(LLV[1].vy);
-	zt = (long)(LLV[1].vz);
+	xt = (int32_t)(LLV[1].vx);
+	yt = (int32_t)(LLV[1].vy);
+	zt = (int32_t)(LLV[1].vz);
 
-	grgb[1].r = ( ( ( xt * (long)(LCM.m[0][0]) ) + ( yt * (long)(LCM.m[0][1]) ) + ( zt * (long)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
-	grgb[1].g = ( ( ( xt * (long)(LCM.m[1][0]) ) + ( yt * (long)(LCM.m[1][1]) ) + ( zt * (long)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
-	grgb[1].b = ( ( ( xt * (long)(LCM.m[2][0]) ) + ( yt * (long)(LCM.m[2][1]) ) + ( zt * (long)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
+	grgb[1].r = ( ( ( xt * (int32_t)(LCM.m[0][0]) ) + ( yt * (int32_t)(LCM.m[0][1]) ) + ( zt * (int32_t)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
+	grgb[1].g = ( ( ( xt * (int32_t)(LCM.m[1][0]) ) + ( yt * (int32_t)(LCM.m[1][1]) ) + ( zt * (int32_t)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
+	grgb[1].b = ( ( ( xt * (int32_t)(LCM.m[2][0]) ) + ( yt * (int32_t)(LCM.m[2][1]) ) + ( zt * (int32_t)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
 
-	xt = (long)(LLV[2].vx);
-	yt = (long)(LLV[2].vy);
-	zt = (long)(LLV[2].vz);
+	xt = (int32_t)(LLV[2].vx);
+	yt = (int32_t)(LLV[2].vy);
+	zt = (int32_t)(LLV[2].vz);
 
-	grgb[2].r = ( ( ( xt * (long)(LCM.m[0][0]) ) + ( yt * (long)(LCM.m[0][1]) ) + ( zt * (long)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
-	grgb[2].g = ( ( ( xt * (long)(LCM.m[1][0]) ) + ( yt * (long)(LCM.m[1][1]) ) + ( zt * (long)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
-	grgb[2].b = ( ( ( xt * (long)(LCM.m[2][0]) ) + ( yt * (long)(LCM.m[2][1]) ) + ( zt * (long)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
+	grgb[2].r = ( ( ( xt * (int32_t)(LCM.m[0][0]) ) + ( yt * (int32_t)(LCM.m[0][1]) ) + ( zt * (int32_t)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
+	grgb[2].g = ( ( ( xt * (int32_t)(LCM.m[1][0]) ) + ( yt * (int32_t)(LCM.m[1][1]) ) + ( zt * (int32_t)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
+	grgb[2].b = ( ( ( xt * (int32_t)(LCM.m[2][0]) ) + ( yt * (int32_t)(LCM.m[2][1]) ) + ( zt * (int32_t)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
 
 	v4->r = grgb[0].r = MULT(v3->r, grgb[0].r);
 	v4->g = grgb[0].g = MULT(v3->g, grgb[0].g);
@@ -402,60 +402,60 @@ void NormalColorCol3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2,
 
 
 void NormalColorDpq3( SVECTOR * v0, SVECTOR * v1, SVECTOR * v2,
-							 CVECTOR * v3, long p,
+							 CVECTOR * v3, int32_t p,
 							 CVECTOR * v4, CVECTOR * v5, CVECTOR * v6 )
 {
-	long xt, yt, zt;
-	long p2 = 4096 - p;
+	int32_t xt, yt, zt;
+	int32_t p2 = 4096 - p;
 
 
-	xt = (long)(v0->vx);
-	yt = (long)(v0->vy);
-	zt = (long)(v0->vz);
+	xt = (int32_t)(v0->vx);
+	yt = (int32_t)(v0->vy);
+	zt = (int32_t)(v0->vz);
 
-	LLV[0].vx = ( ( xt * (long)(LLM.m[0][0]) ) + ( yt * (long)(LLM.m[0][1]) ) + ( zt * (long)(LLM.m[0][2]) ) ) >> SHIFT;
-	LLV[0].vy = ( ( xt * (long)(LLM.m[1][0]) ) + ( yt * (long)(LLM.m[1][1]) ) + ( zt * (long)(LLM.m[1][2]) ) ) >> SHIFT;
-	LLV[0].vz = ( ( xt * (long)(LLM.m[2][0]) ) + ( yt * (long)(LLM.m[2][1]) ) + ( zt * (long)(LLM.m[2][2]) ) ) >> SHIFT;
+	LLV[0].vx = ( ( xt * (int32_t)(LLM.m[0][0]) ) + ( yt * (int32_t)(LLM.m[0][1]) ) + ( zt * (int32_t)(LLM.m[0][2]) ) ) >> SHIFT;
+	LLV[0].vy = ( ( xt * (int32_t)(LLM.m[1][0]) ) + ( yt * (int32_t)(LLM.m[1][1]) ) + ( zt * (int32_t)(LLM.m[1][2]) ) ) >> SHIFT;
+	LLV[0].vz = ( ( xt * (int32_t)(LLM.m[2][0]) ) + ( yt * (int32_t)(LLM.m[2][1]) ) + ( zt * (int32_t)(LLM.m[2][2]) ) ) >> SHIFT;
 
-	xt = (long)(v1->vx);
-	yt = (long)(v1->vy);
-	zt = (long)(v1->vz);
+	xt = (int32_t)(v1->vx);
+	yt = (int32_t)(v1->vy);
+	zt = (int32_t)(v1->vz);
 
-	LLV[1].vx = ( ( xt * (long)(LLM.m[0][0]) ) + ( yt * (long)(LLM.m[0][1]) ) + ( zt * (long)(LLM.m[0][2]) ) ) >> SHIFT;
-	LLV[1].vy = ( ( xt * (long)(LLM.m[1][0]) ) + ( yt * (long)(LLM.m[1][1]) ) + ( zt * (long)(LLM.m[1][2]) ) ) >> SHIFT;
-	LLV[1].vz = ( ( xt * (long)(LLM.m[2][0]) ) + ( yt * (long)(LLM.m[2][1]) ) + ( zt * (long)(LLM.m[2][2]) ) ) >> SHIFT;
+	LLV[1].vx = ( ( xt * (int32_t)(LLM.m[0][0]) ) + ( yt * (int32_t)(LLM.m[0][1]) ) + ( zt * (int32_t)(LLM.m[0][2]) ) ) >> SHIFT;
+	LLV[1].vy = ( ( xt * (int32_t)(LLM.m[1][0]) ) + ( yt * (int32_t)(LLM.m[1][1]) ) + ( zt * (int32_t)(LLM.m[1][2]) ) ) >> SHIFT;
+	LLV[1].vz = ( ( xt * (int32_t)(LLM.m[2][0]) ) + ( yt * (int32_t)(LLM.m[2][1]) ) + ( zt * (int32_t)(LLM.m[2][2]) ) ) >> SHIFT;
 
-	xt = (long)(v2->vx);
-	yt = (long)(v2->vy);
-	zt = (long)(v2->vz);
+	xt = (int32_t)(v2->vx);
+	yt = (int32_t)(v2->vy);
+	zt = (int32_t)(v2->vz);
 
-	LLV[2].vx = ( ( xt * (long)(LLM.m[0][0]) ) + ( yt * (long)(LLM.m[0][1]) ) + ( zt * (long)(LLM.m[0][2]) ) ) >> SHIFT;
-	LLV[2].vy = ( ( xt * (long)(LLM.m[1][0]) ) + ( yt * (long)(LLM.m[1][1]) ) + ( zt * (long)(LLM.m[1][2]) ) ) >> SHIFT;
-	LLV[2].vz = ( ( xt * (long)(LLM.m[2][0]) ) + ( yt * (long)(LLM.m[2][1]) ) + ( zt * (long)(LLM.m[2][2]) ) ) >> SHIFT;
+	LLV[2].vx = ( ( xt * (int32_t)(LLM.m[0][0]) ) + ( yt * (int32_t)(LLM.m[0][1]) ) + ( zt * (int32_t)(LLM.m[0][2]) ) ) >> SHIFT;
+	LLV[2].vy = ( ( xt * (int32_t)(LLM.m[1][0]) ) + ( yt * (int32_t)(LLM.m[1][1]) ) + ( zt * (int32_t)(LLM.m[1][2]) ) ) >> SHIFT;
+	LLV[2].vz = ( ( xt * (int32_t)(LLM.m[2][0]) ) + ( yt * (int32_t)(LLM.m[2][1]) ) + ( zt * (int32_t)(LLM.m[2][2]) ) ) >> SHIFT;
 
-	xt = (long)(LLV[0].vx);
-	yt = (long)(LLV[0].vy);
-	zt = (long)(LLV[0].vz);
+	xt = (int32_t)(LLV[0].vx);
+	yt = (int32_t)(LLV[0].vy);
+	zt = (int32_t)(LLV[0].vz);
 
-	grgb[0].r = ( ( ( xt * (long)(LCM.m[0][0]) ) + ( yt * (long)(LCM.m[0][1]) ) + ( zt * (long)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
-	grgb[0].g = ( ( ( xt * (long)(LCM.m[1][0]) ) + ( yt * (long)(LCM.m[1][1]) ) + ( zt * (long)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
-	grgb[0].b = ( ( ( xt * (long)(LCM.m[2][0]) ) + ( yt * (long)(LCM.m[2][1]) ) + ( zt * (long)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
+	grgb[0].r = ( ( ( xt * (int32_t)(LCM.m[0][0]) ) + ( yt * (int32_t)(LCM.m[0][1]) ) + ( zt * (int32_t)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
+	grgb[0].g = ( ( ( xt * (int32_t)(LCM.m[1][0]) ) + ( yt * (int32_t)(LCM.m[1][1]) ) + ( zt * (int32_t)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
+	grgb[0].b = ( ( ( xt * (int32_t)(LCM.m[2][0]) ) + ( yt * (int32_t)(LCM.m[2][1]) ) + ( zt * (int32_t)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
 
-	xt = (long)(LLV[1].vx);
-	yt = (long)(LLV[1].vy);
-	zt = (long)(LLV[1].vz);
+	xt = (int32_t)(LLV[1].vx);
+	yt = (int32_t)(LLV[1].vy);
+	zt = (int32_t)(LLV[1].vz);
 
-	grgb[1].r = ( ( ( xt * (long)(LCM.m[0][0]) ) + ( yt * (long)(LCM.m[0][1]) ) + ( zt * (long)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
-	grgb[1].g = ( ( ( xt * (long)(LCM.m[1][0]) ) + ( yt * (long)(LCM.m[1][1]) ) + ( zt * (long)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
-	grgb[1].b = ( ( ( xt * (long)(LCM.m[2][0]) ) + ( yt * (long)(LCM.m[2][1]) ) + ( zt * (long)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
+	grgb[1].r = ( ( ( xt * (int32_t)(LCM.m[0][0]) ) + ( yt * (int32_t)(LCM.m[0][1]) ) + ( zt * (int32_t)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
+	grgb[1].g = ( ( ( xt * (int32_t)(LCM.m[1][0]) ) + ( yt * (int32_t)(LCM.m[1][1]) ) + ( zt * (int32_t)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
+	grgb[1].b = ( ( ( xt * (int32_t)(LCM.m[2][0]) ) + ( yt * (int32_t)(LCM.m[2][1]) ) + ( zt * (int32_t)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
 
-	xt = (long)(LLV[2].vx);
-	yt = (long)(LLV[2].vy);
-	zt = (long)(LLV[2].vz);
+	xt = (int32_t)(LLV[2].vx);
+	yt = (int32_t)(LLV[2].vy);
+	zt = (int32_t)(LLV[2].vz);
 
-	grgb[2].r = ( ( ( xt * (long)(LCM.m[0][0]) ) + ( yt * (long)(LCM.m[0][1]) ) + ( zt * (long)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
-	grgb[2].g = ( ( ( xt * (long)(LCM.m[1][0]) ) + ( yt * (long)(LCM.m[1][1]) ) + ( zt * (long)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
-	grgb[2].b = ( ( ( xt * (long)(LCM.m[2][0]) ) + ( yt * (long)(LCM.m[2][1]) ) + ( zt * (long)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
+	grgb[2].r = ( ( ( xt * (int32_t)(LCM.m[0][0]) ) + ( yt * (int32_t)(LCM.m[0][1]) ) + ( zt * (int32_t)(LCM.m[0][2]) ) ) >> SHIFT) + ( BK.r );
+	grgb[2].g = ( ( ( xt * (int32_t)(LCM.m[1][0]) ) + ( yt * (int32_t)(LCM.m[1][1]) ) + ( zt * (int32_t)(LCM.m[1][2]) ) ) >> SHIFT) + ( BK.g );
+	grgb[2].b = ( ( ( xt * (int32_t)(LCM.m[2][0]) ) + ( yt * (int32_t)(LCM.m[2][1]) ) + ( zt * (int32_t)(LCM.m[2][2]) ) ) >> SHIFT) + ( BK.b );
 
 	v4->r = grgb[0].r = ( (p2 * v3->r * grgb[0].r) + (p * FC.r) ) >> SHIFT;
 	v4->g = grgb[0].g = ( (p2 * v3->g * grgb[0].g) + (p * FC.g) ) >> SHIFT;
@@ -480,9 +480,9 @@ void ReadRotMatrix( MATRIX * m )
 
 MATRIX * RotMatrix( SVECTOR * r, MATRIX * m )
 {
-	long	cx, sx;
-	long	cy, sy;
-	long	cz, sz;
+	int32_t	cx, sx;
+	int32_t	cy, sy;
+	int32_t	cz, sz;
 
 	sx = rsin( r->vx );	cx = rcos( r->vx );
 	sy = rsin( r->vy );	cy = rcos( r->vy );
@@ -503,9 +503,9 @@ MATRIX * RotMatrix( SVECTOR * r, MATRIX * m )
 
 
 
-void RotTrans( SVECTOR * v0, VECTOR * v1, long * flag )
+void RotTrans( SVECTOR * v0, VECTOR * v1, int32_t * flag )
 {
-	register long z;
+	register int32_t z;
 
 	ApplyMatrix( &RTM, v0, v1 );
 
@@ -521,7 +521,7 @@ void RotTrans( SVECTOR * v0, VECTOR * v1, long * flag )
 	if( v1->vy < -32767 )				{	*flag |= 0x80800000; v1->vy = -32767;	}
 }
 
-long RotTransPersForN(SVECTOR *v0, long *sxy, long *p, long *flag)
+int32_t RotTransPersForN(SVECTOR *v0, int32_t *sxy, int32_t *p, int32_t *flag)
 {
 	VECTOR 	r0;
 
@@ -535,35 +535,35 @@ long RotTransPersForN(SVECTOR *v0, long *sxy, long *p, long *flag)
 		*p = 4095;
 	else
 		tmp = (((r0.vz - FNEAR) * 4095.0) / (float)(FFAR-FNEAR));
-		*p = (long)tmp;
+		*p = (int32_t)tmp;
 */
 	return r0.vz;
 }
 
 
-void RotTransPersN(SVECTOR *v0,DVECTOR *v1,u_short *sz,u_short *flag,long n)
+void RotTransPersN(SVECTOR *v0,DVECTOR *v1,uint16_t *sz,uint16_t *flag,int32_t n)
 {
-	int loop;
+	int32_t loop;
 	SVECTOR *ip;
 	//DVECTOR v2;
 	DVECTOR *op;
 	//SVECTOR *stmp;
-	long	crap;
-	long	long_flag=0;
+	int32_t	crap;
+	int32_t	long_flag=0;
 
 // printf("\n\n!!!!!!!!! RotTransPersN !!!!!!!!!!!\n\n");
 
 
 	ip = v0;
 	//op = &v2;
-	crap = NULL;
+	crap = 0;
 	op = v1;
 
 	for (loop =0; loop < n; loop++)
 	{
-		*sz = (u_short)RotTransPersForN(ip,(long *)op,&crap,&long_flag);
+		*sz = (uint16_t)RotTransPersForN(ip,(int32_t *)op,&crap,&long_flag);
 		sz++;
- 		*flag = (u_short)(long_flag >> 12);
+ 		*flag = (uint16_t)(long_flag >> 12);
 		flag++;
 
 		//stmp->vx = op->vx;
@@ -578,17 +578,17 @@ void RotTransPersN(SVECTOR *v0,DVECTOR *v1,u_short *sz,u_short *flag,long n)
 
 
 
-long RotTransPers(SVECTOR *v0, DVECTOR *sxy, long *p, long *flag)
+int32_t RotTransPers(SVECTOR *v0, DVECTOR *sxy, int32_t *p, int32_t *flag)
 {
 	VECTOR 	r0;
 	//DVECTOR sxy1;
-	//long v1[3];
-	//long *v2;
+	//int32_t v1[3];
+	//int32_t *v2;
 
 	//v2 = &v1[0];
 
 	ApplyMatrix(&RTM, v0, &r0);
-	DLSRotTransPers((long *)sxy, &r0, flag);
+	DLSRotTransPers((int32_t *)sxy, &r0, flag);
 
 /*
 	if (r0.vz < FNEAR)
@@ -596,7 +596,7 @@ long RotTransPers(SVECTOR *v0, DVECTOR *sxy, long *p, long *flag)
 	else if (r0.vz > FFAR)
 		*p = 4095;
 	else
-		*p = (long)(((r0.vz - FNEAR) * 4095.0) / (float)(FFAR-FNEAR));
+		*p = (int32_t)(((r0.vz - FNEAR) * 4095.0) / (float)(FFAR-FNEAR));
 */
 	//sxy->vx = v1[0];
 	//sxy->vy = v1[1];
@@ -606,7 +606,7 @@ long RotTransPers(SVECTOR *v0, DVECTOR *sxy, long *p, long *flag)
 }
 
 
-void SetBackColor( long rbk, long gbk, long bbk )
+void SetBackColor( int32_t rbk, int32_t gbk, int32_t bbk )
 {
 	BK.r = rbk;
 	BK.g = gbk;
@@ -622,13 +622,13 @@ void SetColorMatrix( MATRIX * m )
 
 
 
-void SetDrawDistance(long Dist)
+void SetDrawDistance(int32_t Dist)
 {
 	MaxZValue = Dist;
 	HalfZValue = Dist >> 1;
 }
 
-void SetGeomOffset( long ofx, long ofy)
+void SetGeomOffset( int32_t ofx, int32_t ofy)
 {
 	xOffset = ofx;
 	yOffset = ofy;
@@ -636,7 +636,7 @@ void SetGeomOffset( long ofx, long ofy)
 
 
 
-void SetGeomScreen( long h )
+void SetGeomScreen( int32_t h )
 {
 	screenZ = h;
 	SCR2 = h >> 1;
@@ -653,22 +653,22 @@ void SetLightMatrix( MATRIX * m )
 
 void SetRotMatrix( MATRIX * m )
 {
-	memcpy( &(RTM.m), &(m->m), sizeof(short)*9 );
+	memcpy( &(RTM.m), &(m->m), sizeof(int16_t)*9 );
 }
 
 
 
 void SetTransMatrix( MATRIX * m )
 {
-	memcpy( &(RTM.t), &(m->t), sizeof(long)*3 );
+	memcpy( &(RTM.t), &(m->t), sizeof(int32_t)*3 );
 }
 
 
-long SquareRoot0( long a )
+int32_t SquareRoot0( int32_t a )
 {
-unsigned long b;
-	b = (unsigned long)a ;
-	return sqrt((unsigned long) b );
+uint32_t b;
+	b = (uint32_t)a ;
+	return sqrt((uint32_t) b );
 }
 
 
@@ -682,7 +682,7 @@ MATRIX * TransMatrix( MATRIX * m, VECTOR * v )
 	return m;
 }
 
-long xt,yt,zt;
+int32_t xt,yt,zt;
 //------------------------------------------------------
 // ApplyMatrix
 //
@@ -792,7 +792,7 @@ long xt,yt,zt;
 	return NULL;
 }
 
-long x,y,z,flagaddr;
+int32_t x,y,z,flagaddr;
 
 //------------------------------------------------------
 // DLSRotTransPers
@@ -806,7 +806,7 @@ long x,y,z,flagaddr;
 //		ecx = address of flag variable
 //------------------------------------------------------
 
-/*__declspec(naked)*/ long *DLSRotTransPers(long *sxy, VECTOR *r0, long *flag)
+/*__declspec(naked)*/ int32_t *DLSRotTransPers(int32_t *sxy, VECTOR *r0, int32_t *flag)
 {
 	// TODO(boardwalk) Implement me without __declspace(naked)
 	/*

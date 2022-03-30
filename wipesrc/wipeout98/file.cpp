@@ -35,10 +35,10 @@ void InitCDFS(DynamicHeap *heap)
 	iso_init(heap);
 }
 
-long FileLength( char* name )
+int32_t FileLength( char* name )
 {
 	FILE *file;
-	long length;
+	int32_t length;
 
 	char *cleanname;
 
@@ -51,7 +51,7 @@ long FileLength( char* name )
 		{
 		cleanname = name;
 		}
-	
+
 	file = fopen(cleanname,"rb");
 	fseek(file,0L,SEEK_END);
 	length = ftell(file);
@@ -60,13 +60,13 @@ long FileLength( char* name )
 	return(length);
 }
 
-long LoadFile( char* name, char* buffer )
+int32_t LoadFile( char* name, char* buffer )
 {
-   int   fd;
-   long  length;
-   long  to_read,i,left_over;
-	u_long tmp_buf[2048/4];				/* Used for last sector of read */
-	u_long *b, *t;
+   int32_t   fd;
+   int32_t  length;
+   int32_t  to_read,i,left_over;
+	uint32_t tmp_buf[2048/4];				/* Used for last sector of read */
+	uint32_t *b, *t;
 
 	char *cleanname;
 
@@ -88,21 +88,21 @@ long LoadFile( char* name, char* buffer )
    {
       printf( "File.c:LoadFile(): Bad file name %s\n", name );
       return( 0 );
-   } 
+   }
 
 	/* length is the number of bytes to the nearest SECTOR size */
 
 	length = iso_filesize(fd);
    to_read = length >> 11;		/* In sectors */
-   
-/* Read file into buffer */      
+
+/* Read file into buffer */
 
    if ( iso_read( buffer, to_read ,fd) != to_read )
    {
       printf( "File.c:LoadFile(): Failed to load file %s\n", name );
       iso_close( fd );
       return( 0 );
-   } 
+   }
 	/* So, we've read the whole sectors of the file. Now read the left overs at the end */
 	if (iso_read(tmp_buf, 1, fd) != 1)
 	{
@@ -110,9 +110,9 @@ long LoadFile( char* name, char* buffer )
       iso_close( fd );
       return( 0 );
    }
-	left_over = (length - to_read*2048 + 3) >> 2 ;  /* Number of long words left over */
-	b = (u_long *)(buffer+to_read*2048);	/* copy the left overs here */
-	t = tmp_buf;	
+	left_over = (length - to_read*2048 + 3) >> 2 ;  /* Number of int32_t words left over */
+	b = (uint32_t *)(buffer+to_read*2048);	/* copy the left overs here */
+	t = tmp_buf;
 	for (i = 0; i < left_over;i++)
 	{
 		*b++ = *t++;
@@ -125,7 +125,7 @@ long LoadFile( char* name, char* buffer )
 
    return( length );
 }
-void SaveFile( char* name, char* buffer, long length )
+void SaveFile( char* name, char* buffer, int32_t length )
 {
 	printf("Save file called: %s , but not implemented 'cause we are CD FS\n", name);
 }
@@ -133,10 +133,10 @@ void SaveFile( char* name, char* buffer, long length )
 #else	/* PC FS */
 #ifdef SN_PCFS	// PCwipeout
 
-long FileLength( char* name )
+int32_t FileLength( char* name )
 {
-   int   fd;
-   long  length;
+   int32_t   fd;
+   int32_t  length;
 
 /* Open file */
 
@@ -158,12 +158,12 @@ long FileLength( char* name )
    if ( fd == -1 )
    {
       return( NULL );
-   } 
+   }
 
 /* Seek to end of file to get length */
 
-   length = PClseek( fd, 0, 2 );           
-   
+   length = PClseek( fd, 0, 2 );
+
 /* Close file */
 
    PCclose( fd );
@@ -173,10 +173,10 @@ long FileLength( char* name )
    return( length );
 }
 
-long LoadFile( char* name, char* buffer )
+int32_t LoadFile( char* name, char* buffer )
 {
-   int   fd;
-   long  length;
+   int32_t   fd;
+   int32_t  length;
 
 /* Open file */
 	char *cleanname;
@@ -197,24 +197,24 @@ long LoadFile( char* name, char* buffer )
    {
       printf( "File.c:LoadFile(): Bad file name %s\n", name );
       return( 0 );
-   } 
+   }
 
 /* Seek to end of file to get length */
 
-   length = PClseek( fd, 0, 2 );           
-   
+   length = PClseek( fd, 0, 2 );
+
 /* Seek back to the start */
-   
-   PClseek( fd, 0, 0 );     
-   
-/* Read file into buffer */      
+
+   PClseek( fd, 0, 0 );
+
+/* Read file into buffer */
 
    if ( PCread( fd, buffer, length ) != length )
    {
       printf( "File.c:LoadFile(): Failed to load file %s\n", name );
       PCclose( fd );
       return( 0 );
-   } 
+   }
 
 /* Close file */
 
@@ -226,9 +226,9 @@ long LoadFile( char* name, char* buffer )
 }
 
 
-void SaveFile( char* name, char* buffer, long length )
+void SaveFile( char* name, char* buffer, int32_t length )
 {
-   long     fd;
+   int32_t     fd;
 
 /* Open file */
 	char *cleanname;
@@ -249,7 +249,7 @@ void SaveFile( char* name, char* buffer, long length )
    {
       sprintf( errorString, "File.c:SaveFile(): Cannot open file %s\n", name );
       Error( errorString, Fatal );
-   } 
+   }
 
 /* Write file */
 
@@ -257,7 +257,7 @@ void SaveFile( char* name, char* buffer, long length )
    {
       sprintf( errorString, "File.c:SaveFile(): Failed to save file %s\n", name );
       Error( errorString, Fatal );
-   } 
+   }
 
 /* Close file */
 
@@ -266,10 +266,10 @@ void SaveFile( char* name, char* buffer, long length )
 
 #else	// PCwipeout - to end of file
 
-long FileLength( char* name )
+int32_t FileLength( char* name )
 {
    FILE   *fd;
-   long  length;
+   int32_t  length;
 
 /* Open file */
 	char *cleanname;
@@ -289,14 +289,14 @@ long FileLength( char* name )
    if ( fd == NULL )
    {
       return( NULL );
-   } 
+   }
 
 /* Seek to end of file to get length */
 
 		fseek(fd,0,SEEK_END);
-   length = ftell( fd);           
+   length = ftell( fd);
 	 rewind(fd);
-   
+
 /* Close file */
 
    fclose( fd );
@@ -306,10 +306,10 @@ long FileLength( char* name )
    return( length );
 }
 
-long LoadFile( char* name, char* buffer )
+int32_t LoadFile( char* name, char* buffer )
 {
    FILE *fd;
-   long  length;
+   int32_t  length;
 
 /* Open file */
 	char *cleanname;
@@ -330,23 +330,23 @@ long LoadFile( char* name, char* buffer )
    {
       printf( "File.c:LoadFile(): Bad file name %s\n", name );
       return( 0 );
-   } 
+   }
 
 /* Seek to end of file to get length */
 
 		fseek(fd,0,SEEK_END);
-   length = ftell( fd);           
+   length = ftell( fd);
 /* Seek back to the start */
 	 rewind(fd);
-   
-/* Read file into buffer */      
+
+/* Read file into buffer */
 
    if ( fread( buffer, 1, length, fd ) != length )
    {
       printf( "File.c:LoadFile(): Failed to load file %s\n", name );
       fclose( fd );
       return( 0 );
-   } 
+   }
 
 /* Close file */
 
@@ -358,7 +358,7 @@ long LoadFile( char* name, char* buffer )
 }
 
 
-void SaveFile( char* name, char* buffer, long length )
+void SaveFile( char* name, char* buffer, int32_t length )
 {
    FILE     *fd;
 
@@ -382,7 +382,7 @@ void SaveFile( char* name, char* buffer, long length )
    {
       sprintf( errorString, "File.c:SaveFile(): Cannot open file %s\n", name );
       Error( errorString, Fatal );
-   } 
+   }
 
 /* Write file */
 
@@ -390,7 +390,7 @@ void SaveFile( char* name, char* buffer, long length )
    {
       sprintf( errorString, "File.c:SaveFile(): Failed to save file %s\n", name );
       Error( errorString, Fatal );
-   } 
+   }
 
 /* Close file */
 

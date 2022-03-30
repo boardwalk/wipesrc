@@ -4,7 +4,7 @@
 #include <stddef.h>
 
 
-P_TAG *ClearOTagR(P_TAG *ot, int n)
+P_TAG *ClearOTagR(P_TAG *ot, int32_t n)
 {
 	P_TAG * i, * j;
 

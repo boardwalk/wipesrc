@@ -13,13 +13,13 @@
 #define              LoadMessages      0        /* printf for Loading etc */
 #define					RedText				0
 #define					WhiteText			1
-				 
+
 #define              FileRoot     "c:"
 
 #define              TextureTableMax 800
 
-#define  	         SoundHeapSize (1024 * 20 / 4)    
-// #define              FastRam     (( ulong ) 0x1f800000 )
+#define  	         SoundHeapSize (1024 * 20 / 4)
+// #define              FastRam     (( uint32_t ) 0x1f800000 )
 
 #define              Warning     0
 #define              NonFatal    1
@@ -29,111 +29,111 @@
 
 #define				FONT_TPAGE	25		//PCWipeout
 
-extern int				copyright_Psygnosis_1995;
+extern int32_t				copyright_Psygnosis_1995;
 
 extern NegconBuff 	neg1, neg2;
 extern TrackData     *track;
-extern int				ownShip;
-extern int				serialShip;
+extern int32_t				ownShip;
+extern int32_t				serialShip;
 extern char				gameType;
-extern int 				textStart;
-extern int 				textPrim;
-extern short 			DRTEXT_16;	 
-extern short 			DRTEXT_12;	 
-extern short 			DRTEXT_8;	 
-extern short 			DRTEXT_RED;	 
+extern int32_t 				textStart;
+extern int32_t 				textPrim;
+extern int16_t 			DRTEXT_16;
+extern int16_t 			DRTEXT_12;
+extern int16_t 			DRTEXT_8;
+extern int16_t 			DRTEXT_RED;
 //extern POLY_FT4 		display_text[600] ;
 extern SPRT 		display_text[600] ;
 extern	DR_MODE		dmode;
 extern void				(*CameraUpdate)(TrackCamera *, ShipData*, RescueData*);
 extern TrackCamera    *cameraPtr;
-extern int				NoOfMainSections;
+extern int32_t				NoOfMainSections;
 extern DR_MODE			shieldParams[64*3][2];
 extern CdlLOC			loc[20];
-extern int				ntoc;
-extern int				actualCdTrack;
-extern ushort			pad;
-extern ushort        opad, xpad;
+extern int32_t				ntoc;
+extern int32_t				actualCdTrack;
+extern uint16_t			pad;
+extern uint16_t        opad, xpad;
 extern PadInfo			pCon;
 extern NegInfo			nCon;
 extern char             negSelect ;
 extern char             negBack  ;
 extern char             negQuit ;
 
-extern long  	   	soundHead[ SoundHeapSize ];
+extern int32_t  	   	soundHead[ SoundHeapSize ];
 extern SpuCommonAttr c_attr;
 extern SpuReverbAttr	r_attr;
 extern ChanTable		chanTable[24];
 extern VagTable	  	vagTable[42];
-extern short  			sampleLevel;
+extern int16_t  			sampleLevel;
 
-extern int				trackNo ;
+extern int32_t				trackNo ;
 extern char				NumTracks ;
 extern char             totalTracks ;
-extern int				attractDelay;
-extern int				slowCraft;
-extern int 				raceType;
+extern int32_t				attractDelay;
+extern int32_t				slowCraft;
+extern int32_t 				raceType;
 
-extern int				tempLapTimes[5];
-extern int              serialLapTimes[5];
+extern int32_t				tempLapTimes[5];
+extern int32_t              serialLapTimes[5];
 
 extern char				trackPath[64];
 extern Object*			startBoom[4];
-extern short 			startBoomCount;
-extern int           crossedLine;
-extern int            crossedLineSerial;
+extern int16_t 			startBoomCount;
+extern int32_t           crossedLine;
+extern int32_t            crossedLineSerial;
 
-extern short			numTex;
+extern int16_t			numTex;
 
-													 
-extern long 	  		primCount;
+
+extern int32_t 	  		primCount;
 
 extern DynamicHeap*  heap;
 
 extern Texture*      TextureTable[ ];
-extern short         TextureTableCount;
+extern int16_t         TextureTableCount;
 
-extern P_TAG*        OT[ ]; 
+extern P_TAG*        OT[ ];
 
 extern P_TAG         ot0[ ];
 extern P_TAG         ot1[ ];
 
-extern	short                edDebug;
+extern	int16_t                edDebug;
 
 extern char          errorString[ ];
 
 /* Quick bodge to auto place textures in vram! */
-extern short		   textureX;
-extern short		   textureY;
+extern int16_t		   textureX;
+extern int16_t		   textureY;
 
-extern short		   clutX;
-extern short		   clutY;
+extern int16_t		   clutX;
+extern int16_t		   clutY;
 
 
-#define MaxUnique 128  
-#define MaxObjects 40  
+#define MaxUnique 128
+#define MaxObjects 40
 
 
 extern char*          sharedPrims[ ][ MaxObjects ];
-extern short          sharedPrimCount[ ];
+extern int16_t          sharedPrimCount[ ];
 
 
-extern long           spareMax;
+extern int32_t           spareMax;
 
-extern short          showFaceFlags;
+extern int16_t          showFaceFlags;
 
 
 
 extern Object         **objectTable;
 
 
-extern long           buffer1[ ];
+extern int32_t           buffer1[ ];
 extern Line3D         line3d[ ];
 extern LineSkel       lineSkel[ ];
-extern long           buffer2[ ];
+extern int32_t           buffer2[ ];
 
 
-#define     TrackLoTiles      (7*80*1)       
+#define     TrackLoTiles      (7*80*1)
 #define     TrackMedTiles     (7*4*4)
 #define     TrackHiTiles      (7*4*16)
 
@@ -146,9 +146,9 @@ extern long           buffer2[ ];
 #define     MeshRamSize       (0)
 #endif
 
-extern long           MeshRam0[ ];
-extern long           MeshRam1[ ];
-extern long*          MeshPtr;
+extern int32_t           MeshRam0[ ];
+extern int32_t           MeshRam1[ ];
+extern int32_t*          MeshPtr;
 
 
 
@@ -165,13 +165,13 @@ extern StdPoly        prims;
 
 #define SlowMemSize  1024
 
-extern long           SlowMem[ ];
+extern int32_t           SlowMem[ ];
 
 /* spline stuff */
 extern Object              *camSpline[ ];
 extern Object              *shipSpline[ ];
-extern short         finishedExtro;
-extern short         extroLevel;
+extern int16_t         finishedExtro;
+extern int16_t         extroLevel;
 
 /* different palettes */
 
@@ -224,33 +224,33 @@ extern	char	*background_buffer;
 
 #define	CdControlB(a,b,c) CdControl(a,b,c)
 
-extern unsigned int	this_frame, last_frame;
+extern uint32_t	this_frame, last_frame;
 extern  char trackdir[];
-extern	long	frameRate30;
+extern	int32_t	frameRate30;
 
 
 #define	HIGH_DISTANCE	65535
 #define	MEDIUM_DISTANCE	38000
 #define	LOW_DISTANCE	18000
-extern long	DrawDistance;
+extern int32_t	DrawDistance;
 extern char	Sky;
 extern char	Wide;
-extern long	DrawnShieldBefore;
-extern long			FR30;
-extern long			FR60;
-extern long			FR50;
-extern long			FR6;
-extern long			FR10;
-extern long			FR40;
-extern long			FR50U;
-extern long			FR15U;
-extern long			FR30U;
-extern long			FR7U;
-extern long			FR32U;
-extern long			TextureTrack;
-extern long			SkyTrackFlags;
+extern int32_t	DrawnShieldBefore;
+extern int32_t			FR30;
+extern int32_t			FR60;
+extern int32_t			FR50;
+extern int32_t			FR6;
+extern int32_t			FR10;
+extern int32_t			FR40;
+extern int32_t			FR50U;
+extern int32_t			FR15U;
+extern int32_t			FR30U;
+extern int32_t			FR7U;
+extern int32_t			FR32U;
+extern int32_t			TextureTrack;
+extern int32_t			SkyTrackFlags;
 
-extern int				WinPitch;
-extern short 			WinWidth;
-extern short	 		WinHeight;
-extern short			WinHeightX2;
+extern int32_t				WinPitch;
+extern int16_t 			WinWidth;
+extern int16_t	 		WinHeight;
+extern int16_t			WinHeightX2;

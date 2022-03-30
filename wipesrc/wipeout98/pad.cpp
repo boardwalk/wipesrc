@@ -23,8 +23,8 @@
 #include "wipesrc/win95/markk/input.h"
 
 
-extern int 				andyTimeout;
-extern unsigned short 	OriginalKeyCodes[16];
+extern int32_t 				andyTimeout;
+extern uint16_t 	OriginalKeyCodes[16];
 
 
 
@@ -52,7 +52,7 @@ void InitPadSettings()
 
 
 
-void SetBrake(ShipData *playerShip, short padLeft, short padRight)
+void SetBrake(ShipData *playerShip, int16_t padLeft, int16_t padRight)
 {
 	if (pad & pCon.rBrake)	playerShip->r_brake_rot += FR32U;
 	else if(playerShip->r_brake_rot > 0) playerShip->r_brake_rot -= FR32U;
@@ -76,7 +76,7 @@ void SetBrake(ShipData *playerShip, short padLeft, short padRight)
 
 
 
-void SetView(ShipData *playerShip, short padView)
+void SetView(ShipData *playerShip, int16_t padView)
 {
 	if (xpad & pCon.view)
 	{
@@ -95,7 +95,7 @@ void SetView(ShipData *playerShip, short padView)
 
 
 
-void SetFire(ShipData *playerShip, short padFire, WeaponData *weaponIndex, int shipNo)
+void SetFire(ShipData *playerShip, int16_t padFire, WeaponData *weaponIndex, int32_t shipNo)
 {
 	if ((xpad & pCon.fire) && (playerShip->weaponType != NO_WEAPON))
 	{
@@ -108,7 +108,7 @@ void SetFire(ShipData *playerShip, short padFire, WeaponData *weaponIndex, int s
 
 
 
-short GetMenuKey(short key)
+int16_t GetMenuKey(int16_t key)
 {
 	if(neg1.head == 8960)
 	{

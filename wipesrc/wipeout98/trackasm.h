@@ -7,8 +7,8 @@
 
 typedef struct Tile
 {
-   short       tsb;
-   short       cba;
+   int16_t       tsb;
+   int16_t       cba;
 	char 			u0;
 	char 			v0;
 	char 			u1;
@@ -30,70 +30,70 @@ typedef struct Surface
 
 
 void AsmLowResTile
-( 
+(
    TexTemplate*	Template,
-   short          index,
-   short          reversed
+   int16_t          index,
+   int16_t          reversed
 );
 
 void AsmMediumResTile
-( 
+(
    TexTemplate*	Template,
-   short          index,
-   short          reversed
+   int16_t          index,
+   int16_t          reversed
 );
 
 void AsmHighResTile
-( 
+(
    TexTemplate*	Template,
-   short          index,
-   short          reversed
+   int16_t          index,
+   int16_t          reversed
 );
 
 void AsmGenerateTiles
-(  
+(
 	TexTemplate*	texTemplate,
-   short          numLib
+   int16_t          numLib
 );
 
 void AsmNextFrame( );
 
 TrackSection *AsmTransformTrackLo
-( 
+(
    TrackSection*    firstSection,
    Skeleton*        camera,
-   short            loCount,
-   short			dir
+   int16_t            loCount,
+   int16_t			dir
 );
 
 TrackSection *AsmTransformTrackMed
-( 
+(
    TrackSection*     firstSection,
    Skeleton*         camera,
-   short             loCount,
-   short		     dir
+   int16_t             loCount,
+   int16_t		     dir
 );
 
 TrackSection *AsmTransformTrackHi
-( 
+(
    TrackSection*     firstSection,
    Skeleton*         camera,
    AutoMeshData*     autoMesh,
-   short             loCount,
-   short			 dir
+   int16_t             loCount,
+   int16_t			 dir
 );
 
 
-short CompareVertices( VECTOR* vertices, ushort a, ushort b );
+int16_t CompareVertices( VECTOR* vertices, uint16_t a, uint16_t b );
 
 void NewInitAll( void );
 
 void AsmAutoMesh
-( 
-   SVECTOR*       tlVector, 
-   SVECTOR*       trVector, 
-   SVECTOR*       blVector, 
-   SVECTOR*       brVector, 
+(
+   SVECTOR*       tlVector,
+   SVECTOR*       trVector,
+   SVECTOR*       blVector,
+   SVECTOR*       brVector,
    Face*          face,
    Tile*          tile,
    AutoMeshData*  autoMesh

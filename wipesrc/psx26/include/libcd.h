@@ -8,10 +8,10 @@
  *
  * CD-ROM Primitive Command list:
  *
- *	Symbol		type	Contents			
+ *	Symbol		type	Contents
  *	------------------------------------------------------
- *	CdlNop		B	NOP		
- *	CdlSetloc	B	Set position	
+ *	CdlNop		B	NOP
+ *	CdlSetloc	B	Set position
  *	CdlPlay		B	CD-DA Play
  *	CdlForward	B	Forward
  *	CdlBackword	B	Backword
@@ -31,8 +31,8 @@
  *	CdlReset	B	Reset
  *	------------------------------------------------------
  *			B: Blocking, N: Non-Blocking operation
- *		
- *	
+ *
+ *
  *	Symbol		arg		result
  *	--------------------------------------------------------------
  *	CdlNop		-		status
@@ -76,10 +76,10 @@
 /*
  * CD-ROM Primitive Commands
  */
-#define CdlNop		0x01	
-#define CdlSetloc	0x02	
-#define CdlPlay		0x03	
-#define CdlForward	0x04	
+#define CdlNop		0x01
+#define CdlSetloc	0x02
+#define CdlPlay		0x03
+#define CdlForward	0x04
 #define CdlBackward	0x05
 #define CdlReadN	0x06
 #define CdlStandby	0x07
@@ -113,11 +113,11 @@
 /*
  * Library Macros
  */
-#define btoi(b)		((b)/16*10 + (b)%16)		/* BCD to u_char */
-#define itob(i)		((i)/10*16 + (i)%10)		/* u_char to BCD */
+#define btoi(b)		((b)/16*10 + (b)%16)		/* BCD to uint8_t */
+#define itob(i)		((i)/10*16 + (i)%10)		/* uint8_t to BCD */
 
-#define CdSeekL(p)	CdControl(CdlSeekL, (u_char *)p, 0)
-#define CdSeekP(p)	CdControl(CdlSeekP, (u_char *)p, 0)
+#define CdSeekL(p)	CdControl(CdlSeekL, (uint8_t *)p, 0)
+#define CdSeekP(p)	CdControl(CdlSeekP, (uint8_t *)p, 0)
 #define CdGetToc(table)	CdGetToc2(1, table)
 #define CdStandby()	CdControl(CdlStandby,  0, 0)
 #define CdPause()	CdControl(CdlPause,    0, 0)
@@ -143,10 +143,10 @@
  */
 #define CdlMAXTOC	100
 struct CdlPos {
-	unsigned char minute;
-	unsigned char second;
-	unsigned char sector;
-	unsigned char track;
+	uint8_t minute;
+	uint8_t second;
+	uint8_t sector;
+	uint8_t track;
 };
 typedef struct CdlPos CdlLOC;
 
@@ -154,10 +154,10 @@ typedef struct CdlPos CdlLOC;
  *	Attenuator
  */
 struct ATV {
-	unsigned char	val0;
-	unsigned char	val1;
-	unsigned char	val2;
-	unsigned char	val3;
+	uint8_t	val0;
+	uint8_t	val1;
+	uint8_t	val2;
+	uint8_t	val3;
 };
 typedef struct ATV CdlATV;
 
@@ -166,7 +166,7 @@ typedef struct ATV CdlATV;
  */
 typedef struct {
 	CdlLOC	pos;
-	u_long	size;
+	uint32_t	size;
 	char	name[/*12*/16];
 } CdlFILE;
 
@@ -175,19 +175,19 @@ typedef struct {
  *	Streaming Structures
  */
 typedef struct {
-	u_short	id;			/* always 0x0x0160 */
-	u_short	type;			
-	u_short	secCount;	
-	u_short	nSectors;
-	u_long	frameCount;
-	u_long	frameSize;
-	
-	u_short	width;
-	u_short	height;
-	
-	u_long	headm;
-	u_long	headv;
-} StSECTOR;				/* CD-ROM STR ç\ë¢ëÃ */
+	uint16_t	id;			/* always 0x0x0160 */
+	uint16_t	type;
+	uint16_t	secCount;
+	uint16_t	nSectors;
+	uint32_t	frameCount;
+	uint32_t	frameSize;
+
+	uint16_t	width;
+	uint16_t	height;
+
+	uint32_t	headm;
+	uint32_t	headv;
+} StSECTOR;				/* CD-ROM STR ÔøΩ\ÔøΩÔøΩÔøΩÔøΩ */
 
 #define  StFREE       0x0000
 #define  StREWIND     0x0001
@@ -216,38 +216,38 @@ typedef struct {
  *	Prototypes
  */
 void	CdInit();
-int	CdSetDebug(int);
-char	*CdComstr(u_char);
-char	*CdIntstr(u_char);
-int	CdGetToc2(int, CdlLOC *);
-int	CdControl(u_char, u_char *, u_char *);
-int	CdControlB(u_char, u_char *, u_char *);
-int	CdControlF(u_char, u_char *);
-int	CdSync(int, u_char *);
-int	CdGetSector(void *, int);
-int	CdRead(int, u_long *, int);
-int	CdSetMode(long);
-int	CdRead2(long);
-int	CdSetFilter(u_char, u_char);
-int	CdMix(CdlATV *);
-u_long	CdSyncCallback(void (*func)());
-u_long	CdReadyCallback(void (*func)());
+int32_t	CdSetDebug(int32_t);
+char	*CdComstr(uint8_t);
+char	*CdIntstr(uint8_t);
+int32_t	CdGetToc2(int32_t, CdlLOC *);
+int32_t	CdControl(uint8_t, uint8_t *, uint8_t *);
+int32_t	CdControlB(uint8_t, uint8_t *, uint8_t *);
+int32_t	CdControlF(uint8_t, uint8_t *);
+int32_t	CdSync(int32_t, uint8_t *);
+int32_t	CdGetSector(void *, int32_t);
+int32_t	CdRead(int32_t, uint32_t *, int32_t);
+int32_t	CdSetMode(int32_t);
+int32_t	CdRead2(int32_t);
+int32_t	CdSetFilter(uint8_t, uint8_t);
+int32_t	CdMix(CdlATV *);
+uint32_t	CdSyncCallback(void (*func)());
+uint32_t	CdReadyCallback(void (*func)());
 CdlFILE *CdSearchFile(CdlFILE *, char *);
-CdlLOC	*CdIntToPos(int, CdlLOC *);
-int	CdPosToIntw(CdlLOC *);
+CdlLOC	*CdIntToPos(int32_t, CdlLOC *);
+int32_t	CdPosToIntw(CdlLOC *);
 
 /*
  *	Prototypes for Streaming
  */
-void	StSetRing(u_long *ring_addr,u_long ring_size);
+void	StSetRing(uint32_t *ring_addr,uint32_t ring_size);
 void	StClearRing(void);
 void	StUnSetRing(void);
-u_long	StFreeRing();
-void	StSetStream(u_long mode,u_long start_frame,u_long end_frame,
-		    int (*func1)(),int (*func2)());
-void	StSetEmulate(u_long *addr,u_long mode,u_long start_frame,
-		     u_long end_frame,int (*func1)(),int (*func2)());
-u_long	StFreeRing(u_long *base);
-u_long	StGetNext(u_long **addr,u_long **header);
-void	StSetMask(u_long mask,u_long start,u_long end);
+uint32_t	StFreeRing();
+void	StSetStream(uint32_t mode,uint32_t start_frame,uint32_t end_frame,
+		    int32_t (*func1)(),int32_t (*func2)());
+void	StSetEmulate(uint32_t *addr,uint32_t mode,uint32_t start_frame,
+		     uint32_t end_frame,int32_t (*func1)(),int32_t (*func2)());
+uint32_t	StFreeRing(uint32_t *base);
+uint32_t	StGetNext(uint32_t **addr,uint32_t **header);
+void	StSetMask(uint32_t mask,uint32_t start,uint32_t end);
 void	StCdInterrupt(void);

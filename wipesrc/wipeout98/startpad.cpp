@@ -2,7 +2,7 @@
 	vertical blanking interrupt (on PSX). */
 #include	"wipesrc/win95/markk/libapi.h"
 
-long	StartPAD(void)
+int32_t	StartPAD(void)
 {
 	/* Flush Controller Buffers. */
 	etc_TransferBuffer1[0] = NG;

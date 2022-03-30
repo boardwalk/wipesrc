@@ -66,17 +66,17 @@ extern LPDIRECT3DDEVICE3			g_pd3dDevice;
 
 typedef struct
 {
-	long			id;
-	long 			flags;
-	long			bnum;
-	short			textureX, textureY;
-	short 			textureH, textureW;
+	int32_t			id;
+	int32_t 			flags;
+	int32_t			bnum;
+	int16_t			textureX, textureY;
+	int16_t 			textureH, textureW;
 } TimData;
 
 extern DynamicHeap *heap;
 extern char winLoseIn;
-extern int inmenutest;
- 
+extern int32_t inmenutest;
+
 #define	BLACK_NOT_DRAWN	1
 #define	BLACK1_TRANSL	2
 #define	BLACK2_TRANSL	3
@@ -111,14 +111,14 @@ extern int inmenutest;
 #define TEXTURESJR 2621440
 
 typedef struct {
-	short xsize,ysize;
+	int16_t xsize,ysize;
 	float mult;
 }RESOLUTION;
 
 BOOL Rendering;
 BOOL backFromDead = FALSE;
 
-extern short rendering;
+extern int16_t rendering;
 RESOLUTION reses[]={
 	{320,240,1.0f},
 	{400,300,1.25f},
@@ -126,39 +126,39 @@ RESOLUTION reses[]={
 	{640,480,2.0f}
 };
 
-short screenres=3;
+int16_t screenres=3;
 float upres=2.0f;
 float zscale=1.0/65536.0f;//1.0/32768.0f;
 
-int menuTexturesIn = 0;
-int Keydelay,Keyrepeat,sSaver;
-short dodump = 0,FrameState=0;
-short PageXOff,PageYOff;
+int32_t menuTexturesIn = 0;
+int32_t Keydelay,Keyrepeat,sSaver;
+int16_t dodump = 0,FrameState=0;
+int16_t PageXOff,PageYOff;
 
-extern long			ctrlNeedEndText;
-extern long			ctrlNeedWinLose;
-extern long			ctrlNeedBackPoly;
-extern long			ctrlNeedRaceInfo;
-extern long			ctrlNeedDeSelectScreen;
-extern long			ctrlNeedNewHighScores;
-extern long			ctrlNeedRacePoints;
-extern long			ctrlNeedChampTable;
-extern long			ctrlNeedAllVenomComplete;
-extern long			ctrlNeedVenomComplete;
-extern long			ctrlNeedContinueGameConfirm;
-extern long			ctrlNeedEndTextVar;
-extern long			ctrlNeedWinLoseVar;
-extern long			ctrlNeedInGameReset;
-extern long			ctrlNeedInSingleGameConfirm;
-extern long			ctrlNeedInGameConfirm;
-extern long			ctrlNeedTargetIcon;
-extern long			ctrlCDPaused;
-extern long			ctrlfirsttime;
-extern long ctrlmode;
+extern int32_t			ctrlNeedEndText;
+extern int32_t			ctrlNeedWinLose;
+extern int32_t			ctrlNeedBackPoly;
+extern int32_t			ctrlNeedRaceInfo;
+extern int32_t			ctrlNeedDeSelectScreen;
+extern int32_t			ctrlNeedNewHighScores;
+extern int32_t			ctrlNeedRacePoints;
+extern int32_t			ctrlNeedChampTable;
+extern int32_t			ctrlNeedAllVenomComplete;
+extern int32_t			ctrlNeedVenomComplete;
+extern int32_t			ctrlNeedContinueGameConfirm;
+extern int32_t			ctrlNeedEndTextVar;
+extern int32_t			ctrlNeedWinLoseVar;
+extern int32_t			ctrlNeedInGameReset;
+extern int32_t			ctrlNeedInSingleGameConfirm;
+extern int32_t			ctrlNeedInGameConfirm;
+extern int32_t			ctrlNeedTargetIcon;
+extern int32_t			ctrlCDPaused;
+extern int32_t			ctrlfirsttime;
+extern int32_t ctrlmode;
 extern char			ctrlmachinePaused;
-extern int				ctrlcdPause;
-extern	short   startIceText;
-extern	short   startFireText;
+extern int32_t				ctrlcdPause;
+extern	int16_t   startIceText;
+extern	int16_t   startFireText;
 
 typedef struct {
 	LPDIRECTDRAWSURFACE4	lpDDSTex;
@@ -177,113 +177,113 @@ char lastfile[256];
 
 typedef struct
 {
-	unsigned long   tag;
-	unsigned char   r0, g0, b0, code;
-	short	   x0, y0;
-	short	   x1, y1;
-	short	   x2, y2;
-	short	   x3, y3;
+	uint32_t   tag;
+	uint8_t   r0, g0, b0, code;
+	int16_t	   x0, y0;
+	int16_t	   x1, y1;
+	int16_t	   x2, y2;
+	int16_t	   x3, y3;
 }	       POLY_F4;	/* Flat Quadrangle */
 
 
 typedef struct
 {
-	unsigned long   tag;
-	unsigned char   r0, g0, b0, code;
-	short	   x0, y0, z0, pad4;
-	unsigned char   u0, v0;
-	unsigned short  clut;
-	short	   x1, y1, z1, pad5;
-	unsigned char   u1, v1;
-	unsigned short  tpage;
-	short	   x2, y2, z2, pad6;
-	unsigned char   u2, v2;
-	unsigned short  pad1;
-	short	   x3, y3, z3, pad7;
-	unsigned char   u3, v3;
-	unsigned short  pad2;
+	uint32_t   tag;
+	uint8_t   r0, g0, b0, code;
+	int16_t	   x0, y0, z0, pad4;
+	uint8_t   u0, v0;
+	uint16_t  clut;
+	int16_t	   x1, y1, z1, pad5;
+	uint8_t   u1, v1;
+	uint16_t  tpage;
+	int16_t	   x2, y2, z2, pad6;
+	uint8_t   u2, v2;
+	uint16_t  pad1;
+	int16_t	   x3, y3, z3, pad7;
+	uint8_t   u3, v3;
+	uint16_t  pad2;
 }	       POLY_FT4;       /* Flat Textured Quadrangle */
 
 typedef struct {
-	unsigned long	tag;
-	unsigned char	r0, g0, b0, code;
-	short	x0, 	y0;
-	unsigned char	r1, g1, b1, pad1;
-	short	x1,	y1;
-	unsigned char	r2, g2, b2, pad2;
-	short	x2,	y2;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	r1, g1, b1, pad1;
+	int16_t	x1,	y1;
+	uint8_t	r2, g2, b2, pad2;
+	int16_t	x2,	y2;
 } POLY_G3;				/* Gouraud Triangle */
 
 typedef struct {
-	unsigned long	tag;
-	unsigned char	r0, g0, b0, code;
-	short	x0, 	y0;
-	unsigned char	r1, g1, b1, pad1;
-	short	x1,	y1;
-	unsigned char	r2, g2, b2, pad2;
-	short	x2,	y2;
-	unsigned char	r3, g3, b3, pad3;
-	short	x3,	y3;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	r1, g1, b1, pad1;
+	int16_t	x1,	y1;
+	uint8_t	r2, g2, b2, pad2;
+	int16_t	x2,	y2;
+	uint8_t	r3, g3, b3, pad3;
+	int16_t	x3,	y3;
 } POLY_G4;				/* Gouraud Quadrangle */
 
 typedef struct {
-	unsigned long	tag;
-	unsigned char	r0, g0, b0, code;
-	short	x0, 	y0, z0, pad4;
-	unsigned char	u0, v0;	unsigned short	clut;
-	unsigned char	r1, g1, b1, p1;
-	short	x1,	y1, z1, pad5;
-	unsigned char	u1, v1;	unsigned short	tpage;
-	unsigned char	r2, g2, b2, p2;
-	short	x2,	y2, z2, pad6;
-	unsigned char	u2, v2;	unsigned short	pad2;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0, z0, pad4;
+	uint8_t	u0, v0;	uint16_t	clut;
+	uint8_t	r1, g1, b1, p1;
+	int16_t	x1,	y1, z1, pad5;
+	uint8_t	u1, v1;	uint16_t	tpage;
+	uint8_t	r2, g2, b2, p2;
+	int16_t	x2,	y2, z2, pad6;
+	uint8_t	u2, v2;	uint16_t	pad2;
 } POLY_GT3;				/* Gouraud Textured Triangle */
 
 typedef struct {
-	unsigned long	tag;
-	unsigned char	r0, g0, b0, code;
-	short	x0, 	y0, z0, pad4;
-	unsigned char	u0, v0;	unsigned short	clut;
-	unsigned char	r1, g1, b1, p1;
-	short	x1,	y1, z1, pad5;
-	unsigned char	u1, v1;	unsigned short	tpage;
-	unsigned char	r2, g2, b2, p2;
-	short	x2,	y2, z2, pad6;
-	unsigned char	u2, v2;	unsigned short	pad2;
-	unsigned char	r3, g3, b3, p3;
-	short	x3,	y3, z3, pad7;
-	unsigned char	u3, v3;	unsigned short	pad3;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0, z0, pad4;
+	uint8_t	u0, v0;	uint16_t	clut;
+	uint8_t	r1, g1, b1, p1;
+	int16_t	x1,	y1, z1, pad5;
+	uint8_t	u1, v1;	uint16_t	tpage;
+	uint8_t	r2, g2, b2, p2;
+	int16_t	x2,	y2, z2, pad6;
+	uint8_t	u2, v2;	uint16_t	pad2;
+	uint8_t	r3, g3, b3, p3;
+	int16_t	x3,	y3, z3, pad7;
+	uint8_t	u3, v3;	uint16_t	pad3;
 } POLY_GT4;				/* Gouraud Textured Quadrangle */
 
 typedef struct {
-	unsigned long	tag;
-	unsigned char	r0, g0, b0, code;
-	short	x0, y0, z0, pad4;
-	unsigned char	u0, v0;
-	unsigned short	clut;
-	short	x1,	y1, z1, pad5;
-	unsigned char	u1, v1;
-	unsigned short	tpage;
-	short	x2,	y2, z2, pad6;
-	unsigned char	u2, v2;
-	unsigned short	pad1;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, y0, z0, pad4;
+	uint8_t	u0, v0;
+	uint16_t	clut;
+	int16_t	x1,	y1, z1, pad5;
+	uint8_t	u1, v1;
+	uint16_t	tpage;
+	int16_t	x2,	y2, z2, pad6;
+	uint8_t	u2, v2;
+	uint16_t	pad1;
 } POLY_FT3;				/* Flat Textured Triangle */
 
 typedef struct {
-	unsigned long	tag;
-	unsigned char	r0, g0, b0, code;
-	short	x0, 	y0;
-	unsigned char	u0, v0;	unsigned short	clut;
-	short	w,	h;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	u0, v0;	uint16_t	clut;
+	int16_t	w,	h;
 } SPRT;					/* free size Sprite */
 
 typedef struct {
-	unsigned long	tag;
-	unsigned char	r0, g0, b0, code;
-	short	x0, 	y0;
-	unsigned char	u0, v0;	unsigned short	clut;
+	uint32_t	tag;
+	uint8_t	r0, g0, b0, code;
+	int16_t	x0, 	y0;
+	uint8_t	u0, v0;	uint16_t	clut;
 } SPRT_16;				/* 8x8 Sprite */
-	       
+
 typedef SPRT_16 SPRT_8;
 char	    gszErrMsg[64];
 BOOL	    gbCIFInit;
@@ -292,16 +292,16 @@ static BOOL FirstActivate = TRUE;
 
 
 //menu graphic detail stuff - SJR
-short ft=0;
+int16_t ft=0;
 char MipMap = 0;
 
-short texpage=-1;
-short numvert=0;
-short tester=0;
+int16_t texpage=-1;
+int16_t numvert=0;
+int16_t tester=0;
 typedef struct {
-	unsigned short blue:5;
-	unsigned short green:5;
-	unsigned short red:5;
+	uint16_t blue:5;
+	uint16_t green:5;
+	uint16_t red:5;
 } BIT15;
 
 BIT15 ATIpalette[256];
@@ -316,28 +316,28 @@ HWND	    hwnd;
 char globalPilot[255]={0};
 
 extern char DepthFadeTble[],WhitePal;
-extern short int CurrTrkNo;
-short randlist[2000];
-short *randnum;
+extern int16_t int32_t CurrTrkNo;
+int16_t randlist[2000];
+int16_t *randnum;
 char *TextureBuffer;
-short ctr;
-short trackNum = 0;
+int16_t ctr;
+int16_t trackNum = 0;
 char *SaveDirBase;
 char *DataDirBase;
 char *MovieDirBase;
 extern UINT wDeviceID;
 extern char ctrlshowMenu;
-extern long	ctrlNeedInGameReset;
-short WinPaused = 0;
-extern int ctrlchoice;
-extern long screenZ;
+extern int32_t	ctrlNeedInGameReset;
+int16_t WinPaused = 0;
+extern int32_t ctrlchoice;
+extern int32_t screenZ;
 
 struct sMovie
 {
 	char szMoviePathName[MAX_PATH];
-	int width;
-	int height;
-	int fullScreen;
+	int32_t width;
+	int32_t height;
+	int32_t fullScreen;
 };
 
 BOOL shellMoviePlayingG = FALSE;
@@ -348,11 +348,11 @@ UINT shellMovieDeviceIDG;
 
 float joyModXVal;
 float joyModYVal;
-extern short JoyCentreX, JoyCentreY;
-extern short	left_scale, right_scale;
+extern int16_t JoyCentreX, JoyCentreY;
+extern int16_t	left_scale, right_scale;
 extern float	left_scale_factor, right_scale_factor;
-extern unsigned short JoyXVal, JoyYVal;
-short JoyButton1, JoyButton2;
+extern uint16_t JoyXVal, JoyYVal;
+int16_t JoyButton1, JoyButton2;
 
 HANDLE gInstance;
 
@@ -362,42 +362,42 @@ HANDLE gInstance;
 
 /* Type/Structure Definitions. */
 typedef struct {
-	unsigned short int	jX;
-	unsigned short int	jY;
-	unsigned short int	jDir;
-	unsigned short int	jButton1;
-	unsigned short int	jButton2;
+	uint16_t	jX;
+	uint16_t	jY;
+	uint16_t	jDir;
+	uint16_t	jButton1;
+	uint16_t	jButton2;
 } JOYSTICK;
 
 typedef struct {
-	unsigned short int	mX;
-	unsigned short int	mY;
-	unsigned short int	mDir;
-	unsigned short int	mButton1;
-	unsigned short int	mButton2;
-	unsigned short int	mButton3;
+	uint16_t	mX;
+	uint16_t	mY;
+	uint16_t	mDir;
+	uint16_t	mButton1;
+	uint16_t	mButton2;
+	uint16_t	mButton3;
 } MOUSE;
 
 typedef struct {
-	long int	JoyUp;
-	long int	JoyDown;
-	long int	JoyLeft;
-	long int	JoyRight;
-	long int	JoyButton1;
-	long int	JoyButton2;
-	long int	JoyButton3;
-	long int	JoyButton4;
+	int32_t	JoyUp;
+	int32_t	JoyDown;
+	int32_t	JoyLeft;
+	int32_t	JoyRight;
+	int32_t	JoyButton1;
+	int32_t	JoyButton2;
+	int32_t	JoyButton3;
+	int32_t	JoyButton4;
 } JOYSTICK_CONFIG;
 
 typedef struct {
-	long int	MouseUp;
-	long int	MouseDown;
-	long int	MouseLeft;
-	long int	MouseRight;
-	long int	MouseLeftButton;
-	long int	MouseMiddleButton;
-	long int	MouseRightButton;
-	long int	MouseDummy;
+	int32_t	MouseUp;
+	int32_t	MouseDown;
+	int32_t	MouseLeft;
+	int32_t	MouseRight;
+	int32_t	MouseLeftButton;
+	int32_t	MouseMiddleButton;
+	int32_t	MouseRightButton;
+	int32_t	MouseDummy;
 } MOUSE_CONFIG;
 
 #define _DEVICE_ON 1
@@ -408,15 +408,15 @@ typedef struct {
 
 extern volatile MOUSE etc_Mouse1;
 extern volatile JOYSTICK etc_Joy1;
-extern volatile unsigned long int etc_Mouse1Register;
-extern volatile unsigned long int etc_Joystick1Register;
+extern volatile uint32_t etc_Mouse1Register;
+extern volatile uint32_t etc_Joystick1Register;
 extern volatile MOUSE_CONFIG etc_Mouse1Config;
 extern volatile JOYSTICK_CONFIG etc_Joy1Config;
 extern volatile char *etc_TransferBuffer1;
 extern char mouse_sensitivity;
-extern volatile unsigned char etc_Mouse1Switch;		/* id = 3 */
-extern volatile unsigned char etc_Joystick1Switch;
-extern volatile unsigned char etc_InputDeviceSelect;
+extern volatile uint8_t etc_Mouse1Switch;		/* id = 3 */
+extern volatile uint8_t etc_Joystick1Switch;
+extern volatile uint8_t etc_InputDeviceSelect;
 
 #define TIMER_ID	1
 #define TIMER_RATE      1
@@ -424,26 +424,26 @@ extern volatile unsigned char etc_InputDeviceSelect;
 //#define	GAME_WIDTH	320
 //#define GAME_HEIGHT	240
 
-void     Set_Device(int tmp);
+void     Set_Device(int32_t tmp);
 void     oldmain(void);
 void     QuitToDos(void);
 void     pmkey(char, char);
 void     ResetPitch(void);
 void JJSReadTIM(char *filename , char *location, TimData *tim);
-//char* DAlloc(void*   heap,long size);
+//char* DAlloc(void*   heap,int32_t size);
 void	LoadPilotIntoVram(char *filename);
 void Swap(void);
-int JJSLoadSprites (void);
+int32_t JJSLoadSprites (void);
 BOOL JJSLoadRage (void);
 BOOL	    InitATI3DCIF(void);
-void UpdateNotes(int paused);
+void UpdateNotes(int32_t paused);
 
-extern int      WinPitch;
-extern short    WinWidth;
-extern short    WinHeight;
-extern short    WinHeightX2;
-int	     RealPitch;
-int	     RealBackPitch;
+extern int32_t      WinPitch;
+extern int16_t    WinWidth;
+extern int16_t    WinHeight;
+extern int16_t    WinHeightX2;
+int32_t	     RealPitch;
+int32_t	     RealBackPitch;
 char	   *DebugScreen, *RealScreen;
 
 LPDIRECTDRAWSURFACE4 lpBack_Buffer;      // Directdraw 320X200 Surface for the  menu thing.
@@ -453,7 +453,7 @@ extern char    *CurBuffer, *CurBufferJ;
 PALETTEENTRY    ddPalette[256];
 char	   *backscreen;
 
-extern long     NeedKeys;
+extern int32_t     NeedKeys;
 
 extern void     finiSndObjects(void);
 
@@ -645,7 +645,7 @@ static void	restoreTextures(void)
 
 /*
  * finiObjects
- * 
+ *
  * finished with all objects we use; release them
  */
 static void     finiObjects(void)
@@ -659,7 +659,7 @@ static void     finiObjects(void)
 
 void changeScreen(void)
 {
-	int i;
+	int32_t i;
 
 	if (g_pddsPrimary != NULL)
 	{
@@ -684,18 +684,18 @@ void changeScreen(void)
 	setupScreens();
 	restoreTextures();
 }
-	
-long FAR PASCAL WndProc(HWND hWnd, UINT message,
+
+int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
 					   WPARAM wParam, LPARAM lParam)
 {
 	PAINTSTRUCT     ps;
 	// RECT	rc;
 	// SIZE	size;
 	char	    keyhit;
-	short DevID;
-	long NotifyMsg;
-	unsigned short buttons;
-	unsigned long xpos, ypos;
+	int16_t DevID;
+	int32_t NotifyMsg;
+	uint16_t buttons;
+	uint32_t xpos, ypos;
 	char temp;
 
 	switch (message)
@@ -720,8 +720,8 @@ long FAR PASCAL WndProc(HWND hWnd, UINT message,
 				xpos = LOWORD(lParam);
 				ypos = HIWORD(lParam);
 				buttons = wParam;
-				etc_Joy1.jX = (short)((float)xpos * joyModXVal);
-				etc_Joy1.jY = (short)((float)ypos * joyModYVal);
+				etc_Joy1.jX = (int16_t)((float)xpos * joyModXVal);
+				etc_Joy1.jY = (int16_t)((float)ypos * joyModYVal);
 				etc_Joy1.jDir = 0;
 				etc_Joy1.jButton1 = (buttons & JOY_BUTTON1) ? 1 : 0;
 				etc_Joy1.jButton2 = (buttons & JOY_BUTTON2) ? 1 : 0;
@@ -755,8 +755,8 @@ long FAR PASCAL WndProc(HWND hWnd, UINT message,
 				xpos = LOWORD(lParam);
 				ypos = HIWORD(lParam);
 				buttons = wParam;
-				etc_Joy1.jX = (short)((float)xpos * joyModXVal);
-				etc_Joy1.jY = (short)((float)ypos * joyModYVal);
+				etc_Joy1.jX = (int16_t)((float)xpos * joyModXVal);
+				etc_Joy1.jY = (int16_t)((float)ypos * joyModYVal);
 				etc_Joy1.jDir = 0;
 
 				if (buttons & JOY_BUTTON1CHG)
@@ -794,8 +794,8 @@ long FAR PASCAL WndProc(HWND hWnd, UINT message,
 				xpos = LOWORD(lParam);
 				ypos = HIWORD(lParam);
 				buttons = wParam;
-				etc_Joy1.jX = (short)((float)xpos * joyModXVal);
-				etc_Joy1.jY = (short)((float)ypos * joyModYVal);
+				etc_Joy1.jX = (int16_t)((float)xpos * joyModXVal);
+				etc_Joy1.jY = (int16_t)((float)ypos * joyModYVal);
 				etc_Joy1.jDir = 0;
 
 				if (buttons & JOY_BUTTON1CHG)
@@ -832,7 +832,7 @@ long FAR PASCAL WndProc(HWND hWnd, UINT message,
 			etc_Mouse1Register = 0;
 			if(etc_Mouse1Switch == _DEVICE_ON)
 			{
-				short xtemp,fwKeys;
+				int16_t xtemp,fwKeys;
 				char temp;
 
 				fwKeys = wParam;
@@ -928,7 +928,7 @@ long FAR PASCAL WndProc(HWND hWnd, UINT message,
 				return(0);
 			case VK_DELETE:
 				return(0);
-				
+
 			}
 			if(!(HIWORD(lParam) & 0x4000))
 			{
@@ -1065,8 +1065,8 @@ long FAR PASCAL WndProc(HWND hWnd, UINT message,
 void setupScreens(void)
 {
 	HRESULT	 ddrval=DD_OK,ddretval;
-	int i;
-	
+	int32_t i;
+
 	DDSwap();
 	WinClearScreen(0);
 	DDSwap();
@@ -1091,9 +1091,9 @@ void setupScreens(void)
  * doInit - do work required for every instance of the application: create
  * the window, initialize data
  */
-static BOOL     doInit(HANDLE hInstance, int nCmdShow)
+static BOOL     doInit(HANDLE hInstance, int32_t nCmdShow)
 {
-	int	     i;
+	int32_t	     i;
 	/*
 	 * Initialise palette
 	 */
@@ -1116,9 +1116,9 @@ static BOOL     doInit(HANDLE hInstance, int nCmdShow)
 	return TRUE;
 }			       /* doInit */
 
-void	    CopyPal(char *palette, short start, short end)
+void	    CopyPal(char *palette, int16_t start, int16_t end)
 {
-	int	     i;
+	int32_t	     i;
 
 	for (i = start; i <= end; i++)
 	{
@@ -1131,13 +1131,13 @@ void	    CopyPal(char *palette, short start, short end)
 
 void initrandy()
 {
-	short i;
+	int16_t i;
 	time_t t;
 
 	t=time(NULL);
 
 	srand(t);
-	
+
 	for (i = 0; i < 2000; i++)
 		randlist[i] = rand() & 0x7FFF;
 
@@ -1145,9 +1145,9 @@ void initrandy()
 	ctr = 0;
 }
 
-int randy(void)
+int32_t randy(void)
 {
-	short num;
+	int16_t num;
 
 	num = *randnum++;
 
@@ -1162,7 +1162,7 @@ int randy(void)
 
 }
 
-int vRamSize()
+int32_t vRamSize()
 {
 	return 0;
 }
@@ -1173,11 +1173,11 @@ int vRamSize()
 //-----------------------------------------------------------------------------
 HWND InitializeWindowEnvironment( HINSTANCE hInst )
 {
-	int winx,winy;
+	int32_t winx,winy;
 
     WNDCLASS wndClass = { CS_HREDRAW | CS_VREDRAW, WndProc, 0, 0, hInst,
               LoadIcon( hInst, MAKEINTRESOURCE(IDI_APPLICATION)),
-              LoadCursor(NULL, IDC_ARROW), 
+              LoadCursor(NULL, IDC_ARROW),
               (HBRUSH)GetStockObject(WHITE_BRUSH), NULL,
               TEXT("Render Window") };
     RegisterClass( &wndClass );
@@ -1205,11 +1205,11 @@ HWND InitializeWindowEnvironment( HINSTANCE hInst )
 /*
  * WinMain - initialization, message loop
  */
-int PASCAL      WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance,
-					LPSTR lpCmdLine, int nCmdShow)
+int32_t PASCAL      WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance,
+					LPSTR lpCmdLine, int32_t nCmdShow)
 {
-	long tmp;
-	int retval;
+	int32_t tmp;
+	int32_t retval;
 	BOOL b_Voodoo;
     // Create our main window
   	if(!strcmp(lpCmdLine,"-win"))
@@ -1276,7 +1276,7 @@ int PASCAL      WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance,
 
 }			       /* WinMain */
 
-int	     ProcessMessages(void)
+int32_t	     ProcessMessages(void)
 {
 	MSG	     msg;
 	do
@@ -1285,7 +1285,7 @@ int	     ProcessMessages(void)
 		{
 			backFromDead=FALSE;
 			while(PeekMessage(&msg,NULL,MM_JOY1MOVE,MM_JOY2BUTTONUP,PM_REMOVE));
-		}			
+		}
 		while (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))      // Clear all outstanding messages
 		{
 			if (GetMessage(&msg, NULL, 0, 0))
@@ -1315,12 +1315,12 @@ int	     ProcessMessages(void)
 
 DDSURFACEDESC2   ddsd;
 DDSURFACEDESC2   backDdsd;
-int	     old_pitch = 0;
+int32_t	     old_pitch = 0;
 
-int	     LockBackBuffer(void)
+int32_t	     LockBackBuffer(void)
 {
 	LPBYTE	  ptr;
-	// int			i;
+	// int32_t			i;
 	HRESULT	 ddrval;
 	if (bActive && !backLocked)
 	{
@@ -1455,9 +1455,9 @@ void	    DrawIT(void)
 {
 	DDSURFACEDESC2   ddsd;
 	LPBYTE	  ptr;
-	// int			i;
+	// int32_t			i;
 	HRESULT	 ddrval;
-	static int      err_count = 0;
+	static int32_t      err_count = 0;
 
 	// Flip surfaces
 	if (bActive)
@@ -1538,7 +1538,7 @@ void	    WinClearScreen(char colour)
 
 void	    PitchMemCpy(char *dest, char *source, RECT * rect)
 {
-	int	     loop;
+	int32_t	     loop;
 
 	for (loop = 0; loop < (rect->bottom - rect->top); loop++)
 	{
@@ -1551,7 +1551,7 @@ void	    PitchMemCpy(char *dest, char *source, RECT * rect)
 void	    PitchMemCpy320X200(char *dest, char *source)
 {
 	RECT	    rect;
-	int	     loop;
+	int32_t	     loop;
 
 	rect.left = 0;
 	rect.right = WinWidth;
@@ -1566,8 +1566,8 @@ void	    PitchMemCpy320X200(char *dest, char *source)
 }
 
 
-long numoff=0;
-long numsmall=0;
+int32_t numoff=0;
+int32_t numsmall=0;
 
 void setRenderBegin(void)
 {
@@ -1581,7 +1581,7 @@ void setRenderBegin(void)
 //		ATI3DCIF_ContextSetState(ghRC, C3D_ERS_SHADE_MODE,
 //						   &shade);
 		bTexEn = FALSE;
-		texpage = 420; 
+		texpage = 420;
 //		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &(gTex[texpage].hTX));
 //		ATI3DCIF_ContextSetState(ghRC, C3D_ERS_TMAP_EN, &bTexEn);
 //		ATI3DCIF_ContextSetState(ghRC, C3D_ERS_TMAP_LIGHT, &light);
@@ -1611,12 +1611,12 @@ void sendList(void)
 	{
 		setRenderBegin();
 //		ATI3DCIF_RenderPrimList((void **)testlist,numvert);
-		
+
 	numvert=0;
 	}
 }
 
-short jjstestsrc=0,jjstestdst=0,jjstest3=128;
+int16_t jjstestsrc=0,jjstestdst=0,jjstest3=128;
 
 #if 0
 BOOL SetState(C3D_EPRIM Quad, C3D_ESHADE Shade, BOOL BTexEn, BOOL Trans, C3D_ETLIGHT Light)
@@ -1676,7 +1676,7 @@ BOOL SetState(C3D_EPRIM Quad, C3D_ESHADE Shade, BOOL BTexEn, BOOL Trans, C3D_ETL
 				case RED_TRANSL:
 				case BLACK1_TRANSL:
 				case BLACK2_TRANSL:
-				case BLACK4_TRANSL:		
+				case BLACK4_TRANSL:
 				case BLACK6_TRANSL:
 					tranfix=TRUE;
 					chkey = C3D_ETEXOP_CHROMAKEY;//SJR - make 0,0,0 trans
@@ -1696,7 +1696,7 @@ BOOL SetState(C3D_EPRIM Quad, C3D_ESHADE Shade, BOOL BTexEn, BOOL Trans, C3D_ETL
 				default:
 					eDstAlpha = C3D_EADST_ONE;
 					eSrcAlpha = C3D_EASRC_INVDSTCLR;
-					
+
 					break;
 			}
 		}
@@ -1724,11 +1724,11 @@ BOOL SetState(C3D_EPRIM Quad, C3D_ESHADE Shade, BOOL BTexEn, BOOL Trans, C3D_ETL
 	return(change);
 }
 #endif
-short GetThePage(short page,short u,short v)
+int16_t GetThePage(int16_t page,int16_t u,int16_t v)
 {
-	short newpage;
+	int16_t newpage;
 	char *tex=menuTexturesIn?JJSTextureMenuTable:JJSTextureTable;
-	
+
 	newpage=tex[page&0x1f];
 	if(newpage>4)
 		newpage+=400;
@@ -1746,15 +1746,15 @@ short GetThePage(short page,short u,short v)
 	return(newpage);
 }
 
-void JJSDrawSprite(SPRT_8 *sp,short w, short h)
+void JJSDrawSprite(SPRT_8 *sp,int16_t w, int16_t h)
 {
 	static D3DTLVERTEX vert[4]={0},*v;
 	vert[0].color=vert[1].color=vert[2].color=vert[3].color=RGB_MAKE(255,255,255);
 //	C3D_PVTCF       v;
-	short tpage;
-	short nu,nv;
+	int16_t tpage;
+	int16_t nu,nv;
 	SPRT_8 s2=*sp;
-	
+
 	nu=s2.u0;
 	nv=s2.v0;
 	if(s2.y0<0)
@@ -1836,7 +1836,7 @@ void SetColor(D3DTLVERTEX *v,char r, char g, char b)
 {
 	if(g)
 	{
-		int r;
+		int32_t r;
 		if(g==25)
 		{
 			v->color=RGB_MAKE(40,40,255);		// Speed up
@@ -1867,10 +1867,10 @@ void SetColor(D3DTLVERTEX *v,char r, char g, char b)
 	else
 	{
 		v->color=RGB_MAKE(ddPalette[r].peRed,ddPalette[r].peGreen,ddPalette[r].peBlue);
-		
+
 	}
 }
-	
+
 void	    JJSDrawPolyF4(POLY_F4 * p)
 {
 	static D3DTLVERTEX vert[4]={0},*v;
@@ -1942,10 +1942,10 @@ void	    JJSDrawPolyG4(POLY_G4 * p)
 	g_pd3dDevice->DrawPrimitive(D3DPT_TRIANGLEFAN, D3DFVF_TLVERTEX , vert, 4, D3DDP_DONOTLIGHT);
 }
 
-void setst(D3DTLVERTEX *vv,short u,short v,short page)
+void setst(D3DTLVERTEX *vv,int16_t u,int16_t v,int16_t page)
 {
 
-	if(menuTexturesIn || page>=400) 
+	if(menuTexturesIn || page>=400)
 	{
 		vv->tu=(u * (1.0f/256.0f));
 		vv->tv=(v * (1.0f/256.0f));
@@ -1965,7 +1965,7 @@ void	    JJSDrawPolyFT4(POLY_FT4 * p)
 	vert[0].color=vert[1].color=vert[2].color=vert[3].color=RGB_MAKE(255,255,255);
 //	C3D_PVTCF       v;
 	//C3D_PRSDATA chkey;
-	short temp;
+	int16_t temp;
 
 	temp = GetThePage(p->tpage,(p->u0+p->u1+p->u2+p->u3)/4,(p->v0+p->v1+p->v2+p->v3)/4);
 	if(temp==417 || temp==418)	// nasty horrible bodge
@@ -2160,7 +2160,7 @@ void	    JJSDrawPolyFT3(POLY_FT3 * p)
 	static D3DTLVERTEX vert[3]={0},*v;
 	vert[0].color=vert[1].color=vert[2].color=RGB_MAKE(255,255,255);
 //	C3D_PVTCF       v;
-	short temp;
+	int16_t temp;
 
 	temp=GetThePage(p->tpage,(p->u0+p->u1+p->u2)/3,(p->v0+p->v1+p->v2)/3);
 	g_pd3dDevice->SetTexture(0,gTex[temp].Texture);
@@ -2190,10 +2190,10 @@ void	    JJSDrawPolyFT3(POLY_FT3 * p)
 		v->sx = SCALEIT(p->x0);
 		v->sy = SCALEIT(p->y0);
 		setst(v,p->u0,p->v0,temp);
-		
+
 		if (p->g0)
 			SetColor(v,p->r0,p->g0,p->b0);
-		
+
 		++v;
 		if (p->z1 <= 0)
 		{
@@ -2208,10 +2208,10 @@ void	    JJSDrawPolyFT3(POLY_FT3 * p)
 		v->sx = SCALEIT(p->x1);
 		v->sy = SCALEIT(p->y1);
 		setst(v,p->u1,p->v1,temp);
-		
+
 		if (p->g0)
 			SetColor(v,p->r0,p->g0,p->b0);
-		
+
 		++v;
 		if (p->z2 <= 0)
 		{
@@ -2226,7 +2226,7 @@ void	    JJSDrawPolyFT3(POLY_FT3 * p)
 		v->sx = SCALEIT(p->x2);
 		v->sy = SCALEIT(p->y2);
 		setst(v,p->u2,p->v2,temp);
-		
+
 		if (p->g0)
 			SetColor(v,p->r0,p->g0,p->b0);
 	g_pd3dDevice->DrawPrimitive(D3DPT_TRIANGLELIST, D3DFVF_TLVERTEX , vert, 3, D3DDP_DONOTLIGHT);
@@ -2237,13 +2237,13 @@ void	    JJSDrawPolyGT3(POLY_GT3 * p)
 	static 	D3DTLVERTEX vert[3]={0},*v;
 	vert[0].color=vert[1].color=vert[2].color=RGB_MAKE(255,255,255);
 	//	C3D_PVTCF       v;
-	short temp;
+	int16_t temp;
 	//p->b0
-	
+
 	temp=GetThePage(p->tpage,(p->u0+p->u1+p->u2)/3,(p->v0+p->v1+p->v2)/3);
 	g_pd3dDevice->SetTexture(0,gTex[temp].Texture);
 	g_pd3dDevice->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE );
-#if 0	
+#if 0
 	if(texpage!=temp)
 	{
 		sendList();
@@ -2272,7 +2272,7 @@ void	    JJSDrawPolyGT3(POLY_GT3 * p)
 	v->sy = SCALEIT(p->y0);
 	setst(v,p->u0,p->v0,temp);
 //	v->color=RGB_MAKE(p->r0,p->g0,p->b0);
-	
+
 	++v;
 	if (p->z1 <= 0)
 	{
@@ -2283,13 +2283,13 @@ void	    JJSDrawPolyGT3(POLY_GT3 * p)
 	{
 		v->sz = SCALEZ(p->z1);
 		v->rhw = 1.0f / v->sz;
-		
+
 	}
 	v->sx = SCALEIT(p->x1);
 	v->sy = SCALEIT(p->y1);
 	setst(v,p->u1,p->v1,temp);
 //	v->color=RGB_MAKE(p->r1,p->g1,p->b1);
-	
+
 	++v;
 	if (p->z2 <= 0)
 	{
@@ -2300,7 +2300,7 @@ void	    JJSDrawPolyGT3(POLY_GT3 * p)
 	{
 		v->sz = SCALEZ(p->z2);
 		v->rhw = 1.0f / v->sz;
-		
+
 	}
 	v->sx = SCALEIT(p->x2);
 	v->sy = SCALEIT(p->y2);
@@ -2314,13 +2314,13 @@ void	    JJSDrawPolyGT4(POLY_GT4 * p)
 	static 	D3DTLVERTEX vert[4]={0},*v;
 	vert[0].color=vert[1].color=vert[2].color=vert[3].color=RGB_MAKE(255,255,255);
 	//	C3D_PVTCF       v;
-	short temp;
+	int16_t temp;
 	//p->b0
-	
+
 	temp=GetThePage(p->tpage,(p->u0+p->u1+p->u2)/3,(p->v0+p->v1+p->v2)/3);
 	g_pd3dDevice->SetTexture(0,gTex[temp].Texture);
 	g_pd3dDevice->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE );
-#if 0	
+#if 0
 	if(texpage!=temp)
 	{
 		sendList();
@@ -2351,7 +2351,7 @@ void	    JJSDrawPolyGT4(POLY_GT4 * p)
 
 
 //	v->color=RGB_MAKE(p->r0,p->g0,p->b0);
-	
+
 	++v;
 	if (p->z1 <= 0)
 	{
@@ -2362,13 +2362,13 @@ void	    JJSDrawPolyGT4(POLY_GT4 * p)
 	{
 		v->sz = SCALEZ(p->z1);
 		v->rhw = 1.0f / v->sz;
-		
+
 	}
 	v->sx = SCALEIT(p->x1);
 	v->sy = SCALEIT(p->y1);
 	setst(v,p->u1,p->v1,temp);
 //	v->color=RGB_MAKE(p->r1,p->g1,p->b1);
-	
+
 	++v;
 	if (p->z3 <= 0)
 	{
@@ -2379,7 +2379,7 @@ void	    JJSDrawPolyGT4(POLY_GT4 * p)
 	{
 		v->sz = SCALEZ(p->z3);
 		v->rhw = 1.0f / v->sz;
-		
+
 	}
 	v->sx = SCALEIT(p->x3);
 	v->sy = SCALEIT(p->y3);
@@ -2396,7 +2396,7 @@ void	    JJSDrawPolyGT4(POLY_GT4 * p)
 	{
 		v->sz = SCALEZ(p->z2);
 		v->rhw = 1.0f / v->sz;
-		
+
 	}
 	v->sx = SCALEIT(p->x2);
 	v->sy = SCALEIT(p->y2);
@@ -2452,10 +2452,10 @@ void UnlockPilot(void)
 	ddretval = gTex[420].lpDDSTex->Unlock (NULL);
 }
 
-void ChopUp(char *to, void *from , int which)
+void ChopUp(char *to, void *from , int32_t which)
 {
 	char *p1=(char *)from;
-	int i,x,y;
+	int32_t i,x,y;
 
 	which &= 63;
 	x=which&7;
@@ -2468,7 +2468,7 @@ void ChopUp(char *to, void *from , int which)
 		p1+=512;
 		to+=64;
 	}
-			
+
 }
 
 void SetupbackBuffer(void)
@@ -2501,13 +2501,13 @@ void SetupbackBuffer(void)
 
 BOOL SJRLoadTextureBMPmenu (const char* lpszTexFilename)
 {
-	int fp;
+	int32_t fp;
 	HRESULT             ddretval;
-	int					i;
-	int	whichSurface,reals;
-	long 				texsize;
+	int32_t					i;
+	int32_t	whichSurface,reals;
+	int32_t 				texsize;
 	char 			*ptr, *p1;
-	short	track,other;
+	int16_t	track,other;
 
 	track=256;
 	other=256;
@@ -2553,7 +2553,7 @@ BOOL SJRLoadTextureBMPmenu (const char* lpszTexFilename)
 			ShowErrorMessage(2002);
 			return FALSE;
 		}
-	
+
 		read(fp, (void *)TextureBuffer, TEXTURESJR);
 		close(fp);
 		strcpy(lastfile,lpszTexFilename);
@@ -2596,7 +2596,7 @@ BOOL SJRLoadTextureBMPmenu (const char* lpszTexFilename)
 		p1 = (char *)gTex[reals].ddsd.lpSurface;
 
 		memcpy(p1, ptr, texsize*4);
-		
+
 		ptr += texsize*4;
 
 		ddretval = gTex[reals].lpDDSTex->Unlock (NULL);
@@ -2615,17 +2615,17 @@ BOOL SJRLoadTextureBMPmenu (const char* lpszTexFilename)
 
 BOOL SJRLoadTextureBMP (const char* lpszTexFilename)
 {
-	int fp;
+	int32_t fp;
     HRESULT             ddretval;
-	int					i;
-	int	whichSurface,reals;
-	long 				texsize;
+	int32_t					i;
+	int32_t	whichSurface,reals;
+	int32_t 				texsize;
 	char 			*ptr, *p1;
-	short	track,other;
+	int16_t	track,other;
 
 	track=32;
 	other=256;
-	
+
 	if (lpBack_Buffer != NULL)
 	{
 		lpBack_Buffer->Release();
@@ -2672,7 +2672,7 @@ BOOL SJRLoadTextureBMP (const char* lpszTexFilename)
 			ShowErrorMessage(2002);
 			return FALSE;
 		}
-	
+
 		read(fp, (void *)TextureBuffer, TEXTURESJR);
 		close(fp);
 		strcpy(lastfile,lpszTexFilename);
@@ -2740,13 +2740,13 @@ BOOL SJRLoadTextureBMP (const char* lpszTexFilename)
  *  LoadTexture - load a texture map from a file into a texture surface
  */
 
-int JJSLoadSprites (void)
+int32_t JJSLoadSprites (void)
 {
-	int fp;
+	int32_t fp;
     HRESULT             ddretval;
-	int			bufsize;
-	int	sp;
-	long 				texsize;
+	int32_t			bufsize;
+	int32_t	sp;
+	int32_t 				texsize;
 	char			*ptr, *bmpdata, *p1;
 	static char* lpszTexFilename[3]={
 		"wipeout\\newgraph\\menu\\page12.3df",
@@ -2757,7 +2757,7 @@ int JJSLoadSprites (void)
 	texsize = 256 * 256 * sizeof (WORD);
 
 	bufsize = texsize;
-	
+
 	bmpdata = (char *)malloc(bufsize);
 	if( bmpdata == NULL )
 	{
@@ -2776,23 +2776,23 @@ int JJSLoadSprites (void)
 		read(fp, (void *)bmpdata, 55);
 		read(fp, (void *)bmpdata, bufsize);
 		close(fp);
-	
+
 	{
 		WORD *tp,temp;
 
 		tp=(WORD *)bmpdata;
-		for(int i=0;i<bufsize/2;++i)
+		for(int32_t i=0;i<bufsize/2;++i)
 		{
 			temp=*tp;
 			*tp++=(temp>>8)|(temp<<8);
 		}
 	}
 		ptr = bmpdata;
-	
+
 		// get a pointer to the texture surface
 		ZeroMemory (&(gTex[sp+420].ddsd), sizeof (gTex[sp+420].ddsd));
 		gTex[sp+420].ddsd.dwSize = sizeof (gTex[sp+420].ddsd);
-	
+
 		// lock texture to fill ddsd member
 		do
 		{
@@ -2804,7 +2804,7 @@ int JJSLoadSprites (void)
 				gTex[sp+420].lpDDSTex->Restore ();
 		}while(ddretval == DDERR_SURFACELOST);
 		p1 = (char *)gTex[sp+420].ddsd.lpSurface;
-	
+
 		memcpy(p1, bmpdata, texsize);
 
 		ddretval = gTex[sp+420].lpDDSTex->Unlock (NULL);
@@ -2816,7 +2816,7 @@ int JJSLoadSprites (void)
 		}
 
 	}
-		
+
 	free(ptr);
 	winLoseIn = 0;
 	return TRUE;
@@ -2836,12 +2836,12 @@ BOOL SJRNewTexture(char *filename)
 HINSTANCE hInstance;
 HWND hwndMCIWnd;
 
-LRESULT FAR PASCAL VideoWndProc(HWND hWnd, UINT iMsg, WPARAM wParam, 
+LRESULT FAR PASCAL VideoWndProc(HWND hWnd, UINT iMsg, WPARAM wParam,
 LPARAM lParam)
 {
 	switch(iMsg) {
 		case MM_MCINOTIFY:
-			switch(wParam) {				
+			switch(wParam) {
 				case MCI_NOTIFY_SUCCESSFUL:
 				case MCI_NOTIFY_ABORTED:
 				case MCI_NOTIFY_SUPERSEDED:
@@ -2869,20 +2869,20 @@ LPARAM lParam)
 
 
 
-/*void ShellMoviePlay(char *pName, int width, int height, int fullScreen)
+/*void ShellMoviePlay(char *pName, int32_t width, int32_t height, int32_t fullScreen)
 {
   char szMoviePathName[MAX_PATH];
   struct sMovie movie;
   DWORD dwAttributes;
   DWORD result;
 
-  // Build full path name to movie file 
+  // Build full path name to movie file
   strcpy(szMoviePathName, pName);
 
-  // Convert it to short form for MCI layer 
+  // Convert it to int16_t form for MCI layer
   result = GetShortPathName(
     szMoviePathName,                // points to a null-terminated path string
-    movie.szMoviePathName,          // points to a buffer to receive the null-terminated short form of the path 
+    movie.szMoviePathName,          // points to a buffer to receive the null-terminated int16_t form of the path
     sizeof(movie.szMoviePathName)   // specifies the size of the buffer pointed to by lpszShortPath
   );
 
@@ -2890,8 +2890,8 @@ LPARAM lParam)
   dwAttributes = GetFileAttributes(movie.szMoviePathName);
   if (dwAttributes == 0xffffffff)
   {
-    // Movie file is not there 
-    return;   
+    // Movie file is not there
+    return;
   }
 
   movie.width = width;
@@ -2900,7 +2900,7 @@ LPARAM lParam)
 
   shellMovieFinishedG = FALSE;
 
-  // Ask shell thread to play movie 
+  // Ask shell thread to play movie
   while (!PostMessage(hwnd, MESSAGE_MOVIE_PLAY, (WPARAM)0, (LPARAM)&movie) )
   {
     Sleep(50);
@@ -2919,17 +2919,17 @@ LPARAM lParam)
  /****************************************************************************
   *
   * Start a movie playing
-  *    
+  *
   ****************************************************************************/
 
-int ShellMovieStart(char *moviename)
+int32_t ShellMovieStart(char *moviename)
 {
   DWORD dwMCIWndStyle;
   MCI_PLAY_PARMS playInfo;
   DWORD dwErr;
-  int result;
-  int width, height;
-  int cx, cy;
+  int32_t result;
+  int32_t width, height;
+  int32_t cx, cy;
 
   cx = GetSystemMetrics(SM_CXSCREEN);
   cy = GetSystemMetrics(SM_CYSCREEN);
@@ -2980,14 +2980,14 @@ int ShellMovieStart(char *moviename)
   }
 
   return(result);
-} 
+}
 
 
 
  /****************************************************************************
   *
   * Stop movie
-  *    
+  *
   ****************************************************************************/
 
 void ShellMovieStop(void)
@@ -3002,12 +3002,12 @@ void ShellMovieStop(void)
     ZeroMemory(&mciGenericParms, sizeof(mciGenericParms));
     mciretval = mciSendCommand(shellMovieDeviceIDG, MCI_STOP, MCI_WAIT, (DWORD)(LPVOID) &mciGenericParms);
   }
-} 
- 
+}
+
  /****************************************************************************
   *
   * Cleanup after movies has finished playing
-  *    
+  *
   ****************************************************************************/
 
 void ShellMovieFinished(void)
@@ -3024,16 +3024,16 @@ void ShellMovieFinished(void)
   /* Flag movie finished */
   shellMoviePlayingG = FALSE;
   shellMovieFinishedG = TRUE;
-} 
- 
+}
+
  /****************************************************************************/
 
 
 void mpeganim(void)
 {
-	int fp;
+	int32_t fp;
 	char *mpegname;
-	int namelen;
+	int32_t namelen;
 	char endchar;
 
 	namelen = strlen(MovieDirBase) + 15;
@@ -3123,7 +3123,7 @@ BOOL JJSJoyConfig(void)
 }
 
 
-void ShowErrorMessage(int StrNum)
+void ShowErrorMessage(int32_t StrNum)
 {
 	MSG msg;
 	char Msg[80];
@@ -3162,7 +3162,7 @@ TimData *JJSLoad16BitTexture(char *filename, char location)
 
 	DDSURFACEDESC2       ddsd;
 	DWORD			bufsize;
-	long 				texsize;
+	int32_t 				texsize;
 	char			*bmpdata;
 	HRESULT ddrval;
 	LPDIRECTDRAWSURFACE4 tbuf;
@@ -3195,7 +3195,7 @@ TimData *JJSLoad16BitTexture(char *filename, char location)
 	texsize = 320 * 240 * sizeof (WORD);
 
 	bufsize = texsize;
-	
+
 	timSize = ( TimData* )DAlloc( (DynamicHeap *)heap, sizeof(TimData) );
 
 	ZeroMemory (&ddsd, sizeof (ddsd));

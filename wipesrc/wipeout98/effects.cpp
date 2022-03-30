@@ -50,9 +50,9 @@ char tranny_table[] = {YELLOW_WHITE_TRANSL,		 // MISSILE/ROCKET EXPLODE HIT NOTH
 
 void InitEffects(Effect* effects, Skeleton *camPos, Texture** effectTextures)
 {
-	int i, j;
+	int32_t i, j;
 	TIMlist  		*timPtr;
-	short				loc;
+	int16_t				loc;
 
 	loc = TextureTableCount;
 
@@ -93,7 +93,7 @@ void InitEffects(Effect* effects, Skeleton *camPos, Texture** effectTextures)
 
 void UpdateEffects(Effect* effects)
 {
-	int 			i;
+	int32_t 			i;
 	VECTOR 		camPos;
 
 	camPos.vx = cameraPtr->camPos->relative.t[0] ;
@@ -126,14 +126,14 @@ void UpdateEffects(Effect* effects)
 
 void DrawEffects(Effect* effects)
 {
-	int 			i;
+	int32_t 			i;
 	SVECTOR 		vertex;
 	DVECTOR 		sxy;
-	long 			p, flag;
-	int 			x, y;
-	long 			depth;
-	short 		size;
-	int			count = 0;
+	int32_t 			p, flag;
+	int32_t 			x, y;
+	int32_t 			depth;
+	int16_t 		size;
+	int32_t			count = 0;
 	VECTOR 		camPos;
 
 	camPos.vx = cameraPtr->camPos->relative.t[0] ;
@@ -198,7 +198,7 @@ void DrawEffects(Effect* effects)
 				effects[i].sprite[ CurrentScreen ].pad6 = 0;
 				effects[i].sprite[ CurrentScreen ].pad7 = 0;
 
-				AddPrim( OT[ CurrentScreen ] + (depth) , ( ulong* ) &(effects[i].sprite[ CurrentScreen ]) );
+				AddPrim( OT[ CurrentScreen ] + (depth) , ( uint32_t* ) &(effects[i].sprite[ CurrentScreen ]) );
 			}
 		}
 	}
@@ -206,9 +206,9 @@ void DrawEffects(Effect* effects)
 
 void AddEffects(Effect* effects, WeaponData *weaponIndex, Texture** effectTextures, ShipData *shipIndex)
 {
-	int i, j, k;
-	int exploType;
-	short noToRelease = 0;
+	int32_t i, j, k;
+	int32_t exploType;
+	int16_t noToRelease = 0;
 
 	for(i = 0; i < NO_ACTIVE_WEAPONS; i++)
 	{
@@ -237,9 +237,9 @@ void AddEffects(Effect* effects, WeaponData *weaponIndex, Texture** effectTextur
 							effects[j].pos.vx = weaponIndex[i].pos.vx;
 							effects[j].pos.vy = weaponIndex[i].pos.vy;
 							effects[j].pos.vz = weaponIndex[i].pos.vz;
-							effects[j].vel.vx = (signed char)randy()>>4;
-							effects[j].vel.vy = (signed char)randy()>>4;
-							effects[j].vel.vz = (signed char)randy()>>4;
+							effects[j].vel.vx = (int8_t)randy()>>4;
+							effects[j].vel.vy = (int8_t)randy()>>4;
+							effects[j].vel.vz = (int8_t)randy()>>4;
 							effects[j].count = 20 + (randy() % 10);
 							for(k = 0; k < 2; k++)
 							{
@@ -290,9 +290,9 @@ void AddEffects(Effect* effects, WeaponData *weaponIndex, Texture** effectTextur
 							effects[j].pos.vx = weaponIndex[i].pos.vx - (weaponIndex[i].vel.vx>>2);
 							effects[j].pos.vy = weaponIndex[i].pos.vy - (weaponIndex[i].vel.vy>>2);
 							effects[j].pos.vz = weaponIndex[i].pos.vz - (weaponIndex[i].vel.vz>>2);
-							effects[j].vel.vx = (signed char)randy()>>4;
-							effects[j].vel.vy = (signed char)randy()>>4;
-							effects[j].vel.vz = (signed char)randy()>>4;
+							effects[j].vel.vx = (int8_t)randy()>>4;
+							effects[j].vel.vy = (int8_t)randy()>>4;
+							effects[j].vel.vz = (int8_t)randy()>>4;
 							effects[j].count = 20 + (randy() % 10);
 							for(k = 0; k < 2; k++)
 							{
@@ -353,15 +353,15 @@ void AddEffects(Effect* effects, WeaponData *weaponIndex, Texture** effectTextur
 					effects[j].pos.vy = weaponIndex[i].pos.vy;
 					effects[j].pos.vz = weaponIndex[i].pos.vz;
 
-					effects[j].vel.vx = (signed char)randy()>>2;
-					effects[j].vel.vy = (signed char)randy()>>2;
-					effects[j].vel.vz = (signed char)randy()>>2;
+					effects[j].vel.vx = (int8_t)randy()>>2;
+					effects[j].vel.vy = (int8_t)randy()>>2;
+					effects[j].vel.vz = (int8_t)randy()>>2;
 
 					if(weaponIndex[i].count == SHIP_EXPLODE)
 					{
-						effects[j].vel.vx += (short)(shipIndex[weaponIndex[i].targetShip].vpivot.vx >> 6);
-						effects[j].vel.vy += (short)(shipIndex[weaponIndex[i].targetShip].vpivot.vy >> 6);
-						effects[j].vel.vz += (short)(shipIndex[weaponIndex[i].targetShip].vpivot.vz >> 6);
+						effects[j].vel.vx += (int16_t)(shipIndex[weaponIndex[i].targetShip].vpivot.vx >> 6);
+						effects[j].vel.vy += (int16_t)(shipIndex[weaponIndex[i].targetShip].vpivot.vy >> 6);
+						effects[j].vel.vz += (int16_t)(shipIndex[weaponIndex[i].targetShip].vpivot.vz >> 6);
 					}
 
 					effects[j].count = -((((char)randy())>>4) + 8);
@@ -387,9 +387,9 @@ void AddEffects(Effect* effects, WeaponData *weaponIndex, Texture** effectTextur
 	}
 }
 
-void ColourStartBoom(int noToLight)
+void ColourStartBoom(int32_t noToLight)
 {
-	int			      i, j;
+	int32_t			      i, j;
 	char 			      r, g, b;
 
 	Prm               libPoly;
@@ -452,7 +452,7 @@ void ColourStartBoom(int noToLight)
 void ResetStartBoom()
 {
 	Object* 		 obj;
-	int			 i, j;
+	int32_t			 i, j;
 
 	Prm          libPoly;
 
@@ -487,9 +487,9 @@ void ResetStartBoom()
 
 }
 
-void InitStartBoom(Object** prm, short prmCount)
+void InitStartBoom(Object** prm, int16_t prmCount)
 {
-	int 			i;
+	int32_t 			i;
 	Object      *obj;
 
 	startBoomCount = 0;
@@ -515,9 +515,9 @@ void InitStartBoom(Object** prm, short prmCount)
 	}
 }
 
-void InitRedLight(Object** prm, short prmCount, Object **redLight)
+void InitRedLight(Object** prm, int16_t prmCount, Object **redLight)
 {
-	int 			i;
+	int32_t 			i;
 	Object      *obj;
 
 	for( i = 0; i < prmCount; i++)
@@ -536,8 +536,8 @@ void InitRedLight(Object** prm, short prmCount, Object **redLight)
 
 void ColourRedLight(Object *redLight)
 {
-	short 			      r;
-	static short			count = 0;
+	int16_t 			      r;
+	static int16_t			count = 0;
 
 	Prm               libPoly;
 
@@ -564,11 +564,11 @@ void ColourRedLight(Object *redLight)
 
 }
 
-void InitDonkey(Object** prm, short prmCount, Object **donkey)
+void InitDonkey(Object** prm, int16_t prmCount, Object **donkey)
 {
-	int 			i;
+	int32_t 			i;
 	Object      *obj;
-	int 			count = 0;
+	int32_t 			count = 0;
 
 	for( i = 0; i < prmCount; i++)
 	{
@@ -589,9 +589,9 @@ void InitDonkey(Object** prm, short prmCount, Object **donkey)
 
 void MoveDonkey(Object **donkey)
 {
-	int 				i;
+	int32_t 				i;
 	Object      	*obj;
-	static short	count = 0;
+	static int16_t	count = 0;
 
 	for( i = 0; i < 2; i++)
 	{
@@ -609,7 +609,7 @@ void MoveDonkey(Object **donkey)
 
 Shadow *InitShadow(Skeleton *camPos, Texture** effectTextures)
 {
-	int i, j, k;
+	int32_t i, j, k;
 	Shadow *shadow;
 
 	char	u[6], v[6];
@@ -686,13 +686,13 @@ void DrawShadow(Object **shipShapes, ShipData *shipIndex, Shadow *shadow)
 
 	Face 			*facePtr;
 	VECTOR 		a, b, c;
-	int 			i;
-	int 			alpha;
+	int32_t 			i;
+	int32_t 			alpha;
 	VECTOR 		facePoint;
 	DVECTOR		sxy[3];
-	long        p, flag;
-	int 			x[6], y[6];
-	long 			depth[3];
+	int32_t        p, flag;
+	int32_t 			x[6], y[6];
+	int32_t 			depth[3];
 	SVECTOR 		vertex[3];
 
 	cameraPtr->camPos->super->update = 1;
@@ -875,10 +875,10 @@ void DrawShadow(Object **shipShapes, ShipData *shipIndex, Shadow *shadow)
 					depth[2] -= 60;
 					if(depth[2]	< 0) depth[2] = 0;
 
-					AddPrim( OT[ CurrentScreen ] + (depth[0]) , ( ulong* ) &(shadow[i].poly[0][ CurrentScreen ]) );
-					AddPrim( OT[ CurrentScreen ] + (depth[2]) , ( ulong* ) &(shadow[i].poly[1][ CurrentScreen ]) );
-					AddPrim( OT[ CurrentScreen ] + (depth[2]) , ( ulong* ) &(shadow[i].poly[2][ CurrentScreen ]) );
-					AddPrim( OT[ CurrentScreen ] + (depth[2]) , ( ulong* ) &(shadow[i].poly[3][ CurrentScreen ]) );
+					AddPrim( OT[ CurrentScreen ] + (depth[0]) , ( uint32_t* ) &(shadow[i].poly[0][ CurrentScreen ]) );
+					AddPrim( OT[ CurrentScreen ] + (depth[2]) , ( uint32_t* ) &(shadow[i].poly[1][ CurrentScreen ]) );
+					AddPrim( OT[ CurrentScreen ] + (depth[2]) , ( uint32_t* ) &(shadow[i].poly[2][ CurrentScreen ]) );
+					AddPrim( OT[ CurrentScreen ] + (depth[2]) , ( uint32_t* ) &(shadow[i].poly[3][ CurrentScreen ]) );
 
 				}
 			}
@@ -888,9 +888,9 @@ void DrawShadow(Object **shipShapes, ShipData *shipIndex, Shadow *shadow)
 
 void InitWeaponSprtIcons(SPRT *weaponIcon, Texture** weaponIconTextures)
 {
-	int i;
+	int32_t i;
 	TIMlist  		*timPtr;
-	short				loc;
+	int16_t				loc;
 
 	loc = TextureTableCount;
 
@@ -925,7 +925,7 @@ void InitWeaponSprtIcons(SPRT *weaponIcon, Texture** weaponIconTextures)
 
 void DrawWeaponSprtIcons(SPRT *weaponIcon, Texture** weaponIconTextures, ShipData *playerShip, DR_MODE *drawmode, DR_MODE *drawmode2)
 {
-	int 	icon;
+	int32_t 	icon;
 	RECT	tw;
 
 
@@ -936,22 +936,22 @@ void DrawWeaponSprtIcons(SPRT *weaponIcon, Texture** weaponIconTextures, ShipDat
 		icon -= 1;
 
 		SetDrawMode(drawmode2, 0, 0, FONT_TPAGE, &tw);
-		AddPrim(OT[CurrentScreen], (ulong *)drawmode2);
+		AddPrim(OT[CurrentScreen], (uint32_t *)drawmode2);
 
 		weaponIcon[CurrentScreen].x0 = 144 * upres;
 		weaponIcon[CurrentScreen].y0 = 20 * upres;
 		weaponIcon[CurrentScreen].u0 = weaponIconTextures[icon]->u0;
 		weaponIcon[CurrentScreen].v0 = weaponIconTextures[icon]->v0;
-		AddPrim( OT[ CurrentScreen ] , ( ulong* ) &(weaponIcon[ CurrentScreen ]) );
+		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(weaponIcon[ CurrentScreen ]) );
 
 		SetDrawMode(drawmode, 0, 0, 22, &tw);
-		AddPrim(OT[CurrentScreen], (ulong *)drawmode);
+		AddPrim(OT[CurrentScreen], (uint32_t *)drawmode);
 	}
 }
 
-static int shakeCount = 0;
+static int32_t shakeCount = 0;
 
-void SetShake(int duration)
+void SetShake(int32_t duration)
 {
 	shakeCount = duration;
 }
@@ -959,7 +959,7 @@ void SetShake(int duration)
 void ShakeScreen()
 {
 
-	long	tempx, tempy;
+	int32_t	tempx, tempy;
 
 	if(shakeCount > 1)
 	{
@@ -979,21 +979,21 @@ void ShakeScreen()
 	//	SStart(tempx + tempy);
 }
 
-extern short arccos_tab[];
+extern int16_t arccos_tab[];
 
 GT4					*abPtr[80];
-short					*abCoords[80];
-signed short 		greyCoords[80];
+int16_t					*abCoords[80];
+int16_t 		greyCoords[80];
 
 #if 1
 void InitAuroraBorialis(Object* object)
 {
-	int			      i;
+	int32_t			      i;
 	Poly        poly;
-	short       primitiveCount;
-	short*      coords;
-	int 			count = 0;
-	short			y;
+	int16_t       primitiveCount;
+	int16_t*      coords;
+	int32_t 			count = 0;
+	int16_t			y;
 	SVECTOR*    vertex;
 
 	poly.prim = object->primitives;
@@ -1045,11 +1045,11 @@ void InitAuroraBorialis(Object* object)
 
 void AuroraBorialis(Object* object)
 {
-	int			      i;
+	int32_t			      i;
 
 	Poly        poly;
-	short*      coords;
-	static int	count = 0;
+	int16_t*      coords;
+	static int32_t	count = 0;
 
 	count++;
 

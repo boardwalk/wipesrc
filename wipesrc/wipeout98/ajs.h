@@ -1,11 +1,11 @@
 void	SetPolyGT3(POLY_GT3 *p);
 void	InitAJSVSync(void);
 void setWinLose(void);
-void	AddPrim(P_TAG *ordt, u_long *p);
-void SetSemiTrans(P_TAG *p, long abe);
-void SetShadeTex(P_TAG *p, long tge);
+void	AddPrim(P_TAG *ordt, uint32_t *p);
+void SetSemiTrans(P_TAG *p, int32_t abe);
+void SetShadeTex(P_TAG *p, int32_t tge);
 void	LoadPilotIntoVram(char *filename);
-void LoadClut4(RECT	*rect, u_short *clutptr, CLUT *cluts);
-int		LoadImage4(RECT	*recp, unsigned long *p, CLUT *cluts);
-void LoadClut8(RECT	*rect, u_short *clutptr, CLUT *cluts);
-int		LoadImage8(RECT	*recp, unsigned long *p, CLUT *cluts);
+void LoadClut4(RECT	*rect, uint16_t *clutptr, CLUT *cluts);
+int32_t		LoadImage4(RECT	*recp, uint32_t *p, CLUT *cluts);
+void LoadClut8(RECT	*rect, uint16_t *clutptr, CLUT *cluts);
+int32_t		LoadImage8(RECT	*recp, uint32_t *p, CLUT *cluts);

@@ -41,7 +41,7 @@
 
 extern TrackCamera		ctrlcamera;
 
-short startLinePos[16] = 	{	27,		/* NULL 			*/
+int16_t startLinePos[16] = 	{	27,		/* NULL 			*/
 								27,		/* V - TerrorMax 	*/
 								27,		/* V - Altima VII 	*/
 								27,		/* R - Altima VII 	*/
@@ -58,7 +58,7 @@ short startLinePos[16] = 	{	27,		/* NULL 			*/
 								27,		/* R - FireStar 	*/
 								27};	/* NULL 			*/
 
-short behindSpeed[16]  = {		100,	/* NULL 			*/
+int16_t behindSpeed[16]  = {		100,	/* NULL 			*/
 								350,	/* V - TerrorMax 	*/
 								300,	/* V - Altima VII 	*/
 								500,	/* R - Altima VII 	*/
@@ -79,25 +79,25 @@ short behindSpeed[16]  = {		100,	/* NULL 			*/
 								500, 	/* R - FireStar 	*/
 								200};	/* NULL 			*/
 
-short shipShapeOrder[8] = {7, 3, 5, 6, 1, 4, 0, 2};
+int16_t shipShapeOrder[8] = {7, 3, 5, 6, 1, 4, 0, 2};
 
-short championOrder[8];
-short raceOrder[8];
-short shipOrder[8];
+int16_t championOrder[8];
+int16_t raceOrder[8];
+int16_t shipOrder[8];
 
-void SetSpread(ShipData *shipIndex, ConfigData *gameData, int position, int i);
+void SetSpread(ShipData *shipIndex, ConfigData *gameData, int32_t position, int32_t i);
 
 
 
-void DrawShips(ShipData *shipIndex, Object** shipShapes, int camShip, TrackCamera camera)
+void DrawShips(ShipData *shipIndex, Object** shipShapes, int32_t camShip, TrackCamera camera)
 {
-	int 		i;
+	int32_t 		i;
 	VECTOR 		distance;
 	Object* 	obj;
-	int 		mag;
+	int32_t 		mag;
 	SVECTOR 	toCentre;
 	VECTOR 		v2;
-	long 		flag;
+	int32_t 		flag;
 
 
 	for(i= 0; i < NO_OF_SHIPS; i++)
@@ -169,11 +169,11 @@ void DrawShips(ShipData *shipIndex, Object** shipShapes, int camShip, TrackCamer
 
 void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShapes, Skeleton* camPos)
 {
-	short 			shipTextures, droidTextures, colTextures;
+	int16_t 			shipTextures, droidTextures, colTextures;
    Object*        obj;
 	TIMlist  		*timPtr;
 	char				shipFile[256];
-	short				count = 0;
+	int16_t				count = 0;
 
 	/******************************************************/
 	/** Load compressed texture files, first to allow    **/
@@ -265,17 +265,17 @@ void initShipData(TrackSection* section, ShipData *shipIndex, ConfigData *gameDa
 
 void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameData)
 {
-	int 				i, j;
+	int32_t 				i, j;
 	Face 				*face;
 	VECTOR 			targetVector;
 	TrackSection* 	nextSection;
 	VECTOR			facePoint;
  	TrackSection* 	startSection[8];
-	short 			position = 1;
-	short 			tempPos = 1;
-	short 			used[8] = { 0, 0, 0, 0, 0, 0, 0, 0};
-	int 				index;
-	int 				count;
+	int16_t 			position = 1;
+	int16_t 			tempPos = 1;
+	int16_t 			used[8] = { 0, 0, 0, 0, 0, 0, 0, 0};
+	int32_t 				index;
+	int32_t 				count;
 
 	/***********************************************************************************/
 	/** 							Ship ATTRIBUTES					  								 *****/
@@ -305,32 +305,32 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 	/**** 											Team Specific								 ****/
 	/**** Ship No						0		1		2		3		4		5		6		7	 ****/
 
-	short massBeg[8] 			=	{	150,	150,	150,	150,	150,	150,	150,	150	};
+	int16_t massBeg[8] 			=	{	150,	150,	150,	150,	150,	150,	150,	150	};
 
-	short maxThrustBeg[8] 	=	{	790,	790,	850,	850,	850,	850,	790,  790	};
-	short resistanceBeg[8] 	=	{	140,	140,	134,	134,	140,	140,	134,	134	};
-	short headingIncBeg[8] 	=	{	160,	160,	140,	140,	120,	120,	180,	180	};
-	short maxHeadingBeg[8] 	=	{	2560,	2560,	1920,	1920,	1920,	1920,	2560,	2560	};
-	short skidBeg[8] 		  	=	{	12,	12,	20,	20,	24,	24,	12,	12		};
+	int16_t maxThrustBeg[8] 	=	{	790,	790,	850,	850,	850,	850,	790,  790	};
+	int16_t resistanceBeg[8] 	=	{	140,	140,	134,	134,	140,	140,	134,	134	};
+	int16_t headingIncBeg[8] 	=	{	160,	160,	140,	140,	120,	120,	180,	180	};
+	int16_t maxHeadingBeg[8] 	=	{	2560,	2560,	1920,	1920,	1920,	1920,	2560,	2560	};
+	int16_t skidBeg[8] 		  	=	{	12,	12,	20,	20,	24,	24,	12,	12		};
 
-	short massPro[8] 			=	{	150,	150,	150,	150,	150,	150,	150,	150	};
-	short maxThrustPro[8] 	=	{	1200,	1200,	1400,	1400,	1400,	1400,	1200, 1200	};
-	short resistancePro[8] 	=	{	140,	140,	140,	140,	130,	130,	130,	130	};
-	short headingIncPro[8] 	=	{	160,	160,	120,	120,	140,	140,	180,	180	};
-	short maxHeadingPro[8] 	=	{	2560,	2560,	1920,	1920,	1920,	1920,	2560,	2560	};
-	short skidPro[8] 		  	=	{	10,	10,	14,	14,	16,	16,	8,		8		};
+	int16_t massPro[8] 			=	{	150,	150,	150,	150,	150,	150,	150,	150	};
+	int16_t maxThrustPro[8] 	=	{	1200,	1200,	1400,	1400,	1400,	1400,	1200, 1200	};
+	int16_t resistancePro[8] 	=	{	140,	140,	140,	140,	130,	130,	130,	130	};
+	int16_t headingIncPro[8] 	=	{	160,	160,	120,	120,	140,	140,	180,	180	};
+	int16_t maxHeadingPro[8] 	=	{	2560,	2560,	1920,	1920,	1920,	1920,	2560,	2560	};
+	int16_t skidPro[8] 		  	=	{	10,	10,	14,	14,	16,	16,	8,		8		};
 
 
 	/**** 							Remote Control Specific	 						 ****/
 	/**** Ship No				0		1		2		3		4		5		6			 ****/
 
-	short RMaxThrustBeg[7] = {	2550,	2600,	2630,	2660,	2700,	2720,	2750	};
-	short RThrustMagBeg[7] = {	44,	45,	45,	46,	47,	48,	49		};
-	short fightBackBeg[7]  = {	1,		1,		1,		1,		1,		1,		1		};
+	int16_t RMaxThrustBeg[7] = {	2550,	2600,	2630,	2660,	2700,	2720,	2750	};
+	int16_t RThrustMagBeg[7] = {	44,	45,	45,	46,	47,	48,	49		};
+	int16_t fightBackBeg[7]  = {	1,		1,		1,		1,		1,		1,		1		};
 
-	short RMaxThrustPro[7] = {	3750,	3780,	3800,	3850,	3900,	3950,	4000	};
-	short RThrustMagPro[7] = {	50,	53,	55,	57,	60,	62,	65		};
-	short fightBackPro[7]  = {	1,		1,		1,		1,		1,		1,		1		};
+	int16_t RMaxThrustPro[7] = {	3750,	3780,	3800,	3850,	3900,	3950,	4000	};
+	int16_t RThrustMagPro[7] = {	50,	53,	55,	57,	60,	62,	65		};
+	int16_t fightBackPro[7]  = {	1,		1,		1,		1,		1,		1,		1		};
 
 
 #if 0			/************* Disable Rapier Class *************/
@@ -722,7 +722,7 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 
 
 
-void SetSpread(ShipData *shipIndex, ConfigData *gameData, int position, int i)
+void SetSpread(ShipData *shipIndex, ConfigData *gameData, int32_t position, int32_t i)
 {
 	switch(gameData->actTrackNum)
 	{

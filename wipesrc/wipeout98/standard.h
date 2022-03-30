@@ -10,9 +10,9 @@
 #include "wipesrc/psx26/include/libcd.h"
 #include "wipesrc/psx26/include/libspu.h"
 
-typedef unsigned char uchar;
-typedef unsigned long ulong;
-typedef unsigned int uint;
+typedef uint8_t uchar;
+typedef uint32_t uint32_t;
+typedef uint32_t uint;
 
 typedef char* Ptr;
 
@@ -22,7 +22,7 @@ typedef char* Ptr;
 #define  NULL     0
 #endif
 
-extern 	ulong	FastRam;	// ajs (well ajy actually)
+extern 	uintptr_t	FastRam;	// ajs (well ajy actually)
 
 /* Functions in the library but not defined in the headers! */
 
@@ -34,6 +34,6 @@ extern 	ulong	FastRam;	// ajs (well ajy actually)
    result : 4096 == 1
 
 
-long rsin( long angle );
-long rcos( long angle );
+int32_t rsin( int32_t angle );
+int32_t rcos( int32_t angle );
 */
