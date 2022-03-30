@@ -1,2 +1,0 @@
-break/set /index 1, /unmapped /symaddress wipeout main 398 0x00000000 0x00000000, {} {}
-break/set /index 2, /unmapped /symaddress wipeout menus 653 0x00000000 0x00000000, {} {}

@@ -1,6 +1,0 @@
-typedef struct {
-	LPDIRECTDRAWSURFACE	lpDDSTex;
-	DDSURFACEDESC       ddsd;
-	C3D_HTX				hTX;
-} TEXTURE, * PTEXTURE;
-

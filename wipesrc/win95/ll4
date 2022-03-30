@@ -1,7 +1,0 @@
-name	compwin
-system	nt_win
-debug	all
-file comp4
-
-option  map
-option  stack=100k
