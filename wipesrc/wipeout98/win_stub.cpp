@@ -2,73 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "wipesrc/psx26/include/libgte.h"
+#include "wipesrc/psx26/include/libgpu.h"
 
 typedef int32_t BOOL;
 #define		TRUE			1
 #define		FALSE			0
-
-typedef struct {
-	uint32_t	tag;
-	uint8_t	r0, g0, b0, code;
-	int16_t	x0, 	y0;
-	uint8_t	u0, v0;	uint16_t	clut;
-	int16_t	w,	h;
-} SPRT;					/* free size Sprite */
-
-typedef struct {
-	uint32_t	tag;
-	uint8_t	r0, g0, b0, code;
-	int16_t	x0, 	y0;
-	uint8_t	u0, v0;	uint16_t	clut;
-} SPRT_16;				/* 8x8 Sprite */
-
-typedef SPRT_16 SPRT_8;
-
-typedef struct
-{
-	uint32_t   tag;
-	uint8_t   r0, g0, b0, code;
-	int16_t	   x0, y0;
-	int16_t	   x1, y1;
-	int16_t	   x2, y2;
-	int16_t	   x3, y3;
-}	       POLY_F4;	/* Flat Quadrangle */
-
-typedef struct {
-	uint32_t	tag;
-	uint8_t	r0, g0, b0, code;
-	int16_t	x0, 	y0;
-	uint8_t	r1, g1, b1, pad1;
-	int16_t	x1,	y1;
-	uint8_t	r2, g2, b2, pad2;
-	int16_t	x2,	y2;
-} POLY_G3;				/* Gouraud Triangle */
-
-typedef struct {
-	uint32_t	tag;
-	uint8_t	r0, g0, b0, code;
-	int16_t	x0, 	y0;
-	uint8_t	r1, g1, b1, pad1;
-	int16_t	x1,	y1;
-	uint8_t	r2, g2, b2, pad2;
-	int16_t	x2,	y2;
-	uint8_t	r3, g3, b3, pad3;
-	int16_t	x3,	y3;
-} POLY_G4;				/* Gouraud Quadrangle */
-
-typedef struct {
-	uint32_t	tag;
-	uint8_t	r0, g0, b0, code;
-	int16_t	x0, y0, z0, pad4;
-	uint8_t	u0, v0;
-	uint16_t	clut;
-	int16_t	x1,	y1, z1, pad5;
-	uint8_t	u1, v1;
-	uint16_t	tpage;
-	int16_t	x2,	y2, z2, pad6;
-	uint8_t	u2, v2;
-	uint16_t	pad1;
-} POLY_FT3;				/* Flat Textured Triangle */
 
 typedef struct
 {
@@ -78,53 +17,6 @@ typedef struct
 	int16_t			textureX, textureY;
 	int16_t 			textureH, textureW;
 } TimData;
-
-typedef struct
-{
-	uint32_t   tag;
-	uint8_t   r0, g0, b0, code;
-	int16_t	   x0, y0, z0, pad4;
-	uint8_t   u0, v0;
-	uint16_t  clut;
-	int16_t	   x1, y1, z1, pad5;
-	uint8_t   u1, v1;
-	uint16_t  tpage;
-	int16_t	   x2, y2, z2, pad6;
-	uint8_t   u2, v2;
-	uint16_t  pad1;
-	int16_t	   x3, y3, z3, pad7;
-	uint8_t   u3, v3;
-	uint16_t  pad2;
-}	       POLY_FT4;       /* Flat Textured Quadrangle */
-
-typedef struct {
-	uint32_t	tag;
-	uint8_t	r0, g0, b0, code;
-	int16_t	x0, 	y0, z0, pad4;
-	uint8_t	u0, v0;	uint16_t	clut;
-	uint8_t	r1, g1, b1, p1;
-	int16_t	x1,	y1, z1, pad5;
-	uint8_t	u1, v1;	uint16_t	tpage;
-	uint8_t	r2, g2, b2, p2;
-	int16_t	x2,	y2, z2, pad6;
-	uint8_t	u2, v2;	uint16_t	pad2;
-} POLY_GT3;				/* Gouraud Textured Triangle */
-
-typedef struct {
-	uint32_t	tag;
-	uint8_t	r0, g0, b0, code;
-	int16_t	x0, 	y0, z0, pad4;
-	uint8_t	u0, v0;	uint16_t	clut;
-	uint8_t	r1, g1, b1, p1;
-	int16_t	x1,	y1, z1, pad5;
-	uint8_t	u1, v1;	uint16_t	tpage;
-	uint8_t	r2, g2, b2, p2;
-	int16_t	x2,	y2, z2, pad6;
-	uint8_t	u2, v2;	uint16_t	pad2;
-	uint8_t	r3, g3, b3, p3;
-	int16_t	x3,	y3, z3, pad7;
-	uint8_t	u3, v3;	uint16_t	pad3;
-} POLY_GT4;				/* Gouraud Textured Quadrangle */
 
 int16_t ft=0;
 char MipMap = 0;
