@@ -5910,6 +5910,8 @@ void MostRecentSaveFile(char *filename)
 		if (search != NULL)
 			search[0]= 0;
 	}
+#else
+	filename[0]=0;
 #endif
 }
 
