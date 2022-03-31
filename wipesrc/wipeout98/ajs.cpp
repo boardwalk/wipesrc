@@ -1089,7 +1089,7 @@ void LoadVRam(const char *filename, char set_pal)
 	BM.width=256;
 	BM.height=5632; // was 8192
 	BM.palette=main_palette;
-	ReadPCX(filename,&BM,7);	// 2 = PIC, 1 = PAL, 4 = DEBUG
+	ReadPCX(filename,&BM,3);	// 2 = PIC, 1 = PAL, 4 = DEBUG
 
 	palptr = main_palette;
 
@@ -1124,7 +1124,7 @@ void LoadVRam(const char *filename, char set_pal)
 	BM.height=96;
 	BM.bitmap=DepthFadeTble;
 	BM.palette=main_palette;
-	ReadPCX(fadefilename,&BM,6);
+	ReadPCX(fadefilename,&BM,2);
 
 	//	free(pall);
 }
