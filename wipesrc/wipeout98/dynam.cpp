@@ -29,7 +29,7 @@ extern	char	BluePal;
 extern	char	WhitePal;
 extern	char	DepthFadeTble[];
 
-void shipTrkReaction(register ShipData *playerShip, Object** shipShapes)
+void shipTrkReaction(ShipData *playerShip, Object** shipShapes)
 {
 	int32_t 				alpha, noseAlpha;
 	int32_t 				resistance;
@@ -401,7 +401,7 @@ void getWorldPoint(VECTOR *output, Object* object, Object* objectCollide,int32_t
 
 void GetTargetPos(VECTOR *result, VECTOR pos, Vector cent1, Vector cent2)
 {
-	register int32_t a_mag, b_mag, c_mag;
+	int32_t a_mag, b_mag, c_mag;
 	VECTOR a, b, c;
 	int32_t a_sq, b_sq, c_sq;
 	int32_t cos_alpha;
@@ -443,8 +443,8 @@ extern int16_t startLinePos[ ];
 
 void SetUnitVectors(ShipData *shipIndex)
 {
-	register int16_t    sx, sy, sz;
-	register int16_t    cx, cy, cz;
+	int16_t    sx, sy, sz;
+	int16_t    cx, cy, cz;
 	int32_t					i;
 	VECTOR 				direction;
 	VECTOR 				toFaceVector;

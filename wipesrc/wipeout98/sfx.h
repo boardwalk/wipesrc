@@ -106,9 +106,9 @@ void SfxUnInitChat(void);
 void SfxSetStereoReverse(uint8_t bFlag);
 uint16_t SfxSetMaxEffects(uint16_t wNum);
 
-int16_t SfxLoadEffect(char *pcFilename);
+int16_t SfxLoadEffect(const char *pcFilename);
 uint16_t SfxUnLoadEffect(int16_t wSampleId);
-uint16_t SfxGetFxBank(char *filename);
+uint16_t SfxGetFxBank(const char *filename);
 int16_t SfxOpenFxBank(int16_t *pwFirstId);
 void SfxCloseFxBank(int16_t wBank);
 

@@ -61,8 +61,8 @@ uintptr_t	   FastRam;	// PCwipeout
 int16_t	   drawenv_tpage = 5;      // PCwipeout
 int16_t	   BG_Colour = 0;  // PCwipeout
 
-extern TimData *AJSLoad16BitTexture(char *filename, char location);
-extern TimData *JJSLoad16BitTexture(char *filename, char location);
+extern TimData *AJSLoad16BitTexture(const char *filename, char location);
+extern TimData *JJSLoad16BitTexture(const char *filename, char location);
 // extern uint32_t __bss, __bsslen, _ramsize, _stacksize;
 
 #define	GsGetVcount()	0

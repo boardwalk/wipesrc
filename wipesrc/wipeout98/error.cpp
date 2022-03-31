@@ -24,7 +24,7 @@
 
 
 
-void Error( char *string, int16_t errorLevel )
+void Error( const char *string, int16_t errorLevel )
 {
 	printf("Error: %s (error level %d)\n",string,errorLevel);
 	exit(errorLevel);

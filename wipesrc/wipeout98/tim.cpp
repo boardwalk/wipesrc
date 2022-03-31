@@ -21,7 +21,7 @@
 #include "error.h"
 #include "ajs.h"
 
-Texture* LoadTexture( char* name, int16_t translucent )
+Texture* LoadTexture( const char* name, int16_t translucent )
 {
    Tim*        tim;
    TimClut4*   tc4;

@@ -143,4 +143,4 @@ typedef struct TimClut4
 
 /* Forward Procedure Declarations */
 
-Texture* LoadTexture( char* name, int16_t translucent );
+Texture* LoadTexture( const char* name, int16_t translucent );

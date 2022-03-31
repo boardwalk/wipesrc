@@ -1069,7 +1069,7 @@ int32_t		LoadImage8(RECT	*recp, uint32_t *p, CLUT *cluts)
 #endif
 
 
-void LoadVRam(char *filename, char set_pal)
+void LoadVRam(const char *filename, char set_pal)
 {
 	bm			BM;
 

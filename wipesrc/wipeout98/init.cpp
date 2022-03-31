@@ -110,7 +110,7 @@ int16_t InitScene(Object** prm, int16_t *prmCount, Skeleton* camPos, ConfigData 
 	return(sky);
 }
 
-void getPath(char* trackPath, char trackNo, char* name)
+void getPath(char* trackPath, char trackNo, const char* name)
 {
 	char				No[ 4 ];
 
@@ -300,7 +300,7 @@ Texture* NewLoadTexture( intptr_t timPtr, int16_t translucent )
 	return( texture );
 }
 
-TIMlist *LoadCompressedTextureSequence( char *fileName )
+TIMlist *LoadCompressedTextureSequence( const char *fileName )
 {
 	int16_t texNum;
 	char	*fileBuffer;

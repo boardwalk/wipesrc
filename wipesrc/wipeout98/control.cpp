@@ -1213,7 +1213,7 @@ void ZigZagShip(VECTOR *blockVector, ShipData *shipIndex, Face *facePtr, int32_t
 #define SLOW_DOWN 			1
 #define SHIP_MESS 		   0
 
-void UpdateRemoteShip(register ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
+void UpdateRemoteShip(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
 {
 	ShipData				*myShip , *remoteShip;
 	Face 					*facePtr ;

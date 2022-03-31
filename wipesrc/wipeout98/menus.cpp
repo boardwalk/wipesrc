@@ -188,15 +188,15 @@ Texture		*buttonTex[18] ;
 DR_MODE		drmode[18][2];				// DLS
 DR_MODE		drmode2[18][2];				// DLS
 
-TimData *AJSLoad16BitTexture(char *filename, char location);
-TimData *JJSLoad16BitTexture(char *filename, char location);
-BOOL JJSNewTexture(char *filename);
-extern char *GetCdTrackName(int32_t no);
+TimData *AJSLoad16BitTexture(const char *filename, char location);
+TimData *JJSLoad16BitTexture(const char *filename, char location);
+BOOL JJSNewTexture(const char *filename);
+const char *GetCdTrackName(int32_t no);
 void MostRecentSaveFile();	// returns the name of the last file to be modified in "c:\wipeout"
 char CheckKey(uint16_t code);
 
 
-char	*ScanCodes[89] =
+const char	*ScanCodes[89] =
 {
 	"        ",		// 0
 		"ESC     ",		// 1
@@ -2651,7 +2651,7 @@ void ShowMenuBackground (POLY_FT4 *menuPrim, POLY_FT4 *menu1Prim, TimData *timSi
 }
 
 
-void LoadTexModel (Object** modelShapes, char *fileName)
+void LoadTexModel (Object** modelShapes, const char *fileName)
 {
 	int16_t 	modelTextures= 0;
 	Object* 	obj;
@@ -4825,7 +4825,7 @@ void CheckSaveType (SelectionData *selectData, char loadGames[][9], ConfigData *
 }
 
 
-void InitButtons (char *fileName)
+void InitButtons (const char *fileName)
 {
 	TIMlist  		*timPtr;
 	int16_t				tablePos ;

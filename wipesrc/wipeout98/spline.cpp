@@ -208,7 +208,7 @@ TrackSection* FindAllNearestSection( VECTOR pos )
 
 
 
-void UpdateShipRemote(register ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
+void UpdateShipRemote(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex)
 {
 	ShipData				*myShip , *remoteShip;
 	Face 					*facePtr ;
@@ -505,7 +505,7 @@ void UpdateShipRemote(register ShipData *shipIndex, Object** shipShapes, int32_t
 
 
 
-void UpdateShipLinearInterpolateSpline( register ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex )
+void UpdateShipLinearInterpolateSpline( ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex )
 {
    VECTOR         pos;
    VECTOR         pos1;

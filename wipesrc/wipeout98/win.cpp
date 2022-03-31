@@ -3156,7 +3156,7 @@ void ShowWarningMessage(UINT StrNum)
 	ShowCursor(FALSE);
 }
 
-TimData *JJSLoad16BitTexture(char *filename, char location)
+TimData *JJSLoad16BitTexture(const char *filename, char location)
 {
 	TimData	*timSize;
 

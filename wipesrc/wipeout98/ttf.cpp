@@ -42,7 +42,7 @@ TexTemplate* LoadTtfFile( char *file, int16_t *count, int16_t libraryTextures )
    {
    /* Memory Allocation Failure! */
 
-      sprintf( "Ttf.c:LoadTtfFile: Failed to allocate memory for file %s\n", file );
+      sprintf( errorString, "Ttf.c:LoadTtfFile: Failed to allocate memory for file %s\n", file );
       Error( errorString, Fatal );
    }
 

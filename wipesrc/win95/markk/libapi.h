@@ -230,4 +230,4 @@ extern uint32_t				etc_DefaultJoystickSet[_MAX_JOY_SWITCHES];
 extern uint32_t				etc_DefaultMouseSet[_MAX_MOUSE_SWITCHES];
 
 /* Strings. */
-extern char								*buttonname[_MAX_BUTTONS];
+extern const char								*buttonname[_MAX_BUTTONS];

@@ -6,4 +6,4 @@ typedef struct _TIMlist
 	uintptr_t	memOffset[400];
 } TIMlist;
 
-extern TIMlist *LoadCompressedTextureSequence( char *texName );
+extern TIMlist *LoadCompressedTextureSequence( const char *texName );

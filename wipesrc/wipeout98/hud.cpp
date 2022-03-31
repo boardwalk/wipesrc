@@ -454,7 +454,7 @@ void AddTime(int32_t time, TEXT_DATA *pos_data, int32_t colour)
 
 }
 
-void AddText(char* text_ptr, TEXT_DATA *pos_data, int32_t colour)
+void AddText(const char* text_ptr, TEXT_DATA *pos_data, int32_t colour)
 {
 	uchar 	letter=0;
 	char 		AValue=0;
@@ -1404,10 +1404,11 @@ void ScreenFooter (int32_t x, int32_t y, int32_t colour)
 
 
 
-void CentreText(char* the_text_ptr, TEXT_DATA *pos_data, int32_t colour)
+void CentreText(const char* the_text_ptr, TEXT_DATA *pos_data, int32_t colour)
 {
 	uchar 	letter=0;
-	char 		AValue=0, *tmpPtr ;
+	char 		AValue=0;
+	const char *tmpPtr;
 	Texture 	*charTex, *redTex ;
 	int32_t 		size=0 ;
 	int32_t 		x=0, y=0, i=0 , newx , newy;
@@ -1641,7 +1642,7 @@ void DisplayRacePoints ()
 }
 
 
-void InitScreenTex (Texture **screenTex, char *fileName)
+void InitScreenTex (Texture **screenTex, const char *fileName)
 {
 	TIMlist  		*timPtr;
 	int16_t				tablePos ;

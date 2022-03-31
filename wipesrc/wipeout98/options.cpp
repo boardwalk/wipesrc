@@ -29,9 +29,9 @@
 
 extern int16_t starttrack, endtrack;
 
-char *GetCdTrackName(int32_t no)
+const char *GetCdTrackName(int32_t no)
 {
-	static char *fulltrack[] = {
+	static const char *fulltrack[] = {
 		"RANDOM",
 		"CAIRODROME",
 		"CARDINAL DANCER",
@@ -43,7 +43,7 @@ char *GetCdTrackName(int32_t no)
 		"TRANCEVAAL",
 		"WIPEOUT"};
 
-	static char *sometrack[] = {
+	static const char *sometrack[] = {
 		"RANDOM",
 		"COLD COMFORT",
 		"DOH T",

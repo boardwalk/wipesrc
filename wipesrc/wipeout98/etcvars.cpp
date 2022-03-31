@@ -121,7 +121,7 @@ uint32_t		etc_DefaultMouseSet[_MAX_MOUSE_SWITCHES] = {
 		_UNDEFINED };
 
 /* Useful Strings. */
-char	*buttonname[_MAX_BUTTONS] = {
+const char	*buttonname[_MAX_BUTTONS] = {
 		"FrontRightBottom",
 		"FrontLeftBottom",
 		"FrontRightTop",

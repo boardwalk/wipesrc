@@ -50,7 +50,7 @@ typedef struct {
 * Coded By Barfly
 ******************************************/
 
-void ReadPCX(char *fname, bm *BMptr,char Flg)
+void ReadPCX(const char *fname, bm *BMptr,char Flg)
 {
 
 	FILE		*fp;

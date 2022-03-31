@@ -46,7 +46,7 @@ void FillHighScores(HiScores *scoreTable, int32_t lap1, int32_t lap2, int32_t la
 			scoreTable->lapTimes[4] = lap5 ;
 }
 
-void FillHighScoreNames(HiScores *scoreTable, char *n1, char *n2, char* n3, char *n4, char * n5)
+void FillHighScoreNames(HiScores *scoreTable, const char *n1, const char *n2, const char* n3, const char *n4, const char* n5)
 {
 			strcpy (scoreTable->names[0], n1) ;
 			strcpy (scoreTable->names[1], n2) ;

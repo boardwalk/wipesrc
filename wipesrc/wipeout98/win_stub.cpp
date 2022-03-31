@@ -76,7 +76,7 @@ void	    JJSDrawPolyGT3(POLY_GT3 * p)
 void	    JJSDrawPolyGT4(POLY_GT4 * p)
 {}
 
-BOOL SJRNewTexture(char *filename)
+BOOL SJRNewTexture(const char *filename)
 { return FALSE; }
 
 void centreMouse(void)
@@ -103,7 +103,7 @@ int32_t	     ProcessMessages(void)
 void	    BltClearToScreen(void)
 {}
 
-TimData *JJSLoad16BitTexture(char *filename, char location)
+TimData *JJSLoad16BitTexture(const char *filename, char location)
 { return NULL; }
 
 int16_t randlist[2000];

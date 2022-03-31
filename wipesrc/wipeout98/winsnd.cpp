@@ -467,7 +467,7 @@ uint16_t SfxInit(uint16_t wCard,uint16_t wMixType,uint16_t wSampRate)
 	return(0);
 }
 
-uint16_t SfxGetFxBank(char *filename)
+uint16_t SfxGetFxBank(const char *filename)
 {
 	char Line[256];
 	char 	Scrap[256], Temp[256];

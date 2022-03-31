@@ -9,9 +9,7 @@
 
 
 
-Object* LoadPrm( char* name, int16_t textureStart );
-
-Object* LoadScn( char* name, int16_t textureStart );
+Object* LoadPrm( const char* name, int16_t textureStart );
 
 void IntelObject( char *start, char *finish, int16_t convert );
 

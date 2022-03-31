@@ -505,7 +505,7 @@ MATRIX * RotMatrix( SVECTOR * r, MATRIX * m )
 
 void RotTrans( SVECTOR * v0, VECTOR * v1, int32_t * flag )
 {
-	register int32_t z;
+	int32_t z;
 
 	ApplyMatrix( &RTM, v0, v1 );
 

@@ -35,7 +35,7 @@ void InitCDFS(DynamicHeap *heap)
 	iso_init(heap);
 }
 
-int32_t FileLength( char* name )
+int32_t FileLength( const char* name )
 {
 	FILE *file;
 	int32_t length;
@@ -60,7 +60,7 @@ int32_t FileLength( char* name )
 	return(length);
 }
 
-int32_t LoadFile( char* name, char* buffer )
+int32_t LoadFile( const char* name, char* buffer )
 {
    int32_t   fd;
    int32_t  length;
@@ -125,7 +125,7 @@ int32_t LoadFile( char* name, char* buffer )
 
    return( length );
 }
-void SaveFile( char* name, char* buffer, int32_t length )
+void SaveFile( const char* name, char* buffer, int32_t length )
 {
 	printf("Save file called: %s , but not implemented 'cause we are CD FS\n", name);
 }
@@ -133,7 +133,7 @@ void SaveFile( char* name, char* buffer, int32_t length )
 #else	/* PC FS */
 #ifdef SN_PCFS	// PCwipeout
 
-int32_t FileLength( char* name )
+int32_t FileLength( const char* name )
 {
    int32_t   fd;
    int32_t  length;
@@ -173,7 +173,7 @@ int32_t FileLength( char* name )
    return( length );
 }
 
-int32_t LoadFile( char* name, char* buffer )
+int32_t LoadFile( const char* name, char* buffer )
 {
    int32_t   fd;
    int32_t  length;
@@ -266,13 +266,13 @@ void SaveFile( char* name, char* buffer, int32_t length )
 
 #else	// PCwipeout - to end of file
 
-int32_t FileLength( char* name )
+int32_t FileLength( const char* name )
 {
    FILE   *fd;
    int32_t  length;
 
 /* Open file */
-	char *cleanname;
+	const char *cleanname;
 
 	cleanname = (char *)strchr(name,':');
 	if (cleanname != NULL)
@@ -288,7 +288,7 @@ int32_t FileLength( char* name )
    fd = fopen( cleanname, "rb" );
    if ( fd == NULL )
    {
-      return( NULL );
+      return( 0 );
    }
 
 /* Seek to end of file to get length */
@@ -306,7 +306,7 @@ int32_t FileLength( char* name )
    return( length );
 }
 
-int32_t LoadFile( char* name, char* buffer )
+int32_t LoadFile( const char* name, char* buffer )
 {
    FILE *fd;
    int32_t  length;

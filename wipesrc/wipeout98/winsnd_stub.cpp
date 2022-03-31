@@ -9,7 +9,7 @@ void SfxEffectPan(int16_t wPlayId,uint16_t bPan)
 void SfxEffectVol(int16_t wPlayId,uint8_t bVolume)
 {}
 
-uint16_t SfxGetFxBank(char *filename)
+uint16_t SfxGetFxBank(const char *filename)
 { return 0; }
 
 void SfxReverbOff(void)

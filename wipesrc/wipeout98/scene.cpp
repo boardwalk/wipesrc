@@ -273,7 +273,7 @@ void IntelShort( int16_t* svalue )
 
 
 
-Object* LoadPrm( char* name, int16_t textureStart )
+Object* LoadPrm( const char* name, int16_t textureStart )
 {
    Object*     object;
    Object*     lastObject;

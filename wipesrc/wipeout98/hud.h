@@ -77,7 +77,7 @@ void			InitSpeedo 			(Speedo*) ;
 void 			fill_speedo 		(Speedo*, int32_t, int32_t) ;
 void 			AddNumber			(int32_t, 	TEXT_DATA*, int32_t)	;
 void 			AddTime				(int32_t, 	TEXT_DATA*, int32_t) ;
-void 			AddText				(char* , TEXT_DATA* , int32_t) ;
+void 			AddText				(const char* , TEXT_DATA* , int32_t) ;
 void 			SpecialText			(char* , TEXT_DATA* , int32_t) ;
 void 			demo_screen 		(POLY_FT4 *, int32_t) ;
 TEXT_DATA* 	text_data 			(int32_t, int32_t, int32_t) ;
@@ -86,7 +86,7 @@ void 			AddText2				(char* , TEXT_DATA* , int32_t) ;
 void 			AddNumber2			(int32_t , TEXT_DATA* , int32_t) ;
 void 			SetCharTextures 	(char) ;
 void 			AddDelEnd			(char, TEXT_DATA *, int32_t) ;
-void 			CentreText			(char* , TEXT_DATA *, int32_t ) ;
+void 			CentreText			(const char* , TEXT_DATA *, int32_t ) ;
 void 			DisplayLives 		(SPRT [][2], ConfigData *)	; // PCwipeout
 //void 			DisplayLives 		(POLY_FT4 [][2], ConfigData *)	;
 int32_t 			CalcPosition		(ShipData *shipIndex);
@@ -95,7 +95,7 @@ void 			ShowCopyRight 		(Texture *copyrightSymbol, POLY_FT4 *copyPrim, int16_t x
 void 			InitChampTable 	();
 void 			DisplayChampTable ();
 void 			DisplayRacePoints ();
-void 			InitScreenTex 		(Texture **screenTex, char *fileName);
+void 			InitScreenTex 		(Texture **screenTex, const char *fileName);
 void 			DisplayWinLose 	(Texture *winLose, POLY_FT4 *picPrim, int16_t x, int16_t y, int16_t height, char type);
 void 			DisplayVenomComplete ();
 void 			DisplayAllVenomComplete ();
