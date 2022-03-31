@@ -312,7 +312,7 @@ int32_t LoadFile( const char* name, char* buffer )
    int32_t  length;
 
 /* Open file */
-	char *cleanname;
+	const char *cleanname;
 
 	cleanname = (char *)strchr(name,':');
 	if (cleanname != NULL)

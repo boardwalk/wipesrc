@@ -119,8 +119,6 @@ void	    oldmain()
 	int32_t	     i;
 	combatData      packetData;
 	ConfigData      gameData;
-	char	    filename[20] = {"\\NTSCANIM.EXE;1"};
-	// TimData				*titleScreen ;
 	int32_t	     mode, timeout;
 	int32_t	     toggle = 0;
 	char	    loadPath[48];

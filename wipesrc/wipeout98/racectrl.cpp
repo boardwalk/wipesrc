@@ -365,31 +365,31 @@ void raceinit(void)
 			//      printf ( "loading firestar extro\n" );
 			extroLevel = 14;
 
-			camSpline[ 0 ] = LoadPrm( "wipeout\\common\\cam1s.prm", 0 );
+			camSpline[ 0 ] = LoadPrm( "wipeout/common/cam1s.prm", 0 );
 			camSpline[ 0 ]->skeleton->super = ctrlcamera.camPos;
 
-			shipSpline[ 0 ] = LoadPrm( "wipeout\\common\\shp1s.prm", 0 );
+			shipSpline[ 0 ] = LoadPrm( "wipeout/common/shp1s.prm", 0 );
 			shipSpline[ 0 ]->skeleton->super = ctrlcamera.camPos;
 
 
-			camSpline[ 1 ] = LoadPrm( "wipeout\\common\\cam2s.prm", 0 );
+			camSpline[ 1 ] = LoadPrm( "wipeout/common/cam2s.prm", 0 );
 			camSpline[ 1 ]->skeleton->super = ctrlcamera.camPos;
 
-			shipSpline[ 1 ] = LoadPrm( "wipeout\\common\\shp2s.prm", 0 );
+			shipSpline[ 1 ] = LoadPrm( "wipeout/common/shp2s.prm", 0 );
 			shipSpline[ 1 ]->skeleton->super = ctrlcamera.camPos;
 
 
-			camSpline[ 2 ] = LoadPrm( "wipeout\\common\\cam3s.prm", 0 );
+			camSpline[ 2 ] = LoadPrm( "wipeout/common/cam3s.prm", 0 );
 			camSpline[ 2 ]->skeleton->super = ctrlcamera.camPos;
 
-			shipSpline[ 2 ] = LoadPrm( "wipeout\\common\\shp3s.prm", 0 );
+			shipSpline[ 2 ] = LoadPrm( "wipeout/common/shp3s.prm", 0 );
 			shipSpline[ 2 ]->skeleton->super = ctrlcamera.camPos;
 
 
-			camSpline[ 3 ] = LoadPrm( "wipeout\\common\\cam4s.prm", 0 );
+			camSpline[ 3 ] = LoadPrm( "wipeout/common/cam4s.prm", 0 );
 			camSpline[ 3 ]->skeleton->super = ctrlcamera.camPos;
 
-			shipSpline[ 3 ] = LoadPrm( "wipeout\\common\\shp4s.prm", 0 );
+			shipSpline[ 3 ] = LoadPrm( "wipeout/common/shp4s.prm", 0 );
 			shipSpline[ 3 ]->skeleton->super = ctrlcamera.camPos;
 		}
 
@@ -400,24 +400,24 @@ void raceinit(void)
 			//      printf ( "loading silverstream extro\n" );
 			extroLevel = 13;
 
-			camSpline[ 4 ] = LoadPrm( "wipeout\\common\\cam5s.prm", 0 );
+			camSpline[ 4 ] = LoadPrm( "wipeout/common/cam5s.prm", 0 );
 			camSpline[ 4 ]->skeleton->super = ctrlcamera.camPos;
 
-			shipSpline[ 4 ] = LoadPrm( "wipeout\\common\\shp5s.prm", 0 );
+			shipSpline[ 4 ] = LoadPrm( "wipeout/common/shp5s.prm", 0 );
 			shipSpline[ 4 ]->skeleton->super = ctrlcamera.camPos;
 
 
-			camSpline[ 5 ] = LoadPrm( "wipeout\\common\\cam6s.prm", 0 );
+			camSpline[ 5 ] = LoadPrm( "wipeout/common/cam6s.prm", 0 );
 			camSpline[ 5 ]->skeleton->super = ctrlcamera.camPos;
 
-			shipSpline[ 5 ] = LoadPrm( "wipeout\\common\\shp6s.prm", 0 );
+			shipSpline[ 5 ] = LoadPrm( "wipeout/common/shp6s.prm", 0 );
 			shipSpline[ 5 ]->skeleton->super = ctrlcamera.camPos;
 
 
-			camSpline[ 6 ] = LoadPrm( "wipeout\\common\\cam7s.prm", 0 );
+			camSpline[ 6 ] = LoadPrm( "wipeout/common/cam7s.prm", 0 );
 			camSpline[ 6 ]->skeleton->super = ctrlcamera.camPos;
 
-			shipSpline[ 6 ] = LoadPrm( "wipeout\\common\\shp7s.prm", 0 );
+			shipSpline[ 6 ] = LoadPrm( "wipeout/common/shp7s.prm", 0 );
 			shipSpline[ 6 ]->skeleton->super = ctrlcamera.camPos;
 
 		}
@@ -496,7 +496,7 @@ void raceinit(void)
 		//   printf( "Initialise Editor\n" );
 
 		ctrleditor.iconTextures = TextureTableCount;
-		LoadWtlFiles( "wipeout\\common\\icons.tex" );
+		LoadWtlFiles( "wipeout/common/icons.tex" );
 
 		ctrltexHighlight = CreateTexHighlight( );
 		ctrltexHighlight->skeleton->super = ctrlcamera.camPos;  /* from offset */
@@ -1950,8 +1950,8 @@ void racectrl(void)
 				fred++;
 				if (fred>=4)
 				{
-					//			DumpVram16Bit("wipeout\\vramdump\\venom\\firestar.rgb",&VRam);
-					DumpVRamAsPCX("wipeout\\vramdump.pcx");
+					//			DumpVram16Bit("wipeout/vramdump/venom/firestar.rgb",&VRam);
+					DumpVRamAsPCX("wipeout/vramdump.pcx");
 					exit(0);
 				}
 #endif

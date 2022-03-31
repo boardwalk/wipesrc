@@ -17,6 +17,11 @@ public:
         : m_offset(small_ptr_shrink(ptr))
     {}
 
+    SmallPtr& operator=(T* ptr) {
+        m_offset = small_ptr_shrink(ptr);
+        return *this;
+    }
+
     operator T*() const {
         return get_ptr();
     }

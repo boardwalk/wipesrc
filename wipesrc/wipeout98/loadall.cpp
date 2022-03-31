@@ -33,8 +33,6 @@ extern	void  GSwap(void);
 #define	DONT_CHECK_SIZE	8
 #define	ALLOCATE_MEM		16
 
-// char	*Path = "alltext\\";		//AJY for relative paths
-
 typedef struct {
 	int32_t	width;
 	int32_t	height;

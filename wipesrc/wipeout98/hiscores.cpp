@@ -80,7 +80,7 @@ void HighScore (ConfigData *gameData)
 	int32_t			count = 0;
 	int32_t 			padDelay = 0;
 
-/*	timInfo = Load16BitTexture ("c:\\wipeout\\textures\\hiscore.tim", VRAM) ;
+/*	timInfo = Load16BitTexture ("c:/wipeout/textures/hiscore.tim", VRAM) ;
 */
 
 /*

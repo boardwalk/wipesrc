@@ -1663,7 +1663,7 @@ void InitScreenTex (Texture **screenTex, const char *fileName)
 	// AND NOW LOAD IN THE PROPER PICCIES FOR PC WIPEOUT
 
 	strcpy( modelFile, "wipeout/newgraph/" );
-//	strcat( modelFile, trackdir) ;
+	strcat( modelFile, trackdir) ;
 	strcat( modelFile, fileName) ;
 	LoadPilotIntoVram(modelFile);
 	strcpy(globalPilot,modelFile);

@@ -58,7 +58,7 @@ extern float left_scale_factor, right_scale_factor;
 
 
 
-//#define SAVEDIR			"wipeout\\"
+//#define SAVEDIR			"wipeout/"
 #define	FILE_EXTENSION	".wsf"
 extern char *SaveDirBase;
 

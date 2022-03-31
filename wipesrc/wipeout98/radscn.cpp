@@ -49,7 +49,7 @@ void CalcNewRadius( TrackSection *section, Object* objects )
    int16_t          objectList[ ObjectListMax ];
 
 
-   DFree( heap, ( Ptr )section->objects );
+   DFree( heap, ( Ptr )(int16_t*)section->objects );
    section->objectCount = 0;
 
 

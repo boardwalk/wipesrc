@@ -213,7 +213,7 @@ void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShape
 
       obj = obj->next;
    }
-	strcpy( shipFile, "wipeout\\common\\alcol" );
+	strcpy( shipFile, "wipeout/common/alcol" );
 	strcat( shipFile, ".prm");
 
 	shipShapes[ NO_OF_SHIPS ] = LoadPrm( shipFile, colTextures );
@@ -234,7 +234,7 @@ void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShape
 #if 0
 	for(i = 0; i < NO_OF_SHIPS; i++)
 	{
-		strcpy( colFile, "wipeout\\common\\shp" );
+		strcpy( colFile, "wipeout/common/shp" );
 		sprintf( No, "%1d", i+1 );
 		strcat( shipFile, No);
 		strcat( colFile, No);
@@ -248,7 +248,7 @@ void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShape
 	}
 #endif
 
-   shipShapes[RESCUE_DROID] = LoadPrm( "wipeout\\common\\rescu.prm", droidTextures );
+   shipShapes[RESCUE_DROID] = LoadPrm( "wipeout/common/rescu.prm", droidTextures );
 
    obj = shipShapes[ RESCUE_DROID ];
    while ( obj )
@@ -526,12 +526,14 @@ void initShipData(TrackSection* section, ShipData *shipIndex,ConfigData *gameDat
 		if(gameData->Class == 0)
 		{
 			shipIndex[i].resistance = resistanceBeg[i];
-			shipIndex[i].fightBack = fightBackBeg[i];
+			// fightBackBeg has length 7 but NO_OF_SHIPS is 8
+			shipIndex[i].fightBack = (i < 7) ? fightBackBeg[i] : 0;
 		}
 		else
 		{
 			shipIndex[i].resistance = resistancePro[i];
-			shipIndex[i].fightBack = fightBackPro[i];
+			// fightBackPro has length 7 but NO_OF_SHIPS is 8
+			shipIndex[i].fightBack = (i < 7) ? fightBackPro[i] : 0;
 		}
 
 

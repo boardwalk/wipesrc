@@ -260,7 +260,7 @@ void InitSpuSound()
 		/* Load bank header file */
 
 
-		SfxGetFxBank ("wipeout\\wipeout.fx");
+		SfxGetFxBank ("wipeout/wipeout.fx");
 
 		/* Open FX Bank */
 

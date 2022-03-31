@@ -73,14 +73,14 @@ typedef struct TrackSection
    int16_t          version;
    int16_t          pad;
 
-	int16_t          *objects;
+	SmallPtr<int16_t>       objects;
 	int16_t          objectCount;
 
-   int16_t          *northViewSection[ 3 ];
-   int16_t          *southViewSection[ 3 ];
-   int16_t          *eastViewSection[ 3 ];
-   int16_t          *westViewSection[ 3 ];
-   int16_t          *allViewSection[ 3 ];
+   SmallPtr<int16_t>          northViewSection[ 3 ];
+   SmallPtr<int16_t>          southViewSection[ 3 ];
+   SmallPtr<int16_t>          eastViewSection[ 3 ];
+   SmallPtr<int16_t>          westViewSection[ 3 ];
+   SmallPtr<int16_t>          allViewSection[ 3 ];
    int16_t          northViewCount[ 3 ];
    int16_t          southViewCount[ 3 ];
    int16_t          eastViewCount[ 3 ];

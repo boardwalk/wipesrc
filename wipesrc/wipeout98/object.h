@@ -1,7 +1,7 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton
 */
 
-
+#include "small_ptr.h"
 #define  Lib      0
 
 
@@ -207,9 +207,9 @@ typedef struct Skeleton
 
    int16_t             update;     /* Set if absolute matrix needs updating ( i.e. parent matrix has been changed ) */
 
-   struct Skeleton*  super;      /* Parent Skeleton */
-   struct Skeleton*  sub;        /* First Child Skeleton of this Skeleton */
-   struct Skeleton*  next;       /* Next Child Skeleton of Parent Skeleton */
+   SmallPtr<struct Skeleton>  super;      /* Parent Skeleton */
+   SmallPtr<struct Skeleton>  sub;        /* First Child Skeleton of this Skeleton */
+   SmallPtr<struct Skeleton>  next;       /* Next Child Skeleton of Parent Skeleton */
 } Skeleton;
 
 
@@ -750,13 +750,13 @@ typedef struct Object
    char              name[16];
 
    int16_t             vertexCount;      /* Number of Vertices */
-   SVECTOR*          vertices;         /* Pointer to 3D Points */
+   SmallPtr<SVECTOR>          vertices;         /* Pointer to 3D Points */
 
    int16_t             normalCount;      /* Number of Normals */
-   SVECTOR*          normals;          /* Pointer to 3D Normals */
+   SmallPtr<SVECTOR>          normals;          /* Pointer to 3D Normals */
 
    int16_t             primitiveCount;   /* Number of Primitives */
-   Primitive*        primitives;       /* Pointer to Z Sort Primitives */
+   SmallPtr<Primitive>        primitives;       /* Pointer to Z Sort Primitives */
 
 
 #if Lib
@@ -765,15 +765,15 @@ typedef struct Object
    int32_t              pad;
 #endif
 
-   BspTree*          bspTree;          /* Pointer to BSP Tree Primitives */
+   SmallPtr<BspTree>          bspTree;          /* Pointer to BSP Tree Primitives */
 
-   Skeleton*         skeleton;         /* Pointer to Local Coordinates */
+   SmallPtr<Skeleton>         skeleton;         /* Pointer to Local Coordinates */
 
    int32_t              extent;           /* Flags for object characteristics */
 
    int16_t             flags;            /* Next object in list */
 
-   struct Object*    next;             /* Next object in list */
+   SmallPtr<struct Object>    next;             /* Next object in list */
 } Object;
 
 

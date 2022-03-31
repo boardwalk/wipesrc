@@ -422,7 +422,7 @@ char	ScanToAscii[110] =
 #define	CENTRE		2
 
 #define	JOY_BODGE	8
-//#define SAVEDIR			"wipeout\\"
+//#define SAVEDIR			"wipeout/"
 #define	FILE_EXTENSION	".wsf"
 
 extern char *SaveDirBase;
@@ -474,7 +474,7 @@ void Debugit(char *t)
 
 void reloadScr(void)
 {
-	menuScreen = JJSLoad16BitTexture	("wipeout\\textures\\wipeout1.tim", VRAM) ;
+	menuScreen = JJSLoad16BitTexture	("wipeout/textures/wipeout1.tim", VRAM) ;
 }
 
 void MenuControl (ConfigData *gameData, TimData *titleScreen, int32_t *mode, int32_t timeout)
@@ -525,10 +525,10 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int32_t *mode, int
 
 
 	menuTexturesIn = 1;
-	//JJSNewTexture ("wipeout\\newgraph\\menu\\menus.bmp");
-	SJRNewTexture ("wipeout\\newgraph\\menu\\menus.sjr");
+	//JJSNewTexture ("wipeout/newgraph/menu/menus.bmp");
+	SJRNewTexture ("wipeout/newgraph/menu/menus.sjr");
 	trackNum = 15;//pretend track for restoring - SJR
-	LoadVRam("wipeout\\newgraph\\menu\\menus.pcx",0);
+	LoadVRam("wipeout/newgraph/menu/menus.pcx",0);
 
 	LoadTexModel (shipShapes, "allsh") ;
 	LoadTexModel (pilotShapes, "pilot") ;
@@ -539,7 +539,7 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int32_t *mode, int
 	LoadTexModel (gameTypeShapes, "msdos") ;		// jed
 	LoadTexModel (optionShapes, "misc") ;	// jed
 
-	length = FileLength( "wipeout\\common\\pad1.prm");
+	length = FileLength( "wipeout/common/pad1.prm");
 
 	//	LoadTexModel (shipShapes, "allsh") ;
 	//	LoadTexModel (pilotShapes, "pilot") ;
@@ -553,7 +553,7 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int32_t *mode, int
 	//	LoadModel (gameTypeShapes, "champ") ;
 	//   gameTypeShapes += 1;	// if lightsourced
 
-	//	length = FileLength( "wipeout\\common\\pad1.prm");
+	//	length = FileLength( "wipeout/common/pad1.prm");
 
 	//	start = DAlloc( heap, length + 32 );
 	//	prm.ptr = start;
@@ -615,7 +615,7 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int32_t *mode, int
 
 	menuSystem[1].numOptions = NumTracks ;
 
-	copyrightSymbol = LoadTexture ("wipeout\\textures\\copyrigt.tim", 1) ;
+	copyrightSymbol = LoadTexture ("wipeout/textures/copyrigt.tim", 1) ;
 
 	InitMenuSystem (&(menuSystem[0])) ;
 
@@ -632,7 +632,7 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int32_t *mode, int
 
 	currMenu = -2;
 
-	menuScreen = JJSLoad16BitTexture	("wipeout\\textures\\wipeout1.tim", VRAM) ;
+	menuScreen = JJSLoad16BitTexture	("wipeout/textures/wipeout1.tim", VRAM) ;
 	inmenu=0;
 	for( i = 0; i < 2; i++)
 	{
@@ -1707,7 +1707,7 @@ void CallMenuActivator (ConfigData *gameData, int32_t *currMenu, int32_t *currOp
 		}
 		else
 		{
-			//	   	DumpVram16Bit("c:\\wipeout\\newgraph\\venom\\menus.rgb",&VRam);
+			//	   	DumpVram16Bit("c:/wipeout/newgraph/venom/menus.rgb",&VRam);
 			QuitToDos();
 		}
 	}
@@ -2949,8 +2949,8 @@ void InitSelectData (SelectionData *selectData)
 
 void InitMusicVSfx (SlideTextures *musicTex)
 {
-	musicTex->slideTex = LoadTexture ( "wipeout\\textures\\slider1.tim", 1 ) ; /*slide*/
-	musicTex->sliderTex = LoadTexture ( "wipeout\\textures\\slide1.tim", 1 ) ;
+	musicTex->slideTex = LoadTexture ( "wipeout/textures/slider1.tim", 1 ) ; /*slide*/
+	musicTex->sliderTex = LoadTexture ( "wipeout/textures/slide1.tim", 1 ) ;
 }
 
 

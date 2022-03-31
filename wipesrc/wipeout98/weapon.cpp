@@ -498,8 +498,8 @@ void initWeapons(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData *weapon
 
 	}
 
-	length = FileLength(  "wipeout\\common\\miss.prm" );
-	weaponShapes[MISSILE_OFFSET].shapePtr = LoadPrm( "wipeout\\common\\miss.prm", weaponTextures );
+	length = FileLength(  "wipeout/common/miss.prm" );
+	weaponShapes[MISSILE_OFFSET].shapePtr = LoadPrm( "wipeout/common/miss.prm", weaponTextures );
 	for(i = MISSILE_OFFSET+1; i < SHIELD_OFFSET; i++)
 	{
 		start = DAlloc( heap, length + 32 );
@@ -515,8 +515,8 @@ void initWeapons(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData *weapon
 		object->primitives = prm.primitive;
 	}
 
-	length = FileLength(  "wipeout\\common\\shld.prm" );
-	weaponShapes[SHIELD_OFFSET].shapePtr = LoadPrm( "wipeout\\common\\shld.prm", weaponTextures );
+	length = FileLength(  "wipeout/common/shld.prm" );
+	weaponShapes[SHIELD_OFFSET].shapePtr = LoadPrm( "wipeout/common/shld.prm", weaponTextures );
 	for(i = SHIELD_OFFSET+1; i < SHIELD_OFFSET+NO_OF_SHIELDS; i++)
 	{
 		start = DAlloc( heap, length + 32 );
@@ -532,8 +532,8 @@ void initWeapons(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData *weapon
 		object->primitives = prm.primitive;
 	}
 
-	length = FileLength(  "wipeout\\common\\ebolt.prm" );
-	weaponShapes[EBOLT_OFFSET].shapePtr = LoadPrm( "wipeout\\common\\ebolt.prm", weaponTextures );
+	length = FileLength(  "wipeout/common/ebolt.prm" );
+	weaponShapes[EBOLT_OFFSET].shapePtr = LoadPrm( "wipeout/common/ebolt.prm", weaponTextures );
 	for(i = EBOLT_OFFSET+1; i < EBOLT_OFFSET+NO_OF_EBOLTS; i++)
 	{
 		start = DAlloc( heap, length + 32 );
@@ -647,7 +647,7 @@ void initWeapons(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData *weapon
 		}
 	}
 
-	targetTexture = LoadTexture ( "wipeout\\textures\\target2.tim", 1 ) ;
+	targetTexture = LoadTexture ( "wipeout/textures/target2.tim", 1 ) ;
 
 	for(i = 0; i < 2; i++)
 	{

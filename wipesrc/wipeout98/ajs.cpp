@@ -1155,20 +1155,21 @@ void setWinLose(void)
 
 void	LoadPilotIntoVram(char *filename)
 {
-	FILE	*fp;
-	char	picfile[256];
+	// TODO(boardwalk) We only have .pcx files, not .sjr
+	// FILE	*fp;
+	// char	picfile[256];
 
-	strcpy( picfile, filename);
-	strcat( picfile, "win.sjr");
-	fp=fopen(picfile,"rb");
-	fread(winPic,35840,1,fp);
-	fclose(fp);
+	// strcpy( picfile, filename);
+	// strcat( picfile, "win.sjr");
+	// fp=fopen(picfile,"rb");
+	// fread(winPic,35840,1,fp);
+	// fclose(fp);
 
-	strcpy( picfile, filename);
-	strcat( picfile, "los.sjr");
-	fp=fopen(picfile,"rb");
-	fread(losePic,35840,1,fp);
-	fclose(fp);
+	// strcpy( picfile, filename);
+	// strcat( picfile, "los.sjr");
+	// fp=fopen(picfile,"rb");
+	// fread(losePic,35840,1,fp);
+	// fclose(fp);
 }
 
 void	InitAJSVSync(void)
