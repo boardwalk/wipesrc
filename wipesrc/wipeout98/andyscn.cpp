@@ -165,6 +165,8 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 					if(poly.ft3->flag & ShipEngine)
 						depth -= 50;
 
+					if(depth < 0)
+						depth = 0;
 					if(depth > 8191)
 						depth = 8191;
 
