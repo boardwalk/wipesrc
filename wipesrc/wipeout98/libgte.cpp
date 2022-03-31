@@ -82,46 +82,30 @@ void CreateSineTable(void)
 
 int32_t rsin(int32_t a)
 {
-	int32_t	index, result;
+	int32_t	index = index = abs(a) % TableSize;
 
-
-	index = a;
-
-	if(abs(index) > TableSize)
-		index %= TableSize;
-
-	if(index < 0)
-		index = -index;
-
+	// negative angle identity:
+	// sin(-theta) = -sin(theta)
 	if(a < 0.0)
-		result = -SineTable[index];
+		return -SineTable[index];
 	else
-		result = SineTable[index];
-
-	return(result);
+		return SineTable[index];
 }
 
 
 
 int32_t rcos(int32_t a)
 {
-	int32_t	index, result;
+	// co-function identity:
+	// cos(theta) = sin(pi/2 - theta)
+	int32_t	index = abs(1024 - a) % TableSize;
 
-
-	index = a + 1024;
-
-	if(abs(index) > TableSize)
-		index %= TableSize;
-
-	if(index < 0)
-	{
-		index = -index;
-		result = -SineTable[index];
-	}
+	// negative angle identity:
+	// sin(-theta) = -sin(theta)
+	if(1024 - a < 0.0)
+		return -SineTable[index];
 	else
-		result = SineTable[index];
-
-	return(result);
+		return SineTable[index];
 }
 
 
