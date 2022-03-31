@@ -343,7 +343,7 @@ char LoadCardData (char *loadName, int32_t cardNum, ConfigData *gameData, Select
 
 	if((fd = fopen(fileName, "rb")) == NULL)
 	{
-		printf ("Error opening file for read \n") ;
+		printf ("Error opening file %s for read \n", fileName) ;
 		return (0) ;
 	}
 	else
@@ -352,7 +352,7 @@ char LoadCardData (char *loadName, int32_t cardNum, ConfigData *gameData, Select
 
 		if (temp != 1)
 		{
-			printf ("Error reading data from file\n") ;
+			printf ("Error reading data from file %s\n", fileName) ;
 			return (0) ;
 		}
 

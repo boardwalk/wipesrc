@@ -164,7 +164,6 @@ Texture* NewLoadTexture( intptr_t timPtr, int16_t translucent )
 #endif
 
 	tim = (Tim*) timPtr;
-	printf("NewLoadTexture tim at %lx clut type = %d\n", timPtr, ClutType(tim) );
 
 	if ( ClutType( tim ) == Clut4Bit )
 	{
