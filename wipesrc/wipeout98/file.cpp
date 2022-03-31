@@ -62,6 +62,7 @@ int32_t FileLength( const char* name )
 
 int32_t LoadFile( const char* name, char* buffer )
 {
+	printf("LoadFile(%s)\n", name);
    int32_t   fd;
    int32_t  length;
    int32_t  to_read,i,left_over;
@@ -175,6 +176,7 @@ int32_t FileLength( const char* name )
 
 int32_t LoadFile( const char* name, char* buffer )
 {
+	printf("LoadFile(%s)\n", name);
    int32_t   fd;
    int32_t  length;
 
@@ -308,6 +310,7 @@ int32_t FileLength( const char* name )
 
 int32_t LoadFile( const char* name, char* buffer )
 {
+	printf("LoadFile(%s)\n", name);
    FILE *fd;
    int32_t  length;
 

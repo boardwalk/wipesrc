@@ -50,7 +50,7 @@ typedef struct {
 
 void ReadPCX(const char *fname, bm *BMptr,char Flg)
 {
-
+	printf("ReadPCX(%s)\n", fname);
 	FILE		*fp;
 	int32_t 		xsize=0,	ysize=0,	vram_xpos=0, vram_ypos=0, Isize=0;
 	uint8_t		*ptr, *ptr2;
