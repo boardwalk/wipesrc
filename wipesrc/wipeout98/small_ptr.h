@@ -11,9 +11,15 @@ template<typename T>
 class SmallPtr
 {
 public:
+    SmallPtr() = default;
+
     explicit SmallPtr(T* ptr)
         : m_offset(small_ptr_shrink(ptr))
     {}
+
+    operator T*() const {
+        return get_ptr();
+    }
 
     T* operator->() const {
         return get_ptr();

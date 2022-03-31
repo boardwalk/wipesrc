@@ -1,5 +1,5 @@
 #define NEW_TRACK 1
-
+#include "small_ptr.h"
 
 typedef struct Normal
 {
@@ -50,7 +50,7 @@ typedef struct Face
 
 typedef union
 {
-   struct TrackSection   *ptr;
+   SmallPtr<struct TrackSection>   ptr;
    int32_t                  index;
 } SectionPtr;
 
