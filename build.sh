@@ -12,6 +12,7 @@ g++ -o wipeout-port \
     -Wno-tautological-pointer-compare \
     -DWIPEOUTPC \
     -include stdint.h \
+    wipesrc/wipeout98/small_ptr.cpp \
     wipesrc/wipeout98/ajs.cpp \
     wipesrc/wipeout98/andyscn.cpp \
     wipesrc/wipeout98/ayrace.cpp \

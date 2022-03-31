@@ -23,6 +23,7 @@
 #include "sparks2.h"
 #include "global.h"
 #include "error.h"
+#include "small_ptr.h"
 
 int16_t FreeBlockError( FreeBlock* block )
 {
@@ -68,6 +69,8 @@ void InitDynamicMem
    int32_t           size
 )
 {
+   small_ptr_set_heap_extents(heap, size);
+
    int32_t        i;
    int16_t       bitsize;
    FreeBlock*  free;
