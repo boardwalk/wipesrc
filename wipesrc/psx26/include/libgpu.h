@@ -337,10 +337,6 @@ typedef struct {
 } P_TAG;
 
 typedef struct {
-	uint8_t	r0, g0, b0, code;
-} P_CODE;
-
-typedef struct {
 	uint32_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, y0;

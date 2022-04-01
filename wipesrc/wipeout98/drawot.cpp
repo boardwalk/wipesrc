@@ -181,12 +181,11 @@ void intarray(void)
 
 void DrawPrim(uint32_t *primitive)
 {
-	static int32_t i;
-	if ((((P_TAG *)primitive)->code & 0xfc)== 0x24)
-	{
-		i++;
-	}
-	DrawFunctions[(((P_TAG *)primitive)->code) & 0xfc](primitive); //put 0xfc to mask out transparency and texture lighting
+	uint8_t func = (((P_TAG *)primitive)->code) & 0xfc;
+	// if (func != 0) {
+	// 	printf("DrawPrim() func=%x\n", func);
+	// }
+	DrawFunctions[func](primitive); //put 0xfc to mask out transparency and texture lighting
 }
 
 
