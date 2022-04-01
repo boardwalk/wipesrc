@@ -146,12 +146,12 @@ void DrawShips(ShipData *shipIndex, Object** shipShapes, int32_t camShip, TrackC
 	 		{
 				if(raceType == HEAD_TO_HEAD)
 				{
-					if((i == serialShip)	|| (i == ownShip))
+					if(i == serialShip || i == ownShip)
 			 			DrawObjectAsm( obj, ctrlcamera.camPos, 0, 1);
 				}
 				else if(raceType == TIME_TRIAL)
 				{
-					if((i == ownShip))
+					if(i == ownShip)
 			 			DrawObjectAsm( obj, ctrlcamera.camPos, 0, 1);
 				}
 				else

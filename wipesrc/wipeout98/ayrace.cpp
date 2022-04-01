@@ -312,12 +312,12 @@ void race( combatData *packetData, ConfigData *gameData, int32_t mode, int32_t t
 
 		//	if(trackNo == 13)
 		//		AuroraBorialis(ctrlprm[ctrlsky]);
-		if((trackNo == 8) || (trackNo == 11))
+		if(trackNo == 8 || trackNo == 11)
 		{
 			ColourRedLight(ctrlredLight);
 			MoveDonkey(ctrldonkey);
 		}
-		else if((trackNo == 1)/* || (trackNo == 6)*/)
+		else if(trackNo == 1 /*|| trackNo == 6*/)
 		{
 			ColourRedLight(ctrlredLight);
 		}

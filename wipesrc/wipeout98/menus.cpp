@@ -102,10 +102,10 @@ TimData	*menuScreen ;
 
 // MARK'S EXTERNS
 
-extern int32_t CommNetSocket=0;
-extern int32_t CommNetPlayers=2;
-extern int32_t	CommSerialDevice=1;
-extern int32_t	CommSerialBaudRate=1;
+int32_t CommNetSocket=0;
+int32_t CommNetPlayers=2;
+int32_t	CommSerialDevice=1;
+int32_t	CommSerialBaudRate=1;
 //extern int32_t global_mark_error;
 
 

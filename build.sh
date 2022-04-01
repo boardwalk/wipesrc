@@ -2,12 +2,8 @@
 g++ -o wipeout-port \
     -I. -g -O0 -fsanitize=address -fno-omit-frame-pointer -std=c++11 \
     -Wno-array-bounds \
-    -Wno-c++11-compat-deprecated-writable-strings \
     -Wno-constant-conversion \
     -Wno-empty-body \
-    -Wno-extern-initializer \
-    -Wno-format-security \
-    -Wno-parentheses-equality \
     -Wno-tautological-constant-out-of-range-compare \
     -DWIPEOUTPC \
     -include stdint.h \

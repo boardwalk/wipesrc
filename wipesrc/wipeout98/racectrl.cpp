@@ -480,12 +480,12 @@ void raceinit(void)
 
 		//ctrlstadCount = InitCrowdSound(ctrlprm, ctrlprmCount, ctrllostad, ctrlstadCount);
 
-		if((trackNo == 8) || (trackNo == 11))
+		if(trackNo == 8 || trackNo == 11)
 		{
 			InitRedLight(ctrlprm, ctrlprmCount, &ctrlredLight);
 			InitDonkey(ctrlprm, ctrlprmCount, ctrldonkey);
 		}
-		else if((trackNo == 1)/* || (trackNo == 6)*/)
+		else if(trackNo == 1 /*|| trackNo == 6*/)
 		{
 			InitRedLight(ctrlprm, ctrlprmCount, &ctrlredLight);
 		}
