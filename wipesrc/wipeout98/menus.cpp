@@ -1450,7 +1450,7 @@ void CallMenuActivator (ConfigData *gameData, int32_t *currMenu, int32_t *currOp
 
 	if (*currMenu == CONFIRM_SAVE)
 	{
-		if((!selectData->confirm) && (SaveFilename != 0))
+		if((!selectData->confirm) && (SaveFilename[0] != 0))
 		{
 			// This bit actually does the saving!
 

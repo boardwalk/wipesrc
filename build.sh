@@ -9,7 +9,6 @@ g++ -o wipeout-port \
     -Wno-format-security \
     -Wno-parentheses-equality \
     -Wno-tautological-constant-out-of-range-compare \
-    -Wno-tautological-pointer-compare \
     -DWIPEOUTPC \
     -include stdint.h \
     wipesrc/wipeout98/small_ptr.cpp \
