@@ -337,7 +337,7 @@ typedef struct {
 } P_TAG;
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, y0;
 	int16_t	x1,	y1;
@@ -345,7 +345,7 @@ typedef struct {
 } POLY_F3;				/* Flat Triangle */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, y0;
 	int16_t	x1,	y1;
@@ -354,7 +354,7 @@ typedef struct {
 } POLY_F4;				/* Flat Quadrangle */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, y0, z0, pad4;
 	uint8_t	u0, v0;
@@ -368,7 +368,7 @@ typedef struct {
 } POLY_FT3;				/* Flat Textured Triangle */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, y0, z0, pad4;
 	uint8_t	u0, v0;
@@ -385,7 +385,7 @@ typedef struct {
 } POLY_FT4;				/* Flat Textured Quadrangle */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	uint8_t	r1, g1, b1, pad1;
@@ -395,7 +395,7 @@ typedef struct {
 } POLY_G3;				/* Gouraud Triangle */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	uint8_t	r1, g1, b1, pad1;
@@ -407,7 +407,7 @@ typedef struct {
 } POLY_G4;				/* Gouraud Quadrangle */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0, z0, pad4;
 	uint8_t	u0, v0;	uint16_t	clut;
@@ -420,7 +420,7 @@ typedef struct {
 } POLY_GT3;				/* Gouraud Textured Triangle */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0, z0, pad4;
 	uint8_t	u0, v0;	uint16_t	clut;
@@ -439,14 +439,14 @@ typedef struct {
  * Line Primitive Definitions
  */
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	int16_t	x1,	y1;
 } LINE_F2;				/* Unconnected Flat Line */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	uint8_t	r1, g1, b1, p1;
@@ -454,7 +454,7 @@ typedef struct {
 } LINE_G2;				/* Unconnected Gouraud Line */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	int16_t	x1,	y1;
@@ -463,7 +463,7 @@ typedef struct {
 } LINE_F3;				/* 2 connected Flat Line */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	uint8_t	r1, g1, b1, p1;
@@ -474,7 +474,7 @@ typedef struct {
 } LINE_G3;				/* 2 connected Gouraud Line */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	int16_t	x1,	y1;
@@ -484,7 +484,7 @@ typedef struct {
 } LINE_F4;				/* 3 connected Flat Line Quadrangle */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	uint8_t	r1, g1, b1, p1;
@@ -500,7 +500,7 @@ typedef struct {
  * Block Fill Primitive Definitions
  */
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	uint16_t	x0, 	y0;
 	uint16_t	w, 	h;
@@ -511,7 +511,7 @@ typedef BLK_FILL CLEAR;			/* for old version */
  * Sprite Primitive Definitions
  */
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	uint8_t	u0, v0;	uint16_t	clut;
@@ -519,7 +519,7 @@ typedef struct {
 } SPRT;					/* free size Sprite */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	uint8_t	u0, v0;	uint16_t	clut;
@@ -530,14 +530,14 @@ typedef SPRT_16 SPRT_8;			/* 8x8 Sprite */
  * Tile Primitive Definitions
  */
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 	int16_t	w,	h;
 } TILE;					/* free size Tile */
 
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint8_t	r0, g0, b0, code;
 	int16_t	x0, 	y0;
 } TILE_16;				/* 16x16 Tile */
@@ -549,7 +549,7 @@ typedef TILE_16 TILE_1;			/* 1x1 Tile */
  *  Special Primitive Definitions
  */
 typedef struct {
-	uint32_t	tag;
+	uintptr_t	tag;
 	uint32_t	code[2];
 } DR_MODE;				/* Drawing Mode */
 
