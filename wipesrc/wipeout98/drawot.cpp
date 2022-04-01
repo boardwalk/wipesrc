@@ -152,20 +152,20 @@ void Set_Device(int32_t tmp)
 
 void IntVga(void)
 {
-	DrawFunctions[0x20]=*AYDrawF3;		// Poly_F3
-	DrawFunctions[0x24]=*AYDrawFT3;		// Poly_FT3
-	DrawFunctions[0x30]=*AYDrawG3;		// Poly_G3
-	DrawFunctions[0x34]=*AYDrawGT3;		// Poly_GT3
-	DrawFunctions[0x28]=*AYDrawF4;		// Poly_F4
-	DrawFunctions[0x2c]=*AYDrawFT4;		// Poly_FT4
-	DrawFunctions[0x38]=*AYDrawG4;		// Poly_G4
-	DrawFunctions[0x3c]=*AYDrawGT4;		// Poly_GT4
-	DrawFunctions[0x60]=*tile;			// Tile
-	DrawFunctions[0x64]=*sprite;		// Free sized sprite
-	DrawFunctions[0x74]=*sprite8;		// 8 sized sprite
-	DrawFunctions[0x78]=*MaskSprite;	// Single-colour sprite
-	DrawFunctions[0x7c]=*MaskSprite;	// Single-colour 8x8 sprite
-	DrawFunctions[0x90]=*ChangeDrawMode;// Changes in draw mode
+	DrawFunctions[0x20]=AYDrawF3;		// Poly_F3
+	DrawFunctions[0x24]=AYDrawFT3;		// Poly_FT3
+	DrawFunctions[0x30]=AYDrawG3;		// Poly_G3
+	DrawFunctions[0x34]=AYDrawGT3;		// Poly_GT3
+	DrawFunctions[0x28]=AYDrawF4;		// Poly_F4
+	DrawFunctions[0x2c]=AYDrawFT4;		// Poly_FT4
+	DrawFunctions[0x38]=AYDrawG4;		// Poly_G4
+	DrawFunctions[0x3c]=AYDrawGT4;		// Poly_GT4
+	DrawFunctions[0x60]=tile;			// Tile
+	DrawFunctions[0x64]=sprite;		// Free sized sprite
+	DrawFunctions[0x74]=sprite8;		// 8 sized sprite
+	DrawFunctions[0x78]=MaskSprite;	// Single-colour sprite
+	DrawFunctions[0x7c]=MaskSprite;	// Single-colour 8x8 sprite
+	DrawFunctions[0x90]=ChangeDrawMode;// Changes in draw mode
 }
 
 
@@ -174,9 +174,8 @@ void intarray(void)
 {
 	int32_t x;
 
-
 	for (x=0;x<256;x++)
-		DrawFunctions[x]=*NotValidPrimType;
+		DrawFunctions[x]=NotValidPrimType;
 }
 
 void DrawPrim(uint32_t *primitive)
