@@ -314,11 +314,6 @@ void InitFaces( char *file )
 
 void InitSections( char *file )
 {
-   if (sizeof(TrackSection) != 156)
-   {
-      Error("Track.c:InitSections:TrackSection size is wrong", Fatal);
-   }
-
    int32_t              length;
    TrackSection      *junctionSection;
    TrackSection      *section;

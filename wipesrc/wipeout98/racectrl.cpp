@@ -351,7 +351,7 @@ void raceinit(void)
 		InitVertices( trackPath );
 		getPath(trackPath, gameData->actTrackNum, "/track.trf");
 		InitFaces( trackPath );
-		getPath(trackPath, gameData->actTrackNum, "/track.trs");
+		getPath(trackPath, gameData->actTrackNum, "/track.trs64");
 		InitSections( trackPath );
 		getPath(trackPath, gameData->actTrackNum, "/track.vew");
 		InitViewList( trackPath );
