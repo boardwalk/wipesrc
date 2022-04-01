@@ -8,8 +8,6 @@
 #include	"wipesrc/psx26/include/libgte.h"
 #include	"wipesrc/psx26/include/libgpu.h"
 
-
-//#define	AddPrim(ot,p)	AJYAddPrim(ot,p)
 #define	SetSemiTrans(p,abe)	setSemiTrans(p,abe)
 #define	SetShadeTex(p,tge)	setShadeTex(p,tge)
 #define	GetClut(x,y)	getClut(x,y)

@@ -51,7 +51,7 @@ void Error( const char *string, int16_t errorLevel )
          {
             ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
 
-            AddPrim( OT[ CurrentScreen ] + OT_SIZE - 1, ( uint32_t* ) clear[ CurrentScreen ] );
+            AddPrim( OT[ CurrentScreen ], OT_SIZE - 1, ( uint32_t* ) clear[ CurrentScreen ] );
 
             ObjectTable[ CurrentScreen ] = OT[ CurrentScreen ] + OT_SIZE - 1;
 
@@ -67,7 +67,7 @@ void Error( const char *string, int16_t errorLevel )
          {
             ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
 
-            AddPrim( OT[ CurrentScreen ] + (OT_SIZE -1), ( uint32_t* ) clear[ CurrentScreen ] );
+            AddPrim( OT[ CurrentScreen ], OT_SIZE - 1, ( uint32_t* ) clear[ CurrentScreen ] );
 
             ObjectTable[ CurrentScreen ] = OT[ CurrentScreen ] + ( OT_SIZE - 1 );
 

@@ -190,9 +190,14 @@ int32_t		DrawSync(int32_t	mode)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // FUNCTIONS WHICH JUST CALL THEIR EQUIVALENT MACROS
 
-void	AddPrim(P_TAG *ordt, uint32_t *p)
+void	AddPrim(P_TAG *ordt, int32_t depth, uint32_t *p)
 {
-	addPrim(ordt, p);
+	if (depth < 0)
+		depth = 0;
+	else if (depth > 8191) // OT_SIZE - 1
+		depth = 8191;
+
+	addPrim(ordt + depth, p);
 }
 
 uint16_t GetTPage(int32_t tp, int32_t abr, int32_t x, int32_t y)

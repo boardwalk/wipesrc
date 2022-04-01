@@ -440,7 +440,7 @@ void DrawTargetIcon(ShipData *playerShip, ShipData *shipIndex, Object** shipShap
 		target->pad5 = 0;
 		target->pad6 = 0;
 		target->pad7 = 0;
-		AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(target[CurrentScreen]) );
+		AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(target[CurrentScreen]) );
 	}
 }
 
@@ -2004,11 +2004,11 @@ void UpdateShield(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* we
 				prims.g4->xy2 = screen2;
 				prims.g4->xy3 = screen3;
 
-				//   				AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) prims.prim );
+				//   				AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) prims.prim );
 				prims.g4 += 1;
 
 				shieldID = weapon->currentWeapon - SHIELD_OFFSET;
-				//      			AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(shieldParams[(64 * shieldID)][CurrentScreen]));
+				//      			AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(shieldParams[(64 * shieldID)][CurrentScreen]));
 				prims.drmode += 1;
 
 				/*	poly.g4 += 1;*/
@@ -2031,7 +2031,7 @@ void DrawInternalShield(void)
 		setXY4(&shieldPoly,0,0,320,0,0,240,320,240);
 			setRGB0(&shieldPoly,0,0,WHITE2_TRANSL);
 		setPolyF4(&shieldPoly);
-		AddPrim(OT[CurrentScreen] + 1,(uint32_t *)&shieldPoly); //Plus 1 to prevent hud from being affected
+		AddPrim(OT[CurrentScreen], 1, (uint32_t *)&shieldPoly); //Depth 1 to prevent hud from being affected
 	}
 	DrawnShieldBefore = 1;
 }

@@ -1,7 +1,4 @@
 #include <cstdint>
-typedef uint8_t uint8_t;
-typedef int16_t int16_t;
-typedef uint16_t uint16_t;
 
 void SfxEffectPan(int16_t wPlayId,uint16_t bPan)
 {}

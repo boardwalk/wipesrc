@@ -188,7 +188,7 @@ void DeSelectScreen (POLY_F4* selectBox, DR_MODE* selectTrans)
 	SetDrawMode(&(selectTrans[CurrentScreen]), 1, 1, FONT_TPAGE, 0);
 
 
-  	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(selectBox[CurrentScreen]) );
-  	AddPrim( OT[ CurrentScreen ] , ( uint32_t* ) &(selectTrans[CurrentScreen]) );
+  	AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(selectBox[CurrentScreen]) );
+  	AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(selectTrans[CurrentScreen]) );
 
 }
