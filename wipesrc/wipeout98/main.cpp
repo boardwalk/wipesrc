@@ -303,7 +303,6 @@ void	    oldmain()
 			else
 				TOut = 5;
 
-#ifndef PC_DEMO
 			if (titleTimeout >= TOut * FR30)
 			{
 				mode = ATTRACT;
@@ -313,7 +312,6 @@ void	    oldmain()
 				firstTime = 0;
 				break;
 			}
-#endif
 
 			if (titleTimeout > 1)
 			{
@@ -328,18 +326,6 @@ void	    oldmain()
 					firstTime = 1;
 					break;
 				}
-
-#if PC_DEMO
-				if (GetMenuKey(M_BACK))
-				{
-					PlayNote(MENU_SELECT, 1, 20);
-					ResetVMode();
-					printf("Thanks for playing the wipEout (PC-CD) demo, (c) Psygnosis, 1995\n");
-					printf("\nFull game available mid November 1995\n");
-					exit(0);
-				}
-#endif
-
 			}
 
 
@@ -379,16 +365,13 @@ void	    oldmain()
 
 	/****************************/
 
-#ifndef PC_DEMO
 	while (1)
 	{
-#endif
 		for (i = 0; i < 2; i++)
 		{
 			ClearOTagR(OT[CurrentScreen], OT_SIZE);
 			Swap();
 		}
-#ifndef PC_DEMO
 
 		if ((gameData.gameType != CHAMPIONSHIP) && (mode != ATTRACT))
 		{
@@ -405,8 +388,6 @@ void	    oldmain()
 			firstTime = 0;
 			andybodge = 1;
 		}
-
-#endif
 
 #if EditorOn
 		ClearVram();
@@ -463,13 +444,7 @@ void	    oldmain()
 		}
 		else
 		{
-#ifdef PC_DEMO
-			trackNo = 1;
-			gameData.actTrackNum = 2;
-			gameData.trackNum = 1;
-#else
 			trackNo = gameData.actTrackNum;
-#endif
 		}
 		CdControlB(CdlStop, 0, 0);
 
@@ -602,17 +577,7 @@ void	    oldmain()
 		tempLapTimes[3] = 0;
 		tempLapTimes[4] = 0;
 
-
 		gameData.newLapRecord = 0;
-
-
-#ifdef	PC_DEMO
-		gameType = SINGLE;
-		gameData.shipNum = 7;
-		gameData.gameType = SINGLE_RACE;
-		ownShip = gameData.shipNum;
-		serialShip = -1;
-#endif
 
 		inmenu = 0;
 		Reallyinmenu = 0;
