@@ -36,9 +36,6 @@ float upres=2.0f;
 
 static GLFWwindow* g_window = nullptr;
 
-void JJS_Sprite(SPRT *sp) {}
-void JJS_Sprite8(SPRT_8 *sp) {}
-
 char *LockPilot(void)
 {
     return NULL;
@@ -60,6 +57,17 @@ void setRenderBegin(void)
 
 void setRenderEnd(void)
 {}
+
+void JJS_Sprite(SPRT *sp)
+{
+	printf("JJS_Sprite(x0=%d, y0=%d, u0=%u, v0=%u, clut=%u, w=%d, h=%d\n",
+		sp->x0, sp->y0, sp->u0, sp->v0, sp->clut, sp->w, sp->h);
+}
+
+void JJS_Sprite8(SPRT_8 *sp)
+{
+	printf("JJS_Sprite8\n");
+}
 
 void	    JJSDrawPolyF3(POLY_F4 * p)
 {
@@ -118,19 +126,20 @@ void	    UnlockBackBuffer(void)
 
 void	    WinClearScreen(char colour)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	// glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void	    BltClearToScreen(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	// glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void	    DDSwap(void)
 {
+	printf("DDSwap...\n");
 	glfwSwapBuffers(g_window);
+	printf("DDSwap done.\n");
 }
-
 
 int32_t	     ProcessMessages(void)
 {
