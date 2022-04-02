@@ -77,6 +77,7 @@ void	    JJSDrawPolyF3(POLY_F3 * p)
 	// 	p->x2, p->y2);
 
 	glBegin(GL_TRIANGLES);
+	// glColor3b(p->r0, p->g0, p->b0);
 	glVertex2s(p->x0, p->y0);
 	glVertex2s(p->x1, p->y1);
 	glVertex2s(p->x2, p->y2);
@@ -92,6 +93,7 @@ void	    JJSDrawPolyF4(POLY_F4 * p)
 	// 	p->x3, p->y3);
 
 	glBegin(GL_QUADS);
+	// glColor3b(p->r0, p->g0, p->b0);
 	glVertex2s(p->x0, p->y0);
 	glVertex2s(p->x1, p->y1);
 	glVertex2s(p->x2, p->y2);
@@ -107,8 +109,11 @@ void	    JJSDrawPolyG3(POLY_G3 * p)
 	// 	p->x2, p->y2);
 
 	glBegin(GL_TRIANGLES);
+	// glColor3b(p->r0, p->g0, p->b0);
 	glVertex2s(p->x0, p->y0);
+	// glColor3b(p->r1, p->g1, p->b1);
 	glVertex2s(p->x1, p->y1);
+	// glColor3b(p->r2, p->g2, p->b2);
 	glVertex2s(p->x2, p->y2);
 	glEnd();
 }
@@ -122,9 +127,13 @@ void	    JJSDrawPolyG4(POLY_G4 * p)
 	// 	p->x3, p->y3);
 
 	glBegin(GL_QUADS);
+	// glColor3b(p->r0, p->g0, p->b0);
 	glVertex2s(p->x0, p->y0);
+	// glColor3b(p->r1, p->g1, p->b1);
 	glVertex2s(p->x1, p->y1);
+	// glColor3b(p->r2, p->g2, p->b2);
 	glVertex2s(p->x2, p->y2);
+	// glColor3b(p->r3, p->g3, p->b3);
 	glVertex2s(p->x3, p->y3);
 	glEnd();
 }
@@ -137,6 +146,7 @@ void	    JJSDrawPolyFT3(POLY_FT3 * p)
 	// 	p->x2, p->y2);
 
 	glBegin(GL_TRIANGLES);
+	// glColor3b(p->r0, p->g0, p->b0);
 	glVertex2s(p->x0, p->y0);
 	glVertex2s(p->x1, p->y1);
 	glVertex2s(p->x2, p->y2);
@@ -152,6 +162,7 @@ void	    JJSDrawPolyFT4(POLY_FT4 * p)
 	// 	p->x3, p->y3);
 
 	glBegin(GL_QUADS);
+	// glColor3b(p->r0, p->g0, p->b0);
 	glVertex2s(p->x0, p->y0);
 	glVertex2s(p->x1, p->y1);
 	glVertex2s(p->x2, p->y2);
@@ -167,8 +178,11 @@ void	    JJSDrawPolyGT3(POLY_GT3 * p)
 	// 	p->x2, p->y2);
 
 	glBegin(GL_TRIANGLES);
+	// glColor3b(p->r0, p->g0, p->b0);
 	glVertex2s(p->x0, p->y0);
+	// glColor3b(p->r1, p->g1, p->b1);
 	glVertex2s(p->x1, p->y1);
+	// glColor3b(p->r2, p->g2, p->b2);
 	glVertex2s(p->x2, p->y2);
 	glEnd();
 }
@@ -182,9 +196,13 @@ void	    JJSDrawPolyGT4(POLY_GT4 * p)
 	// 	p->x3, p->y3);
 
 	glBegin(GL_QUADS);
+	// glColor3b(p->r0, p->g0, p->b0);
 	glVertex2s(p->x0, p->y0);
+	// glColor3b(p->r1, p->g1, p->b1);
 	glVertex2s(p->x1, p->y1);
+	// glColor3b(p->r2, p->g2, p->b2);
 	glVertex2s(p->x2, p->y2);
+	// glColor3b(p->r3, p->g3, p->b3);
 	glVertex2s(p->x3, p->y3);
 	glEnd();
 }
@@ -320,6 +338,7 @@ int main(int argc, char** argv)
 	// glOrtho(-32000.0, 32000.0, -24000.0, 24000.0f, -1.0, 1.0);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// glCullFace(GL_FRONT_AND_BACK);
 	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
 	oldmain();
