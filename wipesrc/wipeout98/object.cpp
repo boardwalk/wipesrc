@@ -2439,7 +2439,7 @@ void	    DoJedvars(void)
 
 void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 {
-	printf("TransformStaticObjectBodge %p (%s)\n", object, object->name);
+	// printf("TransformStaticObjectBodge %p (%s)\n", object, object->name);
 
 	DVECTOR	*screenPtr;
 	uint16_t	 *depthPtr;
@@ -3260,7 +3260,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 
 void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 {
-	printf("TransformStaticMenuObject %p (%s)\n", object, object->name);
+	// printf("TransformStaticMenuObject %p (%s)\n", object, object->name);
 
 	DVECTOR	*screenPtr;
 	uint16_t	 *depthPtr;

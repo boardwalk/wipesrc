@@ -666,7 +666,6 @@ MATRIX * TransMatrix( MATRIX * m, VECTOR * v )
 	return m;
 }
 
-int32_t xt,yt,zt;
 //------------------------------------------------------
 // ApplyMatrix
 //
@@ -678,105 +677,30 @@ int32_t xt,yt,zt;
 //		ebx = v0 (input vector)
 //		ecx = r0 (output)
 //------------------------------------------------------
+#include <stdio.h>
 
-/*__declspec(naked)*/ VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r)
+VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r)
 {
-	// TODO(boardwalk) Implement me without __declspace(naked)
-	/*
-	__asm
-	{
+	r->vx =
+		(((int32_t)v->vx * (int32_t)RTM->m[0][0]) >> SHIFT) +
+		(((int32_t)v->vy * (int32_t)RTM->m[0][1]) >> SHIFT) +
+		(((int32_t)v->vz * (int32_t)RTM->m[0][2]) >> SHIFT) +
+		RTM->t[0];
 
-		push 	edi
-		push	ebx
+	r->vy =
+		(((int32_t)v->vx * (int32_t)RTM->m[1][0]) >> SHIFT) +
+		(((int32_t)v->vy * (int32_t)RTM->m[1][1]) >> SHIFT) +
+		(((int32_t)v->vz * (int32_t)RTM->m[1][2]) >> SHIFT) +
+		RTM->t[1];
 
-		mov 	edi, 12[esp]		; store parameters
-		mov		ebx, 16[esp]
-		mov 	edx, 20[esp]
+	r->vz =
+		(((int32_t)v->vx * (int32_t)RTM->m[2][0]) >> SHIFT) +
+		(((int32_t)v->vy * (int32_t)RTM->m[2][1]) >> SHIFT) +
+		(((int32_t)v->vz * (int32_t)RTM->m[2][2]) >> SHIFT) +
+		RTM->t[2];
 
-		mov	cx, [ebx]
-		mov	ax, [ebx+2]
-		mov	bx, [ebx+4]
-		sal	ecx, 16
-		sal	eax, 16
-		sal	ebx, 16
-		sar	ecx, 16
-		sar	eax, 16
-		sar	ebx, 16
-		mov 	xt, ecx
-		mov 	yt, eax
-		mov 	zt, ebx
-
-
-		mov  	cx, [edi]
-		mov	ax, [edi+2]
-		mov	bx, [edi+4]
-		sal	ecx, 16
-		sal	eax, 16
-		sal	ebx, 16
-		sar	ecx, 16
-		sar	eax, 16
-		sar	ebx, 16
-		imul	ecx, xt
-		imul	eax, yt
-		imul	ebx, zt
-		sar	ecx, SHIFT
-		sar	eax, SHIFT
-		sar	ebx, SHIFT
-		add	ecx, eax
-		add	ecx, ebx
-		add	ecx, [edi+20]
-		mov 	0[edx], ecx		; store value in vector->vx
-
-
-		mov  	cx, [edi+6]
-		mov	ax, [edi+8]
-		mov	bx, [edi+10]
-		sal	ecx, 16
-		sal	eax, 16
-		sal	ebx, 16
-		sar	ecx, 16
-		sar	eax, 16
-		sar	ebx, 16
-		imul	ecx, xt
-		imul	eax, yt
-		imul	ebx, zt
-		sar	ecx, SHIFT
-		sar	eax, SHIFT
-		sar	ebx, SHIFT
-		add	ecx, eax
-		add	ecx, ebx
-		add	ecx, [edi+24]
-		mov 	4[edx], ecx		; store value in vector->vx
-
-		mov  	cx, [edi+12]
-		mov	ax, [edi+14]
-		mov	bx, [edi+16]
-		sal	ecx, 16
-		sal	eax, 16
-		sal	ebx, 16
-		sar	ecx, 16
-		sar	eax, 16
-		sar	ebx, 16
-		imul	ecx, xt
-		imul	eax, yt
-		imul	ebx, zt
-		sar	ecx, SHIFT
-		sar	eax, SHIFT
-		sar	ebx, SHIFT
-		add	ecx, eax
-		add	ecx, ebx
-		add	ecx, [edi+28]
-		mov 	8[edx], ecx		; store value in vector->vx
-
-		pop	ebx
-		pop 	edi
-		ret
-	}
-	*/
-	return NULL;
+	return r;
 }
-
-int32_t x,y,z,flagaddr;
 
 //------------------------------------------------------
 // DLSRotTransPers
@@ -790,137 +714,87 @@ int32_t x,y,z,flagaddr;
 //		ecx = address of flag variable
 //------------------------------------------------------
 
-/*__declspec(naked)*/ int32_t *DLSRotTransPers(int32_t *sxy, VECTOR *r0, int32_t *flag)
+#define CrtClipped   0x80000000
+#define XLarge       0x01000000
+#define YLarge       0x00800000
+#define ZLarge       0x00400000
+#define ZNegative    0x00040000
+#define ZSmall       0x00020000
+#define XClipped     0x00004000
+#define YClipped     0x00002000
+#define OutFog       0x00001000
+
+/*__declspec(naked)*/ void DLSRotTransPers(int32_t *sxy, VECTOR *r0, int32_t *flag)
 {
-	// TODO(boardwalk) Implement me without __declspace(naked)
-	/*
-	__asm
-	{
-		push ebx
-		mov	eax,8[esp]
-		mov	sxy, eax
-		mov	ebx,12[esp]
-		mov	r0, ebx
-		mov	ecx,16[esp]
-		mov	flagaddr, ecx
-		mov	[flag], 0			; clear flag
+	int32_t x = r0->vx;
+	int32_t y = r0->vy;
+	int32_t z = r0->vz;
 
-		mov	eax, [ebx]		; move r0.vx into x
-		mov	x, eax
-		mov	eax, [ebx+4]		; move r0.vy into y
-		mov	y, eax
-		mov	eax, [ebx+8]		; move r0.vz into eax
-		mov	z, eax
+	*flag = 0;
 
-		cmp	z, 0
-		jge	nonegz
-		or	[flag], 00040000h
-
-nonegz:
-		mov	ebx, [HalfZValue]
-		cmp	z, ebx
-		jle	nobigz
-		or	[flag], 00400000h
-
-nobigz:
-		mov	ebx, [SCR2]
-		cmp	z, ebx
-		jge	noscr2clip
-		mov	z, ebx
-		or	[flag], 00020000h
-
-noscr2clip:
-		mov	ebx, [MaxZValue]
-		cmp	z, ebx
-		jle	nomaxzclip
-		mov	z, ebx
-
-nomaxzclip:
-		mov	ebx, [FNEAR]
-		cmp	z, ebx
-		jge	nozfnear
-		or	[flag], 00001000h
-		jmp	nozffar
-
-nozfnear:
-		mov	ebx, [FFAR]
-		cmp	z, ebx
-		jle	nozffar
-		or	[flag], 00001000h
-
-nozffar:
-		cmp	x, 32767
-		jle	nomaxxclip
-		mov	x, 32767
-		or	[flag], 81000000h
-
-nomaxxclip:
-		cmp	y, 32767
-		jle	nomaxyclip
-		mov	y, 32767
-		or	[flag], 80800000h
-
-nomaxyclip:
-		cmp	x, -32767
-		jge	nominxclip
-		mov	x, -32767
-		or	[flag], 81000000h
-
-nominxclip:
-		cmp	y, -32767
-		jge	nominyclip
-		mov	y, -32767
-		or	[flag], 80800000h
-
-nominyclip:
-		mov	eax,[screenZ]		; Finished checks, do mul
-		imul	x
-		idiv	z
-		add	eax,[xOffset]
-		mov	ebx, eax		; xt0 in ebx
-
-		mov	eax,[screenZ]		; Finished checks, do mul
-		imul	y
-		idiv	z
-		add	eax,[yOffset]
-		mov	ecx, eax		; yt0 in ecx
-
-		cmp	ebx, -1024		; clip the screen coords
-		jge	nominxt0clip
-		mov	ebx, -1024
-		or	[flag], 80004000h
-
-nominxt0clip:
-		cmp	ebx, 1024
-		jle	nomaxxt0clip
-		mov	ebx, 1024
-		or	[flag], 80004000h
-
-nomaxxt0clip:
-		cmp	ecx, -1024
-		jge	nominyt0clip
-		mov	ecx, -1024
-		or	[flag], 80002000h
-
-nominyt0clip:
-		cmp	ecx, 1024
-		jle	nomaxyt0clip
-		mov	ecx, 1024
-		or	[flag], 80002000h
-
-nomaxyt0clip:
-		and	ebx, 0000FFFFh
-		sal	ecx, 16			; equivalent to
-		or	ebx, ecx		; (yt0 << 16) | (xt0 & 0x0000FFFF);
-		mov	edx, sxy
-		mov	[edx], ebx		; result stored in sxy
-		mov	ebx, [flag]
-		mov	edx, flagaddr
-		mov	[edx], ebx		; flag result stored in flag
-
-		pop	ebx
-		ret
+	if(z < 0) {
+		*flag |= ZNegative;
 	}
-	*/
-	return NULL;
+
+	if(z > HalfZValue) {
+		*flag |= ZLarge;
+	}
+
+	if(z < SCR2) {
+		z = SCR2;
+		*flag |= ZSmall;
+	}
+
+	if(z > MaxZValue) {
+		z = MaxZValue;
+	}
+
+	if(z < FNEAR || z > FFAR) {
+		*flag |= OutFog;
+	}
+
+	if(x > 32767) {
+		x = 32767;
+		*flag |= CrtClipped | XLarge;
+	}
+
+	if(y > 32767) {
+		y = 32767;
+		*flag |= CrtClipped | YLarge;
+	}
+
+	if(x < -32767) {
+		x = -32767;
+		*flag |= CrtClipped | XLarge;
+	}
+
+	if(y < -32767) {
+		y = -32767;
+		*flag |= CrtClipped | YLarge;
+	}
+
+	int32_t xt = screenZ * x / z + xOffset;
+	int32_t yt = screenZ * y / z + yOffset;
+
+	if(xt < -1024) {
+		xt = -1024;
+		*flag |= CrtClipped | XClipped;
+	}
+
+	if(xt > 1024) {
+		xt = 1024;
+		*flag |= CrtClipped | XClipped;
+	}
+
+	if(yt < -1024) {
+		yt = -1024;
+		*flag |= CrtClipped | YClipped;
+	}
+
+	if(yt > 1024) {
+		yt = 1024;
+		*flag |= CrtClipped | YClipped;
+	}
+
+	*sxy = (yt << 16) | (xt & 0xFFFF);
 }

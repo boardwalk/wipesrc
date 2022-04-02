@@ -30,7 +30,7 @@ extern uint16_t	   StaticZ[ ];
 
 void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t ShipObj)
 {
-	printf("DrawObjectAsm %p (%s)\n", object, object->name);
+	// printf("DrawObjectAsm %p (%s)\n", object, object->name);
 	DVECTOR*    screenPtr;
 	uint16_t*     depthPtr;
 	uint16_t*     flagsPtr;
@@ -94,7 +94,6 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 	primitiveCount = object->primitiveCount;
 
 	primCount += primitiveCount;
-
 
 	if ( vertexCount <= 128 )
 	{
@@ -170,7 +169,6 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.gt3 += 1;
 				}
-
 			}
             poly.gt3 += 1;
             break;
@@ -235,7 +233,6 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.gt4 += 1;
 				}
-
 			}
             poly.gt4 += 1;
             break;
@@ -362,9 +359,8 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.ft4 += 1;
 				}
-
-				poly.ft4 += 1;
 			}
+			poly.ft4 += 1;
             break;
 
 		case TypeG3 :
@@ -402,7 +398,6 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.g3 += 1;
 				}
-
 			}
             poly.g3 += 1;
             break;
@@ -447,7 +442,6 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.g4 += 1;
 				}
-
 			}
             poly.g4 += 1;
             break;
@@ -485,7 +479,6 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.f3 += 1;
 				}
-
 			}
             poly.f3 += 1;
             break;
@@ -722,7 +715,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 
 void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 {
-	printf("DrawObjectFixedAsm %p (%s)\n", object, object->name);
+	// printf("DrawObjectFixedAsm %p (%s)\n", object, object->name);
 	DVECTOR*    screenPtr;
 	uint16_t*     depthPtr;
 	uint16_t*     flagsPtr;

@@ -14,9 +14,6 @@
 //       06/02/1995
 //
 
-
-#include "pragmas.h"
-
 #ifndef LIBGTE_H
 #define LIBGTE_H
 
@@ -262,7 +259,7 @@ MATRIX *SetMulMatrix(MATRIX *m0,MATRIX *m1);
 
 VECTOR *ApplyMatrix(MATRIX *m,SVECTOR *v0,VECTOR *v1);
 
-int32_t *DLSRotTransPers(int32_t *sxy, VECTOR *r0, int32_t *flag);
+void DLSRotTransPers(int32_t *sxy, VECTOR *r0, int32_t *flag);
 
 
 VECTOR *ApplyRotMatrix(SVECTOR *v0,VECTOR *v1);
@@ -341,11 +338,7 @@ int32_t Lzc(int32_t data);
 int32_t RotTransPers4(SVECTOR *v0,SVECTOR *v1,SVECTOR *v2,SVECTOR *v3,
 			int32_t *sxy0,int32_t *sxy1,int32_t *sxy2,int32_t *sxy3,
 			int32_t *p,int32_t *flag);
-void RotTransPersN(SVECTOR *v0,DVECTOR *v1,uint16_t *sz,uint16_t *flag,int32_t n, uint16_t *origz);
-void RotTransPers3N(SVECTOR *v0,DVECTOR *v1,uint16_t *sz,uint16_t *flag,int32_t n);
-void RotMeshH(int16_t *Yheight,DVECTOR *Vo,uint16_t *sz,uint16_t *flag,
-			int16_t Xoffset,int16_t Zoffset,int16_t m,int16_t n,
-			DVECTOR *base);
+void RotTransPersN(SVECTOR *v0,DVECTOR *v1,uint16_t *sz,uint16_t *flag,int32_t n);
 int32_t RotAverage3(SVECTOR *v0,SVECTOR *v1,SVECTOR *v2,
 			int32_t *sxy0,int32_t *sxy1,int32_t *sxy2,int32_t *p,int32_t *flag);
 int32_t RotAverage4(SVECTOR *v0,SVECTOR *v1,SVECTOR *v2,SVECTOR *v3,

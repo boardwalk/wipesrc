@@ -74,7 +74,7 @@ void	    JJSDrawPolyF3(POLY_F3 * p)
 	// printf("f3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d)\n",
 	// 	p->x0, p->y0,
 	// 	p->x1, p->y1,
-	// 	p->x2, p->x2);
+	// 	p->x2, p->y2);
 
 	glBegin(GL_TRIANGLES);
 	glVertex2s(p->x0, p->y0);
@@ -85,37 +85,108 @@ void	    JJSDrawPolyF3(POLY_F3 * p)
 
 void	    JJSDrawPolyF4(POLY_F4 * p)
 {
-	// printf("f4\n");
+	// printf("f4 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d) p3=(%d,%d)\n",
+	// 	p->x0, p->y0,
+	// 	p->x1, p->y1,
+	// 	p->x2, p->y2,
+	// 	p->x3, p->y3);
+
+	glBegin(GL_QUADS);
+	glVertex2s(p->x0, p->y0);
+	glVertex2s(p->x1, p->y1);
+	glVertex2s(p->x2, p->y2);
+	glVertex2s(p->x3, p->y3);
+	glEnd();
 }
 
 void	    JJSDrawPolyG3(POLY_G3 * p)
 {
-	// printf("f5\n");
+	// printf("g3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d)\n",
+	// 	p->x0, p->y0,
+	// 	p->x1, p->y1,
+	// 	p->x2, p->y2);
+
+	glBegin(GL_TRIANGLES);
+	glVertex2s(p->x0, p->y0);
+	glVertex2s(p->x1, p->y1);
+	glVertex2s(p->x2, p->y2);
+	glEnd();
 }
 
 void	    JJSDrawPolyG4(POLY_G4 * p)
 {
-	// printf("g4\n");
+	// printf("g4 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d) p3=(%d,%d)\n",
+	// 	p->x0, p->y0,
+	// 	p->x1, p->y1,
+	// 	p->x2, p->y2,
+	// 	p->x3, p->y3);
+
+	glBegin(GL_QUADS);
+	glVertex2s(p->x0, p->y0);
+	glVertex2s(p->x1, p->y1);
+	glVertex2s(p->x2, p->y2);
+	glVertex2s(p->x3, p->y3);
+	glEnd();
 }
 
 void	    JJSDrawPolyFT3(POLY_FT3 * p)
 {
-	// printf("ft3\n");
+	// printf("ft3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d)\n",
+	// 	p->x0, p->y0,
+	// 	p->x1, p->y1,
+	// 	p->x2, p->y2);
+
+	glBegin(GL_TRIANGLES);
+	glVertex2s(p->x0, p->y0);
+	glVertex2s(p->x1, p->y1);
+	glVertex2s(p->x2, p->y2);
+	glEnd();
 }
 
 void	    JJSDrawPolyFT4(POLY_FT4 * p)
 {
-	// printf("ft4\n");
+	// printf("ft4 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d) p3=(%d,%d)\n",
+	// 	p->x0, p->y0,
+	// 	p->x1, p->y1,
+	// 	p->x2, p->y2,
+	// 	p->x3, p->y3);
+
+	glBegin(GL_QUADS);
+	glVertex2s(p->x0, p->y0);
+	glVertex2s(p->x1, p->y1);
+	glVertex2s(p->x2, p->y2);
+	glVertex2s(p->x3, p->y3);
+	glEnd();
 }
 
 void	    JJSDrawPolyGT3(POLY_GT3 * p)
 {
-	// printf("gt3\n");
+	// printf("gt3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d)\n",
+	// 	p->x0, p->y0,
+	// 	p->x1, p->y1,
+	// 	p->x2, p->y2);
+
+	glBegin(GL_TRIANGLES);
+	glVertex2s(p->x0, p->y0);
+	glVertex2s(p->x1, p->y1);
+	glVertex2s(p->x2, p->y2);
+	glEnd();
 }
 
 void	    JJSDrawPolyGT4(POLY_GT4 * p)
 {
-	// printf("gt4\n");
+	// printf("gt4 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d) p3=(%d,%d)\n",
+	// 	p->x0, p->y0,
+	// 	p->x1, p->y1,
+	// 	p->x2, p->y2,
+	// 	p->x3, p->y3);
+
+	glBegin(GL_QUADS);
+	glVertex2s(p->x0, p->y0);
+	glVertex2s(p->x1, p->y1);
+	glVertex2s(p->x2, p->y2);
+	glVertex2s(p->x3, p->y3);
+	glEnd();
 }
 
 BOOL SJRNewTexture(const char *filename)
@@ -145,7 +216,7 @@ void	    BltClearToScreen(void)
 
 void	    DDSwap(void)
 {
-	printf("DDSwap\n");
+	// printf("DDSwap\n");
 	glfwSwapBuffers(g_window);
 }
 
@@ -241,6 +312,14 @@ int main(int argc, char** argv)
 	}
 
 	glfwMakeContextCurrent(g_window);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-320.0, 320.0, 240.0, -240.0f, -1.0, 1.0);
+	// glOrtho(-3200.0, 3200.0, -2400.0, 2400.0f, -1.0, 1.0);
+	// glOrtho(-32000.0, 32000.0, -24000.0, 24000.0f, -1.0, 1.0);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
 	oldmain();

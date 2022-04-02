@@ -26,7 +26,6 @@
 #include "sparks2.h"
 #include "global.h"
 #include "asmtrk.h"
-#include "../win95/daves/pragmas.h"
 #include "libgte.h"
 #include "ajs.h"
 
