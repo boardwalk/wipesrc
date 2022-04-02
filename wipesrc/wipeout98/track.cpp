@@ -90,58 +90,6 @@ void IntelFace( void )
    }
 }
 
-
-void IntelSection( void )
-{
-   TrackSection      *section;
-   int16_t             i, j;
-
-
-   /* intel the section data */
-
-   section = track->sections;
-   for ( i=0; i<track->sectionCount; i++ )
-   {
-      IntelLong( &section->junction.index );
-      IntelLong( &section->prevSection.index );
-      IntelLong( &section->nextSection.index );
-
-      IntelLong( &section->centre.vx );
-      IntelLong( &section->centre.vy );
-      IntelLong( &section->centre.vz );
-
-      IntelShort( &section->version );
-      IntelShort( &section->pad );
-
-      for ( j=0; j<3; j++ )
-      {
-         IntelShort( &section->northViewCount[ j ] );
-         IntelShort( &section->southViewCount[ j ] );
-         IntelShort( &section->eastViewCount[ j ] );
-         IntelShort( &section->westViewCount[ j ] );
-			 IntelShort( &section->allViewCount[j]);
-      }
-
-      for ( j=0; j<4; j++ )
-      {
-         IntelShort( &section->high[ j ] );
-         IntelShort( &section->med[ j ] );
-      }
-
-      IntelShort( &section->faceStart );
-      IntelShort( &section->faceCount );
-
-      IntelShort( &section->globalRadius );
-      IntelShort( &section->localRadius );
-
-      IntelShort( &section->flags );
-      IntelShort( &section->secNo );
-
-      section += 1;
-   }
-}
-
-
 void CheckVersion( void )
 {
    TrackSection      *section;
@@ -342,9 +290,6 @@ void InitSections( char *file )
 	printf("SECTIONS = %d\n", length / sizeof( TrackSection ) );
 #endif
 	track->sectionCount = length / sizeof(TrackSection);
-
-
-   IntelSection( );
 
    IndexToPointers( );
 
