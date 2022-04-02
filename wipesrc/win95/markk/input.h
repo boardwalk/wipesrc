@@ -107,9 +107,9 @@ extern void             			SetStack(char  *);
 #ifdef DOS_VERSION
 extern void __interrupt	__far		pmkey(void);
 #else
-extern void pmkey(char, char);
+extern void pmkey(uint8_t, uint8_t);
 #endif
-extern void							ManageScanCode(char);
+extern void							ManageScanCode(uint8_t);
 //extern static void __loadds __far 	pmmouse(int16_t mask, int16_t state, int16_t col, int16_t row,
 //										signed int16_t mickey_h, signed int16_t mickey_v);
 extern void		pmjoy(void);

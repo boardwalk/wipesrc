@@ -64,9 +64,9 @@ MATRIX	  Camera;
 
 
 
-// uchar	  PrimitiveBuffer0[ 49152 * 2 ]; // PCwipeout
-// uchar	  PrimitiveBuffer1[ 49152 * 2];  // PCwipeout
-// uchar*	 PrimitiveBuffer[ 2 ];	  // PCwipeout
+// uint8_t	  PrimitiveBuffer0[ 49152 * 2 ]; // PCwipeout
+// uint8_t	  PrimitiveBuffer1[ 49152 * 2];  // PCwipeout
+// uint8_t*	 PrimitiveBuffer[ 2 ];	  // PCwipeout
 // StdPoly	prims;
    // PCwipeout
 

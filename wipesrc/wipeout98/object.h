@@ -10,7 +10,7 @@
 typedef struct
 {
    uintptr_t    tag;
-   uchar    r0, g0, b0, code;
+   uint8_t    r0, g0, b0, code;
    uint16_t   x, y;
    uint16_t   w, h;
 } BlkFill;
@@ -45,13 +45,13 @@ typedef struct
    uintptr_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
-   uchar    u0, v0;
+   uint8_t    u0, v0;
    uint16_t   cba;
    SVECTOR  xy1;
-   uchar    u1, v1;
+   uint8_t    u1, v1;
    uint16_t   tsb;
    SVECTOR  xy2;
-   uchar    u2, v2;
+   uint8_t    u2, v2;
    uint16_t   pad1;
 } PolyFT3;
 
@@ -62,16 +62,16 @@ typedef struct
    uintptr_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
-   uchar    u0, v0;
+   uint8_t    u0, v0;
    uint16_t   cba;
    SVECTOR  xy1;
-   uchar    u1, v1;
+   uint8_t    u1, v1;
    uint16_t   tsb;
    SVECTOR  xy2;
-   uchar    u2, v2;
+   uint8_t    u2, v2;
    uint16_t   pad1;
    SVECTOR  xy3;
-   uchar    u3, v3;
+   uint8_t    u3, v3;
    uint16_t   pad2;
 } PolyFT4;
 
@@ -110,15 +110,15 @@ typedef struct
    uintptr_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
-   uchar    u0, v0;
+   uint8_t    u0, v0;
    uint16_t   cba;
    CVECTOR  colour1;
    SVECTOR  xy1;
-   uchar    u1, v1;
+   uint8_t    u1, v1;
    uint16_t   tsb;
    CVECTOR  colour2;
    SVECTOR  xy2;
-   uchar    u2, v2;
+   uint8_t    u2, v2;
    uint16_t   pad2;
 } PolyGT3;
 
@@ -129,19 +129,19 @@ typedef struct
    uintptr_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
-   uchar    u0, v0;
+   uint8_t    u0, v0;
    uint16_t   cba;
    CVECTOR  colour1;
    SVECTOR  xy1;
-   uchar    u1, v1;
+   uint8_t    u1, v1;
    uint16_t   tsb;
    CVECTOR  colour2;
    SVECTOR  xy2;
-   uchar    u2, v2;
+   uint8_t    u2, v2;
    uint16_t   pad2;
    CVECTOR  colour3;
    SVECTOR  xy3;
-   uchar    u3, v3;
+   uint8_t    u3, v3;
    uint16_t   pad3;
 } PolyGT4;
 

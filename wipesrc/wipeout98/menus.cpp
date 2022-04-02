@@ -834,7 +834,8 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int32_t *mode, int
 
 		firstTime = 0 ;
 
-		if (menuSystem[currMenu].updateCount == 0 &&
+		// TODO(boardwalk) >= check added
+		if (currMenu >= 0 && menuSystem[currMenu].updateCount == 0 &&
 			menuSystem[currMenu].errorFlag == NO_ERROR &&
 			selectData.select == 1)
 		{

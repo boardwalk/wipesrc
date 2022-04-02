@@ -4,6 +4,11 @@
 #include <unistd.h>
 #include "wipesrc/psx26/include/libgte.h"
 #include "wipesrc/psx26/include/libgpu.h"
+#include "input.h"
+#include "object.h"
+#include "track.h"
+#include "ships.h"
+#include "pad.h"
 #include <stdio.h>
 #include <GLFW/glfw3.h>
 
@@ -299,6 +304,47 @@ extern int16_t    WinWidth;
 extern int16_t    WinHeight;
 extern int16_t    WinHeightX2;
 
+static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	uint8_t scan_code;
+	switch(key) {
+		case GLFW_KEY_ESCAPE: scan_code = _ESC_KEY; break;
+		case GLFW_KEY_TAB: scan_code = _TAB_KEY; break;
+		case GLFW_KEY_P: scan_code = _P_KEY; break;
+		case GLFW_KEY_ENTER: scan_code = _ENTER_KEY; break;
+		case GLFW_KEY_LEFT_CONTROL: scan_code = _LEFT_CTRL_KEY; break;
+		case GLFW_KEY_LEFT_SHIFT: scan_code = _LEFT_SHIFT_KEY; break;
+		case GLFW_KEY_UP: scan_code = _UP_KEY; break;
+		case GLFW_KEY_LEFT: scan_code = _LEFT_KEY; break;
+		case GLFW_KEY_RIGHT: scan_code = _RIGHT_KEY; break;
+		case GLFW_KEY_DOWN: scan_code = _DOWN_KEY; break;
+		case GLFW_KEY_Z: scan_code = _Z_KEY; break;
+		case GLFW_KEY_X: scan_code = _X_KEY; break;
+		case GLFW_KEY_F1: scan_code = _F1_KEY; break;
+		case GLFW_KEY_F2: scan_code = _F2_KEY; break;
+		case GLFW_KEY_F3: scan_code = _F3_KEY; break;
+		case GLFW_KEY_F4: scan_code = _F4_KEY; break;
+		case GLFW_KEY_F5: scan_code = _F5_KEY; break;
+		case GLFW_KEY_F6: scan_code = _F6_KEY; break;
+		case GLFW_KEY_F7: scan_code = _F7_KEY; break;
+		case GLFW_KEY_F8: scan_code = _F8_KEY; break;
+		case GLFW_KEY_F9: scan_code = _F9_KEY; break;
+		case GLFW_KEY_F10: scan_code = _F10_KEY; break;
+		case GLFW_KEY_F11: scan_code = _F11_KEY; break;
+		case GLFW_KEY_F12: scan_code = _F12_KEY; break;
+		case GLFW_KEY_LEFT_ALT: scan_code = _LEFT_ALT_KEY; break;
+		default: return;
+	}
+
+	if (action == GLFW_PRESS) {
+		pmkey(scan_code, 1);
+	} else if(action == GLFW_RELEASE) {
+		pmkey(scan_code, 0);
+	} else {
+		return;
+	}
+}
+
 int main(int argc, char** argv)
 {
 	initrandy();
@@ -329,16 +375,15 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-	glfwMakeContextCurrent(g_window);
+	glfwSetKeyCallback(g_window, keyCallback);
 
+	glfwMakeContextCurrent(g_window);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-320.0, 320.0, 240.0, -240.0f, -1.0, 1.0);
-	// glOrtho(-3200.0, 3200.0, -2400.0, 2400.0f, -1.0, 1.0);
-	// glOrtho(-32000.0, 32000.0, -24000.0, 24000.0f, -1.0, 1.0);
+	glOrtho(0.0, 320.0, 240.0, 0.0, -1.0, 1.0);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	// glCullFace(GL_FRONT_AND_BACK);
+	glCullFace(GL_FRONT_AND_BACK);
 	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
 	oldmain();

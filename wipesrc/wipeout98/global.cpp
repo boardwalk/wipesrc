@@ -129,9 +129,9 @@ PolyFT4        *prConfirm;
 
 
 
-uchar          PrimitiveBuffer0[ PrimitiveBufferSize ];
-uchar          PrimitiveBuffer1[ PrimitiveBufferSize ];
-uchar*         PrimitiveBuffer[ 2 ];
+uint8_t          PrimitiveBuffer0[ PrimitiveBufferSize ];
+uint8_t          PrimitiveBuffer1[ PrimitiveBufferSize ];
+uint8_t*         PrimitiveBuffer[ 2 ];
 StdPoly        prims;
 
 

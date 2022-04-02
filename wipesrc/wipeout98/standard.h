@@ -10,10 +10,6 @@
 #include "wipesrc/psx26/include/libcd.h"
 #include "wipesrc/psx26/include/libspu.h"
 
-typedef uint8_t uchar;
-typedef uint32_t uint32_t;
-typedef uint32_t uint;
-
 typedef char* Ptr;
 
 #define PAL       0

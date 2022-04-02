@@ -366,7 +366,7 @@ TIMlist *LoadCompressedTextureSequence( const char *fileName )
 /*	printf("Decompressing: %s\n", fileName);*/
 
 //	GsClearVcount();
-	ExpandData( (uchar *)fileBuffer + 4 + numTex*4, (uchar *)timList.memBase );
+	ExpandData( (uint8_t *)fileBuffer + 4 + numTex*4, (uint8_t *)timList.memBase );
 	CPURasters=GsGetVcount();
 
 	DFree( heap, fileBuffer );			/* free compressed file memory */

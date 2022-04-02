@@ -452,7 +452,7 @@ void AddTime(int32_t time, TEXT_DATA *pos_data, int32_t colour)
 
 void AddText(const char* text_ptr, TEXT_DATA *pos_data, int32_t colour)
 {
-	uchar 	letter=0;
+	uint8_t 	letter=0;
 	char 		AValue=0;
 	Texture 	*charTex, *redTex ;
 	int32_t 		size=0 ;
@@ -1402,7 +1402,7 @@ void ScreenFooter (int32_t x, int32_t y, int32_t colour)
 
 void CentreText(const char* the_text_ptr, TEXT_DATA *pos_data, int32_t colour)
 {
-	uchar 	letter=0;
+	uint8_t 	letter=0;
 	char 		AValue=0;
 	const char *tmpPtr;
 	Texture 	*charTex, *redTex ;

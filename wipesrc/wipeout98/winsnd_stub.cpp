@@ -1,4 +1,4 @@
-#include <cstdint>
+#include <stdio.h>
 
 void SfxEffectPan(int16_t wPlayId,uint16_t bPan)
 {}
@@ -37,15 +37,23 @@ void SfxOn(void)
 {}
 
 uint16_t SfxInit(uint16_t wCard,uint16_t wMixType,uint16_t wSampRate)
-{ return 0; }
+{
+	// "NO_SOUND"
+	return 1;
+}
 
 void SfxPlay(int16_t wSampleId,uint8_t bVolume,uint8_t bLRPan,uint8_t bFBPan,
 						 uint16_t wPitch,uint8_t bFlags)
-{}
+{
+	printf("SfxPlay(wSampleId=%d)\n", wSampleId);
+}
 
 int16_t SfxPlayID(int16_t wSampleId,uint8_t bVolume,uint8_t bLRPan,uint8_t bFBPan,
 						 uint16_t wPitch,uint8_t bFlags)
-{ return 0; }
+{
+	printf("SfxPlayID(wSampleId=%d)\n", wSampleId);
+	return -1;
+}
 
 void SfxStop(int16_t wPlayId)
 {}

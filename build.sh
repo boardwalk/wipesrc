@@ -2,13 +2,13 @@
 g++ -o wipeout-port \
     `pkg-config glfw3 --cflags --libs` -framework OpenGL \
     -I. -g -O0 -fsanitize=address -fno-omit-frame-pointer -std=c++11 \
-    -Wno-array-bounds \
     -Wno-constant-conversion \
     -Wno-empty-body \
     -Wno-tautological-constant-out-of-range-compare \
     -Wno-deprecated-declarations \
     -DWIPEOUTPC \
     -include stdint.h \
+    wipesrc/win95/markk/pmkey.cpp \
     wipesrc/wipeout98/small_ptr.cpp \
     wipesrc/wipeout98/ajs.cpp \
     wipesrc/wipeout98/andyscn.cpp \

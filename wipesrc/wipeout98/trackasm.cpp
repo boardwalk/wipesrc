@@ -2700,7 +2700,7 @@ void AsmAutoMesh
 	int32_t*          interpolate = ( int32_t* )   ( FastRam + 928 );    /* 1 * 4 = 4 bytes  */
 	int32_t*          flag =        ( int32_t* )   ( FastRam + 932 );    /* 1 * 4 = 4 bytes  */
 
-	uchar*         uv =          ( uchar* )  ( FastRam + 936 );    /* 5 * 2 = 10 bytes */
+	uint8_t*         uv =          ( uint8_t* )  ( FastRam + 936 );    /* 5 * 2 = 10 bytes */
 
 #define        tu    0
 #define        ru    1

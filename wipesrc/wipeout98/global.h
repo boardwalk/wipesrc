@@ -157,9 +157,9 @@ extern PolyFT4        *prConfirm;
 
 #define  PrimitiveBufferSize  65536
 
-extern uchar          PrimitiveBuffer0[ ];
-extern uchar          PrimitiveBuffer1[ ];
-extern uchar*         PrimitiveBuffer[  ];
+extern uint8_t          PrimitiveBuffer0[ ];
+extern uint8_t          PrimitiveBuffer1[ ];
+extern uint8_t*         PrimitiveBuffer[  ];
 extern StdPoly        prims;
 
 
