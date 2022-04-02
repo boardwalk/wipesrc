@@ -623,8 +623,8 @@ Listed in decreasing order of priority
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
 
-				//            AddPrim(OT[ CurrentScreen ],  ( *depth ), ( uint32_t* ) ft4 );
-				AddPrim(OT[ CurrentScreen ],  ( (depth2[0] >> DepthShift) - DepthMod), ( uint32_t* ) ft4 );
+				//            AddPrim(OT[ CurrentScreen ],  ( *depth ), ( P_TAG* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  ( (depth2[0] >> DepthShift) - DepthMod), ( P_TAG* ) ft4 );
          }
 
          face++;
@@ -868,7 +868,7 @@ Listed in decreasing order of priority
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
 
-				AddPrim(OT[ CurrentScreen ],  ((depth[ 0 ] >> DepthShift) - DepthMod ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  ((depth[ 0 ] >> DepthShift) - DepthMod ), ( P_TAG* ) ft4 );
 			}
 
 			/* Top right polygon */
@@ -946,7 +946,7 @@ Listed in decreasing order of priority
 				ft4->colour0.r = face->red;
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
-				AddPrim(OT[ CurrentScreen ], ( depth[ 1 ] >> DepthShift) - DepthMod, ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ], ( depth[ 1 ] >> DepthShift) - DepthMod, ( P_TAG* ) ft4 );
 			}
 
 			/* Bottom left polygon */
@@ -1025,7 +1025,7 @@ Listed in decreasing order of priority
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 3 ] >> DepthShift) - DepthMod ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 3 ] >> DepthShift) - DepthMod ), ( P_TAG* ) ft4 );
 			}
 
 			/* Bottom right polygon */
@@ -1103,7 +1103,7 @@ Listed in decreasing order of priority
 				ft4->colour0.g = face->green;
 				ft4->colour0.b = face->blue;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 4 ] >> DepthShift) - DepthMod ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 4 ] >> DepthShift) - DepthMod ), ( P_TAG* ) ft4 );
 
 			}
 			face++;
@@ -1463,7 +1463,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 0 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 0 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 0 ] & flag[ 1 ] & flag[ 5 ] & flag[ 6 ] & ShortClipFlags ) )
 			{
@@ -1541,7 +1541,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 1 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 1 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 1 ] & flag[ 2 ] & flag[ 6 ] & flag[ 7 ] & ShortClipFlags ) )
 			{
@@ -1618,7 +1618,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 2 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 2 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 2 ] & flag[ 3 ] & flag[ 7 ] & flag[ 8 ] & ShortClipFlags ) )
 			{
@@ -1695,7 +1695,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 3 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 3 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 3 ] & flag[ 4 ] & flag[ 8 ] & flag[ 9 ] & ShortClipFlags ) )
 			{
@@ -1772,7 +1772,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 5 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 5 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 5 ] & flag[ 6 ] & flag[ 10 ] & flag[ 11 ] & ShortClipFlags ) )
 			{
@@ -1849,7 +1849,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 6 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 6 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 6 ] & flag[ 7 ] & flag[ 11 ] & flag[ 12 ] & ShortClipFlags ) )
 			{
@@ -1926,7 +1926,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 7 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 7 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 7 ] & flag[ 8 ] & flag[ 12 ] & flag[ 13 ] & ShortClipFlags ) )
 			{
@@ -2003,7 +2003,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 8 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 8 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 8 ] & flag[ 9 ] & flag[ 13 ] & flag[ 14 ] & ShortClipFlags ) )
 			{
@@ -2080,7 +2080,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 10 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 10 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 10 ] & flag[ 11 ] & flag[ 15 ] & flag[ 16 ] & ShortClipFlags ) )
 			{
@@ -2157,7 +2157,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 11 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 11 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 11 ] & flag[ 12 ] & flag[ 16 ] & flag[ 17 ] & ShortClipFlags ) )
 			{
@@ -2234,7 +2234,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 12 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 12 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 12 ] & flag[ 13 ] & flag[ 17 ] & flag[ 18 ] & ShortClipFlags ) )
 			{
@@ -2311,7 +2311,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 13 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 13 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 13 ] & flag[ 14 ] & flag[ 18 ] & flag[ 19 ] & ShortClipFlags ) )
 			{
@@ -2388,7 +2388,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 15 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 15 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 15 ] & flag[ 16 ] & flag[ 20 ] & flag[ 21 ] & ShortClipFlags ) )
 			{
@@ -2466,7 +2466,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 16 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 16 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 16 ] & flag[ 17 ] & flag[ 21 ] & flag[ 22 ] & ShortClipFlags ) )
 			{
@@ -2543,7 +2543,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 17 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 17 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 17 ] & flag[ 18 ] & flag[ 22 ] & flag[ 23 ] & ShortClipFlags ) )
 			{
@@ -2620,7 +2620,7 @@ Listed in decreasing order of priority
 				ft4->xy2.pad = 1;
 				ft4->xy3.pad = 1;
 
-				AddPrim(OT[ CurrentScreen ],  (( depth[ 18 ] >> DepthShift) - DepthMod  ), ( uint32_t* ) ft4 );
+				AddPrim(OT[ CurrentScreen ],  (( depth[ 18 ] >> DepthShift) - DepthMod  ), ( P_TAG* ) ft4 );
 			}
 			else if ( !( flag[ 18 ] & flag[ 19 ] & flag[ 23 ] & flag[ 24 ] & ShortClipFlags ) )
 			{
@@ -2951,7 +2951,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT4( ( POLY_FT4* )( ft4 ) );
 
-				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( uint32_t* )( ft4 ) );
+				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( P_TAG* )ft4 );
 
 				autoMesh->quadCount += 1;
 			}
@@ -2996,7 +2996,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT3( ( POLY_FT3* )( ft3 ) );
 
-				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( uint32_t* )( ft3 ) );
+				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( P_TAG* )ft3);
 				autoMesh->triCount += 1;
 			}
 		}
@@ -3051,7 +3051,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT4( ( POLY_FT4* )( ft4 ) );
 
-				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( uint32_t* )( ft4 ) );
+				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( P_TAG* )ft4);
 				autoMesh->quadCount += 1;
 			}
 			else if ( clip & top )
@@ -3095,7 +3095,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT3( ( POLY_FT3* )( ft3 ) );
 
-				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( uint32_t* )( ft3 ) );
+				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( P_TAG* )ft3);
 				autoMesh->triCount += 1;
 			}
 		}
@@ -3151,7 +3151,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT4( ( POLY_FT4* )( ft4 ) );
 
-				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( uint32_t* )( ft4 ) );
+				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( P_TAG* )ft4);
 
 				autoMesh->quadCount += 1;
 			}
@@ -3207,7 +3207,7 @@ void AsmAutoMesh
 #endif
 				SetPolyFT4( ( POLY_FT4* )( ft4 ) );
 
-				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( uint32_t* )( ft4 ) );
+				AddPrim(OT[ CurrentScreen ],  depth[ cNum ], ( P_TAG* )ft4);
 				autoMesh->quadCount += 1;
 			}
 		}

@@ -9,7 +9,7 @@ void setRenderEnd(void);
 int32_t	     ProcessMessages(void);
 void SetContext(void);
 void sendList(void);
-void	    JJSDrawPolyF3(POLY_F4 * p);
+void	    JJSDrawPolyF3(POLY_F3 * p);
 void	    JJSDrawPolyFT3(POLY_FT3 * p);
 void	    JJSDrawPolyG3(POLY_G3 * p);
 void	    JJSDrawPolyGT3(POLY_GT3 * p);

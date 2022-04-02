@@ -55,23 +55,23 @@ int32_t	screenh=0;						//jed
 
 void JJS_Sprite(SPRT *sp);
 void JJS_Sprite8(SPRT_8 *sp);
-void AYDrawFT4(uint32_t *primitive);
-void AYDrawF3(uint32_t *primitive);
-void AYDrawG3(uint32_t *primitive);
-void AYDrawGT3(uint32_t *primitive);
-void AYDrawFT3(uint32_t *primitive);
-void AYDrawF4(uint32_t *primitive);
-void AYDrawG4(uint32_t *primitive);
-void AYDrawGT4(uint32_t *primitive);
-void sprite8(uint32_t *primtive);
-void sprite(uint32_t *primtive);
-void tile(uint32_t *primtive);
-void ChangeDrawMode(uint32_t *primitive);
-void MaskSprite(uint32_t *primitive);
-void (*DrawFunctions[256])(uint32_t *);
+void AYDrawFT4(P_TAG *primitive);
+void AYDrawF3(P_TAG *primitive);
+void AYDrawG3(P_TAG *primitive);
+void AYDrawGT3(P_TAG *primitive);
+void AYDrawFT3(P_TAG *primitive);
+void AYDrawF4(P_TAG *primitive);
+void AYDrawG4(P_TAG *primitive);
+void AYDrawGT4(P_TAG *primitive);
+void sprite8(P_TAG *primtive);
+void sprite(P_TAG *primtive);
+void tile(P_TAG *primtive);
+void ChangeDrawMode(P_TAG *primitive);
+void MaskSprite(P_TAG *primitive);
+void (*DrawFunctions[256])(P_TAG *);
 void intarray(void);
 void IntVga(void);
-void NotValidPrimType(uint32_t *primitive);
+void NotValidPrimType(P_TAG *primitive);
 extern void DrawPolyF3(uint32_t *);
 extern void DrawPolyFT3(uint32_t *);
 extern void DrawPolyF4(uint32_t *);
@@ -89,8 +89,6 @@ int16_t rendering=0;
 
 void DrawOTag(P_TAG *primitive)
 {
-	void* addr;
-
 #if	DEBUG_LOCKED
 	CurBuffer = DebugScreen;
 #else
@@ -107,16 +105,14 @@ void DrawOTag(P_TAG *primitive)
 	setRenderBegin();
 	numoff=0;
 	numsmall=0;
-	addr = primitive;
 
-	if (addr != NULL) do
+	while (primitive != nullptr)
 	{
-		if (((P_TAG *) addr)->code != 0) //Case of OT stuff
-			DrawPrim((uint32_t *) addr);
+		if (primitive->code != 0) //Case of OT stuff
+			DrawPrim(primitive);
 
-		primitive = (P_TAG *) addr;
+		primitive = primitive->addr;
 	}
-	while ((addr = getaddr(primitive)) != NULL);
 
 #if DEBUG_LOCKED
 	while (LockBackBuffer())
@@ -178,7 +174,7 @@ void intarray(void)
 		DrawFunctions[x]=NotValidPrimType;
 }
 
-void DrawPrim(uint32_t *primitive)
+void DrawPrim(P_TAG *primitive)
 {
 	uint8_t func = (((P_TAG *)primitive)->code) & 0xfc;
 	// if (func != 0) {
@@ -189,9 +185,9 @@ void DrawPrim(uint32_t *primitive)
 
 
 
-void NotValidPrimType(uint32_t *primitive)
+void NotValidPrimType(P_TAG *primitive)
 {
-	//	printf("Prim x%x will never be supported In Current Code\n",((P_TAG *)primitive)->code);
+		printf("Prim x%x will never be supported In Current Code\n", primitive->code);
 }
 
 
@@ -203,71 +199,33 @@ void NotValidPrimType(uint32_t *primitive)
 
 
 
-void AYDrawF3(uint32_t *primitive)
+void AYDrawF3(P_TAG *primitive)
 {
-	POLY_F3	*poly;
-	POLY_F4 fred;
-
-	poly = (POLY_F3 *)primitive;
-
-	fred.x0 = poly->x0;
-	fred.x1 = poly->x1;
-	fred.x2 = poly->x2;
-	fred.x3 = poly->x2;
-
-	fred.y0 = poly->y0;
-	fred.y1 = poly->y1;
-	fred.y2 = poly->y2;
-	fred.y3 = poly->y2;
-
-	//jed
-	fred.r0 = poly->r0;
-	fred.g0 = poly->g0;
-	fred.b0 = poly->b0;
-	JJSDrawPolyF3(&fred);
+	JJSDrawPolyF3((POLY_F3 *)primitive);
 }
 
 
 
-void AYDrawFT3(uint32_t *primitive)
+void AYDrawFT3(P_TAG *primitive)
 {
-	POLY_FT3	*poly;
-	POLY_FT3	fred;
-	poly = (POLY_FT3 *)primitive;
-
-	fred = *poly;
-	//jed
-	JJSDrawPolyFT3(&fred);
+	JJSDrawPolyFT3((POLY_FT3 *)primitive);
 }
 
 
 
-void AYDrawG3(uint32_t *primitive)
+void AYDrawG3(P_TAG *primitive)
 {
-	POLY_G3	*poly;
-	POLY_G3 fred;
-
-	poly = (POLY_G3 *)primitive;
-
-	fred = *poly;
-	//jed
-	JJSDrawPolyG3(&fred);
+	JJSDrawPolyG3((POLY_G3 *)primitive);
 }
 
 
 
-void AYDrawGT3(uint32_t *primitive)
+void AYDrawGT3(P_TAG *primitive)
 {
-	POLY_GT3	*poly;
-	POLY_GT3	fred;
-
-	poly = (POLY_GT3 *)primitive;
-
-	fred = *poly;
-	JJSDrawPolyGT3(&fred);
+	JJSDrawPolyGT3((POLY_GT3 *)primitive);
 }
 
-void sprite(uint32_t *primitive)
+void sprite(P_TAG *primitive)
 {
 	SPRT 			*ip;
 	SPRT 			op;
@@ -291,7 +249,7 @@ void sprite(uint32_t *primitive)
 
 
 
-void sprite8(uint32_t *primitive)
+void sprite8(P_TAG *primitive)
 {
 	SPRT_8 *ip;
 	SPRT_8	op;
@@ -311,56 +269,35 @@ void sprite8(uint32_t *primitive)
 
 
 
-void AYDrawF4(uint32_t *primitive)
+void AYDrawF4(P_TAG *primitive)
 {
-	POLY_F4	*poly;
-	POLY_F4	fred;
-
-
-	poly = (POLY_F4 *)primitive;
-
-	fred = *poly;
-	JJSDrawPolyF4(&fred);
+	JJSDrawPolyF4((POLY_F4 *)primitive);
 }
 
 
 
-void AYDrawFT4(uint32_t *primitive)
+void AYDrawFT4(P_TAG *primitive)
 {
-	POLY_FT4	*poly;
-
-	poly = (POLY_FT4 *)primitive;
-
-	JJSDrawPolyFT4(poly);
+	JJSDrawPolyFT4((POLY_FT4 *)primitive);
 }
 
 
 
-void AYDrawGT4(uint32_t *primitive)
+void AYDrawGT4(P_TAG *primitive)
 {
-	POLY_GT4	*poly;
-
-	poly = (POLY_GT4 *)primitive;
-
-	JJSDrawPolyGT4(poly);
+	JJSDrawPolyGT4((POLY_GT4 *)primitive);
 }
 
 
 
-void AYDrawG4(uint32_t *primitive)
+void AYDrawG4(P_TAG *primitive)
 {
-	POLY_G4	*poly;
-	POLY_G4 fred;
-
-	poly = (POLY_G4 *)primitive;
-
-	fred = *poly;
-	JJSDrawPolyG4(&fred);
+	JJSDrawPolyG4((POLY_G4 *)primitive);
 }
 
 
 
-void tile(uint32_t *primitive)
+void tile(P_TAG *primitive)
 {
 	TILE 	*ip;
 	POLY_F4	op;
@@ -383,7 +320,7 @@ void tile(uint32_t *primitive)
 
 }
 
-void ChangeDrawMode(uint32_t *primitive)
+void ChangeDrawMode(P_TAG *primitive)
 {
 	extern int16_t	drawenv_tpage;
 	DR_MODE			*temp;
@@ -394,7 +331,7 @@ void ChangeDrawMode(uint32_t *primitive)
 }
 
 
-void MaskSprite(uint32_t *primitive)
+void MaskSprite(P_TAG *primitive)
 {
 	SPRT 			*ip;
 	SPRT 			op;

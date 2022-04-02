@@ -9,7 +9,7 @@
 
 typedef struct
 {
-   uint32_t    tag;
+   uintptr_t    tag;
    uchar    r0, g0, b0, code;
    uint16_t   x, y;
    uint16_t   w, h;
@@ -19,7 +19,7 @@ typedef struct
 
 typedef struct
 {
-   uint32_t    tag;
+   uintptr_t    tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    DVECTOR  xy1;
@@ -30,7 +30,7 @@ typedef struct
 
 typedef struct
 {
-   uint32_t    tag;
+   uintptr_t    tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    DVECTOR  xy1;
@@ -42,7 +42,7 @@ typedef struct
 
 typedef struct
 {
-   uint32_t    tag;
+   uintptr_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
    uchar    u0, v0;
@@ -59,7 +59,7 @@ typedef struct
 
 typedef struct
 {
-   uint32_t    tag;
+   uintptr_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
    uchar    u0, v0;
@@ -79,7 +79,7 @@ typedef struct
 
 typedef struct
 {
-   uint32_t    tag;
+   uintptr_t    tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    CVECTOR  colour1;
@@ -92,7 +92,7 @@ typedef struct
 
 typedef struct
 {
-   uint32_t    tag;
+   uintptr_t    tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    CVECTOR  colour1;
@@ -107,7 +107,7 @@ typedef struct
 
 typedef struct
 {
-   uint32_t    tag;
+   uintptr_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
    uchar    u0, v0;
@@ -126,7 +126,7 @@ typedef struct
 
 typedef struct
 {
-   uint32_t    tag;
+   uintptr_t    tag;
    CVECTOR  colour0;
    SVECTOR  xy0;
    uchar    u0, v0;
@@ -150,22 +150,12 @@ typedef struct
 
 typedef struct
 {
-   uint32_t*   tag;
+   uintptr_t  tag;
    CVECTOR  colour0;
    DVECTOR  xy0;
    DVECTOR  xy1;
 } LineF2;
 
-
-/* 2D Primitive Stubs
-*/
-
-typedef struct Prim
-{
-   unsigned        next : 24;
-   unsigned        size : 8;
-   CVECTOR     colour0;
-} Prim;
 
 /* Sony PRIM structure
 */
@@ -175,14 +165,6 @@ typedef struct PRIM
    struct PRIM*   tag;
    CVECTOR        colour0;
 } PRIM;
-
-typedef struct Tag
-{
-   unsigned           next : 24;
-   unsigned           size : 8;
-} Tag;
-
-
 
 
 /* Screen Double Buffering Structure
@@ -641,7 +623,6 @@ typedef union Poly
 typedef union StdPoly
 {
    char*             ptr;
-   Prim*             prim;
    PolyF3*           f3;
    PolyFT3*          ft3;
    PolyF4*           f4;

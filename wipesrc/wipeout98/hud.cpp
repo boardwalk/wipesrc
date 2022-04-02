@@ -78,7 +78,7 @@ void InitText()
 	DRTEXT_RED = DRTEXT_16 + 4 ;
 
 	SetDrawMode((DR_MODE*)&dmode,0,0,FONT_TPAGE,0);
-	DrawPrim((uint32_t *)&dmode);
+	DrawPrim((P_TAG *)&dmode);
 	for(i = 0; i < 600; i++)
 	{
 //		SetPolyFT4(&(display_text[i]));	// PCwipeout
@@ -192,7 +192,7 @@ void fill_speedo (Speedo *speedo, int32_t speed, int32_t thrust)
 			barIntervalXTop = (width*target)/2000;
 			setWH(&(speedo->solidbar[CurrentScreen]),speedo->barInfo[andy].Left.topx+barIntervalXTop,SPEEDO_HEIGHT);
 		}
-		AddPrim(OT[CurrentScreen], 0, (uint32_t *)&(speedo->solidbar[CurrentScreen]));
+		AddPrim(OT[CurrentScreen], 0, (P_TAG*)&speedo->solidbar[CurrentScreen]);
 
 		andy = (thrust/70);
 		if(andy > NUM_BARS) andy = NUM_BARS;
@@ -208,7 +208,7 @@ void fill_speedo (Speedo *speedo, int32_t speed, int32_t thrust)
 			setWH(&(speedo->transbar[CurrentScreen]),speedo->barInfo[andy].Left.topx+barIntervalXTop	,SPEEDO_HEIGHT);
 		}
 
-		AddPrim(OT[CurrentScreen], 0, (uint32_t *)&(speedo->transbar[CurrentScreen]));
+		AddPrim(OT[CurrentScreen], 0, (P_TAG*)&speedo->transbar[CurrentScreen]);
 // BIT SHORTER THAN STU'S
 }
 
@@ -239,7 +239,7 @@ void AddTime(int32_t time, TEXT_DATA *pos_data, int32_t colour)
 	small_num_size = size>>1;
 
 //	SetDrawMode((DR_MODE*)&dmode,0,0,FONT_TPAGE,0);
-//	DrawPrim((uint32_t *)&dmode);
+//	DrawPrim((P_TAG *)&dmode);
 
 	switch (size)
 	{
@@ -303,7 +303,7 @@ void AddTime(int32_t time, TEXT_DATA *pos_data, int32_t colour)
   			display_text[textPrim].clut = redTex->cba;
 		}
 
-		AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(display_text[textPrim]) );
+		AddPrim(OT[CurrentScreen], 0, (P_TAG*)&display_text[textPrim] );
 		x += currLett;
 		textPrim++;
 	}
@@ -333,7 +333,7 @@ void AddTime(int32_t time, TEXT_DATA *pos_data, int32_t colour)
    	display_text[textPrim].clut = redTex->cba;
 	}
 
-   AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(display_text[textPrim]) );
+   AddPrim(OT[CurrentScreen], 0, (P_TAG*)&display_text[textPrim] );
 
 
 	x += currLett;
@@ -375,7 +375,7 @@ void AddTime(int32_t time, TEXT_DATA *pos_data, int32_t colour)
    		display_text[textPrim].clut = redTex->cba;
 		}
 
-   	AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(display_text[textPrim]) );
+   	AddPrim(OT[CurrentScreen], 0, (P_TAG*) &display_text[textPrim] );
 
 		x += currLett;
 		textPrim++;
@@ -404,7 +404,7 @@ void AddTime(int32_t time, TEXT_DATA *pos_data, int32_t colour)
 	}
 
 
-   AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(display_text[textPrim]) );
+   AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(display_text[textPrim]) );
 
 
 	x += currLett;
@@ -443,7 +443,7 @@ void AddTime(int32_t time, TEXT_DATA *pos_data, int32_t colour)
 		display_text[textPrim].clut = redTex->cba;
 	}
 
-   AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(display_text[textPrim]) );
+   AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(display_text[textPrim]) );
 
  	x += currLett ;
 	textPrim++;
@@ -524,7 +524,7 @@ void AddText(const char* text_ptr, TEXT_DATA *pos_data, int32_t colour)
    				display_text[textPrim].clut = redTex->cba;
 			}
 
-	   		AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(display_text[textPrim]) );
+	   		AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(display_text[textPrim]) );
 
 			textPrim++;
 			x += currLett ;
@@ -605,7 +605,7 @@ void AddNumber(int32_t num, TEXT_DATA *pos_data, int32_t colour)
 		}
 
 
-      AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(display_text[textPrim]) );
+      AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(display_text[textPrim]) );
 		textPrim++;
 		x += currLett;
 	}
@@ -651,7 +651,7 @@ void AddDelEnd(char dispChar, TEXT_DATA *pos_data, int32_t colour)
  			display_text[textPrim].clut = redTex->cba;
 	}
 
-	AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(display_text[textPrim]) );
+	AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(display_text[textPrim]) );
 
 	textPrim++;
 }
@@ -1391,7 +1391,7 @@ void ScreenFooter (int32_t x, int32_t y, int32_t colour)
   			symbols[i].clut = redTex->cba;
 		}
 
- 		AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(symbols[i]) );
+ 		AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(symbols[i]) );
 
 
 	}
@@ -1500,7 +1500,7 @@ void CentreText(const char* the_text_ptr, TEXT_DATA *pos_data, int32_t colour)
    				display_text[textPrim].clut = redTex->cba;
 			}
 
-   			AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(display_text[textPrim]) );
+   			AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(display_text[textPrim]) );
 
 			textPrim++;
 			x += currLett ;
@@ -1541,7 +1541,7 @@ void DisplayLives (SPRT lifeIcons[][2], ConfigData *gameData) // PCwipeout
 
 		lifeIcons[i][CurrentScreen].clut = livesTex->cba ;
 
-  		AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(lifeIcons[i][CurrentScreen]) );
+  		AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(lifeIcons[i][CurrentScreen]) );
 
 	}
 
@@ -1689,7 +1689,7 @@ void DisplayWinLose (Texture *winLose, POLY_FT4 *picPrim, int16_t x, int16_t y, 
 
 //		picPrim[CurrentScreen].clut = winLose->cba ; // PCwipeout
 
- 		AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(picPrim[CurrentScreen]) );
+ 		AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(picPrim[CurrentScreen]) );
 }
 
 
@@ -1711,8 +1711,8 @@ void BackPoly (POLY_F4* selectBox, DR_MODE* selectTrans, int16_t x, int16_t y, i
 	SetDrawMode(&(selectTrans[CurrentScreen]), 1, 1, FONT_TPAGE, 0);
 
 
-  	AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(selectBox[CurrentScreen]) );
-  	AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(selectTrans[CurrentScreen]) );
+  	AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(selectBox[CurrentScreen]) );
+  	AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(selectTrans[CurrentScreen]) );
 
 }
 
@@ -2086,7 +2086,7 @@ static char fixof[]={0,2,3,4};
 			setXY0(&(speedo->transbar[j]),speedo_x[screenres],speedo_y[screenres]);
 			setXY0(&(speedo->solidbar[j]),speedo_x[screenres],speedo_y[screenres]);
 		}
- 		AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(speedo->facia[CurrentScreen]) );
+ 		AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(speedo->facia[CurrentScreen]) );
 
 	 	if(CameraUpdate == UpdateCameraAttractInternal)
 			fill_speedo(speedo, shipIndex[ownShip].speed*7, shipIndex[ownShip].thrust_mag);

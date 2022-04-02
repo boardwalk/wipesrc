@@ -95,8 +95,6 @@ void _makepath(
 
 extern int16_t rendering;
 
-#define addPrim(ot, p)	setaddr(p, getaddr(ot)), setaddr(ot, p)
-
 CVECTOR	Palette[256];
 char	main_palette[768];
 char shield_palette[768];
@@ -190,14 +188,16 @@ int32_t		DrawSync(int32_t	mode)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // FUNCTIONS WHICH JUST CALL THEIR EQUIVALENT MACROS
 
-void	AddPrim(P_TAG *ordt, int32_t depth, uint32_t *p)
+void	AddPrim(P_TAG *ordt, int32_t depth, P_TAG *p)
 {
 	if (depth < 0)
 		depth = 0;
 	else if (depth > 8191) // OT_SIZE - 1
 		depth = 8191;
 
-	addPrim(ordt + depth, p);
+	P_TAG* ot = ordt + depth;
+	p->addr = ot->addr;
+	ot->addr = p;
 }
 
 uint16_t GetTPage(int32_t tp, int32_t abr, int32_t x, int32_t y)

@@ -626,7 +626,7 @@ void MenuControl (ConfigData *gameData, TimData *titleScreen, int32_t *mode, int
 
 	ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
 
-	AddPrim( OT[ CurrentScreen ], OT_SIZE - 1, ( uint32_t* ) clear[ CurrentScreen ] ); // PCwipeout
+	AddPrim( OT[ CurrentScreen ], OT_SIZE - 1, ( P_TAG* ) clear[ CurrentScreen ] ); // PCwipeout
 	UpdateNotes(NOT_PAUSED);
 	Swap () ;
 
@@ -2633,7 +2633,7 @@ void ShowMenuBackground (POLY_FT4 *menuPrim, POLY_FT4 *menu1Prim, TimData *timSi
 	menuPrim[CurrentScreen].r0=230;
 	menuPrim[CurrentScreen].g0=0;
 	menuPrim[CurrentScreen].b0=BLACK_NOT_DRAWN;
-	AddPrim(OT[CurrentScreen], 4095, (uint32_t *)&(menuPrim[CurrentScreen]));
+	AddPrim(OT[CurrentScreen], 4095, (P_TAG *)&menuPrim[CurrentScreen]);
 
 	SetPolyFT4(&(menu1Prim[CurrentScreen]));
 	menu1Prim[CurrentScreen].code = 0x2d ;
@@ -2647,7 +2647,7 @@ void ShowMenuBackground (POLY_FT4 *menuPrim, POLY_FT4 *menu1Prim, TimData *timSi
 	menu1Prim[CurrentScreen].r0=230;
 	menu1Prim[CurrentScreen].g0=0;
 	menu1Prim[CurrentScreen].b0=BLACK_NOT_DRAWN;
-	AddPrim(OT[CurrentScreen], 4095, (uint32_t *) &(menu1Prim[CurrentScreen]));
+	AddPrim(OT[CurrentScreen], 4095, (P_TAG *) &menu1Prim[CurrentScreen]);
 }
 
 
@@ -3019,7 +3019,7 @@ void MusicVSfx (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *
 
 	musicPrims->sliderPrim.clut = musicTex->sliderTex->cba;
 
-	AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(musicPrims->sliderPrim) );
+	AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &musicPrims->sliderPrim );
 
 	/*	Slider background */
 	SetPolyFT4(&(musicPrims->slidePrim));
@@ -3041,7 +3041,7 @@ void MusicVSfx (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *
 
 	musicPrims->slidePrim.clut = musicTex->slideTex->cba;
 
-	AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(musicPrims->slidePrim) );
+	AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &(musicPrims->slidePrim) );
 
 	AddText (GetCdTrackName(gameData->oldCdTrack-1), text_data (130, 175, 8), RedText) ;
 
@@ -4859,7 +4859,7 @@ void DisplayButtons (int32_t x, int32_t y, int32_t buttType)
 	y *= upres;
 
 	SetDrawMode(&(drmode[buttType][CurrentScreen]), 0, 0, FONT_TPAGE, &tw);
-	AddPrim(OT[CurrentScreen], 0, (uint32_t *)&(drmode[buttType][CurrentScreen]));
+	AddPrim(OT[CurrentScreen], 0, (P_TAG *)&drmode[buttType][CurrentScreen]);
 
 	SetSprt(&(buttons[buttType][CurrentScreen]));
 
@@ -4876,10 +4876,10 @@ void DisplayButtons (int32_t x, int32_t y, int32_t buttType)
 	buttons[buttType][CurrentScreen].u0 = buttonTex[buttType]->u0;
 	buttons[buttType][CurrentScreen].v0 = buttonTex[buttType]->v0;
 
-  		AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(buttons[buttType][CurrentScreen]) );
+  		AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &buttons[buttType][CurrentScreen] );
 
 		SetDrawMode(&drmode2[buttType][CurrentScreen], 0, 0, 27, &tw);
-		AddPrim(OT[CurrentScreen], 0, (uint32_t *)&drmode2[buttType][CurrentScreen]);
+		AddPrim(OT[CurrentScreen], 0, (P_TAG *)&drmode2[buttType][CurrentScreen]);
 }
 
 
@@ -4894,7 +4894,7 @@ void DrawLine (int32_t x, int32_t y, int32_t x1, int32_t y1, POLY_F4 *line, int3
 	setXY4(&(line[lineNum]),x, y, x+2, y,
 		x1, y1, x1+2,y1+2 ) ;
 
-	AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(line[lineNum]) );
+	AddPrim(OT[CurrentScreen], 0, ( P_TAG* ) &line[lineNum] );
 }
 
 

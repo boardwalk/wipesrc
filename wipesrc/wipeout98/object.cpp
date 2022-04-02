@@ -625,6 +625,7 @@ uint16_t		StaticZ[MaxVertices];
 
 void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 {
+	printf("TransformStaticObjectHole %p (%s)\n", object, object->name);
 	DVECTOR	*screenPtr;
 	uint16_t	 *depthPtr;
 	uint16_t	 *flagsPtr;
@@ -777,7 +778,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt3 += 1;
 				}
 			}
@@ -840,7 +841,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt4 += 1;
 				}
 			}
@@ -895,7 +896,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.ft3 += 1;
 				}
 			}
@@ -959,7 +960,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.ft4 += 1;
 				}
 			}
@@ -996,7 +997,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g3 += 1;
 				}
 			}
@@ -1038,7 +1039,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g4 += 1;
 				}
 			}
@@ -1072,7 +1073,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.f3 += 1;
 				}
 			}
@@ -1110,7 +1111,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.f4 += 1;
 				}
 			}
@@ -1190,7 +1191,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 					prims.gt3->xy1.vz = depthPtr[coord1];
 					prims.gt3->xy2.vz = depthPtr[coord2];
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt3 += 1;
 				}
 			}
@@ -1289,7 +1290,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt4 += 1;
 				}
 			}
@@ -1343,7 +1344,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g3 += 1;
 				}
 			}
@@ -1420,7 +1421,7 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g4 += 1;
 				}
 			}
@@ -1445,6 +1446,8 @@ void	    TransformStaticObjectHole(Object * object, Skeleton * camera)
 
 void	    TransformStaticObject(Object * object, Skeleton * camera)
 {
+	// printf("TransformStaticObject %p (%s)\n", object, object->name);
+
 	DVECTOR	*screenPtr;
 	uint16_t	 *depthPtr;
 	uint16_t	 *flagsPtr;
@@ -1583,7 +1586,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt3 += 1;
 				}
 			}
@@ -1646,7 +1649,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt4 += 1;
 				}
 			}
@@ -1704,7 +1707,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.ft3 += 1;
 				}
 			}
@@ -1772,7 +1775,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.ft4 += 1;
 				}
 			}
@@ -1810,7 +1813,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g3 += 1;
 				}
 			}
@@ -1853,7 +1856,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g4 += 1;
 				}
 			}
@@ -1889,7 +1892,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.f3 += 1;
 				}
 			}
@@ -1929,7 +1932,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.f4 += 1;
 				}
 			}
@@ -2012,7 +2015,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt3 += 1;
 				}
 			}
@@ -2111,7 +2114,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt4 += 1;
 				}
 			}
@@ -2177,7 +2180,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g3 += 1;
 				}
 			}
@@ -2254,7 +2257,7 @@ void	    TransformStaticObject(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g4 += 1;
 				}
 			}
@@ -2436,6 +2439,8 @@ void	    DoJedvars(void)
 
 void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 {
+	printf("TransformStaticObjectBodge %p (%s)\n", object, object->name);
+
 	DVECTOR	*screenPtr;
 	uint16_t	 *depthPtr;
 	uint16_t	 *flagsPtr;
@@ -2573,7 +2578,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.gt3 += 1;
 				}
 			}
@@ -2636,7 +2641,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.gt4 += 1;
 				}
 			}
@@ -2694,7 +2699,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.ft3 += 1;
 				}
 			}
@@ -2762,7 +2767,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.ft4 += 1;
 				}
 			}
@@ -2800,7 +2805,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.g3 += 1;
 				}
 			}
@@ -2843,7 +2848,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.g4 += 1;
 				}
 			}
@@ -2879,7 +2884,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.f3 += 1;
 				}
 			}
@@ -2919,7 +2924,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.f4 += 1;
 				}
 			}
@@ -3003,7 +3008,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.gt3 += 1;
 				}
 			}
@@ -3100,7 +3105,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.gt4 += 1;
 				}
 			}
@@ -3158,7 +3163,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.g3 += 1;
 				}
 			}
@@ -3235,7 +3240,7 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth - SHIELD_BODGE, (P_TAG *) prims.ptr);
 					prims.g4 += 1;
 				}
 			}
@@ -3255,6 +3260,8 @@ void	    TransformStaticObjectBodge(Object * object, Skeleton * camera)
 
 void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 {
+	printf("TransformStaticMenuObject %p (%s)\n", object, object->name);
+
 	DVECTOR	*screenPtr;
 	uint16_t	 *depthPtr;
 	uint16_t	 *flagsPtr;
@@ -3390,7 +3397,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord1 ],
 					// depthPtr[ coord2 ] );
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt3 += 1;
 				}
 				/*else
@@ -3429,8 +3436,8 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 
 					depth = (depthPtr[coord0] + depthPtr[coord1] + depthPtr[coord2]) / 3;
 
-					//AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
-					ClipPolyGT3(OT[CurrentScreen] + depth, (uint32_t *) prims.prim);
+					//AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
+					ClipPolyGT3(OT[CurrentScreen] + depth, (P_TAG *) prims.ptr);
 
 					prims.gt3 += 1;
 				}*/
@@ -3496,7 +3503,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord2 ],
 					// depthPtr[ coord3 ] );
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt4 += 1;
 				}
 				/*else
@@ -3546,8 +3553,8 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord2 ],
 					// depthPtr[ coord3 ] );
 
-					//AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
-					ClipPolyGT4(OT[CurrentScreen] + depth, (uint32_t *) prims.prim);
+					//AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
+					ClipPolyGT4(OT[CurrentScreen] + depth, (P_TAG *) prims.ptr);
 
 					//prims.gt4 += 1;
 				}*/
@@ -3608,7 +3615,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 
 					depth = (depthPtr[coord0] + depthPtr[coord1] + depthPtr[coord2]) / 3;
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.ft3 += 1;
 				}
 				/*else
@@ -3645,8 +3652,8 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord1 ],
 					// depthPtr[ coord2 ] );
 
-					//AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
-					ClipPolyFT3(OT[CurrentScreen] + depth, (uint32_t *) prims.prim);
+					//AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
+					ClipPolyFT3(OT[CurrentScreen] + depth, (P_TAG *) prims.ptr);
 
 					//prims.ft3 += 1;
 				}*/
@@ -3717,7 +3724,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord2 ],
 					// depthPtr[ coord3 ] );
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.ft4 += 1;
 				}
 			}
@@ -3757,7 +3764,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord1 ],
 					// depthPtr[ coord2 ] );
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g3 += 1;
 				}
 				/*else
@@ -3788,8 +3795,8 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord1 ],
 					// depthPtr[ coord2 ] );
 
-					//AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
-					ClipPolyG3(OT[CurrentScreen] + depth, (uint32_t *) prims.prim);
+					//AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
+					ClipPolyG3(OT[CurrentScreen] + depth, (P_TAG *) prims.ptr);
 
 					//prims.g3 += 1;
 				}*/
@@ -3835,7 +3842,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord2 ],
 					// depthPtr[ coord3 ] );
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g4 += 1;
 				}
 				/*else
@@ -3873,8 +3880,8 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord2 ],
 					// depthPtr[ coord3 ] );
 
-					//AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
-					ClipPolyG4(OT[CurrentScreen] + depth, (uint32_t *) prims.prim);
+					//AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
+					ClipPolyG4(OT[CurrentScreen] + depth, (P_TAG *) prims.ptr);
 
 					//prims.g4 += 1;
 				}*/
@@ -3914,7 +3921,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord1 ],
 					// depthPtr[ coord2 ] );
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.f3 += 1;
 				}
 				/*else
@@ -3941,8 +3948,8 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord1 ],
 					// depthPtr[ coord2 ] );
 
-					//AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
-					ClipPolyF3(OT[CurrentScreen] + depth, (uint32_t *) prims.prim);
+					//AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
+					ClipPolyF3(OT[CurrentScreen] + depth, (P_TAG *) prims.ptr);
 
 					//prims.f3 += 1;
 				}*/
@@ -3986,7 +3993,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord2 ],
 					// depthPtr[ coord3 ] );
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 
 					prims.f4 += 1;
 				}
@@ -4022,8 +4029,8 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 					// depthPtr[ coord2 ],
 					// depthPtr[ coord3 ] );
 
-					//AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
-					ClipPolyF4(OT[CurrentScreen] + depth, (uint32_t *) prims.prim);
+					//AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
+					ClipPolyF4(OT[CurrentScreen] + depth, (P_TAG *) prims.ptr);
 
 					//prims.f4 += 1;
 
@@ -4108,7 +4115,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt3 += 1;
 				}
 			}
@@ -4207,7 +4214,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.gt4 += 1;
 				}
 			}
@@ -4273,7 +4280,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 							  depthPtr[coord1],
 							  depthPtr[coord2]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g3 += 1;
 				}
 			}
@@ -4350,7 +4357,7 @@ void	    TransformStaticMenuObject(Object * object, Skeleton * camera)
 							  depthPtr[coord2],
 							  depthPtr[coord3]);
 
-					AddPrim(OT[CurrentScreen], depth, (uint32_t *) prims.prim);
+					AddPrim(OT[CurrentScreen], depth, (P_TAG *) prims.ptr);
 					prims.g4 += 1;
 				}
 			}

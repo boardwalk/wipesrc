@@ -443,7 +443,7 @@ void HighScore (ConfigData *gameData)
 
 			ShowMenuBackground (&(scorePrim[0]), &(scorePrim1[0]), timInfo) ;
 
-    		AddPrim( OT[ CurrentScreen ], OT_SIZE - 1, ( uint32_t* ) clear[ CurrentScreen ] );
+    		AddPrim( OT[ CurrentScreen ], OT_SIZE - 1, (P_TAG*)clear[ CurrentScreen ] );
 			Swap () ;
 
 

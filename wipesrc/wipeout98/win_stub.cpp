@@ -60,8 +60,8 @@ void setRenderEnd(void)
 
 void JJS_Sprite(SPRT *sp)
 {
-	printf("JJS_Sprite(x0=%d, y0=%d, u0=%u, v0=%u, clut=%u, w=%d, h=%d\n",
-		sp->x0, sp->y0, sp->u0, sp->v0, sp->clut, sp->w, sp->h);
+	// printf("JJS_Sprite(x0=%d, y0=%d, u0=%u, v0=%u, clut=%u, w=%d, h=%d\n",
+	// 	sp->x0, sp->y0, sp->u0, sp->v0, sp->clut, sp->w, sp->h);
 }
 
 void JJS_Sprite8(SPRT_8 *sp)
@@ -69,44 +69,53 @@ void JJS_Sprite8(SPRT_8 *sp)
 	printf("JJS_Sprite8\n");
 }
 
-void	    JJSDrawPolyF3(POLY_F4 * p)
+void	    JJSDrawPolyF3(POLY_F3 * p)
 {
-	printf("f3\n");
+	// printf("f3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d)\n",
+	// 	p->x0, p->y0,
+	// 	p->x1, p->y1,
+	// 	p->x2, p->x2);
+
+	glBegin(GL_TRIANGLES);
+	glVertex2s(p->x0, p->y0);
+	glVertex2s(p->x1, p->y1);
+	glVertex2s(p->x2, p->y2);
+	glEnd();
 }
 
 void	    JJSDrawPolyF4(POLY_F4 * p)
 {
-	printf("f4\n");
+	// printf("f4\n");
 }
 
 void	    JJSDrawPolyG3(POLY_G3 * p)
 {
-	printf("f5\n");
+	// printf("f5\n");
 }
 
 void	    JJSDrawPolyG4(POLY_G4 * p)
 {
-	printf("g4\n");
+	// printf("g4\n");
 }
 
 void	    JJSDrawPolyFT3(POLY_FT3 * p)
 {
-	printf("ft3\n");
+	// printf("ft3\n");
 }
 
 void	    JJSDrawPolyFT4(POLY_FT4 * p)
 {
-	printf("ft4\n");
+	// printf("ft4\n");
 }
 
 void	    JJSDrawPolyGT3(POLY_GT3 * p)
 {
-	printf("gt3\n");
+	// printf("gt3\n");
 }
 
 void	    JJSDrawPolyGT4(POLY_GT4 * p)
 {
-	printf("gt4\n");
+	// printf("gt4\n");
 }
 
 BOOL SJRNewTexture(const char *filename)
@@ -126,19 +135,18 @@ void	    UnlockBackBuffer(void)
 
 void	    WinClearScreen(char colour)
 {
-	// glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void	    BltClearToScreen(void)
 {
-	// glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void	    DDSwap(void)
 {
-	printf("DDSwap...\n");
+	printf("DDSwap\n");
 	glfwSwapBuffers(g_window);
-	printf("DDSwap done.\n");
 }
 
 int32_t	     ProcessMessages(void)

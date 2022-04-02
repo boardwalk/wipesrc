@@ -631,22 +631,22 @@ void	    ClearVram(void)
 #else
 
 	clearVram = BlockFill(0, 0, 512, 256, 0, 0, 0);
-	DrawPrim((uint32_t *)clearVram);
+	DrawPrim((P_TAG *)clearVram);
 	DrawSync(0);
 	DFree(heap, (char *) clearVram);
 
 	clearVram = BlockFill(0, 256, 512, 256, 0, 0, 0);
-	DrawPrim((uint32_t *)clearVram);
+	DrawPrim((P_TAG *)clearVram);
 	DrawSync(0);
 	DFree(heap, (char *) clearVram);
 
 	clearVram = BlockFill(512, 0, 512, 256, 0, 0, 0);
-	DrawPrim((uint32_t *)clearVram);
+	DrawPrim((P_TAG *)clearVram);
 	DrawSync(0);
 	DFree(heap, (char *) clearVram);
 
 	clearVram = BlockFill(512, 256, 512, 256, 0, 0, 0);
-	DrawPrim((uint32_t *)clearVram);
+	DrawPrim((P_TAG *)clearVram);
 	DrawSync(0);
 	DFree(heap, (char *) clearVram);
 #endif

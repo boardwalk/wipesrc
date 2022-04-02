@@ -18,6 +18,7 @@
 #include "protos.h"
 #include "libgte.h"
 #include "ajs.h"
+#include <stdio.h>
 
 extern SVECTOR     StaticVertex[ ];
 extern DVECTOR     StaticScreen[ ];
@@ -29,6 +30,7 @@ extern uint16_t	   StaticZ[ ];
 
 void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t ShipObj)
 {
+	printf("DrawObjectAsm %p (%s)\n", object, object->name);
 	DVECTOR*    screenPtr;
 	uint16_t*     depthPtr;
 	uint16_t*     flagsPtr;
@@ -165,7 +167,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 					if(poly.ft3->flag & ShipEngine)
 						depth -= 50;
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.gt3 += 1;
 				}
 
@@ -230,7 +232,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 						depthPtr[ coord2 ],
 						depthPtr[ coord3 ] );
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.gt4 += 1;
 				}
 
@@ -288,7 +290,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 						depthPtr[ coord1 ],
 						depthPtr[ coord2 ] );
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.ft3 += 1;
 				}
             }
@@ -357,7 +359,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 
 					depth += ObjDepthMod;
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.ft4 += 1;
 				}
 
@@ -397,7 +399,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 
 					depth += ObjDepthMod;
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.g3 += 1;
 				}
 
@@ -442,7 +444,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 
 					depth += ObjDepthMod;
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.g4 += 1;
 				}
 
@@ -480,7 +482,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 
 					depth += ObjDepthMod;
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.f3 += 1;
 				}
 
@@ -524,7 +526,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 
 					depth += ObjDepthMod;
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.f4 += 1;
 				}
             }
@@ -612,7 +614,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 
 				newdepth = (depth >> 2) + ObjDepthMod;
 
-				AddPrim( OT[ CurrentScreen ], newdepth, ( uint32_t* ) prims.prim );
+				AddPrim( OT[ CurrentScreen ], newdepth, (P_TAG*)prims.ptr );
 				prims.ft4 += 1;
 			}
 
@@ -702,7 +704,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 
 				newdepth = (depth >> 2) + ObjDepthMod;
 
-				AddPrim( OT[ CurrentScreen ], newdepth, ( uint32_t* ) prims.prim );
+				AddPrim( OT[ CurrentScreen ], newdepth, (P_TAG*)prims.ptr );
 				prims.ft4 += 1;
 			}
 
@@ -720,6 +722,7 @@ void DrawObjectAsm( Object* object, Skeleton* camera, int32_t roll, int16_t Ship
 
 void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 {
+	printf("DrawObjectFixedAsm %p (%s)\n", object, object->name);
 	DVECTOR*    screenPtr;
 	uint16_t*     depthPtr;
 	uint16_t*     flagsPtr;
@@ -816,7 +819,7 @@ void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 					prims.gt3->xy1.vz = depthPtr[coord1];
 					prims.gt3->xy2.vz = depthPtr[coord2];
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.gt3 += 1;
 				}
 
@@ -878,7 +881,7 @@ void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 					prims.gt4->xy2.vz = depthPtr[coord2];
 					prims.gt4->xy3.vz = depthPtr[coord3];
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.gt4 += 1;
 				}
 
@@ -934,7 +937,7 @@ void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 					prims.ft3->xy2.pad = 0;
 
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.ft3 += 1;
 				}
             }
@@ -998,7 +1001,7 @@ void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 					prims.ft4->xy2.pad = 0;
 					prims.ft4->xy3.pad = 0;
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.ft4 += 1;
 				}
 
@@ -1032,7 +1035,7 @@ void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 					prims.g3->xy1 = screenPtr[ coord1 ];
 					prims.g3->xy2 = screenPtr[ coord2 ];
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.g3 += 1;
 				}
 
@@ -1070,7 +1073,7 @@ void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 					prims.g4->xy2 = screenPtr[ coord2 ];
 					prims.g4->xy3 = screenPtr[ coord3 ];
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.g4 += 1;
 				}
 
@@ -1102,7 +1105,7 @@ void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 					prims.f3->xy1 = screenPtr[ coord1 ];
 					prims.f3->xy2 = screenPtr[ coord2 ];
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.f3 += 1;
 				}
 
@@ -1137,7 +1140,7 @@ void DrawObjectFixedAsm( Object* object, Skeleton* camera, int32_t depth )
 					prims.f4->xy2 = screenPtr[ coord2 ];
 					prims.f4->xy3 = screenPtr[ coord3 ];
 
-					AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) prims.prim );
+					AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)prims.ptr );
 					prims.f4 += 1;
 				}
             }

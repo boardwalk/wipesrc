@@ -198,7 +198,7 @@ void DrawEffects(Effect* effects)
 				effects[i].sprite[ CurrentScreen ].pad6 = 0;
 				effects[i].sprite[ CurrentScreen ].pad7 = 0;
 
-				AddPrim( OT[ CurrentScreen ], depth, ( uint32_t* ) &(effects[i].sprite[ CurrentScreen ]) );
+				AddPrim( OT[ CurrentScreen ], depth, (P_TAG*)&effects[i].sprite[ CurrentScreen ] );
 			}
 		}
 	}
@@ -872,11 +872,10 @@ void DrawShadow(Object **shipShapes, ShipData *shipIndex, Shadow *shadow)
 					depth[1] -= 60;
 					depth[2] -= 60;
 
-					AddPrim( OT[ CurrentScreen ], depth[0] , ( uint32_t* ) &(shadow[i].poly[0][ CurrentScreen ]) );
-					AddPrim( OT[ CurrentScreen ], depth[2] , ( uint32_t* ) &(shadow[i].poly[1][ CurrentScreen ]) );
-					AddPrim( OT[ CurrentScreen ], depth[2] , ( uint32_t* ) &(shadow[i].poly[2][ CurrentScreen ]) );
-					AddPrim( OT[ CurrentScreen ], depth[2] , ( uint32_t* ) &(shadow[i].poly[3][ CurrentScreen ]) );
-
+					AddPrim( OT[ CurrentScreen ], depth[0] , (P_TAG*)&shadow[i].poly[0][ CurrentScreen ] );
+					AddPrim( OT[ CurrentScreen ], depth[2] , (P_TAG*)&shadow[i].poly[1][ CurrentScreen ] );
+					AddPrim( OT[ CurrentScreen ], depth[2] , (P_TAG*)&shadow[i].poly[2][ CurrentScreen ] );
+					AddPrim( OT[ CurrentScreen ], depth[2] , (P_TAG*)&shadow[i].poly[3][ CurrentScreen ] );
 				}
 			}
 		}
@@ -933,16 +932,16 @@ void DrawWeaponSprtIcons(SPRT *weaponIcon, Texture** weaponIconTextures, ShipDat
 		icon -= 1;
 
 		SetDrawMode(drawmode2, 0, 0, FONT_TPAGE, &tw);
-		AddPrim(OT[CurrentScreen], 0, (uint32_t *)drawmode2);
+		AddPrim(OT[CurrentScreen], 0, (P_TAG*)drawmode2);
 
 		weaponIcon[CurrentScreen].x0 = 144 * upres;
 		weaponIcon[CurrentScreen].y0 = 20 * upres;
 		weaponIcon[CurrentScreen].u0 = weaponIconTextures[icon]->u0;
 		weaponIcon[CurrentScreen].v0 = weaponIconTextures[icon]->v0;
-		AddPrim(OT[CurrentScreen], 0, ( uint32_t* ) &(weaponIcon[ CurrentScreen ]) );
+		AddPrim(OT[CurrentScreen], 0, (P_TAG*)&weaponIcon[ CurrentScreen ] );
 
 		SetDrawMode(drawmode, 0, 0, 22, &tw);
-		AddPrim(OT[CurrentScreen], 0, (uint32_t *)drawmode);
+		AddPrim(OT[CurrentScreen], 0, (P_TAG*)drawmode);
 	}
 }
 

@@ -225,21 +225,8 @@ extern	int32_t	(*GPU_printf)();	/* printf() object */
 /*
  * Primitive Handling Macros
  */
-#define setlen( p, _len)
-#define setaddr(p, _addr)	(((P_TAG *)(p))->addr = _addr)
 #define setcode(p, _code)	(((P_TAG *)(p))->code = _code)
-
-#define getlen(p)    		0
 #define getcode(p)   		(((P_TAG *)(p))->code)
-#define getaddr(p)   		(((P_TAG *)(p))->addr)
-
-#define nextPrim(p)  		((((P_TAG *)(p))->addr))
-#define isendprim(p) 		((((P_TAG *)(p))->addr)==NULL)
-
-//#define addPrim(ot, p)		setaddr(p, getaddr(ot)), setaddr(ot, p)
-#define addPrims(ot, p0, p1)	setaddr(p1, getaddr(ot)),setaddr(ot, p0)
-#define catPrim(p0, p1)		setaddr(p0, getaddr(p1))
-#define termPrim(p)		setaddr(p, NULL)
 
 #define setSemiTrans(p, abe) \
 	((abe)?setcode(p, getcode(p)|0x02):setcode(p, getcode(p)&~0x02))
@@ -331,8 +318,8 @@ typedef struct {
 /*
  * Polygon Primitive Definitions
  */
-typedef struct {
-	void*	addr;
+typedef struct P_TAG {
+	struct P_TAG*	addr;
 	uint8_t		r0, g0, b0, code;
 } P_TAG;
 
@@ -650,21 +637,6 @@ uint16_t GetTPage(int32_t tp, int32_t abr, int32_t x, int32_t y);
 uint16_t LoadClut(uint32_t *clut, int32_t x, int32_t y);
 uint16_t LoadTPage(uint32_t *pix, int32_t tp, int32_t abr, int32_t x, int32_t y, int32_t w, int32_t h);
 uint16_t LoadTPageA(uint32_t *pix, int32_t tp, int32_t abr, int32_t x, int32_t y, int32_t w, int32_t h);
-void AddPrim();
-void AddPrims();
-void CatPrim();
-void DrawOTag();
-void DrawOTagIO();
-void DrawPrim();
-void DumpClut(uint16_t clut);
-void DumpOTag();
-void DumpTPage(uint16_t tpage);
-void SetDumpFnt(int32_t id);
-void SetDrawOffset();
-int32_t SetGraphDebug(int32_t level);
-void SetSemiTrans();
-void SetShadeTex();
-void TermPrim();
 void SetPolyF3(POLY_F3  *p);
 void SetPolyFT3(POLY_FT3 *p);
 void SetPolyG3(POLY_G3  *p);
