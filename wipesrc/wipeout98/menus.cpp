@@ -42,7 +42,7 @@
 #include <stdio.h>			// PCwipeout
 #include <stdlib.h>		// PCwipeout
 #include <string.h>
-#include "../win95/andyy/pallette.h"
+#include "pallette.h"
 #include "../win95/chrise/utypes.h"
 #include "../win95/chrise/sfx.h"
 
