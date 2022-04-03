@@ -1,0 +1,5 @@
+AlignTrailingComments: false
+AllowShortFunctionsOnASingleLine: None
+KeepEmptyLinesAtTheStartOfBlocks: false
+ReflowComments: false
+SortIncludes: Never
