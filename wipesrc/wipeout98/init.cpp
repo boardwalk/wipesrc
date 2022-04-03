@@ -138,7 +138,7 @@ void LoadCmpFiles( TIMlist *timPtr )
 
 		if ( TextureTableCount >= TextureTableMax )
 		{
-			printf( "Wtl.c:LoadWtlFiles(): TextureTable is full\n" );
+			printf( "init.c:LoadCmpFiles(): TextureTable is full\n" );
 		}
 	}
 	DFree( heap, (char *)( timPtr->memBase ) );
