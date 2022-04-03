@@ -12,15 +12,6 @@ def main():
     os.chdir(os.path.dirname(__file__))
     os.makedirs('build', exist_ok=True)
 
-    excluded_filenames = {
-        'newgraphics.cpp',
-        'regread.cpp',
-        'win.cpp',
-        'wincd.cpp',
-        'winsnd.cpp',
-        'wintime.cpp',
-    }
-
     glfw_cxxflags = get_pkg_config('--cflags', 'glfw3')
     glfw_linkflags = get_pkg_config('--libs', 'glfw3')
 
@@ -58,9 +49,7 @@ def main():
 
             for dirpath, dirnames, filenames in os.walk('wipesrc'):
                 for filename in filenames:
-                    if filename in excluded_filenames:
-                        continue
-                    if filename.endswith('.cpp'):
+                    if filename.endswith('.cpp') and not filename.endswith('_old.cpp'):
                         cpp_file = os.path.join(dirpath, filename)
                         obj_file = os.path.join('build', dirpath, filename.removesuffix('.cpp') + '.o')
                         ninja.build(obj_file, 'cxx', cpp_file)
