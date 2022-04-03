@@ -43,7 +43,6 @@
 #include <stdlib.h>		// PCwipeout
 #include <string.h>
 #include "pallette.h"
-#include "../win95/chrise/utypes.h"
 #include "../win95/chrise/sfx.h"
 
 #include "../win95/markk/multiwo.h"

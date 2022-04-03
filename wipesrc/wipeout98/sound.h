@@ -1,8 +1,6 @@
 #ifndef SOUND_H
 #define SOUND_H
 
-#include "utypes.h"
-
 #define SOUND  1
 
 #define NOT_PAUSED 1

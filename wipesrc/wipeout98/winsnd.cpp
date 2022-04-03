@@ -9,7 +9,6 @@
 #include <mmsystem.h>
 #include <dsound.h>
 #include <stdio.h>
-#include "utypes.h"
 #include "sfx.h"
 #include "winsnd.h"
 

@@ -23,7 +23,6 @@
 #include "menus.h"
 #include "global.h"
 
-#include "utypes.h"
 #include "sfx.h"
 #include "winsnd.h"
 #include "utils.h"
