@@ -9,8 +9,8 @@ typedef struct colours_
 	char	pad;
 } COLOURS;
 
-void MakePal332(void);
-void MakePal2222( void );
+void MakePal332();
+void MakePal2222();
 void MakeFade(char red, char green, char blue);
 char find_nearest(COLOURS *pal, char r, char g, char b);
 

@@ -9,7 +9,7 @@ void CdInit()
 void CdSetVol(int32_t newVol)
 {}
 
-void CDRestart(void)
+void CDRestart()
 {}
 
 int32_t CdControl(uint8_t Cmd, uint8_t *parm1, uint8_t  *parm2)

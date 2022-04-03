@@ -618,7 +618,7 @@ int32_t DrawSync(int32_t mode);
 int32_t FntLoad(int32_t tx, int32_t ty);
 int32_t FntOpen(int32_t x, int32_t y, int32_t w, int32_t h, int32_t isbg, int32_t n);
 int32_t GetDispMode(int32_t width, int32_t height, int32_t isinter);
-int32_t GetGraphType(void);
+int32_t GetGraphType();
 int32_t LoadImage(RECT *rect, uint32_t *p);
 int32_t MargePrim();
 int32_t MoveImage(RECT *rect, int32_t x, int32_t y);

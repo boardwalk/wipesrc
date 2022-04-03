@@ -124,5 +124,5 @@ void CycleWeaponGrids(ShipData *shipIndex, WeaponGrid *weaponGrid, int32_t noWea
 void DrawWeapons(ShipData *shipIndex,WeaponShape* weaponShapes, WeaponData *weaponIndex );
 void DrawTargetIcon(ShipData *playerShip, ShipData *shipIndex, Object** shipShapes, POLY_FT4 *target);
 void SetTargetShip(ShipData *shipIndex, int32_t shipNo);
-int32_t GetNewWeapon(void);
-int32_t GetNewWeaponBodge(void);
+int32_t GetNewWeapon();
+int32_t GetNewWeaponBodge();

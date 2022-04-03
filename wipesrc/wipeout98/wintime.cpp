@@ -19,7 +19,7 @@ int32_t		Curpad = 0;
 extern uint16_t pad;
 
 extern int32_t frameRate30;
-extern void TimerIntRoutine(void);
+extern void TimerIntRoutine();
 extern void PASCAL OneShotTimer(UINT wTimerID, UINT msg,
 								DWORD dwUser, DWORD dw1, DWORD dw2) ;
 extern int32_t SetTimerCallback(int32_t *cttimer,  UINT msInterval);
@@ -30,7 +30,7 @@ UINT     wTimerRes;
 int32_t	frame_count = 0;
 void DestroyTimer(int32_t *cttimer);
 
-void InitialiseWinTimer(void)
+void InitialiseWinTimer()
 {
 	if(timeGetDevCaps(&tc, sizeof(TIMECAPS)) != TIMERR_NOERROR) {
 		/* Error; application can't continue. */
@@ -42,7 +42,7 @@ void InitialiseWinTimer(void)
 	SetTimerCallback(&ctrlTimer, TIMER_RESOLUTION); //Lets have our callback every 30Hz
 }
 
-void EndWinTimer (void)
+void EndWinTimer ()
 {
 	DestroyTimer(&ctrlTimer);
 	timeEndPeriod(wTimerRes);
@@ -87,7 +87,7 @@ void DestroyTimer(int32_t *cttimer)
     }
 }
 
-int32_t HowLong(void)
+int32_t HowLong()
 {
 	return((int32_t) timeGetTime());
 }

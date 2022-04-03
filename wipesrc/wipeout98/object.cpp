@@ -45,8 +45,8 @@ extern char     ScreenSize;
 extern char     Resolution;
 
 void StartOTag(void *);
-void ContinueOTag(void);
-void EndOTag(void);
+void ContinueOTag();
+void EndOTag();
 
 
 
@@ -144,7 +144,7 @@ PolyF4	 *ClearScreen
 	return ((PolyF4 *) quad);
 }
 
-void	    InitSystem(void)
+void	    InitSystem()
 {
 	/* Initialise GPU, GTE and Pad. Set Debug level */
 
@@ -230,7 +230,7 @@ void	    InitMenuDisplay(int32_t geomOffset)
 
 
 
-void	    InitGameDisplay(void)
+void	    InitGameDisplay()
 {
 
 #if PAL
@@ -261,7 +261,7 @@ void	    InitGameDisplay(void)
 }
 
 
-void	    InitSonyDisplay(void)
+void	    InitSonyDisplay()
 {
 
 #if PAL
@@ -431,12 +431,12 @@ void	    MatrixMultiply(MATRIX * m1, MATRIX * m2, MATRIX * m3)
 
 
 
-void	    InitialiseAmbientColour(void)
+void	    InitialiseAmbientColour()
 {
 	SetBackColor(0x00, 0x00, 0xff);
 }
 
-void	    InitialiseColourMatrix(void)
+void	    InitialiseColourMatrix()
 {
 	MATRIX	  cm;
 
@@ -456,7 +456,7 @@ void	    InitialiseColourMatrix(void)
 }
 
 
-void	    InitialiseLightMatrix(void)
+void	    InitialiseLightMatrix()
 {
 	MATRIX	  lm;
 
@@ -2369,7 +2369,7 @@ void	    InitFonts()
 }
 
 
-void	    DoJedvars(void)
+void	    DoJedvars()
 {
 	if (ScreenSize == FULL)
 	{

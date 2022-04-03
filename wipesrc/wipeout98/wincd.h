@@ -4,8 +4,8 @@ struct cdlPos
 	int32_t sec;
 };
 
-void CDRestart(void);
+void CDRestart();
 void CdSetVol(int32_t newVol);
-int32_t numTracks(void);
+int32_t numTracks();
 void CDPlay(int16_t CurrTrackNo);
 int32_t CdGetToc2(int32_t sess, struct CdlPos *table);

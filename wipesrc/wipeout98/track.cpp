@@ -46,7 +46,7 @@
 
 extern	int32_t	inattract;
 
-void IntelVertex( void )
+void IntelVertex()
 {
    VECTOR      *vert;
    int16_t       i;
@@ -67,7 +67,7 @@ void IntelVertex( void )
 
 
 
-void IntelFace( void )
+void IntelFace()
 {
    Face        *face;
    int16_t       i;
@@ -90,7 +90,7 @@ void IntelFace( void )
    }
 }
 
-void CheckVersion( void )
+void CheckVersion()
 {
    TrackSection      *section;
    int16_t             i;
@@ -109,7 +109,7 @@ void CheckVersion( void )
 
 
 
-void IndexToPointers( void )
+void IndexToPointers()
 {
    TrackSection      *section;
    int16_t             i;
@@ -137,7 +137,7 @@ void IndexToPointers( void )
 
 
 
-void PointersToIndex( void )
+void PointersToIndex()
 {
    TrackSection      *section;
    int16_t             i;

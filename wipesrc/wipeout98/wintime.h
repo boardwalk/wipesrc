@@ -1,3 +1,3 @@
-int32_t HowLong(void);
-void InitialiseWinTimer(void);
-void EndWinTimer (void);
+int32_t HowLong();
+void InitialiseWinTimer();
+void EndWinTimer ();

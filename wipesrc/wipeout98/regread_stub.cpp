@@ -6,7 +6,7 @@ extern int16_t ft;
 extern char Sky;
 extern uint16_t NewOriginalKeyCodes[],OriginalKeyCodes[];
 
-int32_t ShellGetPrefs(void)
+int32_t ShellGetPrefs()
 {
     Resolution=3;
     ft=0;

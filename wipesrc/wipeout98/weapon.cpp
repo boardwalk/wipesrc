@@ -52,7 +52,7 @@ extern	char			DepthFadeTble[];
 int16_t					Shielded = 0;
 extern TrackCamera		ctrlcamera;
 
-void DrawInternalShield(void);
+void DrawInternalShield();
 
 
 void UpdateWeapons(ShipData *shipIndex,WeaponShape* weaponShapes, WeaponData *weaponIndex )
@@ -2024,7 +2024,7 @@ void UpdateShield(ShipData *shipIndex, WeaponShape* weaponShapes, WeaponData* we
 }
 POLY_F4	shieldPoly;
 
-void DrawInternalShield(void)
+void DrawInternalShield()
 {
 	if (!DrawnShieldBefore)
 	{
@@ -2219,7 +2219,7 @@ void Weapon2Mine(WeaponData *weapon, WeaponData *weaponIndex, WeaponShape *weapo
 }
 
 
-int32_t GetNewWeapon(void)
+int32_t GetNewWeapon()
 {
 	int32_t index;
 	int32_t weaponType;
@@ -2266,7 +2266,7 @@ int32_t GetNewWeapon(void)
 	return(weaponType);
 }
 
-int32_t GetNewWeaponBodge(void)
+int32_t GetNewWeaponBodge()
 {
 	int32_t index;
 	int32_t weaponType;

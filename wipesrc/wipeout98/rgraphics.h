@@ -55,16 +55,16 @@ typedef struct _D3DTLVERTEX2 {
 
 BOOL renderInitialise(HWND hWnd, BOOL b_fullScreen=FALSE, BOOL Voodoo=FALSE, BOOL softwareOnly=FALSE);
 void *renderLockSurface(int32_t *pitch);
-void renderUnlockSurface(void);
+void renderUnlockSurface();
 void renderSetCurrentMaterial(int32_t r, int32_t g, int32_t b);
 void renderSetCurrentMaterial(BorisMaterial *m1,BorisMaterial *m2 = NULL);
 void renderTriangle(rTriangle* tri);
 void renderList(D3DTLVERTEX* list,int32_t numVert);
 void renderList(D3DTLVERTEX2* list,int32_t numVert);
-void renderFlipSurface(void);
+void renderFlipSurface();
 void renderBeginScene(BOOL clear);
-void renderEndScene(void);
-void renderDeInitialise(void);
+void renderEndScene();
+void renderDeInitialise();
 void renderMove(LPARAM lParam);
 DWORD registerTexture(char *pointerToFile);
 void unregisterTexture(DWORD handle);

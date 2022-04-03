@@ -1134,7 +1134,7 @@ void LoadVRam(const char *filename, char set_pal)
 	//	free(pall);
 }
 
-void setWinLose(void)
+void setWinLose()
 {
 	char	*ptr;
 	int16_t	i,j;
@@ -1177,7 +1177,7 @@ void	LoadPilotIntoVram(char *filename)
 	// fclose(fp);
 }
 
-void	InitAJSVSync(void)
+void	InitAJSVSync()
 {
 	last_frame=this_frame;
 }

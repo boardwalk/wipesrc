@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-uint32_t *make_data_cache(void)
+uint32_t *make_data_cache()
 {
 	uint32_t *cache_addr;
 

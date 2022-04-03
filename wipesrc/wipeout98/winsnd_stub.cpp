@@ -9,7 +9,7 @@ void SfxEffectVol(int16_t wPlayId,uint8_t bVolume)
 uint16_t SfxGetFxBank(const char *filename)
 { return 0; }
 
-void SfxReverbOff(void)
+void SfxReverbOff()
 {}
 
 void SfxSetVolume(uint8_t bVolume)
@@ -33,7 +33,7 @@ uint16_t SfxSetMaxEffects(uint16_t wNum)
 void SfxSetReverbDepth(uint8_t bDepth)
 {}
 
-void SfxOn(void)
+void SfxOn()
 {}
 
 uint16_t SfxInit(uint16_t wCard,uint16_t wMixType,uint16_t wSampRate)
@@ -58,7 +58,7 @@ int16_t SfxPlayID(int16_t wSampleId,uint8_t bVolume,uint8_t bLRPan,uint8_t bFBPa
 void SfxStop(int16_t wPlayId)
 {}
 
-void KillAllFx(void)
+void KillAllFx()
 {}
 
 void SfxUnInit(uint8_t bFlag)

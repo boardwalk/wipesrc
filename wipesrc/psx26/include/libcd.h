@@ -240,8 +240,8 @@ int32_t	CdPosToIntw(CdlLOC *);
  *	Prototypes for Streaming
  */
 void	StSetRing(uint32_t *ring_addr,uint32_t ring_size);
-void	StClearRing(void);
-void	StUnSetRing(void);
+void	StClearRing();
+void	StUnSetRing();
 uint32_t	StFreeRing();
 void	StSetStream(uint32_t mode,uint32_t start_frame,uint32_t end_frame,
 		    int32_t (*func1)(),int32_t (*func2)());
@@ -250,4 +250,4 @@ void	StSetEmulate(uint32_t *addr,uint32_t mode,uint32_t start_frame,
 uint32_t	StFreeRing(uint32_t *base);
 uint32_t	StGetNext(uint32_t **addr,uint32_t **header);
 void	StSetMask(uint32_t mask,uint32_t start,uint32_t end);
-void	StCdInterrupt(void);
+void	StCdInterrupt();

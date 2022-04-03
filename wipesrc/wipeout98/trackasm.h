@@ -86,7 +86,7 @@ TrackSection *AsmTransformTrackHi
 
 int16_t CompareVertices( VECTOR* vertices, uint16_t a, uint16_t b );
 
-void NewInitAll( void );
+void NewInitAll();
 
 void AsmAutoMesh
 (

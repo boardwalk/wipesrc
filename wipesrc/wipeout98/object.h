@@ -853,7 +853,7 @@ PolyF4* ClearScreen
    int16_t          blue
 );
 
-void InitSystem( void );
+void InitSystem();
 void Swap( );
 
 void SetCameraPosition( int32_t x, int32_t y, int32_t z );
@@ -864,14 +864,14 @@ void TransformStaticObject( Object* object, Skeleton* camera );
 void TransformObjects( Object* object, int16_t minDepth, int16_t follow );
 void MatrixMultiply( MATRIX* m1, MATRIX* m2, MATRIX* m3 );
 
-void InitialiseAmbientColour( void );
-void InitialiseColourMatrix( void );
-void InitialiseLightMatrix( void );
+void InitialiseAmbientColour();
+void InitialiseColourMatrix();
+void InitialiseLightMatrix();
 
 void SetupLights( Object* lights );
 
 void InitFonts( );
-void InitGameDisplay( void );
+void InitGameDisplay();
 void InitMenuDisplay( int32_t geomOffset );
 
 
@@ -896,8 +896,8 @@ BlkFill* BlockFill
 
 
 
-void	    InitSonyDisplay(void);
+void	    InitSonyDisplay();
 
 void	    TransformStaticMenuObject(Object * object, Skeleton * camera);
-void InitGeom( void );
+void InitGeom();
 void	    TransformStaticObjectBodge(Object * object, Skeleton * camera);

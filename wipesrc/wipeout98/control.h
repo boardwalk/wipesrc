@@ -70,6 +70,6 @@ void SetSkeletonDirectionHRP( Skeleton* skeleton, int16_t hdg, int16_t roll, int
 void SetSkeletonDirectionHPR( Skeleton* skeleton, int16_t hdg, int16_t pitch, int16_t roll  );
 void SetSkeletonDirectionRPH( Skeleton* skeleton, int16_t roll, int16_t pitch, int16_t hdg  );
 
-void Mouse2Neg(void);
-void Joy2Neg(void);
-void DoDetailKeys(void);
+void Mouse2Neg();
+void Joy2Neg();
+void DoDetailKeys();

@@ -125,4 +125,4 @@ int16_t 		AdjustDirectionalNote(int16_t vagID, int16_t priority, int16_t duratio
 int32_t 		InitCD( CdlLOC*, int32_t );
 int16_t 		AdjustRemoteEngineSound(ShipData *shipIndex, Object** shipShapes, TrackCamera *camera );
 void 		AdjustEngineSound(ShipData*, TrackCamera*);
-void StopNotes(void);
+void StopNotes();

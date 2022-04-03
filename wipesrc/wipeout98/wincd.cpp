@@ -380,7 +380,7 @@ void CDStop()
 	}
 }
 
-void CDRestart(void)
+void CDRestart()
 {
 	if (dosound)
 	{
@@ -534,7 +534,7 @@ int32_t CdControl(uint8_t Cmd, uint8_t *parm1, uint8_t  *parm2)
 *  RETURNS:	No of Audio Tracks											*
 *																		*
 ************************************************************************/
-int32_t numTracks(void)
+int32_t numTracks()
 {
 	int32_t num;
 

@@ -145,14 +145,14 @@ typedef struct AutoMeshData
    int16_t                   autoMeshedOn;           /* automesh on/off */
 } AutoMeshData;
 
-void IntelVertex( void );
-void IntelFace( void );
-void IntelSection( void );
+void IntelVertex();
+void IntelFace();
+void IntelSection();
 
-void CheckVersion( void );
+void CheckVersion();
 
-void IndexToPointers( void );
-void PointersToIndex( void );
+void IndexToPointers();
+void PointersToIndex();
 
 void InitVertices( char *file );
 void InitFaces( char *file );

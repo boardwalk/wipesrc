@@ -36,11 +36,11 @@ extern int32_t				FR32U;
 
 
 extern int32_t 			TimerInstalled;
-extern void				UserAYInt(void);
+extern void				UserAYInt();
 extern uint32_t	this_frame, last_frame;
 
 
-void InstallTimer(void)
+void InstallTimer()
 {
 //	TimerInstalled = 1;	// mark
 
@@ -68,7 +68,7 @@ void InstallTimer(void)
 
 
 
-void RemoveTimer(void)
+void RemoveTimer()
 {
 	EndWinTimer();
 }

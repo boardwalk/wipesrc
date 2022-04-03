@@ -2,13 +2,13 @@
 
 int32_t		Curpad = 0;
 
-void InitialiseWinTimer(void)
+void InitialiseWinTimer()
 {}
 
-void EndWinTimer(void)
+void EndWinTimer()
 {}
 
-int32_t HowLong(void)
+int32_t HowLong()
 {
     return static_cast<int32_t>(glfwGetTime() * 1000.0);
 }

@@ -85,17 +85,17 @@ extern int32_t					global_mark_error;
 
 //-----------------------------------------------------------------------//
 
-extern void					_init_cont(void);
-extern void					InitializeCombatLink(void);
+extern void					_init_cont();
+extern void					InitializeCombatLink();
 extern void					MasterSlaveSIO(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData);
 extern void					StartTwoPlayer(MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData);
 extern void					SetSerialData(ShipData *shipIndex, Object **shipShapes);
 extern void					MenuMaster(ConfigData *gameData, int32_t *currMenu);
 extern void					CaptainBirdsEye(ConfigData *gameData, int32_t *currMenu);
 
-extern int32_t					MAK_OpenLink(void);
-extern int32_t					MAK_CloseLink(void);
-extern int32_t					MAK_OpenDevice(void);
-extern int32_t					MAK_CloseDevice(void);
+extern int32_t					MAK_OpenLink();
+extern int32_t					MAK_CloseLink();
+extern int32_t					MAK_OpenDevice();
+extern int32_t					MAK_CloseDevice();
 
 //-----------------------------------------------------------------------//

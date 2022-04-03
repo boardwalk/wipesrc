@@ -69,8 +69,8 @@ void tile(P_TAG *primtive);
 void ChangeDrawMode(P_TAG *primitive);
 void MaskSprite(P_TAG *primitive);
 void (*DrawFunctions[256])(P_TAG *);
-void intarray(void);
-void IntVga(void);
+void intarray();
+void IntVga();
 void NotValidPrimType(P_TAG *primitive);
 extern void DrawPolyF3(uint32_t *);
 extern void DrawPolyFT3(uint32_t *);
@@ -146,7 +146,7 @@ void Set_Device(int32_t tmp)
 
 
 
-void IntVga(void)
+void IntVga()
 {
 	DrawFunctions[0x20]=AYDrawF3;		// Poly_F3
 	DrawFunctions[0x24]=AYDrawFT3;		// Poly_FT3
@@ -166,7 +166,7 @@ void IntVga(void)
 
 
 
-void intarray(void)
+void intarray()
 {
 	int32_t x;
 

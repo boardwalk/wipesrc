@@ -14,5 +14,5 @@ void UpdateCameraExtroAttract(TrackCamera *camera, ShipData *camShip, RescueData
 void InitFireCongratulations();
 void InitIceCongratulations();
 
-void ShowFireCongratulations( void );
-void ShowIceCongratulations( void );
+void ShowFireCongratulations();
+void ShowIceCongratulations();

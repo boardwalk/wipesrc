@@ -1,4 +1,4 @@
-BOOL EnumTextureFormats (void);
+BOOL EnumTextureFormats ();
 
 class TextureFormats {
 public:

@@ -425,17 +425,17 @@ extern volatile uint8_t etc_InputDeviceSelect;
 //#define GAME_HEIGHT	240
 
 void     Set_Device(int32_t tmp);
-void     oldmain(void);
-void     QuitToDos(void);
+void     oldmain();
+void     QuitToDos();
 void     pmkey(char, char);
-void     ResetPitch(void);
+void     ResetPitch();
 void JJSReadTIM(char *filename , char *location, TimData *tim);
 //char* DAlloc(void*   heap,int32_t size);
 void	LoadPilotIntoVram(char *filename);
-void Swap(void);
-int32_t JJSLoadSprites (void);
-BOOL JJSLoadRage (void);
-BOOL	    InitATI3DCIF(void);
+void Swap();
+int32_t JJSLoadSprites ();
+BOOL JJSLoadRage ();
+BOOL	    InitATI3DCIF();
 void UpdateNotes(int32_t paused);
 
 extern int32_t      WinPitch;
@@ -455,7 +455,7 @@ char	   *backscreen;
 
 extern int32_t     NeedKeys;
 
-extern void     finiSndObjects(void);
+extern void     finiSndObjects();
 
 
 /*
@@ -464,7 +464,7 @@ extern void     finiSndObjects(void);
  * coming back to the game...put everything back
  */
 
-static void	restoreObjects(void)
+static void	restoreObjects()
 {
 	g_pddsPrimary->Restore();
 	if(lpBack_Buffer)
@@ -580,7 +580,7 @@ static void	restoreObjects(void)
 
 }
 
-static void	restoreTextures(void)
+static void	restoreTextures()
 {
 	switch (trackNum)
 	{
@@ -648,7 +648,7 @@ static void	restoreTextures(void)
  *
  * finished with all objects we use; release them
  */
-static void     finiObjects(void)
+static void     finiObjects()
 {
 	Cleanup3DEnvironment();
 	ShellSetPrefs();
@@ -657,7 +657,7 @@ static void     finiObjects(void)
 //	SystemParametersInfo(SPI_SETSCREENSAVEACTIVE,sSaver,0,0);
 }			       /* finiObjects */
 
-void changeScreen(void)
+void changeScreen()
 {
 	int32_t i;
 
@@ -1062,7 +1062,7 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
 
 
 
-void setupScreens(void)
+void setupScreens()
 {
 	HRESULT	 ddrval=DD_OK,ddretval;
 	int32_t i;
@@ -1145,7 +1145,7 @@ void initrandy()
 	ctr = 0;
 }
 
-int32_t randy(void)
+int32_t randy()
 {
 	int16_t num;
 
@@ -1276,7 +1276,7 @@ int32_t PASCAL      WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance,
 
 }			       /* WinMain */
 
-int32_t	     ProcessMessages(void)
+int32_t	     ProcessMessages()
 {
 	MSG	     msg;
 	do
@@ -1317,7 +1317,7 @@ DDSURFACEDESC2   ddsd;
 DDSURFACEDESC2   backDdsd;
 int32_t	     old_pitch = 0;
 
-int32_t	     LockBackBuffer(void)
+int32_t	     LockBackBuffer()
 {
 	LPBYTE	  ptr;
 	// int32_t			i;
@@ -1371,12 +1371,12 @@ int32_t	     LockBackBuffer(void)
 
 }
 
-void	    WinBeep(void)
+void	    WinBeep()
 {
 	MessageBeep(0);
 }
 
-void	    UnlockBackBuffer(void)
+void	    UnlockBackBuffer()
 {
 #if DEBUG_LOCKED
 	RECT	    rect;
@@ -1399,7 +1399,7 @@ void	    UnlockBackBuffer(void)
 
 
 
-void	    BltClearToScreen(void)
+void	    BltClearToScreen()
 {
 	RECT	    dest_rect, src_rect;
 	DWORD	   dwFlags;
@@ -1443,7 +1443,7 @@ void	    BltClearToScreen(void)
 	}
 }
 
-void	    DDSwap(void)
+void	    DDSwap()
 {
 	if (bActive)
 	{
@@ -1451,7 +1451,7 @@ void	    DDSwap(void)
 	}
 }
 
-void	    DrawIT(void)
+void	    DrawIT()
 {
 	DDSURFACEDESC2   ddsd;
 	LPBYTE	  ptr;
@@ -1516,7 +1516,7 @@ void	    DrawIT(void)
 
 }
 
-void	    WinQuit(void)
+void	    WinQuit()
 {
 #if DEBUG_LOCKED
 	free(DebugScreen);
@@ -1569,7 +1569,7 @@ void	    PitchMemCpy320X200(char *dest, char *source)
 int32_t numoff=0;
 int32_t numsmall=0;
 
-void setRenderBegin(void)
+void setRenderBegin()
 {
 	g_pd3dDevice->BeginScene();
 	if(!Rendering)
@@ -1594,7 +1594,7 @@ void setRenderBegin(void)
 }
 
 
-void setRenderEnd(void)
+void setRenderEnd()
 {
 	g_pd3dDevice->EndScene();
 	if(Rendering)
@@ -1605,7 +1605,7 @@ void setRenderEnd(void)
 }
 
 
-void sendList(void)
+void sendList()
 {
 	if(numvert)
 	{
@@ -2427,7 +2427,7 @@ BOOL UnloadTexture (PTEXTURE pTex)
 	return TRUE;;
 }
 
-char *LockPilot(void)
+char *LockPilot()
 {
 	HRESULT             ddretval;
 
@@ -2445,7 +2445,7 @@ char *LockPilot(void)
 	return((char *)gTex[420].ddsd.lpSurface);
 }
 
-void UnlockPilot(void)
+void UnlockPilot()
 {
 	HRESULT             ddretval;
 
@@ -2471,7 +2471,7 @@ void ChopUp(char *to, void *from , int32_t which)
 
 }
 
-void SetupbackBuffer(void)
+void SetupbackBuffer()
 {
 	if(!lpBack_Buffer)
 	{
@@ -2740,7 +2740,7 @@ BOOL SJRLoadTextureBMP (const char* lpszTexFilename)
  *  LoadTexture - load a texture map from a file into a texture surface
  */
 
-int32_t JJSLoadSprites (void)
+int32_t JJSLoadSprites ()
 {
 	int32_t fp;
     HRESULT             ddretval;
@@ -2990,7 +2990,7 @@ int32_t ShellMovieStart(char *moviename)
   *
   ****************************************************************************/
 
-void ShellMovieStop(void)
+void ShellMovieStop()
 {
   MCIERROR mciretval;
   MCI_GENERIC_PARMS mciGenericParms;
@@ -3010,7 +3010,7 @@ void ShellMovieStop(void)
   *
   ****************************************************************************/
 
-void ShellMovieFinished(void)
+void ShellMovieFinished()
 {
   /* Close any MCI window playing the movie */
   if (hwndMCIWnd)
@@ -3029,7 +3029,7 @@ void ShellMovieFinished(void)
  /****************************************************************************/
 
 
-void mpeganim(void)
+void mpeganim()
 {
 	int32_t fp;
 	char *mpegname;
@@ -3065,12 +3065,12 @@ void mpeganim(void)
 }
 #endif
 
-void centreMouse(void)
+void centreMouse()
 {
 	SetCursorPos(128,100);
 }
 
-void JJSReadJoystick(void)
+void JJSReadJoystick()
 {
 	JOYINFO myJoy;
 	MMRESULT errVal;
@@ -3084,7 +3084,7 @@ void JJSReadJoystick(void)
 	JoyButton2 = myJoy.wButtons & 0x0002;
 }
 
-BOOL JJSJoyConfig(void)
+BOOL JJSJoyConfig()
 {
 	JOYCAPS mycaps;
 	UINT joyrange;

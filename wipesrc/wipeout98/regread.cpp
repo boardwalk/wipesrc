@@ -3,7 +3,7 @@
 
 #include "config.h"
 
-int32_t JJSJoyConfig(void);
+int32_t JJSJoyConfig();
 //#include <windowsx.h>
 //#include <winbase.h>
 //#include <stdio.h>
@@ -265,7 +265,7 @@ static int32_t RealDist[]={
 	65535
 };
 
-int32_t ShellGetPrefs(void)
+int32_t ShellGetPrefs()
 {
 	HKEY hkeyOurKey;
 	static char tbuff[20]="1";
@@ -421,7 +421,7 @@ int32_t ShellGetPrefs(void)
 }
 
 
-int32_t ShellSetPrefs(void)
+int32_t ShellSetPrefs()
 {
 	HKEY hkeyOurKey;
 

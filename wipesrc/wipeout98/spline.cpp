@@ -1977,7 +1977,7 @@ void InitIceCongratulations()
 
 
 
-void ShowFireCongratulations( void )
+void ShowFireCongratulations()
 {
    int16_t          lineY;
    int16_t          i;
@@ -2016,7 +2016,7 @@ void ShowFireCongratulations( void )
 
 
 
-void ShowIceCongratulations( void )
+void ShowIceCongratulations()
 {
    int16_t          lineY;
    int16_t          i;

@@ -91,17 +91,17 @@
 uint16_t SfxInit(uint16_t wCard,uint16_t wMixType,uint16_t wSampRate, void *hwnd);
 
 uint16_t SfxInitReverb(uint16_t wReverbType,uint16_t wDelay);
-void SfxReverbOn(void);
-void SfxReverbOff(void);
+void SfxReverbOn();
+void SfxReverbOff();
 void SfxSetReverbDepth(uint8_t bDepth);
-void SfxUnInitReverb(void);
+void SfxUnInitReverb();
 
 /* Chat stuff not working yet! */
 uint16_t SfxInitChat(void (*CallBack)(uint8_t *pbBufPtr,uint32_t dwCode));
-void SfxChatOn(void);
-void SfxChatOff(void);
+void SfxChatOn();
+void SfxChatOff();
 void SfxChatPlay(uint8_t *pbMsgPtr,uint32_t dwMsgSize);
-void SfxUnInitChat(void);
+void SfxUnInitChat();
 
 void SfxSetStereoReverse(uint8_t bFlag);
 uint16_t SfxSetMaxEffects(uint16_t wNum);
@@ -115,7 +115,7 @@ void SfxCloseFxBank(int16_t wBank);
 
 void SfxSetVolume(uint8_t bVolume);
 void SfxSetCdVolume(uint8_t bVolume);
-uint32_t SfxGetFeatures(void);
+uint32_t SfxGetFeatures();
 uint16_t SfxGetData(int16_t wPlayId,uint8_t *pbVolume,int8_t *pbPan,
 									uint8_t *pbLoop, uint16_t *pwPitch,uint8_t *pbPerCent);
 void SfxSetCallBack(void (*CallBack)(uint16_t wPlayId));
@@ -134,20 +134,20 @@ void SfxEffectPan(int16_t wPlayId,uint16_t bPan);
 void SfxEffectFBPan(int16_t wPlayId,uint16_t bFBPan);
 void SfxEffectFlags(int16_t wPlayId,uint16_t wFlag,uint8_t bState);
 
-void SfxOn(void);
-void SfxOff(void);
+void SfxOn();
+void SfxOff();
 void SfxPause(uint8_t bFlag);
-void SfxContinue(void);
-void SfxDoSfx(void);
+void SfxContinue();
+void SfxDoSfx();
 void SfxUnInit(uint8_t bFlag);
 
 uint16_t SfxSndTrkInit(uint16_t wBuffers,uint16_t wSampleRate);
-void SfxSndTrkUnInit(void);
-void SfxSndTrkSetCallBack(void (*CallBack)(void));
+void SfxSndTrkUnInit();
+void SfxSndTrkSetCallBack(void (*CallBack)());
 void SfxSndTrkBuffer(uint8_t *pbBufPtr,uint32_t dwBufLen);
-uint16_t SfxSndTrkNumFull(void);
-void SfxSndTrkStart(void);
-void SfxSndTrkStop(void);
+uint16_t SfxSndTrkNumFull();
+void SfxSndTrkStart();
+void SfxSndTrkStop();
 
 
 /*

@@ -453,13 +453,13 @@ char	DaveSave[250];
 void DrawControllerMenu (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
 void DrawControllerEdit (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
 void EnterLoadGame (MusicPrims *musicPrims, SlideTextures *musicTex, SelectionData *selectData, char loadGames[][9], ConfigData *gameData);
-void KeyConfig0(void);
-void KeyConfig(void);
+void KeyConfig0();
+void KeyConfig();
 void DrawGraphicDetail (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
 void DisplayPadMenu1 (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
 void DisplayPadMenu2 (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, int32_t *swapDelay);
-void	MouseConfig(void);
-void ResetKeys(void);
+void	MouseConfig();
+void ResetKeys();
 
 
 void Debugit(char *t)
@@ -472,7 +472,7 @@ void Debugit(char *t)
 }
 
 
-void reloadScr(void)
+void reloadScr()
 {
 	menuScreen = JJSLoad16BitTexture	("wipeout/textures/wipeout1.tim", VRAM) ;
 }
@@ -5374,7 +5374,7 @@ void DrawControllerMenu (Menus *menuSystem, int32_t *currMenu, int32_t shapeNo, 
 
 
 
-void KeyConfig0(void)
+void KeyConfig0()
 {
 	char	keyc;
 
@@ -5474,7 +5474,7 @@ void KeyConfig0(void)
 
 
 
-void KeyConfig(void)
+void KeyConfig()
 {
 	char			exists;
 	uint16_t	KeyCode = 0;
@@ -5740,7 +5740,7 @@ void KeyConfig(void)
 	}
 }
 
-void	MouseConfig(void)
+void	MouseConfig()
 {
 	static int32_t toggle = 0;
 	char	x=50, y=140, l=12;
@@ -5815,7 +5815,7 @@ void	MouseConfig(void)
 
 
 
-void	JoystickConfig(void)
+void	JoystickConfig()
 {
 	JJSJoyConfig();
 	JoyMinX = 0;
@@ -5949,7 +5949,7 @@ char CheckKey(uint16_t code)
 
 
 
-void ResetKeys(void)
+void ResetKeys()
 {
 	OriginalKeyCodes[15] = Keycons[0];
 	OriginalKeyCodes[13] = Keycons[1];

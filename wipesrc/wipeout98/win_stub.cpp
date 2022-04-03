@@ -41,26 +41,26 @@ float upres=2.0f;
 
 static GLFWwindow* g_window = nullptr;
 
-char *LockPilot(void)
+char *LockPilot()
 {
     return NULL;
 }
 
-void UnlockPilot(void)
+void UnlockPilot()
 {}
 
-BOOL JJSJoyConfig(void)
+BOOL JJSJoyConfig()
 { return FALSE; }
 
-void changeScreen(void)
+void changeScreen()
 {
 	printf("changeScreen\n");
 }
 
-void setRenderBegin(void)
+void setRenderBegin()
 {}
 
-void setRenderEnd(void)
+void setRenderEnd()
 {}
 
 void JJS_Sprite(SPRT *sp)
@@ -219,16 +219,16 @@ BOOL SJRNewTexture(const char *filename)
 	return FALSE;
 }
 
-void centreMouse(void)
+void centreMouse()
 {}
 
-int32_t JJSLoadSprites (void)
+int32_t JJSLoadSprites ()
 { return 0; }
 
-int32_t	     LockBackBuffer(void)
+int32_t	     LockBackBuffer()
 { return 0; }
 
-void	    UnlockBackBuffer(void)
+void	    UnlockBackBuffer()
 {}
 
 void	    WinClearScreen(char colour)
@@ -236,18 +236,18 @@ void	    WinClearScreen(char colour)
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void	    BltClearToScreen(void)
+void	    BltClearToScreen()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void	    DDSwap(void)
+void	    DDSwap()
 {
 	// printf("DDSwap\n");
 	glfwSwapBuffers(g_window);
 }
 
-int32_t	     ProcessMessages(void)
+int32_t	     ProcessMessages()
 {
 	glfwPollEvents();
 	return 0;
@@ -276,7 +276,7 @@ void initrandy()
 	ctr = 0;
 }
 
-int32_t randy(void)
+int32_t randy()
 {
 	int16_t num;
 
@@ -296,13 +296,13 @@ int32_t randy(void)
 void	    CopyPal(char *palette, int16_t start, int16_t end)
 {}
 
-void	    WinQuit(void)
+void	    WinQuit()
 {}
 
-void sendList(void)
+void sendList()
 {}
 
-void oldmain(void);
+void oldmain();
 
 extern int16_t    WinWidth;
 extern int16_t    WinHeight;

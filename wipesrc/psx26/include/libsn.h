@@ -32,7 +32,7 @@
 **
 ** return: error code (0 if no error)
 */
-int32_t	PCinit (void);
+int32_t	PCinit ();
 
 /*
 ** open a file on PC host

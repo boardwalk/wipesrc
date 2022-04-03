@@ -1,2 +1,2 @@
-void InstallTimer(void);
-void RemoveTimer(void);
+void InstallTimer();
+void RemoveTimer();

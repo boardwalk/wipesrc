@@ -517,7 +517,7 @@ void KillNotes()
 	KillAllFx();
 }
 
-void StopNotes(void)
+void StopNotes()
 {
 	int32_t i;
 

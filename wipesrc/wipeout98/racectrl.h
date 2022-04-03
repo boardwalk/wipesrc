@@ -1,2 +1,2 @@
-void raceinit(void);
-void racectrl(void);
+void raceinit();
+void racectrl();

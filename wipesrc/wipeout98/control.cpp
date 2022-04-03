@@ -1931,14 +1931,14 @@ void SetSkeletonDirectionRPH( Skeleton* skeleton, int16_t roll, int16_t pitch, i
 
 
 
-void Mouse2Neg(void)
+void Mouse2Neg()
 {
 	neg1.twist = etc_Mouse1.mX;
 }
 
 
 
-void Joy2Neg(void)
+void Joy2Neg()
 {
 
 	if(etc_Joy1.jX > JoyMaxX)
@@ -1982,7 +1982,7 @@ void Joy2Neg(void)
 
 
 
-void DoDetailKeys(void)
+void DoDetailKeys()
 {
 	if (xpad & PadTopLeft1)			// DLS - Draw Distance
 	{

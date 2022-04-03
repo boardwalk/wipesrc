@@ -7,7 +7,7 @@ int32_t SquareRoot0( int32_t a );
 void SetDrawDistance(int32_t Dist);
 void RotTrans( SVECTOR * v0, VECTOR * v1, int32_t * flag );
 int32_t RotTransPers(SVECTOR *v0, DVECTOR *sxy, int32_t *p, int32_t *flag);
-void CreateSineTable(void);
+void CreateSineTable();
 void SetGeomOffset( int32_t ofx, int32_t ofy);
 void SetGeomScreen( int32_t h );
 void SetTransMatrix( MATRIX * m );

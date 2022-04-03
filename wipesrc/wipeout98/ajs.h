@@ -1,6 +1,6 @@
 void	SetPolyGT3(POLY_GT3 *p);
-void	InitAJSVSync(void);
-void setWinLose(void);
+void	InitAJSVSync();
+void setWinLose();
 void	AddPrim(P_TAG *ordt, int32_t depth, P_TAG *p);
 void SetSemiTrans(P_TAG *p, int32_t abe);
 void SetShadeTex(P_TAG *p, int32_t tge);

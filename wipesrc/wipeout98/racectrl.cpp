@@ -247,7 +247,7 @@ int32_t			ctrlCDPaused;
 int32_t			ctrlfirsttime;
 extern	int32_t	CDRestartNeeded;
 
-void raceinit(void)
+void raceinit()
 {
 	ConfigData		*gameData;
 	CVECTOR			colvector;
@@ -731,10 +731,10 @@ void raceinit(void)
 
 }
 
-extern void ReadJoystick(void);
+extern void ReadJoystick();
 
 
-void racectrl(void)
+void racectrl()
 {
 	combatData *packetData;
 	ConfigData *gameData;

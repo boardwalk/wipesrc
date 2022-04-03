@@ -83,37 +83,37 @@ volatile /* Source File: libetc.h */
 #define		_PAUSE_ID				3
 
 /* Function Prototypes. */
-extern void							InstallProtectedModeKeyboardHandler(void);
-extern void							SaveProtectedModeKeyboardHandler(void);
-extern void							RestoreProtectedModeKeyboardHandler(void);
-extern void							InstallProtectedModeMouseHandler(void);
-extern void							RestoreProtectedModeMouseHandler(void);
-extern void							InstallProtectedModeJoystickHandler(void);
-extern void							RestoreProtectedModeJoystickHandler(void);
-extern void							ConfigureKeyboard(void);
-extern void							ConfigureMouse1(void);
-extern void							ConfigureMouse2(void);
-extern void							ConfigureJoystick1(void);
-extern void							ConfigureJoystick2(void);
+extern void							InstallProtectedModeKeyboardHandler();
+extern void							SaveProtectedModeKeyboardHandler();
+extern void							RestoreProtectedModeKeyboardHandler();
+extern void							InstallProtectedModeMouseHandler();
+extern void							RestoreProtectedModeMouseHandler();
+extern void							InstallProtectedModeJoystickHandler();
+extern void							RestoreProtectedModeJoystickHandler();
+extern void							ConfigureKeyboard();
+extern void							ConfigureMouse1();
+extern void							ConfigureMouse2();
+extern void							ConfigureJoystick1();
+extern void							ConfigureJoystick2();
 extern void							AssignKey(uint32_t button);
-extern uint16_t			GetKey(void);
+extern uint16_t			GetKey();
 extern void							SetCursorPosition(uint8_t row, uint8_t col);
-extern void							init_timer(void);
-extern void							restore_timer(void);
+extern void							init_timer();
+extern void							restore_timer();
 
 /* Device Service Routines. */
-extern void       			*GetStack(void);
+extern void       			*GetStack();
 extern void             			SetStack(char  *);
 #ifdef DOS_VERSION
-extern void __interrupt	__far		pmkey(void);
+extern void __interrupt	__far		pmkey();
 #else
 extern void pmkey(uint8_t, uint8_t);
 #endif
 extern void							ManageScanCode(uint8_t);
 //extern static void __loadds __far 	pmmouse(int16_t mask, int16_t state, int16_t col, int16_t row,
 //										signed int16_t mickey_h, signed int16_t mickey_v);
-extern void		pmjoy(void);
-//extern void __loadds __interrupt __far	pmtimer(void);
+extern void		pmjoy();
+//extern void __loadds __interrupt __far	pmtimer();
 
 
 /* LIBETC Functions. */
@@ -123,8 +123,8 @@ extern int32_t							PadStatus(uint16_t mode);
 
 /* LIBAPI Functions. */
 extern int32_t							InitPAD(void *bufA, int32_t lenA, void *bufB, int32_t lenB);
-extern int32_t							StartPAD(void);
-extern void							StopPAD(void);
+extern int32_t							StartPAD();
+extern void							StopPAD();
 
 /* Type/Structure Definitions. */
 typedef struct {

@@ -1,5 +1,5 @@
-void VsyncFunc( void );
+void VsyncFunc();
 
 void VsyncStart( char *fileName );
 
-void VsyncEnd( void );
+void VsyncEnd();

@@ -1,1 +1,1 @@
-int32_t ShellGetPrefs(void);
+int32_t ShellGetPrefs();

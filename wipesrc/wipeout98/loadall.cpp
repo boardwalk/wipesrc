@@ -25,7 +25,7 @@ extern void	CopyPal(char *,char,char);
 extern	char *VRam;
 extern	char *CurBuffer;
 extern	char *DepthFadeTble;
-extern	void  GSwap(void);
+extern	void  GSwap();
 
 #define	PAL		1
 #define	PIC		2

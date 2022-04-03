@@ -35,4 +35,4 @@ typedef struct LineSkel
 
 void CreateSparks3D( Skeleton *camPos );
 void StartSparks3D( VECTOR *start, int16_t numSparks, VECTOR *velocity );
-void UpdateSparks3D( void );
+void UpdateSparks3D();

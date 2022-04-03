@@ -235,7 +235,7 @@ typedef struct {
     SpuExtAttr		ext;	  /* �O���f�W�^�����͑��� */
 } SpuCommonAttr;
 
-typedef void (*SpuIRQCallbackProc)(void);
+typedef void (*SpuIRQCallbackProc)();
 
 /* ----------------------------------------------------------------
  *	SPU Malloc �p
@@ -247,27 +247,27 @@ typedef void (*SpuIRQCallbackProc)(void);
  *	�v���g�^�C�v�錾
  * ---------------------------------------------------------------- */
 
-extern void SpuInit (void);
-extern void SpuStart (void);
-extern void SpuQuit (void);
+extern void SpuInit ();
+extern void SpuStart ();
+extern void SpuQuit ();
 extern int32_t SpuSetMute (int32_t on_off);
-extern int32_t SpuGetMute (void);
+extern int32_t SpuGetMute ();
 
 extern int32_t SpuSetNoiseClock (int32_t n_clock);
-extern int32_t SpuGetNoiseClock (void);
+extern int32_t SpuGetNoiseClock ();
 extern uint32_t SpuSetNoiseVoice (int32_t on_off, uint32_t voice_bit);
-extern uint32_t SpuGetNoiseVoice (void);
+extern uint32_t SpuGetNoiseVoice ();
 
 extern int32_t SpuSetReverb (int32_t on_off);
-extern int32_t SpuGetReverb (void);
+extern int32_t SpuGetReverb ();
 extern int32_t SpuSetReverbModeParam (SpuReverbAttr *attr);
 extern void SpuGetReverbModeParam (SpuReverbAttr *attr);
 extern int32_t SpuReserveReverbWorkArea (int32_t on_off);
 extern int32_t SpuIsReverbWorkAreaReserved (int32_t on_off);
 extern uint32_t SpuSetReverbOffsetAddr (uint32_t addr);
-extern uint32_t SpuGetReverbOffsetAddr (void);
+extern uint32_t SpuGetReverbOffsetAddr ();
 extern uint32_t SpuSetReverbVoice (int32_t on_off, uint32_t voice_bit);
-extern uint32_t SpuGetReverbVoice (void);
+extern uint32_t SpuGetReverbVoice ();
 extern int32_t SpuClearReverbWorkArea (int32_t mode);
 
 extern uint32_t SpuWrite (uint8_t *addr, uint32_t size);
@@ -275,11 +275,11 @@ extern uint32_t SpuWrite0 (uint32_t size);
 extern uint32_t SpuRead (uint8_t *addr, uint32_t size);
 extern int32_t SpuSetTransferMode (int32_t mode);
 #define SpuSetTransMode(mode) SpuSetTransferMode((mode))
-extern int32_t SpuGetTransferMode (void);
+extern int32_t SpuGetTransferMode ();
 #define SpuGetTransMode() SpuGetTransferMode()
 extern uint32_t SpuSetTransferStartAddr (uint32_t addr);
 #define SpuSetTransStartAddr(addr) SpuSetTransferStartAddr((addr))
-extern uint32_t SpuGetTransferStartAddr (void);
+extern uint32_t SpuGetTransferStartAddr ();
 #define SpuGetTransStartAddr() SpuGetTransferStartAddr()
 extern uint32_t SpuWritePartly (uint8_t *addr, uint32_t size);
 
@@ -288,9 +288,9 @@ extern int32_t SpuIsTransferCompleted (int32_t flag);
 extern int32_t SpuReadDecodeData (SpuDecodeData *d_data, int32_t flag);
 
 extern int32_t SpuSetIRQ (int32_t on_off);
-extern int32_t SpuGetIRQ (void);
+extern int32_t SpuGetIRQ ();
 extern uint32_t SpuSetIRQAddr (uint32_t);
-extern uint32_t SpuGetIRQAddr (void);
+extern uint32_t SpuGetIRQAddr ();
 extern void SpuSetIRQCallback (SpuIRQCallbackProc);
 
 extern void SpuSetVoiceAttr (SpuVoiceAttr *arg);
@@ -301,7 +301,7 @@ extern int32_t SpuGetKeyStatus (uint32_t voice_bit);
 extern void SpuGetAllKeysStatus (char *status);
 
 extern uint32_t SpuSetPitchLFOVoice (int32_t on_off, uint32_t voice_bit);
-extern uint32_t SpuGetPitchLFOVoice (void);
+extern uint32_t SpuGetPitchLFOVoice ();
 
 extern int32_t SpuSetCommonAttr (SpuCommonAttr *attr);
 extern void SpuGetCommonAttr (SpuCommonAttr *attr);

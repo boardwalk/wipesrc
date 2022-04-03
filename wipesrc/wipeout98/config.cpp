@@ -5,7 +5,7 @@
 
 void	SetKey(uint32_t button, uint16_t code);
 
-void	ConfigureKeyboard(void)
+void	ConfigureKeyboard()
 {
 	uint32_t	i;
 
@@ -24,7 +24,7 @@ void	ConfigureKeyboard(void)
 
 }
 
-void	ConfigureMouse1(void)
+void	ConfigureMouse1()
 {
 	etc_Mouse1Config.MouseUp = etc_DefaultMouseSet[0];
 	etc_Mouse1Config.MouseDown = etc_DefaultMouseSet[1];
@@ -36,7 +36,7 @@ void	ConfigureMouse1(void)
 	etc_Mouse1Config.MouseDummy = etc_DefaultMouseSet[7];
 }
 
-void	ConfigureMouse2(void)
+void	ConfigureMouse2()
 {
 	etc_Mouse2Config.MouseUp = etc_DefaultMouseSet[0];
 	etc_Mouse2Config.MouseDown = etc_DefaultMouseSet[1];
@@ -48,7 +48,7 @@ void	ConfigureMouse2(void)
 	etc_Mouse2Config.MouseDummy = etc_DefaultMouseSet[7];
 }
 
-void	ConfigureJoystick1(void)
+void	ConfigureJoystick1()
 {
 	etc_Joy1Config.JoyUp = etc_DefaultJoystickSet[0];
 	etc_Joy1Config.JoyDown = etc_DefaultJoystickSet[1];
@@ -60,7 +60,7 @@ void	ConfigureJoystick1(void)
 	etc_Joy1Config.JoyButton4 = etc_DefaultJoystickSet[7];
 }
 
-void	ConfigureJoystick2(void)
+void	ConfigureJoystick2()
 {
 	etc_Joy2Config.JoyUp = etc_DefaultJoystickSet[0];
 	etc_Joy2Config.JoyDown = etc_DefaultJoystickSet[1];
@@ -119,7 +119,7 @@ void	SetKey(uint32_t button, uint16_t code)
 
 
 
-uint16_t	GetKey(void)
+uint16_t	GetKey()
 {
 	int32_t i;
 	etc_ExtendedFlag = 0;
@@ -130,7 +130,7 @@ uint16_t	GetKey(void)
 
 
 
-uint16_t	GetKeyNoBlock(void)
+uint16_t	GetKeyNoBlock()
 {
 	uint16_t	result;
 

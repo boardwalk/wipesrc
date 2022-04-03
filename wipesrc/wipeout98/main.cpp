@@ -93,7 +93,7 @@ int32_t	    DrawDistance;
 int32_t	     inattract = 0;
 	TimData	*titleScreen;
 
-void reloadStartScr(void)
+void reloadStartScr()
 {
 	int32_t i;
 	LoadVRam("wipeout/newgraph/menu/font.pcx", 0);
@@ -604,7 +604,7 @@ void	    oldmain()
 }
 
 
-void	    ClearVram(void)
+void	    ClearVram()
 {
 	BlkFill	*clearVram;
 
@@ -654,7 +654,7 @@ void	    ClearVram(void)
 }
 
 
-void	    UserAYInt(void)
+void	    UserAYInt()
 {
 	this_frame_count++;
 	ProcessMessages();
@@ -667,7 +667,7 @@ void	    CheckError()
 }
 
 
-void	    QuitToDos(void)
+void	    QuitToDos()
 {
 	WinQuit();
 	RemoveTimer();

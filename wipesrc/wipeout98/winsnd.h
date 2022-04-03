@@ -1,1 +1,1 @@
-void KillAllFx(void);
+void KillAllFx();

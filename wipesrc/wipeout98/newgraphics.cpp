@@ -431,7 +431,7 @@ BOOL renderInitialise(HWND hWnd, BOOL b_fullScreen, BOOL Voodoo, BOOL softwareOn
 	return E_FAIL;
 }
 
-void renderFlipSurface(void)
+void renderFlipSurface()
 {
 	if(g_bAppUseFullScreen)
 		g_pddsPrimary->Flip( NULL,	DDFLIP_WAIT  | DDFLIP_NOVSYNC );

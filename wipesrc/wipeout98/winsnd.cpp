@@ -75,7 +75,7 @@ void SortFEntries(FENTRY *base);
 
 char szMsg[512] = "";
 int32_t	keyhit = 0;
-void finiSndObjects( void )
+void finiSndObjects()
 {
 	int32_t loop;
 
@@ -666,12 +666,12 @@ void SfxSetVolume(uint8_t bVolume)
 	lpPrimarySoundBuffer->SetVolume(volume);
 }
 
-void SfxOn(void)
+void SfxOn()
 {
 	return;
 }
 
-void SfxOff(void)
+void SfxOff()
 {
 	return;
 }
@@ -680,11 +680,11 @@ uint16_t SfxInitReverb(uint16_t wReverbType,uint16_t wDelay)
 {
 	return(0);
 }
-void SfxReverbOn(void)
+void SfxReverbOn()
 {
 	return;
 }
-void SfxReverbOff(void)
+void SfxReverbOff()
 {
 	return;
 }
@@ -692,7 +692,7 @@ void SfxSetReverbDepth(uint8_t bDepth)
 {
 	return;
 }
-void SfxUnInitReverb(void)
+void SfxUnInitReverb()
 {
 	return;
 }
@@ -901,7 +901,7 @@ void SfxStop(int16_t wPlayId)
 	LoopingFlags[wPlayId] = 0;
 }
 
-void KillAllFx(void)
+void KillAllFx()
 {
 #if 0
 	int32_t loop;
@@ -920,7 +920,7 @@ void KillAllFx(void)
 #endif
 }
 
-void SfxDoSfx(void)
+void SfxDoSfx()
 {
 	FPLAYING *element, *del;
 	DWORD	status;
