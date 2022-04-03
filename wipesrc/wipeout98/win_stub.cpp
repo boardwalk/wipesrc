@@ -177,10 +177,11 @@ void	    JJSDrawPolyFT4(POLY_FT4 * p)
 
 void	    JJSDrawPolyGT3(POLY_GT3 * p)
 {
-	// printf("gt3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d)\n",
+	// printf("gt3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d), tpage=%d\n",
 	// 	p->x0, p->y0,
 	// 	p->x1, p->y1,
-	// 	p->x2, p->y2);
+	// 	p->x2, p->y2,
+	// 	p->tpage);
 
 	glBegin(GL_TRIANGLES);
 	// glColor3b(p->r0, p->g0, p->b0);
@@ -213,7 +214,10 @@ void	    JJSDrawPolyGT4(POLY_GT4 * p)
 }
 
 BOOL SJRNewTexture(const char *filename)
-{ return FALSE; }
+{
+	printf("SJRNewTexture(%s)\n", filename);
+	return FALSE;
+}
 
 void centreMouse(void)
 {}
@@ -340,8 +344,6 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
 		pmkey(scan_code, 1);
 	} else if(action == GLFW_RELEASE) {
 		pmkey(scan_code, 0);
-	} else {
-		return;
 	}
 }
 
