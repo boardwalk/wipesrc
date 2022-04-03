@@ -151,7 +151,7 @@ void	    JJSDrawPolyFT3(POLY_FT3 * p)
 	// 	p->x2, p->y2);
 
 	glBegin(GL_TRIANGLES);
-	// glColor3b(p->r0, p->g0, p->b0);
+	// glColor3b(255, 255, 255);
 	glVertex2s(p->x0, p->y0);
 	glVertex2s(p->x1, p->y1);
 	glVertex2s(p->x2, p->y2);
@@ -167,7 +167,7 @@ void	    JJSDrawPolyFT4(POLY_FT4 * p)
 	// 	p->x3, p->y3);
 
 	glBegin(GL_QUADS);
-	// glColor3b(p->r0, p->g0, p->b0);
+	// glColor3b(255, 255, 255);
 	glVertex2s(p->x0, p->y0);
 	glVertex2s(p->x1, p->y1);
 	glVertex2s(p->x2, p->y2);
@@ -184,11 +184,9 @@ void	    JJSDrawPolyGT3(POLY_GT3 * p)
 	// 	p->tpage);
 
 	glBegin(GL_TRIANGLES);
-	// glColor3b(p->r0, p->g0, p->b0);
+	// glColor3b(255, 255, 255);
 	glVertex2s(p->x0, p->y0);
-	// glColor3b(p->r1, p->g1, p->b1);
 	glVertex2s(p->x1, p->y1);
-	// glColor3b(p->r2, p->g2, p->b2);
 	glVertex2s(p->x2, p->y2);
 	glEnd();
 }
@@ -202,13 +200,10 @@ void	    JJSDrawPolyGT4(POLY_GT4 * p)
 	// 	p->x3, p->y3);
 
 	glBegin(GL_QUADS);
-	// glColor3b(p->r0, p->g0, p->b0);
+	// glColor3b(255, 255, 255);
 	glVertex2s(p->x0, p->y0);
-	// glColor3b(p->r1, p->g1, p->b1);
 	glVertex2s(p->x1, p->y1);
-	// glColor3b(p->r2, p->g2, p->b2);
 	glVertex2s(p->x2, p->y2);
-	// glColor3b(p->r3, p->g3, p->b3);
 	glVertex2s(p->x3, p->y3);
 	glEnd();
 }
@@ -223,7 +218,10 @@ void centreMouse()
 {}
 
 int32_t JJSLoadSprites ()
-{ return 0; }
+{
+	printf("JJSLoadSprites()\n");
+	return 0;
+}
 
 int32_t	     LockBackBuffer()
 { return 0; }
@@ -254,7 +252,10 @@ int32_t	     ProcessMessages()
 }
 
 TimData *JJSLoad16BitTexture(const char *filename, char location)
-{ return NULL; }
+{
+	printf("JJSLoad16BitTexture(%s, %d)\n", filename, location);
+	return NULL;
+}
 
 int16_t randlist[2000];
 int16_t *randnum;
