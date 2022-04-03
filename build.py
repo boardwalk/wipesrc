@@ -69,6 +69,9 @@ def main():
             ninja.build('wipeout-port', 'link', objects)
             ninja.default('wipeout-port')
 
+        with open('build/compile_commands.json', 'wb') as f:
+            subprocess.check_call(['ninja', '-t', 'compdb'], stdout=f)
+
         subprocess.check_call(['ninja'])
     finally:
         os.unlink('build.ninja')
