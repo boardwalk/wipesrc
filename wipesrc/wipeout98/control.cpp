@@ -31,7 +31,7 @@
 //#include "markk\libetc.h"		// DLS
 // #include "dos.h"
 //#include "graph.h"
-#include "wipesrc/win95/markk/input.h"
+#include "input.h"
 
 extern int16_t ft,screenres;
 

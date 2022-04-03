@@ -1,7 +1,7 @@
 /* Source File: pmkey.c */
 /* This is the INT09 Protected-Mode Keyboard Handler (LIBETC). */
 // #include	"c:\wc10\h\dos.h"
-#include	"../markk/input.h"
+#include	"input.h"
 
 #ifdef DOS_VERSION
 #pragma off (check_stack)

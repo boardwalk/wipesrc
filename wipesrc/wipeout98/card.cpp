@@ -28,7 +28,7 @@
 
 #define _SIZE_T_DEFINED_
 #include	<stdio.h>
-#include	"../win95/markk/input.h"
+#include	"input.h"
 
 
 extern 	HiScores	scoreTable[] ;

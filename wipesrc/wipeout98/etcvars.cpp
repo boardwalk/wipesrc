@@ -1,5 +1,5 @@
 /* Source File: etcvars.c */
-#include 						"wipesrc/win95/markk/input.h"
+#include 						"input.h"
 
 /* Interrupt Handling. */
 volatile uint16_t		etc_OriginalInt09Selector;

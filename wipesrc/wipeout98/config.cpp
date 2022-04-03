@@ -1,6 +1,6 @@
 /* All routines which configure the input devices. */
 //#include	"c:\wc10\h\dos.h"
-#include	"wipesrc/win95/markk/input.h"
+#include	"input.h"
 #include <stdio.h>
 
 void	SetKey(uint32_t button, uint16_t code);

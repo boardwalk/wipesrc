@@ -19,8 +19,7 @@
 #include "sound.h"
 #include "sparks2.h"
 #include "global.h"
-
-#include "wipesrc/win95/markk/input.h"
+#include "input.h"
 
 
 extern int32_t 				andyTimeout;
