@@ -2,8 +2,6 @@
 #include <string.h>
 //#include	<sys\file.h>
 #define		LANGUAGE_C
-#include	"wipesrc/psx26/include/asm.h"
-#include	"wipesrc/psx26/include/kernel.h"
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
