@@ -45,8 +45,6 @@
 #include "pallette.h"
 #include "sfx.h"
 
-#include "../win95/markk/multiwo.h"
-#include "../win95/markk/merror.h"
 #define	FN_DEBUG
 //#include "..\markk\debug.h"
 
@@ -3345,128 +3343,9 @@ void MenuErrors (int32_t *currMenu, Menus *menuSystem)
 							  text_data (10,112, 12), RedText) ;
 			break ;
 
-		case _ERR_BAD_SERIAL_PORT:
-			CentreText("BAD SERIAL PORT", text_data (10,112,8), RedText);
-			break;
-
-		case _ERR_SERIAL_PORT_NOT_FOUND	:
-			CentreText("SERIAL PORT NOT FOUND", text_data (10,112,8), RedText);
-			break;
-
-
-
-		case _ERR_INSTALLING_SERIAL		:
-			CentreText("CANT INSTALL SERIAL DEVICE", text_data (10,112,8), RedText);
-			break;
-
-
-		case _ERR_HANDSHAKING_SERIAL		:
-			CentreText("SERIAL HANDSHAKE FAILURE", text_data (10,112,8), RedText);
-			break;
-
-
-		case _ERR_SYNCHRONISING_SERIAL	:
-			CentreText("SERIAL SYNC FAILURE", text_data (10,112,8), RedText);
-			break;
-
-
-		case _ERR_TRANSFERRING_SERIAL	:
-			CentreText("SERIAL TRANSFER ERROR", text_data (10,112,8), RedText);
-			break;
-
-
-		case _ERR_TIMEOUT_SERIAL			:
-			CentreText("SERIAL TIMED OUT", text_data (10,112,8), RedText);
-			break;
-
-
-		case _ERR_RESOLVING_SERIAL		:
-			CentreText("CANT RESOLVE SERIAL", text_data (10,112,8), RedText);
-			break;
-
-
-
-			// modem errors
-		case	_ERR_INSTALLING_MODEM		:
-			CentreText("CANT INSTALL MODEM", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_INITIALIZING_MODEM		:
-			CentreText("CANT INITIALIZE MODEM", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_DIALLING_MODEM			:
-			CentreText("CANT DIAL MODEM", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_CONNECTING_MODEM		:
-			CentreText("CONNECT FAILED", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_ANSWERING_MODEM		:
-			CentreText("CANT ANSWER ON MODEM", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_TIMEOUT_MODEM			:
-			CentreText("MODEM NOT RESPONDING", text_data (10,112,8), RedText);
-			break;
-
-
-
-			// network errors
-		case	_ERR_IPX_NOT_PRESENT		:
-			CentreText("IPX NOT FOUND", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_IPX_SYNCHRONISING		:
-			CentreText("IPX SYNC FAILURE", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_IPX_SOCKET_FULL		:
-			CentreText("IPX SOCKET FULL", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_IPX_SOCKET_OPEN		:
-			CentreText("SOCKET IN USE", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_IPX_OPEN_ERROR			:
-			CentreText("OPEN SOCKET FAILURE", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_IPX_TOO_MANY_EVENTS	:
-			CentreText("TOO MANY EVENT BLOCKS", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_NETWARE_NOT_LOADED		:
-			CentreText("NETWARE NOT FOUND", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_IPX_DATA_TOO_BIG		:
-			CentreText("IPX DATA TOO LARGE", text_data (10,112,8), RedText);
-			break;
-
-
-		case	_ERR_IPX_TIMEOUT_NETWORK	:
-			CentreText("NETWORK TIMED OUT", text_data (10,112,8), RedText);
-			break;
-
-
 			// unknown errors
 		default								:
-			CentreText("ERROR CONNECTING", text_data (10,112,8), RedText);
+			CentreText("UNKNOWN ERROR", text_data (10,112,8), RedText);
 			break;
 			}
 
