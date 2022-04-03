@@ -2654,10 +2654,6 @@ void ShowMenuBackground (POLY_FT4 *menuPrim, POLY_FT4 *menu1Prim, TimData *timSi
 
 void LoadTexModel (Object** modelShapes, const char *fileName)
 {
-	int16_t 	modelTextures= 0;
-	Object* 	obj;
-	int32_t 		count = 0 ;
-	TIMlist  *timPtr;
 	char 		modelFile[256];
 
 	/******************************************************/
@@ -2668,9 +2664,7 @@ void LoadTexModel (Object** modelShapes, const char *fileName)
 	strcpy( modelFile, "wipeout/common/" );
 	strcat( modelFile, fileName) ;
 	strcat( modelFile, ".cmp");
-	modelTextures = TextureTableCount;
-	timPtr = LoadCompressedTextureSequence( modelFile );
-	LoadCmpFiles( timPtr );
+	int16_t modelTextures = LoadCompressedTextureSequence( modelFile );
 
 	strcpy( modelFile, "wipeout/common/" );
 	strcat( modelFile, fileName) ;
@@ -2678,13 +2672,13 @@ void LoadTexModel (Object** modelShapes, const char *fileName)
 
 	modelShapes[0] = (Object *)LoadPrm( modelFile, modelTextures );
 
-	obj = modelShapes[0] ;
+	Object* obj = modelShapes[0] ;
 
+	int32_t count = 0;
 	while ( obj )
 	{
 		obj->skeleton = NewSkeleton();
-		modelShapes[count] = obj;
-		count ++ ;
+		modelShapes[count++] = obj;
 		obj = obj->next;
 	}
 }
@@ -4828,21 +4822,15 @@ void CheckSaveType (SelectionData *selectData, char loadGames[][9], ConfigData *
 
 void InitButtons (const char *fileName)
 {
-	TIMlist  		*timPtr;
-	int16_t				tablePos ;
 	char 				modelFile[256];
-	int32_t				i ;
 
 	strcpy( modelFile, "wipeout/textures/" );
 	strcat( modelFile, fileName) ;
 	strcat( modelFile, ".cmp");
 
-	tablePos = TextureTableCount;
+	int16_t tablePos = LoadCompressedTextureSequence( modelFile );
 
-	timPtr = LoadCompressedTextureSequence( modelFile );
-	LoadCmpFiles( timPtr );
-
-	for (i=0; i < 18; i++)
+	for (int32_t i=0; i < 18; i++)
 	{
 		buttonTex[i] = TextureTable [tablePos] ;
 		tablePos ++ ;

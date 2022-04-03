@@ -163,7 +163,6 @@ Texture 		*ctrleffectTextures[NO_OF_EFFECT_TEXTURES] ;
 int32_t	 			ctrlcdTrack;
 int32_t				ctrlnoCdTracks;
 POLY_FT4		ctrlTarget[2];
-TIMlist  		*ctrltimPtr;
 Shadow			*ctrlShadow;
 //POLY_FT4		ctrlweaponIcon[2];
 SPRT			ctrlweaponIcon[2];
@@ -423,10 +422,8 @@ void raceinit()
 		}
 
 		//   printf( "Initialise track library Textures\n" );
-		ctrllibraryTextures = TextureTableCount;
 		getPath(trackPath, gameData->actTrackNum, "/library.cmp");
-		ctrltimPtr = LoadCompressedTextureSequence( trackPath );
-		LoadCmpFiles( ctrltimPtr );
+		ctrllibraryTextures = LoadCompressedTextureSequence( trackPath );
 
 		//   printf( "Initialise track library Texture templates\n" );
 		getPath(trackPath, gameData->actTrackNum, "/library.ttf");

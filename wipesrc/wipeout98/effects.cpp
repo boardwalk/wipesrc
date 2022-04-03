@@ -50,14 +50,7 @@ char tranny_table[] = {YELLOW_WHITE_TRANSL,		 // MISSILE/ROCKET EXPLODE HIT NOTH
 
 void InitEffects(Effect* effects, Skeleton *camPos, Texture** effectTextures)
 {
-	int32_t i, j;
-	TIMlist  		*timPtr;
-	int16_t				loc;
-
-	loc = TextureTableCount;
-
-	timPtr = LoadCompressedTextureSequence( "wipeout/common/effects.cmp" );
-	LoadCmpFiles( timPtr );
+	int16_t loc = LoadCompressedTextureSequence( "wipeout/common/effects.cmp" );
 	effectTextures[FIRE] 		= TextureTable[loc++];
 	effectTextures[FIRE_WHITE] = TextureTable[loc++];
 	effectTextures[SMOKE] 		= TextureTable[loc++];
@@ -65,11 +58,11 @@ void InitEffects(Effect* effects, Skeleton *camPos, Texture** effectTextures)
 	effectTextures[HALO] 		= TextureTable[loc++];
 	effectTextures[GREENY] 		= TextureTable[loc++];
 
-	for(i = 0; i < NO_OF_EFFECTS; i++)
+	for(int32_t i = 0; i < NO_OF_EFFECTS; i++)
 	{
 		effects[i].count = 0;
 
-		for(j = 0; j < 2; j++)
+		for(int32_t j = 0; j < 2; j++)
 		{
 			SetPolyFT4(&(effects[i].sprite[j]));
 			SetSemiTrans((P_TAG *)&(effects[i].sprite[j]), 1);
@@ -886,15 +879,7 @@ void DrawShadow(Object **shipShapes, ShipData *shipIndex, Shadow *shadow)
 
 void InitWeaponSprtIcons(SPRT *weaponIcon, Texture** weaponIconTextures)
 {
-	int32_t i;
-	TIMlist  		*timPtr;
-	int16_t				loc;
-
-	loc = TextureTableCount;
-
-	timPtr = LoadCompressedTextureSequence( "wipeout/common/wicons.cmp" );
-	LoadCmpFiles( timPtr );
-
+	int16_t loc = LoadCompressedTextureSequence( "wipeout/common/wicons.cmp" );
 	weaponIconTextures[MINE-1] 		= TextureTable[loc++];
 	weaponIconTextures[MISSILE-1] 	= TextureTable[loc++];
 	weaponIconTextures[ROCKET-1] 		= TextureTable[loc++];
@@ -905,7 +890,7 @@ void InitWeaponSprtIcons(SPRT *weaponIcon, Texture** weaponIconTextures)
 	weaponIconTextures[SHIELD-1] 		= TextureTable[loc++];
 	weaponIconTextures[TURBO-1] 		= TextureTable[loc++];
 
-	for(i = 0; i < 2; i++)
+	for(int32_t i = 0; i < 2; i++)
 	{
 		SetSprt(&(weaponIcon[i]));
 

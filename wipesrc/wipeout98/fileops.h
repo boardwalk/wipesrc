@@ -1,9 +1,1 @@
-#include <stdint.h>
-
-typedef struct _TIMlist
-{
-	void *memBase;
-	uintptr_t	memOffset[400];
-} TIMlist;
-
-extern TIMlist *LoadCompressedTextureSequence( const char *texName );
+int16_t LoadCompressedTextureSequence( const char *texName );

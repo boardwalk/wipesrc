@@ -35,28 +35,23 @@ int32_t skyPos[15] = {-820, -2520, -1930, -5000, -5000, 0, -2260, -40, -2700, 0,
 
 #define	GsGetVcount()	0;
 
+typedef struct _TIMlist
+{
+	void *memBase;
+	uintptr_t	memOffset[400];
+} TIMlist;
+
 int16_t InitScene(Object** prm, int16_t *prmCount, Skeleton* camPos, ConfigData *gameData)
 {
-	int16_t    sceneTextures;
-   int16_t    skyTextures;
-	int16_t    i, j;
-   Object*  obj;
-   int16_t    sky;
-	TIMlist  *timPtr, *skyTimPtr;
-
-   sceneTextures = TextureTableCount;
 	getPath(trackPath, gameData->actTrackNum, "/scene.cmp");
-	timPtr = LoadCompressedTextureSequence( trackPath );
-   LoadCmpFiles( timPtr );
+	int16_t sceneTextures = LoadCompressedTextureSequence( trackPath );
 
-   skyTextures = TextureTableCount;
 	getPath(trackPath, gameData->actTrackNum, "/sky.cmp");
-	skyTimPtr = LoadCompressedTextureSequence( trackPath );
-   LoadCmpFiles( skyTimPtr );
+	int16_t skyTextures = LoadCompressedTextureSequence( trackPath );
 
-   for ( i=0; i<MaxUnique; i++ )
+   for ( int16_t i=0; i<MaxUnique; i++ )
    {
-      for ( j=0; j<MaxObjects; j++ )
+      for ( int16_t j=0; j<MaxObjects; j++ )
       {
          sharedPrims[ i ][ j ] = NULL;
       }
@@ -73,9 +68,9 @@ int16_t InitScene(Object** prm, int16_t *prmCount, Skeleton* camPos, ConfigData 
    printf( "Heap free after scene load: %d\n", heap->free );
 #endif
 
-   for ( i=0; i<*prmCount; i++ )
+   for ( int16_t i=0; i<*prmCount; i++ )
    {
-      obj = prm[ i ];
+      Object* obj = prm[ i ];
       while ( obj )
       {
          obj->skeleton->super = camPos;
@@ -84,10 +79,10 @@ int16_t InitScene(Object** prm, int16_t *prmCount, Skeleton* camPos, ConfigData 
    }
 
 
-   sky = *prmCount;
+   int16_t sky = *prmCount;
 	getPath(trackPath, gameData->actTrackNum, "/sky.prm");
    prm[ (*prmCount)++ ] = LoadPrm( trackPath , skyTextures );
-   obj = prm[ sky ];
+   Object* obj = prm[ sky ];
 /*   while ( obj )	*/
    {
    	obj->skeleton->super = camPos->super;
@@ -122,6 +117,8 @@ void getPath(char* trackPath, char trackNo, const char* name)
 	strcat( trackPath, No);
 	strcat( trackPath, name);
 }
+
+Texture* NewLoadTexture( intptr_t timPtr, int16_t translucent );
 
 void LoadCmpFiles( TIMlist *timPtr )
 {
@@ -300,7 +297,7 @@ Texture* NewLoadTexture( intptr_t timPtr, int16_t translucent )
 	return( texture );
 }
 
-TIMlist *LoadCompressedTextureSequence( const char *fileName )
+int16_t LoadCompressedTextureSequence( const char *fileName )
 {
 	int16_t texNum;
 	char	*fileBuffer;
@@ -371,6 +368,7 @@ TIMlist *LoadCompressedTextureSequence( const char *fileName )
 
 	DFree( heap, fileBuffer );			/* free compressed file memory */
 
-	return( &timList );
-
+	int16_t firstTexture = TextureTableCount;
+	LoadCmpFiles(&timList);
+	return firstTexture;
 }

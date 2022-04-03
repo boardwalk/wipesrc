@@ -448,7 +448,6 @@ void initWeapons(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData *weapon
 {
 	int32_t 			i, j, k;
 	Object* 		obj;
-	int16_t 		weaponTextures;
 	Texture 		*targetTexture ;
 	Poly        poly;
 	int16_t       primitiveCount;
@@ -457,11 +456,8 @@ void initWeapons(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData *weapon
 	Prm         prm;
 	char*       start;
 	Object*     object;
-	TIMlist 		*timPtr;
 
-	weaponTextures = TextureTableCount;
-	timPtr = LoadCompressedTextureSequence( "wipeout/common/mine.cmp" );
-	LoadCmpFiles( timPtr );
+	int16_t weaponTextures = LoadCompressedTextureSequence( "wipeout/common/mine.cmp" );
 
 	length = FileLength( "wipeout/common/rock.prm"  );
 	weaponShapes[ROCKET_OFFSET].shapePtr = LoadPrm( "wipeout/common/rock.prm", weaponTextures );

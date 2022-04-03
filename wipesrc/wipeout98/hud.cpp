@@ -62,24 +62,18 @@ extern int32_t	theFrameRate;
 
 void InitText()
 {
-
-	TIMlist  		*timPtr;
-	int32_t				i;
-
 	/**********************************************************/
 	/*** 			Initialise In Game Character Set				  ***/
 	/**********************************************************/
 
-   DRTEXT_16 = TextureTableCount;
-	timPtr = LoadCompressedTextureSequence( "wipeout/textures/drfonts.cmp" );
-   LoadCmpFiles( timPtr );
+   DRTEXT_16 = LoadCompressedTextureSequence( "wipeout/textures/drfonts.cmp" );
    DRTEXT_12 = DRTEXT_16 + 1 ;
    DRTEXT_8 = DRTEXT_16 + 2 ;
 	DRTEXT_RED = DRTEXT_16 + 4 ;
 
 	SetDrawMode((DR_MODE*)&dmode,0,0,FONT_TPAGE,0);
 	DrawPrim((P_TAG *)&dmode);
-	for(i = 0; i < 600; i++)
+	for(int32_t i = 0; i < 600; i++)
 	{
 //		SetPolyFT4(&(display_text[i]));	// PCwipeout
 		SetSprt(&(display_text[i]));
@@ -1640,18 +1634,13 @@ void DisplayRacePoints ()
 
 void InitScreenTex (Texture **screenTex, const char *fileName)
 {
-	TIMlist  		*timPtr;
-	int16_t				tablePos ;
 	char 				modelFile[256];
 
 	strcpy( modelFile, "wipeout/textures/" );
 	strcat( modelFile, fileName) ;
 	strcat( modelFile, ".cmp");
 
-	tablePos = TextureTableCount;
-
-	timPtr = LoadCompressedTextureSequence( modelFile );
-	LoadCmpFiles( timPtr );
+	int16_t tablePos = LoadCompressedTextureSequence( modelFile );
 
 	screenTex[0] = TextureTable [tablePos++] ;
 	screenTex[1] = TextureTable [tablePos++] ;
@@ -1748,15 +1737,7 @@ void DisplayAllVenomComplete ()
 
 void InitTrackTex (Texture **trackTex)
 {
-
-	TIMlist  		*timPtr;
-	int16_t				tablePos ;
-	Texture *t;
-	tablePos = TextureTableCount;
-
-	timPtr = LoadCompressedTextureSequence( "wipeout/textures/track.cmp" );
-	LoadCmpFiles( timPtr );
-
+	int16_t tablePos = LoadCompressedTextureSequence( "wipeout/textures/track.cmp" );
 	trackTex[0] = TextureTable [tablePos++] ;
 	trackTex[1] = TextureTable [tablePos++] ;
 	trackTex[2] = TextureTable [tablePos++] ;
@@ -1764,7 +1745,8 @@ void InitTrackTex (Texture **trackTex)
 	trackTex[4] = TextureTable [tablePos++] ;
 	trackTex[5] = TextureTable [tablePos++] ;
 	trackTex[6] = TextureTable [tablePos++] ;
-	t=trackTex[0];
+
+	Texture* t=trackTex[0];
 	t->tsb = 0xa5;
 	t->textureX=320;
 	t->textureY=0;
@@ -1776,6 +1758,7 @@ void InitTrackTex (Texture **trackTex)
 	t->v2=221;
 	t->u3=255;
 	t->v3=221;
+
 	t=trackTex[1];
 	t->tsb = 0xa5;
 	t->textureX=320;
@@ -1788,6 +1771,7 @@ void InitTrackTex (Texture **trackTex)
 	t->v2=147;
 	t->u3=255;
 	t->v3=147;
+
 	t=trackTex[2];
 	t->tsb = 0xa5;
 	t->textureX=320;
@@ -1800,6 +1784,7 @@ void InitTrackTex (Texture **trackTex)
 	t->v2=221;
 	t->u3=127;
 	t->v3=221;
+
 	t=trackTex[3];
 	t->tsb = 0xa5;
 	t->textureX=320;
