@@ -1,3 +1,6 @@
+#ifndef ANDYY_PALLETTE_H
+#define ANDYY_PALLETTE_H
+
 #define	FADE_LEVEL	32
 #define	FFADE_LEVEL	32.0
 
@@ -22,3 +25,5 @@ extern char max_pal;
 
 extern int32_t GetPal(char);
 extern void SetPal(char,char,char,char);
+
+#endif

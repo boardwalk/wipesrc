@@ -1,3 +1,6 @@
+#ifndef DROID_H
+#define DROID_H
+
 typedef struct RescueData
 {
 	TrackSection 	*section;
@@ -17,3 +20,5 @@ void UpdateDroidStart		(RescueData *rescueDroid, ShipData *shipIndex, Object** s
 void UpdateDroidCircle		(RescueData *rescueDroid, ShipData *shipIndex, Object** shipShapes);
 void SetDroidVectors			(RescueData *rescueDroid, Object** shipShapes);
 void UpdateDroidRescue		(RescueData *rescueDroid, ShipData *shipIndex, Object** shipShapes);
+
+#endif

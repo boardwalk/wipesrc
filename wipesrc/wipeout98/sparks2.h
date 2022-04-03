@@ -1,3 +1,6 @@
+#ifndef SPARKS2_H
+#define SPARKS2_H
+
 #define Max3DLines      200
 #define Max3DLineSkels  10
 
@@ -36,3 +39,5 @@ typedef struct LineSkel
 void CreateSparks3D( Skeleton *camPos );
 void StartSparks3D( VECTOR *start, int16_t numSparks, VECTOR *velocity );
 void UpdateSparks3D();
+
+#endif

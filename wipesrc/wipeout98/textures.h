@@ -1,3 +1,6 @@
+#ifndef TEXTURES_H
+#define TEXTURES_H
+
 BOOL EnumTextureFormats ();
 
 class TextureFormats {
@@ -13,3 +16,5 @@ public:
 #define f1555 2
 #define f4444 4
 #define f555 8
+
+#endif

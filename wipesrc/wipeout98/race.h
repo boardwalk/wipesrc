@@ -1,3 +1,6 @@
+#ifndef RACE_H
+#define RACE_H
+
 void race		( combatData *packetData, ConfigData *gameData, int32_t mode, int32_t timeout );
 void Restart	(	ShipData 		*shipIndex,
 				 		ConfigData 		*gameData,
@@ -7,3 +10,5 @@ void Restart	(	ShipData 		*shipIndex,
                         RescueData      *rescueDroid,
                         Object          **shipShapes);
 void QuitGame	();
+
+#endif

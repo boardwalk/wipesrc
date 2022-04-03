@@ -1,3 +1,6 @@
+#ifndef MENUS_H
+#define MENUS_H
+
 #define 		NORMAL_COMBAT_LINK	1
 #define			MAX_OPTIONS			15
 #define			MAX_MENUS			30
@@ -449,3 +452,5 @@ void		SerialNetworkHandling(MusicPrims *musicPrims, SlideTextures *musicTex, Sel
 void	RestartGameConfirm (char *confirm, int16_t xpad, char *lConfirm, uint32_t *toggle);
 void MostRecentSaveFile(char *filename);
 void JJSReadTIM(char *filename , char *location, TimData *tim);
+
+#endif

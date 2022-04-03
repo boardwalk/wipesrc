@@ -1,4 +1,6 @@
 /***** Weapon Defines *****/
+#ifndef WEAPON_H
+#define WEAPON_H
 
 #define NO_OF_WEAPONS 29
 
@@ -126,3 +128,5 @@ void DrawTargetIcon(ShipData *playerShip, ShipData *shipIndex, Object** shipShap
 void SetTargetShip(ShipData *shipIndex, int32_t shipNo);
 int32_t GetNewWeapon();
 int32_t GetNewWeaponBodge();
+
+#endif

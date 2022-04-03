@@ -1,5 +1,7 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton
 */
+#ifndef ASMTRK_H
+#define ASMTRK_H
 
 TrackSection *AsmTransformTrackLo	// PCwipeout
 (
@@ -25,3 +27,5 @@ TrackSection *AsmTransformTrackHi	// PCwipeout
    int16_t             medCount,
    int16_t			 dir
 );
+
+#endif

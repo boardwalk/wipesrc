@@ -1,3 +1,6 @@
+#ifndef EFFECTS_H
+#define EFFECTS_H
+
 #define NO_OF_EFFECTS 140
 #define NO_OF_EFFECT_TEXTURES 7
 
@@ -49,3 +52,5 @@ void DrawWeaponSprtIcons(SPRT *weaponIcon, Texture** weaponIconTextures, ShipDat
 void InitRedLight(Object** prm, int16_t prmCount, Object **redLight);
 void InitDonkey(Object** prm, int16_t prmCount, Object **donkey);
 void InitWeaponSprtIcons(SPRT *weaponIcon, Texture** weaponIconTextures);
+
+#endif

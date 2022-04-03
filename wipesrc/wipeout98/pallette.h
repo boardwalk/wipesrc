@@ -1,3 +1,6 @@
+#ifndef PALLETTE_H
+#define PALLETTE_H
+
 #define	FADE_LEVEL	32
 #define	FFADE_LEVEL	32.0
 
@@ -24,3 +27,5 @@ int32_t GetPal(char);
 void SetPal(char,char,char,char);
 
 char FindNearestColourIndex(CVECTOR *TestCol);
+
+#endif

@@ -1,5 +1,7 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton
 */
+#ifndef TIM_H
+#define TIM_H
 
 /* DEFINES FOR DRAWING PRIMITIVE */
 
@@ -144,3 +146,5 @@ typedef struct TimClut4
 /* Forward Procedure Declarations */
 
 Texture* LoadTexture( const char* name, int16_t translucent );
+
+#endif

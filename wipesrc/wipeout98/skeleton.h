@@ -1,5 +1,7 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton
 */
+#ifndef SKELETON_H
+#define SKELETON_H
 
 Skeleton* NewSkeleton( );
 
@@ -10,3 +12,5 @@ void SetSkeletonDirection( Skeleton* skeleton, int16_t xa, int16_t ya, int16_t z
 MATRIX* GetSkeletonMatrix( Skeleton* skeleton );
 
 void SetSkeletonTransform( Skeleton* skeleton );
+
+#endif

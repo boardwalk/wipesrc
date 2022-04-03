@@ -1,3 +1,6 @@
+#ifndef GLOBAL_H
+#define GLOBAL_H
+
 #include "pad.h"
 
 
@@ -254,3 +257,5 @@ extern int32_t				WinPitch;
 extern int16_t 			WinWidth;
 extern int16_t	 		WinHeight;
 extern int16_t			WinHeightX2;
+
+#endif

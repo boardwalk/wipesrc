@@ -1,3 +1,6 @@
+#ifndef SCANCODE_H
+#define SCANCODE_H
+
 /* A complete set of scancode macros. */
 /* now uses virtual key codes
 #define		_ESC_KEY				0x0001
@@ -223,3 +226,5 @@
 #define		_F11_KEY				0x007a
 #define		_F12_KEY				0x007b
 #define		_LEFT_ALT_KEY			0x0012
+
+#endif

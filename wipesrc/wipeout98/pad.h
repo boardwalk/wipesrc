@@ -1,3 +1,6 @@
+#ifndef PAD_H
+#define PAD_H
+
 #define  PadLeft0       0x80
 #define  PadDown0       0x40
 #define  PadRight0      0x20
@@ -78,3 +81,5 @@ void 	SetBrake				(ShipData *playerShip, int16_t padLeft, int16_t padRight);
 void 	SetView				(ShipData *playerShip, int16_t padView);
 void 	SetFire				(ShipData *playerShip, int16_t padFire, WeaponData *weaponIndex, int32_t shipNo);
 int16_t GetMenuKey			(int16_t key);
+
+#endif

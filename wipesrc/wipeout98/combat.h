@@ -1,3 +1,6 @@
+#ifndef COMBAT_H
+#define COMBAT_H
+
 #define 	SLAVE			1
 #define	MASTER		0
 #define	SINGLE		2
@@ -90,3 +93,5 @@ void SetSerialData(ShipData *shipIndex, Object **shipShapes);
 void static _error();
 void _start_remote();
 void _init_cont();
+
+#endif

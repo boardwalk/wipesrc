@@ -1,6 +1,7 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton & Rob Smith
 */
-
+#ifndef TRACKASM_H
+#define TRACKASM_H
 
 
 
@@ -98,3 +99,5 @@ void AsmAutoMesh
    Tile*          tile,
    AutoMeshData*  autoMesh
 );
+
+#endif

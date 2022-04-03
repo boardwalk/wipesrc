@@ -1,3 +1,6 @@
+#ifndef CARD_H
+#define CARD_H
+
 #define	EUROPE	0
 #define	US			1
 #define	JAPAN		0
@@ -22,3 +25,5 @@ int32_t UnFormat (int32_t) ;
 int32_t QuickUnFormat (int32_t) ;
 int32_t CheckHWCardEvents () ;
 void LoadCardTexture ()	;
+
+#endif

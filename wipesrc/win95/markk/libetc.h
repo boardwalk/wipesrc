@@ -1,3 +1,6 @@
+#ifndef MARKK_LIBETC_H
+#define MARKK_LIBETC_H
+
 /* Source File: libetc.h */
 #include	"../markk/scancode.h"
 
@@ -227,3 +230,5 @@ extern uint32_t				etc_DefaultMouseSet[_MAX_MOUSE_SWITCHES];
 
 /* Strings. */
 extern const char								*buttonname[_MAX_BUTTONS];
+
+#endif

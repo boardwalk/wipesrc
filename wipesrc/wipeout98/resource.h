@@ -2,6 +2,9 @@
 // Microsoft Developer Studio generated include file.
 // Used by sjr.rc
 //
+#ifndef RESOURCE_H
+#define RESOURCE_H
+
 #define IDC_DIRECTIONS3                 101
 #define IDC_INSTALLMOVIES               102
 #define IDC_INSTALLDATA                 103
@@ -21,7 +24,7 @@
 #define IDC_ACTION                      117
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
@@ -30,4 +33,6 @@
 #define _APS_NEXT_CONTROL_VALUE         1015
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
+#endif
+
 #endif

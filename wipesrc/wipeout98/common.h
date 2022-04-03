@@ -1,7 +1,8 @@
 /*
  *	common.h
  */
-
+#ifndef COMMON_H
+#define COMMON_H
 
 #include	"wipesrc/psx26/include/libetc.h"
 #include	"wipesrc/psx26/include/libgte.h"
@@ -394,3 +395,5 @@ extern	CACHE_COMMON	*cache_buffer;
 //#define	ApplyMatrix(a,b,c)	ApplyMatrixCC(a,b,c)
 
 #define	SKY_COLOUR 155
+
+#endif

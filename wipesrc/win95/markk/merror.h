@@ -2,6 +2,8 @@
 // WIPEOUT PC Multiplayer error handling routines header.
 // Copyright(C). Sony Interactive. (05/09/95). Mark Kelly.
 //-----------------------------------------------------------------------//
+#ifndef MARKK_MERROR_H
+#define MARKK_MERROR_H
 
 // no error
 #define					OK							0
@@ -37,3 +39,4 @@
 
 
 //-----------------------------------------------------------------------//
+#endif

@@ -1,3 +1,6 @@
+#ifndef DRAW_H
+#define DRAW_H
+
 #define ShipForwards    1
 #define ShipBackwards   2
 #define ShipRight       4
@@ -10,15 +13,17 @@
 
 
 char TrackDirection
-( 
-	TrackCamera*		camera 
+(
+	TrackCamera*		camera
 );
 
 
 
 
 void DrawLandscape
-( 
-	ShipData			*playerShip, 
+(
+	ShipData			*playerShip,
 	TrackCamera		*camera
 );
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef TEXPLACE_H
+#define TEXPLACE_H
+
 typedef struct TexPlace
 {
    int16_t       libraryTextures;              /* index into library texture table */
@@ -19,3 +22,5 @@ void NewBank( TexPlace *texPlace, TexTemplate*	texTemplate );
 void TexPlaceUpdate( TexPlace *texPlace, TrackSection *section, int16_t face, TexTemplate *texTemplate, int16_t copy );
 void TexPlaceControl( TrackCamera *camera, int16_t *face, Object *texHighlight, TrackSection *nextSection );
 Object *CreateTexHighlight( );
+
+#endif

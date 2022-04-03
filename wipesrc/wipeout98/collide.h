@@ -1,3 +1,6 @@
+#ifndef COLLIDE_H
+#define COLLIDE_H
+
 #define COLLIDE_MODEL 16
 #define NOSE_COLLISION 		1
 #define TAIL_COLLISION 		2
@@ -15,3 +18,5 @@ void  NoseCollision        	(ShipData *playerShip, Face *facePtr, int32_t direct
 void  Reflection           	(VECTOR *incidence, SVector normal);
 int32_t   AngleOfCollision     	(SVECTOR normal, VECTOR ship_point);
 int32_t   CheckPolygonCollision	(Face *facePtr, VECTOR pos, int32_t alpha);
+
+#endif

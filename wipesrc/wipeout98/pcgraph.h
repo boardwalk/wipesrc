@@ -1,3 +1,6 @@
+#ifndef PCGRAPH_H
+#define PCGRAPH_H
+
 #define CRTC_ADDR	0x3d4	/* Base port of the CRT Controller (color) */
 #define SEQU_ADDR	0x3c4	/* Base port of the Sequencer */
 #define GRAC_ADDR	0x3ce	/* Base port of the Graphics Controller */
@@ -24,3 +27,5 @@ extern char			*j_buff;
 extern int32_t	Gcount;
 
 //extern CGL_RECT_ST  stScreenRect;                // screen box, used by cglClearBuffer
+
+#endif

@@ -2,6 +2,8 @@
 // WIPEOUT PC Multiplayer Generic game routines header.
 // Copyright(C). Sony Interactive. (05/09/95). Mark Kelly.
 //-----------------------------------------------------------------------//
+#ifndef MARKK_MULTIWO_H
+#define MARKK_MULTIWO_H
 
 #define						TEST_SERIAL
 //#define						TEST_MODEM
@@ -99,3 +101,4 @@ extern int32_t					MAK_OpenDevice();
 extern int32_t					MAK_CloseDevice();
 
 //-----------------------------------------------------------------------//
+#endif

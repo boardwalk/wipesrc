@@ -1,3 +1,6 @@
+#ifndef AJS_H
+#define AJS_H
+
 void	SetPolyGT3(POLY_GT3 *p);
 void	InitAJSVSync();
 void setWinLose();
@@ -9,3 +12,5 @@ void LoadClut4(RECT	*rect, uint16_t *clutptr, CLUT *cluts);
 int32_t		LoadImage4(RECT	*recp, uint32_t *p, CLUT *cluts);
 void LoadClut8(RECT	*rect, uint16_t *clutptr, CLUT *cluts);
 int32_t		LoadImage8(RECT	*recp, uint32_t *p, CLUT *cluts);
+
+#endif

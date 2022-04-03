@@ -1,3 +1,6 @@
+#ifndef EDITOR_H
+#define EDITOR_H
+
 /* the tools */
 #define fDynamics    0
 #define fTrans       1
@@ -64,3 +67,5 @@ typedef struct Editor
 void InitEditor( Editor *editor );
 void EditorUpdate( Editor *editor, char level );
 int16_t EditorFlyMode( Editor *editor );
+
+#endif

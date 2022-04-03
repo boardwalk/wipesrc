@@ -1,3 +1,6 @@
+#ifndef WINH_H
+#define WINH_H
+
 #define	DEBUG_LOCKED	0
 extern char *DebugScreen;
 
@@ -8,3 +11,5 @@ void CloseATI3DCIF ();
 void ShellMovieFinished();
 void mpeganim();
 void ShowErrorMessage(int32_t StrNum);
+
+#endif

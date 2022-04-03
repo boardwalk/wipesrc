@@ -1,6 +1,7 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton & Rob Smith
 */
-
+#ifndef SCENE_H
+#define SCENE_H
 
 
 #define     ToIntel     0
@@ -16,3 +17,5 @@ void IntelObject( char *start, char *finish, int16_t convert );
 void IntelShort( int16_t* svalue );
 
 void IntelLong( int32_t* lvalue );
+
+#endif

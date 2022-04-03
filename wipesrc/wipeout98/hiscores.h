@@ -1,3 +1,6 @@
+#ifndef HISCORES_H
+#define HISCORES_H
+
 #define		NumNames		5
 #define		nameLetters	3
 #define		HiScoreTracks	14
@@ -46,3 +49,5 @@ int32_t  CheckHiScore (ConfigData *, HiScoreData *)	;
 void NewHighScore (ConfigData *, HiScoreData *)	;
 char ChampLapRecord 	(ConfigData *, ShipData *)	;
 void NewHighScoreDraw (ConfigData *gameData, HiScoreData *hiScoreData);
+
+#endif

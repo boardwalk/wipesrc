@@ -1,3 +1,6 @@
+#ifndef LIBGTE_H
+#define LIBGTE_H
+
 void RotTransPersN(SVECTOR *v0,DVECTOR *v1,uint16_t *sz,uint16_t *flag,int32_t n);
 int32_t NormalClip( DVECTOR sxy0, DVECTOR sxy1, DVECTOR sxy2 );
 int32_t rcos(int32_t a);
@@ -18,3 +21,5 @@ void SetColorMatrix( MATRIX * m );
 void SetLightMatrix( MATRIX * m );
 MATRIX * TransMatrix( MATRIX * m, VECTOR * v );
 void NormalColorCol( SVECTOR * v0, CVECTOR * v1, CVECTOR * v2 );
+
+#endif

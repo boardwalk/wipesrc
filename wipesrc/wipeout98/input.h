@@ -1,3 +1,6 @@
+#ifndef INPUT_H
+#define INPUT_H
+
 volatile /* Source File: libetc.h */
 #include	"scancode.h"
 
@@ -230,3 +233,5 @@ extern uint32_t 				etc_DefaultMouseSet[_MAX_MOUSE_SWITCHES];
 
 /* Strings. */
 extern const char								*buttonname[_MAX_BUTTONS];
+
+#endif

@@ -4,8 +4,8 @@
 //
 //================================================================================================================================
 
-#ifndef _BS_rGraphics
-#define _BS_rGraphics
+#ifndef RGRAPHICS_H
+#define RGRPAHICS_H
 
 #include <windows.h>
 #include <ddraw.h>
@@ -72,7 +72,7 @@ BOOL isTextureAlpha(DWORD handle);
 void EnableZBuffer(BOOL flag);
 HRESULT Cleanup3DEnvironment();
 
-#endif	// _BS_rGraphics
+#endif
 
 //================================================================================================================================
 //END OF FILE

@@ -1,3 +1,6 @@
+#ifndef CONE_H
+#define CONE_H
+
 typedef struct
 {
    int16_t          coneIndex[ 3 ][ 8 ];
@@ -11,3 +14,5 @@ typedef struct
 
 void InitCone ( Cone *cone );
 void UpdateCone ( Cone *cone );
+
+#endif

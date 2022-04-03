@@ -1,3 +1,6 @@
+#ifndef SHIPS_H
+#define SHIPS_H
+
 #define NO_OF_SHIPS 8
 
 #define IN_TOW			 	0x1
@@ -92,3 +95,5 @@ struct ConfigData ;
 void loadShipData(TrackSection* section, ShipData *shipIndex, Object** shipShapes, Skeleton* camPos);
 void DrawShips(ShipData *shipIndex, Object** shipShapes, int32_t camShip, TrackCamera camera);
 void initShipData(TrackSection* section, ShipData *shipIndex, ConfigData *gameData);
+
+#endif

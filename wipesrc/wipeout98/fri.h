@@ -1,3 +1,6 @@
+#ifndef FRI_H
+#define FRI_H
+
 typedef struct _glos
 {
 	TrackCamera		camera;
@@ -51,3 +54,5 @@ extern	GLOS	glo, glo1;
 extern	int32_t	ctrl_init;
 extern	int32_t	ok_to_interrupt;
 extern	int32_t	ctrl_says_quit;
+
+#endif

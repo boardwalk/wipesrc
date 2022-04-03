@@ -1,3 +1,6 @@
+#ifndef SOUND_H
+#define SOUND_H
+
 #include "utypes.h"
 
 #define SOUND  1
@@ -126,3 +129,5 @@ int32_t 		InitCD( CdlLOC*, int32_t );
 int16_t 		AdjustRemoteEngineSound(ShipData *shipIndex, Object** shipShapes, TrackCamera *camera );
 void 		AdjustEngineSound(ShipData*, TrackCamera*);
 void StopNotes();
+
+#endif

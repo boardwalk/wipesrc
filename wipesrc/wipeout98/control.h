@@ -1,3 +1,6 @@
+#ifndef CONTROL_H
+#define CONTROL_H
+
 #define NEGCON 0x23
 // #define NEGCON 1	  // PCwipeout
 #define NORMALPAD 0
@@ -73,3 +76,5 @@ void SetSkeletonDirectionRPH( Skeleton* skeleton, int16_t roll, int16_t pitch, i
 void Mouse2Neg();
 void Joy2Neg();
 void DoDetailKeys();
+
+#endif

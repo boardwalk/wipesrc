@@ -1,5 +1,7 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton
 */
+#ifndef OBJECT_H
+#define OBJECT_H
 
 #include "small_ptr.h"
 #define  Lib      0
@@ -901,3 +903,5 @@ void	    InitSonyDisplay();
 void	    TransformStaticMenuObject(Object * object, Skeleton * camera);
 void InitGeom();
 void	    TransformStaticObjectBodge(Object * object, Skeleton * camera);
+
+#endif

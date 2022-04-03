@@ -1,6 +1,7 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton
 */
-
+#ifndef STANDARD_H
+#define STANDARD_H
 
 #include "wipesrc/psx26/include/libgte.h"
 #include "wipesrc/psx26/include/libgpu.h"
@@ -32,3 +33,5 @@ extern 	uintptr_t	FastRam;	// ajs (well ajy actually)
 int32_t rsin( int32_t angle );
 int32_t rcos( int32_t angle );
 */
+
+#endif

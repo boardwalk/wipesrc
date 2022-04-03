@@ -1,3 +1,6 @@
+#ifndef TRACK_H
+#define TRACK_H
+
 #define NEW_TRACK 1
 
 typedef struct Normal
@@ -164,3 +167,5 @@ TrackSection* PrevIndexSection( TrackSection* section );
 
 void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh );
 void DrawAllTrack( TrackCamera *camera, AutoMeshData *autoMesh );
+
+#endif

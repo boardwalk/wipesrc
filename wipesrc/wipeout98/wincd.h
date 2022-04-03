@@ -1,3 +1,6 @@
+#ifndef WINCD_H
+#define WINCD_H
+
 struct cdlPos
 {
 	int32_t min;
@@ -9,3 +12,5 @@ void CdSetVol(int32_t newVol);
 int32_t numTracks();
 void CDPlay(int16_t CurrTrackNo);
 int32_t CdGetToc2(int32_t sess, struct CdlPos *table);
+
+#endif

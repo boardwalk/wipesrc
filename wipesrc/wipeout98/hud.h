@@ -1,3 +1,6 @@
+#ifndef HUD_H
+#define HUD_H
+
 #define NUM_BARS			12
 #define SPEEDO_X			179
 #if PAL
@@ -103,3 +106,5 @@ void 			InitTrackTex 		(Texture **trackTex);
 void 			BackPoly 			(POLY_F4 *, DR_MODE *, int16_t, int16_t, int16_t, int16_t)	;
 void DisplayRaceInfo (ConfigData *gameData, HiScoreData *hiScoreData);
 void DrawHud(ShipData* shipIndex, Speedo *speedo, int32_t choice, ConfigData *gameData);
+
+#endif

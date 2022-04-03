@@ -1,6 +1,7 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton
 */
-
+#ifndef MALLOC_H
+#define MALLOC_H
 
 /* Dynamic Memory Allocation Structures
 
@@ -135,3 +136,5 @@ char* SAlloc( StaticHeap* sh, int32_t size );
 void SFreeAll( StaticHeap* sh );
 
 void SClear( StaticHeap* sh );
+
+#endif

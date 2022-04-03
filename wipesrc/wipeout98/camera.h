@@ -1,3 +1,6 @@
+#ifndef CAMERA_H
+#define CAMERA_H
+
 #define DEBUG_CAM 0
 #define COLLIDE_TEST 0
 
@@ -14,3 +17,5 @@ void UpdateCameraEditorStep   	(TrackCamera*, ShipData *camShip, RescueData*);
 void UpdateCameraDroidView			(TrackCamera*, ShipData *camShip, RescueData*);
 void UpdateCameraCollideTest		(TrackCamera*, ShipData *camShip, RescueData* );
 void SetCameraToRedPoly       	(TrackCamera *camera, Face *facePtr);
+
+#endif

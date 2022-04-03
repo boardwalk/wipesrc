@@ -1,3 +1,6 @@
+#ifndef DYNAM_H
+#define DYNAM_H
+
 #define GRAVITY 			80000								/* Gravitational force 					- 800    */
 #define MIN_RESISTANCE 	20	 /* 12 */
 #define MAX_RESISTANCE 	74
@@ -20,3 +23,5 @@ int32_t SetTrackAttributes	(TrackSection *section,
 							  	int16_t i,
 							  	WeaponGrid *weaponGrid,
 							  	int32_t noWeaponGrids);
+
+#endif

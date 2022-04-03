@@ -8,8 +8,8 @@
 *
 *********************************************************/
 
-#ifndef _SFX_H_INCLUDED_
-#define _SFX_H_INCLUDED_
+#ifndef CHRISE_SFX_H
+#define CHRISE_SFX_H
 
 /*
  * Card Types
@@ -178,4 +178,4 @@ void SfxSndTrkStop();
 #endif	/* DEBUG */
 
 
-#endif /* _SFX_H_INCLUDED_ */
+#endif

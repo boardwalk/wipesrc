@@ -1,4 +1,5 @@
-/*    */
+#ifndef SPLINE_H
+#define SPLINE_H
 
 TrackSection* FindAllNearestSection( VECTOR pos );
 
@@ -16,3 +17,5 @@ void InitIceCongratulations();
 
 void ShowFireCongratulations();
 void ShowIceCongratulations();
+
+#endif

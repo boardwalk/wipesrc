@@ -1,3 +1,6 @@
+#ifndef TILELIB_H
+#define TILELIB_H
+
 /* Maximum number of faces in a section */
 #define        MaxFaces       7
 
@@ -36,3 +39,5 @@ void AddTileToLibrary( TileLib* tileLib, int16_t lib, int16_t res, char* prim, i
 int16_t CanTileFitInLibrary( TileLib* tileLib, int16_t lib, int16_t res, int16_t reversed );
 void ResetTileLibrary( TileLib* tileLib );
 char* GetTileObject( TileLib* tileLib, int16_t index, int16_t res, int16_t reversed );
+
+#endif

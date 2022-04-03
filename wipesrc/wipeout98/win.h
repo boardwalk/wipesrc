@@ -1,3 +1,6 @@
+#ifndef WIN_H
+#define WIN_H
+
 int32_t JJSLoadSprites ();
 int32_t randy();
 void centreMouse();
@@ -21,3 +24,5 @@ void	    CopyPal(char *palette, int16_t start, int16_t end);
 void	    WinQuit();
 int32_t JJSJoyConfig();
 void	    BltClearToScreen();
+
+#endif
