@@ -2,7 +2,6 @@
 */
 
 
-#include "wipesrc/psx26/include/sys/types.h"
 #include "wipesrc/psx26/include/libgte.h"
 #include "wipesrc/psx26/include/libgpu.h"
 #include "wipesrc/psx26/include/libsn.h"

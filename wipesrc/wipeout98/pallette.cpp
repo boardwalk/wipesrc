@@ -1,4 +1,3 @@
-#include "wipesrc/psx26/include/sys/types.h"
 #include "wipesrc/psx26/include/libgte.h"
 #include <stdlib.h>
 #include "pallette.h"

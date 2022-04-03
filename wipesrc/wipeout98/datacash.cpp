@@ -1,4 +1,3 @@
-#include "wipesrc/psx26/include/sys/types.h"
 #include <stdio.h>
 #include <stdlib.h>
 
