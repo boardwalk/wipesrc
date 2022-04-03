@@ -1,5 +1,4 @@
 //#include <libspu.h>
-#include "wipesrc/psx26/include/kernel.h"
 #include "standard.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,7 +25,6 @@
 #include "menus.h"
 #include "hiscores.h"
 #include "hud.h"
-#include "iso9660.h"
 #include "sparks2.h"
 #include "main.h"
 #include "global.h"

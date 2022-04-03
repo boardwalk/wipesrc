@@ -14,7 +14,7 @@
 #include "control.h"
 #include "droid.h"
 #include "camera.h"
-#include "iso9660.h"
+// #include "iso9660.h"
 #include "sound.h"
 #include "sparks2.h"
 #include "global.h"
@@ -27,7 +27,7 @@
 
 #include <sys/file.h>
 #include <kernel.h>
-#include "iso9660.h"
+// #include "iso9660.h"
 
 void InitCDFS(DynamicHeap *heap)
 {
