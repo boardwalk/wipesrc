@@ -47,7 +47,7 @@ def main():
 
             objects = []
 
-            for dirpath, dirnames, filenames in os.walk('wipesrc'):
+            for dirpath, dirnames, filenames in os.walk('src'):
                 for filename in filenames:
                     if filename.endswith('.cpp') and not filename.endswith('_old.cpp'):
                         cpp_file = os.path.join(dirpath, filename)
