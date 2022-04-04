@@ -182,7 +182,6 @@ void UpdateShipRemote(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, 
   VECTOR offSetVector;
   Vector path1, path2;
   int32_t gap_mag, decide;
-  int16_t DPASectDiff;
 
   offSetVector.vx = 0;
   offSetVector.vy = 0;
@@ -197,9 +196,6 @@ void UpdateShipRemote(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, 
     while ((facePtr->flags & TRACK_BASE) == 0) {
       facePtr++;
     }
-
-    if (gameType == SINGLE)
-      DPASectDiff = remoteShip->DPASectDiff - myShip->DPASectDiff;
 
     remoteShip->updateControl = HoldCentre;
 

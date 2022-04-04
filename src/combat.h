@@ -86,7 +86,6 @@ void NewSlave(combatData*, ShipData*);
 void InitializeCombatLink();
 
 void SetSerialData(ShipData* shipIndex, Object** shipShapes);
-void static _error();
 void _start_remote();
 void _init_cont();
 

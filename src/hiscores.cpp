@@ -410,7 +410,6 @@ void HighScore(ConfigData* gameData) {
 
 void AddEntry2Table(ConfigData* gameData, int32_t bestLap, char nameEntered[]) {
   int32_t i, j;
-  char tablePos;
   int32_t scoreTrack = 0;
 
   //	printf ("track number in add entry to table = %d \n", gameData->trackNum) ;
@@ -429,7 +428,6 @@ void AddEntry2Table(ConfigData* gameData, int32_t bestLap, char nameEntered[]) {
       if (scoreTable[scoreTrack].position[i] == -1) {
         //				printf ("Position -1 \n") ;
 
-        tablePos = i;
         scoreTable[scoreTrack].position[i] = i;
         scoreTable[scoreTrack].lapTimes[i] = bestLap;
         scoreTable[scoreTrack].lapTimesPilot[i] = gameData->shipNum;
@@ -446,8 +444,6 @@ void AddEntry2Table(ConfigData* gameData, int32_t bestLap, char nameEntered[]) {
         scoreTable[scoreTrack].position[i] = j;
         scoreTable[scoreTrack].lapTimes[i] = bestLap;
         strcpy(scoreTable[scoreTrack].names[i], nameEntered);
-
-        tablePos = i;
       }
       break;
     }

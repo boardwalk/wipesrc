@@ -278,10 +278,10 @@ void oldmain() {
       titleTimeout++;
 
       // TODO(boardwalk) Shorten attract mode timeout temporarily
-      // if (firstTime == 1)
-      // 	TOut = 30;
-      // else
-      TOut = 5;
+      if (firstTime == 1)
+      	TOut = 5; // Was 30
+      else
+        TOut = 5;
 
       if (titleTimeout >= TOut * FR30) {
         mode = ATTRACT;

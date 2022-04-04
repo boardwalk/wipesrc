@@ -458,8 +458,6 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
   Menus menuSystem[MAX_MENUS];
   int32_t currMenu = -2;
   int32_t currOption = 0;
-  int32_t oldMenu = 0;
-  int32_t oldOption = 0;
   static char firstTime = 1;
   int32_t i;
   Object* shipShapes[NO_OF_SHIPS];
@@ -486,11 +484,8 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
   MusicPrims musicPrims;
   static SelectionData selectData;
   char loadGames[MAX_GAMES][9];
-  char loadFlag = 1;
-  Texture* copyrightSymbol;
   Texture* trackTex[7];
   POLY_FT4 trackPrims[2];
-  int32_t length;
   int32_t TOut = 180;
 
   menuTexturesIn = 1;
@@ -507,8 +502,6 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
   LoadTexModel(joypadShapes, "cntrl"); // jed
   LoadTexModel(gameTypeShapes, "msdos"); // jed
   LoadTexModel(optionShapes, "misc"); // jed
-
-  length = FileLength("wipeout/common/pad1.prm");
 
   //	LoadTexModel (shipShapes, "allsh") ;
   //	LoadTexModel (pilotShapes, "pilot") ;
@@ -577,14 +570,12 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
   selectData.combatInit = 0;
   selectData.combatComplete = 0;
 
-  if (gameData->defaultMenu != -2)
-    loadFlag = 0;
-
   currMenu = gameData->defaultMenu;
 
   menuSystem[1].numOptions = NumTracks;
 
-  copyrightSymbol = LoadTexture("wipeout/textures/copyrigt.tim", 1);
+  // TODO(boardwalk) Is this ever used?
+  LoadTexture("wipeout/textures/copyrigt.tim", 1);
 
   InitMenuSystem(&(menuSystem[0]));
 
@@ -633,9 +624,6 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
     textPrim = CurrentScreen * 300;
 
     ClearOTagR(OT[CurrentScreen], OT_SIZE);
-
-    oldMenu = currMenu;
-    oldOption = currOption;
 
     if (neg1.head == 8960) {
       if ((currMenu == PADCONFIG_MENU) && ((menuSystem[PADCONFIG_MENU].displayObject == DrawPlayPad) ||
@@ -2473,7 +2461,7 @@ void DrawMainMenu(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t
 }
 
 void DrawAudio(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0;
+  // static int32_t hdg = 0;
 
   //if ((*swapDelay) == 0)
   //{
@@ -2481,7 +2469,8 @@ void DrawAudio(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* s
   //SetSkeletonDirectionHPR((menuSystem[(*currMenu)].menuModel[4]->skeleton),hdg,	0,	0);
   //TransformStaticObjectHole(menuSystem[(*currMenu)].menuModel[4], NULL);
   //}//SJR
-  hdg += 40;
+
+  // hdg += 40;
 }
 
 void DrawTeams(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
@@ -2520,9 +2509,6 @@ void DrawPilot(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* s
 }
 
 void DrawPlayPad(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0;
-  static int32_t pitch = 0, roll = 0, zoom = 0, x = 0, y = 0;
-
   InitMenuDisplay(120);
 
   SetSkeletonPosition((menuSystem[(*currMenu)].menuModel[0]->skeleton), 0, -1140, 6220 + zoomInOut);
@@ -2531,35 +2517,9 @@ void DrawPlayPad(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t*
   SetSkeletonPosition((menuSystem[(*currMenu)].menuModel[1]->skeleton), 0, 2260 + downUp, 6670);
   SetSkeletonDirectionHPR((menuSystem[(*currMenu)].menuModel[1]->skeleton), 250, -3440, 10);
   TransformStaticObject(menuSystem[(*currMenu)].menuModel[1], NULL);
-
-  if (pad & PadUp0)
-    pitch += 10;
-  if (pad & PadDown0)
-    pitch -= 10;
-  if (pad & PadLeft0)
-    hdg -= 10;
-  if (pad & PadRight0)
-    hdg += 10;
-  if (pad & PadSquare0)
-    roll -= 10;
-  if (pad & PadCircle0)
-    roll += 10;
-  if (pad & PadTopLeft1)
-    zoom += 10;
-  if (pad & PadTopRight1)
-    zoom -= 10;
-  if (pad & PadTopLeft2)
-    x -= 10;
-  if (pad & PadTopRight2)
-    x += 10;
-  if (pad & PadStart)
-    y += 10;
-  if (pad & PadSelect)
-    y -= 10;
 }
 
 void DrawNegCon(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0;
   int32_t rotation = 0;
   int32_t dispRot = 0;
 
@@ -2617,8 +2577,6 @@ void DrawNegCon(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* 
 
   TransformStaticObject(a, NULL);
   TransformStaticObject(b, NULL);
-
-  hdg += 40;
 }
 
 void NegConButtonDisplay(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {

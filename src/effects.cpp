@@ -807,8 +807,6 @@ void SetShake(int32_t duration) {
 }
 
 void ShakeScreen() {
-  int32_t tempx, tempy;
-
   if (shakeCount > 1) {
     DispEnv0.screen.x = DispEnv1.screen.x = -(randy() % shakeCount) + (shakeCount >> 1);
     DispEnv0.screen.y = DispEnv1.screen.y = -(randy() % shakeCount) + (shakeCount >> 1);
@@ -818,10 +816,6 @@ void ShakeScreen() {
     DispEnv0.screen.y = DispEnv1.screen.y = 0;
     shakeCount--;
   }
-  tempx = abs(DispEnv0.screen.x >> 3);
-  tempy = abs(DispEnv0.screen.y * 80);
-
-  //	SStart(tempx + tempy);
 }
 
 extern int16_t arccos_tab[];

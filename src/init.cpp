@@ -279,7 +279,6 @@ int16_t LoadCompressedTextureSequence(const char* fileName) {
   int32_t fileSize;
   static TIMlist timList;
   int32_t timSize, timTotalSize;
-  int32_t CPURasters;
 
   //	GsClearVcount();
 
@@ -328,13 +327,11 @@ int16_t LoadCompressedTextureSequence(const char* fileName) {
   for (texNum = 0; texNum < numTex; texNum++) {
     timList.memOffset[texNum] += (intptr_t)timList.memBase;
   }
-  CPURasters = GsGetVcount();
 
   /*	printf("Decompressing: %s\n", fileName);*/
 
   //	GsClearVcount();
   ExpandData((uint8_t*)fileBuffer + 4 + numTex * 4, (uint8_t*)timList.memBase);
-  CPURasters = GsGetVcount();
 
   DFree(heap, fileBuffer); /* free compressed file memory */
 

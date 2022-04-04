@@ -579,7 +579,6 @@ void TransformStaticObjectHole(Object* object, Skeleton* camera) {
   /* experimental light sourced stuff */
 
   SVECTOR* normal;
-  int16_t normalCount;
 
   SVECTOR nsv0, nsv1, nsv2, nsv3;
   VECTOR nv0, nv1, nv2, nv3;
@@ -597,7 +596,6 @@ void TransformStaticObjectHole(Object* object, Skeleton* camera) {
   vertexCount = object->vertexCount;
 
   normal = object->normals;
-  normalCount = object->normalCount;
 
   poly.prim = object->primitives;
   primitiveCount = object->primitiveCount;
@@ -1350,7 +1348,6 @@ void TransformStaticObject(Object* object, Skeleton* camera) {
   /* experimental light sourced stuff */
 
   SVECTOR* normal;
-  int16_t normalCount;
 
   SVECTOR nsv0, nsv1, nsv2, nsv3;
   VECTOR nv0, nv1, nv2, nv3;
@@ -1368,7 +1365,6 @@ void TransformStaticObject(Object* object, Skeleton* camera) {
   vertexCount = object->vertexCount;
 
   normal = object->normals;
-  normalCount = object->normalCount;
 
   poly.prim = object->primitives;
   primitiveCount = object->primitiveCount;
@@ -2278,7 +2274,6 @@ void TransformStaticObjectBodge(Object* object, Skeleton* camera) {
   /* experimental light sourced stuff */
 
   SVECTOR* normal;
-  int16_t normalCount;
 
   SVECTOR nsv0, nsv1, nsv2, nsv3;
   VECTOR nv0, nv1, nv2, nv3;
@@ -2296,7 +2291,6 @@ void TransformStaticObjectBodge(Object* object, Skeleton* camera) {
   vertexCount = object->vertexCount;
 
   normal = object->normals;
-  normalCount = object->normalCount;
 
   poly.prim = object->primitives;
   primitiveCount = object->primitiveCount;
@@ -3069,7 +3063,6 @@ void TransformStaticMenuObject(Object* object, Skeleton* camera) {
   /* experimental light sourced stuff */
 
   SVECTOR* normal;
-  int16_t normalCount;
 
   SVECTOR nsv0, nsv1, nsv2, nsv3;
   VECTOR nv0, nv1, nv2, nv3;
@@ -3087,7 +3080,6 @@ void TransformStaticMenuObject(Object* object, Skeleton* camera) {
   vertexCount = object->vertexCount;
 
   normal = object->normals;
-  normalCount = object->normalCount;
 
   poly.prim = object->primitives;
   primitiveCount = object->primitiveCount;

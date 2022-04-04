@@ -312,18 +312,13 @@ TrackSection* PrevIndexSection(TrackSection* section) {
 }
 
 void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
-  int32_t beforeVcount;
   int16_t i;
-  int16_t loCount = 0;
-  int16_t medCount = 0;
-  int16_t hiCount = 0;
   int16_t dir;
 
   autoMesh->triCount = 0;
   autoMesh->quadCount = 0;
   autoMesh->attemptedAutos = 0;
 
-  beforeVcount = GsGetVcount();
   AsmNextFrame();
 
   dir = TrackDirection(camera);
@@ -336,7 +331,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               camera->camPos,
               camera->section->northViewSection[2][i + 1],
               dir);
-      loCount += camera->section->northViewSection[2][i + 1];
     }
 
     for (i = 0; i < camera->section->northViewCount[1]; i += 2) {
@@ -346,7 +340,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               camera->camPos,
               camera->section->northViewSection[1][i + 1],
               dir);
-      medCount += camera->section->northViewSection[1][i + 1];
     }
 
     for (i = 0; i < camera->section->northViewCount[0]; i += 2) {
@@ -358,8 +351,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               autoMesh,
               camera->section->northViewSection[0][i + 1],
               dir);
-
-      hiCount += camera->section->northViewSection[0][i + 1];
     }
 
   }
@@ -372,7 +363,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               camera->camPos,
               camera->section->southViewSection[2][i + 1],
               dir);
-      loCount += camera->section->southViewSection[2][i + 1];
     }
 
     for (i = 0; i < camera->section->southViewCount[1]; i += 2) {
@@ -382,7 +372,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               camera->camPos,
               camera->section->southViewSection[1][i + 1],
               dir);
-      medCount += camera->section->southViewSection[1][i + 1];
     }
 
     for (i = 0; i < camera->section->southViewCount[0]; i += 2) {
@@ -393,7 +382,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               autoMesh,
               camera->section->southViewSection[0][i + 1],
               dir);
-      hiCount += camera->section->southViewSection[0][i + 1];
     }
 
   } else if (dir == ShipRight) {
@@ -404,7 +392,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               camera->camPos,
               camera->section->westViewSection[2][i + 1],
               dir);
-      loCount += camera->section->westViewSection[2][i + 1];
     }
 
     for (i = 0; i < camera->section->westViewCount[1]; i += 2) {
@@ -414,8 +401,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               camera->camPos,
               camera->section->westViewSection[1][i + 1],
               dir);
-
-      medCount += camera->section->westViewSection[1][i + 1];
     }
 
     for (i = 0; i < camera->section->westViewCount[0]; i += 2) {
@@ -426,8 +411,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               autoMesh,
               camera->section->westViewSection[0][i + 1],
               dir);
-
-      hiCount += camera->section->westViewSection[0][i + 1];
     }
   } else if (dir == ShipLeft) {
     for (i = 0; i < camera->section->eastViewCount[2]; i += 2) {
@@ -437,8 +420,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               camera->camPos,
               camera->section->eastViewSection[2][i + 1],
               dir);
-
-      loCount += camera->section->eastViewSection[2][i + 1];
     }
 
     for (i = 0; i < camera->section->eastViewCount[1]; i += 2) {
@@ -448,8 +429,6 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               camera->camPos,
               camera->section->eastViewSection[1][i + 1],
               dir);
-
-      medCount += camera->section->eastViewSection[1][i + 1];
     }
 
     for (i = 0; i < camera->section->eastViewCount[0]; i += 2) {
@@ -460,16 +439,12 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
               autoMesh,
               camera->section->eastViewSection[0][i + 1],
               dir);
-      hiCount += camera->section->eastViewSection[0][i + 1];
     }
   }
 }
 
 void DrawAllTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
   int16_t i;
-  int16_t loCount = 0;
-  int16_t medCount = 0;
-  int16_t hiCount = 0;
 
   autoMesh->triCount = 0;
   autoMesh->quadCount = 0;
@@ -482,8 +457,6 @@ void DrawAllTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
         camera->camPos,
         camera->section->allViewSection[2][i + 1],
         0);
-
-    loCount += camera->section->allViewSection[2][i + 1];
   }
 
   for (i = 0; i < camera->section->allViewCount[1]; i += 2) {
@@ -492,7 +465,6 @@ void DrawAllTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
         camera->camPos,
         camera->section->allViewSection[1][i + 1],
         0);
-    medCount += camera->section->allViewSection[1][i + 1];
   }
 
   for (i = 0; i < camera->section->allViewCount[0]; i += 2) {
@@ -502,6 +474,5 @@ void DrawAllTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
         autoMesh,
         camera->section->allViewSection[0][i + 1],
         0);
-    hiCount += camera->section->allViewSection[0][i + 1];
   }
 }

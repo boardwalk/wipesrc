@@ -334,13 +334,11 @@ void DrawTargetIcon(ShipData* playerShip, ShipData* shipIndex, Object** shipShap
   int32_t p, flag;
   int16_t x, y;
   Poly poly;
-  int16_t* coords;
 
   shipShapes[shipIndex[ctrlnearShip].highResTableIndex]->skeleton->update = 1;
   SetSkeletonTransform(shipShapes[shipIndex[ctrlnearShip].highResTableIndex]->skeleton);
   vertex = shipShapes[shipIndex[ctrlnearShip].highResTableIndex]->vertices;
   poly.prim = shipShapes[shipIndex[ctrlnearShip].highResTableIndex]->primitives;
-  coords = poly.f3->coords;
 
   RotTransPers(vertex,
                &sxy,
@@ -1558,7 +1556,6 @@ void UpdateShield(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* we
   int16_t primitiveCount;
   int16_t* coords;
   int16_t col0, col1, col2, col3;
-  int32_t shieldID;
 
   if (shipIndex[weapon->fireShip].attr & VIEW_IN) {
     weapon->pos.vx = shipIndex[weapon->fireShip].ppivot.vx + (shipIndex[weapon->fireShip].unitVecNose.vx >> 6);
@@ -1676,7 +1673,6 @@ void UpdateShield(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* we
     }
 
     weaponShapes[weapon->currentWeapon].shapePtr->skeleton->update = 1;
-    shieldID = weapon->currentWeapon - SHIELD_OFFSET;
     //		TransformTransparentObject( weaponShapes[weapon->currentWeapon].shapePtr, cameraPtr->camPos , shieldID);
   } else {
 #if PCwipeout
@@ -1948,7 +1944,7 @@ int32_t GetNewWeapon() {
       weaponType = MISSILE;
     else if (index < 59)
       weaponType = TURBO;
-    else if (index < 65)
+    else
       weaponType = ELEC_BOLT;
   } else {
     index = randy() % 70; /* 70 */
@@ -1967,7 +1963,7 @@ int32_t GetNewWeapon() {
       weaponType = ELEC_BOLT;
     else if (index < 69)
       weaponType = REV_CON;
-    else if (index < 70) /* 70 */
+    else
       weaponType = SPECIAL;
   }
 

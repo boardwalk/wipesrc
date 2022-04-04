@@ -683,15 +683,12 @@ void WingCollision(ShipData* playerShip, Face* facePtr, int32_t direction, int32
 
 void NoseCollision(ShipData* playerShip, Face* facePtr, int32_t direction, int32_t alpha) {
   SVECTOR collisionVector;
-  int32_t angle;
   VECTOR nosePos;
   int32_t magnitude;
 
   collisionVector.vx = playerShip->nearTrkSect->centre.vx - track->vertices[(facePtr->vertex[2])].vx;
   collisionVector.vy = playerShip->nearTrkSect->centre.vy - track->vertices[(facePtr->vertex[2])].vy;
   collisionVector.vz = playerShip->nearTrkSect->centre.vz - track->vertices[(facePtr->vertex[2])].vz;
-
-  angle = abs(AngleOfCollision(collisionVector, playerShip->unitVecNose));
 
   Reflection(&(playerShip->vpivot), facePtr->normal);
 

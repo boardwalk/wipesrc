@@ -204,7 +204,6 @@ void AddTime(int32_t time, TEXT_DATA* pos_data, int32_t colour)
   int32_t x, y;
   int32_t mins = 0, secs = 0, tenths = 0;
   Texture *charTex, *redTex;
-  int32_t small_num_size;
   int32_t size, charNum;
   uint16_t currLett = 0;
   TexChar* charSet;
@@ -216,7 +215,6 @@ void AddTime(int32_t time, TEXT_DATA* pos_data, int32_t colour)
   y *= upres;
 
   size = pos_data->size;
-  small_num_size = size >> 1;
 
   //	SetDrawMode((DR_MODE*)&dmode,0,0,FONT_TPAGE,0);
   //	DrawPrim((P_TAG *)&dmode);
@@ -663,8 +661,6 @@ extern int16_t startLinePos[];
 
 void UpdateRaceHud(ShipData* shipIndex, Speedo* speedo, int32_t choice, ConfigData* gameData) {
   int32_t i, j;
-  int32_t position = NO_OF_SHIPS;
-  int32_t ownSecNo, serialSecNo;
   char trackList[15] = {2, 4, 1, 12, 8, 9, 10, 3, 5, 6, 7, 11, 13, 14, 15};
   int32_t secNo;
   SortTable sortTable[NO_OF_SHIPS];
@@ -762,19 +758,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo* speedo, int32_t choice, ConfigDa
     }
   }
 
-  if (shipIndex[ownShip].nearSecNo <= startLinePos[trackNo])
-    ownSecNo = shipIndex[ownShip].nearSecNo + track->sectionCount;
-  else
-    ownSecNo = shipIndex[ownShip].nearSecNo;
-
-  if (gameType != SINGLE) {
-    if (shipIndex[serialShip].nearSecNo <= startLinePos[trackNo])
-      serialSecNo = shipIndex[serialShip].nearSecNo + track->sectionCount;
-    else
-      serialSecNo = shipIndex[serialShip].nearSecNo;
-  }
-
-  position = CalcPosition(shipIndex);
+  CalcPosition(shipIndex);
 
   if ((raceType == TWO_PLAYER_RACE) || (raceType == HEAD_TO_HEAD)) {
     if (shipIndex[serialShip].lapNo > 0) {
@@ -856,8 +840,6 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo* speedo, int32_t choice, ConfigDa
     if ((shipIndex[ownShip].attr & DIRECTION) == 0) {
       CentreText("WRONG WAY", text_data(0, 120, 16), RedText);
     }
-#else
-
 #endif
   }
 

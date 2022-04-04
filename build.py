@@ -24,6 +24,7 @@ def main():
         '-Wno-deprecated-declarations',
         '-Wno-empty-body',
         '-Wno-tautological-constant-out-of-range-compare',
+        '-Wunused-but-set-variable',
         '-Wunused-variable',
         '-DWIPEOUTPC',
     ]

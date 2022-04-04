@@ -668,12 +668,9 @@ extern void ReadJoystick();
 void racectrl() {
   combatData* packetData;
   ConfigData* gameData;
-  int32_t mode, timeout;
 
   packetData = &ctrlpacketData;
   gameData = ctrlgameData;
-  mode = ctrlmode;
-  timeout = ctrltimeout;
 
   if (!ok_to_interrupt)
     return;

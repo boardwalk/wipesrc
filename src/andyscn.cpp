@@ -57,7 +57,6 @@ void DrawObjectAsm(Object* object, Skeleton* camera, int32_t roll, int16_t ShipO
   int16_t xSize;
   int16_t ySize;
   int16_t xSize2;
-  int16_t ySize2;
 
   int16_t tlX;
   int16_t tlY;
@@ -521,7 +520,6 @@ void DrawObjectAsm(Object* object, Skeleton* camera, int32_t roll, int16_t ShipO
         ySize = (160 * poly.spr->height) / depth;
 
         xSize2 = xSize >> 1;
-        ySize2 = ySize >> 1;
 
         offsetX = ((xSize2 * rcos(roll)) >> 12);
         offsetY = ((xSize2 * rsin(roll)) >> 12);
@@ -609,7 +607,6 @@ void DrawObjectAsm(Object* object, Skeleton* camera, int32_t roll, int16_t ShipO
         ySize = (160 * poly.spr->height) / depth;
 
         xSize2 = xSize >> 1;
-        ySize2 = ySize >> 1;
 
         offsetX = ((xSize2 * rcos(roll)) >> 12);
         offsetY = ((xSize2 * rsin(roll)) >> 12);
