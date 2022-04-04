@@ -16,15 +16,6 @@ typedef int32_t BOOL;
 #define TRUE 1
 #define FALSE 0
 
-typedef struct
-{
-  int32_t id;
-  int32_t flags;
-  int32_t bnum;
-  int16_t textureX, textureY;
-  int16_t textureH, textureW;
-} TimData;
-
 int16_t ft = 0;
 char MipMap = 0;
 char* SaveDirBase;
