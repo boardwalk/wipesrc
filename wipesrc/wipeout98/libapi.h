@@ -1,8 +1,8 @@
-#ifndef MARKK_LIBAPI_H
-#define MARKK_LIBAPI_H
+#ifndef LIBAPI_H
+#define LIBAPI_H
 
 /* Source File: libetc.h */
-#include	"../markk/scancode.h"
+#include	"scancode.h"
 
 /* General Equates. */
 #define		_MAX_KEYS				128

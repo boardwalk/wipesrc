@@ -46,7 +46,7 @@
 
 // #include <windows.h>
 
-#include	"wipesrc/win95/markk/libetc.h"	// PCwipeout
+#include	"libetc_markk.h"	// PCwipeout
 void	    CheckError();
 
 extern char Resolution;

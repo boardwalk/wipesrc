@@ -1,5 +1,5 @@
 /* This function registers the incoming data buffer for each controller. */
-#include	"wipesrc/win95/markk/libapi.h"
+#include	"libapi.h"
 
 int32_t	InitPAD(void *bufA, int32_t lenA, void *bufB, int32_t lenB)
 {

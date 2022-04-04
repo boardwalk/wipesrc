@@ -46,7 +46,6 @@
 #include "sfx.h"
 
 #define	FN_DEBUG
-//#include "..\markk\debug.h"
 
 // #include <dos.h>
 typedef int32_t BOOL;
@@ -84,7 +83,7 @@ int16_t globalvol;
 TimData	*menuScreen ;
 
 // temporary test stuff
-#include	"wipesrc/win95/markk/libetc.h"	// PCwipeout
+#include	"libetc_markk.h"	// PCwipeout
 
 
 #define FULL		0

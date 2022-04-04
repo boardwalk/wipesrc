@@ -27,10 +27,6 @@
 #include "effects.h"
 #include "win.h"
 #include "collide.h"
-
-//#include "markk\libetc.h"		// DLS
-// #include "dos.h"
-//#include "graph.h"
 #include "input.h"
 
 extern int16_t ft,screenres;

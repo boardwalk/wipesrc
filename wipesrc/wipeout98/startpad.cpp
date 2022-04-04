@@ -1,6 +1,6 @@
 /* This function starts controller status reading, which is triggered by a
 	vertical blanking interrupt (on PSX). */
-#include	"wipesrc/win95/markk/libapi.h"
+#include	"libapi.h"
 
 int32_t	StartPAD()
 {

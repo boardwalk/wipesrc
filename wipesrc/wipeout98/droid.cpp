@@ -23,7 +23,7 @@
 #include "libgte.h"
 #include "utils.h"
 
-#include "wipesrc/win95/markk/libetc.h"		// DLS
+#include "libetc_markk.h"		// DLS
 
 
 
