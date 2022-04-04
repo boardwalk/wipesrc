@@ -12,8 +12,6 @@
 
 VECTOR* ApplyMatrix(MATRIX* RTM, SVECTOR* v, VECTOR* r);
 
-static float tmp;
-
 extern int32_t WinPitch;
 extern int16_t WinWidth;
 extern int16_t WinHeight;
@@ -250,9 +248,7 @@ int16_t OnScreen4(int32_t xy0, int32_t xy1, int32_t xy2, int32_t xy3) {
 }
 
 int32_t NormalClip(DVECTOR sxy0, DVECTOR sxy1, DVECTOR sxy2) {
-  int32_t sx0, sy0,
-      dx1, dy1,
-      dx2, dy2;
+  int32_t dx1, dy1, dx2, dy2;
   DVECTOR *xy0, *xy1, *xy2;
 
   xy0 = (DVECTOR*)&sxy0; // AndyY mod for signed x

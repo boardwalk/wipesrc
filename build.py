@@ -19,10 +19,12 @@ def main():
         '-fno-omit-frame-pointer',
         '-std=c++11',
         '-fcolor-diagnostics',
+        '-Werror',
         '-Wno-constant-conversion',
+        '-Wno-deprecated-declarations',
         '-Wno-empty-body',
         '-Wno-tautological-constant-out-of-range-compare',
-        '-Wno-deprecated-declarations',
+        '-Wunused-variable',
         '-DWIPEOUTPC',
     ]
 

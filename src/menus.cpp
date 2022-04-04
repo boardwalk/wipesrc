@@ -490,11 +490,7 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
   Texture* copyrightSymbol;
   Texture* trackTex[7];
   POLY_FT4 trackPrims[2];
-  int32_t buttonPressed = 0;
-  char trackList[15] = {2, 4, 1, 12, 8, 9, 10, 3, 5, 6, 7, 11, 13, 14, 15};
   int32_t length;
-  int32_t frame_cnt = 0;
-  int32_t x = 0, y = 0;
   int32_t TOut = 180;
 
   menuTexturesIn = 1;
@@ -818,7 +814,6 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
 void CallMenuActivator(ConfigData* gameData, int32_t* currMenu, int32_t* currOption, Menus* menuSystem, SelectionData* selectData, char loadGames[][9]) {
   int16_t i;
   int32_t cardStatus, slotStatus;
-  int32_t cnt = 0;
   char trackList[15] = {2, 4, 1, 12, 8, 9, 10, 3, 5, 6, 7, 11, 13, 14, 15};
   FILE* fd;
 
@@ -2393,8 +2388,6 @@ void InitMenuSystem(Menus* menuSystem) {
 }
 
 void ShowMenuBackground(POLY_FT4* menuPrim, POLY_FT4* menu1Prim, TimData* timSize) {
-  // THIS IS BODGED SO THAT WE GET A SINGLE PIXEL WHERE STEVE CLIPS THEM 'CAUSE I COULDN'T FIX IT (CRAP HUH)
-  char tpageOffset = 32;
   /* Display 16 bit image but split over two primitives, lower half of VRAM */
 
   SetPolyFT4(&(menuPrim[CurrentScreen]));
@@ -2413,8 +2406,6 @@ void ShowMenuBackground(POLY_FT4* menuPrim, POLY_FT4* menu1Prim, TimData* timSiz
 
   setXY4(&(menu1Prim[CurrentScreen]), timSize->textureW / 2, 0, timSize->textureW, 0, timSize->textureW / 2, timSize->textureH, timSize->textureW, timSize->textureH);
   setUV4(&(menuPrim[CurrentScreen]), 0, 0, timSize->textureW / 2, 0, 0, timSize->textureH - 1, timSize->textureW / 2, timSize->textureH - 1);
-  //setUV4(&(menu1Prim[CurrentScreen]),tpageOffset,0,(timSize->textureW/2)+tpageOffset,0,tpageOffset,timSize->textureH-1,(timSize->textureW/2)+tpageOffset,timSize->textureH-1);
-
   setTPage(&(menu1Prim[CurrentScreen]), 2, 0, timSize->textureX + 128, timSize->textureY);
 
   menu1Prim[CurrentScreen].r0 = 230;
@@ -2529,7 +2520,7 @@ void DrawPilot(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* s
 }
 
 void DrawPlayPad(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0, shdg = 0;
+  static int32_t hdg = 0;
   static int32_t pitch = 0, roll = 0, zoom = 0, x = 0, y = 0;
 
   InitMenuDisplay(120);
@@ -2568,7 +2559,7 @@ void DrawPlayPad(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t*
 }
 
 void DrawNegCon(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0, shdg = 0;
+  static int32_t hdg = 0;
   int32_t rotation = 0;
   int32_t dispRot = 0;
 
@@ -2631,8 +2622,6 @@ void DrawNegCon(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* 
 }
 
 void NegConButtonDisplay(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0, shdg = 0;
-
   Object* a;
   Object* b;
 
@@ -4137,7 +4126,7 @@ void DrawHiScoreMenu(Menus* menuSystem, int32_t* currMenu, int32_t shipNo, int32
 }
 
 void DisplayPadMenu(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0, shdg = 0;
+  static int32_t hdg = 0;
   // jed
   SetSkeletonPosition((menuSystem[(*currMenu)].menu2Model[0]->skeleton), 0, 0, 6500);
   SetSkeletonDirectionHPR((menuSystem[(*currMenu)].menu2Model[0]->skeleton), hdg, 0, 0);
@@ -4146,7 +4135,7 @@ void DisplayPadMenu(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32
 }
 
 void DisplayPadMenu1(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0, shdg = 0;
+  static int32_t hdg = 0;
   // jed
 
   SetSkeletonPosition((menuSystem[(*currMenu)].menu2Model[1]->skeleton), 0, -5, 4500);
@@ -4156,7 +4145,7 @@ void DisplayPadMenu1(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int3
 }
 
 void DisplayPadMenu2(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0, shdg = 0;
+  static int32_t hdg = 0;
   // jed
 
   SetSkeletonPosition((menuSystem[(*currMenu)].menu2Model[2]->skeleton), 0, 0, 4500);
@@ -4166,7 +4155,7 @@ void DisplayPadMenu2(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int3
 }
 
 void DisplayNegConMenu(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t hdg = 0, shdg = 0;
+  static int32_t hdg = 0;
 
   Object* a;
   Object* b;
@@ -4341,7 +4330,6 @@ void JJSReadTIM(char* filename, char* location, TimData* tim) {
 
 void QuitYesNo(MusicPrims* musicPrims, SlideTextures* musicTex, SelectionData* selectData, char loadGames[][9], ConfigData* gameData) {
   static int32_t toggle = 0;
-  static char flag = 0;
 
   if (andybodge) {
     selectData->confirm = 1;
@@ -4381,10 +4369,8 @@ void GraphicOptions(MusicPrims* musicPrims, SlideTextures* musicTex, SelectionDa
   char x = 50, y = 140, l = 12;
   char DrawStr[8];
   char ResStr[8];
-  char ScreenStr[8];
   char SkyStr[8];
   char TexStr[8];
-  char PCStr[8];
 
   if (andybodge) {
     my_ScreenSize = ScreenSize;
@@ -4687,7 +4673,6 @@ void ControllerOptions(MusicPrims* musicPrims, SlideTextures* musicTex, Selectio
 
 void ControllerEdit(MusicPrims* musicPrims, SlideTextures* musicTex, SelectionData* selectData, char loadGames[][9], ConfigData* gameData) {
   static int32_t toggle = 0;
-  static char flag = 0;
 
   DisplayButtons(30, 210, PSELECT);
   DisplayButtons(240, 210, PBACK);
@@ -5179,7 +5164,7 @@ void DrawControllerEdit(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, i
 }
 
 void DrawGraphicDetail(Menus* menuSystem, int32_t* currMenu, int32_t shapeNo, int32_t* swapDelay) {
-  static int32_t heading = 0, hdg = 0;
+  static int32_t heading = 0;
 
   DrawTeamShips(0, 0, MODELSIZE, &heading, menuSystem[(*currMenu)].menuModel[shipShapeOrder[0]]);
 }

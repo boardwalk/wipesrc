@@ -50,9 +50,6 @@ void UpdateCameraRaceExternal(TrackCamera* camera, ShipData* camShip, RescueData
   VECTOR acc;
   int32_t mag;
   static int32_t vel = 0;
-  int16_t hdg;
-  int16_t pitch;
-
   TrackSection* nextSection;
 
   pos.vx = camShip->ppivot.vx - (camShip->unitVecNose.vx >> 2);
@@ -139,8 +136,6 @@ void UpdateCameraRaceInternal(TrackCamera* camera, ShipData* camShip, RescueData
 
 void UpdateCameraRaceStart(TrackCamera* camera, ShipData* camShip, RescueData* rescueDroid) {
   VECTOR pos;
-  int16_t sx, sy, sz;
-  int16_t cx, cy, cz;
   VECTOR targetVector;
 
   /*** Set to final position ***/
@@ -180,7 +175,7 @@ void UpdateCameraRaceStart(TrackCamera* camera, ShipData* camShip, RescueData* r
 
 void UpdateCameraAttractCircle(TrackCamera* camera, ShipData* camShip, RescueData* rescueDroid) {
   VECTOR pos;
-  int32_t hdg, pitch, temp;
+  int32_t temp;
   VECTOR targetVector;
   int16_t sx, sy, sz;
   int16_t cx, cy, cz;
@@ -236,9 +231,8 @@ void UpdateCameraAttractCircle(TrackCamera* camera, ShipData* camShip, RescueDat
 
 void UpdateCameraDroidView(TrackCamera* camera, ShipData* camShip, RescueData* rescueDroid) {
   VECTOR pos;
-  int32_t hdg, pitch, temp;
+  int32_t temp;
   VECTOR targetVector;
-  TrackSection* section;
   VECTOR av;
 
   pos.vx = camera->section->centre.vx + 300;
@@ -303,7 +297,7 @@ void UpdateCameraAttractInternal(TrackCamera* camera, ShipData* camShip, RescueD
 
 void UpdateCameraStaticFollow(TrackCamera* camera, ShipData* camShip, RescueData* rescueDroid) {
   static VECTOR pos;
-  int32_t hdg, pitch, temp;
+  int32_t temp;
   VECTOR targetVector;
   TrackSection* section;
   int32_t i;
@@ -358,9 +352,6 @@ void UpdateCameraAttractMode(TrackCamera* camera, ShipData* camShip, RescueData*
 }
 
 void UpdateCameraEditorStep(TrackCamera* camera, ShipData* camShip, RescueData* rescueDroid) {
-  int16_t sx, sy, sz;
-  int16_t cx, cy, cz;
-  VECTOR unitFinVector;
   VECTOR pos;
   Face* facePtr;
 

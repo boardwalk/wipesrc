@@ -22,7 +22,7 @@ int32_t SectionSearch(ShipData* playerShip) {
   int32_t smallest_mag;
   VECTOR cent2ship;
   int32_t mag;
-  int32_t i, index;
+  int32_t i;
   int16_t juncChecked = 0;
   TrackSection* junc;
 
@@ -108,7 +108,7 @@ TrackSection* FindNearestSection(TrackSection* trk, VECTOR pos) {
   int32_t smallest_mag;
   VECTOR cent2ship;
   int32_t mag;
-  int32_t i, index;
+  int32_t i;
   int16_t juncChecked = 0;
   TrackSection* junc;
 

@@ -40,7 +40,6 @@ extern char TrackDirection(TrackCamera* camera);
 extern char WhitePal;
 extern char DepthFadeTble;
 extern int16_t Shielded;
-static int32_t fp;
 char str[40];
 
 Surface TrackSurface[24][2]; /* 20k */
@@ -81,11 +80,7 @@ void AsmLowResTile(
     TexTemplate* Template,
     int16_t index,
     int16_t reversed) {
-  Poly primitives;
-  Poly poly;
-
   Tile* tile;
-
   Texture* texture;
 
   /* Create Tile */
@@ -124,15 +119,9 @@ void AsmMediumResTile(
     TexTemplate* Template,
     int16_t index,
     int16_t reversed) {
-  Poly primitives;
-  Poly poly;
-
   Tile* tile;
-
   Texture* texture;
-
   int16_t i;
-
   int16_t tex;
 
   /* Create Tile */
@@ -178,15 +167,9 @@ void AsmHighResTile(
     TexTemplate* Template,
     int16_t index,
     int16_t reversed) {
-  Poly primitives;
-  Poly poly;
-
   Tile* tile;
-
   Texture* texture;
-
   int16_t i;
-
   int16_t tex;
 
   /* Create Tile */
@@ -280,23 +263,16 @@ void AsmGenerateTiles(
 }
 
 void AsmNextFrame() {
-  int16_t i;
-  int16_t error;
-
   /* Initialise lo track polygon counter */
-
   TrackLoCount = 0;
 
   /* Initialise med track polygon counter */
-
   TrackMedCount = 0;
 
   /* Initialise med track polygon counter */
-
   TrackHiCount = 0;
 
   /* Initialise mesh memory pointer */
-
   if (CurrentScreen == 0) {
     MeshPtr = MeshRam0;
   } else {
@@ -333,7 +309,7 @@ Listed in decreasing order of priority
   uint16_t* depth2 = (uint16_t*)(interpolate + 4); /* 9 shorts = 18 bytes */
   uint16_t* flag2 = (uint16_t*)(depth2 + 4); /* 9 shorts = 18 bytes */
 
-  int16_t i, j, k;
+  int16_t i, j;
 
   TrackSection* section;
   Face* face;
@@ -346,8 +322,6 @@ Listed in decreasing order of priority
   Surface* surface;
 
   Tile* tile;
-
-  int16_t a, b, c;
 
   int32_t Test16bitX;
   int32_t Test16bitY;
@@ -564,8 +538,6 @@ Variables with greatest need for optimisation
 Listed in decreasing order of priority
 	*/
 
-  VECTOR* vertex;
-
 #if UseFastRam
   VECTOR* campos = (VECTOR*)(FastRam); /* 1 vector = 16 bytes */
   VECTOR* vector = (VECTOR*)(campos + 1); /* 9 vectors = 144 bytes */
@@ -585,7 +557,7 @@ Listed in decreasing order of priority
 
   /* original 32 bit vertices */
 
-  int16_t i, j, k;
+  int16_t i, j;
 
   TrackSection* section;
   Face* face;
@@ -1012,8 +984,6 @@ Variables with greatest need for optimisation
 Listed in decreasing order of priority
 	*/
 
-  VECTOR* vertex;
-
 #if 0 //JJS UseFastRam
 	VECTOR*              campos = ( VECTOR* )( FastRam );                /* 1 vector = 16 bytes */
 	VECTOR*              vector = ( VECTOR* )( campos + 1 );             /* 25 vectors = 400 bytes */
@@ -1033,7 +1003,7 @@ Listed in decreasing order of priority
 
   /* original 32 bit vertices */
 
-  int16_t i, j, k;
+  int16_t i, j;
 
   TrackSection* section;
   Face* face;
@@ -1046,13 +1016,6 @@ Listed in decreasing order of priority
   Surface* surface;
 
   Tile* tile;
-
-  int32_t flags;
-
-  int16_t x, y;
-
-  int16_t index;
-  int16_t varadd;
 
   /* Set transformation matrix */
 

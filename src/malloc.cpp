@@ -350,11 +350,6 @@ char* DAlloc(DynamicHeap* heap, int32_t size) {
   FreeBlock* free;
   FreeBlock* block;
 
-  // mark added vars
-  char* unbounded_ptr = NULL;
-  uint32_t unbounded_value = 0;
-  uint32_t bounded_value = 0;
-
   /* Increment size to a 4 byte boundary */
 
   size = ((size + 3) & ~3);

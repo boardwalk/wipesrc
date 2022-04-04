@@ -28,19 +28,15 @@
 void CalcNewRadius(TrackSection* section, Object* objects) {
   TrackSection* visSection;
   Object* object;
-  Object* nextObject;
   MATRIX* matrix;
   Vector* sectionCentre;
   VECTOR vector;
-  //   int32_t int32_t      distance; // PCwipeout
   int32_t distance; // PCwipeout
-  int16_t i, j;
+  int16_t j;
   int16_t objectCount;
   int16_t withinLocal;
   int16_t withinGlobal;
   int16_t allCount;
-  int16_t pad;
-
   int16_t objectList[ObjectListMax];
 
   DFree(heap, (Ptr)(int16_t*)section->objects);
@@ -178,7 +174,6 @@ void SceneRadiusCheck(Object* objects) {
   TrackSection* visSection;
   int16_t i, j;
   Object* object;
-  Object* nextObject;
   MATRIX* matrix;
   Vector* sectionCentre;
   int16_t objectCount;

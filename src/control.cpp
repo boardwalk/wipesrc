@@ -120,8 +120,6 @@ int32_t InitController() {
 /**************************************************************************/
 
 void GeneralStartProcs(ShipData* playerShip) {
-  static int32_t vc;
-
   if (playerShip->updateCount == START_TIME) {
     PlayNote(REMOTE, 0, -1); /*** Reserve channel for remote craft ***/
     chanTable[vagTable[REMOTE].channelID].s_attr.volume.left = 0;
@@ -360,7 +358,6 @@ void UpdatePlayerShipNorm(ShipData* shipIndex, Object** shipShapes, int32_t ship
 /**************************************************************************/
 void UpdatePlayerShipNegStart(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, WeaponData* weaponIndex) {
   ShipData* playerShip;
-  static int32_t viewPad;
   int32_t thrust;
   static int32_t startPos;
   int32_t targetThrust;
@@ -470,8 +467,6 @@ void UpdatePlayerShipNegStart(ShipData* shipIndex, Object** shipShapes, int32_t 
 /**************************************************************************/
 void UpdatePlayerShipNeg(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, WeaponData* weaponIndex) {
   ShipData* playerShip;
-  static int32_t weaponPad;
-  static int32_t viewPad;
   int32_t thrust;
   int32_t targetThrust;
   int16_t targetVhdg;
@@ -689,12 +684,7 @@ void UpdatePlayerShipNeg(ShipData* shipIndex, Object** shipShapes, int32_t shipN
 /**************************************************************************/
 void UpdatePlayerShipMouse(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, WeaponData* weaponIndex) {
   ShipData* playerShip;
-  static int32_t weaponPad;
-  static int32_t viewPad;
   int16_t targetVhdg;
-  static char negView = 0;
-  static char negFireI = 0;
-  static char negFireII = 0;
   static int32_t maxThrust;
 
   playerShip = &(shipIndex[shipNo]);
@@ -813,12 +803,7 @@ void UpdatePlayerShipMouse(ShipData* shipIndex, Object** shipShapes, int32_t shi
 
 void UpdatePlayerShipJoystick(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, WeaponData* weaponIndex) {
   ShipData* playerShip;
-  static int32_t weaponPad;
-  static int32_t viewPad;
   int16_t targetVhdg;
-  static char negView = 0;
-  static char negFireI = 0;
-  static char negFireII = 0;
   static int32_t maxThrust;
 
   playerShip = &(shipIndex[shipNo]);

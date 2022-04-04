@@ -254,13 +254,7 @@ void FireWeapon(ShipData* playerShip, WeaponData* weaponIndex, int32_t shipNo, c
 void MissileLock(ShipData* playerShip, ShipData* shipIndex, Object** shipShapes, POLY_FT4* target) {
   int32_t i;
   int32_t distance, shortestDistance;
-  SVECTOR* vertex;
-  DVECTOR sxy;
-  int32_t p, flag;
-  int16_t x, y;
   int32_t nearShip;
-  Poly poly;
-  int16_t* coords;
   TrackSection* section;
 
   shortestDistance = 999;
@@ -379,7 +373,6 @@ void initWeapons(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData* weapon
   Texture* targetTexture;
   Poly poly;
   int16_t primitiveCount;
-  StdPoly prim;
   int32_t length;
   Prm prm;
   char* start;
@@ -706,10 +699,8 @@ void UpdateRocket(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* we
 void UpdateMissile(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* weapon, WeaponData* weaponIndex) {
   VECTOR distance;
   VECTOR targetVector;
-  VECTOR bestPath;
   Face* facePtr;
   int32_t i, mag, temp, vhdg, vpitch;
-  TrackSection* nextSection;
   VECTOR facePoint;
   int32_t alpha;
 
@@ -932,7 +923,6 @@ void UpdateMine(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* weap
   int32_t ossilation;
   int32_t i, mag;
   Poly poly;
-  StdPoly prim;
   int16_t r;
 
   weapon->count--;
@@ -1083,10 +1073,8 @@ void InitRocket(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* weap
 void UpdateElecBolt(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* weapon, WeaponData* weaponIndex) {
   VECTOR distance;
   VECTOR targetVector;
-  VECTOR bestPath;
   Face* facePtr;
   int32_t i, mag, temp, vhdg, vpitch;
-  TrackSection* nextSection;
   VECTOR facePoint;
   int32_t alpha;
 
@@ -1354,10 +1342,8 @@ void InitRevCon(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* weap
 void UpdateRevCon(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* weapon, WeaponData* weaponIndex) {
   VECTOR distance;
   VECTOR targetVector;
-  VECTOR bestPath;
   Face* facePtr;
   int32_t i, mag, temp, vhdg, vpitch;
-  TrackSection* nextSection;
   VECTOR facePoint;
   int32_t alpha;
 
@@ -1567,17 +1553,12 @@ void InitShield(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* weap
 }
 
 void UpdateShield(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* weapon, WeaponData* weaponIndex) {
-  VECTOR distance;
-  Face* facePtr;
-  int32_t i, k, j, mag;
-  VECTOR facePoint;
+  int32_t k;
   Poly poly;
   int16_t primitiveCount;
-  StdPoly prim;
   int16_t* coords;
   int16_t col0, col1, col2, col3;
   int32_t shieldID;
-  DVECTOR screen0, screen1, screen2, screen3;
 
   if (shipIndex[weapon->fireShip].attr & VIEW_IN) {
     weapon->pos.vx = shipIndex[weapon->fireShip].ppivot.vx + (shipIndex[weapon->fireShip].unitVecNose.vx >> 6);
@@ -2029,13 +2010,9 @@ int32_t GetNewWeaponBodge() {
 
 void SetTargetShip(ShipData* shipIndex, int32_t shipNo) {
   int32_t i;
-  int32_t distance, shortestDistance;
+  int32_t distance, shortestDistance = 999;
   int32_t nearShip;
   TrackSection* section;
-  int32_t target;
-  int32_t start;
-
-  shortestDistance = 999;
 
   for (i = NO_OF_SHIPS - 1; i >= 0; i--) {
     if (((i != shipNo) && (raceType != HEAD_TO_HEAD)) ||

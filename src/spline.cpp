@@ -621,7 +621,7 @@ This is the camera high up looking down
 */
 void UpdateCameraHighUp(TrackCamera* camera, ShipData* ship, RescueData* rescueDroid) {
   VECTOR pos;
-  int32_t hdg, pitch, temp;
+  int32_t temp;
   VECTOR targetVector;
 
   camera->section = ship[ownShip].nearTrkSect;
@@ -665,7 +665,7 @@ This is the camera high up looking down
 */
 void UpdateCameraStationary(TrackCamera* camera, ShipData* ship, RescueData* rescueDroid) {
   VECTOR pos;
-  int32_t hdg, pitch, temp;
+  int32_t temp;
   VECTOR targetVector;
 
   timeOut--;

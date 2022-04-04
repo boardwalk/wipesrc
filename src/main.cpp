@@ -1,9 +1,7 @@
-//#include <libspu.h>
 #include "standard.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
@@ -119,7 +117,6 @@ void oldmain() {
   int32_t titleTimeout;
   int32_t TOut;
   static int32_t firstTime = 1;
-  char* nl = (char*)0x0417;
   char lfilename[80];
 
   heap = (DynamicHeap*)malloc(HEAP_SIZE * 1024);

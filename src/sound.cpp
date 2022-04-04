@@ -38,10 +38,6 @@ int16_t sfx_handle[MAX_FX]; // PC sound
 int16_t error; // PC sound
 SampRec SampTable[MAX_FX]; // PC Sound
 
-static int8_t bOrg, bImg; //PC File handling gubbins
-static uint8_t *pHeadPtr, *pOrgPtr, *pImgPtr;
-static FILE *pHeadFile, *pOrgFile, *pImgFile;
-static char pbFileName[80];
 static uint8_t bIndx;
 static int16_t wFirstId;
 
@@ -222,7 +218,6 @@ uint8_t ConvCDVol(int16_t LeftVol, int16_t RightVol) {
 
 void InitSpuSound() {
   int32_t i;
-  int32_t decval;
 
   error = SfxInit(AUTO_DETECT, STEREO, SR_22K);
   if (error != 1) {
@@ -412,7 +407,6 @@ void UpdateNotes(int32_t paused) {
 }
 
 void KillNote(int32_t note) {
-  int16_t i;
   int16_t channel;
 
   if (error == NO_SOUND)
@@ -574,7 +568,6 @@ int16_t PlayNote(int16_t vagID, int16_t priority, int16_t duration) {
 }
 
 int16_t PlayDirectionalNote(int16_t vagID, int16_t priority, int16_t duration, VECTOR pos) {
-  uint16_t i;
   VECTOR distance;
   int32_t mag;
   int32_t voll, volr;
@@ -633,7 +626,6 @@ int16_t PlayDirectionalNote(int16_t vagID, int16_t priority, int16_t duration, V
 }
 
 void SetPitch(int16_t VagID, int16_t pitch) {
-  uint16_t i;
   int16_t channel;
 
   if (error == NO_SOUND)
@@ -651,7 +643,6 @@ void SetPitch(int16_t VagID, int16_t pitch) {
 }
 
 void SetVolume(int16_t vagID, int16_t voll, int16_t volr) {
-  uint16_t i;
   int16_t channel;
 
   if (error == NO_SOUND)
@@ -675,7 +666,6 @@ void SetVolume(int16_t vagID, int16_t voll, int16_t volr) {
 }
 
 void SetVolumeFade(int16_t vagID, int16_t vol) {
-  uint16_t i;
   int16_t channel;
 
   if (error == NO_SOUND)
@@ -691,12 +681,10 @@ void SetVolumeFade(int16_t vagID, int16_t vol) {
 }
 
 int16_t AdjustDirectionalNote(int16_t vagID, int16_t priority, int16_t duration, VECTOR pos) {
-  uint16_t i;
   VECTOR distance;
   int32_t mag;
   int32_t voll, volr;
   int16_t angle;
-  int16_t channel;
 
   distance.vx = (pos.vx + cameraPtr->camPos->relative.t[0]) >> 3;
   distance.vy = (pos.vy + cameraPtr->camPos->relative.t[1]) >> 3;
@@ -836,10 +824,7 @@ int16_t AdjustRemoteEngineSound(ShipData* shipIndex, Object** shipShapes, TrackC
 
 void AdjustEngineSound(ShipData* playerShip, TrackCamera* camera) {
   int16_t vol;
-  int16_t vol2;
   int16_t pitch;
-  int16_t noteChange;
-  int16_t breakPoint;
   return;
 
   /******************************************/
@@ -896,15 +881,12 @@ void AdjustEngineSound(ShipData* playerShip, TrackCamera* camera) {
 }
 
 int32_t InitCD(CdlLOC* loc, int32_t trackNo) {
-  uint8_t param;
-  int32_t i;
-
   ntoc = CdGetToc(loc);
   return (ntoc);
 }
 
 int32_t InitCrowdSound(Object** prm, int16_t prmCount, Object** lostad, int32_t stadCount) {
-  int32_t i, j;
+  int32_t i;
   Object* obj;
 
   return 0;
@@ -929,8 +911,7 @@ void AdjustCrowdSound(Object** lostad, int32_t stadCount) {
 
   int32_t i;
   VECTOR distance;
-  int16_t vol;
-  int32_t mag, mag2;
+  int32_t mag;
   int32_t chosen[2];
   int32_t smallestMag[2];
   VECTOR pos;

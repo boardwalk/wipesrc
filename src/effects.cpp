@@ -95,7 +95,6 @@ void DrawEffects(Effect* effects) {
   int32_t x, y;
   int32_t depth;
   int16_t size;
-  int32_t count = 0;
   VECTOR camPos;
 
   camPos.vx = cameraPtr->camPos->relative.t[0];

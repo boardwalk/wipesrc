@@ -559,9 +559,7 @@ void TransformStaticObjectHole(Object* object, Skeleton* camera) {
   DVECTOR* screenPtr;
   uint16_t* depthPtr;
   uint16_t* flagsPtr;
-  uint16_t* ZPtr;
 
-  StdPoly prim;
   Poly poly;
 
   int16_t i;
@@ -583,15 +581,10 @@ void TransformStaticObjectHole(Object* object, Skeleton* camera) {
   SVECTOR* normal;
   int16_t normalCount;
 
-  int16_t var;
-
   SVECTOR nsv0, nsv1, nsv2, nsv3;
   VECTOR nv0, nv1, nv2, nv3;
 
-  DVECTOR sxyN0, sxyN1, sxyN2, sxyN3;
-  int32_t depthN0, depthN1, depthN2, depthN3;
   int32_t flagN0, flagN1, flagN2, flagN3;
-  int32_t p;
 
   MATRIX matrix;
   VECTOR trans;
@@ -1337,9 +1330,7 @@ void TransformStaticObject(Object* object, Skeleton* camera) {
   DVECTOR* screenPtr;
   uint16_t* depthPtr;
   uint16_t* flagsPtr;
-  uint16_t* ZPtr;
 
-  StdPoly prim;
   Poly poly;
 
   int16_t i;
@@ -1361,15 +1352,10 @@ void TransformStaticObject(Object* object, Skeleton* camera) {
   SVECTOR* normal;
   int16_t normalCount;
 
-  int16_t var;
-
   SVECTOR nsv0, nsv1, nsv2, nsv3;
   VECTOR nv0, nv1, nv2, nv3;
 
-  DVECTOR sxyN0, sxyN1, sxyN2, sxyN3;
-  int32_t depthN0, depthN1, depthN2, depthN3;
   int32_t flagN0, flagN1, flagN2, flagN3;
-  int32_t p;
 
   MATRIX matrix;
   VECTOR trans;
@@ -2272,9 +2258,7 @@ void TransformStaticObjectBodge(Object* object, Skeleton* camera) {
   DVECTOR* screenPtr;
   uint16_t* depthPtr;
   uint16_t* flagsPtr;
-  uint16_t* ZPtr;
 
-  StdPoly prim;
   Poly poly;
 
   int16_t i;
@@ -2296,15 +2280,10 @@ void TransformStaticObjectBodge(Object* object, Skeleton* camera) {
   SVECTOR* normal;
   int16_t normalCount;
 
-  int16_t var;
-
   SVECTOR nsv0, nsv1, nsv2, nsv3;
   VECTOR nv0, nv1, nv2, nv3;
 
-  DVECTOR sxyN0, sxyN1, sxyN2, sxyN3;
-  int32_t depthN0, depthN1, depthN2, depthN3;
   int32_t flagN0, flagN1, flagN2, flagN3;
-  int32_t p;
 
   MATRIX matrix;
   VECTOR trans;
@@ -3070,9 +3049,7 @@ void TransformStaticMenuObject(Object* object, Skeleton* camera) {
   DVECTOR* screenPtr;
   uint16_t* depthPtr;
   uint16_t* flagsPtr;
-  uint16_t* ZPtr;
 
-  StdPoly prim;
   Poly poly;
 
   int16_t i;
@@ -3094,12 +3071,9 @@ void TransformStaticMenuObject(Object* object, Skeleton* camera) {
   SVECTOR* normal;
   int16_t normalCount;
 
-  int16_t var;
-
   SVECTOR nsv0, nsv1, nsv2, nsv3;
   VECTOR nv0, nv1, nv2, nv3;
 
-  DVECTOR sxyN0, sxyN1, sxyN2, sxyN3;
   int32_t flagN0, flagN1, flagN2, flagN3;
 
   MATRIX matrix;

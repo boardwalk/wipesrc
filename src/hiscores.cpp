@@ -62,12 +62,9 @@ void HighScore(ConfigData* gameData) {
   char currChar = 'A';
   int16_t charVal = 0, numChars = 0;
   char dispChar[2];
-  char tablePos = 0;
-  char spacing = 20;
   int32_t toggleDisplay = 0, i, j;
   static char firstUsed = 1;
   char userEntry = 1;
-  int32_t lapTime = 0;
   int32_t bestLap = 0;
   char highScore = 0;
   char checkVal = 0;
@@ -533,9 +530,6 @@ void DisplayHiScore(char trackNum) {
 #if 1
 
 void NewHighScore(ConfigData* gameData, HiScoreData* hiScoreData) {
-  int16_t charX = 40, charY = 185;
-  char spacing = 20;
-  static char firstUsed = 1;
   int16_t select;
 
   if (hiScoreData->numChars != (nameLetters + 1) && (hiScoreData->userEntry)) {
@@ -645,9 +639,7 @@ void NewHighScore(ConfigData* gameData, HiScoreData* hiScoreData) {
 }
 
 void NewHighScoreDraw(ConfigData* gameData, HiScoreData* hiScoreData) {
-  int16_t charX = 40, charY = 185;
-  char spacing = 20;
-  static char firstUsed = 1;
+  int16_t charY = 185;
 
   if (hiScoreData->numChars != (nameLetters + 1) && (hiScoreData->userEntry)) {
     if (hiScoreData->userEntry) {

@@ -33,7 +33,6 @@ void DrawObjectAsm(Object* object, Skeleton* camera, int32_t roll, int16_t ShipO
   DVECTOR* screenPtr;
   uint16_t* depthPtr;
   uint16_t* flagsPtr;
-  uint16_t* ZPtr;
 
   Poly poly;
 
@@ -691,7 +690,6 @@ void DrawObjectFixedAsm(Object* object, Skeleton* camera, int32_t depth) {
   DVECTOR* screenPtr;
   uint16_t* depthPtr;
   uint16_t* flagsPtr;
-  uint16_t* ZPtr;
 
   Poly poly;
 

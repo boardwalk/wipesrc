@@ -200,15 +200,13 @@ void AddTime(int32_t time, TEXT_DATA* pos_data, int32_t colour)
 
 {
   int32_t j;
-  int32_t index = 0;
   int32_t digit[20];
   int32_t x, y;
   int32_t mins = 0, secs = 0, tenths = 0;
   Texture *charTex, *redTex;
   int32_t small_num_size;
   int32_t size, charNum;
-  int16_t vramRow = 0, vramY = 0, vramX = 0;
-  uint16_t currLett = 0, searchLett = 0;
+  uint16_t currLett = 0;
   TexChar* charSet;
 
   x = pos_data->start_pos_x;
@@ -407,10 +405,9 @@ void AddText(const char* text_ptr, TEXT_DATA* pos_data, int32_t colour) {
   char AValue = 0;
   Texture *charTex, *redTex;
   int32_t size = 0;
-  int32_t x = 0, y = 0, i = 0, newx, newy;
-  int16_t vramRow = 0, vramY = 0, vramX = 0;
+  int32_t x = 0, y = 0, newx, newy;
   int16_t j = 0;
-  uint16_t currLett = 0, searchLett = 0;
+  uint16_t currLett = 0;
   TexChar* charSet;
 
   x = pos_data->start_pos_x;
@@ -487,8 +484,7 @@ void AddNumber(int32_t num, TEXT_DATA* pos_data, int32_t colour) {
   int32_t x, y, newx, newy;
   Texture *charTex, *redTex;
   int32_t size, charNum;
-  int16_t vramRow = 0, vramY = 0, vramX = 0;
-  uint16_t currLett = 0, searchLett = 0;
+  uint16_t currLett = 0;
   TexChar* charSet;
 
   x = pos_data->start_pos_x;
@@ -669,11 +665,8 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo* speedo, int32_t choice, ConfigDa
   int32_t i, j;
   int32_t position = NO_OF_SHIPS;
   int32_t ownSecNo, serialSecNo;
-  int32_t width = 0;
-  int32_t tempPosition = 1;
   char trackList[15] = {2, 4, 1, 12, 8, 9, 10, 3, 5, 6, 7, 11, 13, 14, 15};
   int32_t secNo;
-  static int32_t lapRecordCount = 0;
   SortTable sortTable[NO_OF_SHIPS];
   char tempShip;
   char tempPoints;
@@ -1178,10 +1171,9 @@ void CentreText(const char* the_text_ptr, TEXT_DATA* pos_data, int32_t colour) {
   const char* tmpPtr;
   Texture *charTex, *redTex;
   int32_t size = 0;
-  int32_t x = 0, y = 0, i = 0, newx, newy;
-  int16_t vramRow = 0, vramY = 0, vramX = 0;
+  int32_t x = 0, y = 0, newx, newy;
   int16_t j = 0;
-  uint16_t currLett = 0, searchLett = 0;
+  uint16_t currLett = 0;
   TexChar* charSet;
   int16_t totSize = 0;
 
@@ -1320,7 +1312,6 @@ void InitChampTable() {
 void DisplayChampTable() {
   int16_t i;
   int16_t yPos = 80;
-  int16_t screenPos = 3;
   static int32_t toggle = 0;
 
   CentreText("CHAMPIONSHIP TABLE", text_data(60, 40, 8), RedText);

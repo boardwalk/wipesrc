@@ -206,9 +206,6 @@ void InitFaces(char* file) {
 
 void InitSections(char* file) {
   int32_t length;
-  TrackSection* junctionSection;
-  TrackSection* section;
-  int16_t i;
 
   length = FileLength(file);
   if (length <= 0) {
@@ -316,21 +313,11 @@ TrackSection* PrevIndexSection(TrackSection* section) {
 
 void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
   int32_t beforeVcount;
-  int16_t i, j;
+  int16_t i;
   int16_t loCount = 0;
   int16_t medCount = 0;
   int16_t hiCount = 0;
   int16_t dir;
-  int16_t drawTrack;
-
-  int16_t index;
-  TrackSection* trackPiece;
-
-  int32_t before;
-
-  static uint16_t pad;
-  uint16_t opad, xpad;
-  static int16_t cracks = 1;
 
   autoMesh->triCount = 0;
   autoMesh->quadCount = 0;
@@ -479,7 +466,7 @@ void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
 }
 
 void DrawAllTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
-  int16_t i, j;
+  int16_t i;
   int16_t loCount = 0;
   int16_t medCount = 0;
   int16_t hiCount = 0;
