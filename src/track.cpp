@@ -144,7 +144,7 @@ void InitVertices(char* file) {
     Error("Track.c:InitVertices: Failed to allocate memory for track vertices", Fatal);
   }
 
-  if (LoadFile(file, (Ptr)track->vertices) != length) {
+  if (LoadFile(file, (char*)track->vertices) != length) {
     sprintf(errorString, "Track.c:InitVertices(): Failed to load file %s\n", file);
     Error(errorString, Fatal);
   }
@@ -172,7 +172,7 @@ void InitFaces(char* file) {
     Error("Track.c:InitFaces: Failed to allocate memory for track faces", Fatal);
   }
 
-  if (LoadFile(file, (Ptr)track->faces) != length) {
+  if (LoadFile(file, (char*)track->faces) != length) {
     sprintf(errorString, "Track.c:InitFaces(): Failed to load file %s\n", file);
     Error(errorString, Fatal);
   }
@@ -218,7 +218,7 @@ void InitSections(char* file) {
     Error("Track.c:InitSections: Failed to allocate memory for track sections", Fatal);
   }
 
-  if (LoadFile(file, (Ptr)track->sections) != length) {
+  if (LoadFile(file, (char*)track->sections) != length) {
     sprintf(errorString, "Track.c:InitSections(): Failed to load file %s\n", file);
     Error(errorString, Fatal);
   }
@@ -251,7 +251,7 @@ void InitViewList(char* file) {
     Error("Track.c:InitViewList: Failed to allocate memory for view list", Fatal);
   }
 
-  if (LoadFile(file, (Ptr)track->viewList) != length) {
+  if (LoadFile(file, (char*)track->viewList) != length) {
     sprintf(errorString, "Track.c:InitViewList(): Failed to load file %s\n", file);
     Error(errorString, Fatal);
   }

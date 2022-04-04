@@ -48,7 +48,7 @@ Texture* LoadTexture(const char* name, int16_t translucent) {
     Error(errorString, Fatal);
   }
 
-  if (LoadFile(name, (Ptr)tim) != length) {
+  if (LoadFile(name, (char*)tim) != length) {
     /* File Error! */
 
     sprintf(errorString, "Tim.c:LoadTexture(): Failed to load file %s\n", name);
@@ -199,7 +199,7 @@ Texture* LoadTexture(const char* name, int16_t translucent) {
     texture = NULL;
   }
 
-  DFree(heap, (Ptr)(tim));
+  DFree(heap, (char*)tim);
 
   return (texture);
 }
