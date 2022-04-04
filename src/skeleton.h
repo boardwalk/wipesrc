@@ -7,14 +7,14 @@
 #include "libgte.h"
 #include "object.h"
 
-Skeleton* NewSkeleton( );
+Skeleton* NewSkeleton();
 
-void SetSkeletonPosition( Skeleton* skeleton, int32_t x, int32_t y, int32_t z  );
+void SetSkeletonPosition(Skeleton* skeleton, int32_t x, int32_t y, int32_t z);
 
-void SetSkeletonDirection( Skeleton* skeleton, int16_t xa, int16_t ya, int16_t za  );
+void SetSkeletonDirection(Skeleton* skeleton, int16_t xa, int16_t ya, int16_t za);
 
-MATRIX* GetSkeletonMatrix( Skeleton* skeleton );
+MATRIX* GetSkeletonMatrix(Skeleton* skeleton);
 
-void SetSkeletonTransform( Skeleton* skeleton );
+void SetSkeletonTransform(Skeleton* skeleton);
 
 #endif

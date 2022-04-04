@@ -1,8 +1,6 @@
 /* (C) Psygnosis 1994. By Jason Carl Denton & Rob Smith
 */
 
-
-
 #include "standard.h"
 #include <stdio.h>
 #include "malloc.h"
@@ -37,623 +35,486 @@
 #include "error.h"
 #include "pallette.h"
 
-
 #define TrackVersion 8
-#define	GsGetVcount()	0;
+#define GsGetVcount() 0;
 
 //#define AsmTransformTrackMed AsmTransformTrackLo
 
+extern int32_t inattract;
 
-extern	int32_t	inattract;
+void IntelVertex() {
+  VECTOR* vert;
+  int16_t i;
 
-void IntelVertex()
-{
-   VECTOR      *vert;
-   int16_t       i;
+  /* intel the vertex data */
 
-   /* intel the vertex data */
+  vert = track->vertices;
+  for (i = 0; i < track->vertexCount; i++) {
+    IntelLong(&vert->vx);
+    IntelLong(&vert->vy);
+    IntelLong(&vert->vz);
 
-   vert = track->vertices;
-   for ( i=0; i<track->vertexCount; i++ )
-   {
-      IntelLong( &vert->vx );
-      IntelLong( &vert->vy );
-      IntelLong( &vert->vz );
-
-      vert += 1;
-   }
+    vert += 1;
+  }
 }
 
+void IntelFace() {
+  Face* face;
+  int16_t i;
 
+  /* intel the face data */
 
+  face = track->faces;
+  for (i = 0; i < track->faceCount; i++) {
+    IntelShort(&face->vertex[0]);
+    IntelShort(&face->vertex[1]);
+    IntelShort(&face->vertex[2]);
+    IntelShort(&face->vertex[3]);
 
-void IntelFace()
-{
-   Face        *face;
-   int16_t       i;
+    IntelShort(&face->normal.vx);
+    IntelShort(&face->normal.vy);
+    IntelShort(&face->normal.vz);
 
-   /* intel the face data */
-
-   face = track->faces;
-   for ( i=0; i<track->faceCount; i++ )
-   {
-      IntelShort( &face->vertex[ 0 ] );
-      IntelShort( &face->vertex[ 1 ] );
-      IntelShort( &face->vertex[ 2 ] );
-      IntelShort( &face->vertex[ 3 ] );
-
-      IntelShort( &face->normal.vx );
-      IntelShort( &face->normal.vy );
-      IntelShort( &face->normal.vz );
-
-      face += 1;
-   }
+    face += 1;
+  }
 }
 
-void CheckVersion()
-{
-   TrackSection      *section;
-   int16_t             i;
+void CheckVersion() {
+  TrackSection* section;
+  int16_t i;
 
-   section = track->sections;
-   for ( i=0; i<track->sectionCount; i++ )
-   {
-      if ( section->version != TrackVersion )
-      {
-         Error( "Convert track with track10", Fatal );
-      }
-      section += 1;
-   }
+  section = track->sections;
+  for (i = 0; i < track->sectionCount; i++) {
+    if (section->version != TrackVersion) {
+      Error("Convert track with track10", Fatal);
+    }
+    section += 1;
+  }
 }
 
+void IndexToPointers() {
+  TrackSection* section;
+  int16_t i;
 
+  /* change the section indices to pointers */
 
+  section = track->sections;
+  for (i = 0; i < track->sectionCount; i++) {
+    section->prevSection.ptr = track->sections + section->prevSection.index;
+    section->nextSection.ptr = track->sections + section->nextSection.index;
 
-void IndexToPointers()
-{
-   TrackSection      *section;
-   int16_t             i;
+    if (section->junction.index != -1) {
+      section->junction.ptr = track->sections + section->junction.index;
+    }
 
-
-   /* change the section indices to pointers */
-
-   section = track->sections;
-   for ( i=0; i<track->sectionCount; i++ )
-   {
-      section->prevSection.ptr = track->sections + section->prevSection.index;
-      section->nextSection.ptr = track->sections + section->nextSection.index;
-
-      if ( section->junction.index != -1 )
-      {
-         section->junction.ptr = track->sections + section->junction.index;
-      }
-
-      section += 1;
-   }
+    section += 1;
+  }
 }
 
+void PointersToIndex() {
+  TrackSection* section;
+  int16_t i;
 
+  /* change the section pointers back to indices */
 
+  section = track->sections;
+  for (i = 0; i < track->sectionCount; i++) {
+    section->prevSection.index = section->prevSection.ptr - track->sections;
+    section->nextSection.index = section->nextSection.ptr - track->sections;
 
+    if (section->junction.index != -1) {
+      section->junction.index = section->junction.ptr - track->sections;
+    }
 
-
-void PointersToIndex()
-{
-   TrackSection      *section;
-   int16_t             i;
-
-
-   /* change the section pointers back to indices */
-
-   section = track->sections;
-   for ( i=0; i<track->sectionCount; i++ )
-   {
-      section->prevSection.index = section->prevSection.ptr - track->sections;
-      section->nextSection.index = section->nextSection.ptr - track->sections;
-
-      if ( section->junction.index != -1 )
-      {
-         section->junction.index = section->junction.ptr - track->sections;
-      }
-
-      section += 1;
-   }
+    section += 1;
+  }
 }
 
+void InitVertices(char* file) {
+  int32_t length;
 
+  length = FileLength(file);
+  if (length <= 0) {
+    sprintf(errorString, "Track.c:InitVertices: file %s not found\n", file);
+    Error(errorString, Fatal);
+  }
 
+  track->vertices = (VECTOR*)DAlloc(heap, length + 32);
+  if (!track->vertices) {
+    Error("Track.c:InitVertices: Failed to allocate memory for track vertices", Fatal);
+  }
 
-void InitVertices( char *file )
-{
-   int32_t        length;
-
-
-   length = FileLength( file );
-   if ( length <= 0 )
-   {
-      sprintf( errorString, "Track.c:InitVertices: file %s not found\n", file );
-      Error( errorString, Fatal );
-   }
-
-	track->vertices = ( VECTOR* )DAlloc( heap, length + 32 );
-	if( !track->vertices )
-	{
-		Error( "Track.c:InitVertices: Failed to allocate memory for track vertices", Fatal );
-	}
-
-   if ( LoadFile( file, (Ptr)track->vertices ) != length )
-   {
-		sprintf( errorString, "Track.c:InitVertices(): Failed to load file %s\n", file );
-      Error( errorString, Fatal );
-   }
+  if (LoadFile(file, (Ptr)track->vertices) != length) {
+    sprintf(errorString, "Track.c:InitVertices(): Failed to load file %s\n", file);
+    Error(errorString, Fatal);
+  }
 #if 0
 	printf( "VERTICES = %d\n", length / sizeof( VECTOR ) );
 #endif
-	track->vertexCount = length / sizeof( VECTOR );
+  track->vertexCount = length / sizeof(VECTOR);
 
-   IntelVertex( );
+  IntelVertex();
 }
 
+void InitFaces(char* file) {
+  int32_t length;
+  int16_t i;
+  CVECTOR cols;
 
+  length = FileLength(file);
+  if (length <= 0) {
+    sprintf(errorString, "Track.c:InitFaces: file %s not found\n", file);
+    Error(errorString, Fatal);
+  }
 
+  track->faces = (Face*)DAlloc(heap, length + 32);
+  if (!track->faces) {
+    Error("Track.c:InitFaces: Failed to allocate memory for track faces", Fatal);
+  }
 
-void InitFaces( char *file )
-{
-   int32_t        length;
-   int16_t       i;
-   CVECTOR		cols;
-
-
-   length = FileLength( file );
-   if ( length <= 0 )
-   {
-      sprintf( errorString, "Track.c:InitFaces: file %s not found\n", file );
-      Error( errorString, Fatal );
-   }
-
-	track->faces = ( Face* )DAlloc( heap, length + 32 );
-	if( !track->faces )
-	{
-		Error( "Track.c:InitFaces: Failed to allocate memory for track faces", Fatal );
-	}
-
-   if ( LoadFile( file, (Ptr)track->faces ) != length )
-   {
-		sprintf( errorString, "Track.c:InitFaces(): Failed to load file %s\n", file );
-      Error( errorString, Fatal );
-   }
+  if (LoadFile(file, (Ptr)track->faces) != length) {
+    sprintf(errorString, "Track.c:InitFaces(): Failed to load file %s\n", file);
+    Error(errorString, Fatal);
+  }
 #if 0
 	printf( "FACES = %d\n", length / sizeof( Face ) );
 #endif
-	track->faceCount = length / sizeof( Face );
+  track->faceCount = length / sizeof(Face);
 
-   IntelFace( );
+  IntelFace();
 
+  /* copy the original colors */
 
+  track->colCopy = (Colors*)DAlloc(heap, track->faceCount * sizeof(Colors));
+  if (!track->faces) {
+    Error("Track.c:InitFaces: Failed to allocate memory for copy of colors", Fatal);
+  }
 
-   /* copy the original colors */
+  for (i = 0; i < track->faceCount; i++) {
+    cols.r = track->faces[i].red;
+    cols.g = track->faces[i].green;
+    cols.b = track->faces[i].blue;
 
-	track->colCopy = ( Colors* )DAlloc( heap, track->faceCount * sizeof( Colors ) );
-	if( !track->faces )
-	{
-		Error( "Track.c:InitFaces: Failed to allocate memory for copy of colors", Fatal );
-	}
-
-   for ( i=0; i<track->faceCount; i++ )
-   {
-		cols.r = track->faces[ i ].red;
-		cols.g = track->faces[ i ].green;
-		cols.b = track->faces[ i ].blue;
-
-		track->faces[ i ].red=FindNearestColourIndex(&cols);
-		track->faces[ i ].green=0;
-		track->faces[ i ].blue=BLACK_NOT_DRAWN;
-     track->colCopy[ i ].red 	= track->faces[ i ].red;
-     track->colCopy[ i ].green 	= track->faces[ i ].green;
-     track->colCopy[ i ].blue 	= track->faces[ i ].blue;
-   }
-
+    track->faces[i].red = FindNearestColourIndex(&cols);
+    track->faces[i].green = 0;
+    track->faces[i].blue = BLACK_NOT_DRAWN;
+    track->colCopy[i].red = track->faces[i].red;
+    track->colCopy[i].green = track->faces[i].green;
+    track->colCopy[i].blue = track->faces[i].blue;
+  }
 }
 
+void InitSections(char* file) {
+  int32_t length;
+  TrackSection* junctionSection;
+  TrackSection* section;
+  int16_t i;
 
+  length = FileLength(file);
+  if (length <= 0) {
+    sprintf(errorString, "Track.c:InitSections: file %s not found\n", file);
+    Error(errorString, Fatal);
+  }
 
+  track->sections = (TrackSection*)DAlloc(heap, length + 32);
+  if (!track->sections) {
+    Error("Track.c:InitSections: Failed to allocate memory for track sections", Fatal);
+  }
 
-
-
-void InitSections( char *file )
-{
-   int32_t              length;
-   TrackSection      *junctionSection;
-   TrackSection      *section;
-   int16_t             i;
-
-
-   length = FileLength( file );
-   if ( length <= 0 )
-   {
-      sprintf( errorString, "Track.c:InitSections: file %s not found\n", file );
-      Error( errorString, Fatal );
-   }
-
-	track->sections = ( TrackSection* )DAlloc( heap, length + 32 );
-	if( !track->sections )
-	{
-		Error( "Track.c:InitSections: Failed to allocate memory for track sections", Fatal );
-	}
-
-   if ( LoadFile( file, (Ptr)track->sections ) != length )
-   {
-		sprintf( errorString, "Track.c:InitSections(): Failed to load file %s\n", file );
-      Error( errorString, Fatal );
-   }
+  if (LoadFile(file, (Ptr)track->sections) != length) {
+    sprintf(errorString, "Track.c:InitSections(): Failed to load file %s\n", file);
+    Error(errorString, Fatal);
+  }
 #if 0
 	printf("SECTIONS = %d\n", length / sizeof( TrackSection ) );
 #endif
-	track->sectionCount = length / sizeof(TrackSection);
+  track->sectionCount = length / sizeof(TrackSection);
 
-   IndexToPointers( );
+  IndexToPointers();
 
 #if 1
-   CheckVersion( );
+  CheckVersion();
 #endif
-
 }
 
+void InitViewList(char* file) {
+  int32_t length;
+  TrackSection* section;
+  int32_t total;
+  int16_t i, j;
 
+  length = FileLength(file);
+  if (length <= 0) {
+    sprintf(errorString, "Track.c:InitViewList: file %s not found\n", file);
+    Error(errorString, Fatal);
+  }
 
+  track->viewList = (int16_t*)DAlloc(heap, length + 32);
+  if (!track->viewList) {
+    Error("Track.c:InitViewList: Failed to allocate memory for view list", Fatal);
+  }
 
+  if (LoadFile(file, (Ptr)track->viewList) != length) {
+    sprintf(errorString, "Track.c:InitViewList(): Failed to load file %s\n", file);
+    Error(errorString, Fatal);
+  }
 
+  for (i = 0; i < length / 2; i++) {
+    IntelShort(&track->viewList[i]);
+  }
 
+  section = track->sections;
+  total = 0;
+  for (i = 0; i < track->sectionCount; i++) {
+    for (j = 0; j < 3; j++) {
+      section->northViewSection[j] = track->viewList + total;
+      total += section->northViewCount[j];
 
-void InitViewList( char *file )
-{
+      section->southViewSection[j] = track->viewList + total;
+      total += section->southViewCount[j];
 
-   int32_t              length;
-   TrackSection      *section;
-   int32_t              total;
-   int16_t             i, j;
+      section->eastViewSection[j] = track->viewList + total;
+      total += section->eastViewCount[j];
 
+      section->westViewSection[j] = track->viewList + total;
+      total += section->westViewCount[j];
 
-   length = FileLength( file );
-   if ( length <= 0 )
-   {
-      sprintf( errorString, "Track.c:InitViewList: file %s not found\n", file );
-      Error( errorString, Fatal );
-   }
+      section->allViewSection[j] = track->viewList + total;
+      total += section->allViewCount[j];
+    }
 
-	track->viewList = ( int16_t* )DAlloc( heap, length + 32 );
-	if( !track->viewList )
-	{
-		Error( "Track.c:InitViewList: Failed to allocate memory for view list", Fatal );
-	}
+    section++;
+  }
 
-   if ( LoadFile( file, (Ptr)track->viewList ) != length )
-   {
-		sprintf( errorString, "Track.c:InitViewList(): Failed to load file %s\n", file );
-      Error( errorString, Fatal );
-   }
-
-
-
-   for ( i=0; i<length / 2; i++ )
-   {
-      IntelShort( &track->viewList[ i ] );
-   }
-
-
-   section = track->sections;
-   total = 0;
-   for ( i=0; i<track->sectionCount; i++ )
-   {
-      for ( j=0; j<3; j++ )
-      {
-         section->northViewSection[ j ] = track->viewList + total;
-         total += section->northViewCount[ j ];
-
-         section->southViewSection[ j ] = track->viewList + total;
-         total += section->southViewCount[ j ];
-
-         section->eastViewSection[ j ] = track->viewList + total;
-         total += section->eastViewCount[ j ];
-
-         section->westViewSection[ j ] = track->viewList + total;
-         total += section->westViewCount[ j ];
-
-         section->allViewSection[ j ] = track->viewList + total;
-         total += section->allViewCount[ j ];
-      }
-
-      section++;
-   }
-
-   if ( ( total * 2 ) != length )
-   {
-      printf( "\n" );
-      printf( "total  %d\n", total );
-      printf( "length %d\n", length );
-      Error( "track.c::InitViewList():problem with view list", Fatal );
-   }
-
+  if ((total * 2) != length) {
+    printf("\n");
+    printf("total  %d\n", total);
+    printf("length %d\n", length);
+    Error("track.c::InitViewList():problem with view list", Fatal);
+  }
 }
 
+TrackSection* NextIndexSection(TrackSection* section) {
+  section += 1;
 
+  if (section > track->sections + track->sectionCount - 1) {
+    section = track->sections;
+  }
 
-
-
-TrackSection* NextIndexSection( TrackSection* section )
-{
-   section += 1;
-
-   if ( section > track->sections + track->sectionCount - 1 )
-   {
-      section = track->sections;
-   }
-
-	return( section );
+  return (section);
 }
 
+TrackSection* PrevIndexSection(TrackSection* section) {
+  section -= 1;
 
-TrackSection* PrevIndexSection( TrackSection* section )
-{
-   section -= 1;
+  if (section < track->sections) {
+    section = track->sections + track->sectionCount - 1;
+  }
 
-   if ( section < track->sections )
-   {
-      section = track->sections + track->sectionCount - 1;
-   }
-
-
-	return( section );
+  return (section);
 }
 
-void DrawNewTrack( TrackCamera *camera, AutoMeshData *autoMesh )
-{
-   int32_t           beforeVcount;
-   int16_t          i, j;
-   int16_t          loCount = 0;
-   int16_t          medCount = 0;
-   int16_t          hiCount = 0;
-   int16_t          dir;
-   int16_t          drawTrack;
+void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
+  int32_t beforeVcount;
+  int16_t i, j;
+  int16_t loCount = 0;
+  int16_t medCount = 0;
+  int16_t hiCount = 0;
+  int16_t dir;
+  int16_t drawTrack;
 
-   int16_t          index;
-   TrackSection   *trackPiece;
+  int16_t index;
+  TrackSection* trackPiece;
 
-   int32_t           before;
+  int32_t before;
 
-   static uint16_t  pad;
-   uint16_t         opad, xpad;
-   static int16_t   cracks = 1;
+  static uint16_t pad;
+  uint16_t opad, xpad;
+  static int16_t cracks = 1;
 
+  autoMesh->triCount = 0;
+  autoMesh->quadCount = 0;
+  autoMesh->attemptedAutos = 0;
 
-   autoMesh->triCount = 0;
-   autoMesh->quadCount = 0;
-   autoMesh->attemptedAutos = 0;
+  beforeVcount = GsGetVcount();
+  AsmNextFrame();
 
-   beforeVcount = GsGetVcount();
-   AsmNextFrame( );
+  dir = TrackDirection(camera);
 
-   dir = TrackDirection(camera);
+  if (dir == ShipForwards) {
+    for (i = 0; i < camera->section->northViewCount[2]; i += 2) {
+      AsmTransformTrackLo // PCwipeout
+          (
+              track->sections + camera->section->northViewSection[2][i],
+              camera->camPos,
+              camera->section->northViewSection[2][i + 1],
+              dir);
+      loCount += camera->section->northViewSection[2][i + 1];
+    }
 
-   if ( dir == ShipForwards )
-   {
-      for ( i=0; i<camera->section->northViewCount[ 2 ]; i+=2 )
-      {
-         AsmTransformTrackLo	// PCwipeout
-         (
-            track->sections + camera->section->northViewSection[ 2 ][ i ],
-            camera->camPos,
-            camera->section->northViewSection[ 2 ][ i + 1 ],
-			dir
-         );
-         loCount += camera->section->northViewSection[ 2 ][ i + 1 ];
-      }
+    for (i = 0; i < camera->section->northViewCount[1]; i += 2) {
+      AsmTransformTrackMed // PCwipeout
+          (
+              track->sections + camera->section->northViewSection[1][i],
+              camera->camPos,
+              camera->section->northViewSection[1][i + 1],
+              dir);
+      medCount += camera->section->northViewSection[1][i + 1];
+    }
 
-      for ( i=0; i<camera->section->northViewCount[ 1 ]; i+=2 )
-      {
-         AsmTransformTrackMed 		// PCwipeout
-         (
-            track->sections + camera->section->northViewSection[ 1 ][ i ],
-            camera->camPos,
-            camera->section->northViewSection[ 1 ][ i + 1 ],
-			dir
-         );
-         medCount += camera->section->northViewSection[ 1 ][ i + 1 ];
-      }
+    for (i = 0; i < camera->section->northViewCount[0]; i += 2) {
+      //if ((TextureTrack) || (inattract))
+      AsmTransformTrackHi // PCwipeout
+          (
+              track->sections + camera->section->northViewSection[0][i],
+              camera->camPos,
+              autoMesh,
+              camera->section->northViewSection[0][i + 1],
+              dir);
 
-      for ( i=0; i<camera->section->northViewCount[ 0 ]; i+=2 )
-      {
-		//if ((TextureTrack) || (inattract))
-         AsmTransformTrackHi // PCwipeout
-         (
-            track->sections + camera->section->northViewSection[ 0 ][ i ],
-            camera->camPos,
-            autoMesh,
-            camera->section->northViewSection[ 0 ][ i + 1 ],
-			dir
-         );
+      hiCount += camera->section->northViewSection[0][i + 1];
+    }
 
-         hiCount += camera->section->northViewSection[ 0 ][ i + 1 ];
-      }
+  }
 
-   }
+  else if (dir == ShipBackwards) {
+    for (i = 0; i < camera->section->southViewCount[2]; i += 2) {
+      AsmTransformTrackLo // PCwipeout
+          (
+              track->sections + camera->section->southViewSection[2][i],
+              camera->camPos,
+              camera->section->southViewSection[2][i + 1],
+              dir);
+      loCount += camera->section->southViewSection[2][i + 1];
+    }
 
-   else if ( dir == ShipBackwards )
-   {
-      for ( i=0; i<camera->section->southViewCount[ 2 ]; i+=2 )
-      {
-         AsmTransformTrackLo	// PCwipeout
-         (
-            track->sections + camera->section->southViewSection[ 2 ][ i ],
-            camera->camPos,
-            camera->section->southViewSection[ 2 ][ i + 1 ],
-			dir
-         );
-         loCount += camera->section->southViewSection[ 2 ][ i + 1 ];
-      }
+    for (i = 0; i < camera->section->southViewCount[1]; i += 2) {
+      AsmTransformTrackMed // PCwipeout
+          (
+              track->sections + camera->section->southViewSection[1][i],
+              camera->camPos,
+              camera->section->southViewSection[1][i + 1],
+              dir);
+      medCount += camera->section->southViewSection[1][i + 1];
+    }
 
-      for ( i=0; i<camera->section->southViewCount[ 1 ]; i+=2 )
-      {
-        AsmTransformTrackMed // PCwipeout
-         (
-            track->sections + camera->section->southViewSection[ 1 ][ i ],
-            camera->camPos,
-            camera->section->southViewSection[ 1 ][ i + 1 ],
-			dir
-         );
-         medCount += camera->section->southViewSection[ 1 ][ i + 1 ];
-      }
+    for (i = 0; i < camera->section->southViewCount[0]; i += 2) {
+      AsmTransformTrackHi // PCwipeout
+          (
+              track->sections + camera->section->southViewSection[0][i],
+              camera->camPos,
+              autoMesh,
+              camera->section->southViewSection[0][i + 1],
+              dir);
+      hiCount += camera->section->southViewSection[0][i + 1];
+    }
 
-      for ( i=0; i<camera->section->southViewCount[ 0 ]; i+=2 )
-      {
-        AsmTransformTrackHi // PCwipeout
-         (
-            track->sections + camera->section->southViewSection[ 0 ][ i ],
-            camera->camPos,
-            autoMesh,
-            camera->section->southViewSection[ 0 ][ i + 1 ],
-			dir
-         );
-         hiCount += camera->section->southViewSection[ 0 ][ i + 1 ];
-      }
+  } else if (dir == ShipRight) {
+    for (i = 0; i < camera->section->westViewCount[2]; i += 2) {
+      AsmTransformTrackLo // PCwipeout
+          (
+              track->sections + camera->section->westViewSection[2][i],
+              camera->camPos,
+              camera->section->westViewSection[2][i + 1],
+              dir);
+      loCount += camera->section->westViewSection[2][i + 1];
+    }
 
-   }
-   else if ( dir == ShipRight )
-   {
-      for ( i=0; i<camera->section->westViewCount[ 2 ]; i+=2 )
-      {
+    for (i = 0; i < camera->section->westViewCount[1]; i += 2) {
+      AsmTransformTrackMed // PCwipeout
+          (
+              track->sections + camera->section->westViewSection[1][i],
+              camera->camPos,
+              camera->section->westViewSection[1][i + 1],
+              dir);
 
-         AsmTransformTrackLo	// PCwipeout
-         (
-            track->sections + camera->section->westViewSection[ 2 ][ i ],
-            camera->camPos,
-            camera->section->westViewSection[ 2 ][ i + 1 ],
-			dir
-         );
-         loCount += camera->section->westViewSection[ 2 ][ i + 1 ];
-      }
+      medCount += camera->section->westViewSection[1][i + 1];
+    }
 
-      for ( i=0; i<camera->section->westViewCount[ 1 ]; i+=2 )
-      {
-         AsmTransformTrackMed // PCwipeout
-         (
-            track->sections + camera->section->westViewSection[ 1 ][ i ],
-            camera->camPos,
-            camera->section->westViewSection[ 1 ][ i + 1 ],
-			dir
-         );
+    for (i = 0; i < camera->section->westViewCount[0]; i += 2) {
+      AsmTransformTrackHi // PCwipeout
+          (
+              track->sections + camera->section->westViewSection[0][i],
+              camera->camPos,
+              autoMesh,
+              camera->section->westViewSection[0][i + 1],
+              dir);
 
-         medCount += camera->section->westViewSection[ 1 ][ i + 1 ];
-      }
+      hiCount += camera->section->westViewSection[0][i + 1];
+    }
+  } else if (dir == ShipLeft) {
+    for (i = 0; i < camera->section->eastViewCount[2]; i += 2) {
+      AsmTransformTrackLo // PCwipeout
+          (
+              track->sections + camera->section->eastViewSection[2][i],
+              camera->camPos,
+              camera->section->eastViewSection[2][i + 1],
+              dir);
 
-      for ( i=0; i<camera->section->westViewCount[ 0 ]; i+=2 )
-      {
-        AsmTransformTrackHi // PCwipeout
-         (
-            track->sections + camera->section->westViewSection[ 0 ][ i ],
-            camera->camPos,
-            autoMesh,
-            camera->section->westViewSection[ 0 ][ i + 1 ],
-			dir
-         );
+      loCount += camera->section->eastViewSection[2][i + 1];
+    }
 
+    for (i = 0; i < camera->section->eastViewCount[1]; i += 2) {
+      AsmTransformTrackMed // PCwipeout
+          (
+              track->sections + camera->section->eastViewSection[1][i],
+              camera->camPos,
+              camera->section->eastViewSection[1][i + 1],
+              dir);
 
-         hiCount += camera->section->westViewSection[ 0 ][ i + 1 ];
-      }
-   }
-   else if ( dir == ShipLeft )
-   {
-       for ( i=0; i<camera->section->eastViewCount[ 2 ]; i+=2 )
-      {
+      medCount += camera->section->eastViewSection[1][i + 1];
+    }
 
-        AsmTransformTrackLo // PCwipeout
-         (
-            track->sections + camera->section->eastViewSection[ 2 ][ i ],
-            camera->camPos,
-            camera->section->eastViewSection[ 2 ][ i + 1 ],
-			dir
-         );
-
-         loCount += camera->section->eastViewSection[ 2 ][ i + 1 ];
-      }
-
-      for ( i=0; i<camera->section->eastViewCount[ 1 ]; i+=2 )
-      {
-        AsmTransformTrackMed // PCwipeout
-         (
-            track->sections + camera->section->eastViewSection[ 1 ][ i ],
-            camera->camPos,
-            camera->section->eastViewSection[ 1 ][ i + 1 ],
-			dir
-         );
-
-         medCount += camera->section->eastViewSection[ 1 ][ i + 1 ];
-      }
-
-      for ( i=0; i<camera->section->eastViewCount[ 0 ]; i+=2 )
-      {
-         AsmTransformTrackHi // PCwipeout
-         (
-            track->sections + camera->section->eastViewSection[ 0 ][ i ],
-            camera->camPos,
-            autoMesh,
-            camera->section->eastViewSection[ 0 ][ i + 1 ],
-			dir
-	     );
-         hiCount += camera->section->eastViewSection[ 0 ][ i + 1 ];
-      }
-   }
+    for (i = 0; i < camera->section->eastViewCount[0]; i += 2) {
+      AsmTransformTrackHi // PCwipeout
+          (
+              track->sections + camera->section->eastViewSection[0][i],
+              camera->camPos,
+              autoMesh,
+              camera->section->eastViewSection[0][i + 1],
+              dir);
+      hiCount += camera->section->eastViewSection[0][i + 1];
+    }
+  }
 }
 
+void DrawAllTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
+  int16_t i, j;
+  int16_t loCount = 0;
+  int16_t medCount = 0;
+  int16_t hiCount = 0;
 
+  autoMesh->triCount = 0;
+  autoMesh->quadCount = 0;
+  autoMesh->attemptedAutos = 0;
+  AsmNextFrame();
 
-void DrawAllTrack( TrackCamera *camera, AutoMeshData *autoMesh )
-{
-   int16_t          i, j;
-   int16_t          loCount = 0;
-   int16_t          medCount = 0;
-   int16_t          hiCount = 0;
+  for (i = 0; i < camera->section->allViewCount[2]; i += 2) {
+    AsmTransformTrackLo(
+        track->sections + camera->section->allViewSection[2][i],
+        camera->camPos,
+        camera->section->allViewSection[2][i + 1],
+        0);
 
-   autoMesh->triCount = 0;
-   autoMesh->quadCount = 0;
-   autoMesh->attemptedAutos = 0;
-   AsmNextFrame( );
+    loCount += camera->section->allViewSection[2][i + 1];
+  }
 
-   for ( i=0; i<camera->section->allViewCount[ 2 ]; i+=2 )
-   {
-      AsmTransformTrackLo
-      (
-         track->sections + camera->section->allViewSection[ 2 ][ i ],
-         camera->camPos,
-         camera->section->allViewSection[ 2 ][ i + 1 ],
-		 0
-      );
+  for (i = 0; i < camera->section->allViewCount[1]; i += 2) {
+    AsmTransformTrackMed(
+        track->sections + camera->section->allViewSection[1][i],
+        camera->camPos,
+        camera->section->allViewSection[1][i + 1],
+        0);
+    medCount += camera->section->allViewSection[1][i + 1];
+  }
 
-     loCount += camera->section->allViewSection[ 2 ][ i + 1 ];
-   }
-
-   for ( i=0; i<camera->section->allViewCount[ 1 ]; i+=2 )
-   {
-      AsmTransformTrackMed
-      (
-         track->sections + camera->section->allViewSection[ 1 ][ i ],
-         camera->camPos,
-         camera->section->allViewSection[ 1 ][ i + 1 ],
-		 0
-      );
-     medCount += camera->section->allViewSection[ 1 ][ i + 1 ];
-   }
-
-   for ( i=0; i<camera->section->allViewCount[ 0 ]; i+=2 )
-   {
-      AsmTransformTrackHi
-      (
-         track->sections + camera->section->allViewSection[ 0 ][ i ],
-         camera->camPos,
-         autoMesh,
-         camera->section->allViewSection[ 0 ][ i + 1 ],
-		 0
-      );
-     hiCount += camera->section->allViewSection[ 0 ][ i + 1 ];
-   }
+  for (i = 0; i < camera->section->allViewCount[0]; i += 2) {
+    AsmTransformTrackHi(
+        track->sections + camera->section->allViewSection[0][i],
+        camera->camPos,
+        autoMesh,
+        camera->section->allViewSection[0][i + 1],
+        0);
+    hiCount += camera->section->allViewSection[0][i + 1];
+  }
 }

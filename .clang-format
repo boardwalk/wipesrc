@@ -1,5 +1,7 @@
 AlignTrailingComments: false
 AllowShortFunctionsOnASingleLine: None
+ColumnLimit: 0
 KeepEmptyLinesAtTheStartOfBlocks: false
+PointerAlignment: Left
 ReflowComments: false
 SortIncludes: Never

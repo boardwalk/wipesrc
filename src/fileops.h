@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-int16_t LoadCompressedTextureSequence( const char *texName );
+int16_t LoadCompressedTextureSequence(const char* texName);
 
 #endif

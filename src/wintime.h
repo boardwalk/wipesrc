@@ -5,6 +5,6 @@
 
 int32_t HowLong();
 void InitialiseWinTimer();
-void EndWinTimer ();
+void EndWinTimer();
 
 #endif

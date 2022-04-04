@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-void Error( const char *string, int16_t errorLevel );
+void Error(const char* string, int16_t errorLevel);
 
 #endif

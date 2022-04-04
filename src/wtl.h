@@ -3,6 +3,6 @@
 #ifndef WTL_H
 #define WTL_H
 
-void LoadWtlFiles( char *file );
+void LoadWtlFiles(char* file);
 
 #endif

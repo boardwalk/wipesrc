@@ -1,13 +1,13 @@
 #ifndef WINH_H
 #define WINH_H
 
-#define	DEBUG_LOCKED	0
-extern char *DebugScreen;
+#define DEBUG_LOCKED 0
+extern char* DebugScreen;
 
 void setupScreens();
 void DDSwap();
 void WinClearScreen(char colour);
-void CloseATI3DCIF ();
+void CloseATI3DCIF();
 void ShellMovieFinished();
 void mpeganim();
 void ShowErrorMessage(int32_t StrNum);

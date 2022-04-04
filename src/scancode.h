@@ -200,31 +200,30 @@
 #define		_F12_KEY				0x007b
 */
 
-
-#define		_ESC_KEY				0x001B
-#define		_TAB_KEY				0x0009
-#define		_P_KEY					0x0050
-#define		_ENTER_KEY				0x000D
-#define		_LEFT_CTRL_KEY			0x0011
-#define		_LEFT_SHIFT_KEY			0x002A
-#define		_UP_KEY					0x0026
-#define		_LEFT_KEY				0x0025
-#define		_RIGHT_KEY				0x0027
-#define		_DOWN_KEY				0x0028
-#define		_Z_KEY					0x005a
-#define		_X_KEY					0x0058
-#define		_F1_KEY					0x0070
-#define		_F2_KEY					0x0071
-#define		_F3_KEY					0x0072
-#define		_F4_KEY					0x0073
-#define		_F5_KEY					0x0074
-#define		_F6_KEY					0x0075
-#define		_F7_KEY					0x0076
-#define		_F8_KEY					0x0077
-#define		_F9_KEY					0x0078
-#define		_F10_KEY				0x0079
-#define		_F11_KEY				0x007a
-#define		_F12_KEY				0x007b
-#define		_LEFT_ALT_KEY			0x0012
+#define _ESC_KEY 0x001B
+#define _TAB_KEY 0x0009
+#define _P_KEY 0x0050
+#define _ENTER_KEY 0x000D
+#define _LEFT_CTRL_KEY 0x0011
+#define _LEFT_SHIFT_KEY 0x002A
+#define _UP_KEY 0x0026
+#define _LEFT_KEY 0x0025
+#define _RIGHT_KEY 0x0027
+#define _DOWN_KEY 0x0028
+#define _Z_KEY 0x005a
+#define _X_KEY 0x0058
+#define _F1_KEY 0x0070
+#define _F2_KEY 0x0071
+#define _F3_KEY 0x0072
+#define _F4_KEY 0x0073
+#define _F5_KEY 0x0074
+#define _F6_KEY 0x0075
+#define _F7_KEY 0x0076
+#define _F8_KEY 0x0077
+#define _F9_KEY 0x0078
+#define _F10_KEY 0x0079
+#define _F11_KEY 0x007a
+#define _F12_KEY 0x007b
+#define _LEFT_ALT_KEY 0x0012
 
 #endif

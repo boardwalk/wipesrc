@@ -21,60 +21,51 @@
 #include "sparks2.h"
 #include "global.h"
 
-
-
-
-void Error( const char *string, int16_t errorLevel )
-{
-	printf("Error: %s (error level %d)\n",string,errorLevel);
-	exit(errorLevel);
+void Error(const char* string, int16_t errorLevel) {
+  printf("Error: %s (error level %d)\n", string, errorLevel);
+  exit(errorLevel);
 
 #if PCwipeout
-   BlkFill*    clear[ 2 ];
-   int16_t       i;
+  BlkFill* clear[2];
+  int16_t i;
 
-   clear[ 0 ] = BlockFill( 0, 0, 320, 240, 0x00, 0x00, 0x00 );
-   clear[ 1 ] = BlockFill( 0, 240, 320, 240, 0x00, 0x00, 0x00 );
+  clear[0] = BlockFill(0, 0, 320, 240, 0x00, 0x00, 0x00);
+  clear[1] = BlockFill(0, 240, 320, 240, 0x00, 0x00, 0x00);
 
+  switch (errorLevel) {
+  case Warning:
+    printf("Warning!!!  ");
+    printf("%s\n", string);
+    break;
 
-   switch ( errorLevel )
-   {
-      case Warning:
-         printf( "Warning!!!  " );
-         printf( "%s\n", string );
-         break;
+  case NonFatal:
+    printf("NonFatal Error!!!  ");
+    printf("%s\n", string);
+    for (i = 0; i < (60 * 2); i++) {
+      ClearOTagR(OT[CurrentScreen], OT_SIZE);
 
-      case NonFatal:
-         printf( "NonFatal Error!!!  " );
-         printf( "%s\n", string );
-         for ( i=0; i < (60*2); i++ )
-         {
-            ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
+      AddPrim(OT[CurrentScreen], OT_SIZE - 1, (P_TAG*)clear[CurrentScreen]);
 
-            AddPrim( OT[ CurrentScreen ], OT_SIZE - 1, (P_TAG*)clear[ CurrentScreen ] );
+      ObjectTable[CurrentScreen] = OT[CurrentScreen] + OT_SIZE - 1;
 
-            ObjectTable[ CurrentScreen ] = OT[ CurrentScreen ] + OT_SIZE - 1;
+      Swap();
+    }
+    break;
 
-            Swap( );
-         }
-         break;
+  case Fatal:
+    printf("Fatal Error!!!  ");
+    printf("%s\n", string);
+    for (i = 0; i < 2; i++) {
+      ClearOTagR(OT[CurrentScreen], OT_SIZE);
 
+      AddPrim(OT[CurrentScreen], OT_SIZE - 1, (P_TAG*)clear[CurrentScreen]);
 
-      case Fatal:
-         printf( "Fatal Error!!!  " );
-         printf( "%s\n", string );
-         for( i=0; i<2; i++ )
-         {
-            ClearOTagR( OT[ CurrentScreen ], OT_SIZE );
+      ObjectTable[CurrentScreen] = OT[CurrentScreen] + (OT_SIZE - 1);
 
-            AddPrim( OT[ CurrentScreen ], OT_SIZE - 1, (P_TAG*)clear[ CurrentScreen ] );
-
-            ObjectTable[ CurrentScreen ] = OT[ CurrentScreen ] + ( OT_SIZE - 1 );
-
-            Swap( );
-         }
-         exit( 0 );
-         break;
-   }
+      Swap();
+    }
+    exit(0);
+    break;
+  }
 #endif
 }

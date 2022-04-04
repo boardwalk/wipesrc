@@ -9,16 +9,15 @@
 #include "track.h"
 #include "weapon.h"
 
-TrackSection* FindAllNearestSection( VECTOR pos );
+TrackSection* FindAllNearestSection(VECTOR pos);
 
-void UpdateShipRemote(ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex);
-void UpdateShipLinearInterpolateSpline( ShipData *shipIndex, Object** shipShapes, int32_t shipNo, WeaponData *weaponIndex );
+void UpdateShipRemote(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, WeaponData* weaponIndex);
+void UpdateShipLinearInterpolateSpline(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, WeaponData* weaponIndex);
 
-void UpdateCameraLinearInterpolateSpline(TrackCamera *camera, ShipData *ship, RescueData *rescueDroid);
-void UpdateCameraHighUp( TrackCamera *camera, ShipData *ship, RescueData *rescueDroid );
+void UpdateCameraLinearInterpolateSpline(TrackCamera* camera, ShipData* ship, RescueData* rescueDroid);
+void UpdateCameraHighUp(TrackCamera* camera, ShipData* ship, RescueData* rescueDroid);
 
-void UpdateCameraExtroAttract(TrackCamera *camera, ShipData *camShip, RescueData *rescueDroid);
-
+void UpdateCameraExtroAttract(TrackCamera* camera, ShipData* camShip, RescueData* rescueDroid);
 
 void InitFireCongratulations();
 void InitIceCongratulations();

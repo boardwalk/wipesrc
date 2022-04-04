@@ -3,7 +3,7 @@
 
 void VsyncFunc();
 
-void VsyncStart( char *fileName );
+void VsyncStart(char* fileName);
 
 void VsyncEnd();
 

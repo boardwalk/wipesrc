@@ -9,8 +9,7 @@
 
 #include <stdint.h>
 
-#define	pollhost()	asm("break 1024")	/* inline to keep variable scope */
-
+#define pollhost() asm("break 1024") /* inline to keep variable scope */
 
 /*
 ** FILESERVER FUNCTIONS:
@@ -36,7 +35,7 @@
 **
 ** return: error code (0 if no error)
 */
-int32_t	PCinit ();
+int32_t PCinit();
 
 /*
 ** open a file on PC host
@@ -45,7 +44,7 @@ int32_t	PCinit ();
 **
 ** return:	file-handle or -1 if error
 */
-int32_t	PCopen (char *name, int32_t flags, int32_t perms);
+int32_t PCopen(char* name, int32_t flags, int32_t perms);
 
 /*
 ** seek file pointer to new position in file
@@ -56,7 +55,7 @@ int32_t	PCopen (char *name, int32_t flags, int32_t perms);
 **
 ** (mode 0 = rel to start, mode 1 = rel to current fp, mode 2 = rel to end)
 */
-int32_t	PClseek (int32_t fd, int32_t offset, int32_t mode);
+int32_t PClseek(int32_t fd, int32_t offset, int32_t mode);
 
 /*
 ** read bytes from file on PC
@@ -67,7 +66,7 @@ int32_t	PClseek (int32_t fd, int32_t offset, int32_t mode);
 **
 ** note: unlike assembler function this provides for full 32 bit count
 */
-int32_t	PCread (int32_t fd, char *buff, int32_t len);
+int32_t PCread(int32_t fd, char* buff, int32_t len);
 
 /*
 ** write bytes to file on PC
@@ -78,7 +77,7 @@ int32_t	PCread (int32_t fd, char *buff, int32_t len);
 **
 ** note: unlike assembler function this provides for full 32 bit count
 */
-int32_t	PCwrite (int32_t fd, char *buff, int32_t len);
+int32_t PCwrite(int32_t fd, char* buff, int32_t len);
 
 /*
 ** close an open file on PC
@@ -88,6 +87,6 @@ int32_t	PCwrite (int32_t fd, char *buff, int32_t len);
 ** return: negative if error
 **
 */
-int32_t	PCclose (int32_t fd);
+int32_t PCclose(int32_t fd);
 
 #endif

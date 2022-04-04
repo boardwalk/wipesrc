@@ -1,15 +1,15 @@
 #ifndef TEXTURES_H
 #define TEXTURES_H
 
-BOOL EnumTextureFormats ();
+BOOL EnumTextureFormats();
 
 class TextureFormats {
 public:
-	DDSURFACEDESC2 surface565;
-	DDSURFACEDESC2 surface1555;
-	DDSURFACEDESC2 surface4444;
-	DDSURFACEDESC2 surface555;
-	DWORD flags;
+  DDSURFACEDESC2 surface565;
+  DDSURFACEDESC2 surface1555;
+  DDSURFACEDESC2 surface4444;
+  DDSURFACEDESC2 surface555;
+  DWORD flags;
 };
 
 #define f565 1

@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-void ExpandData( uint8_t	*inData, uint8_t	*outData );
+void ExpandData(uint8_t* inData, uint8_t* outData);
 
 #endif

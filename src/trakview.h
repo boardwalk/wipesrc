@@ -4,6 +4,6 @@
 #include "object.h"
 #include "track.h"
 
-void TrakViewControl( TrackCamera *camera, Object **prm );
+void TrakViewControl(TrackCamera* camera, Object** prm);
 
 #endif

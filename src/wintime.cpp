@@ -1,14 +1,13 @@
 #include <GLFW/glfw3.h>
 
-int32_t		Curpad = 0;
+int32_t Curpad = 0;
 
-void InitialiseWinTimer()
-{}
+void InitialiseWinTimer() {
+}
 
-void EndWinTimer()
-{}
+void EndWinTimer() {
+}
 
-int32_t HowLong()
-{
-    return static_cast<int32_t>(glfwGetTime() * 1000.0);
+int32_t HowLong() {
+  return static_cast<int32_t>(glfwGetTime() * 1000.0);
 }

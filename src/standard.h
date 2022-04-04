@@ -14,16 +14,15 @@
 
 typedef char* Ptr;
 
-#define PAL       0
+#define PAL 0
 
 #ifndef NULL
-#define  NULL     0
+#define NULL 0
 #endif
 
-extern 	uintptr_t	FastRam;	// ajs (well ajy actually)
+extern uintptr_t FastRam; // ajs (well ajy actually)
 
 /* Functions in the library but not defined in the headers! */
-
 
 /*
    rsin() and rcos()
