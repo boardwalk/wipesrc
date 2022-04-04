@@ -1,5 +1,5 @@
-#ifndef _LIBSND_H_
-#define _LIBSND_H_
+#ifndef LIBSND_H
+#define LIBSND_H
 
 /*****************************************************************
  *

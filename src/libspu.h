@@ -1,5 +1,5 @@
-#ifndef _LIBSPU_H_
-#define _LIBSPU_H_
+#ifndef LIBSPU_H
+#define LIBSPU_H
 
 /* $Id: libspu.h,v 1.31 1994/11/08 09:55:08 kaol Exp $ */
 

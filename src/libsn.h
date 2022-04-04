@@ -4,6 +4,8 @@
 ** 05/02/94 ADB
 ** 21/03/94	ADB	added user notes as comments
 */
+#ifndef LIBSN_H
+#define LIBSN_H
 
 #define	pollhost()	asm("break 1024")	/* inline to keep variable scope */
 
@@ -85,3 +87,5 @@ int32_t	PCwrite (int32_t fd, char *buff, int32_t len);
 **
 */
 int32_t	PCclose (int32_t fd);
+
+#endif

@@ -6,6 +6,9 @@
  *$Id: libetc.h,v 1.25 1994/11/10 01:28:41 suzu Exp $
  *
  */
+#ifndef LIBETC_H
+#define LIBETC_H
+
 extern int32_t PadIdentifier;
 /*
  * PAD I/O (SIO Pad)
@@ -29,3 +32,5 @@ extern int32_t PadIdentifier;
 
 #define MOUSEleft  (1<<3)
 #define MOUSEright (1<<2)
+
+#endif

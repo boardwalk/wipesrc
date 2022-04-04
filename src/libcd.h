@@ -57,6 +57,9 @@
  *	CdlReset	-		status
  *	--------------------------------------------------------------
  */
+#ifndef LIBCD_H
+#define LIBCD_H
+
 /*
  * CD-ROM Basic System
  */
@@ -251,3 +254,5 @@ uint32_t	StFreeRing(uint32_t *base);
 uint32_t	StGetNext(uint32_t **addr,uint32_t **header);
 void	StSetMask(uint32_t mask,uint32_t start,uint32_t end);
 void	StCdInterrupt();
+
+#endif
