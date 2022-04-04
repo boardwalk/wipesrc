@@ -5,7 +5,7 @@
 #define COMMON_H
 
 #include	"wipesrc/psx26/include/libetc.h"
-#include	"wipesrc/psx26/include/libgte.h"
+#include	"libgte.h"
 #include	"wipesrc/psx26/include/libgpu.h"
 
 #define	SetSemiTrans(p,abe)	setSemiTrans(p,abe)

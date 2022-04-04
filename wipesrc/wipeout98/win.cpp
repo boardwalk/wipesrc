@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "wipesrc/psx26/include/libgte.h"
+#include "libgte.h"
 #include "wipesrc/psx26/include/libgpu.h"
 #include "input.h"
 #include "object.h"

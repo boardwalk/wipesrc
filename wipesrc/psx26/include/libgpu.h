@@ -57,6 +57,8 @@
  *		 depth	4bit	8bit	16bit
  *		 color	CLUT	CLUT	DIRECT
  */
+#ifndef LIBGPU_H
+#define LIBGPU_H
 
 /*
  *	Externals
@@ -660,3 +662,5 @@ void SetDrawOffset(DR_OFFSET *p, uint16_t *ofs);
 void SetPriority(DR_PRIO *p, int32_t pbc, int32_t pbw);
 
 #define GET_PALLETE(a,b,c)	((a & 0xe0) | ((b & 0xe0) >>3) | ((c & 0xc0) >> 5))
+
+#endif

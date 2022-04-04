@@ -8,7 +8,7 @@
 #include <math.h>
 #include <string.h>
 #define _SIZE_T
-#include "wipesrc/win95/daves/libgte.h"
+#include "libgte.h"
 
 VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r);
 

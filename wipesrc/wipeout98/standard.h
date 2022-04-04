@@ -3,7 +3,7 @@
 #ifndef STANDARD_H
 #define STANDARD_H
 
-#include "wipesrc/psx26/include/libgte.h"
+#include "libgte.h"
 #include "wipesrc/psx26/include/libgpu.h"
 #include "wipesrc/psx26/include/libsn.h"
 #include "wipesrc/psx26/include/libetc.h"
