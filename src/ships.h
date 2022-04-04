@@ -5,6 +5,7 @@
 #include "libgte.h"
 #include "object.h"
 #include "track.h"
+#include "menus.h"
 
 #define NO_OF_SHIPS 8
 
