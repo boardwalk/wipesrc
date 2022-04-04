@@ -35,9 +35,6 @@
 #define NEW_SHIP 0
 #define RESCUE_DROID 16
 
-struct WeaponData;
-struct TrackCamera;
-
 typedef struct ShipData {
   /***** Graphics Attributes *****/
   int16_t highResTableIndex; /* Index into shipShapes for high-res model */
@@ -93,8 +90,6 @@ typedef struct ShipData {
   void (*update)(struct ShipData*, Object**, int32_t, struct WeaponData*);
 
 } ShipData;
-
-struct ConfigData;
 
 void loadShipData(TrackSection* section, ShipData* shipIndex, Object** shipShapes, Skeleton* camPos);
 void DrawShips(ShipData* shipIndex, Object** shipShapes, int32_t camShip, TrackCamera camera);
