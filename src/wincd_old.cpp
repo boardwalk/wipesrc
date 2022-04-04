@@ -14,7 +14,6 @@ extern int32_t ntoc;
 
 BOOLEAN dosound = FALSE;
 int16_t int32_t CurrTrkNo;
-char thieving_git = 0;
 int16_t starttrack;
 int16_t endtrack;
 UINT cdDevNum;

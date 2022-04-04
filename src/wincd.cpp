@@ -3,7 +3,6 @@
 int16_t CurrTrkNo;
 int16_t starttrack;
 int16_t endtrack;
-char thieving_git = 0;
 
 void CdInit() {
 }

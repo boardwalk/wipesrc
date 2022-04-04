@@ -61,7 +61,6 @@ extern TimData* JJSLoad16BitTexture(const char* filename, char location);
 // extern uint32_t __bss, __bsslen, _ramsize, _stacksize;
 
 #define GsGetVcount() 0
-extern char thieving_git;
 
 /*
  * for 2 meg mode we need this in the obj file:: 2mbyte.obj

@@ -58,7 +58,6 @@ typedef struct {
 } bm;
 void WritePCX(char* fname, bm* BMptr); // Thanks Jed (even if it is a bit flakey)
 void DumpVRamAsPCX(char* filename);
-void CheckIngameError();
 
 extern uint8_t ctrlparam;
 
@@ -153,7 +152,6 @@ GLOS	glo, glo1;
 int32_t last_frame_count = 0, this_frame_count = 0;
 int32_t CDRestartNeeded;
 int32_t CDloopCheck;
-extern char thieving_git;
 uint32_t start_time;
 uint32_t end_time;
 uint32_t duration;
@@ -180,8 +178,6 @@ void race(combatData* packetData, ConfigData* gameData, int32_t mode, int32_t ti
   raceinit();
   UpdateEffects(ctrleffects);
   CdControlB(CdlStop, 0, 0);
-
-  CheckIngameError();
 
   UpdateNotes(NOT_PAUSED);
 
@@ -582,26 +578,3 @@ void CdRestart(ConfigData *gameData)
 #endif
 }
 #endif
-void CheckIngameError() {
-  static int32_t toggle = 0;
-  while (1) {
-    if (thieving_git) {
-      opad = pad;
-      pad = neg1.bits;
-      if ((neg1.head != 0xff))
-        pad = ~pad;
-      xpad = (pad ^ opad) & pad; //xpad is difference between this frames
-
-      ClearOTagR(OT[CurrentScreen], OT_SIZE);
-      textPrim = CurrentScreen * 300;
-      CentreText("PLEASE INSERT ORIGINAL", text_data(20, 60, 8), RedText);
-      CentreText("WIPEOUT PC CD ROM", text_data(20, 72, 8), RedText);
-
-      CentreText("PRESS RETURN WHEN READY", text_data(20, 120, 8), (toggle++) & 1);
-
-      Swap();
-    } else {
-      break;
-    }
-  }
-}
