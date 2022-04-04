@@ -75,8 +75,7 @@ uint16_t etc_DefaultKeyboardSet[_MAX_BUTTONS] = {
     _UP_KEY, /* Up				*/ // up
     _RIGHT_KEY, /* Right			*/ // right
     _DOWN_KEY, /* Down				*/ // down
-    _LEFT_KEY};
-    /* Left			 	*/ // left
+    _LEFT_KEY}; /* Left			 	*/ // left
 #else
 uint16_t etc_DefaultKeyboardSet[_MAX_BUTTONS] = {
     _RIGHT_KEY, /* FrontRightBottom	*/
