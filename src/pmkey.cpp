@@ -1,6 +1,5 @@
 /* This is the INT09 Protected-Mode Keyboard Handler (LIBETC). */
 #include <stdint.h>
-
 #include "input.h"
 
 void pmkey(uint8_t ScanCode, uint8_t KeyDown) {

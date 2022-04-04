@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include "rgraphics.h"
 #include "textures.h"
-
 #include <winuser.h>
 #include <mmsystem.h>
 #include <direct.h>
@@ -26,7 +25,6 @@
 #include <fcntl.h>
 #include <io.h>
 #include "timc.h"
-
 #include <math.h>
 #include "decl.h"
 #include "malloc.h"

@@ -1,6 +1,5 @@
 #include "standard.h"
 #include <string.h>
-
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
@@ -41,7 +40,6 @@
 #include "win.h"
 #include "ajs.h"
 #include "utils.h"
-
 #include "pallette.h"
 
 extern int32_t ctrlNeedTargetIcon;

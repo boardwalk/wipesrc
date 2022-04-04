@@ -1,7 +1,6 @@
 #define TIME_CONSTANT 33
 #include <stdio.h> // PCwipeout
 #include <stdint.h>
-
 #include "tim.h"
 #include "object.h"
 #include "skeleton.h"

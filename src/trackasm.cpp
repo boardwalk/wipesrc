@@ -4,9 +4,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
-// #include <io.h>
 #include "standard.h"
-
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"

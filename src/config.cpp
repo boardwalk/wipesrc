@@ -1,5 +1,4 @@
 /* All routines which configure the input devices. */
-//#include	"c:\wc10\h\dos.h"
 #include "input.h"
 #include <stdio.h>
 

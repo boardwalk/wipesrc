@@ -1,6 +1,5 @@
 #include <windows.h>
 #include <stdio.h>
-
 #include "config.h"
 
 int32_t JJSJoyConfig();

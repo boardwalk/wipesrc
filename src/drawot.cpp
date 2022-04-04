@@ -1,14 +1,8 @@
 #include "libgte.h"
 #include "libgpu.h"
-//#include "cgl.h"				//jed
-//#include <graph.h>
-// #include <conio.h>
 #include <stdio.h>
-//#include <stdlib.h>
-// #include <malloc.h>
 #include <ctype.h>
 #include "pcgraph.h"
-//#include	<graph.h>
 #include <math.h>
 #include "winh.h"
 #include "drawot.h"

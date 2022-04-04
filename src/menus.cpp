@@ -36,6 +36,7 @@
 #include <string.h>
 #include "pallette.h"
 #include "sfx.h"
+#include "libetc_markk.h" // PCwipeout
 
 #define FN_DEBUG
 
@@ -73,9 +74,6 @@ extern int32_t menuTexturesIn;
 int16_t globalvol;
 
 TimData* menuScreen;
-
-// temporary test stuff
-#include "libetc_markk.h" // PCwipeout
 
 #define FULL 0
 #define HIGH 3

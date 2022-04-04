@@ -38,12 +38,8 @@
 #include "timc.h"
 #include "regread.h"
 #include "card.h"
-
-// #include "dos.h"
-
-// #include <windows.h>
-
 #include "libetc_markk.h" // PCwipeout
+
 void CheckError();
 
 extern char Resolution;
@@ -278,7 +274,7 @@ void oldmain() {
 
       // TODO(boardwalk) Shorten attract mode timeout temporarily
       if (firstTime == 1)
-      	TOut = 5; // Was 30
+        TOut = 5; // Was 30
       else
         TOut = 5;
 
