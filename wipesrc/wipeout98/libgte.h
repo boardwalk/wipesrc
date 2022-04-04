@@ -241,7 +241,7 @@ typedef struct
 
 
 #endif
-#include "wipesrc/psx26/include/libgpu.h"
+#include "libgpu.h"
 
 /*
  *      ProtoTypes

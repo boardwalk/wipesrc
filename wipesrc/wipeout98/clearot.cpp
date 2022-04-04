@@ -1,5 +1,5 @@
 #include "libgte.h"
-#include "wipesrc/psx26/include/libgpu.h"
+#include "libgpu.h"
 #include <stddef.h>
 
 

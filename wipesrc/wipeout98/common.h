@@ -4,9 +4,9 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include	"wipesrc/psx26/include/libetc.h"
+#include	"libetc.h"
 #include	"libgte.h"
-#include	"wipesrc/psx26/include/libgpu.h"
+#include	"libgpu.h"
 
 #define	SetSemiTrans(p,abe)	setSemiTrans(p,abe)
 #define	SetShadeTex(p,tge)	setShadeTex(p,tge)

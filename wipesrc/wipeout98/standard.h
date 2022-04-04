@@ -4,11 +4,11 @@
 #define STANDARD_H
 
 #include "libgte.h"
-#include "wipesrc/psx26/include/libgpu.h"
-#include "wipesrc/psx26/include/libsn.h"
-#include "wipesrc/psx26/include/libetc.h"
-#include "wipesrc/psx26/include/libcd.h"
-#include "wipesrc/psx26/include/libspu.h"
+#include "libgpu.h"
+#include "libsn.h"
+#include "libetc.h"
+#include "libcd.h"
+#include "libspu.h"
 
 typedef char* Ptr;
 

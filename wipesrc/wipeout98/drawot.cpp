@@ -1,5 +1,5 @@
 #include "libgte.h"
-#include "wipesrc/psx26/include/libgpu.h"
+#include "libgpu.h"
 //#include "cgl.h"				//jed
 //#include <graph.h>
 // #include <conio.h>
