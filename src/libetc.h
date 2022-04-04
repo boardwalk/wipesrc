@@ -9,6 +9,8 @@
 #ifndef LIBETC_H
 #define LIBETC_H
 
+#include <stdint.h>
+
 extern int32_t PadIdentifier;
 /*
  * PAD I/O (SIO Pad)

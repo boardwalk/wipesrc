@@ -3,9 +3,10 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include <stdint.h>
 #include "small_ptr.h"
-#define  Lib      0
-
+#include "libgpu.h"
+#include "libgte.h"
 
 /* Block Fill */
 
@@ -532,60 +533,6 @@ typedef struct InfiniteLight
 
 
 
-#if Lib
-
-/* Library Primitive Structures
-*/
-
-typedef struct LibF3
-{
-   CVECTOR           colour;
-} LibF3;
-
-typedef struct LibFT3
-{
-   CVECTOR           colour;
-} LibFT3;
-
-typedef struct LibF4
-{
-   CVECTOR           colour;
-} LibF4;
-
-typedef struct LibFT4
-{
-   CVECTOR           colour;
-} LibFT4;
-
-typedef struct LibG3
-{
-   CVECTOR           colour[ 3 ];
-} LibG3;
-
-typedef struct LibGT3
-{
-   CVECTOR           colour[ 3 ];
-} LibGT3;
-
-typedef struct LibG4
-{
-   CVECTOR           colour[ 4 ];
-} LibG4;
-
-typedef struct LibGT4
-{
-   CVECTOR           colour[ 4 ];
-} LibGT4;
-
-
-typedef struct LibSPR
-{
-   CVECTOR           colour;
-} LibSPR;
-
-
-#endif
-
 
 
 typedef union Poly
@@ -696,33 +643,6 @@ typedef struct BspTree
 } BspTree;
 
 
-#if Lib
-
-typedef union LibraryPrimitive
-{
-   char*       ptr;
-   LibF3*      f3;
-   LibFT3*     ft3;
-   LibF4*      f4;
-   LibFT4*     ft4;
-   LibG3*      g3;
-   LibGT3*     gt3;
-   LibG4*      g4;
-   LibGT4*     gt4;
-   LibSPR*     spr;
-} LibraryPrimitive;
-
-typedef struct LibraryObject
-{
-   int16_t                index;
-   int16_t                primitiveCount;
-   LibraryPrimitive     primitives;
-} LibraryObject;
-
-#endif
-
-
-
 /* Main Object Structure
 
    NOTE : Two copies of each primitive are required for double buffering.
@@ -741,12 +661,7 @@ typedef struct Object
    int16_t             primitiveCount;   /* Number of Primitives */
    SmallPtr<Primitive>        primitives;       /* Pointer to Z Sort Primitives */
 
-
-#if Lib
-   LibraryObject*    libraryObject;
-#else
    int32_t              pad;
-#endif
 
    SmallPtr<BspTree>          bspTree;          /* Pointer to BSP Tree Primitives */
 
@@ -771,10 +686,6 @@ typedef union Prm
    SVECTOR*          svector;
    Primitive*        primitive;
 
-#if Lib
-   LibraryObject*    libObj;
-#endif
-
    F3*               f3;
    FT3*              ft3;
    F4*               f4;
@@ -797,20 +708,6 @@ typedef union Prm
    LSGT3*            lsgt3;
    LSG4*             lsg4;
    LSGT4*            lsgt4;
-
-#if Lib
-
-   LibF3*            libf3;
-   LibFT3*           libft3;
-   LibF4*            libf4;
-   LibFT4*           libft4;
-   LibG3*            libg3;
-   LibGT3*           libgt3;
-   LibG4*            libg4;
-   LibGT4*           libgt4;
-   LibSPR*           libspr;
-
-#endif
 
 } Prm;
 

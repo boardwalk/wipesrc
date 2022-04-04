@@ -3,6 +3,10 @@
 #ifndef SKELETON_H
 #define SKELETON_H
 
+#include <stdint.h>
+#include "libgte.h"
+#include "object.h"
+
 Skeleton* NewSkeleton( );
 
 void SetSkeletonPosition( Skeleton* skeleton, int32_t x, int32_t y, int32_t z  );

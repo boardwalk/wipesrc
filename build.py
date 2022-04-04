@@ -12,38 +12,42 @@ def main():
     os.chdir(os.path.dirname(__file__))
     os.makedirs('build', exist_ok=True)
 
-    glfw_cxxflags = get_pkg_config('--cflags', 'glfw3')
-    glfw_linkflags = get_pkg_config('--libs', 'glfw3')
+    cxxflags = [
+        '-g',
+        '-O0',
+        '-fsanitize=address',
+        '-fno-omit-frame-pointer',
+        '-std=c++11',
+        '-fcolor-diagnostics',
+        '-Wno-constant-conversion',
+        '-Wno-empty-body',
+        '-Wno-tautological-constant-out-of-range-compare',
+        '-Wno-deprecated-declarations',
+        '-DWIPEOUTPC',
+    ]
+
+    linkflags = [
+        '-g',
+        '-O0',
+        '-framework', 'OpenGL',
+        '-fsanitize=address',
+        '-fno-omit-frame-pointer',
+    ]
+
+    cxxflags += get_pkg_config('--cflags', 'glfw3')
+    linkflags += get_pkg_config('--libs', 'glfw3')
+
+    cxx = 'clang++'
+    # cxx = os.path.expanduser('~/Code/include-what-you-use/build/bin/include-what-you-use')
+    # cxxflags += ['-Xiwyu', '--check_also=src/*.h']
 
     try:
         with open('build.ninja', 'w') as f:
             ninja = ninja_syntax.Writer(f)
-            ninja.rule('cxx', ['clang++', '$cxxflags', '-c', '$in', '-MD', '-MF', '$out.d', '-o', '$out'], depfile='$out.d')
-            ninja.rule('link', ['clang++', '$linkflags', '$in', '-o', '$out'])
-
-            ninja.variable('cxxflags', [
-                '-g',
-                '-O0',
-                '-fsanitize=address',
-                '-fno-omit-frame-pointer',
-                '-I.',
-                '-std=c++11',
-                '-fcolor-diagnostics',
-                '-Wno-constant-conversion',
-                '-Wno-empty-body',
-                '-Wno-tautological-constant-out-of-range-compare',
-                '-Wno-deprecated-declarations',
-                '-DWIPEOUTPC',
-                '-include stdint.h',
-            ] + glfw_cxxflags)
-
-            ninja.variable('linkflags', [
-                '-g',
-                '-O0',
-                '-framework', 'OpenGL',
-                '-fsanitize=address',
-                '-fno-omit-frame-pointer',
-            ] + glfw_linkflags)
+            ninja.rule('cxx', [cxx, '$cxxflags', '-c', '$in', '-MD', '-MF', '$out.d', '-o', '$out'], depfile='$out.d')
+            ninja.rule('link', [cxx, '$linkflags', '$in', '-o', '$out'])
+            ninja.variable('cxxflags', cxxflags)
+            ninja.variable('linkflags', linkflags)
 
             objects = []
 

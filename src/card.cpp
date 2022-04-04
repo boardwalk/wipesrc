@@ -1,7 +1,5 @@
 #include "standard.h"
 #include <string.h>
-//#include	<sys\file.h>
-#define		LANGUAGE_C
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
@@ -25,8 +23,6 @@
 #include "global.h"
 #include "sfx.h"
 #include "config.h"
-
-#define _SIZE_T_DEFINED_
 #include	<stdio.h>
 #include	"input.h"
 

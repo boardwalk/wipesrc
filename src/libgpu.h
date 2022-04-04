@@ -60,6 +60,8 @@
 #ifndef LIBGPU_H
 #define LIBGPU_H
 
+#include <stdint.h>
+
 /*
  *	Externals
  */
@@ -546,34 +548,6 @@ typedef DR_MODE DR_PRIO;		/* Priority */
 typedef DR_MODE DR_TWIN;		/* Texture Window */
 typedef DR_MODE DR_OFFSET;		/* Drawing Offset */
 
-/*
- *	Multi-purpose Sony-TMD primitive
- */
-typedef struct {
-	uint32_t	id;
-	uint8_t	r0, g0, b0, p0;		/* Color of vertex 0 */
-	uint8_t	r1, g1, b1, p1;		/* Color of vertex 1 */
-	uint8_t	r2, g2, b2, p2;		/* Color of vertex 2 */
-	uint8_t	r3, g3, b3, p3;		/* Color of vertex 3 */
-	uint16_t	tpage, clut;		/* texture page ID, clut ID */
-	uint8_t	u0, v0, u1, v1;		/* texture corner point */
-	uint8_t	u2, v2, u3, v3;
-
-	/* independent vertex model */
-	SVECTOR	x0, x1, x2, x3;		/* 3D corner point */
-	SVECTOR	n0, n1, n2, n3;		/* 3D corner normal vector */
-
-	/* Common vertex model */
-	SVECTOR	*v_ofs;			/* offset to vertex database */
-	SVECTOR	*n_ofs;			/* offset to normal database */
-
-	uint16_t	vert0, vert1; 		/* index of vertex */
-	uint16_t	vert2, vert3;
-	uint16_t	norm0, norm1; 		/* index of normal */
-	uint16_t	norm2, norm3;
-
-
-} TMD_PRIM;
 
 /*
  *	Multi-purpose TIM image
@@ -613,7 +587,6 @@ void DumpDrawEnv(DRAWENV *env);
 
 void ReverseTPage(uint16_t tpage, int32_t *tp, int32_t *abr, int32_t *x, int32_t *y);
 TIM_IMAGE *ReadTIM(TIM_IMAGE *timimg);
-TMD_PRIM *ReadTMD(TMD_PRIM *tmdprim);
 int32_t CheckPrim(char *s, uint32_t *p);
 int32_t ClearImage(RECT *rect, uint8_t r, uint8_t g, uint8_t b);
 int32_t DrawSync(int32_t mode);

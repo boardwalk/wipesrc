@@ -1,6 +1,12 @@
 #ifndef COLLIDE_H
 #define COLLIDE_H
 
+#include <stdint.h>
+#include "libgte.h"
+#include "object.h"
+#include "ships.h"
+#include "track.h"
+
 #define COLLIDE_MODEL 16
 #define NOSE_COLLISION 		1
 #define TAIL_COLLISION 		2

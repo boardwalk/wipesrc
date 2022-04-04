@@ -1,6 +1,9 @@
 #ifndef PALLETTE_H
 #define PALLETTE_H
 
+#include <stdint.h>
+#include "libgte.h"
+
 #define	FADE_LEVEL	32
 #define	FFADE_LEVEL	32.0
 

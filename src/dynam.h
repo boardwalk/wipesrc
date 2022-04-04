@@ -1,6 +1,13 @@
 #ifndef DYNAM_H
 #define DYNAM_H
 
+#include <stdint.h>
+#include "libgte.h"
+#include "object.h"
+#include "ships.h"
+#include "track.h"
+#include "weapon.h"
+
 #define GRAVITY 			80000								/* Gravitational force 					- 800    */
 #define MIN_RESISTANCE 	20	 /* 12 */
 #define MAX_RESISTANCE 	74

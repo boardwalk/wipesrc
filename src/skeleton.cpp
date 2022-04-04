@@ -2,24 +2,13 @@
 */
 
 
-#include "standard.h"
 #include <stdio.h>
-
 #include "malloc.h"
-#include "tim.h"
 #include "object.h"
-#include "file.h"
 #include "skeleton.h"
-#include "track.h"
-#include "ships.h"
-#include "weapon.h"
-#include "control.h"
-#include "droid.h"
-#include "camera.h"
-#include "sound.h"
-#include "sparks2.h"
 #include "global.h"
 #include "libgte.h"
+#include "small_ptr.h"
 
 
 

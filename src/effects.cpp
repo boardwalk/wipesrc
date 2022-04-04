@@ -1,35 +1,14 @@
-#include "standard.h"
 #include <stdlib.h>
 #include <string.h>
-
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
-#include "file.h"
 #include "skeleton.h"
 #include "track.h"
-#include "tilelib.h"
-#include "ttf.h"
 #include "ships.h"
 #include "weapon.h"
-#include "control.h"
-#include "droid.h"
-#include "camera.h"
-#include "draw.h"
-#include "scene.h"
-#include "main.h"
-#include "fileops.h"
-#include "sound.h"
-#include "dynam.h"
-#include "combat.h"
 #include "menus.h"
-#include "hiscores.h"
-#include "hud.h"
-#include "sparks2.h"
 #include "global.h"
-#include "editor.h"
-#include "texplace.h"
-#include "trakview.h"
 #include "effects.h"
 #include "init.h"
 #include "ajs.h"
@@ -37,6 +16,7 @@
 #include "error.h"
 #include "libgte.h"
 #include "collide.h"
+#include "small_ptr.h"
 
 extern float upres;
 

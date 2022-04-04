@@ -17,6 +17,7 @@
 #ifndef LIBGTE_H
 #define LIBGTE_H
 
+#include <stdint.h>
 
 
 /*
@@ -241,6 +242,8 @@ typedef struct
 
 
 #endif
+#include <stdint.h>
+
 #include "libgpu.h"
 
 /*

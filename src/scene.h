@@ -4,6 +4,9 @@
 #define SCENE_H
 
 
+#include <stdint.h>
+#include "object.h"
+
 #define     ToIntel     0
 #define     ToUnix      1
 

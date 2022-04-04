@@ -1,6 +1,14 @@
 #ifndef EFFECTS_H
 #define EFFECTS_H
 
+#include <stdint.h>
+#include "libgpu.h"
+#include "libgte.h"
+#include "object.h"
+#include "ships.h"
+#include "tim.h"
+#include "weapon.h"
+
 #define NO_OF_EFFECTS 140
 #define NO_OF_EFFECT_TEXTURES 7
 

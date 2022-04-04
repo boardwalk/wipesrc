@@ -1,6 +1,10 @@
 #ifndef TRACK_H
 #define TRACK_H
 
+#include <stdint.h>
+#include "libgte.h"
+#include "object.h"
+
 #define NEW_TRACK 1
 
 typedef struct Normal

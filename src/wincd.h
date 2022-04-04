@@ -1,6 +1,8 @@
 #ifndef WINCD_H
 #define WINCD_H
 
+#include <stdint.h>
+
 struct cdlPos
 {
 	int32_t min;

@@ -1,7 +1,7 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-volatile /* Source File: libetc.h */
+#include <stdint.h>
 #include	"scancode.h"
 
 /* General Equates. */

@@ -1,6 +1,7 @@
 #ifndef SMALL_PTR_H
 #define SMALL_PTR_H
 
+#include <stdint.h>
 #include <cstddef>
 
 void small_ptr_set_heap_extents(void*, size_t);

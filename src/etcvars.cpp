@@ -1,4 +1,3 @@
-/* Source File: etcvars.c */
 #include 						"input.h"
 
 /* Interrupt Handling. */

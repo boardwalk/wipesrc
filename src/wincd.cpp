@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 int16_t CurrTrkNo;
 int16_t starttrack;
 int16_t endtrack;

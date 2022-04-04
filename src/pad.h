@@ -1,6 +1,10 @@
 #ifndef PAD_H
 #define PAD_H
 
+#include <stdint.h>
+#include "ships.h"
+#include "weapon.h"
+
 #define  PadLeft0       0x80
 #define  PadDown0       0x40
 #define  PadRight0      0x20

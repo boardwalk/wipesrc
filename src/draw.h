@@ -1,6 +1,9 @@
 #ifndef DRAW_H
 #define DRAW_H
 
+#include "ships.h"
+#include "track.h"
+
 #define ShipForwards    1
 #define ShipBackwards   2
 #define ShipRight       4

@@ -1,46 +1,27 @@
 #define TIME_CONSTANT	33
 #include <stdio.h>		// PCwipeout
-#include "standard.h"
+#include <stdint.h>
 
-#include "malloc.h"
 #include "tim.h"
 #include "object.h"
-#include "file.h"
 #include "skeleton.h"
 #include "track.h"
-#include "tilelib.h"
-#include "ttf.h"
 #include "ships.h"
 #include "weapon.h"
 #include "control.h"
 #include "droid.h"
 #include "camera.h"
 #include "draw.h"
-#include "scene.h"
-#include "main.h"
-#include "dynam.h"
 #include "combat.h"
 #include "menus.h"
 #include "hiscores.h"
 #include "hud.h"
 #include "sound.h"
-#include "editor.h"
-#include "texplace.h"
-#include "trakview.h"
 #include "effects.h"
-#include "fileops.h"
-#include "sparks2.h"
 #include "options.h"
 #include "global.h"
-#include "sprite.h"
-#include "cone.h"
 #include "race.h"
-#include "trackasm.h"
-#include "progress.h"
 #include "spline.h"
-#include "vramsize.h" // PCwipeout
-#include	"pallette.h"
-#include "fri.h"
 #include "ajs.h"
 #include "racectrl.h"
 #include "wintime.h"
@@ -48,11 +29,11 @@
 #include "credits.h"
 #include "andyscn.h"
 #include "win.h"
-
-#define	_SIZE_T_DEFINED_
-//#include <stdlib.h>
-
-#include "input.h"
+#include "libcd.h"
+#include "libgpu.h"
+#include "libgte.h"
+#include "libspu.h"
+#include "small_ptr.h"
 
 #define START_EXTRO 0
 #define UPDATE_EXTRO 1
@@ -123,7 +104,6 @@ extern Speedo			ctrlspeedo;
 
 
 
-#define _SIZE_T_DEFINED_			// PCwipeout
 extern int16_t CLUT_R[256];					// PCwipeout
 extern int16_t CLUT_G[256];					// PCwipeout
 extern int16_t CLUT_B[256];					// PCwipeout

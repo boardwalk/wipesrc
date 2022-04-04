@@ -3,6 +3,7 @@
 #ifndef TIM_H
 #define TIM_H
 
+#include <stdint.h>
 /* DEFINES FOR DRAWING PRIMITIVE */
 
 #define	POLYGON		0x20

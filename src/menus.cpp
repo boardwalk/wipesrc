@@ -1,9 +1,5 @@
 #include "standard.h"
-
-//#include <sys/types.h>
-//#include <sys/stat.h>
 #include <fcntl.h>
-// #include <io.h>
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
@@ -35,10 +31,6 @@
 #include "scene.h"
 #include "win.h"
 #include "wincd.h"
-
-// #include <direct.h>
-
-#define _SIZE_T_DEFINED_				// PCwipeout
 #include <stdio.h>			// PCwipeout
 #include <stdlib.h>		// PCwipeout
 #include <string.h>

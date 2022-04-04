@@ -1,6 +1,10 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include "droid.h"
+#include "ships.h"
+#include "track.h"
+
 #define DEBUG_CAM 0
 #define COLLIDE_TEST 0
 

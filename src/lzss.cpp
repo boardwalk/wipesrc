@@ -7,9 +7,8 @@
 *
 *
 ******************************************/
-/*
-#include "selibs\standard.i"
-*/
+#include <stdint.h>
+
 /*
 ** Defines from Compression Routine
 */

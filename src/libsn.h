@@ -7,6 +7,8 @@
 #ifndef LIBSN_H
 #define LIBSN_H
 
+#include <stdint.h>
+
 #define	pollhost()	asm("break 1024")	/* inline to keep variable scope */
 
 

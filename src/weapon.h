@@ -2,6 +2,14 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
+#include <stdint.h>
+#include "libgpu.h"
+#include "libgte.h"
+#include "object.h"
+#include "ships.h"
+#include "standard.h"
+#include "track.h"
+
 #define NO_OF_WEAPONS 29
 
 #define NO_OF_MINES 15

@@ -3,7 +3,6 @@
 
 #include "standard.h"
 #include <string.h>
-
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
@@ -14,13 +13,10 @@
 #include "control.h"
 #include "droid.h"
 #include "camera.h"
-// #include "iso9660.h"
 #include "sound.h"
 #include "sparks2.h"
 #include "global.h"
 #include "error.h"
-
-#define _SIZE_T_DEFINED_			// PCwipeout
 #include <stdio.h>		// PCwipeout
 
 #if	CD_FS

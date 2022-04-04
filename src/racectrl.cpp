@@ -1,7 +1,5 @@
-//#include <libspu.h>
 #include "standard.h"
 #include <stdlib.h>
-
 #include "malloc.h"
 #include "tim.h"
 #include "object.h"
@@ -46,10 +44,6 @@
 #include "win.h"
 #include "ajs.h"
 #include "collide.h"
-
-#define	_SIZE_T_DEFINED_
-//#include "\wc10\h\stdlib.h"
-
 #include "input.h"
 
 #define START_EXTRO 0
@@ -82,7 +76,6 @@ extern	char* VRam;					// PCwipeout
 extern	int32_t	  inattract;
 extern	int16_t   startIceText;
 extern	int16_t   startFireText;
-#define _SIZE_T_DEFINED_			// PCwipeout
 #include <stdio.h>		// PCwipeout
 int16_t CLUT_R[256];					// PCwipeout
 int16_t CLUT_G[256];					// PCwipeout

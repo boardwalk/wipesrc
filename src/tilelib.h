@@ -1,6 +1,8 @@
 #ifndef TILELIB_H
 #define TILELIB_H
 
+#include <stdint.h>
+
 /* Maximum number of faces in a section */
 #define        MaxFaces       7
 

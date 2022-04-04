@@ -1,7 +1,20 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+#include <stdint.h>
 #include "pad.h"
+#include "control.h"
+#include "droid.h"
+#include "libcd.h"
+#include "libgpu.h"
+#include "libspu.h"
+#include "malloc.h"
+#include "object.h"
+#include "ships.h"
+#include "sound.h"
+#include "sparks2.h"
+#include "tim.h"
+#include "track.h"
 
 
 #define              CD_FS             0

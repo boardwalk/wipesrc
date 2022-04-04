@@ -3,6 +3,7 @@
 #ifndef MALLOC_H
 #define MALLOC_H
 
+#include <stdint.h>
 /* Dynamic Memory Allocation Structures
 
    These structures are used to keep track of memory

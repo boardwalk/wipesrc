@@ -1,6 +1,14 @@
 #ifndef HUD_H
 #define HUD_H
 
+#include <stdint.h>
+#include "hiscores.h"
+#include "libgpu.h"
+#include "menus.h"
+#include "ships.h"
+#include "standard.h"
+#include "tim.h"
+
 #define NUM_BARS			12
 #define SPEEDO_X			179
 #if PAL

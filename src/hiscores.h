@@ -1,6 +1,10 @@
 #ifndef HISCORES_H
 #define HISCORES_H
 
+#include <stdint.h>
+#include "menus.h"
+#include "ships.h"
+
 #define		NumNames		5
 #define		nameLetters	3
 #define		HiScoreTracks	14

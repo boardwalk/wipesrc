@@ -1,7 +1,7 @@
 #ifndef LIBETC_MARKK_H
 #define LIBETC_MARKK_H
 
-/* Source File: libetc.h */
+#include <stdint.h>
 #include	"scancode.h"
 
 /* General Equates. */

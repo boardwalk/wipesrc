@@ -1,6 +1,14 @@
 #ifndef CONTROL_H
 #define CONTROL_H
 
+#include <stdint.h>
+#include "libgte.h"
+#include "object.h"
+#include "ships.h"
+#include "standard.h"
+#include "track.h"
+#include "weapon.h"
+
 #define NEGCON 0x23
 // #define NEGCON 1	  // PCwipeout
 #define NORMALPAD 0

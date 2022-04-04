@@ -7,7 +7,7 @@
 
 #include <math.h>
 #include <string.h>
-#define _SIZE_T
+#include <stdlib.h>
 #include "libgte.h"
 
 VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r);
@@ -664,19 +664,6 @@ MATRIX * TransMatrix( MATRIX * m, VECTOR * v )
 
 	return m;
 }
-
-//------------------------------------------------------
-// ApplyMatrix
-//
-//	Multiplies RTM by v0 and puts the
-//	result into r0 (or whatever)
-//
-//	Inputs:
-//		eax = RTM
-//		ebx = v0 (input vector)
-//		ecx = r0 (output)
-//------------------------------------------------------
-#include <stdio.h>
 
 VECTOR *ApplyMatrix(MATRIX *RTM, SVECTOR *v, VECTOR *r)
 {

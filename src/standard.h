@@ -3,6 +3,8 @@
 #ifndef STANDARD_H
 #define STANDARD_H
 
+#include <stdint.h>
+#include <stddef.h>
 #include "libgte.h"
 #include "libgpu.h"
 #include "libsn.h"

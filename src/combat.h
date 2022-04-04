@@ -1,6 +1,12 @@
 #ifndef COMBAT_H
 #define COMBAT_H
 
+#include <stdint.h>
+#include "control.h"
+#include "libgpu.h"
+#include "object.h"
+#include "ships.h"
+
 #define 	SLAVE			1
 #define	MASTER		0
 #define	SINGLE		2

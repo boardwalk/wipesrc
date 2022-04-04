@@ -1,13 +1,5 @@
-// #define _SIZE_T
-
-// #include <dos.h>
-//#include <mem.h>
-//#include	<i86.h>
-//#include	<graph.h>
 #include <string.h>
-
 #include "common.h"
-//#include "\wipesrc\win95\jeda\cgl.h"
 #include "pcgraph.h"
 #include "winh.h"
 #include "win.h"

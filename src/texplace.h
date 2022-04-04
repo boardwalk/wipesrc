@@ -1,6 +1,12 @@
 #ifndef TEXPLACE_H
 #define TEXPLACE_H
 
+#include <stdint.h>
+#include "libgpu.h"
+#include "object.h"
+#include "track.h"
+#include "ttf.h"
+
 typedef struct TexPlace
 {
    int16_t       libraryTextures;              /* index into library texture table */

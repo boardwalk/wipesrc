@@ -1,6 +1,9 @@
 #ifndef WIN_H
 #define WIN_H
 
+#include <stdint.h>
+#include "libgpu.h"
+
 int32_t JJSLoadSprites ();
 int32_t randy();
 void centreMouse();

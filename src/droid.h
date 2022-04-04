@@ -1,6 +1,12 @@
 #ifndef DROID_H
 #define DROID_H
 
+#include <stdint.h>
+#include "libgte.h"
+#include "object.h"
+#include "ships.h"
+#include "track.h"
+
 typedef struct RescueData
 {
 	TrackSection 	*section;

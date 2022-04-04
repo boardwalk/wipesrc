@@ -1,6 +1,11 @@
 #ifndef SHIPS_H
 #define SHIPS_H
 
+#include <stdint.h>
+#include "libgte.h"
+#include "object.h"
+#include "track.h"
+
 #define NO_OF_SHIPS 8
 
 #define IN_TOW			 	0x1

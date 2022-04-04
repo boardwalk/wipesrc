@@ -6,6 +6,12 @@
 
 
 
+#include <stdint.h>
+#include "libgte.h"
+#include "object.h"
+#include "track.h"
+#include "ttf.h"
+
 typedef struct Tile
 {
    int16_t       tsb;

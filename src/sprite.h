@@ -1,6 +1,12 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
+#include <stdint.h>
+#include "libgpu.h"
+#include "libgte.h"
+#include "object.h"
+#include "track.h"
+
 typedef struct Sprites
 {
 	VECTOR 			pos;

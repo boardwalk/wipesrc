@@ -1,5 +1,3 @@
-#include "standard.h"
-
 #include "utils.h"
 #include "libgte.h"
 

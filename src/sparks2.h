@@ -1,6 +1,11 @@
 #ifndef SPARKS2_H
 #define SPARKS2_H
 
+#include <stdint.h>
+#include "libgpu.h"
+#include "libgte.h"
+#include "object.h"
+
 #define Max3DLines      200
 #define Max3DLineSkels  10
 

@@ -1,6 +1,10 @@
 #ifndef OPTIONS_H
 #define OPTIONS_H
 
+#include <stdint.h>
+#include "libgpu.h"
+#include "menus.h"
+
 #define		FADE_INACTIVE 	0
 #define		FADE_ACTIVE		1
 #define		FADE_COMPLETE 	2

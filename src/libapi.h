@@ -1,7 +1,7 @@
 #ifndef LIBAPI_H
 #define LIBAPI_H
 
-/* Source File: libetc.h */
+#include <stdint.h>
 #include	"scancode.h"
 
 /* General Equates. */

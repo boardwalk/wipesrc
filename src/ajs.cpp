@@ -7,10 +7,13 @@
 // they look ok though.
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// typedefs to get includes working under watcom
-#include "standard.h"
-#include <string.h>
+#include "protos.h"
+#include "libgpu.h"
+#include "libgte.h"
+#include "win.h"
+#include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 
 // TODO(boardwalk) Added
 #define _MAX_PATH 260
@@ -81,13 +84,6 @@ void _makepath(
 	}
 }
 
-#define _SIZE_T_DEFINED_
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include	"pallette.h"
-#include "protos.h"
-#include "win.h"
 
 #define	MAIN_PAL	0
 #define	SHIELD_PAL	1

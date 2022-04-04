@@ -1,6 +1,16 @@
 #ifndef FRI_H
 #define FRI_H
 
+#include <stdint.h>
+#include "droid.h"
+#include "effects.h"
+#include "hiscores.h"
+#include "hud.h"
+#include "object.h"
+#include "ships.h"
+#include "track.h"
+#include "weapon.h"
+
 typedef struct _glos
 {
 	TrackCamera		camera;

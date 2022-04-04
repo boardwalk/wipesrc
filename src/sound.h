@@ -1,6 +1,14 @@
 #ifndef SOUND_H
 #define SOUND_H
 
+#include <stdint.h>
+#include "libcd.h"
+#include "libgte.h"
+#include "libspu.h"
+#include "object.h"
+#include "ships.h"
+#include "track.h"
+
 #define SOUND  1
 
 #define NOT_PAUSED 1

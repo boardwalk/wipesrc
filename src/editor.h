@@ -1,6 +1,9 @@
 #ifndef EDITOR_H
 #define EDITOR_H
 
+#include <stdint.h>
+#include "libgpu.h"
+
 /* the tools */
 #define fDynamics    0
 #define fTrans       1

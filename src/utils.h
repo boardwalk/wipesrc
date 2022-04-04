@@ -1,6 +1,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <stdint.h>
+#include "libgte.h"
+
 int32_t sar(int32_t a,int32_t n);
 int32_t GetMagnitude(VECTOR vec1);
 void MinusVector(VECTOR v1, VECTOR v2, VECTOR *result);

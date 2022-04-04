@@ -1,6 +1,12 @@
 #ifndef MENUS_H
 #define MENUS_H
 
+#include <stdint.h>
+#include "libcd.h"
+#include "libgpu.h"
+#include "object.h"
+#include "tim.h"
+
 #define 		NORMAL_COMBAT_LINK	1
 #define			MAX_OPTIONS			15
 #define			MAX_MENUS			30

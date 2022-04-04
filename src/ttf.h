@@ -1,6 +1,8 @@
 #ifndef TTF_H
 #define TTF_H
 
+#include <stdint.h>
+
 typedef struct
 {
    int16_t             tex16 [ 16 ];

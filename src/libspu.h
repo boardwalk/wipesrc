@@ -1,6 +1,7 @@
 #ifndef LIBSPU_H
 #define LIBSPU_H
 
+#include <stdint.h>
 /* $Id: libspu.h,v 1.31 1994/11/08 09:55:08 kaol Exp $ */
 
 /*****************************************************************

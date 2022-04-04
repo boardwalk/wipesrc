@@ -1,6 +1,8 @@
 #ifndef FILE_H
 #define FILE_H
 
+#include <stdint.h>
+
 int32_t FileLength( const char* name );
 
 int32_t LoadFile( const char* name, char* buffer );

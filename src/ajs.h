@@ -1,6 +1,9 @@
 #ifndef AJS_H
 #define AJS_H
 
+#include <stdint.h>
+#include "libgpu.h"
+
 void	SetPolyGT3(POLY_GT3 *p);
 void	InitAJSVSync();
 void setWinLose();

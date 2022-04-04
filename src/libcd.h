@@ -60,6 +60,7 @@
 #ifndef LIBCD_H
 #define LIBCD_H
 
+#include <stdint.h>
 /*
  * CD-ROM Basic System
  */

@@ -1,6 +1,8 @@
 #ifndef PROTOS_H
 #define PROTOS_H
 
+#include <stdint.h>
+
 typedef struct {
 	int32_t	width;
 	int32_t	height;

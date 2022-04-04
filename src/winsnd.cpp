@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 
 void SfxEffectPan(int16_t wPlayId,uint16_t bPan)
 {}
