@@ -784,7 +784,7 @@ void MenuControl(ConfigData* gameData, int32_t* mode, int32_t timeout) {
         UpdateNotes(NOT_PAUSED);
       }
 
-      CdControlB(CdlStop, 0, 0);
+      CdControl(CdlStop, 0, 0);
       return;
     }
   }
@@ -2804,15 +2804,15 @@ void MusicVSfx(MusicPrims* musicPrims, SlideTextures* musicTex, SelectionData* s
       if (gameData->oldCdTrack < 1)
         gameData->oldCdTrack = endtrack;
 
-      CdControlB(CdlStop, 0, 0);
+      CdControl(CdlStop, 0, 0);
 
       if (gameData->oldCdTrack != 1) {
-        //		  		CdControlB(CdlSetloc, (uint8_t *)&loc[gameData->oldCdTrack], 0);
+        //		  		CdControl(CdlSetloc, (uint8_t *)&loc[gameData->oldCdTrack], 0);
         CurrTrkNo = gameData->oldCdTrack;
-        CdControlB(CdlPlay, 0, 0);
+        CdControl(CdlPlay, 0, 0);
       } else {
         CurrTrkNo = (randy() % (endtrack - 1)) + 2;
-        CdControlB(CdlPlay, 0, 0);
+        CdControl(CdlPlay, 0, 0);
       }
     }
 
@@ -2828,15 +2828,15 @@ void MusicVSfx(MusicPrims* musicPrims, SlideTextures* musicTex, SelectionData* s
       if (gameData->oldCdTrack > endtrack)
         gameData->oldCdTrack = 1;
 
-      CdControlB(CdlStop, 0, 0);
+      CdControl(CdlStop, 0, 0);
 
       if (gameData->oldCdTrack != 1) {
-        //		  		CdControlB(CdlSetloc, (uint8_t *)&loc[gameData->oldCdTrack], 0);
+        //		  		CdControl(CdlSetloc, (uint8_t *)&loc[gameData->oldCdTrack], 0);
         CurrTrkNo = gameData->oldCdTrack;
-        CdControlB(CdlPlay, 0, 0);
+        CdControl(CdlPlay, 0, 0);
       } else {
         CurrTrkNo = (randy() % (endtrack - 1)) + 2;
-        CdControlB(CdlPlay, 0, 0);
+        CdControl(CdlPlay, 0, 0);
       }
     }
   } else {

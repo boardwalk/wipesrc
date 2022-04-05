@@ -176,7 +176,7 @@ void race(combatData* packetData, ConfigData* gameData, int32_t mode, int32_t ti
   StopNotes();
   raceinit();
   UpdateEffects(ctrleffects);
-  CdControlB(CdlStop, 0, 0);
+  CdControl(CdlStop, 0, 0);
 
   UpdateNotes(NOT_PAUSED);
 
@@ -215,7 +215,7 @@ void race(combatData* packetData, ConfigData* gameData, int32_t mode, int32_t ti
 
     if (ctrl_says_quit) {
 #if CD_AUDIO
-      CdControlB(CdlStop, 0, 0);
+      CdControl(CdlStop, 0, 0);
 #endif
       ok_to_interrupt = 0;
       return;
@@ -558,21 +558,21 @@ void CdRestart(ConfigData *gameData)
 	uint8_t			param;
 	ok_to_interrupt = 0;
 	param = CdlModeRept|CdlModeDA;
-	CdControlB(CdlStop, 0, 0);
-	CdControlB(CdlSetmode, &param, 0);
+	CdControl(CdlStop, 0, 0);
+	CdControl(CdlSetmode, &param, 0);
 
 	if(gameData->cdTrack == 1)
 	{
-		//	   CdControlB(CdlSetloc, (uint8_t *)&loc[(rand()%(ntoc-1)) + 2], 0);	// DLS
+		//	   CdControl(CdlSetloc, (uint8_t *)&loc[(rand()%(ntoc-1)) + 2], 0);	// DLS
 		CurrTrkNo = (rand() % (ntoc - 1)) + 3;
 	}
 	else
 	{
-		//	   CdControlB(CdlSetloc, (uint8_t *)&loc[gameData->cdTrack], 0);		// DLS
+		//	   CdControl(CdlSetloc, (uint8_t *)&loc[gameData->cdTrack], 0);		// DLS
 		CurrTrkNo = gameData->cdTrack;
 	}
 
-	CdControlB(CdlPlay, 0, 0);
+	CdControl(CdlPlay, 0, 0);
 	ok_to_interrupt = 1;
 #endif
 }

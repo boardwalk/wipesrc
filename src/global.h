@@ -34,7 +34,6 @@
 #define TextureTableMax 800
 
 #define SoundHeapSize (1024 * 20 / 4)
-// #define              FastRam     (( uint32_t ) 0x1f800000 )
 
 #define Warning 0
 #define NonFatal 1
@@ -224,8 +223,6 @@ extern char current_palette;
 extern char inmenu;
 extern char Reallyinmenu;
 extern char* background_buffer;
-
-#define CdControlB(a, b, c) CdControl(a, b, c)
 
 extern uint32_t this_frame, last_frame;
 extern char trackdir[];

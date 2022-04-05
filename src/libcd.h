@@ -224,7 +224,6 @@ char* CdComstr(uint8_t);
 char* CdIntstr(uint8_t);
 int32_t CdGetToc2(int32_t, CdlLOC*);
 int32_t CdControl(uint8_t, uint8_t*, uint8_t*);
-int32_t CdControlB(uint8_t, uint8_t*, uint8_t*);
 int32_t CdControlF(uint8_t, uint8_t*);
 int32_t CdSync(int32_t, uint8_t*);
 int32_t CdGetSector(void*, int32_t);

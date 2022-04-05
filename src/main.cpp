@@ -406,7 +406,7 @@ void oldmain() {
     } else {
       trackNo = gameData.actTrackNum;
     }
-    CdControlB(CdlStop, 0, 0);
+    CdControl(CdlStop, 0, 0);
 
     /* load screen stuff */
     strcpy(loadPath, "wipeout/textures/load");
@@ -617,6 +617,6 @@ void QuitToDos() {
   WinQuit();
   RemoveTimer();
   SfxUnInit(1);
-  CdControlB(CdlStop, 0, 0);
+  CdControl(CdlStop, 0, 0);
   exit(0);
 }
