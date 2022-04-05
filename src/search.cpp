@@ -99,7 +99,7 @@ int32_t SectionSearch(ShipData* playerShip) {
     playerShip->attr &= ~FLYING;
 
   playerShip->nearTrkSect = nearest_section;
-  return (smallest_mag);
+  return smallest_mag;
 }
 
 TrackSection* FindNearestSection(TrackSection* trk, VECTOR pos) {
@@ -175,5 +175,5 @@ TrackSection* FindNearestSection(TrackSection* trk, VECTOR pos) {
     }
   }
 
-  return (nearest_section);
+  return nearest_section;
 }

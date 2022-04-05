@@ -105,7 +105,7 @@ uint16_t GetKey() {
   etc_KeyPressed = 0;
   for (i = 0; etc_KeyPressed == 0; i++)
     ;
-  return (etc_Key + (etc_ExtendedFlag << 8));
+  return etc_Key + (etc_ExtendedFlag << 8);
 }
 
 uint16_t GetKeyNoBlock() {
@@ -115,5 +115,5 @@ uint16_t GetKeyNoBlock() {
   result = etc_Key + (etc_ExtendedFlag << 8);
   etc_ExtendedFlag = 0;
 
-  return (result);
+  return result;
 }

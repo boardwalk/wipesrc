@@ -71,5 +71,5 @@ TexTemplate* LoadTtfFile(char* file, int16_t* count, int16_t libraryTextures) {
 #endif
   }
 
-  return ((TexTemplate*)ttfFile);
+  return (TexTemplate*)ttfFile;
 }

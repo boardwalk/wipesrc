@@ -57,7 +57,7 @@ void UpdateWeapons(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* w
 
   for (i = 0; i < NO_ACTIVE_WEAPONS; i++) {
     if (weaponIndex[i].count > 0) {
-      (weaponIndex[i].updateWeapon)(shipIndex, weaponShapes, &(weaponIndex[i]), weaponIndex);
+      weaponIndex[i].updateWeapon(shipIndex, weaponShapes, &weaponIndex[i], weaponIndex);
     }
   }
 }
@@ -68,7 +68,7 @@ void DrawWeapons(ShipData* shipIndex, WeaponShape* weaponShapes, WeaponData* wea
 
   for (i = 0; i < NO_ACTIVE_WEAPONS; i++) {
     if ((weaponIndex[i].count > 0) && (weaponIndex[i].availible)) {
-      weapon = &(weaponIndex[i]);
+      weapon = &weaponIndex[i];
 
       //			if ((weapon->type == SHIELD)) && (shipIndex[weapon->fireShip].attr & VIEW_IN))
       if ((shipIndex[weapon->fireShip].attr & SHIELDED) && (shipIndex[weapon->fireShip].attr & VIEW_IN)) {
@@ -119,19 +119,19 @@ void LaunchWeapon(ShipData* shipIndex, WeaponData* weaponIndex, int32_t shipNo) 
 
     if (raceType == HEAD_TO_HEAD) {
       SetTargetShip(shipIndex, serialShip);
-      FireWeapon(&(shipIndex[serialShip]), weaponIndex, serialShip, shipIndex[serialShip].haveFired);
+      FireWeapon(&shipIndex[serialShip], weaponIndex, serialShip, shipIndex[serialShip].haveFired);
     } else {
       for (j = 0; j < NO_OF_SHIPS; j++) {
         if ((shipIndex[j].haveFired != NON_ACTIVE) && (j != ownShip)) {
           SetTargetShip(shipIndex, j);
-          FireWeapon(&(shipIndex[j]), weaponIndex, j, shipIndex[j].haveFired);
+          FireWeapon(&shipIndex[j], weaponIndex, j, shipIndex[j].haveFired);
         }
       }
     }
   } else if (gameType == MASTER) {
     if (shipIndex[serialShip].haveFired != NON_ACTIVE) {
       SetTargetShip(shipIndex, serialShip);
-      FireWeapon(&(shipIndex[serialShip]), weaponIndex, serialShip, shipIndex[serialShip].haveFired);
+      FireWeapon(&shipIndex[serialShip], weaponIndex, serialShip, shipIndex[serialShip].haveFired);
     }
   }
 }
@@ -346,7 +346,7 @@ void DrawTargetIcon(ShipData* playerShip, ShipData* shipIndex, Object** shipShap
   y = sxy.vy;
 
   if (!(flag & (CrtClipped | ZNegative | ZLarge | ZSmall))) {
-    setXY4(&(target[CurrentScreen]),
+    setXY4(&target[CurrentScreen],
            x - 8, y - 8,
            x + 7, y - 8,
            x - 8, y + 7,
@@ -539,27 +539,27 @@ void initWeapons(WeaponShape* weaponShapes, Skeleton* camPos, WeaponData* weapon
 
   for (i = 0; i < 64 * 3; i++) {
     for (j = 0; j < 2; j++) {
-      SetDrawMode(&(shieldParams[i][j]), 1, 1, FONT_TPAGE, 0); //PCWipeout
+      SetDrawMode(&shieldParams[i][j], 1, 1, FONT_TPAGE, 0); //PCWipeout
     }
   }
 
   targetTexture = LoadTexture("wipeout/textures/target2.tim", 1);
 
   for (i = 0; i < 2; i++) {
-    SetPolyFT4(&(target[i]));
+    SetPolyFT4(&target[i]);
 
     target[i].r0 = 230;
     target[i].g0 = 0;
     target[i].b0 = BLACK_NOT_DRAWN;
 
-    setUV4(&(target[i]),
+    setUV4(&target[i],
            targetTexture->u0, targetTexture->v0,
            targetTexture->u1, targetTexture->v1,
            targetTexture->u2, targetTexture->v2,
            targetTexture->u3, targetTexture->v3);
 
-    setTPage(&(target[i]), 0, 3, targetTexture->textureX, targetTexture->textureY);
-    SetSemiTrans((P_TAG*)&(target[i]), 1);
+    setTPage(&target[i], 0, 3, targetTexture->textureX, targetTexture->textureY);
+    SetSemiTrans((P_TAG*)&target[i], 1);
 
     target[i].clut = targetTexture->cba;
   }
@@ -1965,7 +1965,7 @@ int32_t GetNewWeapon() {
       weaponType = SPECIAL;
   }
 
-  return (weaponType);
+  return weaponType;
 }
 
 int32_t GetNewWeaponBodge() {
@@ -1999,7 +1999,7 @@ int32_t GetNewWeaponBodge() {
     else if (index < 70) /* 70 */
       weaponType = SPECIAL;
   }
-  return (weaponType);
+  return weaponType;
 }
 
 void SetTargetShip(ShipData* shipIndex, int32_t shipNo) {

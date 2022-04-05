@@ -40,18 +40,18 @@ void InitEffects(Effect* effects, Skeleton* camPos, Texture** effectTextures) {
     effects[i].count = 0;
 
     for (int32_t j = 0; j < 2; j++) {
-      SetPolyFT4(&(effects[i].sprite[j]));
-      SetSemiTrans((P_TAG*)&(effects[i].sprite[j]), 1);
-      SetShadeTex((P_TAG*)&(effects[i].sprite[j]), 1);
+      SetPolyFT4(&effects[i].sprite[j]);
+      SetSemiTrans((P_TAG*)&effects[i].sprite[j], 1);
+      SetShadeTex((P_TAG*)&effects[i].sprite[j], 1);
 
       effects[i].sprite[j].r0 = 230; // PCwipeout
       effects[i].sprite[j].g0 = 0;
       effects[i].sprite[j].b0 = tranny_table[SMOKE]; //Default is smoke
-      setTPage(&(effects[i].sprite[j]), 0, 3,
+      setTPage(&effects[i].sprite[j], 0, 3,
                effectTextures[SMOKE]->textureX,
                effectTextures[SMOKE]->textureY);
       effects[i].sprite[j].clut = effectTextures[SMOKE]->cba;
-      setUV4(&(effects[i].sprite[j]),
+      setUV4(&effects[i].sprite[j],
              effectTextures[SMOKE]->u0, effectTextures[SMOKE]->v0,
              effectTextures[SMOKE]->u1, effectTextures[SMOKE]->v1,
              effectTextures[SMOKE]->u2, effectTextures[SMOKE]->v2,
@@ -117,7 +117,7 @@ void DrawEffects(Effect* effects) {
       vertex.vy = effects[i].pos.vy + camPos.vy;
       vertex.vz = effects[i].pos.vz + camPos.vz;
 
-      depth = RotTransPers(&(vertex),
+      depth = RotTransPers(&vertex,
                            &sxy,
                            &p,
                            &flag);
@@ -194,7 +194,7 @@ void AddEffects(Effect* effects, WeaponData* weaponIndex, Texture** effectTextur
                 effects[j].size = 7;
                 effects[j].sprite[k].b0 = tranny_table[exploType]; //Set the colour
                 effects[j].sprite[k].clut = effectTextures[exploType]->cba;
-                setUV4(&(effects[j].sprite[k]),
+                setUV4(&effects[j].sprite[k],
                        effectTextures[exploType]->u0, effectTextures[exploType]->v0,
                        effectTextures[exploType]->u1, effectTextures[exploType]->v1,
                        effectTextures[exploType]->u2, effectTextures[exploType]->v2,
@@ -218,7 +218,7 @@ void AddEffects(Effect* effects, WeaponData* weaponIndex, Texture** effectTextur
                   effects[j].sprite[k].clut = effectTextures[FIRE]->cba;
                 }
                 effects[j].sprite[k].b0 = tranny_table[exploType]; //Set the colour
-                setUV4(&(effects[j].sprite[k]),
+                setUV4(&effects[j].sprite[k],
                        effectTextures[exploType]->u0, effectTextures[exploType]->v0,
                        effectTextures[exploType]->u1, effectTextures[exploType]->v1,
                        effectTextures[exploType]->u2, effectTextures[exploType]->v2,
@@ -236,7 +236,7 @@ void AddEffects(Effect* effects, WeaponData* weaponIndex, Texture** effectTextur
                 effects[j].size = 7;
                 effects[j].sprite[k].clut = effectTextures[exploType]->cba;
                 effects[j].sprite[k].b0 = tranny_table[exploType]; //Set the colour
-                setUV4(&(effects[j].sprite[k]),
+                setUV4(&effects[j].sprite[k],
                        effectTextures[exploType]->u0, effectTextures[exploType]->v0,
                        effectTextures[exploType]->u1, effectTextures[exploType]->v1,
                        effectTextures[exploType]->u2, effectTextures[exploType]->v2,
@@ -292,7 +292,7 @@ void AddEffects(Effect* effects, WeaponData* weaponIndex, Texture** effectTextur
           for (k = 0; k < 2; k++) {
             effects[j].size = 8;
             effects[j].sprite[k].b0 = tranny_table[exploType]; //Set the colour
-            setUV4(&(effects[j].sprite[k]),
+            setUV4(&effects[j].sprite[k],
                    effectTextures[EBOLT]->u0, effectTextures[EBOLT]->v0,
                    effectTextures[EBOLT]->u1, effectTextures[EBOLT]->v1,
                    effectTextures[EBOLT]->u2, effectTextures[EBOLT]->v2,
@@ -469,7 +469,7 @@ void InitDonkey(Object** prm, int16_t prmCount, Object** donkey) {
         donkey[count] = obj;
         count++;
 
-        //				printf("Donkey = %s \n", &(obj->name) );
+        //				printf("Donkey = %s \n", &obj->name );
       }
       obj = obj->next;
     }
@@ -525,39 +525,39 @@ Shadow* InitShadow(Skeleton* camPos, Texture** effectTextures) {
   for (i = 0; i < NO_OF_SHIPS; i++) {
     for (j = 0; j < 2; j++) {
       for (k = 0; k < 4; k++) {
-        SetPolyFT3(&(shadow[i].poly[k][j]));
-        setTPage(&(shadow[i].poly[k][j]), 0, 2,
+        SetPolyFT3(&shadow[i].poly[k][j]);
+        setTPage(&shadow[i].poly[k][j], 0, 2,
                  effectTextures[SHADOW]->textureX,
                  effectTextures[SHADOW]->textureY);
         shadow[i].poly[k][j].clut = effectTextures[SHADOW]->cba;
 
-        SetShadeTex((P_TAG*)&(shadow[i].poly[k][j]), 1);
+        SetShadeTex((P_TAG*)&shadow[i].poly[k][j], 1);
 
-        SetSemiTrans((P_TAG*)&(shadow[i].poly[k][j]), 1);
+        SetSemiTrans((P_TAG*)&shadow[i].poly[k][j], 1);
 
         shadow[i].poly[k][j].r0 = 230; // PCwipeout
         shadow[i].poly[k][j].g0 = 0;
         shadow[i].poly[k][j].b0 = BLACK5_TRANSL;
       }
-      setUV3(&(shadow[i].poly[0][j]),
+      setUV3(&shadow[i].poly[0][j],
              u[0], v[0],
              u[3], v[3],
              u[5], v[5]);
-      setUV3(&(shadow[i].poly[1][j]),
+      setUV3(&shadow[i].poly[1][j],
              u[3], v[3],
              u[1], v[1],
              u[4], v[4]);
-      setUV3(&(shadow[i].poly[2][j]),
+      setUV3(&shadow[i].poly[2][j],
              u[5], v[5],
              u[3], v[3],
              u[4], v[4]);
-      setUV3(&(shadow[i].poly[3][j]),
+      setUV3(&shadow[i].poly[3][j],
              u[5], v[5],
              u[4], v[4],
              u[2], v[2]);
     }
   }
-  return (shadow);
+  return shadow;
 }
 
 void DrawShadow(Object** shipShapes, ShipData* shipIndex, Shadow* shadow) {
@@ -633,12 +633,12 @@ void DrawShadow(Object** shipShapes, ShipData* shipIndex, Shadow* shadow) {
         /*** corresponding to v2														 	***/
         /*** 				Faster but inaccurate sorting	!!!!						 	***/
 #if 0
-				depth = RotTransPers3(	&(vertex[0]),
-					&(vertex[1]),
-					&(vertex[2]),
-					&(sxy[0]),
-					&(sxy[1]),
-					&(sxy[2]),
+				depth = RotTransPers3(	&vertex[0],
+					&vertex[1],
+					&vertex[2],
+					&sxy[0],
+					&sxy[1],
+					&sxy[2],
 					&p,
 					&flag);
 
@@ -646,18 +646,18 @@ void DrawShadow(Object** shipShapes, ShipData* shipIndex, Shadow* shadow) {
         /*** 					Depth returned for each vertex 							***/
         /*** 				Slower but slightly better sorting	!!!!					***/
 
-        depth[0] = RotTransPers(&(vertex[0]),
-                                &(sxy[0]),
+        depth[0] = RotTransPers(&vertex[0],
+                                &sxy[0],
                                 &p,
                                 &flag);
 
-        depth[1] = RotTransPers(&(vertex[1]),
-                                &(sxy[1]),
+        depth[1] = RotTransPers(&vertex[1],
+                                &sxy[1],
                                 &p,
                                 &flag);
 
-        depth[2] = RotTransPers(&(vertex[2]),
-                                &(sxy[2]),
+        depth[2] = RotTransPers(&vertex[2],
+                                &sxy[2],
                                 &p,
                                 &flag);
 #endif
@@ -763,7 +763,7 @@ void InitWeaponSprtIcons(SPRT* weaponIcon, Texture** weaponIconTextures) {
   weaponIconTextures[TURBO - 1] = TextureTable[loc++];
 
   for (int32_t i = 0; i < 2; i++) {
-    SetSprt(&(weaponIcon[i]));
+    SetSprt(&weaponIcon[i]);
 
     weaponIcon[i].r0 = 230; // PCwipeout
     weaponIcon[i].g0 = 0;

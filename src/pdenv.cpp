@@ -72,7 +72,7 @@ DISPENV* PutDispEnv(DISPENV* env) {
 #endif
   olddispy = env->disp.y;
 
-  return (env);
+  return env;
 }
 
 DRAWENV* PutDrawEnv(DRAWENV* env) {
@@ -123,5 +123,5 @@ DRAWENV* PutDrawEnv(DRAWENV* env) {
       }
     }
   } //jed
-  return (env);
+  return env;
 }

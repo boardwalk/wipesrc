@@ -186,8 +186,8 @@ void UpdateShipRemote(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, 
   offSetVector.vy = 0;
   offSetVector.vz = 0;
 
-  myShip = &(shipIndex[ownShip]);
-  remoteShip = &(shipIndex[shipNo]);
+  myShip = &shipIndex[ownShip];
+  remoteShip = &shipIndex[shipNo];
 
   if ((remoteShip->attr & FLYING) == 0) {
     /*** Find First track base section ***/

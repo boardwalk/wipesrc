@@ -101,7 +101,7 @@ int32_t ShellGetGameDirectory(char* pGameDirectory) {
     RegCloseKey(hkeyOurKey);
   }
 
-  return (retval);
+  return retval;
 }
 
 int32_t ShellGetMovieDirectory(char* pGameDirectory) {
@@ -154,7 +154,7 @@ int32_t ShellGetMovieDirectory(char* pGameDirectory) {
     RegCloseKey(hkeyOurKey);
   }
 
-  return (retval);
+  return retval;
 }
 
 /****************************************************************************
@@ -213,7 +213,7 @@ int32_t ShellGetDataDirectory(char* pDataDirectory) {
     RegCloseKey(hkeyOurKey);
   }
 
-  return (retval);
+  return retval;
 }
 
 static char* reses[] = {
@@ -374,7 +374,7 @@ int32_t ShellGetPrefs() {
   default:
     break;
   }
-  return (retval);
+  return retval;
 }
 
 int32_t ShellSetPrefs() {
@@ -475,5 +475,5 @@ int32_t ShellSetPrefs() {
   }
 
   RegCloseKey(hkeyOurKey);
-  return (retval);
+  return retval;
 }

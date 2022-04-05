@@ -4124,14 +4124,14 @@ int32_t GetAng(VECTOR vec1, VECTOR vec2) {
 
   angle = arccos(product);
 
-  return (angle);
+  return angle;
 }
 
 int32_t ScalarProduct(VECTOR vec1, VECTOR vec2) {
   int32_t result;
 
   result = vec1.vx * vec2.vx + vec1.vy * vec2.vy + vec1.vz * vec2.vz;
-  return (result);
+  return result;
 }
 
 void CrossProduct(VECTOR* result, VECTOR A, VECTOR B) {
@@ -4151,7 +4151,7 @@ int32_t GetMagnitude(VECTOR vec1) {
 
   mag = vec1.vx * vec1.vx + vec1.vy * vec1.vy + vec1.vz * vec1.vz;
   mag = SquareRoot0(mag);
-  return (mag);
+  return mag;
 }
 
 int32_t arccos(int32_t value) {
@@ -4165,15 +4165,15 @@ int32_t arccos(int32_t value) {
   angle = (int32_t)arccos_tab[new_val];
   if (value < 0)
     angle = 8192 + (8192 - angle);
-  return (angle);
+  return angle;
 }
 
 int32_t sar(int32_t a, int32_t n) {
   if (a > 0) {
-    return (a >> n);
+    return a >> n;
   } else {
     a = (-a) >> n;
-    return (-a);
+    return -a;
   }
 }
 
@@ -4181,8 +4181,8 @@ int32_t ang(int32_t a) {
   a = a & 4095;
 
   if (a > 2048) {
-    return (a - 4096);
+    return a - 4096;
   }
 
-  return (a);
+  return a;
 }

@@ -170,7 +170,7 @@ int32_t g_mask; // global display mask variable set in SetDispMask
 int32_t DrawSync(int32_t mode) {
   // function used for parallel actions on PSX
   // defined so games compile on PC
-  return (1);
+  return 1;
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -188,7 +188,7 @@ void AddPrim(P_TAG* ordt, int32_t depth, P_TAG* p) {
 }
 
 uint16_t GetTPage(int32_t tp, int32_t abr, int32_t x, int32_t y) {
-  return (getTPage(tp, abr, x, y));
+  return getTPage(tp, abr, x, y);
 }
 
 void SetLineG2(LINE_G2* p) {
@@ -271,7 +271,7 @@ DISPENV* SetDefDispEnv(DISPENV* disp, int32_t x, int32_t y, int32_t w, int32_t h
   disp->isinter = 0;
   disp->isrgb24 = 0;
 
-  return (disp);
+  return disp;
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -315,7 +315,7 @@ DRAWENV* SetDefDrawEnv(DRAWENV* draw, int32_t x, int32_t y, int32_t w, int32_t h
 
   // ignored the dr_env bit 'cause we don't know what it does
 
-  return (draw);
+  return draw;
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -548,7 +548,7 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
       src_start_off += ((xe - xs) * 2);
     }
   }
-  return (1);
+  return 1;
 }
 
 //*****************************************************************
@@ -706,7 +706,7 @@ int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
       src_start_off += ((xe - xs) * 2);
     }
   }
-  return (1);
+  return 1;
 }
 
 #endif // 16 bit dump stuff
@@ -779,6 +779,8 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
         //				dest=ptr+(tpage*65536)+(xs*2)+(line*256);						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
         source = (char*)p + src_start_off + ((line - y) * (width * 2)); // source in 16 bit co-ords  Width must be in bytes
         for (source_byte = source; source_byte < (source + ((xe - xs) * 2)); source_byte++) {
+          // TODO(boardwalk) Note to future self: This code results in negatives indices
+          // Probably should cast to uint8_t before deref.
           val = (*source_byte) & 0xff; /*low 8 bits*/
           *dest++ = (char)(cluts[val].red) << 3;
           *dest++ = (char)(cluts[val].green) << 3,
@@ -853,7 +855,7 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
       src_start_off += ((xe - xs) * 2);
     }
   }
-  return (1);
+  return 1;
 }
 
 //*****************************************************************
@@ -1016,22 +1018,24 @@ int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
       src_start_off += ((xe - xs) * 2);
     }
   }
-  return (1);
+  return 1;
 }
 
 #endif
 #ifdef BLANKFUNCTIONS
 
 int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
-  return (1);
+  return 1;
 }
 
 int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
-  return (1);
+  return 1;
 }
 #endif
 
 void LoadVRam(const char* filename, char set_pal) {
+  printf("LoadVRam(%s)\n", filename);
+
   bm BM;
 
   char fadefilename[_MAX_PATH];

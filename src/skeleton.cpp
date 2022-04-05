@@ -17,7 +17,7 @@ Skeleton* NewSkeleton() {
     /* Memory allocation failed! */
 
     printf("Skeleton.c:SkeletonRoot(): Failed to allocate skeleton\n");
-    return (NULL);
+    return NULL;
   }
 
   /* Set pointers */
@@ -54,7 +54,7 @@ Skeleton* NewSkeleton() {
 
   skeleton->update = 1;
 
-  return (skeleton);
+  return skeleton;
 }
 
 void SetSkeletonPosition(Skeleton* skeleton, int32_t x, int32_t y, int32_t z) {
@@ -108,14 +108,14 @@ MATRIX* GetSkeletonMatrix(Skeleton* skeleton) {
   MATRIX* m3;
 
   if (!(skeleton->super)) {
-    return (&(skeleton->relative));
+    return &skeleton->relative;
   } else {
     if (skeleton->update) {
       /* Need to update the absolute matrix */
 
-      m1 = &(skeleton->relative);
+      m1 = &skeleton->relative;
       m2 = GetSkeletonMatrix(skeleton->super);
-      m3 = &(skeleton->absolute);
+      m3 = &skeleton->absolute;
 
       m3->t[0] = m2->t[0] + ((m1->t[0] * m2->m[0][0] + m1->t[1] * m2->m[0][1] + m1->t[2] * m2->m[0][2]) >> 12);
       m3->t[1] = m2->t[1] + ((m1->t[0] * m2->m[1][0] + m1->t[1] * m2->m[1][1] + m1->t[2] * m2->m[1][2]) >> 12);
@@ -126,7 +126,7 @@ MATRIX* GetSkeletonMatrix(Skeleton* skeleton) {
       skeleton->update = 0;
     }
 
-    return (&(skeleton->absolute));
+    return &skeleton->absolute;
   }
 }
 

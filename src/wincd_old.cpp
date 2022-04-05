@@ -49,7 +49,7 @@ void* D32DosMemAlloc(DWORD size, WORD* selector) {
 }
 
 uint8_t BinToBCD(uint8_t Bin) {
-  return (0);
+  return 0;
 }
 
 /************************************************************************
@@ -249,10 +249,10 @@ uint32_t Red2Secs(uint32_t RedValue) {
 ************************************************************************/
 
 uint8_t BCDToBin16(uint8_t BCD) {
-  return (0);
+  return 0;
 }
 uint32_t RedBookToSectors(uint8_t RBFrame, uint8_t RBSec, uint8_t RBMin) {
-  return (0);
+  return 0;
 }
 
 /************************************************************************
@@ -269,14 +269,14 @@ char CDPaused()
     if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM,
                                 (DWORD)(LPVOID)&mci_status_parms)) {
       //mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
-      return (0);
+      return 0;
     }
     if (mci_status_parms.dwReturn == MCI_MODE_PAUSE)
-      return ('1');
+      return '1';
     else
-      return ('0');
+      return '0';
   }
-  return ('0');
+  return '0';
 }
 
 /************************************************************************
@@ -433,7 +433,7 @@ int32_t CdControl(uint8_t Cmd, uint8_t* parm1, uint8_t* parm2) {
     } break;
     }
   }
-  return (1);
+  return 1;
 }
 
 /************************************************************************
@@ -459,7 +459,7 @@ int32_t CdGetToc2(int32_t sess, struct CdlPos* table) {
     if (retval = mciSendCommand(wDeviceID, MCI_STATUS, MCI_STATUS_ITEM,
                                 (DWORD)(LPVOID)&mci_status_parms)) {
       mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
-      return (0);
+      return 0;
     }
 
     if (mci_status_parms.dwReturn < 2) {
@@ -467,7 +467,7 @@ int32_t CdGetToc2(int32_t sess, struct CdlPos* table) {
       return 2;
     }
 
-    return (mci_status_parms.dwReturn);
+    return mci_status_parms.dwReturn;
   }
   return 0;
 }

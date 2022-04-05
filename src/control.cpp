@@ -90,7 +90,7 @@ void UpdateShipsSerial(ShipData* shipIndex, WeaponShape* weaponShapes, Object** 
   shipIndex[ownShip].unitVecWing.vz = ((sy * cz) >> 12) - ((((cy * sx) >> 12) * sz) >> 12);
 
   shipIndex[ownShip].prevShipSect = shipIndex[ownShip].nearTrkSect;
-  SectionSearch(&(shipIndex[ownShip]));
+  SectionSearch(&shipIndex[ownShip]);
 
   shipIndex[ownShip].prevSecNo = shipIndex[ownShip].prevShipSect->secNo;
   shipIndex[ownShip].nearSecNo = shipIndex[ownShip].nearTrkSect->secNo;
@@ -107,9 +107,9 @@ int32_t InitController() {
   //	ChangeClearPAD(0);
   //  	VSync(0);
   if (neg1.head == 8960) {
-    return (NEGCON);
+    return NEGCON;
   } else
-    return (NORMALPAD);
+    return NORMALPAD;
 }
 
 /**************************************************************************/
@@ -178,7 +178,7 @@ void UpdatePlayerShipNormStart(ShipData* shipIndex, Object** shipShapes, int32_t
   ShipData* playerShip;
   static int32_t startPos;
 
-  playerShip = &(shipIndex[shipNo]);
+  playerShip = &shipIndex[shipNo];
 
   GeneralStartProcs(playerShip);
 
@@ -242,7 +242,7 @@ void UpdatePlayerShipNorm(ShipData* shipIndex, Object** shipShapes, int32_t ship
   static int16_t revLeft = 0;
   static int16_t revRight = 0;
 
-  playerShip = &(shipIndex[shipNo]);
+  playerShip = &shipIndex[shipNo];
 
   if (playerShip->electroCount > 0)
     playerShip->electroCount--;
@@ -363,7 +363,7 @@ void UpdatePlayerShipNegStart(ShipData* shipIndex, Object** shipShapes, int32_t 
   int16_t thrustVal;
   static char negView = 0;
 
-  playerShip = &(shipIndex[shipNo]);
+  playerShip = &shipIndex[shipNo];
 
   GeneralStartProcs(playerShip);
 
@@ -475,7 +475,7 @@ void UpdatePlayerShipNeg(ShipData* shipIndex, Object** shipShapes, int32_t shipN
   static int32_t maxThrust;
   int16_t thrustVal;
 
-  playerShip = &(shipIndex[shipNo]);
+  playerShip = &shipIndex[shipNo];
 
   if (playerShip->electroCount > 0)
     playerShip->electroCount--;
@@ -686,7 +686,7 @@ void UpdatePlayerShipMouse(ShipData* shipIndex, Object** shipShapes, int32_t shi
   int16_t targetVhdg;
   static int32_t maxThrust;
 
-  playerShip = &(shipIndex[shipNo]);
+  playerShip = &shipIndex[shipNo];
 
   if (playerShip->electroCount > 0)
     playerShip->electroCount--;
@@ -805,7 +805,7 @@ void UpdatePlayerShipJoystick(ShipData* shipIndex, Object** shipShapes, int32_t 
   int16_t targetVhdg;
   static int32_t maxThrust;
 
-  playerShip = &(shipIndex[shipNo]);
+  playerShip = &shipIndex[shipNo];
 
   if (playerShip->electroCount > 0)
     playerShip->electroCount--;
@@ -928,7 +928,7 @@ void UpdatePlayerShipJoystick(ShipData* shipIndex, Object** shipShapes, int32_t 
 void UpdateRemoteShipStart(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, WeaponData* weaponIndex) {
   static int32_t startPos;
 
-  shipIndex = &(shipIndex[shipNo]);
+  shipIndex = &shipIndex[shipNo];
 
   shipIndex->prevShipSect = shipIndex->nearTrkSect;
   SectionSearch(shipIndex);
@@ -1050,8 +1050,8 @@ void UpdateRemoteShip(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, 
   offSetVector.vy = 0;
   offSetVector.vz = 0;
 
-  myShip = &(shipIndex[ownShip]);
-  remoteShip = &(shipIndex[shipNo]);
+  myShip = &shipIndex[ownShip];
+  remoteShip = &shipIndex[shipNo];
 
   if (remoteShip->electroCount > 0)
     remoteShip->electroCount--;
@@ -1072,10 +1072,10 @@ void UpdateRemoteShip(ShipData* shipIndex, Object** shipShapes, int32_t shipNo, 
     {
       if (shipIndex[ownShip].DPASectDiff > shipIndex[serialShip].DPASectDiff) {
         DPASectDiff = remoteShip->DPASectDiff - shipIndex[ownShip].DPASectDiff;
-        myShip = &(shipIndex[ownShip]);
+        myShip = &shipIndex[ownShip];
       } else {
         DPASectDiff = remoteShip->DPASectDiff - shipIndex[serialShip].DPASectDiff;
-        myShip = &(shipIndex[serialShip]);
+        myShip = &shipIndex[serialShip];
       }
     }
     remoteShip->attr &= ~JUST_IN_FRONT;

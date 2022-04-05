@@ -44,5 +44,5 @@ char FindNearestColourIndex(CVECTOR* TestCol) {
     }
   }
 
-  return (BestColour);
+  return BestColour;
 }

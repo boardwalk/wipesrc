@@ -96,33 +96,33 @@ int16_t GetMenuKey(int16_t key) {
   if (neg1.head == 8960) {
     switch (key) {
     case M_UP:
-      return (xpad & NEG_UP);
+      return xpad & NEG_UP;
     case M_DOWN:
-      return (xpad & NEG_DOWN);
+      return xpad & NEG_DOWN;
     case M_LEFT:
-      return (xpad & NEG_LEFT);
+      return xpad & NEG_LEFT;
     case M_RIGHT:
-      return (xpad & NEG_RIGHT);
+      return xpad & NEG_RIGHT;
     case M_BACK:
       if ((neg1.ii > 200) && (negBack <= 100)) {
         /*	negBack = neg1.ii;*/
-        return (1);
+        return 1;
       }
       /*	else
 					negBack = neg1.ii;
 			*/
-      return (xpad & NEG_B);
+      return xpad & NEG_B;
     case M_SELECT:
       if ((neg1.i > 100) && (negSelect <= 100)) {
         /*	negSelect = neg1.i; */
-        return (1);
+        return 1;
       }
       /*	else
 					negSelect = neg1.i;
 			 */
 
     case M_START:
-      return (xpad & NEG_START);
+      return xpad & NEG_START;
 
     case M_QUIT:
 #if 0
@@ -135,8 +135,7 @@ int16_t GetMenuKey(int16_t key) {
 					negQuit = neg1.ii;
 			 */
 #endif
-      return (xpad & NEG_A);
-      return (0);
+      return xpad & NEG_A;
 
     default:
       break;
@@ -146,38 +145,38 @@ int16_t GetMenuKey(int16_t key) {
     case M_UP:
       if (xpad & PadUp0)
         andyTimeout = 0;
-      return (xpad & PadUp0);
+      return xpad & PadUp0;
     case M_DOWN:
       if (xpad & PadDown0)
         andyTimeout = 0;
-      return (xpad & PadDown0);
+      return xpad & PadDown0;
     case M_LEFT:
       if (xpad & PadLeft0)
         andyTimeout = 0;
-      return (xpad & PadLeft0);
+      return xpad & PadLeft0;
     case M_RIGHT:
       if (xpad & PadRight0)
         andyTimeout = 0;
-      return (xpad & PadRight0);
+      return xpad & PadRight0;
     case M_BACK:
       if (xpad & PadTopRight1)
         andyTimeout = 0;
-      return (xpad & PadTopRight1);
+      return xpad & PadTopRight1;
     case M_SELECT:
       if (xpad & PadSelect)
         andyTimeout = 0;
-      return (xpad & PadSelect);
+      return xpad & PadSelect;
     case M_START:
       if (xpad & PadStart)
         andyTimeout = 0;
-      return (xpad & PadStart);
+      return xpad & PadStart;
     case M_QUIT:
       if (xpad & PadTopRight1)
         andyTimeout = 0;
-      return (xpad & PadTopRight1);
+      return xpad & PadTopRight1;
     default:
       break;
     }
   }
-  return (1); // PCwipeout
+  return 1; // PCwipeout
 }

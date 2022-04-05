@@ -50,11 +50,11 @@ const char* GetCdTrackName(int32_t no) {
       "WIPEOUT"};
 
   if (no < 0)
-    return ("NO CD");
+    return "NO CD";
   else if (endtrack - starttrack == 7)
-    return (fulltrack[no]);
+    return fulltrack[no];
   else
-    return (sometrack[no]);
+    return sometrack[no];
 }
 
 void InGameReset(int32_t choice, uint32_t* toggle, char machinePaused, ConfigData* gameData, int32_t* cdPause) {
@@ -81,11 +81,11 @@ void InGameReset(int32_t choice, uint32_t* toggle, char machinePaused, ConfigDat
     for (i = 0; i < 4; i++) {
       if (i == choice) {
         //if ((*toggle % 2) == 0)
-        CentreText(&(ingameMenu[i][0]), text_data(xPos[i], yPos + (gap * i), 8), RedText);
+        CentreText(&ingameMenu[i][0], text_data(xPos[i], yPos + (gap * i), 8), RedText);
         //else
-        //CentreText (&(ingameMenu[i][0]), text_data(xPos[i], yPos+(gap*i), 8), WhiteText) ;
+        //CentreText (&ingameMenu[i][0], text_data(xPos[i], yPos+(gap*i), 8), WhiteText) ;
       } else {
-        CentreText(&(ingameMenu[i][0]), text_data(xPos[i], yPos + (gap * i), 8), WhiteText);
+        CentreText(&ingameMenu[i][0], text_data(xPos[i], yPos + (gap * i), 8), WhiteText);
       }
     }
 
@@ -137,28 +137,28 @@ void InGameConfirm(char* confirm, int32_t choice, int16_t xpad, char* lConfirm, 
 }
 
 void DeSelectScreen(POLY_F4* selectBox, DR_MODE* selectTrans) {
-  SetPolyF4(&(selectBox[CurrentScreen]));
+  SetPolyF4(&selectBox[CurrentScreen]);
   selectBox[CurrentScreen].r0 = 230;
   selectBox[CurrentScreen].g0 = 0;
   selectBox[CurrentScreen].b0 = BLACK2_TRANSL;
 
 #if PAL
-  setXY4(&(selectBox[CurrentScreen]), 0, 0,
+  setXY4(&selectBox[CurrentScreen], 0, 0,
          320, 0,
          0, 256,
          320, 256);
 #else
-  setXY4(&(selectBox[CurrentScreen]), 0, 0,
+  setXY4(&selectBox[CurrentScreen], 0, 0,
          320, 0,
          0, 240,
          320, 240);
 #endif
 
-  SetSemiTrans((P_TAG*)&(selectBox[CurrentScreen]), 1);
+  SetSemiTrans((P_TAG*)&selectBox[CurrentScreen], 1);
 
-  //	SetDrawMode(&(selectTrans[CurrentScreen]), 1, 1, GetTPage(0, 0, 0, 0), 0);
-  SetDrawMode(&(selectTrans[CurrentScreen]), 1, 1, FONT_TPAGE, 0);
+  //	SetDrawMode(&selectTrans[CurrentScreen], 1, 1, GetTPage(0, 0, 0, 0), 0);
+  SetDrawMode(&selectTrans[CurrentScreen], 1, 1, FONT_TPAGE, 0);
 
-  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(selectBox[CurrentScreen]));
-  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(selectTrans[CurrentScreen]));
+  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&selectBox[CurrentScreen]);
+  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&selectTrans[CurrentScreen]);
 }

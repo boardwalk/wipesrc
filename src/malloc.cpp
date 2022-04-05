@@ -34,7 +34,7 @@ int16_t FreeBlockError(FreeBlock* block) {
       return( 1 );
    }
 */
-  return (0);
+  return 0;
 }
 
 int16_t BitLength(int32_t size) {
@@ -48,7 +48,7 @@ int16_t BitLength(int32_t size) {
     bitsize += 1;
   }
 
-  return (bitsize);
+  return bitsize;
 }
 
 void InitDynamicMem(
@@ -159,7 +159,7 @@ FreeBlock* DSplit(
 
   if (FreeBlockError(free)) {
     Error("Malloc.c:DSplit: Free block is not valid", Warning);
-    return (NULL);
+    return NULL;
   }
 
   /* Calculate size of the split block */
@@ -185,7 +185,7 @@ FreeBlock* DSplit(
     if (block->next) {
       if (FreeBlockError(block->next)) {
         Error("Malloc.c:DSplit: Next block is not valid", Warning);
-        return (NULL);
+        return NULL;
       }
 
       block->next->prev = block;
@@ -198,9 +198,9 @@ FreeBlock* DSplit(
 
     /* Return address of split block */
 
-    return (block);
+    return block;
   } else {
-    return (NULL);
+    return NULL;
   }
 }
 
@@ -341,7 +341,7 @@ void DCoalesce(
 }
 
 // the new bound macro
-#define return_bound4(x) return ((char*)((((uintptr_t)x) + 3) & ~uintptr_t(3)))
+#define return_bound4(x) return (char*)((((uintptr_t)x) + 3) & ~uintptr_t(3))
 
 // Mark updated now returns ptr on a 4-byte boundary
 char* DAlloc(DynamicHeap* heap, int32_t size) {
@@ -372,7 +372,7 @@ char* DAlloc(DynamicHeap* heap, int32_t size) {
 
       if (FreeBlockError(free)) {
         Error("Malloc.c:DAlloc: Heap header corrupted", Warning);
-        return (NULL);
+        return NULL;
       }
 
       while (free && (free->size < size)) {
@@ -380,7 +380,7 @@ char* DAlloc(DynamicHeap* heap, int32_t size) {
 
         if (free && FreeBlockError(free)) {
           Error("Malloc.c:DAlloc: Block header corrupted", Warning);
-          return (NULL);
+          return NULL;
         }
       }
     }
@@ -474,7 +474,7 @@ char* DAlloc(DynamicHeap* heap, int32_t size) {
       return_bound4(((char*)free) + sizeof(Block));
     }
   } else {
-    return (NULL);
+    return NULL;
   }
 }
 

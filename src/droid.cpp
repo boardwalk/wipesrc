@@ -24,7 +24,7 @@ void UpdateRescueDroid(ShipData* shipIndex, Object** shipShapes, int32_t shipNo,
   VECTOR distance;
   int32_t i;
 
-  playerShip = &(shipIndex[shipNo]);
+  playerShip = &shipIndex[shipNo];
   playerShip->attr |= FLYING;
 
   if (playerShip->updateCount == 500) {

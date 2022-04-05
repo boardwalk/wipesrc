@@ -372,14 +372,14 @@ Object* LoadPrm(const char* name, int16_t textureStart) {
 
       switch (prm.f3->type) {
       case TypeF3:
-        prm.f3->colour.r = FindNearestColourIndex(&(prm.f3->colour));
+        prm.f3->colour.r = FindNearestColourIndex(&prm.f3->colour);
         prm.f3->colour.g = 0;
         prm.f3->colour.b = 0;
         prm.f3 += 1;
         break;
 
       case TypeF4:
-        prm.f4->colour.r = FindNearestColourIndex(&(prm.f4->colour));
+        prm.f4->colour.r = FindNearestColourIndex(&prm.f4->colour);
         prm.f4->colour.g = 0;
         prm.f4->colour.b = 0;
         prm.f4 += 1;
@@ -432,14 +432,14 @@ Object* LoadPrm(const char* name, int16_t textureStart) {
         break;
 
       case TypeG3:
-        prm.g3->colour[0].r = FindNearestColourIndex(&(prm.g3->colour[0]));
+        prm.g3->colour[0].r = FindNearestColourIndex(&prm.g3->colour[0]);
         prm.g3->colour[0].g = 0;
         prm.g3->colour[0].b = 0;
         prm.g3 += 1;
         break;
 
       case TypeG4:
-        prm.g4->colour[0].r = FindNearestColourIndex(&(prm.g4->colour[0]));
+        prm.g4->colour[0].r = FindNearestColourIndex(&prm.g4->colour[0]);
         prm.g4->colour[0].g = 0;
         prm.g4->colour[0].b = 0;
         prm.g4 += 1;
@@ -622,5 +622,5 @@ Object* LoadPrm(const char* name, int16_t textureStart) {
     lastObject = object;
   }
 
-  return (firstObject);
+  return firstObject;
 }

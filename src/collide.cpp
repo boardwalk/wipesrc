@@ -364,7 +364,7 @@ int32_t assign(VECTOR* vec1, VECTOR vec2) {
   vec1->vx = vec2.vx;
   vec1->vy = vec2.vy;
   vec1->vz = vec2.vz;
-  return (1); // PCwipeout
+  return 1; // PCwipeout
 }
 
 int32_t PlaneLineCollision(VECTOR plane_point, VECTOR ship_pos, SVector normal) {
@@ -381,7 +381,7 @@ int32_t PlaneLineCollision(VECTOR plane_point, VECTOR ship_pos, SVector normal) 
 
   coll_data = dot_product / norm_dot_product;
 
-  return (coll_data);
+  return coll_data;
 }
 
 void Ship2Track(ShipData* playerShip, Face* facePtr, Object** shipShapes) {
@@ -616,7 +616,7 @@ int32_t CheckPolygonCollision(Face* facePtr, VECTOR pos, int32_t alpha) {
   if ((angle <= 30000)) {
     collide = 0;
   }
-  return (collide);
+  return collide;
 }
 
 void WingCollision(ShipData* playerShip, Face* facePtr, int32_t direction, int32_t alpha) {
@@ -631,7 +631,7 @@ void WingCollision(ShipData* playerShip, Face* facePtr, int32_t direction, int32
 
   angle = AngleOfCollision(collisionVector, playerShip->unitVecNose);
 
-  Reflection(&(playerShip->vpivot), facePtr->normal);
+  Reflection(&playerShip->vpivot, facePtr->normal);
 
   playerShip->ppivot.vx -= playerShip->vpivot.vx >> 6;
   playerShip->ppivot.vy -= playerShip->vpivot.vy >> 6;
@@ -676,7 +676,7 @@ void WingCollision(ShipData* playerShip, Face* facePtr, int32_t direction, int32
 #if 0
 	chanTable[vagTable[SHIP_2_TRACK].channelID].s_attr.volume.left += magnitude;
 	chanTable[vagTable[SHIP_2_TRACK].channelID].s_attr.volume.right += magnitude;
-	SpuSetVoiceAttr(&(chanTable[vagTable[SHIP_2_TRACK].channelID].s_attr));
+	SpuSetVoiceAttr(&chanTable[vagTable[SHIP_2_TRACK].channelID].s_attr);
 #endif
 }
 
@@ -689,7 +689,7 @@ void NoseCollision(ShipData* playerShip, Face* facePtr, int32_t direction, int32
   collisionVector.vy = playerShip->nearTrkSect->centre.vy - track->vertices[(facePtr->vertex[2])].vy;
   collisionVector.vz = playerShip->nearTrkSect->centre.vz - track->vertices[(facePtr->vertex[2])].vz;
 
-  Reflection(&(playerShip->vpivot), facePtr->normal);
+  Reflection(&playerShip->vpivot, facePtr->normal);
 
   magnitude = (playerShip->speed >> 4) + 400;
   if (direction > 0)
@@ -727,7 +727,7 @@ void NoseCollision(ShipData* playerShip, Face* facePtr, int32_t direction, int32
 #if 0
 	chanTable[vagTable[SHIP_2_TRACK].channelID].s_attr.volume.left += magnitude;
 	chanTable[vagTable[SHIP_2_TRACK].channelID].s_attr.volume.right += magnitude;
-	SpuSetVoiceAttr(&(chanTable[vagTable[SHIP_2_TRACK].channelID].s_attr));
+	SpuSetVoiceAttr(&chanTable[vagTable[SHIP_2_TRACK].channelID].s_attr);
 #endif
 }
 

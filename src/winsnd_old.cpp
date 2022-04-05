@@ -141,7 +141,7 @@ LPDIRECTSOUNDBUFFER ClonePlayBuf(LPDIRECTSOUNDBUFFER buf, int32_t id) {
   ppDS->DuplicateSoundBuffer(buf, &newbuf);
   element->PlayID = newbuf;
   element->next = NULL;
-  return (newbuf);
+  return newbuf;
 }
 
 void StopSamp(LPDIRECTSOUNDBUFFER buf) {
@@ -169,13 +169,13 @@ BOOL doSndInit(uint16_t chans, uint16_t sRate, HWND hwnd, uint16_t nBits) {
 
   if (dsrval != DS_OK) {
     SoundErr("DirectSoundCreate:", dsrval);
-    return (FALSE);
+    return FALSE;
   }
 
   dsrval = ppDS->SetCooperativeLevel(hwnd, DSSCL_PRIORITY);
   if (dsrval != DS_OK) {
     SoundErr("SetCooperativeLevel:", dsrval);
-    return (FALSE);
+    return FALSE;
   }
   memset(&DSBufferParams, 0, sizeof(DSBUFFERDESC));
   DSBufferParams.dwSize = sizeof(DSBufferParams);
@@ -187,7 +187,7 @@ BOOL doSndInit(uint16_t chans, uint16_t sRate, HWND hwnd, uint16_t nBits) {
 
   if (dsrval != DS_OK) {
     SoundErr("Create Primary Failed:", dsrval);
-    return (FALSE);
+    return FALSE;
   }
 
   SoundCaps.dwSize = sizeof(SoundCaps);
@@ -214,7 +214,7 @@ BOOL doSndInit(uint16_t chans, uint16_t sRate, HWND hwnd, uint16_t nBits) {
     else if ((SoundCaps.dwFlags & DSCAPS_PRIMARY16BIT) && (nBits <= 8))
       nBits = 8;
     else {
-      return (FALSE);
+      return FALSE;
     }
 
     //Can we verify the min max rate?
@@ -238,7 +238,7 @@ BOOL doSndInit(uint16_t chans, uint16_t sRate, HWND hwnd, uint16_t nBits) {
     else if ((SoundCaps.dwFlags & DSCAPS_PRIMARYSTEREO) && !(SoundCaps.dwFlags & DSCAPS_PRIMARYMONO) && (chans == 1))
       chans = 2;
     else {
-      return (FALSE);
+      return FALSE;
     }
   }
 
@@ -259,10 +259,10 @@ BOOL doSndInit(uint16_t chans, uint16_t sRate, HWND hwnd, uint16_t nBits) {
       if (dsrval != DS_OK)
         SoundErr("Buffer restored, Primary->SetFormat:", dsrval);
     }
-    return (FALSE);
+    return FALSE;
   }
 
-  return (TRUE);
+  return TRUE;
 }
 
 LPDIRECTSOUNDBUFFER GetLoadSecondaryBuffer(char* filename, DWORD dwFlags) {
@@ -276,7 +276,7 @@ LPDIRECTSOUNDBUFFER GetLoadSecondaryBuffer(char* filename, DWORD dwFlags) {
 
   file = fopen(filename, "rb");
   if (file == NULL)
-    return (NULL);
+    return NULL;
 
   fseek(file, 0, SEEK_END);
   length = ftell(file);
@@ -302,7 +302,7 @@ LPDIRECTSOUNDBUFFER GetLoadSecondaryBuffer(char* filename, DWORD dwFlags) {
 
   if (dsrval != DS_OK) {
     SoundErr("LoadSecondary->Create:", dsrval);
-    return (NULL);
+    return NULL;
   }
 
   dsrval = buffer->Lock(0, length, &ptr1, &len1, &ptr2, &len2, 0);
@@ -322,7 +322,7 @@ LPDIRECTSOUNDBUFFER GetLoadSecondaryBuffer(char* filename, DWORD dwFlags) {
       if (dsrval != DS_OK)
         SoundErr("Buffer restored, LoadSecondary->Lock:", dsrval);
     }
-    return (NULL);
+    return NULL;
   }
 
 #ifdef BODGEIT
@@ -335,7 +335,7 @@ LPDIRECTSOUNDBUFFER GetLoadSecondaryBuffer(char* filename, DWORD dwFlags) {
 #endif
   buffer->Unlock(ptr1, len1, ptr2, len2);
 
-  return (buffer);
+  return buffer;
 }
 
 LPDIRECTSOUNDBUFFER GetCopySecondaryBuffer(void* buf, int32_t length, DWORD dwFlags) {
@@ -358,7 +358,7 @@ LPDIRECTSOUNDBUFFER GetCopySecondaryBuffer(void* buf, int32_t length, DWORD dwFl
 
   if (dsrval != DS_OK) {
     SoundErr("CopySecondary->Create:", dsrval);
-    return (NULL);
+    return NULL;
   }
 
   dsrval = buffer->Lock(0, length, &ptr1, &len1, &ptr2, &len2, 0);
@@ -378,14 +378,14 @@ LPDIRECTSOUNDBUFFER GetCopySecondaryBuffer(void* buf, int32_t length, DWORD dwFl
       if (dsrval != DS_OK)
         SoundErr("Buffer restored, CopySecondary->Lock:", dsrval);
     }
-    return (NULL);
+    return NULL;
   }
 
   //Copy goes here
   memcpy(ptr1, buffer, length);
   buffer->Unlock(ptr1, len1, ptr2, len2);
 
-  return (buffer);
+  return buffer;
 }
 
 extern HWND hwnd;
@@ -393,7 +393,7 @@ extern HWND hwnd;
 uint16_t SfxInit(uint16_t wCard, uint16_t wMixType, uint16_t wSampRate) {
   if (!doSndInit(wMixType, wSampRate, hwnd, 16)) {
     finiSndObjects();
-    return (1); //Returns 1 for failure
+    return 1; //Returns 1 for failure
   }
 
   fEntryRoot.next = NULL;
@@ -404,7 +404,7 @@ uint16_t SfxInit(uint16_t wCard, uint16_t wMixType, uint16_t wSampRate) {
   fPlayingRoot.next = NULL;
   fPlayingList = &fPlayingRoot;
 
-  return (0);
+  return 0;
 }
 
 uint16_t SfxGetFxBank(const char* filename) {
@@ -416,7 +416,7 @@ uint16_t SfxGetFxBank(const char* filename) {
   StartFEntry = currentFEntry;
   file = fopen(filename, "r"); //ascii file
   if (file == NULL) {
-    return (1); //file not found
+    return 1; //file not found
   }
 
   Sfx8Bit22kDir[0] = 0; //All directorys curent unless overriden
@@ -457,7 +457,7 @@ uint16_t SfxGetFxBank(const char* filename) {
   } /*end while*/
   if (StartFEntry->next != NULL) //We've added some
     StartFEntry = StartFEntry->next;
-  return (0);
+  return 0;
 }
 
 FENTRY* MakeNewEntry(char* ScriptLine) {
@@ -474,14 +474,14 @@ FENTRY* MakeNewEntry(char* ScriptLine) {
 
   element = element->next;
   if (element == NULL)
-    return (NULL);
+    return NULL;
 
   sscanf(ScriptLine, "%s %s", Scrap, element->filename);
   element->flags = 0;
   element->priority = 32767;
   element->id = CurrentID++;
   element->next = NULL;
-  return (element);
+  return element;
 }
 
 int16_t SfxOpenFxBank(int16_t* pwFirstId) {
@@ -496,10 +496,10 @@ int16_t SfxOpenFxBank(int16_t* pwFirstId) {
 
   NewBuffer = (LPDIRECTSOUNDBUFFER*)malloc(CurrentID * sizeof(LPDIRECTSOUNDBUFFER*));
   if (NewBuffer == NULL)
-    return (-1);
+    return -1;
   NewFlags = (DWORD*)malloc(CurrentID * sizeof(DWORD));
   if (NewFlags == NULL)
-    return (-1);
+    return -1;
 
   for (loop = 0; loop < LastStartID; loop++) {
     NewBuffer[loop] = DSSampleArray[loop]; //Copy over the existing pointers
@@ -520,7 +520,7 @@ int16_t SfxOpenFxBank(int16_t* pwFirstId) {
 
   *pwFirstId = LastStartID;
   free(SortedArray);
-  return (0);
+  return 0;
 }
 
 void SortFEntries(FENTRY* base) {
@@ -542,7 +542,7 @@ void SortFEntries(FENTRY* base) {
 int32_t Compare(const void* e1, const void* e2) {
   FENTRY** entry1 = (FENTRY**)e1;
   FENTRY** entry2 = (FENTRY**)e2;
-  return ((*entry1)->priority - (*entry2)->priority);
+  return (*entry1)->priority - (*entry2)->priority;
 }
 
 uint16_t SfxSetMaxEffects(uint16_t wNum) {
@@ -554,7 +554,7 @@ uint16_t SfxSetMaxEffects(uint16_t wNum) {
     LoopingArray[loop] = NULL; //Nothing playing to begin with
     LoopingFlags[loop] = 0;
   }
-  return (0);
+  return 0;
 }
 
 void SfxSetVolume(uint8_t bVolume) {
@@ -578,7 +578,7 @@ void SfxOff() {
 }
 
 uint16_t SfxInitReverb(uint16_t wReverbType, uint16_t wDelay) {
-  return (0);
+  return 0;
 }
 void SfxReverbOn() {
   return;
@@ -648,7 +648,7 @@ int16_t SfxPlayID(int16_t wSampleId, uint8_t bVolume, uint8_t bLRPan, uint8_t bF
   }
 
   if (loop == DSMaxFX)
-    return (-1);
+    return -1;
 
   LoopingArray[loop] = DSSampleArray[wSampleId];
   LoopingFlags[loop] = DSFlagsArray[wSampleId];
@@ -659,7 +659,7 @@ int16_t SfxPlayID(int16_t wSampleId, uint8_t bVolume, uint8_t bLRPan, uint8_t bF
     flags = 0;
 
   PlaySamp(DSSampleArray[wSampleId], flags, wSampleId);
-  return (loop);
+  return loop;
 }
 
 void SfxEffectVol(int16_t wPlayId, uint8_t bVolume) {
@@ -822,10 +822,10 @@ int16_t SfxRegisterBuffer(void* dataptr, uint32_t length, int16_t* idno, int32_t
 
   NewBuffer = (LPDIRECTSOUNDBUFFER*)malloc(CurrentID * sizeof(LPDIRECTSOUNDBUFFER*));
   if (NewBuffer == NULL)
-    return (1);
+    return 1;
   NewFlags = (DWORD*)malloc(CurrentID * sizeof(DWORD));
   if (NewFlags == NULL)
-    return (1);
+    return 1;
 
   for (loop = 0; loop < LastStartID; loop++) {
     NewBuffer[loop] = DSSampleArray[loop]; //Copy over the existing pointers
@@ -840,13 +840,13 @@ int16_t SfxRegisterBuffer(void* dataptr, uint32_t length, int16_t* idno, int32_t
   DSFlagsArray[CurrentID] = flags;
 
   if (DSSampleArray[CurrentID] == NULL)
-    return (1);
+    return 1;
 
   LastStartID = CurrentID;
   *idno = CurrentID;
   CurrentID++;
 
-  return (0);
+  return 0;
 }
 
 int32_t SoundErr(char* String, HRESULT errVal) {
@@ -899,5 +899,5 @@ switch (errVal)
  sprintf(buffer,"%s: %s", String, szMsg);
 // MessageBox(MainWin, buffer, title, MB_APPLMODAL | MB_ICONHAND | MB_OK);
 #endif
-  return (0);
+  return 0;
 }

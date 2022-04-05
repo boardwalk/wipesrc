@@ -49,13 +49,13 @@ char TrackDirection(
   angle = ang(angle);
 
   if ((angle >= -512) && (angle < 512)) {
-    return (ShipForwards);
+    return ShipForwards;
   } else if ((angle >= 512) && (angle < 1536)) {
-    return (ShipRight);
+    return ShipRight;
   } else if ((angle >= 1536) || (angle < -1536)) {
-    return (ShipBackwards);
+    return ShipBackwards;
   } else {
-    return (ShipLeft);
+    return ShipLeft;
   }
 }
 

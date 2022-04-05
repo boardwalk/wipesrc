@@ -92,7 +92,7 @@ PolyF4* GenerateQuad() {
   if (!quad) {
     /* Memory Allocation Failed! */
 
-    return (NULL);
+    return NULL;
   }
 
   SetPolyF4(quad);
@@ -101,7 +101,7 @@ PolyF4* GenerateQuad() {
 
   setXY4(quad, 32, 32, 224, 32, 32, 208, 224, 208);
 
-  return ((PolyF4*)quad);
+  return (PolyF4*)quad;
 }
 
 PolyF4* ClearScreen(
@@ -117,7 +117,7 @@ PolyF4* ClearScreen(
   if (!quad) {
     /* Memory Allocation Failed! */
 
-    return (NULL);
+    return NULL;
   }
 
   SetPolyF4(quad);
@@ -126,7 +126,7 @@ PolyF4* ClearScreen(
 
   setXY4(quad, 0, 0, 255, 0, 0, 239, 255, 239);
 
-  return ((PolyF4*)quad);
+  return (PolyF4*)quad;
 }
 
 void InitSystem() {
@@ -2134,7 +2134,7 @@ PolyF4* Quad(
     /* Memory Allocation Failed! */
 
     printf("Main.c:Quad(): Failed to allocate PolyF4\n");
-    return (NULL);
+    return NULL;
   }
 
   SetPolyF4(quad);
@@ -2147,7 +2147,7 @@ PolyF4* Quad(
          border, 240 - border,
          256 - border, 240 - border);
 
-  return ((PolyF4*)quad);
+  return (PolyF4*)quad;
 }
 
 BlkFill* BlockFill(
@@ -2177,7 +2177,7 @@ BlkFill* BlockFill(
 
   setRGB0(blk, red, green, blue);
 
-  return ((BlkFill*)blk);
+  return (BlkFill*)blk;
 }
 
 void InitFonts() {

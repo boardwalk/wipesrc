@@ -48,7 +48,7 @@ int32_t FileLength(const char* name) {
   length = ftell(file);
   fseek(file, 0L, SEEK_SET);
   fclose(file);
-  return (length);
+  return length;
 }
 
 int32_t LoadFile(const char* name, char* buffer) {
@@ -73,7 +73,7 @@ int32_t LoadFile(const char* name, char* buffer) {
   fd = iso_open(cleanname, 0);
   if (fd == -1) {
     printf("File.c:LoadFile(): Bad file name %s\n", name);
-    return (0);
+    return 0;
   }
 
   /* length is the number of bytes to the nearest SECTOR size */
@@ -86,13 +86,13 @@ int32_t LoadFile(const char* name, char* buffer) {
   if (iso_read(buffer, to_read, fd) != to_read) {
     printf("File.c:LoadFile(): Failed to load file %s\n", name);
     iso_close(fd);
-    return (0);
+    return 0;
   }
   /* So, we've read the whole sectors of the file. Now read the left overs at the end */
   if (iso_read(tmp_buf, 1, fd) != 1) {
     printf("File.c:LoadFile(): Failed to load file %s\n", name);
     iso_close(fd);
-    return (0);
+    return 0;
   }
   left_over = (length - to_read * 2048 + 3) >> 2; /* Number of int32_t words left over */
   b = (uint32_t*)(buffer + to_read * 2048); /* copy the left overs here */
@@ -106,7 +106,7 @@ int32_t LoadFile(const char* name, char* buffer) {
 
   /* Return file length */
 
-  return (length);
+  return length;
 }
 void SaveFile(const char* name, char* buffer, int32_t length) {
   printf("Save file called: %s , but not implemented 'cause we are CD FS\n", name);
@@ -132,7 +132,7 @@ int32_t FileLength(const char* name) {
 
   fd = PCopen(cleanname, 0, 0);
   if (fd == -1) {
-    return (NULL);
+    return NULL;
   }
 
   /* Seek to end of file to get length */
@@ -145,7 +145,7 @@ int32_t FileLength(const char* name) {
 
   /* Return file length */
 
-  return (length);
+  return length;
 }
 
 int32_t LoadFile(const char* name, char* buffer) {
@@ -166,7 +166,7 @@ int32_t LoadFile(const char* name, char* buffer) {
   fd = PCopen(cleanname, 0, 0);
   if (fd == -1) {
     printf("File.c:LoadFile(): Bad file name %s\n", name);
-    return (0);
+    return 0;
   }
 
   /* Seek to end of file to get length */
@@ -182,7 +182,7 @@ int32_t LoadFile(const char* name, char* buffer) {
   if (PCread(fd, buffer, length) != length) {
     printf("File.c:LoadFile(): Failed to load file %s\n", name);
     PCclose(fd);
-    return (0);
+    return 0;
   }
 
   /* Close file */
@@ -191,7 +191,7 @@ int32_t LoadFile(const char* name, char* buffer) {
 
   /* Return file length */
 
-  return (length);
+  return length;
 }
 
 void SaveFile(char* name, char* buffer, int32_t length) {
@@ -243,7 +243,7 @@ int32_t FileLength(const char* name) {
 
   fd = fopen(cleanname, "rb");
   if (fd == NULL) {
-    return (0);
+    return 0;
   }
 
   /* Seek to end of file to get length */
@@ -258,7 +258,7 @@ int32_t FileLength(const char* name) {
 
   /* Return file length */
 
-  return (length);
+  return length;
 }
 
 int32_t LoadFile(const char* name, char* buffer) {
@@ -279,7 +279,7 @@ int32_t LoadFile(const char* name, char* buffer) {
   fd = fopen(cleanname, "rb");
   if (fd == NULL) {
     printf("File.c:LoadFile(): Bad file name %s\n", name);
-    return (0);
+    return 0;
   }
 
   /* Seek to end of file to get length */
@@ -294,7 +294,7 @@ int32_t LoadFile(const char* name, char* buffer) {
   if (fread(buffer, 1, length, fd) != length) {
     printf("File.c:LoadFile(): Failed to load file %s\n", name);
     fclose(fd);
-    return (0);
+    return 0;
   }
 
   /* Close file */
@@ -303,7 +303,7 @@ int32_t LoadFile(const char* name, char* buffer) {
 
   /* Return file length */
 
-  return (length);
+  return length;
 }
 
 void SaveFile(char* name, char* buffer, int32_t length) {

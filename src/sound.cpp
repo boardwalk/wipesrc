@@ -60,10 +60,10 @@ int16_t WhatChannel(int16_t vagNo) {
   for (i = 0; i < PLAY_CHANNELS; i++) {
     if (vagNo == channel_info[i].vagNo) //is our VAG playing
     {
-      return (i);
+      return i;
     }
   }
-  return (-1);
+  return -1;
 }
 
 /*
@@ -81,12 +81,12 @@ int16_t WhatChannel(int16_t vagNo) {
 
 int32_t IsPlaying(int16_t channel) {
   if ((channel < 0) || (channel >= PLAY_CHANNELS))
-    return (0); //Revalidate the channel number
+    return 0; //Revalidate the channel number
 
   if (channel_info[channel].PlayID >= 0) //looping sound
-    return (1);
+    return 1;
   else
-    return (0);
+    return 0;
 }
 
 /*
@@ -109,7 +109,7 @@ uint8_t ConvVol(int16_t left, int16_t right) {
   Sum = left + right;
   Sum /= 2;
   PCVol = Sum >> 6;
-  return (PCVol);
+  return PCVol;
 }
 
 /*
@@ -143,7 +143,7 @@ uint8_t ConvPan(int16_t left, int16_t right) {
     if (PCPan > 30)
       PCPan = 30;
 
-    return (PCPan);
+    return PCPan;
   } else
     return 0;
 }
@@ -186,7 +186,7 @@ uint16_t ConvPitch(uint16_t Pitch) {
   }
   PCPitch *= 2;
 
-  return (PCPitch);
+  return PCPitch;
 }
 /*
 
@@ -208,7 +208,7 @@ uint8_t ConvCDVol(int16_t LeftVol, int16_t RightVol) {
   CDVol = (LeftVol + RightVol) / 2;
   PCVol = (uint8_t)(CDVol >> 7);
 
-  return (PCVol);
+  return PCVol;
 }
 
 /************************************************************/
@@ -462,7 +462,7 @@ int16_t PlayNote(int16_t vagID, int16_t priority, int16_t duration) {
   uint16_t i;
 
   if (error == NO_SOUND)
-    return (-1);
+    return -1;
 
   for (i = 0; i < PLAY_CHANNELS; i++) {
     if (channel_info[i].Playing == 0) //found a completely empty channel
@@ -487,7 +487,7 @@ int16_t PlayNote(int16_t vagID, int16_t priority, int16_t duration) {
           case CROWD:
           case REMOTE_ENG:
           case TURBULENCE:
-            return (-1);
+            return -1;
             break;
           default:
             break;
@@ -509,7 +509,7 @@ int16_t PlayNote(int16_t vagID, int16_t priority, int16_t duration) {
         channel_info[i].Duration = duration;
         channel_info[i].Priority = priority;
       }
-      return (i);
+      return i;
     }
   }
 
@@ -538,7 +538,7 @@ int16_t PlayNote(int16_t vagID, int16_t priority, int16_t duration) {
           case CROWD:
           case REMOTE_ENG:
           case TURBULENCE:
-            return (-1);
+            return -1;
             break;
           default:
             break;
@@ -560,11 +560,11 @@ int16_t PlayNote(int16_t vagID, int16_t priority, int16_t duration) {
         channel_info[i].Duration = duration;
         channel_info[i].Priority = priority;
       }
-      return (i);
+      return i;
     }
   }
 
-  return (-1); //No space for sample
+  return -1; //No space for sample
 }
 
 int16_t PlayDirectionalNote(int16_t vagID, int16_t priority, int16_t duration, VECTOR pos) {
@@ -576,7 +576,7 @@ int16_t PlayDirectionalNote(int16_t vagID, int16_t priority, int16_t duration, V
   int16_t PlayID;
 
   if (error == NO_SOUND)
-    return (-1);
+    return -1;
 
   channel = -1;
 
@@ -622,7 +622,7 @@ int16_t PlayDirectionalNote(int16_t vagID, int16_t priority, int16_t duration, V
       }
     }
   }
-  return (1);
+  return 1;
 }
 
 void SetPitch(int16_t VagID, int16_t pitch) {
@@ -718,7 +718,7 @@ int16_t AdjustDirectionalNote(int16_t vagID, int16_t priority, int16_t duration,
   if ((voll > 0) && (volr > 0)) {
     SetVolume(vagID, voll, volr);
   }
-  return (1);
+  return 1;
 }
 
 int16_t AdjustRemoteEngineSound(ShipData* shipIndex, Object** shipShapes, TrackCamera* camera) {
@@ -815,7 +815,7 @@ int16_t AdjustRemoteEngineSound(ShipData* shipIndex, Object** shipShapes, TrackC
       SetVolume(REMOTE + i, 0, 0);
     }
   }
-  return (1);
+  return 1;
 }
 
 /*********************************************************************/
@@ -875,14 +875,14 @@ void AdjustEngineSound(ShipData* playerShip, TrackCamera* camera) {
   /*
 	s_attr[TURBULENCE].volume.left = (vol>>2) + ((vol * playerShip->r_brake_rot)>>9);
 	s_attr[TURBULENCE].volume.right = (vol>>2) + ((vol * playerShip->l_brake_rot)>>9);
-	SpuSetVoiceAttr(&(s_attr[TURBULENCE]));
+	SpuSetVoiceAttr(&s_attr[TURBULENCE]);
 	*/
   SetVolume(TURBULENCE, (vol >> 2) + ((vol * playerShip->r_brake_rot) >> 9), (vol >> 2) + ((vol * playerShip->l_brake_rot) >> 9));
 }
 
 int32_t InitCD(CdlLOC* loc, int32_t trackNo) {
   ntoc = CdGetToc(loc);
-  return (ntoc);
+  return ntoc;
 }
 
 int32_t InitCrowdSound(Object** prm, int16_t prmCount, Object** lostad, int32_t stadCount) {
@@ -897,13 +897,13 @@ int32_t InitCrowdSound(Object** prm, int16_t prmCount, Object** lostad, int32_t 
         lostad[stadCount] = obj;
         stadCount++;
 
-        //				printf("Stadium = %s \n", &(obj->name) );
+        //				printf("Stadium = %s \n", &obj->name );
       }
 
       obj = obj->next;
     }
   }
-  return (stadCount);
+  return stadCount;
 }
 
 void AdjustCrowdSound(Object** lostad, int32_t stadCount) {

@@ -101,64 +101,64 @@ void HighScore(ConfigData* gameData) {
 #endif
     }
 
-    FillHighScores(&(scoreTable[0]), 15270, 16270, 17370, 17670, 18870);
-    FillHighScores(&(scoreTable[1]), 9560, 10360, 11460, 12460, 13160);
-    FillHighScores(&(scoreTable[2]), 10260, 11360, 12160, 13160, 13960);
-    FillHighScores(&(scoreTable[3]), 15080, 15780, 16980, 17680, 18889);
-    FillHighScores(&(scoreTable[4]), 14170, 15190, 15740, 16960, 17890);
-    FillHighScores(&(scoreTable[5]), 10940, 11780, 12890, 13730, 14660);
-    FillHighScores(&(scoreTable[6]), 11724, 12554, 13674, 14394, 14444);
-    FillHighScores(&(scoreTable[7]), 12040, 12810, 13720, 14860, 15780);
-    FillHighScores(&(scoreTable[8]), 8075, 8820, 9735, 10985, 11895);
-    FillHighScores(&(scoreTable[9]), 8525, 9565, 10685, 11415, 12395);
-    FillHighScores(&(scoreTable[10]), 13450, 14220, 15450, 16370, 17110);
-    FillHighScores(&(scoreTable[11]), 11460, 12220, 13310, 14340, 15270);
-    FillHighScores(&(scoreTable[12]), 9400, 10220, 11330, 12060, 13290);
-    FillHighScores(&(scoreTable[13]), 9745, 10775, 11685, 12535, 13475);
+    FillHighScores(&scoreTable[0], 15270, 16270, 17370, 17670, 18870);
+    FillHighScores(&scoreTable[1], 9560, 10360, 11460, 12460, 13160);
+    FillHighScores(&scoreTable[2], 10260, 11360, 12160, 13160, 13960);
+    FillHighScores(&scoreTable[3], 15080, 15780, 16980, 17680, 18889);
+    FillHighScores(&scoreTable[4], 14170, 15190, 15740, 16960, 17890);
+    FillHighScores(&scoreTable[5], 10940, 11780, 12890, 13730, 14660);
+    FillHighScores(&scoreTable[6], 11724, 12554, 13674, 14394, 14444);
+    FillHighScores(&scoreTable[7], 12040, 12810, 13720, 14860, 15780);
+    FillHighScores(&scoreTable[8], 8075, 8820, 9735, 10985, 11895);
+    FillHighScores(&scoreTable[9], 8525, 9565, 10685, 11415, 12395);
+    FillHighScores(&scoreTable[10], 13450, 14220, 15450, 16370, 17110);
+    FillHighScores(&scoreTable[11], 11460, 12220, 13310, 14340, 15270);
+    FillHighScores(&scoreTable[12], 9400, 10220, 11330, 12060, 13290);
+    FillHighScores(&scoreTable[13], 9745, 10775, 11685, 12535, 13475);
 
-    FillHighScores(&(scoreTable[14]), 15270, 16270, 17370, 17670, 18870);
-    FillHighScores(&(scoreTable[15]), 9560, 10360, 11460, 12460, 13160);
-    FillHighScores(&(scoreTable[16]), 10260, 11360, 12160, 13160, 13960);
-    FillHighScores(&(scoreTable[17]), 15080, 15780, 16980, 17680, 18889);
-    FillHighScores(&(scoreTable[18]), 14170, 15190, 15740, 16960, 17890);
-    FillHighScores(&(scoreTable[19]), 10940, 11780, 12890, 13730, 14660);
-    FillHighScores(&(scoreTable[20]), 11724, 12554, 13674, 14394, 14444);
-    FillHighScores(&(scoreTable[21]), 12040, 12810, 13720, 14860, 15780);
-    FillHighScores(&(scoreTable[22]), 8075, 8820, 9735, 10985, 11895);
-    FillHighScores(&(scoreTable[23]), 8525, 9565, 10685, 11415, 12395);
-    FillHighScores(&(scoreTable[24]), 13450, 14220, 15450, 16370, 17110);
-    FillHighScores(&(scoreTable[25]), 11460, 12220, 13310, 14340, 15270);
-    FillHighScores(&(scoreTable[26]), 9400, 10220, 11330, 12060, 13290);
-    FillHighScores(&(scoreTable[27]), 9745, 10775, 11685, 12535, 13475);
+    FillHighScores(&scoreTable[14], 15270, 16270, 17370, 17670, 18870);
+    FillHighScores(&scoreTable[15], 9560, 10360, 11460, 12460, 13160);
+    FillHighScores(&scoreTable[16], 10260, 11360, 12160, 13160, 13960);
+    FillHighScores(&scoreTable[17], 15080, 15780, 16980, 17680, 18889);
+    FillHighScores(&scoreTable[18], 14170, 15190, 15740, 16960, 17890);
+    FillHighScores(&scoreTable[19], 10940, 11780, 12890, 13730, 14660);
+    FillHighScores(&scoreTable[20], 11724, 12554, 13674, 14394, 14444);
+    FillHighScores(&scoreTable[21], 12040, 12810, 13720, 14860, 15780);
+    FillHighScores(&scoreTable[22], 8075, 8820, 9735, 10985, 11895);
+    FillHighScores(&scoreTable[23], 8525, 9565, 10685, 11415, 12395);
+    FillHighScores(&scoreTable[24], 13450, 14220, 15450, 16370, 17110);
+    FillHighScores(&scoreTable[25], 11460, 12220, 13310, 14340, 15270);
+    FillHighScores(&scoreTable[26], 9400, 10220, 11330, 12060, 13290);
+    FillHighScores(&scoreTable[27], 9745, 10775, 11685, 12535, 13475);
 
-    FillHighScoreNames(&(scoreTable[0]), "WIP", "EOU", "TPC", "NOT", "PSX");
-    FillHighScoreNames(&(scoreTable[1]), "AJY", "AJS", "DLS", "MAK", "JED");
-    FillHighScoreNames(&(scoreTable[2]), "JD", "AJC", "MSA", "SD", "TIM");
-    FillHighScoreNames(&(scoreTable[3]), "POL", "DAR", "JAS", "ROB", "DJR");
-    FillHighScoreNames(&(scoreTable[4]), "NIK", "SAL", "DOM", "LG", "LNK");
-    FillHighScoreNames(&(scoreTable[5]), "HAN", "PER", "FEC", "TPI", "ZZA");
-    FillHighScoreNames(&(scoreTable[6]), "CAN", "WEH", "AVE", "ABO", "NUS");
-    FillHighScoreNames(&(scoreTable[7]), "AJY", "DLS", "AJS", "MAK", "JED");
-    FillHighScoreNames(&(scoreTable[8]), "BOR", "ING", "HIS", "COR", "ES");
-    FillHighScoreNames(&(scoreTable[9]), "AJS", "DLS", "MAK", "JED", "AJY");
-    FillHighScoreNames(&(scoreTable[10]), "DLS", "DJR", "LEE", "MOC", "MPI");
-    FillHighScoreNames(&(scoreTable[11]), "MAK", "STU", "JAS", "ROB", "DOM");
-    FillHighScoreNames(&(scoreTable[12]), "JED", "NCW", "LOU", "DAR", "POL");
-    FillHighScoreNames(&(scoreTable[13]), "PC", "POL", "DAR", "DAR", "MSC");
-    FillHighScoreNames(&(scoreTable[14]), "MVE", "ALM", "POL", "NIK", "DAR");
-    FillHighScoreNames(&(scoreTable[15]), "DAR", "STU", "MOC", "DOM", "NIK");
-    FillHighScoreNames(&(scoreTable[16]), "PHO", "ENI", "XR", "ISI", "NG");
-    FillHighScoreNames(&(scoreTable[17]), "DOM", "DJR", "MPI", "GOC", "SUE");
-    FillHighScoreNames(&(scoreTable[18]), "NIK", "ROB", "AM", "JAS", "DAR");
-    FillHighScoreNames(&(scoreTable[19]), "FC", "SUE", "ROB", "JEN", "NT");
-    FillHighScoreNames(&(scoreTable[20]), "DJR", "NIK", "JAS", "NCW", "LOU");
-    FillHighScoreNames(&(scoreTable[21]), "NCW", "LEE", "STU", "JAS", "ROB");
-    FillHighScoreNames(&(scoreTable[22]), "NIK", "POL", "DAR", "STU", "ROB");
-    FillHighScoreNames(&(scoreTable[23]), "POL", "JIM", "TIM", "MOC", "PC");
-    FillHighScoreNames(&(scoreTable[24]), "TIM", "JIM", "NIK", "JAS", "LG");
-    FillHighScoreNames(&(scoreTable[25]), "LG", "LOU", "JIM", "HAN", "NT");
-    FillHighScoreNames(&(scoreTable[26]), "STU", "DAV", "DOM", "MOR", "GAN");
-    FillHighScoreNames(&(scoreTable[27]), "THA", "NKS", "FOR", "PLA", "YIN");
+    FillHighScoreNames(&scoreTable[0], "WIP", "EOU", "TPC", "NOT", "PSX");
+    FillHighScoreNames(&scoreTable[1], "AJY", "AJS", "DLS", "MAK", "JED");
+    FillHighScoreNames(&scoreTable[2], "JD", "AJC", "MSA", "SD", "TIM");
+    FillHighScoreNames(&scoreTable[3], "POL", "DAR", "JAS", "ROB", "DJR");
+    FillHighScoreNames(&scoreTable[4], "NIK", "SAL", "DOM", "LG", "LNK");
+    FillHighScoreNames(&scoreTable[5], "HAN", "PER", "FEC", "TPI", "ZZA");
+    FillHighScoreNames(&scoreTable[6], "CAN", "WEH", "AVE", "ABO", "NUS");
+    FillHighScoreNames(&scoreTable[7], "AJY", "DLS", "AJS", "MAK", "JED");
+    FillHighScoreNames(&scoreTable[8], "BOR", "ING", "HIS", "COR", "ES");
+    FillHighScoreNames(&scoreTable[9], "AJS", "DLS", "MAK", "JED", "AJY");
+    FillHighScoreNames(&scoreTable[10], "DLS", "DJR", "LEE", "MOC", "MPI");
+    FillHighScoreNames(&scoreTable[11], "MAK", "STU", "JAS", "ROB", "DOM");
+    FillHighScoreNames(&scoreTable[12], "JED", "NCW", "LOU", "DAR", "POL");
+    FillHighScoreNames(&scoreTable[13], "PC", "POL", "DAR", "DAR", "MSC");
+    FillHighScoreNames(&scoreTable[14], "MVE", "ALM", "POL", "NIK", "DAR");
+    FillHighScoreNames(&scoreTable[15], "DAR", "STU", "MOC", "DOM", "NIK");
+    FillHighScoreNames(&scoreTable[16], "PHO", "ENI", "XR", "ISI", "NG");
+    FillHighScoreNames(&scoreTable[17], "DOM", "DJR", "MPI", "GOC", "SUE");
+    FillHighScoreNames(&scoreTable[18], "NIK", "ROB", "AM", "JAS", "DAR");
+    FillHighScoreNames(&scoreTable[19], "FC", "SUE", "ROB", "JEN", "NT");
+    FillHighScoreNames(&scoreTable[20], "DJR", "NIK", "JAS", "NCW", "LOU");
+    FillHighScoreNames(&scoreTable[21], "NCW", "LEE", "STU", "JAS", "ROB");
+    FillHighScoreNames(&scoreTable[22], "NIK", "POL", "DAR", "STU", "ROB");
+    FillHighScoreNames(&scoreTable[23], "POL", "JIM", "TIM", "MOC", "PC");
+    FillHighScoreNames(&scoreTable[24], "TIM", "JIM", "NIK", "JAS", "LG");
+    FillHighScoreNames(&scoreTable[25], "LG", "LOU", "JIM", "HAN", "NT");
+    FillHighScoreNames(&scoreTable[26], "STU", "DAV", "DOM", "MOR", "GAN");
+    FillHighScoreNames(&scoreTable[27], "THA", "NKS", "FOR", "PLA", "YIN");
 
 #if PAL
     scoreTable[0].lapRecord = (4950 / 60) * FR60 + 200;
@@ -260,12 +260,12 @@ void HighScore(ConfigData* gameData) {
           if (charVal == 26 || charVal == 27)
             AddDelEnd((charVal - 26), text_data(charX, charY, 16), WhiteText);
           else
-            AddText(&(dispChar[0]), text_data(charX, charY, 16), WhiteText);
+            AddText(&dispChar[0], text_data(charX, charY, 16), WhiteText);
         } else {
           if (charVal == 26 || charVal == 27)
             AddDelEnd((charVal - 26), text_data(charX, charY, 16), RedText);
           else
-            AddText(&(dispChar[0]), text_data(charX, charY, 16), RedText);
+            AddText(&dispChar[0], text_data(charX, charY, 16), RedText);
         }
       }
 
@@ -363,7 +363,7 @@ void HighScore(ConfigData* gameData) {
     /*
 			for (i=0; i < NumNames; i++)
 			{
-				AddText (&(scoreTable[(gameData->trackNum-1)].names[i][0]), text_data (40, (80+(spacing*i)), 16), WhiteText) ;
+				AddText (&scoreTable[gameData->trackNum-1].names[i][0], text_data (40, (80+(spacing*i)), 16), WhiteText) ;
 
 				if (scoreTable[(gameData->trackNum-1)].lapTimes[i] == 2000000000)
 					AddTime(0,
@@ -377,12 +377,12 @@ void HighScore(ConfigData* gameData) {
     DisplayHiScore((gameData->trackNum - 1));
 
     if (userEntry) {
-      AddText(&(nameEntered[0]), text_data(40, charY, 16), WhiteText);
+      AddText(&nameEntered[0], text_data(40, charY, 16), WhiteText);
       AddTime(bestLap,
               text_data(165, charY, 16), RedText);
     }
 
-    ShowMenuBackground(&(scorePrim[0]), &(scorePrim1[0]), timInfo);
+    ShowMenuBackground(&scorePrim[0], &scorePrim1[0], timInfo);
 
     AddPrim(OT[CurrentScreen], OT_SIZE - 1, (P_TAG*)clear[CurrentScreen]);
     Swap();
@@ -475,16 +475,16 @@ char CheckLapRecord(ConfigData* gameData, ShipData* shipInfo, int32_t shipNo) {
         check = 0;
     }
 
-    return (check);
+    return check;
   } else {
     if (shipInfo[ownShip].lapTimes[((shipInfo[ownShip].lapNo) - 2)] < scoreTable[scoreTrack].lapRecord) {
       scoreTable[scoreTrack].lapRecord = shipInfo[ownShip].lapTimes[((shipInfo[ownShip].lapNo) - 2)];
       scoreTable[scoreTrack].lapRecordPilot = gameData->shipNum;
 
-      return (1);
+      return 1;
     }
 
-    return (0);
+    return 0;
   }
 }
 
@@ -498,16 +498,16 @@ void DisplayHiScore(char trackNum) {
   for (i = 0; i < NumNames; i++) {
     if (i == -1) {
       if ((toggleDisplay % 3) == 0) {
-        AddText(&(scoreTable[trackNum].names[i][0]), text_data(40, (80 + (spacing * i)), 16), WhiteText);
+        AddText(&scoreTable[trackNum].names[i][0], text_data(40, (80 + (spacing * i)), 16), WhiteText);
         AddTime(scoreTable[trackNum].lapTimes[i],
                 text_data(165, (80 + (spacing * i)), 16), WhiteText);
       } else {
-        AddText(&(scoreTable[trackNum].names[i][0]), text_data(40, (80 + (spacing * i)), 16), RedText);
+        AddText(&scoreTable[trackNum].names[i][0], text_data(40, (80 + (spacing * i)), 16), RedText);
         AddTime(scoreTable[trackNum].lapTimes[i],
                 text_data(165, (80 + (spacing * i)), 16), RedText);
       }
     } else {
-      AddText(&(scoreTable[trackNum].names[i][0]), text_data(40, (80 + (spacing * i)), 16), WhiteText);
+      AddText(&scoreTable[trackNum].names[i][0], text_data(40, (80 + (spacing * i)), 16), WhiteText);
       AddTime(scoreTable[trackNum].lapTimes[i],
               text_data(165, (80 + (spacing * i)), 16), RedText);
     }
@@ -642,17 +642,17 @@ void NewHighScoreDraw(ConfigData* gameData, HiScoreData* hiScoreData) {
         if (hiScoreData->charVal == 26 || hiScoreData->charVal == 27)
           AddDelEnd((hiScoreData->charVal - 26), text_data(hiScoreData->charX, charY, 16), WhiteText);
         else
-          AddText(&(hiScoreData->dispChar[0]), text_data(hiScoreData->charX, charY, 16), WhiteText);
+          AddText(&hiScoreData->dispChar[0], text_data(hiScoreData->charX, charY, 16), WhiteText);
       } else {
         if (hiScoreData->charVal == 26 || hiScoreData->charVal == 27)
           AddDelEnd((hiScoreData->charVal - 26), text_data(hiScoreData->charX, charY, 16), RedText);
         else
-          AddText(&(hiScoreData->dispChar[0]), text_data(hiScoreData->charX, charY, 16), RedText);
+          AddText(&hiScoreData->dispChar[0], text_data(hiScoreData->charX, charY, 16), RedText);
       }
     }
 
     if (hiScoreData->userEntry) {
-      AddText(&(hiScoreData->nameEntered[0]), text_data(40, charY, 16), WhiteText);
+      AddText(&hiScoreData->nameEntered[0], text_data(40, charY, 16), WhiteText);
       AddTime(hiScoreData->bestLap,
               text_data(165, charY, 16), RedText);
     }
@@ -724,7 +724,7 @@ int32_t CheckHiScore(ConfigData* gameData, HiScoreData* hiScoreData) {
     }
   }
 
-  return (highScore);
+  return highScore;
 }
 
 void InitHiScoreData(HiScoreData* hiScoreData) {

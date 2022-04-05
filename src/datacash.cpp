@@ -11,5 +11,5 @@ uint32_t* make_data_cache() {
     exit(-1);
   }
 
-  return (cache_addr);
+  return cache_addr;
 }

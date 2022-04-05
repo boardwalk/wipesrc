@@ -340,7 +340,7 @@ void oldmain() {
 
     if ((gameData.gameType != CHAMPIONSHIP) && (mode != ATTRACT)) {
       SetDrawDistance(HIGH_DISTANCE);
-      MenuControl(&(gameData), titleScreen, &mode, timeout);
+      MenuControl(&gameData, &mode, timeout);
     }
 
     if (andybodge == 2) {

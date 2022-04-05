@@ -12,5 +12,5 @@ P_TAG* ClearOTagR(P_TAG* ot, int32_t n) {
   }
 
   ot->addr = NULL;
-  return (i);
+  return i;
 }

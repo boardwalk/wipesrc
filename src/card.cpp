@@ -63,9 +63,9 @@ int32_t GetCardInfo(int32_t cardNum) {
     _card_info(16);
 
   cardStatus = CheckCardEvents();
-  return (cardStatus);
+  return cardStatus;
 #endif // PCwipeout
-  return (0); // PCwipeout
+  return 0; // PCwipeout
 }
 
 int32_t CheckHWCardEvents() {
@@ -88,7 +88,7 @@ int32_t CheckHWCardEvents() {
     }
   }
 #endif //	PCwipeout
-  return (0); // PCwipeout
+  return 0; // PCwipeout
 }
 
 void ClearEventHW() {
@@ -106,9 +106,9 @@ int32_t CardContentStatus() {
 
   cardStatus = CheckCardEvents();
 
-  return (cardStatus);
+  return cardStatus;
 #endif // PCwipeout
-  return (0); // PCwipeout
+  return 0; // PCwipeout
 }
 
 void LoadCard(int32_t cardNum) {
@@ -130,10 +130,10 @@ char SaveCardFile(char* saveName, int32_t cardNum, ConfigData* gameData, int16_t
   strcat(fileName, saveName);
   strcat(fileName, FILE_EXTENSION);
 
-  if (!WriteFile(&(header[0]), &(fileName[0]), gameData, sliderVol))
-    return (0);
+  if (!WriteFile(&header[0], &fileName[0], gameData, sliderVol))
+    return 0;
 
-  return (1);
+  return 1;
 }
 
 void GetHeader(char* header) {
@@ -149,14 +149,14 @@ char WriteFile(char* header, char* fileName, ConfigData* gameData, int16_t slide
   int32_t* long_ptr;
 
   if ((fd = fopen(fileName, "wb")) == NULL)
-    return (0);
+    return 0;
   else {
     temp = fwrite(scoreTable, ((sizeof(HiScores)) * (HiScoreTracks * 2)), 1, fd);
 
     if (temp != 1)
-      return (0);
+      return 0;
 
-    short_ptr = (int16_t*)&(saveBuffer[0]);
+    short_ptr = (int16_t*)&saveBuffer[0];
     *short_ptr++ = sliderVol;
 
     *short_ptr++ = JoyMinX;
@@ -202,10 +202,10 @@ char WriteFile(char* header, char* fileName, ConfigData* gameData, int16_t slide
     temp = fwrite(saveBuffer, sizeof(saveBuffer), 1, fd);
 
     if (temp != 1)
-      return (0);
+      return 0;
 
     fclose(fd);
-    return (1);
+    return 1;
   }
 }
 
@@ -293,18 +293,18 @@ char LoadCardData(char* loadName, int32_t cardNum, ConfigData* gameData, Selecti
 
   if ((fd = fopen(fileName, "rb")) == NULL) {
     printf("Error opening file %s for read \n", fileName);
-    return (0);
+    return 0;
   } else {
     temp = fread(scoreTable, (sizeof(HiScores) * (HiScoreTracks * 2)), 1, fd);
 
     if (temp != 1) {
       printf("Error reading data from file %s\n", fileName);
-      return (0);
+      return 0;
     }
 
     temp = fread(loadBuffer, sizeof(loadBuffer), 1, fd);
 
-    short_ptr = (int16_t*)&(loadBuffer[0]);
+    short_ptr = (int16_t*)&loadBuffer[0];
     gameData->currSliderPos = *short_ptr++;
     SfxSetVolume((char)((0x3fff - (75 * gameData->currSliderPos)) >> 6));
 #ifdef PORT_SOUND
@@ -443,6 +443,6 @@ char LoadCardData(char* loadName, int32_t cardNum, ConfigData* gameData, Selecti
     SfxSetVolume((char)((0x3fff - (75 * gameData->currSliderPos)) >> 6));
 
     fclose(fd);
-    return (1);
+    return 1;
   }
 }

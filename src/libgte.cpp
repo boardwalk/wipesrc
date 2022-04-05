@@ -53,7 +53,7 @@ int32_t slow_rsin(int32_t a) {
 }
 
 int32_t ratan2(int32_t y, int32_t x) {
-  return ((int32_t)((atan2((double)y, (double)x)) * 652));
+  return (int32_t)((atan2((double)y, (double)x)) * 652);
 }
 
 void CreateSineTable() {
@@ -100,7 +100,7 @@ int32_t AverageZ3(int32_t sz0, int32_t sz1, int32_t sz2) {
   a += b; // +1/256
   b >>= 2;
   a += b; // +1/1024
-  return (a >> 2);
+  return a >> 2;
 }
 
 int32_t AverageZ4(int32_t sz0, int32_t sz1, int32_t sz2, int32_t sz3) {
@@ -261,7 +261,7 @@ int32_t NormalClip(DVECTOR sxy0, DVECTOR sxy1, DVECTOR sxy2) {
   dx2 = xy2->vx - xy0->vx;
   dy2 = xy2->vy - xy0->vy;
 
-  return ((dx1 * dy2) - (dy1 * dx2));
+  return (dx1 * dy2) - (dy1 * dx2);
 }
 
 void NormalColorCol(SVECTOR* v0, CVECTOR* v1, CVECTOR* v2) {
@@ -592,11 +592,11 @@ void SetLightMatrix(MATRIX* m) {
 }
 
 void SetRotMatrix(MATRIX* m) {
-  memcpy(&(RTM.m), &(m->m), sizeof(int16_t) * 9);
+  memcpy(&RTM.m, &m->m, sizeof(int16_t) * 9);
 }
 
 void SetTransMatrix(MATRIX* m) {
-  memcpy(&(RTM.t), &(m->t), sizeof(int32_t) * 3);
+  memcpy(&RTM.t, &m->t, sizeof(int32_t) * 3);
 }
 
 int32_t SquareRoot0(int32_t a) {

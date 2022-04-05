@@ -160,7 +160,7 @@ void shipTrkReaction(ShipData* playerShip, Object** shipShapes) {
     if (alpha <= 0) {
       PlayDirectionalNote(SHIP_2_TRACK, 1, 20, playerShip->ppivot);
 
-      Reflection(&(playerShip->vpivot), facePtr->normal);
+      Reflection(&playerShip->vpivot, facePtr->normal);
 
       playerShip->vpivot.vx -= (playerShip->vpivot.vx) >> 3;
       playerShip->vpivot.vy -= (playerShip->vpivot.vy) >> 3;
@@ -443,7 +443,7 @@ void SetUnitVectors(ShipData* shipIndex) {
       shipIndex[i].unitVecWing.vz = ((sy * cz) >> 12) - ((((cy * sx) >> 12) * sz) >> 12);
 
       shipIndex[i].prevShipSect = shipIndex[i].nearTrkSect;
-      SectionSearch(&(shipIndex[i]));
+      SectionSearch(&shipIndex[i]);
 
       shipIndex[i].prevSecNo = shipIndex[i].prevShipSect->secNo;
       shipIndex[i].nearSecNo = shipIndex[i].nearTrkSect->secNo;
@@ -536,5 +536,5 @@ int32_t SetTrackAttributes(TrackSection* section,
     facePtr->blue = 0;
   }
 
-  return (noWeaponGrids);
+  return noWeaponGrids;
 }

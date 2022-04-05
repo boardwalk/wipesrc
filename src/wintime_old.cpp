@@ -81,5 +81,5 @@ void DestroyTimer(int32_t* cttimer) {
 }
 
 int32_t HowLong() {
-  return ((int32_t)timeGetTime());
+  return (int32_t)timeGetTime();
 }

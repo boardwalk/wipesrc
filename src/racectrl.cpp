@@ -512,7 +512,7 @@ void raceinit() {
     //   printf("after win lose\n");
 
     initShipData(track->sections, ctrlshipIndex, gameData);
-    InitRescueDroid(&ctrlrescueDroid, ctrlshipShapes, &(ctrlshipIndex[ownShip]));
+    InitRescueDroid(&ctrlrescueDroid, ctrlshipShapes, &ctrlshipIndex[ownShip]);
 
     initWeapons(ctrlweaponShapes, ctrlcamera.camPos, ctrlweaponIndex, ctrlTarget);
 
@@ -940,15 +940,15 @@ void racectrl() {
     else
       UpdateShipsSerial(ctrlshipIndex, ctrlweaponShapes, ctrlshipShapes, ctrlweaponIndex);
 
-    (ctrlrescueDroid.droidUpdate)(&ctrlrescueDroid, &(ctrlshipIndex[ownShip]), ctrlshipShapes);
+    ctrlrescueDroid.droidUpdate(&ctrlrescueDroid, &ctrlshipIndex[ownShip], ctrlshipShapes);
 
 #if COLLIDE_TEST
     CameraUpdate = UpdateCameraCollideTest;
 #endif
     if (RobTest || ctrldoneExtro == UPDATE_EXTRO) {
-      (CameraUpdate)(&ctrlcamera, ctrlshipIndex, &ctrlrescueDroid);
+      CameraUpdate(&ctrlcamera, ctrlshipIndex, &ctrlrescueDroid);
     } else {
-      (CameraUpdate)(&ctrlcamera, &(ctrlshipIndex[ownShip]), &ctrlrescueDroid);
+      CameraUpdate(&ctrlcamera, &ctrlshipIndex[ownShip], &ctrlrescueDroid);
     }
 
     UpdateCone(&ctrlcone);
@@ -957,7 +957,7 @@ void racectrl() {
       if (((ctrlshipIndex[ownShip].weaponType == MISSILE) || (ctrlshipIndex[ownShip].weaponType == ELEC_BOLT) ||
            (ctrlshipIndex[ownShip].weaponType == REV_CON)) &&
           (ctrlshipIndex[ownShip].attr & RACING)) {
-        MissileLock(&(ctrlshipIndex[ownShip]), ctrlshipIndex, ctrlshipShapes, ctrlTarget);
+        MissileLock(&ctrlshipIndex[ownShip], ctrlshipIndex, ctrlshipShapes, ctrlTarget);
       }
 
       ShakeScreen();
@@ -968,7 +968,7 @@ void racectrl() {
     if (gameType == SINGLE)
       CallShip2ShipCollision(ctrlshipIndex, ctrlshipShapes);
 
-    //AdjustEngineSound(&(ctrlshipIndex[ownShip]), &ctrlcamera);
+    //AdjustEngineSound(&ctrlshipIndex[ownShip], &ctrlcamera);
 
     //AdjustCrowdSound(ctrllostad, ctrlstadCount);
     //AdjustRemoteEngineSound(ctrlshipIndex, ctrlshipShapes, &ctrlcamera );
@@ -1611,7 +1611,7 @@ void racectrl() {
 						}
 					}
 					packetData->controlData = &neg1 ;
-					(packetData->combatControl)(packetData, &(ctrlshipIndex[0])) ;
+					packetData->combatControl(packetData, &ctrlshipIndex[0]) ;
 					SetSerialData(ctrlshipIndex, ctrlshipShapes);
 					CallShip2ShipCollision(ctrlshipIndex, ctrlshipShapes);
 				}

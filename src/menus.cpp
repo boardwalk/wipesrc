@@ -451,7 +451,7 @@ void reloadScr() {
   menuScreen = JJSLoad16BitTexture("wipeout/textures/wipeout1.tim", VRAM);
 }
 
-void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int32_t timeout) {
+void MenuControl(ConfigData* gameData, int32_t* mode, int32_t timeout) {
   BlkFill* clear[2];
   Menus menuSystem[MAX_MENUS];
   int32_t currMenu = -2;
@@ -556,7 +556,7 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
   menuSystem[DETAILS_MENU].menuModel = shipShapes;
 
   InitMenuDisplay(90);
-  InitLoadSave(&(loadGames[0]));
+  InitLoadSave(&loadGames[0]);
   InitMusicVSfx(&musicTex);
   InitButtons("buttons");
 
@@ -575,9 +575,9 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
   // TODO(boardwalk) Is this ever used?
   LoadTexture("wipeout/textures/copyrigt.tim", 1);
 
-  InitMenuSystem(&(menuSystem[0]));
+  InitMenuSystem(&menuSystem[0]);
 
-  selectData.menuSystem = &(menuSystem[0]);
+  selectData.menuSystem = &menuSystem[0];
 
   clear[0] = BlockFill(0, 0, 320, 240, 0x00, 0x00, 0x00);
   clear[1] = BlockFill(0, 240, 320, 240, 0x00, 0x00, 0x00);
@@ -647,7 +647,7 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
     }
 
     if (currMenu != -2) {
-      MenuErrors(&currMenu, &(menuSystem[0]));
+      MenuErrors(&currMenu, &menuSystem[0]);
       if (menuSystem[currMenu].errorFlag != NO_ERROR) {
         selectData.fadeHeight = 0;
         selectData.select = 0;
@@ -657,17 +657,17 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
     if (menuSystem[currMenu].updateCount != 0 && menuSystem[currMenu].errorFlag == NO_ERROR)
       menuSystem[currMenu].updateCount--;
 
-    //		ShowMenuBackground (&(menuPrim[0]), &(menu1Prim[0]), menuScreen) ; // PCwipeout
+    //		ShowMenuBackground (&menuPrim[0], &menu1Prim[0], menuScreen) ; // PCwipeout
 
     if (currMenu == -2)
       currMenu = 0;
 
     if (menuSystem[currMenu].errorFlag == NO_ERROR) {
       if (currMenu >= 0)
-        CallMenuSelector(&(menuSystem[0]), &currMenu, &currOption, shipShapes, gameData, &musicPrims, &musicTex, &selectData, &(loadGames[0]));
+        CallMenuSelector(&menuSystem[0], &currMenu, &currOption, shipShapes, gameData, &musicPrims, &musicTex, &selectData, &loadGames[0]);
 
       if (currMenu == TRACK_MENU)
-        DisplayWinLose(trackTex[currOption], &(trackPrims[0]), 96, 50, 74, MENU);
+        DisplayWinLose(trackTex[currOption], &trackPrims[0], 96, 50, 74, MENU);
 
       if (((currMenu == SAVE_MENU) || (currMenu == LOAD_MENU)) && (selectData.formatCard == 1)) {
         currMenu = FORMAT_CONFIRM;
@@ -690,11 +690,11 @@ void MenuControl(ConfigData* gameData, TimData* titleScreen, int32_t* mode, int3
         }
 
         if (menuSystem[currMenu].updateCount == 0)
-          CallMenuActivator(gameData, &currMenu, &currOption, &(menuSystem[0]), &selectData, &(loadGames[0]));
+          CallMenuActivator(gameData, &currMenu, &currOption, &menuSystem[0], &selectData, &loadGames[0]);
       }
 
       if (davebodge == 2 || davebodge == 3 || davebodge == 4)
-        CallMenuActivator(gameData, &currMenu, &currOption, &(menuSystem[0]), &selectData, &(loadGames[0]));
+        CallMenuActivator(gameData, &currMenu, &currOption, &menuSystem[0], &selectData, &loadGames[0]);
     }
 
     if (currMenu == TRACK_MENU) {
@@ -995,7 +995,7 @@ void CallMenuActivator(ConfigData* gameData, int32_t* currMenu, int32_t* currOpt
           break; /* UNFORMATTED */
         }
       }
-      LoadCardFiles(selectData, &(loadGames[0]), selectData->cardNum);
+      LoadCardFiles(selectData, &loadGames[0], selectData->cardNum);
       *currMenu = LOAD_MENU;
       *currOption = 0;
     }
@@ -1048,7 +1048,7 @@ void CallMenuActivator(ConfigData* gameData, int32_t* currMenu, int32_t* currOpt
         }
       }
 
-      LoadCardFiles(selectData, &(loadGames[0]), selectData->cardNum);
+      LoadCardFiles(selectData, &loadGames[0], selectData->cardNum);
       *currMenu = ENTER_GAME_NAME;
       *currOption = 0;
     }
@@ -1275,7 +1275,7 @@ void CallMenuActivator(ConfigData* gameData, int32_t* currMenu, int32_t* currOpt
     //		selectData->nameEntered[strlen(selectData->nameEntered)-1] = 0 ;
     //		selectData->confirm = 1 ;
 
-    CheckSaveType(selectData, &(loadGames[0]), gameData);
+    CheckSaveType(selectData, &loadGames[0], gameData);
 
     strcpy(DaveSave, SaveDirBase);
     strcat(DaveSave, "/");
@@ -1435,7 +1435,7 @@ void CallMenuActivator(ConfigData* gameData, int32_t* currMenu, int32_t* currOpt
 				  selectData->formatCard = 0 ;
 				  *currOption = 0 ;
 				  selectData->card1 = FORMATTED ;
-				  InitLoadSave (&(loadGames[0])) ;
+				  InitLoadSave (&loadGames[0]) ;
 				  selectData->slotRow = 0 ;
 				  selectData->slotColumn = 0 ;
 				  selectData->slotsFilled = 0 ;
@@ -1460,7 +1460,7 @@ void CallMenuActivator(ConfigData* gameData, int32_t* currMenu, int32_t* currOpt
 				  selectData->formatCard = 0 ;
 				  *currOption = 0 ;
 				  selectData->card2 = FORMATTED ;
-				  InitLoadSave (&(loadGames[0])) ;
+				  InitLoadSave (&loadGames[0]) ;
 				  selectData->slotRow = 0 ;
 				  selectData->slotColumn = 0 ;
 				  selectData->slotsFilled = 0 ;
@@ -1707,27 +1707,27 @@ void CallMenuSelector(Menus* menuSystem, int32_t* currMenu, int32_t* currOption,
 
     menuPointer = (Texture*)TextureTable[DRTEXT_8 + 1];
 
-    SetPolyFT4(&(musicPrims->pointer));
+    SetPolyFT4(&musicPrims->pointer);
     musicPrims->pointer.r0 = 230; // PCwipeout
     musicPrims->pointer.g0 = 0;
     musicPrims->pointer.b0 = BLACK_NOT_DRAWN;
 
-    setXY4(&(musicPrims->pointer), textX - 29, textY + ((*currOption % 5) * offSet),
+    setXY4(&musicPrims->pointer, textX - 29, textY + (*currOption % 5) * offSet,
            textX - 5, textY + ((*currOption % 5) * offSet),
            textX - 29, textY + 16 + ((*currOption % 5) * offSet),
            textX - 5, textY + 16 + ((*currOption % 5) * offSet));
 
-    setUV4(&(musicPrims->pointer), menuPointer->u0, menuPointer->v0,
+    setUV4(&musicPrims->pointer, menuPointer->u0, menuPointer->v0,
            menuPointer->u1, menuPointer->v1,
            menuPointer->u2, menuPointer->v2 + 1,
            menuPointer->u3, menuPointer->v3 + 1);
 
-    setTPage(&(musicPrims->pointer), 0, 0, menuPointer->textureX, menuPointer->textureY);
+    setTPage(&musicPrims->pointer, 0, 0, menuPointer->textureX, menuPointer->textureY);
     musicPrims->pointer.clut = menuPointer->cba;
 
   } else {
     if (menuSystem[(*currMenu)].displayMenu != 0)
-      (menuSystem[(*currMenu)].displayMenu)(musicPrims, musicTex, selectData, &(loadGames[0]), gameData);
+      (menuSystem[(*currMenu)].displayMenu)(musicPrims, musicTex, selectData, &loadGames[0], gameData);
   }
 
   if (menuSystem[(*currMenu)].displayObject != 0) {
@@ -2376,23 +2376,23 @@ void InitMenuSystem(Menus* menuSystem) {
 void ShowMenuBackground(POLY_FT4* menuPrim, POLY_FT4* menu1Prim, TimData* timSize) {
   /* Display 16 bit image but split over two primitives, lower half of VRAM */
 
-  SetPolyFT4(&(menuPrim[CurrentScreen]));
+  SetPolyFT4(&menuPrim[CurrentScreen]);
   menuPrim[CurrentScreen].code = 0x2d;
-  setXY4(&(menuPrim[CurrentScreen]), 0, 0, timSize->textureW / 2, 0, 0, timSize->textureH, timSize->textureW / 2, timSize->textureH);
-  setUV4(&(menuPrim[CurrentScreen]), 0, 0, timSize->textureW / 2, 0, 0, timSize->textureH - 1, timSize->textureW / 2, timSize->textureH - 1);
-  setTPage(&(menuPrim[CurrentScreen]), 2, 0, timSize->textureX, timSize->textureY);
+  setXY4(&menuPrim[CurrentScreen], 0, 0, timSize->textureW / 2, 0, 0, timSize->textureH, timSize->textureW / 2, timSize->textureH);
+  setUV4(&menuPrim[CurrentScreen], 0, 0, timSize->textureW / 2, 0, 0, timSize->textureH - 1, timSize->textureW / 2, timSize->textureH - 1);
+  setTPage(&menuPrim[CurrentScreen], 2, 0, timSize->textureX, timSize->textureY);
 
   menuPrim[CurrentScreen].r0 = 230;
   menuPrim[CurrentScreen].g0 = 0;
   menuPrim[CurrentScreen].b0 = BLACK_NOT_DRAWN;
   AddPrim(OT[CurrentScreen], 4095, (P_TAG*)&menuPrim[CurrentScreen]);
 
-  SetPolyFT4(&(menu1Prim[CurrentScreen]));
+  SetPolyFT4(&menu1Prim[CurrentScreen]);
   menu1Prim[CurrentScreen].code = 0x2d;
 
-  setXY4(&(menu1Prim[CurrentScreen]), timSize->textureW / 2, 0, timSize->textureW, 0, timSize->textureW / 2, timSize->textureH, timSize->textureW, timSize->textureH);
-  setUV4(&(menuPrim[CurrentScreen]), 0, 0, timSize->textureW / 2, 0, 0, timSize->textureH - 1, timSize->textureW / 2, timSize->textureH - 1);
-  setTPage(&(menu1Prim[CurrentScreen]), 2, 0, timSize->textureX + 128, timSize->textureY);
+  setXY4(&menu1Prim[CurrentScreen], timSize->textureW / 2, 0, timSize->textureW, 0, timSize->textureW / 2, timSize->textureH, timSize->textureW, timSize->textureH);
+  setUV4(&menuPrim[CurrentScreen], 0, 0, timSize->textureW / 2, 0, 0, timSize->textureH - 1, timSize->textureW / 2, timSize->textureH - 1);
+  setTPage(&menu1Prim[CurrentScreen], 2, 0, timSize->textureX + 128, timSize->textureY);
 
   menu1Prim[CurrentScreen].r0 = 230;
   menu1Prim[CurrentScreen].g0 = 0;
@@ -2690,48 +2690,48 @@ void MusicVSfx(MusicPrims* musicPrims, SlideTextures* musicTex, SelectionData* s
   }
 
   /*	Slider overlay knob */
-  SetPolyFT4(&(musicPrims->sliderPrim));
+  SetPolyFT4(&musicPrims->sliderPrim);
   musicPrims->sliderPrim.r0 = 230; // PCwipeout
   musicPrims->sliderPrim.g0 = 0;
   musicPrims->sliderPrim.b0 = BLACK_NOT_DRAWN;
 
-  setXY4(&(musicPrims->sliderPrim), (slidePosx - 9) + sliderLeftOffset + gameData->oldSliderPos, slidePosy - 24,
+  setXY4(&musicPrims->sliderPrim, (slidePosx - 9) + sliderLeftOffset + gameData->oldSliderPos, slidePosy - 24,
          (slidePosx - 9) + sliderRightOffset + gameData->oldSliderPos, slidePosy - 24,
          (slidePosx - 9) + sliderLeftOffset + gameData->oldSliderPos, slidePosy + 52,
          (slidePosx - 9) + sliderRightOffset + gameData->oldSliderPos, slidePosy + 52);
 
-  setUV4(&(musicPrims->sliderPrim), musicTex->sliderTex->u0, musicTex->sliderTex->v0,
+  setUV4(&musicPrims->sliderPrim, musicTex->sliderTex->u0, musicTex->sliderTex->v0,
          musicTex->sliderTex->u1 + 1, musicTex->sliderTex->v1,
          musicTex->sliderTex->u2, musicTex->sliderTex->v2 + 1,
          musicTex->sliderTex->u3 + 1, musicTex->sliderTex->v3 + 1);
 
-  setTPage(&(musicPrims->sliderPrim), 0, 0, musicTex->sliderTex->textureX, musicTex->sliderTex->textureY);
+  setTPage(&musicPrims->sliderPrim, 0, 0, musicTex->sliderTex->textureX, musicTex->sliderTex->textureY);
 
   musicPrims->sliderPrim.clut = musicTex->sliderTex->cba;
 
   AddPrim(OT[CurrentScreen], 0, (P_TAG*)&musicPrims->sliderPrim);
 
   /*	Slider background */
-  SetPolyFT4(&(musicPrims->slidePrim));
+  SetPolyFT4(&musicPrims->slidePrim);
   musicPrims->slidePrim.r0 = 230; // PCwipeout
   musicPrims->slidePrim.g0 = 0;
   musicPrims->slidePrim.b0 = BLACK_NOT_DRAWN;
 
-  setXY4(&(musicPrims->slidePrim), slidePosx, slidePosy,
+  setXY4(&musicPrims->slidePrim, slidePosx, slidePosy,
          slidePosx + slideWidth, slidePosy,
          slidePosx, slidePosy + slideHeight,
          slidePosx + slideWidth, slidePosy + slideHeight);
 
-  setUV4(&(musicPrims->slidePrim), musicTex->slideTex->u0, musicTex->slideTex->v0,
+  setUV4(&musicPrims->slidePrim, musicTex->slideTex->u0, musicTex->slideTex->v0,
          musicTex->slideTex->u1, musicTex->slideTex->v1,
          musicTex->slideTex->u2, musicTex->slideTex->v2 + 1,
          musicTex->slideTex->u3, musicTex->slideTex->v3 + 1);
 
-  setTPage(&(musicPrims->slidePrim), 0, 0, musicTex->slideTex->textureX, musicTex->slideTex->textureY);
+  setTPage(&musicPrims->slidePrim, 0, 0, musicTex->slideTex->textureX, musicTex->slideTex->textureY);
 
   musicPrims->slidePrim.clut = musicTex->slideTex->cba;
 
-  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(musicPrims->slidePrim));
+  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&musicPrims->slidePrim);
 
   AddText(GetCdTrackName(gameData->oldCdTrack - 1), text_data(130, 175, 8), RedText);
 
@@ -2810,7 +2810,7 @@ void MusicVSfx(MusicPrims* musicPrims, SlideTextures* musicTex, SelectionData* s
       CdControlB(CdlStop, 0, 0);
 
       if (gameData->oldCdTrack != 1) {
-        //		  		CdControlB(CdlSetloc, (uint8_t *)&(loc[gameData->oldCdTrack]), 0);
+        //		  		CdControlB(CdlSetloc, (uint8_t *)&loc[gameData->oldCdTrack], 0);
         CurrTrkNo = gameData->oldCdTrack;
         CdControlB(CdlPlay, 0, 0);
       } else {
@@ -2834,7 +2834,7 @@ void MusicVSfx(MusicPrims* musicPrims, SlideTextures* musicTex, SelectionData* s
       CdControlB(CdlStop, 0, 0);
 
       if (gameData->oldCdTrack != 1) {
-        //		  		CdControlB(CdlSetloc, (uint8_t *)&(loc[gameData->oldCdTrack]), 0);
+        //		  		CdControlB(CdlSetloc, (uint8_t *)&loc[gameData->oldCdTrack], 0);
         CurrTrkNo = gameData->oldCdTrack;
         CdControlB(CdlPlay, 0, 0);
       } else {
@@ -3365,7 +3365,7 @@ void MenuMaster (ConfigData *gameData, int32_t *currMenu)
 	//	while( cts < 200 )
 	//		cts++;
 
-	WriteSIOData( &(send[0]), 96);
+	WriteSIOData( &send[0], 96);
 
 	//	cts = ReadCTS();
 	//	while( cts == 1 ) 								/* wait for acknowledge */
@@ -3387,7 +3387,7 @@ void MenuMaster (ConfigData *gameData, int32_t *currMenu)
 
 	//	SetRTSDTR( SIOCL_DTRON | SIOCL_RTSON );		/* Set OK to send */
 
-	ReadSIOData( &(receive[0]), 96);
+	ReadSIOData( &receive[0], 96);
 
 	//	SetRTSDTR( 0 );										/* remove OK to send */
 
@@ -3427,7 +3427,7 @@ void CaptainBirdsEye (ConfigData *gameData, int32_t *currMenu)
 
 	//	SetRTSDTR( SIOCL_DTRON | SIOCL_RTSON );		/* Set OK to send */
 
-	ReadSIOData( &(receive[0]), 96);
+	ReadSIOData( &receive[0], 96);
 
 	//	SetRTSDTR( 0 );										/* remove OK to send */
 
@@ -3474,7 +3474,7 @@ void CaptainBirdsEye (ConfigData *gameData, int32_t *currMenu)
 	//	while( cts < 200 )
 	//		cts++;
 
-	WriteSIOData( &(send[0]), 96);
+	WriteSIOData( &send[0], 96);
 
 	//	cts = ReadCTS();
 	//	while( cts == 1 ) 								/* wait for acknowledge */
@@ -4187,7 +4187,7 @@ void InitChampionship() {
 }
 
 void CheckSaveType(SelectionData* selectData, char loadGames[][9], ConfigData* gameData) {
-  LoadCardFiles(selectData, &(loadGames[0]), selectData->cardNum);
+  LoadCardFiles(selectData, &loadGames[0], selectData->cardNum);
 
   if (((selectData->slotRow * 2) + (selectData->slotColumn + 1)) == (selectData->slotsFilled + 1)) {
     if (selectData->nameEntered[0] != 0) {
@@ -4225,10 +4225,10 @@ void DisplayButtons(int32_t x, int32_t y, int32_t buttType) {
   x *= upres;
   y *= upres;
 
-  SetDrawMode(&(drmode[buttType][CurrentScreen]), 0, 0, FONT_TPAGE, &tw);
+  SetDrawMode(&drmode[buttType][CurrentScreen], 0, 0, FONT_TPAGE, &tw);
   AddPrim(OT[CurrentScreen], 0, (P_TAG*)&drmode[buttType][CurrentScreen]);
 
-  SetSprt(&(buttons[buttType][CurrentScreen]));
+  SetSprt(&buttons[buttType][CurrentScreen]);
 
   buttons[buttType][CurrentScreen].r0 = 230; // PCwipeout
   buttons[buttType][CurrentScreen].g0 = 0;
@@ -4250,12 +4250,12 @@ void DisplayButtons(int32_t x, int32_t y, int32_t buttType) {
 }
 
 void DrawLine(int32_t x, int32_t y, int32_t x1, int32_t y1, POLY_F4* line, int32_t lineNum) {
-  SetPolyF4(&(line[lineNum]));
+  SetPolyF4(&line[lineNum]);
   line[lineNum].r0 = 230;
   line[lineNum].g0 = 0;
   line[lineNum].b0 = BLACK_NOT_DRAWN;
 
-  setXY4(&(line[lineNum]), x, y, x + 2, y,
+  setXY4(&line[lineNum], x, y, x + 2, y,
          x1, y1, x1 + 2, y1 + 2);
 
   AddPrim(OT[CurrentScreen], 0, (P_TAG*)&line[lineNum]);
@@ -5178,30 +5178,30 @@ void MostRecentSaveFile(char* filename) {
 
 char CheckKey(uint16_t code) {
   if (NewOriginalKeyCodes[15] == code)
-    return (0);
+    return 0;
   else if (NewOriginalKeyCodes[13] == code)
-    return (0);
+    return 0;
   else if (NewOriginalKeyCodes[12] == code)
-    return (0);
+    return 0;
   else if (NewOriginalKeyCodes[14] == code)
-    return (0);
+    return 0;
   else if (NewOriginalKeyCodes[0] == code)
-    return (0);
+    return 0;
   else if (NewOriginalKeyCodes[1] == code)
-    return (0);
+    return 0;
   else if (NewOriginalKeyCodes[6] == code)
-    return (0);
+    return 0;
   else if (NewOriginalKeyCodes[5] == code)
-    return (0);
+    return 0;
   else if (NewOriginalKeyCodes[4] == code)
-    return (0);
+    return 0;
   else if (NewOriginalKeyCodes[11] == code)
-    return (0);
+    return 0;
 
   if (code == 0x1c)
-    return (0);
+    return 0;
 
-  return (1);
+  return 1;
 }
 
 void ResetKeys() {

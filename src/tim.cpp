@@ -27,30 +27,22 @@ Texture* LoadTexture(const char* name, int16_t translucent) {
   int32_t length;
   RECT rect;
   CLUT cluts[256];
-
   int32_t x, y;
-
-#if LoadMessages
-//   printf( "Loading Tim File : %s\n", name );
-#endif
 
   length = FileLength(name);
   if (length <= 0) {
     sprintf(errorString, "Tim.c:LoadTexture: File %s not found\n", name);
     Error(errorString, Warning);
-    return (NULL);
+    return NULL;
   }
 
   tim = (Tim*)DAlloc(heap, length + 32);
-
   if (!tim) {
     sprintf(errorString, "Tim.c:LoadTexture(): Failed to allocate memory for file %s\n", name);
     Error(errorString, Fatal);
   }
 
   if (LoadFile(name, (char*)tim) != length) {
-    /* File Error! */
-
     sprintf(errorString, "Tim.c:LoadTexture(): Failed to load file %s\n", name);
     Error(errorString, Fatal);
   }
@@ -201,5 +193,5 @@ Texture* LoadTexture(const char* name, int16_t translucent) {
 
   DFree(heap, (char*)tim);
 
-  return (texture);
+  return texture;
 }

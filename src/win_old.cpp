@@ -725,7 +725,7 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
         temp &= 0x9F; // brake bits, which get
         temp |= (char)(etc_Joystick1Register & 0xFF); // lost somehow otherwise
         etc_TransferBuffer1[3] = ~temp;
-        return (0);
+        return 0;
       }
     }
     break;
@@ -760,7 +760,7 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
         temp &= 0x9F; // brake bits, which get
         temp |= (char)(etc_Joystick1Register & 0xFF); // lost somehow otherwise
         etc_TransferBuffer1[3] = ~temp;
-        return (0);
+        return 0;
       }
     }
     break;
@@ -795,7 +795,7 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
         temp &= 0x9F; // brake bits, which get
         temp |= (char)(etc_Joystick1Register & 0xFF); // lost somehow otherwise
         etc_TransferBuffer1[3] = ~temp;
-        return (0);
+        return 0;
       }
     }
     break;
@@ -858,13 +858,13 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
         temp &= 0x9F; // brake bits, which get
         temp |= (char)(etc_Mouse1Register & 0xFF); // lost somehow otherwise
         etc_TransferBuffer1[3] = ~temp;
-        return (0);
+        return 0;
       }
     }
     break;
   case WM_SYSCHAR:
   case WM_CHAR:
-    return (0);
+    return 0;
   case WM_KEYUP:
   case WM_SYSKEYUP:
     if (bActive) {
@@ -876,9 +876,9 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
       //keyhit |= 0x80;
       pmkey(keyhit, FALSE);
 
-      return (0);
+      return 0;
     }
-    return (0);
+    return 0;
     break;
   case WM_KEYDOWN:
   case WM_SYSKEYDOWN:
@@ -896,9 +896,9 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
       case VK_F11:
         if ((GetKeyState(VK_SHIFT) < 0) && (GetKeyState(VK_CONTROL) < 0))
           FrameState ^= 1;
-        return (0);
+        return 0;
       case VK_DELETE:
-        return (0);
+        return 0;
       }
       if (!(HIWORD(lParam) & 0x4000)) {
         //if (HIWORD(lParam) & 0x100)
@@ -911,7 +911,7 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
         return 0;
       }
     }
-    return (0);
+    return 0;
   case WM_PAINT:
     if (bActive) {
       BeginPaint(hWnd, &ps);
@@ -1030,10 +1030,10 @@ void setupScreens() {
   upres = reses[screenres].mult;
   // create 3 offscreen surfaces to cache the sprite maps
   for (i = 420; i < 423; ++i) {
-    memcpy(&(gTex[i].ddsd), &availableTextures.surface1555, sizeof(DDSURFACEDESC2));
+    memcpy(&gTex[i].ddsd, &availableTextures.surface1555, sizeof(DDSURFACEDESC2));
     gTex[i].ddsd.dwWidth = 256; //SJR	// standard texture size
     gTex[i].ddsd.dwHeight = 256; //SJR	// standard height
-    ddretval = g_pDD4->CreateSurface(&(gTex[i].ddsd), &gTex[i].lpDDSTex, NULL);
+    ddretval = g_pDD4->CreateSurface(&gTex[i].ddsd, &gTex[i].lpDDSTex, NULL);
     if (ddretval != DD_OK) {
       ShowErrorMessage(4002);
     }
@@ -1212,7 +1212,7 @@ int32_t PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance,
   ShowCursor(TRUE);
   joyReleaseCapture(JOYSTICKID1);
   DestroyWindow(hwnd);
-  return (0);
+  return 0;
 
 } /* WinMain */
 
@@ -1234,17 +1234,17 @@ int32_t ProcessMessages() {
           DispatchMessage(&msg);
         }
         if (bActive)
-          return (0);
+          return 0;
       } else {
         if (bActive)
-          return (1);
+          return 1;
       }
     }
   } while (!bActive);
 
   if (!bActive)
     ProcessMessages();
-  return (0);
+  return 0;
 }
 
 DDSURFACEDESC2 ddsd;
@@ -1274,17 +1274,17 @@ int32_t LockBackBuffer() {
 
     if (ddrval == DDERR_SURFACEBUSY) {
       MessageBeep(0);
-      return (1);
+      return 1;
     }
     if (ddrval == DDERR_SURFACELOST) {
       MessageBeep(0);
       g_pddsBackBuffer->Restore();
-      return (1);
+      return 1;
     }
 
     ptr = (LPBYTE)ddsd.lpSurface;
     if (ptr == NULL)
-      return (1);
+      return 1;
       // Set my render buffers to the back screen
 #if DEBUG_LOCKED
     CurBuffer = (char*)DebugScreen;
@@ -1297,7 +1297,7 @@ int32_t LockBackBuffer() {
     backLocked = TRUE;
   }
 
-  return (0);
+  return 0;
 }
 
 void WinBeep() {
@@ -1478,7 +1478,7 @@ void setRenderBegin() {
     //						   &shade);
     bTexEn = FALSE;
     texpage = 420;
-    //		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &(gTex[texpage].hTX));
+    //		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &gTex[texpage].hTX);
     //		ATI3DCIF_ContextSetState(ghRC, C3D_ERS_TMAP_EN, &bTexEn);
     //		ATI3DCIF_ContextSetState(ghRC, C3D_ERS_TMAP_LIGHT, &light);
     //		if (ft&1)
@@ -1630,7 +1630,7 @@ int16_t GetThePage(int16_t page, int16_t u, int16_t v) {
     PageXOff <<= 5;
     PageYOff <<= 5;
   }
-  return (newpage);
+  return newpage;
 }
 
 void JJSDrawSprite(SPRT_8* sp, int16_t w, int16_t h) {
@@ -1666,7 +1666,7 @@ void JJSDrawSprite(SPRT_8* sp, int16_t w, int16_t h) {
 	{
 		sendList();
 		texpage=tpage;
-		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &(gTex[texpage].hTX));
+		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &gTex[texpage].hTX);
 	}
 	if(!SetState(C3D_EPRIM_QUAD,C3D_ESH_FLAT,TRUE,s2.b0==RED_TRANSL?RED_TRANSL:BLACK_NOT_DRAWN,C3D_ETL_NONE))
 		if(numvert>(VBUFSIZE-4))
@@ -1857,7 +1857,7 @@ void JJSDrawPolyFT4(POLY_FT4* p) {
 	{
 		sendList();
 		texpage=temp;
-		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &(gTex[texpage].hTX));
+		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &gTex[texpage].hTX);
 	}
 	if(!SetState(C3D_EPRIM_QUAD,C3D_ESH_FLAT,TRUE,p->b0,p->g0?C3D_ETL_MODULATE:C3D_ETL_NONE))
 		if(numvert>(VBUFSIZE-4))
@@ -2008,7 +2008,7 @@ void JJSDrawPolyFT3(POLY_FT3* p) {
 	{
 		sendList();
 		texpage=temp;
-		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &(gTex[texpage].hTX));
+		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &gTex[texpage].hTX);
 	}
 	if(!SetState(C3D_EPRIM_TRI,C3D_ESH_FLAT,TRUE,p->b0,p->g0?C3D_ETL_MODULATE:C3D_ETL_NONE))
 		if(numvert>(VBUFSIZE-4))
@@ -2076,7 +2076,7 @@ void JJSDrawPolyGT3(POLY_GT3* p) {
 	{
 		sendList();
 		texpage=temp;
-		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &(gTex[texpage].hTX));
+		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &gTex[texpage].hTX);
 	}
 	if(!SetState(C3D_EPRIM_TRI,C3D_ESH_FLAT,TRUE,p->b0,p->g0?C3D_ETL_MODULATE:C3D_ETL_NONE))
 	{
@@ -2141,7 +2141,7 @@ void JJSDrawPolyGT4(POLY_GT4* p) {
 	{
 		sendList();
 		texpage=temp;
-		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &(gTex[texpage].hTX));
+		ATI3DCIF_ContextSetState (ghRC, C3D_ERS_TMAP_SELECT, &gTex[texpage].hTX);
 	}
 	if(!SetState(C3D_EPRIM_TRI,C3D_ESH_FLAT,TRUE,p->b0,p->g0?C3D_ETL_MODULATE:C3D_ETL_NONE))
 	{
@@ -2231,13 +2231,13 @@ char* LockPilot() {
   ddretval = DDERR_SURFACELOST;
   while (ddretval == DDERR_SURFACELOST) {
     ddretval = gTex[420].lpDDSTex->Lock(NULL,
-                                        &(gTex[420].ddsd),
+                                        &gTex[420].ddsd,
                                         DDLOCK_SURFACEMEMORYPTR | DDLOCK_WAIT,
                                         NULL);
     if (ddretval == DDERR_SURFACELOST)
       gTex[420].lpDDSTex->Restore();
   }
-  return ((char*)gTex[420].ddsd.lpSurface);
+  return (char*)gTex[420].ddsd.lpSurface;
 }
 
 void UnlockPilot() {
@@ -2307,20 +2307,20 @@ BOOL SJRLoadTextureBMPmenu(const char* lpszTexFilename) {
     }
   // create 5 offscreen surfaces to cache the high res track
   for (i = 0; i < 5; ++i) {
-    memcpy(&(gTex[i].ddsd), &availableTextures.surface565, sizeof(DDSURFACEDESC2));
+    memcpy(&gTex[i].ddsd, &availableTextures.surface565, sizeof(DDSURFACEDESC2));
     gTex[i].ddsd.dwWidth = track; //SJR	// standard texture size
     gTex[i].ddsd.dwHeight = track; //SJR	// standard height
-    ddretval = g_pDD4->CreateSurface(&(gTex[i].ddsd), &gTex[i].lpDDSTex, NULL);
+    ddretval = g_pDD4->CreateSurface(&gTex[i].ddsd, &gTex[i].lpDDSTex, NULL);
     if (ddretval != DD_OK) {
       ShowErrorMessage(4002);
     }
   }
   // create 16 offscreen surfaces to cache the texture maps
   for (i = 405; i < 420; ++i) {
-    memcpy(&(gTex[i].ddsd), &availableTextures.surface565, sizeof(DDSURFACEDESC2));
+    memcpy(&gTex[i].ddsd, &availableTextures.surface565, sizeof(DDSURFACEDESC2));
     gTex[i].ddsd.dwWidth = other; //SJR	// standard texture size
     gTex[i].ddsd.dwHeight = other; //SJR	// standard height
-    ddretval = g_pDD4->CreateSurface(&(gTex[i].ddsd), &gTex[i].lpDDSTex, NULL);
+    ddretval = g_pDD4->CreateSurface(&gTex[i].ddsd, &gTex[i].lpDDSTex, NULL);
     if (ddretval != DD_OK) {
       ShowErrorMessage(4002);
     }
@@ -2357,14 +2357,14 @@ BOOL SJRLoadTextureBMPmenu(const char* lpszTexFilename) {
     else
       reals = whichSurface + 400;
     // get a pointer to the texture surface
-    ZeroMemory(&(gTex[reals].ddsd), sizeof(gTex[reals].ddsd));
+    ZeroMemory(&gTex[reals].ddsd, sizeof(gTex[reals].ddsd));
     gTex[reals].ddsd.dwSize = sizeof(gTex[reals].ddsd);
 
     // lock texture to fill ddsd member
     ddretval = DDERR_SURFACELOST;
     while (ddretval == DDERR_SURFACELOST) {
       ddretval = gTex[reals].lpDDSTex->Lock(NULL,
-                                            &(gTex[reals].ddsd),
+                                            &gTex[reals].ddsd,
                                             DDLOCK_SURFACEMEMORYPTR | DDLOCK_WAIT,
                                             NULL);
       if (ddretval == DDERR_SURFACELOST)
@@ -2412,10 +2412,10 @@ BOOL SJRLoadTextureBMP(const char* lpszTexFilename) {
       gTex[i].lpDDSTex = NULL;
     }
   for (i = 0; i < 320; ++i) {
-    memcpy(&(gTex[i].ddsd), &availableTextures.surface565, sizeof(DDSURFACEDESC2));
+    memcpy(&gTex[i].ddsd, &availableTextures.surface565, sizeof(DDSURFACEDESC2));
     gTex[i].ddsd.dwWidth = track; //SJR	// standard texture size
     gTex[i].ddsd.dwHeight = track; //SJR	// standard height
-    ddretval = g_pDD4->CreateSurface(&(gTex[i].ddsd), &gTex[i].lpDDSTex, NULL);
+    ddretval = g_pDD4->CreateSurface(&gTex[i].ddsd, &gTex[i].lpDDSTex, NULL);
     if (ddretval != DD_OK) {
       ShowErrorMessage(4002);
       return FALSE;
@@ -2423,10 +2423,10 @@ BOOL SJRLoadTextureBMP(const char* lpszTexFilename) {
   }
   // create 16 offscreen surfaces to cache the texture maps
   for (i = 405; i < 420; ++i) {
-    memcpy(&(gTex[i].ddsd), &availableTextures.surface565, sizeof(DDSURFACEDESC2));
+    memcpy(&gTex[i].ddsd, &availableTextures.surface565, sizeof(DDSURFACEDESC2));
     gTex[i].ddsd.dwWidth = other; //SJR	// standard texture size
     gTex[i].ddsd.dwHeight = other; //SJR	// standard height
-    ddretval = g_pDD4->CreateSurface(&(gTex[i].ddsd), &gTex[i].lpDDSTex, NULL);
+    ddretval = g_pDD4->CreateSurface(&gTex[i].ddsd, &gTex[i].lpDDSTex, NULL);
     if (ddretval != DD_OK) {
       ShowErrorMessage(4002);
     }
@@ -2462,14 +2462,14 @@ BOOL SJRLoadTextureBMP(const char* lpszTexFilename) {
     if (reals >= 320 && reals < 405)
       continue;
     // get a pointer to the texture surface
-    ZeroMemory(&(gTex[reals].ddsd), sizeof(gTex[reals].ddsd));
+    ZeroMemory(&gTex[reals].ddsd, sizeof(gTex[reals].ddsd));
     gTex[reals].ddsd.dwSize = sizeof(gTex[reals].ddsd);
 
     // lock texture to fill ddsd member
     ddretval = DDERR_SURFACELOST;
     while (ddretval == DDERR_SURFACELOST) {
       ddretval = gTex[reals].lpDDSTex->Lock(NULL,
-                                            &(gTex[reals].ddsd),
+                                            &gTex[reals].ddsd,
                                             DDLOCK_SURFACEMEMORYPTR | DDLOCK_WAIT,
                                             NULL);
       if (ddretval == DDERR_SURFACELOST)
@@ -2544,13 +2544,13 @@ int32_t JJSLoadSprites() {
     ptr = bmpdata;
 
     // get a pointer to the texture surface
-    ZeroMemory(&(gTex[sp + 420].ddsd), sizeof(gTex[sp + 420].ddsd));
+    ZeroMemory(&gTex[sp + 420].ddsd, sizeof(gTex[sp + 420].ddsd));
     gTex[sp + 420].ddsd.dwSize = sizeof(gTex[sp + 420].ddsd);
 
     // lock texture to fill ddsd member
     do {
       ddretval = gTex[sp + 420].lpDDSTex->Lock(NULL,
-                                               &(gTex[sp + 420].ddsd),
+                                               &gTex[sp + 420].ddsd,
                                                DDLOCK_SURFACEMEMORYPTR | DDLOCK_WAIT,
                                                NULL);
       if (ddretval == DDERR_SURFACELOST)
@@ -2576,9 +2576,9 @@ int32_t JJSLoadSprites() {
 BOOL SJRNewTexture(char* filename) {
   JJSLoadSprites();
   if (menuTexturesIn)
-    return (SJRLoadTextureBMPmenu(filename));
+    return SJRLoadTextureBMPmenu(filename);
   else
-    return (SJRLoadTextureBMP(filename));
+    return SJRLoadTextureBMP(filename);
 }
 
 #if 0
@@ -2611,7 +2611,7 @@ LPARAM lParam)
 			}
 			return 1;*/
 		default:
-			return (DefWindowProc(hWnd, iMsg, wParam, lParam));
+			return DefWindowProc(hWnd, iMsg, wParam, lParam);
 	}
 }
 
@@ -2837,7 +2837,7 @@ BOOL JJSJoyConfig() {
   MMRESULT theres;
 
   if (joyGetDevCaps(JOYSTICKID1, &mycaps, sizeof(mycaps)) != JOYERR_NOERROR)
-    return (FALSE);
+    return FALSE;
 
   joyrange = mycaps.wXmax - mycaps.wXmin;
   joyModXVal = 256.0f / (float)joyrange;
@@ -2929,7 +2929,7 @@ TimData* JJSLoad16BitTexture(const char* filename, char location) {
   ddrval = g_pDD4->CreateSurface(&ddsd, &tbuf, NULL);
   if (ddrval != DD_OK) {
     ShowErrorMessage(4002);
-    return (FALSE);
+    return FALSE;
   }
 
   texsize = 320 * 240 * sizeof(WORD);
@@ -2952,5 +2952,5 @@ TimData* JJSLoad16BitTexture(const char* filename, char location) {
 
   tbuf->Release();
 
-  return (timSize);
+  return timSize;
 }

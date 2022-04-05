@@ -85,7 +85,7 @@ void AsmLowResTile(
 
   texture = TextureTable[Template[index].tex1[0]];
 
-  tile = &(TrackSurface[index][reversed].low[0]);
+  tile = &TrackSurface[index][reversed].low[0];
 
   tile->cba = texture->cba;
   tile->tsb = texture->tsb;
@@ -132,7 +132,7 @@ void AsmMediumResTile(
     }
 
     texture = TextureTable[Template[index].tex4[tex]];
-    tile = &(TrackSurface[index][reversed].med[i]);
+    tile = &TrackSurface[index][reversed].med[i];
 
     tile->cba = texture->cba;
     tile->tsb = texture->tsb;
@@ -180,7 +180,7 @@ void AsmHighResTile(
     }
 
     texture = TextureTable[Template[index].tex16[tex]];
-    tile = &(TrackSurface[index][reversed].high[i]);
+    tile = &TrackSurface[index][reversed].high[i];
 
     tile->cba = texture->cba;
     tile->tsb = texture->tsb;
@@ -236,26 +236,26 @@ void AsmGenerateTiles(
   TrackHi[1] = TrackHi1;
 
   for (i = 0; i < TrackLoTiles; i++) {
-    ft4 = &(TrackLo0[i]);
+    ft4 = &TrackLo0[i];
     SetPolyFT4((POLY_FT4*)ft4);
 
-    ft4 = &(TrackLo1[i]);
+    ft4 = &TrackLo1[i];
     SetPolyFT4((POLY_FT4*)ft4);
   }
 
   for (i = 0; i < TrackMedTiles; i++) {
-    ft4 = &(TrackMed0[i]);
+    ft4 = &TrackMed0[i];
     SetPolyFT4((POLY_FT4*)ft4);
 
-    ft4 = &(TrackMed1[i]);
+    ft4 = &TrackMed1[i];
     SetPolyFT4((POLY_FT4*)ft4);
   }
 
   for (i = 0; i < TrackHiTiles; i++) {
-    ft4 = &(TrackHi0[i]);
+    ft4 = &TrackHi0[i];
     SetPolyFT4((POLY_FT4*)ft4);
 
-    ft4 = &(TrackHi1[i]);
+    ft4 = &TrackHi1[i];
     SetPolyFT4((POLY_FT4*)ft4);
   }
 }
@@ -395,15 +395,15 @@ Listed in decreasing order of priority
 
       //		if ( !( *flag & ClipFlags ) )
       if (!((flag2[0] | flag2[1] | flag2[2] | flag2[3]) & ShortClipFlags)) {
-        ft4 = &(TrackLo[CurrentScreen][TrackLoCount++]);
+        ft4 = &TrackLo[CurrentScreen][TrackLoCount++];
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture)
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         else
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
 
-        tile = &(surface->low[0]);
+        tile = &surface->low[0];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -523,7 +523,7 @@ Listed in decreasing order of priority
     section = section->nextSection.ptr;
   }
 
-  return (section);
+  return section;
 }
 
 TrackSection* AsmTransformTrackMed(
@@ -670,20 +670,20 @@ Listed in decreasing order of priority
       /* Top left polygon */
 
       if (!((flag[0] | flag[1] | flag[3] | flag[4]) & ShortClipFlags)) {
-        ft4 = &(TrackMed[CurrentScreen][TrackMedCount++]);
+        ft4 = &TrackMed[CurrentScreen][TrackMedCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
         if (face->flags & TRACK_BASE)
           var = 1;
         else
           var = 0;
-        tile = &(surface->med[0]); // PCwipeout, was 2
+        tile = &surface->med[0]; // PCwipeout, was 2
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -746,17 +746,17 @@ Listed in decreasing order of priority
       /* Top right polygon */
 
       if (!((flag[1] | flag[2] | flag[4] | flag[5]) & ShortClipFlags)) {
-        ft4 = &(TrackMed[CurrentScreen][TrackMedCount++]);
+        ft4 = &TrackMed[CurrentScreen][TrackMedCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->med[1]); // PCwipeout, was 3
+        tile = &surface->med[1]; // PCwipeout, was 3
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -818,17 +818,17 @@ Listed in decreasing order of priority
       /* Bottom left polygon */
 
       if (!((flag[3] | flag[4] | flag[6] | flag[7]) & ShortClipFlags)) {
-        ft4 = &(TrackMed[CurrentScreen][TrackMedCount++]);
+        ft4 = &TrackMed[CurrentScreen][TrackMedCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->med[2]); // PCwipeout, was 0
+        tile = &surface->med[2]; // PCwipeout, was 0
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -892,17 +892,17 @@ Listed in decreasing order of priority
       /* Bottom right polygon */
 
       if (!((flag[4] | flag[5] | flag[7] | flag[8]) & ShortClipFlags)) {
-        ft4 = &(TrackMed[CurrentScreen][TrackMedCount++]);
+        ft4 = &TrackMed[CurrentScreen][TrackMedCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->med[3]); // PCwipeout, was 1
+        tile = &surface->med[3]; // PCwipeout, was 1
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -966,7 +966,7 @@ Listed in decreasing order of priority
 
     section = section->nextSection.ptr;
   }
-  return (section);
+  return section;
 }
 #undef ShortClipFlags
 #define ShortClipFlags 0
@@ -1242,17 +1242,17 @@ Listed in decreasing order of priority
 
       /* polygon 0 */
       if (!((flag[0] | flag[1] | flag[5] | flag[6]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[0]);
+        tile = &surface->high[0];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1297,12 +1297,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[0] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[0] & flag[1] & flag[5] & flag[6] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[0]);
+        tile = &surface->high[0];
 
         AsmAutoMesh(&svector[0], &svector[1], &svector[5], &svector[6], face, tile, autoMesh);
       }
@@ -1310,17 +1310,17 @@ Listed in decreasing order of priority
       /* polygon 1 */
 
       if (!((flag[1] | flag[2] | flag[6] | flag[7]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[1]);
+        tile = &surface->high[1];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1365,12 +1365,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[1] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[1] & flag[2] & flag[6] & flag[7] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[1]);
+        tile = &surface->high[1];
 
         AsmAutoMesh(&svector[1], &svector[2], &svector[6], &svector[7], face, tile, autoMesh);
       }
@@ -1378,17 +1378,17 @@ Listed in decreasing order of priority
       /* polygon 2 */
 
       if (!((flag[2] | flag[3] | flag[7] | flag[8]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[2]);
+        tile = &surface->high[2];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1433,12 +1433,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[2] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[2] & flag[3] & flag[7] & flag[8] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[2]);
+        tile = &surface->high[2];
 
         AsmAutoMesh(&svector[2], &svector[3], &svector[7], &svector[8], face, tile, autoMesh);
       }
@@ -1446,17 +1446,17 @@ Listed in decreasing order of priority
       /* polygon 3 */
 
       if (!((flag[3] | flag[4] | flag[8] | flag[9]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[3]);
+        tile = &surface->high[3];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1501,12 +1501,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[3] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[3] & flag[4] & flag[8] & flag[9] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[3]);
+        tile = &surface->high[3];
 
         AsmAutoMesh(&svector[3], &svector[4], &svector[8], &svector[9], face, tile, autoMesh);
       }
@@ -1514,17 +1514,17 @@ Listed in decreasing order of priority
       /* polygon 4 */
 
       if (!((flag[5] | flag[6] | flag[10] | flag[11]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[4]);
+        tile = &surface->high[4];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1569,12 +1569,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[5] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[5] & flag[6] & flag[10] & flag[11] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[4]);
+        tile = &surface->high[4];
 
         AsmAutoMesh(&svector[5], &svector[6], &svector[10], &svector[11], face, tile, autoMesh);
       }
@@ -1582,17 +1582,17 @@ Listed in decreasing order of priority
       /* polygon 5 */
 
       if (!((flag[6] | flag[7] | flag[11] | flag[12]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[5]);
+        tile = &surface->high[5];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1637,12 +1637,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[6] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[6] & flag[7] & flag[11] & flag[12] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[5]);
+        tile = &surface->high[5];
 
         AsmAutoMesh(&svector[6], &svector[7], &svector[11], &svector[12], face, tile, autoMesh);
       }
@@ -1650,17 +1650,17 @@ Listed in decreasing order of priority
       /* polygon 6 */
 
       if (!((flag[7] | flag[8] | flag[12] | flag[13]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[6]);
+        tile = &surface->high[6];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1705,12 +1705,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[7] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[7] & flag[8] & flag[12] & flag[13] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[6]);
+        tile = &surface->high[6];
 
         AsmAutoMesh(&svector[7], &svector[8], &svector[12], &svector[13], face, tile, autoMesh);
       }
@@ -1718,17 +1718,17 @@ Listed in decreasing order of priority
       /* polygon 7 */
 
       if (!((flag[8] | flag[9] | flag[13] | flag[14]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[7]);
+        tile = &surface->high[7];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1773,12 +1773,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[8] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[8] & flag[9] & flag[13] & flag[14] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[7]);
+        tile = &surface->high[7];
 
         AsmAutoMesh(&svector[8], &svector[9], &svector[13], &svector[14], face, tile, autoMesh);
       }
@@ -1786,17 +1786,17 @@ Listed in decreasing order of priority
       /* polygon 8 */
 
       if (!((flag[10] | flag[11] | flag[15] | flag[16]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[8]);
+        tile = &surface->high[8];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1841,12 +1841,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[10] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[10] & flag[11] & flag[15] & flag[16] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[8]);
+        tile = &surface->high[8];
 
         AsmAutoMesh(&svector[10], &svector[11], &svector[15], &svector[16], face, tile, autoMesh);
       }
@@ -1854,17 +1854,17 @@ Listed in decreasing order of priority
       /* polygon 9 */
 
       if (!((flag[11] | flag[12] | flag[16] | flag[17]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[9]);
+        tile = &surface->high[9];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1909,12 +1909,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[11] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[11] & flag[12] & flag[16] & flag[17] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[9]);
+        tile = &surface->high[9];
 
         AsmAutoMesh(&svector[11], &svector[12], &svector[16], &svector[17], face, tile, autoMesh);
       }
@@ -1922,17 +1922,17 @@ Listed in decreasing order of priority
       /* polygon 10 */
 
       if (!((flag[12] | flag[13] | flag[17] | flag[18]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[10]);
+        tile = &surface->high[10];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -1977,12 +1977,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[12] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[12] & flag[13] & flag[17] & flag[18] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[10]);
+        tile = &surface->high[10];
 
         AsmAutoMesh(&svector[12], &svector[13], &svector[17], &svector[18], face, tile, autoMesh);
       }
@@ -1990,17 +1990,17 @@ Listed in decreasing order of priority
       /* polygon 11 */
 
       if (!((flag[13] | flag[14] | flag[18] | flag[19]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[11]);
+        tile = &surface->high[11];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -2045,12 +2045,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[13] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[13] & flag[14] & flag[18] & flag[19] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[11]);
+        tile = &surface->high[11];
 
         AsmAutoMesh(&svector[13], &svector[14], &svector[18], &svector[19], face, tile, autoMesh);
       }
@@ -2058,17 +2058,17 @@ Listed in decreasing order of priority
       /* polygon 12 */
 
       if (!((flag[15] | flag[16] | flag[20] | flag[21]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[12]);
+        tile = &surface->high[12];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -2113,12 +2113,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[15] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[15] & flag[16] & flag[20] & flag[21] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[12]);
+        tile = &surface->high[12];
 
         AsmAutoMesh(&svector[15], &svector[16], &svector[20], &svector[21], face, tile, autoMesh);
       }
@@ -2126,17 +2126,17 @@ Listed in decreasing order of priority
       /* polygon 13 */
 
       if (!((flag[16] | flag[17] | flag[21] | flag[22]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[13]);
+        tile = &surface->high[13];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -2181,12 +2181,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[16] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[16] & flag[17] & flag[21] & flag[22] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[13]);
+        tile = &surface->high[13];
 
         AsmAutoMesh(&svector[16], &svector[17], &svector[21], &svector[22], face, tile, autoMesh);
       }
@@ -2194,17 +2194,17 @@ Listed in decreasing order of priority
       /* polygon 14 */
 
       if (!((flag[17] | flag[18] | flag[22] | flag[23]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[14]);
+        tile = &surface->high[14];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -2249,12 +2249,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[17] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[17] & flag[18] & flag[22] & flag[23] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[14]);
+        tile = &surface->high[14];
 
         AsmAutoMesh(&svector[17], &svector[18], &svector[22], &svector[23], face, tile, autoMesh);
       }
@@ -2262,17 +2262,17 @@ Listed in decreasing order of priority
       /* polygon 15 */
 
       if (!((flag[18] | flag[19] | flag[23] | flag[24]) & ShortClipFlags)) {
-        ft4 = &(TrackHi[CurrentScreen][TrackHiCount++]);
+        ft4 = &TrackHi[CurrentScreen][TrackHiCount++];
 
         SetPolyFT4((POLY_FT4*)ft4);
 
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[15]);
+        tile = &surface->high[15];
 
         ft4->cba = tile->cba;
         ft4->tsb = tile->tsb;
@@ -2317,12 +2317,12 @@ Listed in decreasing order of priority
         AddPrim(OT[CurrentScreen], ((depth[18] >> DepthShift) - DepthMod), (P_TAG*)ft4);
       } else if (!(flag[18] & flag[19] & flag[23] & flag[24] & ShortClipFlags)) {
         if (face->flags & FlipTexture) {
-          surface = &(TrackSurface[face->texture][1]);
+          surface = &TrackSurface[face->texture][1];
         } else {
-          surface = &(TrackSurface[face->texture][0]);
+          surface = &TrackSurface[face->texture][0];
         }
 
-        tile = &(surface->high[15]);
+        tile = &surface->high[15];
 
         AsmAutoMesh(&svector[18], &svector[19], &svector[23], &svector[24], face, tile, autoMesh);
       }
@@ -2333,7 +2333,7 @@ Listed in decreasing order of priority
     section = section->nextSection.ptr;
   }
 
-  return (section);
+  return section;
 }
 
 void AsmAutoMesh(
@@ -2429,8 +2429,8 @@ void AsmAutoMesh(
   clip = 0;
 
   depth[cNum] = RotTransPers(
-      &(svector[cNum]),
-      &(screen[cNum]),
+      &svector[cNum],
+      &screen[cNum],
       interpolate,
       flag);
 
@@ -2441,8 +2441,8 @@ void AsmAutoMesh(
   }
 
   depth[tNum] = RotTransPers(
-      &(svector[tNum]),
-      &(screen[tNum]),
+      &svector[tNum],
+      &screen[tNum],
       interpolate,
       flag);
 
@@ -2453,8 +2453,8 @@ void AsmAutoMesh(
   }
 
   depth[rNum] = RotTransPers(
-      &(svector[rNum]),
-      &(screen[rNum]),
+      &svector[rNum],
+      &screen[rNum],
       interpolate,
       flag);
 
@@ -2465,8 +2465,8 @@ void AsmAutoMesh(
   }
 
   depth[bNum] = RotTransPers(
-      &(svector[bNum]),
-      &(screen[bNum]),
+      &svector[bNum],
+      &screen[bNum],
       interpolate,
       flag);
 
@@ -2477,8 +2477,8 @@ void AsmAutoMesh(
   }
 
   depth[lNum] = RotTransPers(
-      &(svector[lNum]),
-      &(screen[lNum]),
+      &svector[lNum],
+      &screen[lNum],
       interpolate,
       flag);
 
@@ -2493,7 +2493,7 @@ void AsmAutoMesh(
   if (1 || (clip & top) || (clip & left)) {
     depth[tlNum] = RotTransPers(
         tlVector,
-        &(screen[tlNum]),
+        &screen[tlNum],
         interpolate,
         flag);
 
@@ -2504,7 +2504,7 @@ void AsmAutoMesh(
   if (1 || (clip & top) || (clip & right)) {
     depth[trNum] = RotTransPers(
         trVector,
-        &(screen[trNum]),
+        &screen[trNum],
         interpolate,
         flag);
 
@@ -2515,7 +2515,7 @@ void AsmAutoMesh(
   if (1 || (clip & bottom) || (clip & left)) {
     depth[blNum] = RotTransPers(
         blVector,
-        &(screen[blNum]),
+        &screen[blNum],
         interpolate,
         flag);
 
@@ -2526,7 +2526,7 @@ void AsmAutoMesh(
   if (1 || (clip & bottom) || (clip & right)) {
     depth[brNum] = RotTransPers(
         brVector,
-        &(screen[brNum]),
+        &screen[brNum],
         interpolate,
         flag);
 
@@ -2541,7 +2541,7 @@ void AsmAutoMesh(
 
     if (clip & topLeft) {
       if ((clip & top) && (clip & left)) {
-        ft4 = &(autoMesh->quad[CurrentScreen][autoMesh->quadCount]);
+        ft4 = &autoMesh->quad[CurrentScreen][autoMesh->quadCount];
 
         ft4->xy0.vx = screen[tlNum].vx;
         ft4->xy0.vy = screen[tlNum].vy;
@@ -2591,7 +2591,7 @@ void AsmAutoMesh(
 
         autoMesh->quadCount += 1;
       } else if (clip & top) {
-        ft3 = &(autoMesh->tri[CurrentScreen][autoMesh->triCount]);
+        ft3 = &autoMesh->tri[CurrentScreen][autoMesh->triCount];
 
         //ft3->xy0 = screen[ tlNum ];
         //ft3->xy1 = screen[ tNum ];
@@ -2637,7 +2637,7 @@ void AsmAutoMesh(
 
     if (clip & topRight) {
       if ((clip & top) && (clip & right)) {
-        ft4 = &(autoMesh->quad[CurrentScreen][autoMesh->quadCount]);
+        ft4 = &autoMesh->quad[CurrentScreen][autoMesh->quadCount];
 
         //ft4->xy0 = screen[ tNum ];
         //ft4->xy1 = screen[ trNum ];
@@ -2686,7 +2686,7 @@ void AsmAutoMesh(
         AddPrim(OT[CurrentScreen], depth[cNum], (P_TAG*)ft4);
         autoMesh->quadCount += 1;
       } else if (clip & top) {
-        ft3 = &(autoMesh->tri[CurrentScreen][autoMesh->triCount]);
+        ft3 = &autoMesh->tri[CurrentScreen][autoMesh->triCount];
 
         //ft3->xy0 = screen[ trNum ];
         //ft3->xy1 = screen[ cNum ];
@@ -2732,7 +2732,7 @@ void AsmAutoMesh(
 
     if (clip & bottomLeft) {
       if ((clip & bottom) && (clip & left)) {
-        ft4 = &(autoMesh->quad[CurrentScreen][autoMesh->quadCount]);
+        ft4 = &autoMesh->quad[CurrentScreen][autoMesh->quadCount];
 
         //ft4->xy0 = screen[ lNum ];
         //ft4->xy1 = screen[ cNum ];
@@ -2786,7 +2786,7 @@ void AsmAutoMesh(
 
     if (clip & bottomRight) {
       if ((clip & bottom) && (clip & right)) {
-        ft4 = &(autoMesh->quad[CurrentScreen][autoMesh->quadCount]);
+        ft4 = &autoMesh->quad[CurrentScreen][autoMesh->quadCount];
 
         ft4->xy0.vx = screen[cNum].vx;
         ft4->xy0.vy = screen[cNum].vy;

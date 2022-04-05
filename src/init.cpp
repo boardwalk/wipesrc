@@ -94,7 +94,7 @@ int16_t InitScene(Object** prm, int16_t* prmCount, Skeleton* camPos, ConfigData*
  	printf( "Heap free after Scene Radius Check: %d\n", heap->free );
 #endif
 
-  return (sky);
+  return sky;
 }
 
 void getPath(char* trackPath, char trackNo, const char* name) {
@@ -269,7 +269,7 @@ Texture* NewLoadTexture(intptr_t timPtr, int16_t translucent) {
   } else {
     texture = NULL;
   }
-  return (texture);
+  return texture;
 }
 
 int16_t LoadCompressedTextureSequence(const char* fileName) {

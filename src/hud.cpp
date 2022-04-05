@@ -71,10 +71,10 @@ void InitText() {
   SetDrawMode((DR_MODE*)&dmode, 0, 0, FONT_TPAGE, 0);
   DrawPrim((P_TAG*)&dmode);
   for (int32_t i = 0; i < 600; i++) {
-    //		SetPolyFT4(&(display_text[i]));	// PCwipeout
-    SetSprt(&(display_text[i]));
+    //		SetPolyFT4(&display_text[i]);	// PCwipeout
+    SetSprt(&display_text[i]);
 
-    //		setTPage(&(display_text[i]),0,0,576, 256); // PCwipeout
+    //		setTPage(&display_text[i],0,0,576, 256); // PCwipeout
     display_text[i].code = 0x64;
     display_text[i].r0 = 230; // PCwipeout
     display_text[i].g0 = 0;
@@ -89,34 +89,34 @@ void InitSpeedo(Speedo* speedo) {
   tex_ptr = LoadTexture("wipeout/textures/speedo.tim", 1);
 
   for (j = 0; j < 2; j++) {
-    SetSprt(&(speedo->facia[j]));
+    SetSprt(&speedo->facia[j]);
     speedo->facia[j].r0 = 230; // PCwipeout
     speedo->facia[j].g0 = 0; // PCwipeout
     speedo->facia[j].b0 = BLACK_NOT_DRAWN; // PCwipeout
-    setXY0(&(speedo->facia[j]), speedo_x[screenres], speedo_y[screenres]);
-    setUV0(&(speedo->facia[j]), tex_ptr->u0, tex_ptr->v0);
-    setWH(&(speedo->facia[j]), SPEEDO_WIDTH, SPEEDO_HEIGHT);
+    setXY0(&speedo->facia[j], speedo_x[screenres], speedo_y[screenres]);
+    setUV0(&speedo->facia[j], tex_ptr->u0, tex_ptr->v0);
+    setWH(&speedo->facia[j], SPEEDO_WIDTH, SPEEDO_HEIGHT);
     speedo->facia[j].clut = tex_ptr->cba;
 
-    SetSprt(&(speedo->transbar[j]));
+    SetSprt(&speedo->transbar[j]);
     speedo->transbar[j].r0 = 230; // PCwipeout
     speedo->transbar[j].b0 = RED_TRANSL; // PCwipeout
     speedo->transbar[j].g0 = 0; // PCwipeout
-    setXY0(&(speedo->transbar[j]), speedo_x[screenres], speedo_y[screenres]);
-    setUV0(&(speedo->transbar[j]), tex_ptr->u0 + 128, tex_ptr->v0 - 30);
-    setWH(&(speedo->transbar[j]), SPEEDO_WIDTH, SPEEDO_HEIGHT);
+    setXY0(&speedo->transbar[j], speedo_x[screenres], speedo_y[screenres]);
+    setUV0(&speedo->transbar[j], tex_ptr->u0 + 128, tex_ptr->v0 - 30);
+    setWH(&speedo->transbar[j], SPEEDO_WIDTH, SPEEDO_HEIGHT);
     speedo->transbar[j].clut = tex_ptr->cba;
 
-    SetSprt(&(speedo->solidbar[j]));
+    SetSprt(&speedo->solidbar[j]);
     speedo->solidbar[j].r0 = 230; // PCwipeout
     speedo->solidbar[j].g0 = 0; // PCwipeout
     speedo->solidbar[j].b0 = BLACK_NOT_DRAWN; // PCwipeout
-    setXY0(&(speedo->solidbar[j]), speedo_x[screenres], speedo_y[screenres]);
-    setUV0(&(speedo->solidbar[j]), tex_ptr->u0 + 128, tex_ptr->v0);
-    setWH(&(speedo->solidbar[j]), SPEEDO_WIDTH, SPEEDO_HEIGHT);
+    setXY0(&speedo->solidbar[j], speedo_x[screenres], speedo_y[screenres]);
+    setUV0(&speedo->solidbar[j], tex_ptr->u0 + 128, tex_ptr->v0);
+    setWH(&speedo->solidbar[j], SPEEDO_WIDTH, SPEEDO_HEIGHT);
     speedo->solidbar[j].clut = tex_ptr->cba;
 
-    SetDrawMode(&(speedo->fred[j]), 1, 1, FONT_TPAGE, 0); //PCWipeout
+    SetDrawMode(&speedo->fred[j], 1, 1, FONT_TPAGE, 0); //PCWipeout
   }
 
   speedo->barInfo[0].Left.topx = 3;
@@ -170,12 +170,12 @@ void fill_speedo(Speedo* speedo, int32_t speed, int32_t thrust) {
   if (andy > NUM_BARS)
     andy = NUM_BARS;
   if (andy == NUM_BARS) {
-    setWH(&(speedo->solidbar[CurrentScreen]), SPEEDO_WIDTH, SPEEDO_HEIGHT);
+    setWH(&speedo->solidbar[CurrentScreen], SPEEDO_WIDTH, SPEEDO_HEIGHT);
   } else {
     target = speed % 2000;
     width = (speedo->barInfo[andy].Right.topx) - (speedo->barInfo[andy].Left.topx);
     barIntervalXTop = (width * target) / 2000;
-    setWH(&(speedo->solidbar[CurrentScreen]), speedo->barInfo[andy].Left.topx + barIntervalXTop, SPEEDO_HEIGHT);
+    setWH(&speedo->solidbar[CurrentScreen], speedo->barInfo[andy].Left.topx + barIntervalXTop, SPEEDO_HEIGHT);
   }
   AddPrim(OT[CurrentScreen], 0, (P_TAG*)&speedo->solidbar[CurrentScreen]);
 
@@ -183,12 +183,12 @@ void fill_speedo(Speedo* speedo, int32_t speed, int32_t thrust) {
   if (andy > NUM_BARS)
     andy = NUM_BARS;
   if (andy == NUM_BARS) {
-    setWH(&(speedo->transbar[CurrentScreen]), SPEEDO_WIDTH, SPEEDO_HEIGHT);
+    setWH(&speedo->transbar[CurrentScreen], SPEEDO_WIDTH, SPEEDO_HEIGHT);
   } else {
     target = thrust % 70;
     width = (speedo->barInfo[andy].Right.topx) - (speedo->barInfo[andy].Left.topx);
     barIntervalXTop = (width * target) / 70;
-    setWH(&(speedo->transbar[CurrentScreen]), speedo->barInfo[andy].Left.topx + barIntervalXTop, SPEEDO_HEIGHT);
+    setWH(&speedo->transbar[CurrentScreen], speedo->barInfo[andy].Left.topx + barIntervalXTop, SPEEDO_HEIGHT);
   }
 
   AddPrim(OT[CurrentScreen], 0, (P_TAG*)&speedo->transbar[CurrentScreen]);
@@ -220,17 +220,17 @@ void AddTime(int32_t time, TEXT_DATA* pos_data, int32_t colour)
 
   switch (size) {
   case 16:
-    charSet = &(CharSet16[0]);
+    charSet = &CharSet16[0];
     charTex = (Texture*)TextureTable[DRTEXT_16];
     break;
 
   case 12:
-    charSet = &(CharSet12[0]);
+    charSet = &CharSet12[0];
     charTex = (Texture*)TextureTable[DRTEXT_12];
     break;
 
   case 8:
-    charSet = &(CharSet8[0]);
+    charSet = &CharSet8[0];
     charTex = (Texture*)TextureTable[DRTEXT_8];
     break;
   }
@@ -358,13 +358,13 @@ void AddTime(int32_t time, TEXT_DATA* pos_data, int32_t colour)
     display_text[textPrim].clut = redTex->cba;
   }
 
-  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(display_text[textPrim]));
+  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&display_text[textPrim]);
 
   x += currLett;
 
   textPrim++;
 
-  charSet = &(CharSet8[0]);
+  charSet = &CharSet8[0];
   charTex = (Texture*)TextureTable[DRTEXT_8];
 
   if (size != 8) {
@@ -391,7 +391,7 @@ void AddTime(int32_t time, TEXT_DATA* pos_data, int32_t colour)
     display_text[textPrim].clut = redTex->cba;
   }
 
-  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(display_text[textPrim]));
+  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&display_text[textPrim]);
 
   x += currLett;
   textPrim++;
@@ -414,17 +414,17 @@ void AddText(const char* text_ptr, TEXT_DATA* pos_data, int32_t colour) {
 
   switch (size) {
   case 16:
-    charSet = &(CharSet16[0]);
+    charSet = &CharSet16[0];
     charTex = (Texture*)TextureTable[DRTEXT_16];
     break;
 
   case 12:
-    charSet = &(CharSet12[0]);
+    charSet = &CharSet12[0];
     charTex = (Texture*)TextureTable[DRTEXT_12];
     break;
 
   case 8:
-    charSet = &(CharSet8[0]);
+    charSet = &CharSet8[0];
     charTex = (Texture*)TextureTable[DRTEXT_8];
     break;
   }
@@ -465,7 +465,7 @@ void AddText(const char* text_ptr, TEXT_DATA* pos_data, int32_t colour) {
         display_text[textPrim].clut = redTex->cba;
       }
 
-      AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(display_text[textPrim]));
+      AddPrim(OT[CurrentScreen], 0, (P_TAG*)&display_text[textPrim]);
 
       textPrim++;
       x += currLett;
@@ -490,17 +490,17 @@ void AddNumber(int32_t num, TEXT_DATA* pos_data, int32_t colour) {
 
   switch (size) {
   case 16:
-    charSet = &(CharSet16[0]);
+    charSet = &CharSet16[0];
     charTex = (Texture*)TextureTable[DRTEXT_16];
     break;
 
   case 12:
-    charSet = &(CharSet12[0]);
+    charSet = &CharSet12[0];
     charTex = (Texture*)TextureTable[DRTEXT_12];
     break;
 
   case 8:
-    charSet = &(CharSet8[0]);
+    charSet = &CharSet8[0];
     charTex = (Texture*)TextureTable[DRTEXT_8];
     break;
   }
@@ -536,7 +536,7 @@ void AddNumber(int32_t num, TEXT_DATA* pos_data, int32_t colour) {
       display_text[textPrim].clut = redTex->cba;
     }
 
-    AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(display_text[textPrim]));
+    AddPrim(OT[CurrentScreen], 0, (P_TAG*)&display_text[textPrim]);
     textPrim++;
     x += currLett;
   }
@@ -575,7 +575,7 @@ void AddDelEnd(char dispChar, TEXT_DATA* pos_data, int32_t colour) {
     display_text[textPrim].clut = redTex->cba;
   }
 
-  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(display_text[textPrim]));
+  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&display_text[textPrim]);
 
   textPrim++;
 }
@@ -589,15 +589,15 @@ void SetCharTextures(char size) {
 
   switch (size) {
   case 8:
-    charSet = &(Text8[0]);
+    charSet = &Text8[0];
     break;
 
   case 12:
-    charSet = &(Text12[0]);
+    charSet = &Text12[0];
     break;
 
   case 16:
-    charSet = &(Text16[0]);
+    charSet = &Text16[0];
     break;
   }
 
@@ -653,7 +653,7 @@ TEXT_DATA* text_data(int32_t start_pos_x, int32_t start_pos_y, int32_t size) {
   text.start_pos_y = start_pos_y;
   text.size = size;
 
-  return (&text);
+  return &text;
 }
 
 extern int16_t startLinePos[];
@@ -776,7 +776,7 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo* speedo, int32_t choice, ConfigDa
   if (gameType == SINGLE) {
     if ((shipIndex[ownShip].lapNo != shipIndex[ownShip].prevLapNo) &&
         (shipIndex[ownShip].lapNo > 1) && (shipIndex[ownShip].lapNo <= END_LAP + 1)) {
-      if ((CheckLapRecord(gameData, &(shipIndex[0]), ownShip))) {
+      if ((CheckLapRecord(gameData, &shipIndex[0], ownShip))) {
         gameData->newLapRecord = 1;
         //				printf ("New lap record\n") ;
       }
@@ -786,17 +786,15 @@ void UpdateRaceHud(ShipData* shipIndex, Speedo* speedo, int32_t choice, ConfigDa
     if (((shipIndex[ownShip].lapNo != shipIndex[ownShip].prevLapNo) &&
          (shipIndex[ownShip].lapNo > 1) && (shipIndex[ownShip].lapNo <= END_LAP + 1))) {
       if (gameType != SINGLE)
-        gameData->newLapRecord = CheckLapRecord(gameData, &(shipIndex[0]), ownShip);
-      else if (CheckLapRecord(gameData, &(shipIndex[0]), ownShip)) {
+        gameData->newLapRecord = CheckLapRecord(gameData, &shipIndex[0], ownShip);
+      else if (CheckLapRecord(gameData, &shipIndex[0], ownShip))
         gameData->newLapRecord = 1;
-      }
     } else if (((shipIndex[serialShip].lapNo != shipIndex[serialShip].prevLapNo) &&
                 (shipIndex[serialShip].lapNo > 1) && (shipIndex[serialShip].lapNo <= END_LAP + 1))) {
       if (gameType != SINGLE)
-        gameData->newLapRecord = CheckLapRecord(gameData, &(shipIndex[0]), serialShip);
-      else if (CheckLapRecord(gameData, &(shipIndex[0]), serialShip)) {
+        gameData->newLapRecord = CheckLapRecord(gameData, &shipIndex[0], serialShip);
+      else if (CheckLapRecord(gameData, &shipIndex[0], serialShip))
         gameData->newLapRecord = 1;
-      }
     }
 
     shipIndex[ownShip].prevLapNo = shipIndex[ownShip].lapNo;
@@ -1094,7 +1092,7 @@ int32_t CalcPosition(ShipData* shipIndex) {
     if (shipIndex[i].attr & RACING)
       winTable[i].racePosition = tempPosition;
   }
-  return (position);
+  return position;
 }
 
 void ScreenFooter(int32_t x, int32_t y, int32_t colour) {
@@ -1105,13 +1103,13 @@ void ScreenFooter(int32_t x, int32_t y, int32_t colour) {
   for (i = 0; i < 2; i++) {
     symbolTex = (Texture*)TextureTable[DRTEXT_RED + (i + 1)];
 
-    SetPolyFT4(&(symbols[i]));
+    SetPolyFT4(&symbols[i]);
     symbols[i].r0 = 230;
     symbols[i].g0 = 0;
     symbols[i].b0 = BLACK_NOT_DRAWN;
 
     if (i == 0) {
-      setXY4(&(symbols[i]), x * upres, y * upres,
+      setXY4(&symbols[i], x * upres, y * upres,
              x + 20, y,
              x, y + 16,
              x + 20, y + 16);
@@ -1119,7 +1117,7 @@ void ScreenFooter(int32_t x, int32_t y, int32_t colour) {
       AddText("SELECT", text_data(x + 22, y + 4, 8), WhiteText);
 
     } else {
-      setXY4(&(symbols[i]), (x + offSet) * upres, y * upres,
+      setXY4(&symbols[i], (x + offSet) * upres, y * upres,
              x + 20 + offSet, y,
              x + offSet, y + 16,
              x + 20 + offSet, y + 16);
@@ -1127,13 +1125,13 @@ void ScreenFooter(int32_t x, int32_t y, int32_t colour) {
       AddText("BACK", text_data(x + 22 + offSet, y + 4, 8), WhiteText);
     }
 
-    setUV4(&(symbols[i]),
+    setUV4(&symbols[i],
            symbolTex->u0, symbolTex->v0,
            symbolTex->u1, symbolTex->v1,
            symbolTex->u2, symbolTex->v2 + 1,
            symbolTex->u3, symbolTex->v3 + 1);
 
-    setTPage(&(symbols[i]), 0, 0, symbolTex->textureX, symbolTex->textureY);
+    setTPage(&symbols[i], 0, 0, symbolTex->textureX, symbolTex->textureY);
 
     if (colour == WhiteText)
       symbols[i].clut = symbolTex->cba;
@@ -1142,7 +1140,7 @@ void ScreenFooter(int32_t x, int32_t y, int32_t colour) {
       symbols[i].clut = redTex->cba;
     }
 
-    AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(symbols[i]));
+    AddPrim(OT[CurrentScreen], 0, (P_TAG*)&symbols[i]);
   }
 }
 
@@ -1166,17 +1164,17 @@ void CentreText(const char* the_text_ptr, TEXT_DATA* pos_data, int32_t colour) {
 
   switch (size) {
   case 16:
-    charSet = &(CharSet16[0]);
+    charSet = &CharSet16[0];
     charTex = (Texture*)TextureTable[DRTEXT_16];
     break;
 
   case 12:
-    charSet = &(CharSet12[0]);
+    charSet = &CharSet12[0];
     charTex = (Texture*)TextureTable[DRTEXT_12];
     break;
 
   case 8:
-    charSet = &(CharSet8[0]);
+    charSet = &CharSet8[0];
     charTex = (Texture*)TextureTable[DRTEXT_8];
     break;
   }
@@ -1239,7 +1237,7 @@ void CentreText(const char* the_text_ptr, TEXT_DATA* pos_data, int32_t colour) {
         display_text[textPrim].clut = redTex->cba;
       }
 
-      AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(display_text[textPrim]));
+      AddPrim(OT[CurrentScreen], 0, (P_TAG*)&display_text[textPrim]);
 
       textPrim++;
       x += currLett;
@@ -1258,24 +1256,24 @@ void DisplayLives(SPRT lifeIcons[][2], ConfigData* gameData) // PCwipeout
   livesTex = (Texture*)TextureTable[DRTEXT_RED + 5];
 
   for (i = 0; i < gameData->Lives; i++) {
-    SetSprt(&(lifeIcons[i][CurrentScreen]));
+    SetSprt(&lifeIcons[i][CurrentScreen]);
     lifeIcons[i][CurrentScreen].r0 = 230;
     lifeIcons[i][CurrentScreen].g0 = 0;
     lifeIcons[i][CurrentScreen].b0 = BLACK_NOT_DRAWN;
 
 #if PAL
-    setXY0(&(lifeIcons[i][CurrentScreen]), 294 - (ySpace * i), 215);
-    setWH(&(lifeIcons[i][CurrentScreen]), 11, 9);
+    setXY0(&lifeIcons[i][CurrentScreen], 294 - (ySpace * i), 215);
+    setWH(&lifeIcons[i][CurrentScreen], 11, 9);
 #else
-    setXY0(&(lifeIcons[i][CurrentScreen]), speedo_x[screenres] + 115 - (ySpace * i), speedo_y[screenres] - 5);
-    setWH(&(lifeIcons[i][CurrentScreen]), 11, 9);
+    setXY0(&lifeIcons[i][CurrentScreen], speedo_x[screenres] + 115 - (ySpace * i), speedo_y[screenres] - 5);
+    setWH(&lifeIcons[i][CurrentScreen], 11, 9);
 #endif
 
-    setUV0(&(lifeIcons[i][CurrentScreen]), livesTex->u0, livesTex->v0);
+    setUV0(&lifeIcons[i][CurrentScreen], livesTex->u0, livesTex->v0);
 
     lifeIcons[i][CurrentScreen].clut = livesTex->cba;
 
-    AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(lifeIcons[i][CurrentScreen]));
+    AddPrim(OT[CurrentScreen], 0, (P_TAG*)&lifeIcons[i][CurrentScreen]);
   }
 }
 
@@ -1367,45 +1365,45 @@ void InitScreenTex(Texture** screenTex, const char* fileName) {
 void DisplayWinLose(Texture* winLose, POLY_FT4* picPrim, int16_t x, int16_t y, int16_t height, char type) {
   int16_t width = 128;
 
-  SetPolyFT4(&(picPrim[CurrentScreen]));
+  SetPolyFT4(&picPrim[CurrentScreen]);
   picPrim[CurrentScreen].r0 = 230; // PCwipeout
   picPrim[CurrentScreen].g0 = 0;
   picPrim[CurrentScreen].b0 = BLACK_NOT_DRAWN;
 
-  setXY4(&(picPrim[CurrentScreen]), x, y, x + width, y, x, y + height, x + width, y + height);
+  setXY4(&picPrim[CurrentScreen], x, y, x + width, y, x, y + height, x + width, y + height);
 
-  setUV4(&(picPrim[CurrentScreen]),
+  setUV4(&picPrim[CurrentScreen],
          winLose->u0, winLose->v0,
          winLose->u1, winLose->v1,
          winLose->u2, winLose->v2 + 1,
          winLose->u3, winLose->v3 + 1);
 
-  setPAD4(&(picPrim[CurrentScreen]), 0x4000);
+  setPAD4(&picPrim[CurrentScreen], 0x4000);
 
-  setTPage(&(picPrim[CurrentScreen]), 1, 0, winLose->textureX, winLose->textureY);
+  setTPage(&picPrim[CurrentScreen], 1, 0, winLose->textureX, winLose->textureY);
 
   //		picPrim[CurrentScreen].clut = winLose->cba ; // PCwipeout
 
-  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(picPrim[CurrentScreen]));
+  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&picPrim[CurrentScreen]);
 }
 
 void BackPoly(POLY_F4* selectBox, DR_MODE* selectTrans, int16_t x, int16_t y, int16_t w, int16_t h) {
-  SetPolyF4(&(selectBox[CurrentScreen]));
+  SetPolyF4(&selectBox[CurrentScreen]);
   selectBox[CurrentScreen].r0 = 230; // PCwipeout
   selectBox[CurrentScreen].g0 = 0;
   selectBox[CurrentScreen].b0 = BLACK3_TRANSL;
 
-  setXY4(&(selectBox[CurrentScreen]), x, y,
+  setXY4(&selectBox[CurrentScreen], x, y,
          x + w, y,
          x, y + h,
          x + w, y + h);
 
-  SetSemiTrans((P_TAG*)&(selectBox[CurrentScreen]), 1);
+  SetSemiTrans((P_TAG*)&selectBox[CurrentScreen], 1);
 
-  SetDrawMode(&(selectTrans[CurrentScreen]), 1, 1, FONT_TPAGE, 0);
+  SetDrawMode(&selectTrans[CurrentScreen], 1, 1, FONT_TPAGE, 0);
 
-  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(selectBox[CurrentScreen]));
-  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(selectTrans[CurrentScreen]));
+  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&selectBox[CurrentScreen]);
+  AddPrim(OT[CurrentScreen], 0, (P_TAG*)&selectTrans[CurrentScreen]);
 }
 
 void DisplayVenomComplete() {
@@ -1693,11 +1691,11 @@ void DrawHud(ShipData* shipIndex, Speedo* speedo, int32_t choice, ConfigData* ga
     int32_t j;
 
     for (j = 0; j < 2; ++j) {
-      setXY0(&(speedo->facia[j]), speedo_x[screenres], speedo_y[screenres]);
-      setXY0(&(speedo->transbar[j]), speedo_x[screenres], speedo_y[screenres]);
-      setXY0(&(speedo->solidbar[j]), speedo_x[screenres], speedo_y[screenres]);
+      setXY0(&speedo->facia[j], speedo_x[screenres], speedo_y[screenres]);
+      setXY0(&speedo->transbar[j], speedo_x[screenres], speedo_y[screenres]);
+      setXY0(&speedo->solidbar[j], speedo_x[screenres], speedo_y[screenres]);
     }
-    AddPrim(OT[CurrentScreen], 0, (P_TAG*)&(speedo->facia[CurrentScreen]));
+    AddPrim(OT[CurrentScreen], 0, (P_TAG*)&speedo->facia[CurrentScreen]);
 
     if (CameraUpdate == UpdateCameraAttractInternal)
       fill_speedo(speedo, shipIndex[ownShip].speed * 7, shipIndex[ownShip].thrust_mag);

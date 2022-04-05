@@ -260,7 +260,7 @@ void race(combatData* packetData, ConfigData* gameData, int32_t mode, int32_t ti
 
 #ifdef FRI
     if (ctrlfadeData.fadeFlag == FADE_ACTIVE || ctrlfadeData.fadeFlag == FADE_OUT)
-      ScreenFade(&(ctrlfadeScreen[0]), &(ctrlfadeTrans[0]), &ctrlfadeData);
+      ScreenFade(&ctrlfadeScreen[0], &ctrlfadeTrans[0], &ctrlfadeData);
 #endif
 
     if (ctrlmode == ATTRACT) {
@@ -282,14 +282,14 @@ void race(combatData* packetData, ConfigData* gameData, int32_t mode, int32_t ti
     //WEAPONS
     DrawWeapons(ctrlshipIndex, ctrlweaponShapes, ctrlweaponIndex);
     if (ctrlNeedTargetIcon == 1)
-      DrawTargetIcon(&(ctrlshipIndex[ownShip]), ctrlshipIndex, ctrlshipShapes, ctrlTarget);
+      DrawTargetIcon(&ctrlshipIndex[ownShip], ctrlshipIndex, ctrlshipShapes, ctrlTarget);
 
     //Effects
     AddEffects(ctrleffects, ctrlweaponIndex, ctrleffectTextures, ctrlshipIndex);
     DrawEffects(ctrleffects);
 
     //LANDSCAPE
-    DrawLandscape(&(ctrlshipIndex[ownShip]), &ctrlcamera);
+    DrawLandscape(&ctrlshipIndex[ownShip], &ctrlcamera);
     //SHADOW
     if (ctrlshipIndex[ownShip].attr & RACING)
       DrawShadow(ctrlshipShapes, ctrlshipIndex, ctrlShadow);
@@ -346,7 +346,7 @@ void race(combatData* packetData, ConfigData* gameData, int32_t mode, int32_t ti
     //Pictures at end
     if (ctrlNeedWinLose) {
       setWinLose();
-      DisplayWinLose(ctrlwinLose[ctrlNeedWinLoseVar], &(ctrlwinLosePrims[0]), 180, 50, 140, RACE);
+      DisplayWinLose(ctrlwinLose[ctrlNeedWinLoseVar], &ctrlwinLosePrims[0], 180, 50, 140, RACE);
     }
     //High score bollox
     if (ctrlNeedRaceInfo)
@@ -362,9 +362,9 @@ void race(combatData* packetData, ConfigData* gameData, int32_t mode, int32_t ti
     if (ctrlNeedVenomComplete)
       DisplayVenomComplete();
     if (ctrlNeedContinueGameConfirm)
-      ContinueGameConfirm(&(ctrlhiScoreData.confirm), xpad, &(ctrlhiScoreData.lConfirm), &ctrltoggleDisplay);
+      ContinueGameConfirm(&ctrlhiScoreData.confirm, xpad, &ctrlhiScoreData.lConfirm, &ctrltoggleDisplay);
     if (ctrlNeedInSingleGameConfirm)
-      RestartGameConfirm(&(ctrlhiScoreData.confirm), xpad, &(ctrlhiScoreData.lConfirm), &ctrltoggleDisplay);
+      RestartGameConfirm(&ctrlhiScoreData.confirm, xpad, &ctrlhiScoreData.lConfirm, &ctrltoggleDisplay);
     if (ctrlNeedInGameReset)
       InGameReset(ctrlchoice, &ctrltoggleDisplay, ctrlmachinePaused, gameData, &ctrlcdPause);
     if (ctrlNeedInGameConfirm)
@@ -380,14 +380,14 @@ void race(combatData* packetData, ConfigData* gameData, int32_t mode, int32_t ti
 
     //Semi trans bit.
     if (ctrlNeedBackPoly)
-      BackPoly(&(ctrlbackFrame[0]), &(ctrlbackFrameTrans[0]), 180, 50, 128, 140);
+      BackPoly(&ctrlbackFrame[0], &ctrlbackFrameTrans[0], 180, 50, 128, 140);
 
     //HUD display
     if (ctrlshipIndex[ownShip].attr & RACING) {
       if (gameData->gameType == CHAMPIONSHIP)
-        DisplayLives(&(ctrllifeIcons[0]), gameData);
+        DisplayLives(&ctrllifeIcons[0], gameData);
 
-      DrawWeaponSprtIcons(ctrlweaponIcon, ctrlweaponIconTextures, &(ctrlshipIndex[ownShip]), &ctrliconTPage, &ctrlrealTPage);
+      DrawWeaponSprtIcons(ctrlweaponIcon, ctrlweaponIconTextures, &ctrlshipIndex[ownShip], &ctrliconTPage, &ctrlrealTPage);
       DrawHud(ctrlshipIndex, &ctrlspeedo, ctrlchoice, gameData);
     }
 
@@ -423,7 +423,7 @@ void Restart(ShipData* shipIndex,
   KillNotes();
   StopNotes();
   initShipData(track->sections, shipIndex, gameData);
-  InitRescueDroid(rescueDroid, shipShapes, &(shipIndex[ownShip]));
+  InitRescueDroid(rescueDroid, shipShapes, &shipIndex[ownShip]);
   cameraPtr->section = shipIndex[ownShip].nearTrkSect;
   ResetStartBoom();
   for (i = 0; i < NO_ACTIVE_WEAPONS; i++) {

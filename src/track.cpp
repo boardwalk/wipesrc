@@ -298,7 +298,7 @@ TrackSection* NextIndexSection(TrackSection* section) {
     section = track->sections;
   }
 
-  return (section);
+  return section;
 }
 
 TrackSection* PrevIndexSection(TrackSection* section) {
@@ -308,7 +308,7 @@ TrackSection* PrevIndexSection(TrackSection* section) {
     section = track->sections + track->sectionCount - 1;
   }
 
-  return (section);
+  return section;
 }
 
 void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
