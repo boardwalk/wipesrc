@@ -35,7 +35,6 @@
 #include "sfx.h"
 #include "ayrace.h"
 #include "datacash.h"
-#include "timc.h"
 #include "regread.h"
 #include "card.h"
 #include "libetc_markk.h" // PCwipeout
@@ -150,8 +149,6 @@ void oldmain() {
 #ifdef DOS_VERSION
   *nl &= 0xdf; // Numlock off
 #endif
-
-  InstallTimer();
 
   InitSonyDisplay();
 
@@ -615,7 +612,6 @@ void CheckError() {
 
 void QuitToDos() {
   WinQuit();
-  RemoveTimer();
   SfxUnInit(1);
   CdControl(CdlStop, 0, 0);
   exit(0);
