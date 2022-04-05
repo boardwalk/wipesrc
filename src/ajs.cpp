@@ -96,8 +96,8 @@ char current_palette = MAIN_PAL;
 char winPic[35840];
 char losePic[35840];
 extern char inmenu, Reallyinmenu;
-extern char VRam[];
-extern char DepthFadeTble[];
+char DepthFadeTble[256 * 96] = {0};
+char VRam[256 * 256 * 32 * 3]; // 32 256x256 24 bit pages
 extern uint32_t this_frame, last_frame;
 
 //#define	LOADTEXTURES	1					// standard load stuff (LoadImage4, LoadImage8 etc.);
