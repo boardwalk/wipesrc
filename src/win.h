@@ -25,7 +25,7 @@ void JJSDrawPolyFT4(POLY_FT4* p);
 void JJSDrawPolyG4(POLY_G4* p);
 void CopyPal(char* palette, int16_t start, int16_t end);
 void WinQuit();
-int32_t JJSJoyConfig();
+bool JJSJoyConfig();
 void BltClearToScreen();
 
 #endif

@@ -40,10 +40,7 @@
 
 #define FN_DEBUG
 
-// #include <dos.h>
-typedef int32_t BOOL;
-
-extern BOOL Screen565;
+extern bool Screen565;
 
 extern int16_t trackNum, screenres; //SJR
 extern float upres;
@@ -173,7 +170,7 @@ DR_MODE drmode2[18][2]; // DLS
 
 TimData* AJSLoad16BitTexture(const char* filename, char location);
 TimData* JJSLoad16BitTexture(const char* filename, char location);
-BOOL JJSNewTexture(const char* filename);
+bool JJSNewTexture(const char* filename);
 const char* GetCdTrackName(int32_t no);
 void MostRecentSaveFile(); // returns the name of the last file to be modified in "c:\wipeout"
 char CheckKey(uint16_t code);

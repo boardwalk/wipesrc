@@ -2573,7 +2573,7 @@ int32_t JJSLoadSprites() {
   return TRUE;
 }
 
-BOOL SJRNewTexture(char* filename) {
+bool SJRNewTexture(char* filename) {
   JJSLoadSprites();
   if (menuTexturesIn)
     return SJRLoadTextureBMPmenu(filename);
@@ -2831,13 +2831,13 @@ void JJSReadJoystick() {
   JoyButton2 = myJoy.wButtons & 0x0002;
 }
 
-BOOL JJSJoyConfig() {
+bool JJSJoyConfig() {
   JOYCAPS mycaps;
   UINT joyrange;
   MMRESULT theres;
 
   if (joyGetDevCaps(JOYSTICKID1, &mycaps, sizeof(mycaps)) != JOYERR_NOERROR)
-    return FALSE;
+    return false;
 
   joyrange = mycaps.wXmax - mycaps.wXmin;
   joyModXVal = 256.0f / (float)joyrange;
@@ -2859,10 +2859,9 @@ BOOL JJSJoyConfig() {
       break;
     case JOYERR_UNPLUGGED:
       theres = 2;
-      return FALSE;
-      break;
+      return false;
     }
-  return TRUE;
+  return true;
 }
 
 void ShowErrorMessage(int32_t StrNum) {

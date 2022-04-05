@@ -10,7 +10,7 @@ void CDRestart();
 void CDPlay(int16_t CurrTrackNo);
 void CDStop();
 void LoadVRam(const char* filename, char set_pal);
-int32_t SJRNewTexture(const char* filename);
+bool SJRNewTexture(const char* filename);
 void reloadStartScr();
 void reloadScr();
 

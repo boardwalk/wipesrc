@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "config.h"
 
-int32_t JJSJoyConfig();
+bool JJSJoyConfig();
 //#include <windowsx.h>
 //#include <winbase.h>
 //#include <stdio.h>

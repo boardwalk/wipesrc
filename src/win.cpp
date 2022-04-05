@@ -12,10 +12,6 @@
 #include <stdio.h>
 #include <GLFW/glfw3.h>
 
-typedef int32_t BOOL;
-#define TRUE 1
-#define FALSE 0
-
 int16_t ft = 0;
 char MipMap = 0;
 char* SaveDirBase;
@@ -39,8 +35,8 @@ char* LockPilot() {
 void UnlockPilot() {
 }
 
-BOOL JJSJoyConfig() {
-  return FALSE;
+bool JJSJoyConfig() {
+  return false;
 }
 
 void changeScreen() {
@@ -188,9 +184,9 @@ void JJSDrawPolyGT4(POLY_GT4* p) {
   glEnd();
 }
 
-BOOL SJRNewTexture(const char* filename) {
+bool SJRNewTexture(const char* filename) {
   printf("SJRNewTexture(%s)\n", filename);
-  return FALSE;
+  return false;
 }
 
 void centreMouse() {

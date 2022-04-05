@@ -29,7 +29,7 @@ BOOL CurrentAlphaTest = FALSE;
 BOOL CurrentAlphaBlend = FALSE;
 BOOL CurrentTClamp[2] = {FALSE, FALSE};
 BOOL CurrentSClamp[2] = {FALSE, FALSE};
-BOOL Screen565 = FALSE;
+bool Screen565 = false;
 LPDIRECT3DTEXTURE2 CurrentTexture[2];
 D3DTLVERTEX vert[3];
 D3DCOLOR CurrentColor;
