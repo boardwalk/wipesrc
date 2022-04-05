@@ -34,7 +34,6 @@
 #include "libgte.h"
 #include "sfx.h"
 #include "ayrace.h"
-#include "datacash.h"
 #include "timc.h"
 #include "regread.h"
 #include "card.h"
