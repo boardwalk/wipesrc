@@ -61,7 +61,6 @@ void DumpVRamAsPCX(char* filename);
 extern uint8_t ctrlparam;
 
 char Sky = 1;
-extern char* VRam; // PCwipeout
 
 extern int16_t ctrlsky;
 extern Object* ctrlshipShapes[];

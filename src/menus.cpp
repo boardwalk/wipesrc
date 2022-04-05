@@ -122,7 +122,6 @@ char changecontroller = 1;
 // end of temporary stuff
 
 extern char* VRam;
-extern char* CurBuffer;
 
 extern TexChar CharSet16[];
 extern HiScores scoreTable[];

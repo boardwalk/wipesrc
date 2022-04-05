@@ -85,8 +85,6 @@ void _makepath(
 #define MAIN_PAL 0
 #define SHIELD_PAL 1
 
-extern int16_t rendering;
-
 CVECTOR Palette[256];
 char main_palette[768];
 char shield_palette[768];

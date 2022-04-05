@@ -44,9 +44,6 @@
 
 extern int32_t ctrlNeedTargetIcon;
 extern int32_t ctrlnearShip;
-extern char WhitePal;
-extern char GreyPal;
-extern char DepthFadeTble[];
 int16_t Shielded = 0;
 extern TrackCamera ctrlcamera;
 

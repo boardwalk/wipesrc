@@ -61,7 +61,6 @@ extern TimData* JJSLoad16BitTexture(const char* filename, char location);
  */
 #define TwoMegMode 1
 
-extern char* VRam; // PCwipeout
 char copyRight[/*24*/] = "copyright_Psygnosis_1995";
 int32_t security = 0x2823217b;
 
@@ -76,7 +75,6 @@ extern int32_t this_frame_count, last_frame_count, ok_to_interrupt;
 
 extern char andybodge;
 
-extern char* CurBuffer;
 int32_t DrawDistance;
 int32_t inattract = 0;
 TimData* titleScreen;

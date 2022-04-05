@@ -14,18 +14,10 @@
 #include <string.h>
 #include <signal.h>
 #include "file.h"
-char jmax;
-
-extern void CopyPal(char*, char, char);
 
 /*************************************
 * Defines & Externs
 *************************************/
-
-extern char* VRam;
-extern char* CurBuffer;
-extern char* DepthFadeTble;
-extern void GSwap();
 
 #define PAL 1
 #define PIC 2
