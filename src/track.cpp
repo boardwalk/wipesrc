@@ -292,23 +292,19 @@ void InitViewList(char* file) {
 }
 
 TrackSection* NextIndexSection(TrackSection* section) {
-  section += 1;
-
-  if (section > track->sections + track->sectionCount - 1) {
-    section = track->sections;
+  if (section < track->sections + track->sectionCount - 1) {
+    return section + 1;
+  } else {
+    return track->sections;
   }
-
-  return section;
 }
 
 TrackSection* PrevIndexSection(TrackSection* section) {
-  section -= 1;
-
-  if (section < track->sections) {
-    section = track->sections + track->sectionCount - 1;
+  if (section > track->sections) {
+    return section - 1;
+  } else {
+    return track->sections + track->sectionCount - 1;
   }
-
-  return section;
 }
 
 void DrawNewTrack(TrackCamera* camera, AutoMeshData* autoMesh) {
