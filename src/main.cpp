@@ -149,6 +149,8 @@ void oldmain() {
   *nl &= 0xdf; // Numlock off
 #endif
 
+  InstallTimer();
+
   InitSonyDisplay();
 
   // for( i = 0; i < 60; i++)	  // PCwipeout
