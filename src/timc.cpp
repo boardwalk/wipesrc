@@ -6,17 +6,8 @@
 #ifdef WIPEOUTPC
 char* backup_cache;
 #endif
-int32_t processing_interupt = 0;
-char* INT_STACK;
-int32_t stack_addr;
-int16_t stack_select;
-int32_t old_stack;
-int16_t old_stack_select;
-char imr_state;
 int32_t TimerInstalled = 0;
 extern int32_t frameRate30;
-extern uintptr_t FastRam; // ajy
-extern char fpstate;
 
 extern int32_t FR30;
 extern int32_t FR60;
@@ -31,8 +22,6 @@ extern int32_t FR7U;
 extern int32_t FR32U;
 
 extern int32_t TimerInstalled;
-extern void UserAYInt();
-extern uint32_t this_frame, last_frame;
 
 void InstallTimer() {
   //	TimerInstalled = 1;	// mark
@@ -61,5 +50,3 @@ void InstallTimer() {
 void RemoveTimer() {
   EndWinTimer();
 }
-
-char old_mask;
