@@ -151,8 +151,6 @@ void oldmain() {
   *nl &= 0xdf; // Numlock off
 #endif
 
-  InstallTimer();
-
   InitSonyDisplay();
 
   // for( i = 0; i < 60; i++)	  // PCwipeout
@@ -615,7 +613,6 @@ void CheckError() {
 
 void QuitToDos() {
   WinQuit();
-  RemoveTimer();
   SfxUnInit(1);
   CdControl(CdlStop, 0, 0);
   exit(0);

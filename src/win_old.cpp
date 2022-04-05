@@ -950,7 +950,6 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
 				SetForegroundWindow(hWnd);
 				UpdateNotes(NOT_PAUSED);//paused
 				WinPaused = 0;
-				InstallTimer();
 				if ((!(ctrlNeedEndText|ctrlNeedWinLose|
 					ctrlNeedRaceInfo|ctrlNeedNewHighScores|
 					ctrlNeedRacePoints|ctrlNeedChampTable|
@@ -970,7 +969,6 @@ int32_t FAR PASCAL WndProc(HWND hWnd, UINT message,
 				CDStop();
 				UpdateNotes(PAUSED);//paused
 				WinPaused = 1;
-				RemoveTimer();
 			}
 
 		}

@@ -1,12 +1,6 @@
-#include <sys/types.h>
+#include <stdint.h>
 
-#include "datacash.h"
-#include "wintime.h"
-
-#ifdef WIPEOUTPC
-char* backup_cache;
-#endif
-int32_t TimerInstalled = 0;
+bool TimerInstalled = false;
 extern int32_t frameRate30;
 
 extern int32_t FR30;
@@ -21,11 +15,7 @@ extern int32_t FR30U;
 extern int32_t FR7U;
 extern int32_t FR32U;
 
-extern int32_t TimerInstalled;
-
 void InstallTimer() {
-  //	TimerInstalled = 1;	// mark
-
   if (!TimerInstalled) {
     FR30 = frameRate30;
     FR60 = frameRate30 * 2;
@@ -40,13 +30,6 @@ void InstallTimer() {
     FR7U = (7 * 30) / frameRate30;
     FR32U = (32 * 30) / frameRate30;
 
-    backup_cache = (char*)make_data_cache();
-
-    InitialiseWinTimer();
-    TimerInstalled = 1;
+    TimerInstalled = true;
   }
-}
-
-void RemoveTimer() {
-  EndWinTimer();
 }
