@@ -47,7 +47,6 @@ extern int16_t screenres;
 extern int16_t trackNum; //SJR
 extern int32_t menuTexturesIn;
 extern uint32_t _stacksize; // PCwipeout
-uintptr_t FastRam; // PCwipeout
 
 int16_t drawenv_tpage = 5; // PCwipeout
 int16_t BG_Colour = 0; // PCwipeout
@@ -132,7 +131,6 @@ void oldmain() {
 
   CreateSineTable();
 
-  FastRam = (uintptr_t)make_data_cache(); // PCwipeout
   etc_InputDeviceSelect = _KEYBOARD; // PCwipeout
   Set_Device(0); // PCwipeout
   CdInit(); // PCWipeout

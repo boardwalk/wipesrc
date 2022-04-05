@@ -90,15 +90,9 @@ void DrawObjectAsm(Object* object, Skeleton* camera, int32_t roll, int16_t ShipO
 
   primCount += primitiveCount;
 
-  if (vertexCount <= 128) {
-    screenPtr = (DVECTOR*)(FastRam);
-    depthPtr = (uint16_t*)(FastRam + 512);
-    flagsPtr = (uint16_t*)(FastRam + 768);
-  } else {
-    screenPtr = StaticScreen;
-    depthPtr = StaticDepth;
-    flagsPtr = StaticFlags;
-  }
+  screenPtr = StaticScreen;
+  depthPtr = StaticDepth;
+  flagsPtr = StaticFlags;
 
   RotTransPersN(vertex, screenPtr, depthPtr, flagsPtr, vertexCount);
 
@@ -711,15 +705,9 @@ void DrawObjectFixedAsm(Object* object, Skeleton* camera, int32_t depth) {
 
   primCount += primitiveCount;
 
-  if (vertexCount <= 128) {
-    screenPtr = (DVECTOR*)(FastRam);
-    depthPtr = (uint16_t*)(FastRam + 512);
-    flagsPtr = (uint16_t*)(FastRam + 768);
-  } else {
-    screenPtr = StaticScreen;
-    depthPtr = StaticDepth;
-    flagsPtr = StaticFlags;
-  }
+  screenPtr = StaticScreen;
+  depthPtr = StaticDepth;
+  flagsPtr = StaticFlags;
 
   RotTransPersN(vertex, screenPtr, depthPtr, flagsPtr, vertexCount);
 

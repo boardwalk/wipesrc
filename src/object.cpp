@@ -601,15 +601,9 @@ void TransformStaticObjectHole(Object* object, Skeleton* camera) {
 
   primCount += primitiveCount;
 
-  if (vertexCount <= 128) {
-    screenPtr = (DVECTOR*)(FastRam);
-    depthPtr = (uint16_t*)(FastRam + 512);
-    flagsPtr = (uint16_t*)(FastRam + 768);
-  } else {
-    screenPtr = StaticScreen;
-    depthPtr = StaticDepth;
-    flagsPtr = StaticFlags;
-  }
+  screenPtr = StaticScreen;
+  depthPtr = StaticDepth;
+  flagsPtr = StaticFlags;
 
   /* Rotate and translate the vertices */
 
@@ -1370,15 +1364,9 @@ void TransformStaticObject(Object* object, Skeleton* camera) {
 
   primCount += primitiveCount;
 
-  if (vertexCount <= 128) {
-    screenPtr = (DVECTOR*)(FastRam);
-    depthPtr = (uint16_t*)(FastRam + 512);
-    flagsPtr = (uint16_t*)(FastRam + 768);
-  } else {
-    screenPtr = StaticScreen;
-    depthPtr = StaticDepth;
-    flagsPtr = StaticFlags;
-  }
+  screenPtr = StaticScreen;
+  depthPtr = StaticDepth;
+  flagsPtr = StaticFlags;
 
   /* Rotate and translate the vertices */
 
@@ -2296,15 +2284,9 @@ void TransformStaticObjectBodge(Object* object, Skeleton* camera) {
 
   primCount += primitiveCount;
 
-  if (vertexCount <= 128) {
-    screenPtr = (DVECTOR*)(FastRam);
-    depthPtr = (uint16_t*)(FastRam + 512);
-    flagsPtr = (uint16_t*)(FastRam + 768);
-  } else {
-    screenPtr = StaticScreen;
-    depthPtr = StaticDepth;
-    flagsPtr = StaticFlags;
-  }
+  screenPtr = StaticScreen;
+  depthPtr = StaticDepth;
+  flagsPtr = StaticFlags;
 
   /* Rotate and translate the vertices */
 
@@ -3085,15 +3067,9 @@ void TransformStaticMenuObject(Object* object, Skeleton* camera) {
 
   primCount += primitiveCount;
 
-  if (vertexCount <= 128) {
-    screenPtr = (DVECTOR*)(FastRam);
-    depthPtr = (uint16_t*)(FastRam + 512);
-    flagsPtr = (uint16_t*)(FastRam + 768);
-  } else {
-    screenPtr = StaticScreen;
-    depthPtr = StaticDepth;
-    flagsPtr = StaticFlags;
-  }
+  screenPtr = StaticScreen;
+  depthPtr = StaticDepth;
+  flagsPtr = StaticFlags;
 
   /* Rotate and translate the vertices */
 

@@ -27,8 +27,6 @@
 #include "libgte.h"
 #include "ajs.h"
 
-#define UseFastRam 1
-
 void Test16Bit(int32_t* Test16bitX, int32_t* Test16bitY, int32_t* Test16bitZ);
 
 #define DepthShift 2
@@ -287,25 +285,13 @@ Listed in decreasing order of priority
 
   VECTOR* vertex;
 
-#if UseFastRam
-  VECTOR* campos = (VECTOR*)(FastRam); /* 1 vector = 16 bytes */
-  SVECTOR* svector = (SVECTOR*)(campos + 1); /* 4 svectors = 32 bytes */
-  DVECTOR* screen = (DVECTOR*)(svector + 4); /* 4 dvectors = 16 bytes */
-  int32_t* depth = (int32_t*)(screen + 4); /* 4 longs = 16 bytes */
-  int32_t* flag = (int32_t*)(depth + 4); /* 4 longs = 16 bytes */
-  int32_t* interpolate = (int32_t*)(flag + 4); /* 4 longs = 16 bytes */
-#else
   VECTOR camposData;
   VECTOR* campos = &camposData;
   SVECTOR svector[4];
   DVECTOR screen[4];
-  int32_t depth[4];
-  int32_t flag[4];
-  int32_t interpolate[4];
-#endif
 
-  uint16_t* depth2 = (uint16_t*)(interpolate + 4); /* 9 shorts = 18 bytes */
-  uint16_t* flag2 = (uint16_t*)(depth2 + 4); /* 9 shorts = 18 bytes */
+  uint16_t depth2[4];
+  uint16_t flag2[4];
 
   int16_t i, j;
 
@@ -536,22 +522,14 @@ Variables with greatest need for optimisation
 Listed in decreasing order of priority
 	*/
 
-#if UseFastRam
-  VECTOR* campos = (VECTOR*)(FastRam); /* 1 vector = 16 bytes */
-  VECTOR* vector = (VECTOR*)(campos + 1); /* 9 vectors = 144 bytes */
-  SVECTOR* svector = (SVECTOR*)(vector + 9); /* 9 svectors = 72 bytes */
-  DVECTOR* screen = (DVECTOR*)(svector + 9); /* 9 dvectors = 36 bytes */
-  uint16_t* depth = (uint16_t*)(screen + 9); /* 9 shorts = 18 bytes */
-  uint16_t* flag = (uint16_t*)(depth + 9); /* 9 shorts = 18 bytes */
-#else
   VECTOR camposData;
   VECTOR* campos = &camposData;
+  VECTOR vectorData[9];
+  VECTOR* vector = vectorData;
   SVECTOR svector[9];
   DVECTOR screen[9];
   uint16_t depth[9];
   uint16_t flag[9];
-  VECTOR meshVector[9];
-#endif
 
   /* original 32 bit vertices */
 
@@ -982,14 +960,6 @@ Variables with greatest need for optimisation
 Listed in decreasing order of priority
 	*/
 
-#if 0 //JJS UseFastRam
-	VECTOR*              campos = ( VECTOR* )( FastRam );                /* 1 vector = 16 bytes */
-	VECTOR*              vector = ( VECTOR* )( campos + 1 );             /* 25 vectors = 400 bytes */
-	SVECTOR*             svector = ( SVECTOR* )( vector + 25 );          /* 25 svectors = 200 bytes */
-	DVECTOR*             screen = ( DVECTOR* )( svector + 25 );          /* 25 dvectors = 100 bytes */
-	uint16_t*              depth = ( uint16_t* )( screen + 25 );             /* 25 shorts = 50 bytes */
-	uint16_t*              flag = ( uint16_t* )( depth + 25 );               /* 25 shorts = 50 bytes */
-#else
   VECTOR camposData;
   VECTOR* campos = &camposData;
   VECTOR vector[25];
@@ -997,7 +967,6 @@ Listed in decreasing order of priority
   DVECTOR screen[25];
   uint16_t depth[25];
   uint16_t flag[25];
-#endif
 
   /* original 32 bit vertices */
 
@@ -2373,14 +2342,14 @@ void AsmAutoMesh(
 #define blNum 7
 #define brNum 8
 
-  SVECTOR* svector = (SVECTOR*)(FastRam + 816); /* 5 * 8 = 40 bytes */
-  DVECTOR* screen = (DVECTOR*)(FastRam + 856); /* 9 * 4 = 36 bytes */
-  int32_t* depth = (int32_t*)(FastRam + 892); /* 9 * 4 = 36 bytes */
-
-  int32_t* interpolate = (int32_t*)(FastRam + 928); /* 1 * 4 = 4 bytes  */
-  int32_t* flag = (int32_t*)(FastRam + 932); /* 1 * 4 = 4 bytes  */
-
-  uint8_t* uv = (uint8_t*)(FastRam + 936); /* 5 * 2 = 10 bytes */
+  SVECTOR svector[5];
+  DVECTOR screen[9];
+  int32_t depth[9];
+  int32_t interpolateData;
+  int32_t* interpolate = &interpolateData;
+  int32_t flagData;
+  int32_t* flag = &flagData;
+  uint8_t uv[10];
 
 #define tu 0
 #define ru 1
