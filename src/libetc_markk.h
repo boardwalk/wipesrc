@@ -165,61 +165,61 @@ typedef struct {
 
 /* Variable Declarations. */
 /* Hardware Register Interface. */
-extern volatile union REGS etc_regs;
-extern volatile struct SREGS etc_sregs;
+extern union REGS etc_regs;
+extern struct SREGS etc_sregs;
 
 /* Low-Level KeyCode Handling. */
-extern volatile int8_t etc_KeyboardHandler;
-extern volatile int8_t etc_JoystickHandler;
-extern volatile int8_t etc_MouseHandler;
-extern volatile int8_t etc_TimerHandler;
-extern volatile uint8_t etc_ExtendedMode;
-extern volatile uint8_t etc_ExtendedFlag;
-extern volatile uint8_t etc_ScanCode;
-extern volatile uint8_t etc_Status;
-extern volatile int8_t etc_KeyPressed;
-extern volatile uint16_t etc_ExtKey;
-extern volatile uint8_t etc_Key;
-extern volatile uint8_t etc_ExitKey;
-extern volatile uint32_t etc_KeyboardCounter;
+extern int8_t etc_KeyboardHandler;
+extern int8_t etc_JoystickHandler;
+extern int8_t etc_MouseHandler;
+extern int8_t etc_TimerHandler;
+extern uint8_t etc_ExtendedMode;
+extern uint8_t etc_ExtendedFlag;
+extern uint8_t etc_ScanCode;
+extern uint8_t etc_Status;
+extern int8_t etc_KeyPressed;
+extern uint16_t etc_ExtKey;
+extern uint8_t etc_Key;
+extern uint8_t etc_ExitKey;
+extern uint32_t etc_KeyboardCounter;
 
 /* Low-Level Mouse Handling. */
-extern volatile MOUSE etc_Mouse1;
-extern volatile MOUSE etc_Mouse2;
+extern MOUSE etc_Mouse1;
+extern MOUSE etc_Mouse2;
 
 /* Low-Level Joystick Handling. */
-extern volatile uint16_t etc_Joystick1CentreX;
-extern volatile uint16_t etc_Joystick1CentreY;
-extern volatile uint16_t etc_Joystick2CentreX;
-extern volatile uint16_t etc_Joystick2CentreY;
-extern volatile JOYSTICK etc_Joy1;
-extern volatile JOYSTICK etc_Joy2;
+extern uint16_t etc_Joystick1CentreX;
+extern uint16_t etc_Joystick1CentreY;
+extern uint16_t etc_Joystick2CentreX;
+extern uint16_t etc_Joystick2CentreY;
+extern JOYSTICK etc_Joy1;
+extern JOYSTICK etc_Joy2;
 
 /* Buffer pointers. */
-extern volatile char* etc_TransferBuffer1;
-extern volatile char* etc_TransferBuffer2;
+extern char* etc_TransferBuffer1;
+extern char* etc_TransferBuffer2;
 
 /* Input Device Status Blocks. (5 bytes each) */
-extern volatile uint8_t etc_KeyboardSwitch; /* id = 0 */
-extern volatile uint32_t etc_KeyboardRegister;
-extern volatile uint8_t etc_Joystick1Switch; /* id = 1 */
-extern volatile uint32_t etc_Joystick1Register;
-extern volatile uint8_t etc_Joystick2Switch; /* id = 2 */
-extern volatile uint32_t etc_Joystick2Register;
-extern volatile uint8_t etc_Mouse1Switch; /* id = 3 */
-extern volatile uint32_t etc_Mouse1Register;
-extern volatile uint8_t etc_Mouse2Switch; /* id = 4 */
-extern volatile uint32_t etc_Mouse2Register;
+extern uint8_t etc_KeyboardSwitch; /* id = 0 */
+extern uint32_t etc_KeyboardRegister;
+extern uint8_t etc_Joystick1Switch; /* id = 1 */
+extern uint32_t etc_Joystick1Register;
+extern uint8_t etc_Joystick2Switch; /* id = 2 */
+extern uint32_t etc_Joystick2Register;
+extern uint8_t etc_Mouse1Switch; /* id = 3 */
+extern uint32_t etc_Mouse1Register;
+extern uint8_t etc_Mouse2Switch; /* id = 4 */
+extern uint32_t etc_Mouse2Register;
 
 /* Input Device Configurations. */
-extern volatile uint8_t etc_InputDeviceSelect;
-extern volatile uint8_t etc_KeyboardConfig[_MAX_BUTTONS];
-extern volatile uint32_t etc_KeyboardMap[_MAX_KEYS * 2];
-extern volatile uint32_t etc_ExtendedKeyboardMap[_MAX_EXT_KEYS * 2];
-extern volatile JOYSTICK_CONFIG etc_Joy1Config;
-extern volatile JOYSTICK_CONFIG etc_Joy2Config;
-extern volatile MOUSE_CONFIG etc_Mouse1Config;
-extern volatile MOUSE_CONFIG etc_Mouse2Config;
+extern uint8_t etc_InputDeviceSelect;
+extern uint8_t etc_KeyboardConfig[_MAX_BUTTONS];
+extern uint32_t etc_KeyboardMap[_MAX_KEYS * 2];
+extern uint32_t etc_ExtendedKeyboardMap[_MAX_EXT_KEYS * 2];
+extern JOYSTICK_CONFIG etc_Joy1Config;
+extern JOYSTICK_CONFIG etc_Joy2Config;
+extern MOUSE_CONFIG etc_Mouse1Config;
+extern MOUSE_CONFIG etc_Mouse2Config;
 
 /* Default Input Device Configurations. */
 extern uint16_t etc_DefaultKeyboardSet[_MAX_BUTTONS];

@@ -1,61 +1,61 @@
 #include "input.h"
 
 /* Interrupt Handling. */
-volatile uint16_t etc_OriginalInt09Selector;
-volatile uint32_t etc_OriginalInt09Offset;
+uint16_t etc_OriginalInt09Selector;
+uint32_t etc_OriginalInt09Offset;
 
 /* Low-Level KeyCode Handling. */
-volatile int8_t etc_KeyboardHandler = 0;
-volatile int8_t etc_JoystickHandler = 0;
-volatile int8_t etc_MouseHandler = 0;
-volatile int8_t etc_TimerHandler = 0;
-volatile uint8_t etc_ExtendedMode = 0;
-volatile uint8_t etc_ExtendedFlag = 0;
-volatile uint8_t etc_ScanCode = 0;
-volatile uint8_t etc_Status = 0;
-volatile int8_t etc_KeyPressed = 0;
-volatile uint16_t etc_ExtKey = 0;
-volatile uint8_t etc_Key = 0;
-volatile uint8_t etc_ExitKey = 0;
-//volatile uint32_t		etc_KeyboardCounter = 0;
+int8_t etc_KeyboardHandler = 0;
+int8_t etc_JoystickHandler = 0;
+int8_t etc_MouseHandler = 0;
+int8_t etc_TimerHandler = 0;
+uint8_t etc_ExtendedMode = 0;
+uint8_t etc_ExtendedFlag = 0;
+uint8_t etc_ScanCode = 0;
+uint8_t etc_Status = 0;
+int8_t etc_KeyPressed = 0;
+uint16_t etc_ExtKey = 0;
+uint8_t etc_Key = 0;
+uint8_t etc_ExitKey = 0;
+//uint32_t		etc_KeyboardCounter = 0;
 
 /* Low-Level Mouse Handling. */
-volatile MOUSE etc_Mouse1;
-volatile MOUSE etc_Mouse2;
+MOUSE etc_Mouse1;
+MOUSE etc_Mouse2;
 
 /* Low-Level Joystick Handling. */
-volatile uint16_t etc_Joystick1CentreX;
-volatile uint16_t etc_Joystick1CentreY;
-volatile uint16_t etc_Joystick2CentreX;
-volatile uint16_t etc_Joystick2CentreY;
-volatile JOYSTICK etc_Joy1;
-volatile JOYSTICK etc_Joy2;
+uint16_t etc_Joystick1CentreX;
+uint16_t etc_Joystick1CentreY;
+uint16_t etc_Joystick2CentreX;
+uint16_t etc_Joystick2CentreY;
+JOYSTICK etc_Joy1;
+JOYSTICK etc_Joy2;
 
 /* Buffer pointers. */
-volatile char* etc_TransferBuffer1;
-volatile char* etc_TransferBuffer2;
+char* etc_TransferBuffer1;
+char* etc_TransferBuffer2;
 
 /* Input Device Status Blocks. (5 bytes each) */
-volatile uint8_t etc_KeyboardSwitch = _DEVICE_OFF; /* id = 0 */
-volatile uint32_t etc_KeyboardRegister = 0;
-volatile uint8_t etc_Joystick1Switch = _DEVICE_OFF; /* id = 1 */
-volatile uint32_t etc_Joystick1Register = 0;
-volatile uint8_t etc_Joystick2Switch = _DEVICE_OFF; /* id = 2 */
-volatile uint32_t etc_Joystick2Register = 0;
-volatile uint8_t etc_Mouse1Switch = _DEVICE_OFF; /* id = 3 */
-volatile uint32_t etc_Mouse1Register = 0;
-volatile uint8_t etc_Mouse2Switch = _DEVICE_OFF; /* id = 4 */
-volatile uint32_t etc_Mouse2Register = 0;
+uint8_t etc_KeyboardSwitch = _DEVICE_OFF; /* id = 0 */
+uint32_t etc_KeyboardRegister = 0;
+uint8_t etc_Joystick1Switch = _DEVICE_OFF; /* id = 1 */
+uint32_t etc_Joystick1Register = 0;
+uint8_t etc_Joystick2Switch = _DEVICE_OFF; /* id = 2 */
+uint32_t etc_Joystick2Register = 0;
+uint8_t etc_Mouse1Switch = _DEVICE_OFF; /* id = 3 */
+uint32_t etc_Mouse1Register = 0;
+uint8_t etc_Mouse2Switch = _DEVICE_OFF; /* id = 4 */
+uint32_t etc_Mouse2Register = 0;
 
 /* Input Device Configuration. */
-volatile uint8_t etc_InputDeviceSelect = 0;
-volatile uint8_t etc_KeyboardConfig[_MAX_BUTTONS];
-volatile uint32_t etc_KeyboardMap[_MAX_KEYS * 2];
-volatile uint32_t etc_ExtendedKeyboardMap[_MAX_EXT_KEYS * 2];
-volatile JOYSTICK_CONFIG etc_Joy1Config;
-volatile JOYSTICK_CONFIG etc_Joy2Config;
-volatile MOUSE_CONFIG etc_Mouse1Config;
-volatile MOUSE_CONFIG etc_Mouse2Config;
+uint8_t etc_InputDeviceSelect = 0;
+uint8_t etc_KeyboardConfig[_MAX_BUTTONS];
+uint32_t etc_KeyboardMap[_MAX_KEYS * 2];
+uint32_t etc_ExtendedKeyboardMap[_MAX_EXT_KEYS * 2];
+JOYSTICK_CONFIG etc_Joy1Config;
+JOYSTICK_CONFIG etc_Joy2Config;
+MOUSE_CONFIG etc_Mouse1Config;
+MOUSE_CONFIG etc_Mouse2Config;
 
 /* Default Keyboard Configuration. */
 #ifdef WIPEOUTPC

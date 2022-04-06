@@ -23,9 +23,9 @@ bool JJSJoyConfig();
 #define _DEVICE_ON 1
 
 extern uint16_t etc_DefaultKeyboardSet[];
-extern volatile uint8_t etc_Joystick1Switch; /* id = 1 */
-extern volatile uint8_t etc_Mouse1Switch; /* id = 1 */
-extern volatile uint8_t etc_InputDeviceSelect;
+extern uint8_t etc_Joystick1Switch; /* id = 1 */
+extern uint8_t etc_Mouse1Switch; /* id = 1 */
+extern uint8_t etc_InputDeviceSelect;
 extern char orig_controller;
 extern uint16_t Keycons[];
 

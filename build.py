@@ -17,7 +17,7 @@ def main():
         '-O0',
         '-fsanitize=address',
         '-fno-omit-frame-pointer',
-        '-std=c++17',
+        '-std=c++20',
         '-fcolor-diagnostics',
         '-Werror',
         '-Wno-constant-conversion',

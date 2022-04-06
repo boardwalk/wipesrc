@@ -14,8 +14,8 @@ int32_t InitPAD(void* bufA, int32_t lenA, void* bufB, int32_t lenB) {
   etc_Joystick2Switch = _DEVICE_OFF;
 
   /* Setup the transfer buffer ptrs using above parameters. */
-  etc_TransferBuffer1 = (volatile char*)bufA;
-  etc_TransferBuffer2 = (volatile char*)bufB;
+  etc_TransferBuffer1 = (char*)bufA;
+  etc_TransferBuffer2 = (char*)bufB;
 
   /* Initialize Controller Status. */
   etc_TransferBuffer1[0] = NG;

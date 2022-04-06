@@ -409,17 +409,17 @@ typedef struct {
 #define PAUSED 0
 #define NOT_PAUSED 1
 
-extern volatile MOUSE etc_Mouse1;
-extern volatile JOYSTICK etc_Joy1;
-extern volatile uint32_t etc_Mouse1Register;
-extern volatile uint32_t etc_Joystick1Register;
-extern volatile MOUSE_CONFIG etc_Mouse1Config;
-extern volatile JOYSTICK_CONFIG etc_Joy1Config;
-extern volatile char* etc_TransferBuffer1;
+extern MOUSE etc_Mouse1;
+extern JOYSTICK etc_Joy1;
+extern uint32_t etc_Mouse1Register;
+extern uint32_t etc_Joystick1Register;
+extern MOUSE_CONFIG etc_Mouse1Config;
+extern JOYSTICK_CONFIG etc_Joy1Config;
+extern char* etc_TransferBuffer1;
 extern char mouse_sensitivity;
-extern volatile uint8_t etc_Mouse1Switch; /* id = 3 */
-extern volatile uint8_t etc_Joystick1Switch;
-extern volatile uint8_t etc_InputDeviceSelect;
+extern uint8_t etc_Mouse1Switch; /* id = 3 */
+extern uint8_t etc_Joystick1Switch;
+extern uint8_t etc_InputDeviceSelect;
 
 #define TIMER_ID 1
 #define TIMER_RATE 1
