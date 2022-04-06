@@ -96,6 +96,7 @@ char losePic[35840];
 extern char inmenu, Reallyinmenu;
 char DepthFadeTble[256 * 96] = {0};
 char VRam[256 * 256 * 32 * 3]; // 32 256x256 24 bit pages
+bool vramDirty = false;
 extern uint32_t this_frame, last_frame;
 
 //#define	LOADTEXTURES	1					// standard load stuff (LoadImage4, LoadImage8 etc.);
@@ -543,6 +544,7 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
       src_start_off += ((xe - xs) * 2);
     }
   }
+  vramDirty = true;
   return 1;
 }
 
@@ -698,6 +700,7 @@ int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
       src_start_off += ((xe - xs) * 2);
     }
   }
+  vramDirty = true;
   return 1;
 }
 
@@ -836,6 +839,7 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
       src_start_off += ((xe - xs) * 2);
     }
   }
+  vramDirty = true;
   return 1;
 }
 
@@ -991,6 +995,7 @@ int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
       src_start_off += ((xe - xs) * 2);
     }
   }
+  vramDirty = true;
   return 1;
 }
 
@@ -1066,6 +1071,7 @@ void LoadVRam(const char* filename, char set_pal) {
   ReadPCX(fadefilename, &BM, 2);
 
   //	free(pall);
+  vramDirty = true;
 }
 #endif
 

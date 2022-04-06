@@ -17,7 +17,7 @@ def main():
         '-O0',
         '-fsanitize=address',
         '-fno-omit-frame-pointer',
-        '-std=c++11',
+        '-std=c++17',
         '-fcolor-diagnostics',
         '-Werror',
         '-Wno-constant-conversion',
@@ -27,6 +27,7 @@ def main():
         '-Wunused-but-set-variable',
         '-Wunused-variable',
         '-DWIPEOUTPC',
+        '-DGLFW_INCLUDE_GLCOREARB',
     ]
 
     linkflags = [

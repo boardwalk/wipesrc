@@ -9,6 +9,7 @@
 #include "track.h"
 #include "ships.h"
 #include "pad.h"
+#include "renderer.h"
 #include <stdio.h>
 #include <GLFW/glfw3.h>
 
@@ -49,141 +50,6 @@ void setRenderBegin() {
 void setRenderEnd() {
 }
 
-void JJS_Sprite(SPRT* sp) {
-  // printf("JJS_Sprite(x0=%d, y0=%d, u0=%u, v0=%u, clut=%u, w=%d, h=%d\n",
-  // 	sp->x0, sp->y0, sp->u0, sp->v0, sp->clut, sp->w, sp->h);
-}
-
-void JJS_Sprite8(SPRT_8* sp) {
-  printf("JJS_Sprite8\n");
-}
-
-void JJSDrawPolyF3(POLY_F3* p) {
-  // printf("f3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d)\n",
-  // 	p->x0, p->y0,
-  // 	p->x1, p->y1,
-  // 	p->x2, p->y2);
-
-  glBegin(GL_TRIANGLES);
-  // glColor3b(p->r0, p->g0, p->b0);
-  glVertex2s(p->x0, p->y0);
-  glVertex2s(p->x1, p->y1);
-  glVertex2s(p->x2, p->y2);
-  glEnd();
-}
-
-void JJSDrawPolyF4(POLY_F4* p) {
-  // printf("f4 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d) p3=(%d,%d)\n",
-  // 	p->x0, p->y0,
-  // 	p->x1, p->y1,
-  // 	p->x2, p->y2,
-  // 	p->x3, p->y3);
-
-  glBegin(GL_QUADS);
-  // glColor3b(p->r0, p->g0, p->b0);
-  glVertex2s(p->x0, p->y0);
-  glVertex2s(p->x1, p->y1);
-  glVertex2s(p->x2, p->y2);
-  glVertex2s(p->x3, p->y3);
-  glEnd();
-}
-
-void JJSDrawPolyG3(POLY_G3* p) {
-  // printf("g3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d)\n",
-  // 	p->x0, p->y0,
-  // 	p->x1, p->y1,
-  // 	p->x2, p->y2);
-
-  glBegin(GL_TRIANGLES);
-  // glColor3b(p->r0, p->g0, p->b0);
-  glVertex2s(p->x0, p->y0);
-  // glColor3b(p->r1, p->g1, p->b1);
-  glVertex2s(p->x1, p->y1);
-  // glColor3b(p->r2, p->g2, p->b2);
-  glVertex2s(p->x2, p->y2);
-  glEnd();
-}
-
-void JJSDrawPolyG4(POLY_G4* p) {
-  // printf("g4 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d) p3=(%d,%d)\n",
-  // 	p->x0, p->y0,
-  // 	p->x1, p->y1,
-  // 	p->x2, p->y2,
-  // 	p->x3, p->y3);
-
-  glBegin(GL_QUADS);
-  // glColor3b(p->r0, p->g0, p->b0);
-  glVertex2s(p->x0, p->y0);
-  // glColor3b(p->r1, p->g1, p->b1);
-  glVertex2s(p->x1, p->y1);
-  // glColor3b(p->r2, p->g2, p->b2);
-  glVertex2s(p->x2, p->y2);
-  // glColor3b(p->r3, p->g3, p->b3);
-  glVertex2s(p->x3, p->y3);
-  glEnd();
-}
-
-void JJSDrawPolyFT3(POLY_FT3* p) {
-  // printf("ft3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d)\n",
-  // 	p->x0, p->y0,
-  // 	p->x1, p->y1,
-  // 	p->x2, p->y2);
-
-  glBegin(GL_TRIANGLES);
-  // glColor3b(255, 255, 255);
-  glVertex2s(p->x0, p->y0);
-  glVertex2s(p->x1, p->y1);
-  glVertex2s(p->x2, p->y2);
-  glEnd();
-}
-
-void JJSDrawPolyFT4(POLY_FT4* p) {
-  // printf("ft4 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d) p3=(%d,%d)\n",
-  // 	p->x0, p->y0,
-  // 	p->x1, p->y1,
-  // 	p->x2, p->y2,
-  // 	p->x3, p->y3);
-
-  glBegin(GL_QUADS);
-  // glColor3b(255, 255, 255);
-  glVertex2s(p->x0, p->y0);
-  glVertex2s(p->x1, p->y1);
-  glVertex2s(p->x2, p->y2);
-  glVertex2s(p->x3, p->y3);
-  glEnd();
-}
-
-void JJSDrawPolyGT3(POLY_GT3* p) {
-  // printf("gt3 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d), tpage=%d\n",
-  // 	p->x0, p->y0,
-  // 	p->x1, p->y1,
-  // 	p->x2, p->y2,
-  // 	p->tpage);
-
-  glBegin(GL_TRIANGLES);
-  // glColor3b(255, 255, 255);
-  glVertex2s(p->x0, p->y0);
-  glVertex2s(p->x1, p->y1);
-  glVertex2s(p->x2, p->y2);
-  glEnd();
-}
-
-void JJSDrawPolyGT4(POLY_GT4* p) {
-  // printf("gt4 p0=(%d,%d) p1=(%d,%d) p2=(%d,%d) p3=(%d,%d)\n",
-  // 	p->x0, p->y0,
-  // 	p->x1, p->y1,
-  // 	p->x2, p->y2,
-  // 	p->x3, p->y3);
-
-  glBegin(GL_QUADS);
-  // glColor3b(255, 255, 255);
-  glVertex2s(p->x0, p->y0);
-  glVertex2s(p->x1, p->y1);
-  glVertex2s(p->x2, p->y2);
-  glVertex2s(p->x3, p->y3);
-  glEnd();
-}
-
 bool SJRNewTexture(const char* filename) {
   printf("SJRNewTexture(%s)\n", filename);
   return false;
@@ -205,15 +71,13 @@ void UnlockBackBuffer() {
 }
 
 void WinClearScreen(char colour) {
-  glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void BltClearToScreen() {
-  glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void DDSwap() {
-  // printf("DDSwap\n");
+  rendererRender();
   glfwSwapBuffers(g_window);
 }
 
@@ -384,30 +248,30 @@ int main(int argc, char** argv) {
 
   chdir(DataDirBase);
 
+  glfwSetErrorCallback([] (int error_code, const char* description) {
+    fprintf(stderr, "GLFW error %d: %s\n", error_code, description);
+  });
+
   if (!glfwInit()) {
-    fprintf(stderr, "Failed to initialize glfw\n");
     return EXIT_FAILURE;
   }
 
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
   g_window = glfwCreateWindow(WinWidth, WinHeight, "Wipeout", nullptr, nullptr);
   if (g_window == nullptr) {
-    fprintf(stderr, "Failed to create window\n");
     return EXIT_FAILURE;
   }
 
   glfwSetKeyCallback(g_window, keyCallback);
-
   glfwMakeContextCurrent(g_window);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  glOrtho(0.0, 320.0, 240.0, 0.0, -1.0, 1.0);
 
-  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-  glCullFace(GL_FRONT_AND_BACK);
-  glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-
+  rendererInit();
   oldmain();
-
+  rendererTerm();
   glfwTerminate();
   return 0;
 }
