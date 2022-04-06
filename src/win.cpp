@@ -126,9 +126,6 @@ int32_t randy() {
   return num;
 }
 
-void CopyPal(char* palette, int16_t start, int16_t end) {
-}
-
 void WinQuit() {
 }
 

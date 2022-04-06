@@ -707,8 +707,8 @@ int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
 #endif // 16 bit dump stuff
 #ifdef LOADAS24BIT
 int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
-  char* dest;
-  char* source;
+  uint8_t* dest;
+  uint8_t* source;
 
   char tpage_start, tpage_end, tpage;
   char vert_split;
@@ -718,7 +718,7 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
   int16_t width, height;
   int16_t xs, xe;
 
-  char* source_byte;
+  uint8_t* source_byte;
   int16_t line;
 
 #define TPAGE_WIDTH 64 // this is in WORDS, 'cause that's how the recp coord come in (I THINK!)
@@ -761,14 +761,14 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
         xe = TPAGE_WIDTH;
 
       for (line = y; line < y + height; line++) {
-        dest = (char*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 6) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+        dest = (uint8_t*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 6) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
         //				dest=VRam+(tpage*65536)+(xs*2)+(line*256);						// 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
-        source = (char*)p + src_start_off + ((line - y) * (width * 2)); // source in 16 bit co-ords  Width must be in bytes
+        source = (uint8_t*)p + src_start_off + ((line - y) * (width * 2)); // source in 16 bit co-ords  Width must be in bytes
         for (source_byte = source; source_byte < (source + ((xe - xs) * 2)); source_byte++) {
-          unsigned char val = *(unsigned char*)source_byte;
-          *dest++ = (char)cluts[val].red << 3;
-          *dest++ = (char)cluts[val].green << 3,
-          *dest++ = (char)cluts[val].blue << 3;
+          uint8_t val = *(uint8_t*)source_byte;
+          *dest++ = (uint8_t)cluts[val].red << 3;
+          *dest++ = (uint8_t)cluts[val].green << 3,
+          *dest++ = (uint8_t)cluts[val].blue << 3;
         }
       }
       src_start_off += ((xe - xs) * 2); //64 coords is 128 bytes!
@@ -793,15 +793,15 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
         xe = TPAGE_WIDTH;
 
       for (line = y; line < 256; line++) {
-        dest = (char*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 6) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+        dest = (uint8_t*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 6) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
         //				dest=VRam+(tpage*65536)+(xs * 2)+(line*256);
-        source = (char*)p + src_start_off + ((line - y) * (width * 2));
+        source = (uint8_t*)p + src_start_off + ((line - y) * (width * 2));
         for (source_byte = source; source_byte < (source + ((xe - xs) * 2)); source_byte++) //*2 for 16bit pixel values
         {
-          unsigned char val = *(unsigned char*)source_byte;
-          *dest++ = (char)cluts[val].red << 3;
-          *dest++ = (char)cluts[val].green << 3,
-          *dest++ = (char)cluts[val].blue << 3;
+          uint8_t val = *(uint8_t*)source_byte;
+          *dest++ = (uint8_t)cluts[val].red << 3;
+          *dest++ = (uint8_t)cluts[val].green << 3,
+          *dest++ = (uint8_t)cluts[val].blue << 3;
         }
       }
       src_start_off += ((xe - xs) * 2);
@@ -826,14 +826,14 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
 
       for (line = 0; line < height - (256 - y); line++) //(256-y) is the amount drawn in the top half
       {
-        dest = (char*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 6) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+        dest = (uint8_t*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 6) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
         //				dest=VRam+(tpage*65536)+(xs * 2)+(line*256);
-        source = (char*)p + src_start_off + ((line + 256 - y) * (width * 2));
+        source = (uint8_t*)p + src_start_off + ((line + 256 - y) * (width * 2));
         for (source_byte = source; source_byte < (source + ((xe - xs) * 2)); source_byte++) {
-          unsigned char val = *(unsigned char*)source_byte;
-          *dest++ = (char)cluts[val].red << 3;
-          *dest++ = (char)cluts[val].green << 3,
-          *dest++ = (char)cluts[val].blue << 3;
+          uint8_t val = *(uint8_t*)source_byte;
+          *dest++ = (uint8_t)cluts[val].red << 3;
+          *dest++ = (uint8_t)cluts[val].green << 3,
+          *dest++ = (uint8_t)cluts[val].blue << 3;
         }
       }
       src_start_off += ((xe - xs) * 2);
@@ -846,8 +846,8 @@ int32_t LoadImage8(RECT* recp, uint32_t* p, CLUT* cluts) {
 //*****************************************************************
 
 int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
-  char* dest;
-  char* source;
+  uint8_t* dest;
+  uint8_t* source;
 
   char tpage_start, tpage_end, tpage;
   char vert_split;
@@ -857,7 +857,7 @@ int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
   int16_t width, height;
   int16_t xs, xe;
 
-  char* source_byte;
+  uint8_t* source_byte;
   int16_t line;
 
 #define TPAGE_WIDTH 64 // this is in WORDS, 'cause that's how the recp coord come in (I THINK!)
@@ -900,21 +900,21 @@ int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
         xe = TPAGE_WIDTH;
 
       for (line = y; line < y + height; line++) {
-        dest = (char*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 12) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+        dest = (uint8_t*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 12) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
         //				dest=VRam+(tpage*65536)+(xs*4)+(line*256);				// destination in 4 bit co-ords
-        source = (char*)p + src_start_off + ((line - y) * (width * 2)); // source in 16 bit co-ords  Width must be in bytes
+        source = (uint8_t*)p + src_start_off + ((line - y) * (width * 2)); // source in 16 bit co-ords  Width must be in bytes
 
         for (source_byte = source; source_byte < (source + ((xe - xs) * 2)); source_byte++) // read in bytes for whole line
         { // converting from 4 bit to 8 bit on the way
-          unsigned char val = *(unsigned char*)source_byte & 0xf;
-          *dest++ = (char)cluts[val].red << 3;
-          *dest++ = (char)cluts[val].green << 3,
-          *dest++ = (char)cluts[val].blue << 3;
+          uint8_t val = *(uint8_t*)source_byte & 0xf;
+          *dest++ = (uint8_t)cluts[val].red << 3;
+          *dest++ = (uint8_t)cluts[val].green << 3,
+          *dest++ = (uint8_t)cluts[val].blue << 3;
 
-          val = *(unsigned char*)source_byte >> 4;
-          *dest++ = (char)cluts[val].red << 3;
-          *dest++ = (char)cluts[val].green << 3;
-          *dest++ = (char)cluts[val].blue << 3;
+          val = *(uint8_t*)source_byte >> 4;
+          *dest++ = (uint8_t)cluts[val].red << 3;
+          *dest++ = (uint8_t)cluts[val].green << 3;
+          *dest++ = (uint8_t)cluts[val].blue << 3;
         }
       }
       src_start_off += ((xe - xs) * 2); //64 coords is 128 bytes!	// increment the source start offset
@@ -939,17 +939,17 @@ int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
         xe = TPAGE_WIDTH;
 
       for (line = y; line < 256; line++) {
-        dest = (char*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 12) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+        dest = (uint8_t*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 12) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
         //				dest=VRam+(tpage*65536)+(xs * 4)+(line*256);
-        source = (char*)p + src_start_off + ((line - y) * (width * 2));
+        source = (uint8_t*)p + src_start_off + ((line - y) * (width * 2));
         for (source_byte = source; source_byte < (source + ((xe - xs) * 2)); source_byte++) //*2 for 16bit pixel values
         {
-          unsigned char val = *(unsigned char*)source_byte & 0xf;
+          uint8_t val = *(uint8_t*)source_byte & 0xf;
           *dest++ = (char)cluts[val].red << 3;
           *dest++ = (char)cluts[val].green << 3,
           *dest++ = (char)cluts[val].blue << 3;
 
-          val = *(unsigned char*)source_byte >> 4;
+          val = *(uint8_t*)source_byte >> 4;
           *dest++ = (char)cluts[val].red << 3;
           *dest++ = (char)cluts[val].green << 3;
           *dest++ = (char)cluts[val].blue << 3;
@@ -977,19 +977,19 @@ int32_t LoadImage4(RECT* recp, uint32_t* p, CLUT* cluts) {
 
       for (line = 0; line < height - (256 - y); line++) //(256-y) is the amount drawn in the top half
       {
-        dest = (char*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 12) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
+        dest = (uint8_t*)(VRam + ((int32_t)tpage * 196608) + ((int32_t)xs * 12) + ((int32_t)line * 768)); // 65536 = size of tpage, 2 = number of pixels per word of source, 256 = width of VRAM
         //				dest=VRam+(tpage*65536)+(xs * 4)+(line*256);
-        source = (char*)p + src_start_off + ((line + 256 - y) * (width * 2));
+        source = (uint8_t*)p + src_start_off + ((line + 256 - y) * (width * 2));
         for (source_byte = source; source_byte < (source + ((xe - xs) * 2)); source_byte++) {
-          unsigned char val = *(unsigned char*)source_byte & 0xf;
-          *dest++ = (char)cluts[val].red << 3;
-          *dest++ = (char)cluts[val].green << 3,
-          *dest++ = (char)cluts[val].blue << 3;
+          uint8_t val = *(uint8_t*)source_byte & 0xf;
+          *dest++ = (uint8_t)cluts[val].red << 3;
+          *dest++ = (uint8_t)cluts[val].green << 3,
+          *dest++ = (uint8_t)cluts[val].blue << 3;
 
-          val = *(unsigned char*)source_byte >> 4;
-          *dest++ = (char)cluts[val].red << 3;
-          *dest++ = (char)cluts[val].green << 3;
-          *dest++ = (char)cluts[val].blue << 3;
+          val = *(uint8_t*)source_byte >> 4;
+          *dest++ = (uint8_t)cluts[val].red << 3;
+          *dest++ = (uint8_t)cluts[val].green << 3;
+          *dest++ = (uint8_t)cluts[val].blue << 3;
         }
       }
       src_start_off += ((xe - xs) * 2);

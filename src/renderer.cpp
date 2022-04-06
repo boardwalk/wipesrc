@@ -39,9 +39,9 @@ static const char FRAGMENT_SHADER[] = R"glsl(
 
   void main() {
     if (textured == 0) {
-      outColor = vec4(colorFrag, 1.0);
+      outColor = vec4(1.0); //vec4(colorFrag, 1.0);
     } else {
-      outColor = texture(sampler, texcoordFrag) * vec4(colorFrag, 1.0);
+      outColor = texture(sampler, texcoordFrag); // * vec4(colorFrag, 1.0);
     }
   }
 )glsl";
@@ -50,6 +50,12 @@ struct RenderData {
   std::vector<GLshort> vertices;
   std::vector<GLubyte> colors;
   std::vector<GLfloat> texcoords;
+};
+
+struct Color {
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
 };
 
 extern char VRam[];
@@ -67,6 +73,7 @@ static GLuint g_vao = 0;
 static GLuint g_vramTex = 0;
 static RenderData g_renderData;
 static RenderData g_renderDataTextured;
+static Color g_palette[256];
 
 static void checkGLError(const char* func) {
   GLenum err;
@@ -152,6 +159,12 @@ void rendererInit() {
   // GLint samplerLoc = glGetUniformLocation(g_program, "sampler");
   // glUniform1i(samplerLoc, 0);
 
+  for (size_t i = 0; i < sizeof(g_palette) / sizeof(g_palette[0]); i++) {
+    g_palette[i].r = i;
+    g_palette[i].g = i;
+    g_palette[i].b = i;
+  }
+
   CHECK_GL_ERROR();
 }
 
@@ -182,7 +195,7 @@ static void renderWithMode(RenderData& renderData, bool textured) {
   renderData.texcoords.clear();
 }
 
-static void LoadVRamToTexture() {
+static void loadVRamToTexture() {
   if(!vramDirty) {
     return;
   }
@@ -209,13 +222,41 @@ static void LoadVRamToTexture() {
 }
 
 void rendererRender() {
-  LoadVRamToTexture();
+  loadVRamToTexture();
   glClear(GL_COLOR_BUFFER_BIT);
   renderWithMode(g_renderData, false);
   renderWithMode(g_renderDataTextured, true);
   CHECK_GL_ERROR();
 }
 
+#define BLACK2_TRANSL 3
+#define WHITE2_TRANSL 9
+#define RED_LIGHT_FADE 16
+
+static Color getColor(uint8_t r, uint8_t g, uint8_t b) {
+  if (g) {
+    if (g == 25) {
+      return { 40, 40, 255 }; // Speed up
+    } else {
+      // int32_t r = DepthFadeTble[(g << 8) + WhitePal];
+      // int32_t r = 128; // FIXME
+      // return g_palette[r];
+      return { 255, 255, 255 };
+    }
+  } else if (b) {
+    switch (b) {
+    case BLACK2_TRANSL:
+      return { 180, 180, 180 };
+    case RED_LIGHT_FADE:
+      return { 255, 10, 0 };
+    case WHITE2_TRANSL:
+    default:
+      return { 100, 100, 100 };
+    }
+  } else {
+    return g_palette[r];
+  }
+}
 
 static GLfloat calcTexCoordU(uint16_t tpage, uint8_t u) {
   return (GLfloat)u / (GLfloat)0xFF;
@@ -246,9 +287,10 @@ static void addPrim(
     for(size_t j = 0; j < 3; j++) {
       g_renderData.vertices.push_back(pos[i + j].x);
       g_renderData.vertices.push_back(pos[i + j].y);
-      g_renderData.colors.push_back(color[i + j].r);
-      g_renderData.colors.push_back(color[i + j].g);
-      g_renderData.colors.push_back(color[i + j].b);
+      Color transColor = getColor(color[i + j].r, color[i + j].g, color[i + j].b);
+      g_renderData.colors.push_back(transColor.r);
+      g_renderData.colors.push_back(transColor.g);
+      g_renderData.colors.push_back(transColor.b);
       g_renderData.texcoords.push_back(0.0f);
       g_renderData.texcoords.push_back(0.0f);
     }
@@ -266,9 +308,10 @@ static void addPrim(
     for(size_t j = 0; j < 3; j++) {
       g_renderDataTextured.vertices.push_back(pos[i + j].x);
       g_renderDataTextured.vertices.push_back(pos[i + j].y);
-      g_renderDataTextured.colors.push_back(color[i + j].r);
-      g_renderDataTextured.colors.push_back(color[i + j].g);
-      g_renderDataTextured.colors.push_back(color[i + j].b);
+      Color transColor = getColor(color[i + j].r, color[i + j].g, color[i + j].b);
+      g_renderDataTextured.colors.push_back(transColor.r);
+      g_renderDataTextured.colors.push_back(transColor.g);
+      g_renderDataTextured.colors.push_back(transColor.b);
       g_renderDataTextured.texcoords.push_back(calcTexCoordU(texpage, tex[i + j].u));
       g_renderDataTextured.texcoords.push_back(calcTexCoordV(texpage, tex[i + j].v));
     }
@@ -278,6 +321,14 @@ static void addPrim(
 /*
  * Begin implemented game functions
  */
+
+void CopyPal(char* palette, int16_t start, int16_t end) {
+  for(int16_t i = start; i <= end; i++) {
+    g_palette[i].r = *(uint8_t*)palette++;
+    g_palette[i].g = *(uint8_t*)palette++;
+    g_palette[i].b = *(uint8_t*)palette++;
+  }
+}
 
 void JJS_Sprite(SPRT* sp) {
 }
