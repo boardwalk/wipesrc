@@ -279,21 +279,32 @@ struct VertTex {
 };
 
 template<size_t N>
+struct PrimIndices;
+
+template<>
+struct PrimIndices<3> {
+  static constexpr size_t INDICES[] = { 0, 1, 2 };
+};
+
+template<>
+struct PrimIndices<4> {
+  static constexpr size_t INDICES[] = { 0, 1, 2, /**/ 0, 2, 3 };
+};
+
+template<size_t N>
 static void addPrim(
   std::array<VertPos, N> pos,
   std::array<VertColor, N> color)
 {
-  for(size_t i = 0; i + 2 < N; i++) {
-    for(size_t j = 0; j < 3; j++) {
-      g_renderData.vertices.push_back(pos[i + j].x);
-      g_renderData.vertices.push_back(pos[i + j].y);
-      Color transColor = getColor(color[i + j].r, color[i + j].g, color[i + j].b);
-      g_renderData.colors.push_back(transColor.r);
-      g_renderData.colors.push_back(transColor.g);
-      g_renderData.colors.push_back(transColor.b);
-      g_renderData.texcoords.push_back(0.0f);
-      g_renderData.texcoords.push_back(0.0f);
-    }
+  for(size_t i : PrimIndices<N>::INDICES) {
+    g_renderData.vertices.push_back(pos[i].x);
+    g_renderData.vertices.push_back(pos[i].y);
+    Color transColor = getColor(color[i].r, color[i].g, color[i].b);
+    g_renderData.colors.push_back(transColor.r);
+    g_renderData.colors.push_back(transColor.g);
+    g_renderData.colors.push_back(transColor.b);
+    g_renderData.texcoords.push_back(0.0f);
+    g_renderData.texcoords.push_back(0.0f);
   }
 }
 
@@ -304,18 +315,42 @@ static void addPrim(
   std::array<VertTex, N> tex,
   uint16_t texpage)
 {
-  for(size_t i = 0; i + 2 < N; i++) {
-    for(size_t j = 0; j < 3; j++) {
-      g_renderDataTextured.vertices.push_back(pos[i + j].x);
-      g_renderDataTextured.vertices.push_back(pos[i + j].y);
-      Color transColor = getColor(color[i + j].r, color[i + j].g, color[i + j].b);
-      g_renderDataTextured.colors.push_back(transColor.r);
-      g_renderDataTextured.colors.push_back(transColor.g);
-      g_renderDataTextured.colors.push_back(transColor.b);
-      g_renderDataTextured.texcoords.push_back(calcTexCoordU(texpage, tex[i + j].u));
-      g_renderDataTextured.texcoords.push_back(calcTexCoordV(texpage, tex[i + j].v));
-    }
+  for(size_t i : PrimIndices<N>::INDICES) {
+    g_renderDataTextured.vertices.push_back(pos[i].x);
+    g_renderDataTextured.vertices.push_back(pos[i].y);
+    Color transColor = getColor(color[i].r, color[i].g, color[i].b);
+    g_renderDataTextured.colors.push_back(transColor.r);
+    g_renderDataTextured.colors.push_back(transColor.g);
+    g_renderDataTextured.colors.push_back(transColor.b);
+    g_renderDataTextured.texcoords.push_back(calcTexCoordU(texpage, tex[i].u));
+    g_renderDataTextured.texcoords.push_back(calcTexCoordV(texpage, tex[i].v));
   }
+}
+
+static void addSprite(int16_t x, int16_t y, int16_t w, int16_t h, uint8_t u, uint8_t v, uint16_t tpage) {
+  x -= 160;
+  // y -= 120;
+  addPrim<4>(
+    {
+      VertPos { x, y },
+      VertPos { (int16_t)(x + w), y },
+      VertPos { (int16_t)(x + w), (int16_t)(y + h) },
+      VertPos { x, (int16_t)(y + h) },
+    },
+    {
+      VertColor { 255, 255, 255 },
+      VertColor { 255, 255, 255 },
+      VertColor { 255, 255, 255 },
+      VertColor { 255, 255, 255 },
+    },
+    {
+      VertTex { u, v },
+      VertTex { (uint8_t)(u + w), v },
+      VertTex { (uint8_t)(u + w), (uint8_t)(v + h) },
+      VertTex { u, (uint8_t)(v + h) },
+    },
+    tpage
+  );
 }
 
 /*
@@ -331,9 +366,11 @@ void CopyPal(char* palette, int16_t start, int16_t end) {
 }
 
 void JJS_Sprite(SPRT* sp) {
+  addSprite(sp->x0, sp->y0, sp->w, sp->h, sp->u0, sp->v0, sp->clut);
 }
 
 void JJS_Sprite8(SPRT_8* sp) {
+  addSprite(sp->x0, sp->y0, 8, 8, sp->u0, sp->v0, sp->clut);
 }
 
 void JJSDrawPolyF3(POLY_F3* p) {
@@ -355,8 +392,8 @@ void JJSDrawPolyF4(POLY_F4* p) {
     {
       VertPos { p->x0, p->y0 },
       VertPos { p->x1, p->y1 },
-      VertPos { p->x2, p->y2 },
       VertPos { p->x3, p->y3 },
+      VertPos { p->x2, p->y2 },
     },
     {
       VertColor { p->r0, p->g0, p->b0 },
@@ -385,14 +422,14 @@ void JJSDrawPolyG4(POLY_G4* p) {
     {
       VertPos { p->x0, p->y0 },
       VertPos { p->x1, p->y1 },
-      VertPos { p->x2, p->y2 },
       VertPos { p->x3, p->y3 },
+      VertPos { p->x2, p->y2 },
     },
     {
       VertColor { p->r0, p->g0, p->b0 },
       VertColor { p->r1, p->g1, p->b1 },
-      VertColor { p->r2, p->g2, p->b2 },
       VertColor { p->r3, p->g3, p->b3 },
+      VertColor { p->r2, p->g2, p->b2 },
     });
 }
 
@@ -421,8 +458,8 @@ void JJSDrawPolyFT4(POLY_FT4* p) {
     {
       VertPos { p->x0, p->y0 },
       VertPos { p->x1, p->y1 },
-      VertPos { p->x2, p->y2 },
       VertPos { p->x3, p->y3 },
+      VertPos { p->x2, p->y2 },
     },
     {
       VertColor { p->r0, p->g0, p->b0 },
@@ -433,8 +470,8 @@ void JJSDrawPolyFT4(POLY_FT4* p) {
     {
       VertTex { p->u0, p->v0 },
       VertTex { p->u1, p->v1 },
-      VertTex { p->u2, p->v2 },
       VertTex { p->u3, p->v3 },
+      VertTex { p->u2, p->v2 },
     },
     p->tpage);
 }
@@ -464,21 +501,21 @@ void JJSDrawPolyGT4(POLY_GT4* p) {
     {
       VertPos { p->x0, p->y0 },
       VertPos { p->x1, p->y1 },
-      VertPos { p->x2, p->y2 },
       VertPos { p->x3, p->y3 },
+      VertPos { p->x2, p->y2 },
     },
     {
       VertColor { p->r0, p->g0, p->b0 },
       VertColor { p->r1, p->g1, p->b1 },
-      VertColor { p->r2, p->g2, p->b2 },
       VertColor { p->r3, p->g3, p->b3 },
+      VertColor { p->r2, p->g2, p->b2 },
 
     },
     {
       VertTex { p->u0, p->v0 },
       VertTex { p->u1, p->v1 },
-      VertTex { p->u2, p->v2 },
       VertTex { p->u3, p->v3 },
+      VertTex { p->u2, p->v2 },
     },
     p->tpage);
 }
